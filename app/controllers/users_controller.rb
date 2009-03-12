@@ -19,6 +19,7 @@ class UsersController < ApplicationController
 
   def show
     @user = @current_user
+    @shares = Share.find(:all, :conditions => ["user_id = ?", @user.id])
   end
 
   def edit

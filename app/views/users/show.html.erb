@@ -1,3 +1,5 @@
+<%= link_to 'Edit Profile', edit_user_path(@user) %> | <%= link_to "Logout", user_session_path, :method => :delete, :confirm => "Are you sure you want to logout?" %>
+
 <p>
   <b>Login:</b>
   <%=h @user.login %>
@@ -22,6 +24,23 @@
   <b>Login count:</b>
   <%=h @user.login_count %>
 </p>
+<hr>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<h2>Contributed shares:</h2>
+
+<table>
+  <tr>
+	<th>Modify</th>
+	<th>Title</th>
+  </tr>
+
+<% for share in @shares %>
+  <tr>
+    <td><%= link_to 'Show', share %> 
+	| <%= link_to 'Edit', edit_share_path(share) %> 
+	</td>
+
+	<td><%= share.title -%></td>
+  </tr>
+<% end %>
+</table>
