@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :shares
+
   
   map.resource :user_session
   map.root :controller => "user_sessions", :action => "new"
