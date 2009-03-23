@@ -1,12 +1,12 @@
-<h1>Editing share</h1>
-
-<% form_for(@share) do |f| %>
-  <%= f.error_messages %>
-  <%= render :partial => "form", :object => f %>
-    <%= f.submit "Update" %>
+<% if current_user.id == @share.user_id %>
+	<% form_for(@share) do |f| %>
+  		<%= f.error_messages %>
+  		<%= render :partial => "form", :object => f %>
+	<% end %>
+<% else %>
+	
+	<div>
+		<h2>You didn't create this share, so you can't edit it. <br /><br />How did you even get here?
+		</h2>
+	</div>
 <% end %>
-
-<%= link_to 'Show', @share %>
-| <%= link_to 'Return', account_url %>
-<br />
-<%= link_to 'Destroy', @share, :confirm => 'Are you sure?', :method => :delete %> 

@@ -1,28 +1,52 @@
-<p>
-  <%= form.label :link %><br />
-  <%= form.text_field :link %>
-</p>
-<p>
-  <%= form.label :title %><br />
-  <%= form.text_field :title %>
-</p>
-<p>
-  <%= form.label :description %><br />
-  <%= form.text_area :description %>
-</p>
-<p>
-  <%= form.label :website %><br />
-  <%= form.text_field :website %>
-</p>
-<p>
-Where did you find this link?<br />
-  <%= form.text_field :source %>
-</p>
-<p>
-  <%= form.label :alternative_contact %><br />
-  <%= form.text_field :alternative_contact %>
-</p>
-<p>
-  Visible<br />
-  <%= form.check_box :active %>
-</p>
+<div class="add_share_form">
+	<h1>Share, share, share!</h1>
+<table>
+	<tr>
+		<td>
+			<p>
+		  		<%= form.label :link %><br />
+		  		<%= form.text_field :link %>
+			</p>
+		</td>
+		<td>
+			<p>
+		  		<%= form.label :title %><br />
+		  		<%= form.text_field :title %>
+			</p>
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+			<p>
+			  	<%= form.label :website %><br />
+			  	<%= form.text_field :website %>
+			</p>
+			<p>
+				<label for="share_source">Where did you find this link?</label><br />
+				
+			  	<%= form.text_field :source %>
+			</p>
+<!-- 			<p>
+			  	<%= form.label :alternative_contact %><br />
+			  	<%= form.text_field :alternative_contact %>
+			</p>
+-->
+			<p>
+			<%= form.submit "Save" %> <% if current_user.id == @share.user_id %>
+					<%= link_to 'Destroy share', @share, :confirm => 'Are you sure you want to remove this share? Your share will no longer be visible!', :method => :delete %>
+					<% end %>
+			</p>
+		</td>
+		
+		<td>
+			<p>
+		  		<%= form.label :description %><br />
+		  		<%= form.text_area :description %>
+			</p>
+		</td>
+	
+	</tr>
+		
+</table>
+</div>

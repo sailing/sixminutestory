@@ -1,9 +1,47 @@
-<h1>Edit profile</h1>
+<div class="add_share_form">
+	<h1>Login information:
+	</h1>
 
 <% form_for @user, :url => account_path do |f| %>
   <%= f.error_messages %>
-  <%= render :partial => "form", :object => f %>
-    <%= f.submit "Update" %>
-<% end %>
 
-<%= link_to 'My Profile', account_path %>
+<table >
+	<tr>
+		
+		<td>
+			<p>
+				<%= f.label :login %><br />
+				<%= f.text_field :login %>
+			</p>
+			<p>
+				<%= f.label :password, f.object.new_record? ? nil : "Change password" %><br />
+				<%= f.password_field :password %>
+			</p>
+			<p>
+			<%= f.label :password_confirmation %><br />
+			<%= f.password_field :password_confirmation %>
+			</p>
+			<p>
+				<%= f.submit "Done!" %>
+			</p>
+		</td>
+		<td class="right">
+			<p>
+			  <%= f.label :website %><br />
+			  <%= f.text_field :website %>
+			</p>
+			<p>
+			  <%= f.label :email_address %><br />
+			  <%= f.text_field :email_address %>
+			</p>
+			<p>
+			  <%= f.label :profile %><br />
+			  <%= f.text_area :profile %>
+			</p>
+			
+		</td>
+	</tr>
+</table>
+
+<% end %>
+</div>

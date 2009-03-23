@@ -1,46 +1,82 @@
-<%= link_to 'Edit Profile', edit_user_path(@user) %> | <%= link_to "Logout", user_session_path, :method => :delete, :confirm => "Are you sure you want to logout?" %>
-
-<p>
-  <b>Login:</b>
-  <%=h @user.login %>
-</p>
-
-<p>
-  <b>Website:</b>
-  <%=h @user.website %>
-</p>
-
-<p>
-  <b>Email address:</b>
-  <%=h @user.email_address %>
-</p>
-
-<p>
-  <b>Profile:</b>
-  <%=h @user.profile %>
-</p>
-
-<p>
-  <b>Login count:</b>
-  <%=h @user.login_count %>
-</p>
-<hr>
-
-<h2>Contributed shares:</h2>
-
+<% if current_user.id == @user.id %>
+<div id="contributed_shares">
+	<h1>Contributed shares | <%= link_to 'New share', new_share_path %> </h1>
 <table>
+	<tr>
+		<th colspan="2">
+		
+		</td>
+	</tr>
   <tr>
-	<th>Modify</th>
-	<th>Title</th>
+	<th>
+		<span>Modify
+		</span>
+	</th>
+	
+	<th>
+		<span>Title
+		</span>
+	</th>
+	<th>
+		<span>Description
+		</span>
   </tr>
 
 <% for share in @shares %>
   <tr>
-    <td><%= link_to 'Show', share %> 
-	| <%= link_to 'Edit', edit_share_path(share) %> 
+    <td> 
+	<span><%= link_to 'Edit', edit_share_path(share) %> 
 	</td>
 
-	<td><%= share.title -%></td>
+	<td>
+		<span><%= link_to share.title, share %>
+		</span>
+	</td>
+   <td>
+		<span><%=h share.description[0,50] %>... [<%= link_to 'more', share %>]
+		</span>
+	</td>
   </tr>
 <% end %>
 </table>
+
+</div>
+
+<br /><br />
+
+<% end %>
+<div id="show_share">
+	<h1>
+	  <%=h @user.login %> | <%= link_to 'Edit profile', edit_user_path(@user) %>
+	</h1>
+
+<table>
+	<tr>
+	<td>
+			<p>
+			  Website:
+			</p>
+			<p class="show_share_value">
+			  <%=h @user.website %>
+			</p>
+
+			<p>
+			  Email address:
+			</p>
+			<p class="show_share_value">  
+			<%=h @user.email_address %>
+			</p>
+
+		</td>
+		<td>
+			<p>
+			  Profile:
+			</p>
+			<p class="show_share_description">  
+			<%=h @user.profile %>
+			</p>
+		</td>
+	</tr>
+</table>
+
+</div>

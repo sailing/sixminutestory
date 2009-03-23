@@ -6,14 +6,29 @@ body, p, ol, ul, td {
   line-height: 18px;
 }
 
+table {
+	table-layout:fixed;
+}
+
 pre {
   background-color: #eee;
   padding: 10px;
   font-size: 11px;
 }
 
-a { color: #000; }
-a:visited { color: #666; }
+h1 {
+	font-size:28px;
+	margin-bottom:10px;
+	padding-bottom:7px;
+	text-align:left;
+	color:#363;	
+	border-bottom:2px solid #999;
+	width:100%;
+	text-indent:15px;
+}
+
+a { color: #666; }
+a:visited { color: #999; }
 a:hover { color: #fff; background-color:#000; }
 
 .fieldWithErrors {
@@ -52,3 +67,185 @@ a:hover { color: #fff; background-color:#000; }
   list-style: square;
 }
 
+#header_links {
+	margin-bottom:15px;
+	padding-bottom:3px;
+	width:100%;
+	border-bottom:2px solid #ccc;
+	text-align:right;
+}
+
+.add_share_form, #show_share, #contributed_shares {
+	background-color:#ddf;
+	border:2px solid #666;
+	width:80%;
+	margin:0px auto;
+	padding:0px;
+}
+
+.add_share_form table {
+	border-collapse:collapse;
+	margin:15px auto;
+	width:90%;
+	padding:0px;
+}
+
+.add_share_form th{
+	text-indent:15px;
+}
+.add_share_form td {
+	padding: 0 0px 0 15px;
+	vertical-align:top;
+	}
+
+.add_share_form .right {
+	border-left:2px dashed gray;
+}
+
+
+.add_share_form label, p {
+	margin:0px;
+	font-size:20px;
+	line-height:28px;
+	font-weight:bold;
+	text-align:left;
+	color: #685;
+}
+
+.add_share_form textarea {
+	width:90%;
+	height:200px;
+	border:2px solid #368;
+	background-color:#eef;
+	font-size:20px;
+	color:#666
+}
+
+.add_share_form input{
+	width:90%;
+	height:35px;
+	border:2px solid #479;
+	background-color:#eef;
+	font-size:20px;
+	color:#666;
+	margin-bottom:20px;
+}
+
+.add_share_form input[type="checkbox"]{
+	width:20px;
+	height:20px;
+	border:2px solid #479;
+	background-color:#eef;
+	font-size:10px;
+	color:#666;
+}
+
+.add_share_form input[type="submit"],input[type="button"] {
+	width:150px;
+	font-size:22px;
+	color:#666;
+	background-color:#eef;
+	border:2px solid #479;
+}
+		
+#show_share table {
+	border-collapse:collapse;
+	padding:5px 0px 15px 0px;
+}
+
+#show_share h1 a {
+	color:#666;
+	font-size:20px;
+}
+
+#show_share h1 a:visited {
+	color:#999;
+	font-size:20px;
+}
+
+#show_share th {
+	text-indent:15px;
+}
+
+#show_share td {
+	padding: 0px 0px 0px 20px;
+	text-align:left;
+	vertical-align:top;
+	width:50%;
+}
+
+#show_share h2 {
+	padding:0px;
+	margin:0px;
+}
+
+#show_share h2 a {
+	font-size:23px;
+	line-height:26px;
+	color: #685;
+}
+
+#show_share p, span {
+	font-size:20px;
+	font-weight:bold;
+	color: #685;
+	margin:5px;
+}
+
+#show_share .show_share_description {
+	font-size:14px;
+	color:#555;
+	letter-spacing:.06em;
+}
+
+#show_share .show_share_value {
+	font-size:16px;
+	color:#555;
+	text-indent:5px;
+	padding-bottom:10px;
+}
+
+#contributed_shares table {
+	border-collapse:collapse;
+	padding:5px 0px 15px 0px;
+}
+
+#contributed_shares th, th span{
+	text-indent:15px;
+	text-align:left;
+	padding-bottom:10px;
+	font-size:18px;
+	color:#555;
+}
+
+#contributed_shares td {
+	padding: 0px 0px 10px 15px;
+	vertical-align:top;
+	text-align:left;
+}
+
+#contributed_shares th a {
+	font-size:28px;
+	color: #685;
+}
+
+#contributed_shares p, span {
+	font-size:15px;
+	font-weight:bold;
+	line-height:18px;
+	color: #685;
+}
+
+#contributed_shares .alternate {
+	background-color:blue;
+}
+
+#contributed_shares h1 a {
+	color:#666;
+	font-size:20px;
+}
+
+#contributed_shares h1 a:visited {
+	color:#999;
+	font-size:20px;
+}

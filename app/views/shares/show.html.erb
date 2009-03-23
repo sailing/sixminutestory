@@ -1,39 +1,51 @@
-<%= render :partial => "ratings/rate", :locals => { :asset => @share } %>  
-<p>
-  <b>Link:</b>
-  <%=h @share.link %>
-</p>
+<div id="show_share">
+ <h1><%=h @share.title %>&nbsp;&nbsp;&nbsp;&nbsp;<% if current_user.id == @share.user_id %>
+	<%= link_to 'Edit', edit_share_path(@share) %> |
+	<%= link_to 'Destroy', @share, :confirm => 'Are you sure?', :method => :delete %>
+	<% else %>
+	<%= link_to 'Submitter\'s profile', profile_url(@share.user_id)%>
+	<% end %>
+	</h1>
 
-<p>
-  <b>Title:</b>
-  <%=h @share.title %>
-</p>
+<table>
+	<tr>
+		<td colspan=2>
+			<span><h2><%= link_to @share.link, @share.link %></h2> 
+			</span>
 
-<p>
-  <b>Description:</b>
-  <%=h @share.description %>
-</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p>Website:</p>
+				<p class="show_share_value"><%= link_to @share.website, @share.website %> 
+				</p>
 
-<p>
-  <b>Website:</b>
-  <%=h @share.website %>
-</p>
+			
+			  <p>Source:</p>
+					<p class="show_share_value"><%=h @share.source %>
+					</p>
+<!--
+			  <p>Alternative Contact:</p>
+					<p class="show_share_value"><%=h @share.alternative_contact %>
+					</p>
+-->
+		</td>
+		<td>
+			
+			<p>Description:</p>
+  			<p class="show_share_description">
+				<%=h @share.description %>
+			</p>
+		</td>
+	</tr>
 
-<p>
-  <b>Source:</b>
-  <%=h @share.source %>
-</p>
-
-<p>
-  <b>Alternative contact:</b>
-  <%=h @share.alternative_contact %>
-</p>
-
-<p>
-  <b>Active:</b>
-  <%=h @share.active %>
-</p>
+		
+</table>
+</div>
 
 
-<%= link_to 'Edit', edit_share_path(@share) %> |
-<%= link_to 'Back', shares_path %>
+
+
+
+

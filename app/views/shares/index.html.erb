@@ -1,32 +1,22 @@
-<h1>Listing shares</h1>
 
+<div id="contributed_shares">
+	<h1>Listing shares | <%= link_to 'New share', new_share_path %></h1>
 <table>
-  <tr>
-    <th>Link</th>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Website</th>
-    <th>Source</th>
-    <th>Alternative contact</th>
-    <th>Active</th>
+<tr>
+    <th>&nbsp;</th>
+    <th><span>Title</span></th>    
+	<th><span>Description</span></th>
   </tr>
 
 <% for share in @shares %>
   <tr>
-    <td><%=h share.link %></td>
-    <td><%=h share.title %></td>
-    <td><%=h share.description %></td>
-    <td><%=h share.website %></td>
-    <td><%=h share.source %></td>
-    <td><%=h share.alternative_contact %></td>
-    <td><%=h share.active %></td>
-    <td><%= link_to 'Show', share %></td>
-    <td><%= link_to 'Edit', edit_share_path(share) %></td>
-    <td><%= link_to 'Destroy', share, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><span>[<%= link_to "Direct Link", share.link %>]</span></td>
+    <td><span><%=h share.title %></span></td>
+    <td><span><%=h share.description[0,40] %>... [<%= link_to 'more', share %>]</span></td>
   </tr>
 <% end %>
 </table>
-
+</div>
 <br />
 
-<%= link_to 'New share', new_share_path %>
+

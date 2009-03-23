@@ -21,6 +21,11 @@ class UsersController < ApplicationController
     @user = @current_user
     @shares = Share.find(:all, :conditions => ["user_id = ?", @user.id])
   end
+  
+  def profile
+     @user = User.find(:first, params[:id])
+     @shares = Share.find(:all, :conditions => ["user_id = ?", @user.id])
+   end
 
   def edit
     @user = @current_user

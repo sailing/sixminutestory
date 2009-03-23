@@ -1,7 +1,30 @@
-<h1>Join the Sharearchy</h1>
-
+<div class="add_share_form">
+<h1>Join Sharearchy</h1>
 <% form_for @user, :url => account_path do |f| %>
   <%= f.error_messages %>
-  <%= render :partial => "form", :object => f %>
-  <%= f.submit "Register" %>
+<table>
+	<tr>
+		<td>
+			<p class="">Username:
+			</p>
+		<%= f.text_field :login %>
+		</td>
+	</tr>
+	<tr>
+		<td><%= f.label :password, f.object.new_record? ? nil : "Change password" %><br />
+		<%= f.password_field :password %>
+		</td>
+	</tr>
+	<tr>
+		<td><%= f.label :password_confirmation %><br />
+		<%= f.password_field :password_confirmation %>
+		</td>
+	</tr>
+	<tr>
+		<td><%= f.submit "Register" %>
+		</td>
+	</tr>
+	  
+</table>
 <% end %>
+</div>

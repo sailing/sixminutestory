@@ -8,7 +8,8 @@
   <%= stylesheet_link_tag 'scaffold' %>
 </head>
 <body>
-<%= pluralize User.logged_in.count, "user" %> currently logged in<br /> <!-- This based on last_request_at, if they were active < 10 minutes they are logged in -->
+
+<%= render :partial => "layouts/links" %>
 <p style="color: green"><%= flash[:notice] %></p>
 
 <%= yield  %>
