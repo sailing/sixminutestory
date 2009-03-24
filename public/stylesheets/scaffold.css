@@ -21,7 +21,7 @@ h1 {
 	margin-bottom:10px;
 	padding-bottom:7px;
 	text-align:left;
-	color:#363;	
+	color:#a62;	
 	border-bottom:2px solid #999;
 	width:100%;
 	text-indent:15px;
@@ -115,7 +115,7 @@ a:hover { color: #fff; background-color:#000; }
 .add_share_form textarea {
 	width:90%;
 	height:200px;
-	border:2px solid #368;
+	border:2px solid #bbf;
 	background-color:#eef;
 	font-size:20px;
 	color:#666
@@ -124,7 +124,7 @@ a:hover { color: #fff; background-color:#000; }
 .add_share_form input{
 	width:90%;
 	height:35px;
-	border:2px solid #479;
+	border:2px solid #bbf;
 	background-color:#eef;
 	font-size:20px;
 	color:#666;
@@ -134,7 +134,7 @@ a:hover { color: #fff; background-color:#000; }
 .add_share_form input[type="checkbox"]{
 	width:20px;
 	height:20px;
-	border:2px solid #479;
+	border:2px solid #bbf;
 	background-color:#eef;
 	font-size:10px;
 	color:#666;
@@ -145,7 +145,7 @@ a:hover { color: #fff; background-color:#000; }
 	font-size:22px;
 	color:#666;
 	background-color:#eef;
-	border:2px solid #479;
+	border:2px solid #bbf;
 }
 		
 #show_share table {
