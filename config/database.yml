@@ -19,4 +19,4 @@ production:
   database: sharearchy_production
   username: root
   password: its42
-  socket: /tmp/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock
