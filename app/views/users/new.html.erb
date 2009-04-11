@@ -11,6 +11,12 @@
 		</td>
 	</tr>
 	<tr>
+		<td><%= f.label :email_address, f.object.new_record? ? nil : "Change email" %><br />
+		<%= f.password_field :email_address %>
+		</td>
+	</tr>
+
+	<tr>
 		<td><%= f.label :password, f.object.new_record? ? nil : "Change password" %><br />
 		<%= f.password_field :password %>
 		</td>
