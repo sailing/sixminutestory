@@ -6,10 +6,11 @@
 
 <% for share in @shares %>
   <tr>
-    <td><span>[<%= link_to "Direct Link", share.link %>]</span></td>
-    <td><span><%=h share.title %></span></td>
-    <td><span><%=h share.description[0,40] %>... [<%= link_to 'more', share %>]</span></td>
-  </tr>
+  <td><span>[<%= link_to "Download / View", share.link %>]</span></td>
+    <td><span><%=h share.title[0,30] %></span></td>
+    <td><span><%= link_to share.description[0,50], share %> ...</span></td>
+
+</tr>
 <% end %>
 </table>
 </div>
