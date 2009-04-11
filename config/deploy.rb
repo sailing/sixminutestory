@@ -16,11 +16,11 @@ set :deploy_to, "/home/admin/public_html/sharearchy.com"
 # set :scm, :subversion
 set :scm, "git"
 set :repository, "git@github.com:sharearchy/sharearchy.git"
-set :scm_passphrase, "its42" #This is your custom users password
+set :scm_passphrase, "hecatestour" #This is your custom users password
 set :branch, "master"
 set :deploy_via, :remote_cache
 
-set :user, "deployer"
+set :user, "admin"
 set :ssh_options, { :forward_agent => true }
 
 role :app, application
