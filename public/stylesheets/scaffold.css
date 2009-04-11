@@ -1,7 +1,11 @@
-body { background-color: #fff; color: #333; }
+body { background-color: #fff; color: #333; 
+	
+  margin:0px;
+  padding:0px;
+}
 
 body, p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
+  font-family: helvetica, verdana, arial, helvetica, sans-serif;
   font-size:   13px;
   line-height: 18px;
 }
@@ -17,9 +21,11 @@ pre {
 }
 
 h1 {
-	font-size:28px;
+	font-size:32px;
+	padding-top:2px;
+	margin-top:0px;
 	margin-bottom:10px;
-	padding-bottom:7px;
+	padding-bottom:0px;
 	text-align:left;
 	color:#a62;	
 	border-bottom:2px solid #999;
@@ -27,9 +33,9 @@ h1 {
 	text-indent:15px;
 }
 
-a { color: #666; }
-a:visited { color: #999; }
-a:hover { color: #fff; background-color:#000; }
+a { color: #666; text-decoration:none; }
+a:visited { color: #999; text-decoration:none;}
+a:hover { color: #fff; background-color:#000; text-decoration:none; }
 
 .fieldWithErrors {
   padding: 2px;
@@ -68,17 +74,32 @@ a:hover { color: #fff; background-color:#000; }
 }
 
 #header_links {
-	margin-bottom:15px;
-	padding-bottom:3px;
-	width:100%;
-	border-bottom:2px solid #ccc;
-	text-align:right;
+	font-family:helvetica, tahoma, verdana, sans-serif;
+	text-align:center;
+	font-weight:bold;
+	font-size:15px;
+	color:#333;
+	padding:0px 75px 0px 0px;
+	margin:-22px 0px 15px 0px;
+}
+
+.logo {
+		text-align:center;
+		padding-top:15px;
+}
+
+#logo {
+	font-family:verdana, helvetica, tahoma, verdana, sans-serif;
+	font-weight:bold;
+	font-size:55px;
+	color:#fff;
+	line-height:55px;
+	padding:0px 0px 0px 0px;
+	width:80%;
 }
 
 .add_share_form, #show_share, #contributed_shares {
-	background-color:#ddf;
-	border:2px solid #666;
-	width:80%;
+	background-color:#ddddff;
 	margin:0px auto;
 	padding:0px;
 }
@@ -129,6 +150,7 @@ a:hover { color: #fff; background-color:#000; }
 	font-size:20px;
 	color:#666;
 	margin-bottom:20px;
+	vertical-align:middle;
 }
 
 .add_share_form input[type="checkbox"]{
@@ -171,7 +193,6 @@ a:hover { color: #fff; background-color:#000; }
 	padding: 0px 0px 0px 20px;
 	text-align:left;
 	vertical-align:top;
-	width:50%;
 }
 
 #show_share h2 {
@@ -182,7 +203,7 @@ a:hover { color: #fff; background-color:#000; }
 #show_share h2 a {
 	font-size:23px;
 	line-height:26px;
-	color: #685;
+	color: #333;
 }
 
 #show_share p, span {
@@ -192,10 +213,15 @@ a:hover { color: #fff; background-color:#000; }
 	margin:5px;
 }
 
+#show_share .show_share_description_container {
+	
+	width:65%;
+}
+
 #show_share .show_share_description {
 	font-size:14px;
 	color:#555;
-	letter-spacing:.06em;
+	letter-spacing:.07em;
 }
 
 #show_share .show_share_value {

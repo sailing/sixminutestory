@@ -51,7 +51,6 @@ class SharesController < ApplicationController
 #        @user = User.find(:first, :conditions => ["id = ?", @current_user.id])
         @user = @current_user
         @share.update_attribute("user_id", @user.id)
-        flash[:notice] = 'Share was successfully created.'
         format.html { redirect_to(@share) }
         format.xml  { render :xml => @share, :status => :created, :location => @share }
       else
@@ -68,7 +67,6 @@ class SharesController < ApplicationController
 
     respond_to do |format|
       if @share.update_attributes(params[:share])
-        flash[:notice] = 'Share was successfully updated.'
         format.html { redirect_to(@share) }
         format.xml  { head :ok }
       else

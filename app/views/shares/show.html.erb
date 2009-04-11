@@ -1,5 +1,6 @@
 <div id="show_share">
- <h1><%=h @share.title %>&nbsp;&nbsp;&nbsp;&nbsp;<% if current_user.id == @share.user_id %>
+ <h1><%=h @share.title %>&nbsp;&nbsp;&nbsp;&nbsp;
+<% if current_user && current_user.id == @share.user_id %>
 	<%= link_to 'Edit', edit_share_path(@share) %> |
 	<%= link_to 'Destroy', @share, :confirm => 'Are you sure?', :method => :delete %>
 	<% else %>
@@ -16,28 +17,29 @@
 		</td>
 	</tr>
 	<tr>
-		<td>
-			<p>Website:</p>
-				<p class="show_share_value"><%= link_to @share.website, @share.website %> 
-				</p>
-
-			
-			  <p>Source:</p>
-					<p class="show_share_value"><%=h @share.source %>
-					</p>
-<!--
-			  <p>Alternative Contact:</p>
-					<p class="show_share_value"><%=h @share.alternative_contact %>
-					</p>
--->
-		</td>
-		<td>
+		<td class="show_share_description_container">
 			
 			<p>Description:</p>
   			<p class="show_share_description">
 				<%=h @share.description %>
 			</p>
 		</td>
+				<td>
+					<p>Website:</p>
+						<p class="show_share_value"><%= link_to @share.website, @share.website %> 
+						</p>
+
+
+					  <p>Source:</p>
+							<p class="show_share_value"><%=h @share.source %>
+							</p>
+		<!--
+					  <p>Alternative Contact:</p>
+							<p class="show_share_value"><%=h @share.alternative_contact %>
+							</p>
+		-->
+				</td>
+
 	</tr>
 
 		

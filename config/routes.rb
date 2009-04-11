@@ -1,9 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :shares
-
+  map.connect '', :controller => "shares"
   
   map.resource :user_session
-  map.root :controller => "user_sessions", :action => "new"
+  map.root :controller => "shares"
   map.login 'login', :controller => "user_sessions", :action => "new"
   
   map.profile 'profile/:id', :controller => "users", :action => "profile"
@@ -11,6 +11,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :account, :controller => "users"
   map.resources :users
 
+  map.catch_all "*", :controller => "shares"
 
   # The priority is based upon order of creation: first created -> highest priority.
 

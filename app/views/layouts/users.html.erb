@@ -6,12 +6,32 @@
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>Users: <%= controller.action_name %></title>
   <%= stylesheet_link_tag 'scaffold' %>
+	<%= stylesheet_link_tag 'roundcorners' %>
+
 </head>
 <body>
   <%= render :partial => "layouts/links" %>
-<p style="color: green"><%= flash[:notice] %></p>
 
-<%= yield  %>
+<div class="spiffyc">
+  <b class="spiffy">
+  <b class="spiffy1"><b></b></b>
+  <b class="spiffy2"><b></b></b>
+  <b class="spiffy3"></b>
+  <b class="spiffy4"></b>
+  <b class="spiffy5"></b></b>
 
+  <div class="spiffyfg">
+	<p><%= flash[:notice] %></p>
+
+    <%= yield  %>
+  </div>
+
+  <b class="spiffy">
+  <b class="spiffy5"></b>
+  <b class="spiffy4"></b>
+  <b class="spiffy3"></b>
+  <b class="spiffy2"><b></b></b>
+  <b class="spiffy1"><b></b></b></b>
+</div>
 </body>
 </html>
