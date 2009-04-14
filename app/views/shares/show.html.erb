@@ -11,7 +11,7 @@
 <table>
 	<tr>
 		<td colspan=2>
-			<span><h2><%= link_to @share.link, @share.link %></h2> 
+			<span><h2><%= link_to (@share.link[0,65]+"..."), @share.link %></h2> 
 			</span>
 
 		</td>
@@ -26,7 +26,7 @@
 		</td>
 				<td>
 					<p>Website:</p>
-						<p class="show_share_value"><%= link_to @share.website, @share.website %> 
+						<p class="show_share_value"><%= link_to (@share.website[0,35]+"..."), @share.website %> 
 						</p>
 
 

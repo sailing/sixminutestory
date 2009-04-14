@@ -7,8 +7,8 @@
 <% for share in @shares %>
   <tr>
   <td><span>[<%= link_to "Download / View", share.link %>]</span></td>
-    <td><span><%=h share.title[0,30] %></span></td>
-    <td><span><%= link_to share.description[0,50], share %> ...</span></td>
+    <td><span><%= link_to share.title[0,30], share %></span></td>
+    <td><span><%=h share.description[0,50] %> ...</span></td>
 
 </tr>
 <% end %>

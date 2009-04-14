@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
-  protect_from_forgery # :secret => '2399bfac621fb2d960be1129899ad517'
+  protect_from_forgery #:secret => '2399bfac621fb2d960be1129899ad517'
   
   # See ActionController::Base for details 
   # Uncomment this to filter the contents of submitted sensitive data parameters
@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
         if current_user
           store_location
           flash[:notice] = "You must be logged out to access this page"
-          redirect_to account_url
+          redirect_back_or_default account_url
           return false
         end
       end

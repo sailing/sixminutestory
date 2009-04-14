@@ -1,15 +1,17 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :shares
-  map.connect '', :controller => "shares"
-  
-  map.resource :user_session
   map.root :controller => "shares"
+  map.connect '', :controller => "shares"
+
+  map.resources :shares
+  map.resources :users
+  map.resource :account, :controller => "users"
+
   map.login 'login', :controller => "user_sessions", :action => "new"
+  map.logout 'logout', :controller => "user_sessions", :action => "destroy"
+
+  map.resource :user_session
   
   map.profile 'profile/:id', :controller => "users", :action => "profile"
-
-  map.resource :account, :controller => "users"
-  map.resources :users
 
   map.catch_all "*", :controller => "shares"
 
