@@ -22,10 +22,11 @@ pre {
 
 h1 {
 	font-size:32px;
+	line-height:32px;
 	padding-top:2px;
 	margin-top:0px;
 	margin-bottom:10px;
-	padding-bottom:6px;
+	padding-bottom:4px;
 	text-align:left;
 	color:#a62;	
 	border-bottom:2px solid #999;
