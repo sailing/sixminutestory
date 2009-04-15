@@ -6,6 +6,7 @@ class SharesController < ApplicationController
   # GET /shares.xml
   def index
     @shares = Share.find(:all)
+    @i = 0
 
     respond_to do |format|
       format.html # index.html.erb
@@ -87,4 +88,12 @@ class SharesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def get_description
+    if(request.xhr?)
+      description = find.first()
+      render :text => description
+    end
+  end
+  
 end

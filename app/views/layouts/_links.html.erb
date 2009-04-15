@@ -7,6 +7,7 @@
   <title>The Sharearchy</title>
   <%= stylesheet_link_tag 'scaffold' %>
 	<%= stylesheet_link_tag 'roundcorners' %>
+	<%= javascript_include_tag :defaults %>
 
 </head>
 <body>
@@ -16,13 +17,13 @@
 	</div>
 	<div id="header_links">
 	<% if !current_user %>
-	  	<%= link_to "Register", new_account_path %> |
-	  	<%= link_to "Log In", new_user_session_path %>
-	| <%= pluralize User.logged_in.count, "user" %> currently logged in <!-- This based on last_request_at, if they were active < 10 minutes ago they are logged in -->
+	  	<%= link_to "Join", new_account_path %> |
+	  	<%= link_to "Sign In", new_user_session_path %>
+	| 	<%= link_to "Shares", shares_path %>
 	<% else %>
 		<%= link_to "Logout", logout_path, :confirm => "Are you sure you want to logout?" %> |
 	  	<%= link_to "My Account", account_path %> |
-		<%= link_to "Shares", shares_path %> |
+	<%= link_to "Shares", shares_path %> |
 		<%= link_to "New Share", new_share_path %>
 	<% end %>
 	

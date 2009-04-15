@@ -5,11 +5,22 @@
 
 
 <% for share in @shares %>
+<% @i = @i+1 %>
   <tr>
   <td><span>[<%= link_to "Download / View", share.link %>]</span></td>
     <td><span><%= link_to share.title[0,30], share %></span></td>
-    <td><span><%=h share.description[0,50] %> ...</span></td>
+    <td id="description_slide_toggle">
+	<%=	content_tag 'span', share.description[0,65], :id => "more_link", :onMouseOver => visual_effect(:blind_down,'description' + @i.to_s,:duration => 0.5 ), :onMouseOut =>visual_effect(:blind_up,'description' + @i.to_s,:duration => 0.3 )  %>...	
+	<div id="description<%= @i.to_s %>" style="display:none;">
 
+<div class="show_share_description">
+	<%= share.description %>
+	</div>
+
+</div>		
+
+
+</td>
 </tr>
 <% end %>
 </table>
