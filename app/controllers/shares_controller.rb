@@ -7,6 +7,7 @@ class SharesController < ApplicationController
   def index
     @shares = Share.find(:all)
     @i = 0
+    
 
     respond_to do |format|
       format.html # index.html.erb

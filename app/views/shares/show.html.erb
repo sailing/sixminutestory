@@ -19,7 +19,7 @@
 	<tr>
 		<td class="show_share_description_container">
 			
-			<p>Description:</p>
+		
   			<p class="show_share_description">
 				<%=h @share.description %>
 			</p>
@@ -33,6 +33,18 @@
 					  <p>Source:</p>
 							<p class="show_share_value"><%=h @share.source %>
 							</p>
+							
+			<!-- AddThis Button BEGIN -->
+			<div class="share_this_share">
+				<script type="text/javascript">
+				var addthis_pub="sharearchy";
+				</script>
+				<a href="http://www.addthis.com/bookmark.php?v=20" onmouseover="return addthis_open(this, '', '[URL]', '[TITLE]')" onmouseout="addthis_close()" onclick="return addthis_sendto()"><img src="http://s7.addthis.com/static/btn/lg-share-en.gif" width="125" height="16" border="0" alt="Share" /></a>
+				<script type="text/javascript" src="http://s7.addthis.com/js/200/addthis_widget.js">
+					</script>
+			</div>
+			<!-- AddThis Button END -->
+				
 		<!--
 					  <p>Alternative Contact:</p>
 							<p class="show_share_value"><%=h @share.alternative_contact %>
