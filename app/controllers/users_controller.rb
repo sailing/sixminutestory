@@ -18,13 +18,15 @@ class UsersController < ApplicationController
 
   def show
     @user = @current_user
-    @shares = Share.find(:all, :conditions => ["user_id = ?", @user.id], :order => "created_at DESC")
+     page = params[:page] || 1
+      @shares = Share.paginate_by_user_id @user.id, :page => params[:page], :order => 'created_at DESC', :per_page => 5
   end
   
   def profile
      @user = User.find(:first, params[:id])
-     @shares = Share.find(:all, :conditions => ["user_id = ?", @user.id],:order => "created_at DESC")
-    @i = 0
+      page = params[:page] || 1
+       @shares = Share.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 5
+         @i = 0
    end
 
   def edit

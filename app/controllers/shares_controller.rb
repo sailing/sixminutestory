@@ -5,7 +5,8 @@ class SharesController < ApplicationController
   # GET /shares
   # GET /shares.xml
   def index
-    @shares = Share.find(:all,:order => "created_at DESC",:limit => "30")
+    page = params[:page] || 1
+    @shares = Share.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 5
     @i = 0
     
 
