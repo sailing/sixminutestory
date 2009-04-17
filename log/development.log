@@ -44258,3 +44258,369 @@ Rendered layouts/_show_shares (29.5ms)
   [4;35;1mUser Update (1.2ms)[0m   [0mUPDATE "users" SET "last_request_at" = '2009-04-17 06:59:25', "updated_at" = '2009-04-17 06:59:25' WHERE "id" = 1[0m
 Rendered layouts/_links (253.3ms)
 Completed in 332ms (View: 284, DB: 13) | 200 OK [http://localhost/]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2009-04-17 16:19:37) [GET]
+  Parameters: {"action"=>"index", "controller"=>"shares"}
+  [4;36;1mShare Load (6.6ms)[0m   [0;1mSELECT * FROM "shares" ORDER BY created_at DESC LIMIT 5 OFFSET 0[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mSELECT count(*) AS count_all FROM "shares" [0m
+Rendering template within layouts/shares
+Rendering shares/index
+Rendered layouts/_show_shares (30.8ms)
+  [4;36;1mUser Load (1.9ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;35;1mUser Update (1.0ms)[0m   [0mUPDATE "users" SET "last_request_at" = '2009-04-17 07:19:37', "updated_at" = '2009-04-17 07:19:37' WHERE "id" = 1[0m
+Rendered layouts/_links (89.9ms)
+Completed in 166ms (View: 122, DB: 11) | 200 OK [http://localhost/]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2009-04-17 16:19:53) [GET]
+  Parameters: {"action"=>"index", "controller"=>"shares", "page"=>"3"}
+  [4;36;1mShare Load (7.0ms)[0m   [0;1mSELECT * FROM "shares" ORDER BY created_at DESC LIMIT 5 OFFSET 10[0m
+Rendering template within layouts/shares
+Rendering shares/index
+Rendered layouts/_show_shares (32.5ms)
+  [4;35;1mUser Load (1.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;36;1mUser Update (1.0ms)[0m   [0;1mUPDATE "users" SET "last_request_at" = '2009-04-17 07:19:53', "updated_at" = '2009-04-17 07:19:53' WHERE "id" = 1[0m
+Rendered layouts/_links (91.9ms)
+Completed in 158ms (View: 129, DB: 11) | 200 OK [http://localhost/?page=3]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2009-04-17 16:19:56) [GET]
+  Parameters: {"action"=>"index", "controller"=>"shares", "page"=>"2"}
+  [4;35;1mShare Load (7.3ms)[0m   [0mSELECT * FROM "shares" ORDER BY created_at DESC LIMIT 5 OFFSET 5[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSELECT count(*) AS count_all FROM "shares" [0m
+Rendering template within layouts/shares
+Rendering shares/index
+Rendered layouts/_show_shares (33.4ms)
+  [4;35;1mUser Load (3.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;36;1mUser Update (1.7ms)[0m   [0;1mUPDATE "users" SET "last_request_at" = '2009-04-17 07:19:57', "updated_at" = '2009-04-17 07:19:57' WHERE "id" = 1[0m
+Rendered layouts/_links (280.9ms)
+Completed in 359ms (View: 313, DB: 14) | 200 OK [http://localhost/?page=2]
+
+
+Processing SharesController#show (for 127.0.0.1 at 2009-04-17 16:20:01) [GET]
+  Parameters: {"action"=>"show", "id"=>"14", "controller"=>"shares"}
+  [4;35;1mShare Load (2.1ms)[0m   [0mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+Rendering template within layouts/shares
+Rendering shares/show
+  [4;36;1mUser Load (2.1ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;35;1mUser Update (1.2ms)[0m   [0mUPDATE "users" SET "last_request_at" = '2009-04-17 07:20:02', "updated_at" = '2009-04-17 07:20:02' WHERE "id" = 1[0m
+Rendered layouts/_links (5.4ms)
+Completed in 367ms (View: 279, DB: 9) | 200 OK [http://localhost/shares/14]
+
+
+Processing SharesController#edit (for 127.0.0.1 at 2009-04-17 16:20:04) [GET]
+  Parameters: {"action"=>"edit", "id"=>"14", "controller"=>"shares"}
+  [4;36;1mUser Load (1.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;35;1mUser Update (1.0ms)[0m   [0mUPDATE "users" SET "last_request_at" = '2009-04-17 07:20:04', "updated_at" = '2009-04-17 07:20:04' WHERE "id" = 1[0m
+  [4;36;1mShare Load (2.1ms)[0m   [0;1mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+Rendering template within layouts/shares
+Rendering shares/edit
+Rendered shares/_form (6.2ms)
+Rendered layouts/_links (4.2ms)
+Completed in 174ms (View: 69, DB: 6) | 200 OK [http://localhost/shares/14/edit]
+
+
+Processing SharesController#update (for 127.0.0.1 at 2009-04-17 16:20:26) [PUT]
+  Parameters: {"commit"=>"Save", "share"=>{"license"=>"bumper", "title"=>"baby", "website"=>"buggies", "description"=>"http://wikipedia.org Niobium is a chemical element with symbol Nb and atomic number 41. A rare, soft, grey, ductile transition and this@hat.com metal, niobium is found in the minerals pyrochlore (the main source for niobium) and columbite. Niobium has similar physical and chemical properties to another element, tantalum, and the two are therefore difficult to distinguish. The German chemist Heinrich Rose determined in 1846 that tantalum ores contain a second element, which he named niobium, after Niobe from Greek mythology. It was not until the early 20th century that niobium was first used commercially. Brazil is the leading producer of ", "link"=>"Blue", "source"=>"blue"}, "action"=>"update", "_method"=>"put", "authenticity_token"=>"YuO97VH5rsaiUWpdv7X5VbaNwONtCBryVMFfU4F6VkI=", "id"=>"14", "controller"=>"shares"}
+  [4;35;1mUser Load (1.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;36;1mUser Update (1.6ms)[0m   [0;1mUPDATE "users" SET "last_request_at" = '2009-04-17 07:20:26', "updated_at" = '2009-04-17 07:20:26' WHERE "id" = 1[0m
+  [4;35;1mShare Load (1.5ms)[0m   [0mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+  [4;36;1mShare Update (1.5ms)[0m   [0;1mUPDATE "shares" SET "description" = 'http://wikipedia.org Niobium is a chemical element with symbol Nb and atomic number 41. A rare, soft, grey, ductile transition and this@hat.com metal, niobium is found in the minerals pyrochlore (the main source for niobium) and columbite. Niobium has similar physical and chemical properties to another element, tantalum, and the two are therefore difficult to distinguish. The German chemist Heinrich Rose determined in 1846 that tantalum ores contain a second element, which he named niobium, after Niobe from Greek mythology. It was not until the early 20th century that niobium was first used commercially. Brazil is the leading producer of ', "updated_at" = '2009-04-17 07:20:26' WHERE "id" = 14[0m
+Redirected to http://localhost:3001/shares/14
+Completed in 128ms (DB: 8) | 302 Found [http://localhost/shares/14]
+
+
+Processing SharesController#show (for 127.0.0.1 at 2009-04-17 16:20:26) [GET]
+  Parameters: {"action"=>"show", "id"=>"14", "controller"=>"shares"}
+  [4;35;1mShare Load (1.5ms)[0m   [0mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+Rendering template within layouts/shares
+Rendering shares/show
+  [4;36;1mUser Load (2.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;35;1mUser Update (1.0ms)[0m   [0mUPDATE "users" SET "last_request_at" = '2009-04-17 07:20:27', "updated_at" = '2009-04-17 07:20:27' WHERE "id" = 1[0m
+Rendered layouts/_links (3.7ms)
+Completed in 318ms (View: 287, DB: 6) | 200 OK [http://localhost/shares/14]
+
+
+Processing SharesController#show (for 127.0.0.1 at 2009-04-17 16:26:58) [GET]
+  Parameters: {"action"=>"show", "id"=>"14", "controller"=>"shares"}
+  [4;36;1mShare Load (1.6ms)[0m   [0;1mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+Rendering template within layouts/shares
+Rendering shares/show
+  [4;35;1mUser Load (1.8ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;36;1mUser Update (1.0ms)[0m   [0;1mUPDATE "users" SET "last_request_at" = '2009-04-17 07:26:58', "updated_at" = '2009-04-17 07:26:58' WHERE "id" = 1[0m
+
+ActionView::TemplateError (undefined method `simple_text' for #<ActionView::Base:0x24ceef4>) on line #24 of app/views/shares/show.html.erb:
+21: 			
+22: 		
+23:   			<p class="show_share_description">
+24: 				<%= simple_text(h(auto_link(@share.description, :href_options => { :target => '_blank' }))) %>
+25: 			</p>
+26: 		</td>
+27: 				<td>
+
+    app/views/shares/show.html.erb:24
+    app/controllers/shares_controller.rb:25:in `show'
+
+Rendered rescues/_trace (461.0ms)
+Rendered rescues/_request_and_response (0.8ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#show (for 127.0.0.1 at 2009-04-17 16:27:59) [GET]
+  Parameters: {"action"=>"show", "id"=>"14", "controller"=>"shares"}
+  [4;35;1mShare Load (1.5ms)[0m   [0mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+Rendering template within layouts/shares
+Rendering shares/show
+  [4;36;1mUser Load (1.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;35;1mUser Update (1.0ms)[0m   [0mUPDATE "users" SET "last_request_at" = '2009-04-17 07:27:59', "updated_at" = '2009-04-17 07:27:59' WHERE "id" = 1[0m
+Rendered layouts/_links (8.1ms)
+Completed in 153ms (View: 120, DB: 6) | 200 OK [http://localhost/shares/14]
+
+
+Processing SharesController#show (for 127.0.0.1 at 2009-04-17 16:28:36) [GET]
+  Parameters: {"action"=>"show", "id"=>"14", "controller"=>"shares"}
+  [4;36;1mShare Load (1.7ms)[0m   [0;1mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+Rendering template within layouts/shares
+Rendering shares/show
+  [4;35;1mUser Load (2.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;36;1mUser Update (1.1ms)[0m   [0;1mUPDATE "users" SET "last_request_at" = '2009-04-17 07:28:36', "updated_at" = '2009-04-17 07:28:36' WHERE "id" = 1[0m
+Rendered layouts/_links (6.8ms)
+Completed in 148ms (View: 116, DB: 6) | 200 OK [http://localhost/shares/14]
+
+
+Processing SharesController#edit (for 127.0.0.1 at 2009-04-17 16:28:44) [GET]
+  Parameters: {"action"=>"edit", "id"=>"14", "controller"=>"shares"}
+  [4;35;1mUser Load (1.9ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;36;1mUser Update (1.1ms)[0m   [0;1mUPDATE "users" SET "last_request_at" = '2009-04-17 07:28:44', "updated_at" = '2009-04-17 07:28:44' WHERE "id" = 1[0m
+  [4;35;1mShare Load (1.8ms)[0m   [0mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+Rendering template within layouts/shares
+Rendering shares/edit
+Rendered shares/_form (6.5ms)
+Rendered layouts/_links (3.4ms)
+Completed in 311ms (View: 24, DB: 6) | 200 OK [http://localhost/shares/14/edit]
+
+
+Processing SharesController#update (for 127.0.0.1 at 2009-04-17 16:28:55) [PUT]
+  Parameters: {"commit"=>"Save", "share"=>{"license"=>"bumper", "title"=>"baby", "website"=>"buggies", "description"=>"http://wikipedia.org Niobium is a chemical element with symbol Nb and atomic number 41. \r\n\r\nA rare, soft, grey, ductile transition and this@hat.com metal, niobium is found in the minerals pyrochlore (the main source for niobium) and columbite. Niobium has similar physical and chemical \r\n\r\nproperties to another element, tantalum, and the two are therefore difficult to distinguish. The German chemist Heinrich Rose determined in 1846 that tantalum ores contain a second element, which he named niobium, after Niobe from Greek mythology. It was not until the early 20th century that niobium was first used commercially. Brazil is the leading producer of ", "link"=>"Blue", "source"=>"blue"}, "action"=>"update", "_method"=>"put", "authenticity_token"=>"YuO97VH5rsaiUWpdv7X5VbaNwONtCBryVMFfU4F6VkI=", "id"=>"14", "controller"=>"shares"}
+  [4;36;1mUser Load (2.4ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;35;1mUser Update (1.0ms)[0m   [0mUPDATE "users" SET "last_request_at" = '2009-04-17 07:28:55', "updated_at" = '2009-04-17 07:28:55' WHERE "id" = 1[0m
+  [4;36;1mShare Load (2.3ms)[0m   [0;1mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+  [4;35;1mShare Update (1.1ms)[0m   [0mUPDATE "shares" SET "description" = 'http://wikipedia.org Niobium is a chemical element with symbol Nb and atomic number 41. 
+
+A rare, soft, grey, ductile transition and this@hat.com metal, niobium is found in the minerals pyrochlore (the main source for niobium) and columbite. Niobium has similar physical and chemical 
+
+properties to another element, tantalum, and the two are therefore difficult to distinguish. The German chemist Heinrich Rose determined in 1846 that tantalum ores contain a second element, which he named niobium, after Niobe from Greek mythology. It was not until the early 20th century that niobium was first used commercially. Brazil is the leading producer of ', "updated_at" = '2009-04-17 07:28:55' WHERE "id" = 14[0m
+Redirected to http://localhost:3001/shares/14
+Completed in 156ms (DB: 9) | 302 Found [http://localhost/shares/14]
+
+
+Processing SharesController#show (for 127.0.0.1 at 2009-04-17 16:28:55) [GET]
+  Parameters: {"action"=>"show", "id"=>"14", "controller"=>"shares"}
+  [4;36;1mShare Load (1.4ms)[0m   [0;1mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+Rendering template within layouts/shares
+Rendering shares/show
+  [4;35;1mUser Load (1.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;36;1mUser Update (1.0ms)[0m   [0;1mUPDATE "users" SET "last_request_at" = '2009-04-17 07:28:55', "updated_at" = '2009-04-17 07:28:55' WHERE "id" = 1[0m
+Rendered layouts/_links (5.4ms)
+Completed in 123ms (View: 92, DB: 5) | 200 OK [http://localhost/shares/14]
+
+
+Processing SharesController#edit (for 127.0.0.1 at 2009-04-17 16:29:04) [GET]
+  Parameters: {"action"=>"edit", "id"=>"14", "controller"=>"shares"}
+  [4;35;1mUser Load (1.9ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;36;1mUser Update (1.3ms)[0m   [0;1mUPDATE "users" SET "last_request_at" = '2009-04-17 07:29:04', "updated_at" = '2009-04-17 07:29:04' WHERE "id" = 1[0m
+  [4;35;1mShare Load (1.5ms)[0m   [0mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+Rendering template within layouts/shares
+Rendering shares/edit
+Rendered shares/_form (10.5ms)
+Rendered layouts/_links (3.7ms)
+Completed in 142ms (View: 30, DB: 6) | 200 OK [http://localhost/shares/14/edit]
+
+
+Processing SharesController#update (for 127.0.0.1 at 2009-04-17 16:29:10) [PUT]
+  Parameters: {"commit"=>"Save", "share"=>{"license"=>"bumper", "title"=>"baby", "website"=>"buggies", "description"=>"http://wikipedia.org Niobium is a chemical element with symbol Nb and atomic number 41.\r\n\r\n\r\nA rare, soft, grey, ductile transition and this@hat.com metal, niobium is found in the minerals pyrochlore (the main source for niobium) and columbite. Niobium has similar physical and chemical \r\n\r\nproperties to another element, tantalum, and the two are therefore difficult to distinguish. The German chemist Heinrich Rose determined in 1846 that tantalum ores contain a second element, which he named niobium, after Niobe from Greek mythology. It was not until the early 20th century that niobium was first used commercially. Brazil is the leading producer of ", "link"=>"Blue", "source"=>"blue"}, "action"=>"update", "_method"=>"put", "authenticity_token"=>"YuO97VH5rsaiUWpdv7X5VbaNwONtCBryVMFfU4F6VkI=", "id"=>"14", "controller"=>"shares"}
+  [4;36;1mUser Load (1.9ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;35;1mUser Update (1.3ms)[0m   [0mUPDATE "users" SET "last_request_at" = '2009-04-17 07:29:10', "updated_at" = '2009-04-17 07:29:10' WHERE "id" = 1[0m
+  [4;36;1mShare Load (1.5ms)[0m   [0;1mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+  [4;35;1mShare Update (1.0ms)[0m   [0mUPDATE "shares" SET "description" = 'http://wikipedia.org Niobium is a chemical element with symbol Nb and atomic number 41.
+
+
+A rare, soft, grey, ductile transition and this@hat.com metal, niobium is found in the minerals pyrochlore (the main source for niobium) and columbite. Niobium has similar physical and chemical 
+
+properties to another element, tantalum, and the two are therefore difficult to distinguish. The German chemist Heinrich Rose determined in 1846 that tantalum ores contain a second element, which he named niobium, after Niobe from Greek mythology. It was not until the early 20th century that niobium was first used commercially. Brazil is the leading producer of ', "updated_at" = '2009-04-17 07:29:11' WHERE "id" = 14[0m
+Redirected to http://localhost:3001/shares/14
+Completed in 318ms (DB: 8) | 302 Found [http://localhost/shares/14]
+
+
+Processing SharesController#show (for 127.0.0.1 at 2009-04-17 16:29:11) [GET]
+  Parameters: {"action"=>"show", "id"=>"14", "controller"=>"shares"}
+  [4;36;1mShare Load (1.7ms)[0m   [0;1mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+Rendering template within layouts/shares
+Rendering shares/show
+  [4;35;1mUser Load (2.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;36;1mUser Update (1.2ms)[0m   [0;1mUPDATE "users" SET "last_request_at" = '2009-04-17 07:29:11', "updated_at" = '2009-04-17 07:29:11' WHERE "id" = 1[0m
+Rendered layouts/_links (5.9ms)
+Completed in 127ms (View: 93, DB: 6) | 200 OK [http://localhost/shares/14]
+
+
+Processing SharesController#show (for 127.0.0.1 at 2009-04-17 16:30:47) [GET]
+  Parameters: {"action"=>"show", "id"=>"14", "controller"=>"shares"}
+  [4;35;1mShare Load (1.4ms)[0m   [0mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+Rendering template within layouts/shares
+Rendering shares/show
+  [4;36;1mUser Load (1.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;35;1mUser Update (1.0ms)[0m   [0mUPDATE "users" SET "last_request_at" = '2009-04-17 07:30:47', "updated_at" = '2009-04-17 07:30:47' WHERE "id" = 1[0m
+
+ActionView::TemplateError (wrong number of arguments (2 for 1)) on line #14 of app/views/shares/show.html.erb:
+11: <table>
+12: 	<tr>
+13: 		<td colspan=2>
+14: 			<span><h2><%=h link_to (@share.link[0,65]+"..."), @share.link %></h2> 
+15: 			</span>
+16: 
+17: 		</td>
+
+    app/views/shares/show.html.erb:14:in `h'
+    app/views/shares/show.html.erb:14
+    app/controllers/shares_controller.rb:25:in `show'
+
+Rendered rescues/_trace (360.2ms)
+Rendered rescues/_request_and_response (1.0ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#show (for 127.0.0.1 at 2009-04-17 16:31:19) [GET]
+  Parameters: {"action"=>"show", "id"=>"14", "controller"=>"shares"}
+  [4;36;1mShare Load (1.7ms)[0m   [0;1mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+Rendering template within layouts/shares
+Rendering shares/show
+  [4;35;1mUser Load (2.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;36;1mUser Update (1.0ms)[0m   [0;1mUPDATE "users" SET "last_request_at" = '2009-04-17 07:31:19', "updated_at" = '2009-04-17 07:31:19' WHERE "id" = 1[0m
+
+ActionView::TemplateError (wrong number of arguments (2 for 1)) on line #31 of app/views/shares/show.html.erb:
+28: 					<p>License:</p>
+29: 					<p class="show_share_value"><%=h @share.license %>
+30: 					<p>Website:</p>
+31: 						<p class="show_share_value"><%=h link_to (@share.website[0,35]+"..."), @share.website %> 
+32: 						</p>
+33: 
+34: 
+
+    app/views/shares/show.html.erb:31:in `h'
+    app/views/shares/show.html.erb:31
+    app/controllers/shares_controller.rb:25:in `show'
+
+Rendered rescues/_trace (347.9ms)
+Rendered rescues/_request_and_response (0.9ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#show (for 127.0.0.1 at 2009-04-17 16:31:56) [GET]
+  Parameters: {"action"=>"show", "id"=>"14", "controller"=>"shares"}
+  [4;35;1mShare Load (2.0ms)[0m   [0mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+Rendering template within layouts/shares
+Rendering shares/show
+  [4;36;1mUser Load (5.4ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;35;1mUser Update (1.6ms)[0m   [0mUPDATE "users" SET "last_request_at" = '2009-04-17 07:31:57', "updated_at" = '2009-04-17 07:31:57' WHERE "id" = 1[0m
+
+ActionView::TemplateError (undefined method `truncate' for "Blue":String) on line #14 of app/views/shares/show.html.erb:
+11: <table>
+12: 	<tr>
+13: 		<td colspan=2>
+14: 			<span><h2><%=h link_to @share.link.truncate, @share.link %></h2> 
+15: 			</span>
+16: 
+17: 		</td>
+
+    app/views/shares/show.html.erb:14
+    app/controllers/shares_controller.rb:25:in `show'
+
+Rendered rescues/_trace (1167.9ms)
+Rendered rescues/_request_and_response (1.6ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#show (for 127.0.0.1 at 2009-04-17 16:32:18) [GET]
+  Parameters: {"action"=>"show", "id"=>"14", "controller"=>"shares"}
+  [4;36;1mShare Load (1.7ms)[0m   [0;1mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+Rendering template within layouts/shares
+Rendering shares/show
+  [4;35;1mUser Load (1.8ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;36;1mUser Update (1.1ms)[0m   [0;1mUPDATE "users" SET "last_request_at" = '2009-04-17 07:32:19', "updated_at" = '2009-04-17 07:32:19' WHERE "id" = 1[0m
+
+ActionView::TemplateError (wrong number of arguments (2 for 1)) on line #31 of app/views/shares/show.html.erb:
+28: 					<p>License:</p>
+29: 					<p class="show_share_value"><%=h @share.license %>
+30: 					<p>Website:</p>
+31: 						<p class="show_share_value"><%=h link_to (@share.website[0,35]+"..."), @share.website %> 
+32: 						</p>
+33: 
+34: 
+
+    app/views/shares/show.html.erb:31:in `h'
+    app/views/shares/show.html.erb:31
+    app/controllers/shares_controller.rb:25:in `show'
+
+Rendered rescues/_trace (347.4ms)
+Rendered rescues/_request_and_response (0.9ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#show (for 127.0.0.1 at 2009-04-17 16:32:30) [GET]
+  Parameters: {"action"=>"show", "id"=>"14", "controller"=>"shares"}
+  [4;35;1mShare Load (1.4ms)[0m   [0mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+Rendering template within layouts/shares
+Rendering shares/show
+  [4;36;1mUser Load (1.9ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;35;1mUser Update (1.2ms)[0m   [0mUPDATE "users" SET "last_request_at" = '2009-04-17 07:32:30', "updated_at" = '2009-04-17 07:32:30' WHERE "id" = 1[0m
+
+ActionView::TemplateError (wrong number of arguments (2 for 1)) on line #31 of app/views/shares/show.html.erb:
+28: 					<p>License:</p>
+29: 					<p class="show_share_value"><%=h @share.license %>
+30: 					<p>Website:</p>
+31: 						<p class="show_share_value"><%=h link_to (@share.website[0,35]+"..."), @share.website %> 
+32: 						</p>
+33: 
+34: 
+
+    app/views/shares/show.html.erb:31:in `h'
+    app/views/shares/show.html.erb:31
+    app/controllers/shares_controller.rb:25:in `show'
+
+Rendered rescues/_trace (352.2ms)
+Rendered rescues/_request_and_response (1.1ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#show (for 127.0.0.1 at 2009-04-17 16:33:04) [GET]
+  Parameters: {"action"=>"show", "id"=>"14", "controller"=>"shares"}
+  [4;36;1mShare Load (1.8ms)[0m   [0;1mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+Rendering template within layouts/shares
+Rendering shares/show
+  [4;35;1mUser Load (4.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;36;1mUser Update (1.0ms)[0m   [0;1mUPDATE "users" SET "last_request_at" = '2009-04-17 07:33:04', "updated_at" = '2009-04-17 07:33:04' WHERE "id" = 1[0m
+Rendered layouts/_links (7.3ms)
+Completed in 154ms (View: 120, DB: 9) | 200 OK [http://localhost/shares/14]
+
+
+Processing SharesController#show (for 127.0.0.1 at 2009-04-17 16:33:42) [GET]
+  Parameters: {"action"=>"show", "id"=>"14", "controller"=>"shares"}
+  [4;35;1mShare Load (1.4ms)[0m   [0mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+Rendering template within layouts/shares
+Rendering shares/show
+  [4;36;1mUser Load (2.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;35;1mUser Update (1.1ms)[0m   [0mUPDATE "users" SET "last_request_at" = '2009-04-17 07:33:42', "updated_at" = '2009-04-17 07:33:42' WHERE "id" = 1[0m
+Rendered layouts/_links (7.6ms)
+Completed in 151ms (View: 118, DB: 6) | 200 OK [http://localhost/shares/14]
+
+
+Processing SharesController#show (for 127.0.0.1 at 2009-04-17 16:34:05) [GET]
+  Parameters: {"action"=>"show", "id"=>"14", "controller"=>"shares"}
+  [4;36;1mShare Load (1.5ms)[0m   [0;1mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+Rendering template within layouts/shares
+Rendering shares/show
+  [4;35;1mUser Load (1.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;36;1mUser Update (1.0ms)[0m   [0;1mUPDATE "users" SET "last_request_at" = '2009-04-17 07:34:05', "updated_at" = '2009-04-17 07:34:05' WHERE "id" = 1[0m
+Rendered layouts/_links (7.5ms)
+Completed in 154ms (View: 120, DB: 5) | 200 OK [http://localhost/shares/14]

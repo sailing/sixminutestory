@@ -11,7 +11,7 @@
 <table>
 	<tr>
 		<td colspan=2>
-			<span><h2><%= link_to (@share.link[0,65]+"..."), @share.link %></h2> 
+			<span><h2><%= link_to truncate(h(@share.link)), @share.link %></h2> 
 			</span>
 
 		</td>
@@ -21,14 +21,14 @@
 			
 		
   			<p class="show_share_description">
-				<%=h @share.description %>
+				<%= auto_link(simple_format(h(@share.description)), :href_options => { :target => '_blank' }) %>
 			</p>
 		</td>
 				<td>
 					<p>License:</p>
-					<p class="show_share_value"><%= @share.license %>
+					<p class="show_share_value"><%=h @share.license %>
 					<p>Website:</p>
-						<p class="show_share_value"><%= link_to (@share.website[0,35]+"..."), @share.website %> 
+						<p class="show_share_value"><%= link_to truncate(h(@share.website)), @share.website %> 
 						</p>
 
 
