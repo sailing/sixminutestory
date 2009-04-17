@@ -40,47 +40,5 @@
 </div>
 
 <br /><br />
-
-<div id="contributed_shares">
-	<h1>Contributed shares | <%= link_to 'New share', new_share_path %> </h1>
-<table>
-	<tr>
-		<th colspan="2">
-		
-		</td>
-	</tr>
-  <tr>
-	<th>
-		<span>&nbsp;
-		</span>
-	</th>
-	
-	<th>
-		<span>Title
-		</span>
-	</th>
-	<th>
-		<span>Description
-		</span>
-  </tr>
-
-<% for share in @shares %>
-  <tr>
-    <td>
-		<span>[<%= link_to "Direct Link", share.link %>]
-		</span>
-	</td>
-	<td>
-		<span><%= link_to share.title, share %>
-		</span>
-	</td>
-   <td>
-		<span><%=h share.description[0,40] %>... [<%= link_to 'more', share %>]
-		</span>
-	</td>
-  </tr>
-<% end %>
-</table>
-
-</div>
+ <%= render :partial => "layouts/show_shares" %>
 

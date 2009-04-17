@@ -18,12 +18,13 @@ class UsersController < ApplicationController
 
   def show
     @user = @current_user
-    @shares = Share.find(:all, :conditions => ["user_id = ?", @user.id])
+    @shares = Share.find(:all, :conditions => ["user_id = ?", @user.id], :order => "created_at DESC")
   end
   
   def profile
      @user = User.find(:first, params[:id])
-     @shares = Share.find(:all, :conditions => ["user_id = ?", @user.id])
+     @shares = Share.find(:all, :conditions => ["user_id = ?", @user.id],:order => "created_at DESC")
+    @i = 0
    end
 
   def edit
@@ -37,5 +38,6 @@ class UsersController < ApplicationController
     else
       render :action => :edit
     end
-  end
+  end  
+  
 end

@@ -271,6 +271,11 @@ h1 a:hover {
 	color: #685;
 }
 
+#contributed_shares a {
+	font-size:21px;
+	vertical-align:baseline;
+}
+
 #contributed_shares p, span {
 	font-size:15px;
 	font-weight:bold;
@@ -282,31 +287,60 @@ h1 a:hover {
 	background-color:blue;
 }
 
- #description_slide_toggle {
-	width:400;
+#show_shares table{
+	border-collapse:collapse;
+	padding:0px;
+	margin:0px 10px 10px 30px;
+	
 }
-#description_slide {
-	width:100%;
+
+.row {
+	
 }
-#more_link{
-	font-weight:bold;
-	size:25px;
+
+.row_alternate {
+	background-color:#cce;
 }
-.show_share_description {
-	font-size:14px;
-	color:#555;
-	letter-spacing:.02em;
-	width:400px;
-	margin-bottom:10px;
+#description_slide_toggle {
+	vertical-align:baseline;
+	width:150px;
+	text-align:right;
+	padding-right:5px;
+}
+
+#description_drawer {
+	width:600px;
+}
+
+.description_in_drawer {
+	margin:15px 15px 15px 75px;
+	padding:5px;
+	border-left:2px dotted #999;
+}
+
+.description_in_drawer p {
+	font-size:16px;
+	font-family:helvetica, verdana, tahoma, arial, sans-serif;
+	letter-spacing:.04em;
+	font-weight:normal;
+}
+
+#show_share_title {
+	width:500px;
 }
 
 .share_this_share {
 	vertical_align:middle;
 	line-height:18px;
+	width:30px;
+	margin:0px;
 }
+
 .share_this_share a, #share_this_share a:visited, #share_this_share a:active, #share_this_share a:hover {
 	text-decoration:none;
-	background:#ddf;
+	background-color:transparent;
 	color:#333;
 	font-size:16px;
 }
+
+.linked_images a:hover {background-color:transparent;}

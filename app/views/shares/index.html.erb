@@ -1,50 +1,5 @@
 
-<div id="contributed_shares">
-	<h1>Shares | <%= link_to 'Add share', new_share_path %></h1>
-<table>
+<%= render :partial => "layouts/show_shares" %>
 
-
-<% for share in @shares %>
-<% @i = @i+1 %>
-  <tr>
-	<td class="share_this_share">
-		<span>
-		<!-- AddThis Button BEGIN -->
-			<script type="text/javascript">
-				var addthis_pub="sharearchy";
-				var addthis_options = 'facebook, digg, twitter, email, more';
-				
-			</script>
-	<a href="http://www.addthis.com/bookmark.php?v=20" onmouseover="return addthis_open(this, '', 'http://sharearchy.com/shares/<%= share.id %>', '[TITLE]')" onmouseout="addthis_close()" onclick="return addthis_sendto()"><img src="http://s7.addthis.com/static/btn/sm-plus.gif" width="16" height="16" alt="Bookmark and Share" style="border:0"/></a><script type="text/javascript" src="http://s7.addthis.com/js/200/addthis_widget.js"></script>
-	<!-- AddThis Button END -->
-		</span>
-	</td>
-	<td>
-		<span class="share_this_share">
-			<%= link_to( image_tag("download.png"), share.link) %>
-		</span>
-	</td>
-    <td><span><%= link_to share.title[0,30], share %></span></td>
-    <td id="description_slide_toggle"><span>
-	
-	<% summary = share.description.split(' ',8) %>
-	
-	<%=	link_to(summary[0..6].join(" "), share, :id => "more_link", :onMouseOver => visual_effect(:blind_down,'description' + @i.to_s,:duration => 0.5 ), :onMouseOut =>visual_effect(:blind_up,'description' + @i.to_s,:duration => 0.3 ))  %>	
-	
-	<div id="description<%= @i.to_s %>" style="display:none;">
-
-<div class="show_share_description">
-	<%= summary.last %>... 
-	</div>
-
-</div>		
-
-</span>
-</td>
-</tr>
-<% end %>
-</table>
-</div>
-<br />
 
 

@@ -5,7 +5,7 @@ class SharesController < ApplicationController
   # GET /shares
   # GET /shares.xml
   def index
-    @shares = Share.find(:all)
+    @shares = Share.find(:all,:order => "created_at DESC",:limit => "30")
     @i = 0
     
 
