@@ -1,0 +1,69 @@
+<div id="show_shares">
+	<h1>Shares | <%= link_to 'New share', new_share_path %> </h1>
+<table>
+<% for share in @shares %>
+<% @i = @i+1 %>
+
+<tr class="<%= @i.even? ? 'row_alternate' : 'row' %>">
+  	<td class="share_this_share">
+		<span>
+		<!-- AddThis Button BEGIN -->
+			<script type="text/javascript">
+				var addthis_pub="sharearchy";
+				var addthis_options = 'facebook, digg, twitter, email, more';
+
+			</script>
+				<a href="http://www.addthis.com/bookmark.php?v=20" onmouseover="return addthis_open(this, '', 'http://sharearchy.com/shares/<%= share.id %>', '[TITLE]')" onmouseout="addthis_close()" onclick="return addthis_sendto()"><%= image_tag "add_this.png" %></a>
+			<script type="text/javascript"
+			src="http://s7.addthis.com/js/200/addthis_widget.js">
+			</script>
+		<!-- AddThis Button END -->
+		</span>
+	</td>
+	<td class="share_this_share">
+		<span>
+			<%= link_to(image_tag("download.png"), share.link) %>
+		</span>
+	</td>	
+    
+	<td id="description_slide_toggle" >
+		<span>
+		<%= content_tag 'DIV', 
+				(image_tag "show_description.png", 
+				:onClick => 	"this.src='/images/hide_description.png'"), 
+			:onClick => visual_effect(:toggle_blind,'description' + @i.to_s,:duration => 0.5) 			
+		%>
+		</span>
+	</td>
+	
+	<td id="show_share_title"><span><%= link_to share.title, share %>
+		</span>
+	</td>
+
+</tr>
+
+<tr>
+	<td colspan="4" id="description_drawer">
+	<div id="description<%= @i.to_s %>" style="display:none;">
+
+		<div class="description_in_drawer">
+		<p>	<%= share.description %>
+		</p>
+			<span class = "linked_images"><%= image_tag "hide_description.png", :onClick => visual_effect(:blind_up,'description' + @i.to_s,:duration => 0.3 )%>
+			<%= link_to(image_tag("read_more.png"), share) %>
+			</span>
+		</div>
+	</div>		
+	</td>
+</tr>
+<% end %>
+</table>
+
+</div>
+
+<div id="pagination">
+	<span><%= will_paginate @shares %>
+	</span>
+</div>
+
+<br />
