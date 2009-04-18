@@ -11,7 +11,7 @@
 <table>
 	<tr>
 		<td colspan=2>
-			<span><h2><%= link_to truncate(h(@share.link)), @share.link %></h2> 
+			<span><h2><%= link_to truncate(h(@share.link),:length => 60), @share.link %></h2> 
 			</span>
 
 		</td>
@@ -54,6 +54,13 @@
 		-->
 				</td>
 
+	</tr>
+	<tr>
+		<td colspan=2>
+			<span><h2><%= link_to truncate(h(@share.link),:length => 60), @share.link %></h2> 
+			</span>
+
+		</td>
 	</tr>
 
 		
