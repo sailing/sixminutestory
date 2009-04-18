@@ -17,6 +17,37 @@
 		</td>
 	</tr>
 	<tr>
+			<td id="show_share_sidebar">
+				<p>License:</p>
+				<p class="show_share_value"><%=h @share.license %>
+				<p>Website:</p>
+					<p class="show_share_value"><%= link_to truncate(h(@share.website)), @share.website %> 
+					</p>
+
+
+				  <p>Found via:</p>
+						<p class="show_share_value"><%=h @share.source %>
+						</p>
+						
+		<!-- AddThis Button BEGIN -->
+		<div class="share_this_share">
+			<script type="text/javascript">
+			var addthis_pub="sharearchy";
+			</script>
+			<a href="http://www.addthis.com/bookmark.php?v=20" onmouseover="return addthis_open(this, '', '[URL]', '[TITLE]')" onmouseout="addthis_close()" onclick="return addthis_sendto()"><img src="http://s7.addthis.com/static/btn/lg-share-en.gif" width="125" height="16" border="0" alt="Share" /></a>
+			<script type="text/javascript" src="http://s7.addthis.com/js/200/addthis_widget.js">
+				</script>
+		</div>
+		<!-- AddThis Button END -->
+			
+	<!--
+				  <p>Alternative Contact:</p>
+						<p class="show_share_value"><%=h @share.alternative_contact %>
+						</p>
+	-->
+			</td>
+		
+		
 		<td class="show_share_description_container">
 			
 		
@@ -24,36 +55,7 @@
 				<%= auto_link(simple_format(h(@share.description)), :href_options => { :target => '_blank' }) %>
 			</p>
 		</td>
-				<td>
-					<p>License:</p>
-					<p class="show_share_value"><%=h @share.license %>
-					<p>Website:</p>
-						<p class="show_share_value"><%= link_to truncate(h(@share.website)), @share.website %> 
-						</p>
-
-
-					  <p>Source:</p>
-							<p class="show_share_value"><%=h @share.source %>
-							</p>
-							
-			<!-- AddThis Button BEGIN -->
-			<div class="share_this_share">
-				<script type="text/javascript">
-				var addthis_pub="sharearchy";
-				</script>
-				<a href="http://www.addthis.com/bookmark.php?v=20" onmouseover="return addthis_open(this, '', '[URL]', '[TITLE]')" onmouseout="addthis_close()" onclick="return addthis_sendto()"><img src="http://s7.addthis.com/static/btn/lg-share-en.gif" width="125" height="16" border="0" alt="Share" /></a>
-				<script type="text/javascript" src="http://s7.addthis.com/js/200/addthis_widget.js">
-					</script>
-			</div>
-			<!-- AddThis Button END -->
-				
-		<!--
-					  <p>Alternative Contact:</p>
-							<p class="show_share_value"><%=h @share.alternative_contact %>
-							</p>
-		-->
-				</td>
-
+			
 	</tr>
 	<tr>
 		<td colspan=2>

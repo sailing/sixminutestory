@@ -197,6 +197,7 @@ h1 a:hover {
 #show_share table {
 	border-collapse:collapse;
 	padding:5px 0px 15px 0px;
+	margin:0px auto;
 }
 
 #show_share th {
@@ -207,6 +208,12 @@ h1 a:hover {
 	padding: 0px 0px 0px 20px;
 	text-align:left;
 	vertical-align:top;
+}
+
+#show_share #show_share_sidebar {
+	width:220px;
+	padding-top:30px;
+	border-right:1px dotted #ccc;
 }
 
 #show_share h2 {
@@ -235,9 +242,8 @@ h1 a:hover {
 }
 
 #show_share .show_share_description_container {
-	
-	width:65%;
-}
+	padding-right:15px;
+	}
 
 #show_share .show_share_description {
 	font-size:14px;
