@@ -42,3 +42,8 @@
   <b class="statusbar1"><b></b></b></b>
 </div>
 -->
+<div id="search">
+	<% form_tag '/search' do -%>
+	    <div><span><%= text_field_tag 'q' %><%= submit_tag 'Search!' %></span></div>
+	  <% end -%>
+</div>

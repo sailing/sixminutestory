@@ -11,6 +11,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resource :user_session
   
+  map.search 'search',:controller => "shares", :action => "search"
+  
   map.profile 'profile/:id', :controller => "users", :action => "profile"
 
   map.catch_all "*", :controller => "shares"

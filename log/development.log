@@ -46024,3 +46024,1196 @@ Rendering shares/show
   [4;36;1mUser Update (1.1ms)[0m   [0;1mUPDATE "users" SET "last_request_at" = '2009-04-18 05:39:58', "updated_at" = '2009-04-18 05:39:58' WHERE "id" = 1[0m
 Rendered layouts/_links (4.1ms)
 Completed in 123ms (View: 91, DB: 6) | 200 OK [http://localhost/shares/14]
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:source, :license, :alternative_contact, :updated_at, :title, :link, :website, :active, :description, :user_id, :created_at]
+  [4;36;1mSQL (1.8ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (31.3ms)[0m   [0mSELECT count(*) AS count_all FROM "shares" [0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSELECT count(*) AS count_all FROM "shares" [0m
+  [4;35;1mShare Load (7.9ms)[0m   [0mSELECT * FROM "shares" LIMIT 1000 OFFSET 0[0m
+creating doc for class: Share, id: 7
+Adding field source with value 'via Search' to index
+Adding field license with value '' to index
+Adding field alternative_contact with value 'nooone' to index
+Adding field updated_at with value 'Mon Mar 23 10:27:02 UTC 2009' to index
+Adding field title with value 'Thus' to index
+Adding field link with value 'http://thepiratebay.org/search/librivox/0/99/100' to index
+Adding field website with value 'tada' to index
+Adding field active with value 'true' to index
+Adding field description with value 'Individuals use torrents to legitimately distribute art and information; yet, it’s difficult to find non-copyrighted material amongst the haystack of copyrighted data on places like The Pirate Bay. It isn’t that Open Art isn’t there, but that you have to work to discover it. On Sharearchy, we can share what we find.' to index
+Adding field user_id with value '1' to index
+Adding field created_at with value 'Thu Mar 12 11:14:41 UTC 2009' to index
+creating doc for class: Share, id: 9
+Adding field source with value 'pitchfork' to index
+Adding field license with value '' to index
+Adding field alternative_contact with value 'none' to index
+Adding field updated_at with value 'Mon Mar 23 09:48:39 UTC 2009' to index
+Adding field title with value 'Esau Mwamwaya' to index
+Adding field link with value 'http://sharearchy.com' to index
+Adding field website with value 'http://myspace.com/theverybest' to index
+Adding field active with value 'true' to index
+Adding field description with value 'Born in Malawi.' to index
+Adding field user_id with value '3' to index
+Adding field created_at with value 'Mon Mar 23 09:48:39 UTC 2009' to index
+creating doc for class: Share, id: 10
+Adding field source with value 'there' to index
+Adding field license with value '' to index
+Adding field alternative_contact with value 'none' to index
+Adding field updated_at with value 'Mon Mar 23 09:58:39 UTC 2009' to index
+Adding field title with value 'Boinging' to index
+Adding field link with value 'http://boingboing.net' to index
+Adding field website with value 'http://boingboing.net' to index
+Adding field active with value 'true' to index
+Adding field description with value 'Whence' to index
+Adding field user_id with value '1' to index
+Adding field created_at with value 'Mon Mar 23 09:58:39 UTC 2009' to index
+creating doc for class: Share, id: 11
+Adding field source with value '' to index
+Adding field license with value '' to index
+Adding field alternative_contact with value '' to index
+Adding field updated_at with value 'Sat Apr 11 14:47:40 UTC 2009' to index
+Adding field title with value 'da vinci's notebooks' to index
+Adding field link with value 'http://thepiratebay.org/torrent/3735336/The_Notebooks_of_Leonardo_Da_Vinci___Complete_by_Leonardo_da_Vin' to index
+Adding field website with value 'gutenberg.org' to index
+Adding field active with value 'true' to index
+Adding field description with value '' to index
+Adding field user_id with value '1' to index
+Adding field created_at with value 'Sat Apr 11 14:47:40 UTC 2009' to index
+creating doc for class: Share, id: 14
+Adding field source with value 'blue' to index
+Adding field license with value 'bumper' to index
+Adding field alternative_contact with value '' to index
+Adding field updated_at with value 'Sat Apr 18 05:19:42 UTC 2009' to index
+Adding field title with value 'Esau Mwamwaya and Radioclit are the Very Best (Mixtape)' to index
+Adding field link with value 'http://thepiratebay.org/torrent/4783659/Esau_Mwamwaya_and_Radioclit_Are_The_Very_Best_%28mixtape%29_2008' to index
+Adding field website with value 'buggies' to index
+Adding field active with value 'true' to index
+Adding field description with value 'http://wikipedia.org Niobium is a chemical element with symbol Nb and atomic number 41.
+
+
+A rare, soft, grey, ductile transition and this@hat.com metal, niobium is found in the minerals pyrochlore (the main source for niobium) and columbite. Niobium has similar physical and chemical 
+
+properties to another element, tantalum, and the two are therefore difficult to distinguish. The German chemist Heinrich Rose determined in 1846 that tantalum ores contain a second element, which he named niobium, after Niobe from Greek mythology. It was not until the early 20th century that niobium was first used commercially. Brazil is the leading producer of ' to index
+Adding field user_id with value '1' to index
+Adding field created_at with value 'Thu Apr 16 06:31:26 UTC 2009' to index
+creating doc for class: Share, id: 27
+Adding field source with value 'here' to index
+Adding field license with value 'Green' to index
+Adding field alternative_contact with value '' to index
+Adding field updated_at with value 'Fri Apr 17 04:17:45 UTC 2009' to index
+Adding field title with value '<%= will_paginate @posts %>' to index
+Adding field link with value 'Red' to index
+Adding field website with value 'and YelloW!' to index
+Adding field active with value 'true' to index
+Adding field description with value 'or thereadlfjasdkl' to index
+Adding field user_id with value '1' to index
+Adding field created_at with value 'Fri Apr 17 04:17:45 UTC 2009' to index
+creating doc for class: Share, id: 28
+Adding field source with value 'here' to index
+Adding field license with value 'Green' to index
+Adding field alternative_contact with value '' to index
+Adding field updated_at with value 'Fri Apr 17 04:18:00 UTC 2009' to index
+Adding field title with value '<%= will_paginate @posts %>' to index
+Adding field link with value 'Red' to index
+Adding field website with value 'and YelloW!' to index
+Adding field active with value 'true' to index
+Adding field description with value 'or thereadlfjasdkl' to index
+Adding field user_id with value '1' to index
+Adding field created_at with value 'Fri Apr 17 04:18:00 UTC 2009' to index
+creating doc for class: Share, id: 29
+Adding field source with value 'here' to index
+Adding field license with value 'Green' to index
+Adding field alternative_contact with value '' to index
+Adding field updated_at with value 'Fri Apr 17 04:18:02 UTC 2009' to index
+Adding field title with value '<%= will_paginate @posts %>' to index
+Adding field link with value 'Red' to index
+Adding field website with value 'and YelloW!' to index
+Adding field active with value 'true' to index
+Adding field description with value 'or thereadlfjasdkl' to index
+Adding field user_id with value '1' to index
+Adding field created_at with value 'Fri Apr 17 04:18:02 UTC 2009' to index
+creating doc for class: Share, id: 30
+Adding field source with value 'here' to index
+Adding field license with value 'Green' to index
+Adding field alternative_contact with value '' to index
+Adding field updated_at with value 'Fri Apr 17 04:18:05 UTC 2009' to index
+Adding field title with value '<%= will_paginate @posts %>' to index
+Adding field link with value 'Red' to index
+Adding field website with value 'and YelloW!' to index
+Adding field active with value 'true' to index
+Adding field description with value 'or thereadlfjasdkl' to index
+Adding field user_id with value '1' to index
+Adding field created_at with value 'Fri Apr 17 04:18:05 UTC 2009' to index
+creating doc for class: Share, id: 31
+Adding field source with value 'here' to index
+Adding field license with value 'Green' to index
+Adding field alternative_contact with value '' to index
+Adding field updated_at with value 'Fri Apr 17 04:18:07 UTC 2009' to index
+Adding field title with value '<%= will_paginate @posts %>' to index
+Adding field link with value 'Red' to index
+Adding field website with value 'and YelloW!' to index
+Adding field active with value 'true' to index
+Adding field description with value 'or thereadlfjasdkl' to index
+Adding field user_id with value '1' to index
+Adding field created_at with value 'Fri Apr 17 04:18:07 UTC 2009' to index
+creating doc for class: Share, id: 32
+Adding field source with value 'here' to index
+Adding field license with value 'Green' to index
+Adding field alternative_contact with value '' to index
+Adding field updated_at with value 'Fri Apr 17 04:18:10 UTC 2009' to index
+Adding field title with value '<%= will_paginate @posts %>' to index
+Adding field link with value 'Red' to index
+Adding field website with value 'and YelloW!' to index
+Adding field active with value 'true' to index
+Adding field description with value 'or thereadlfjasdkl' to index
+Adding field user_id with value '1' to index
+Adding field created_at with value 'Fri Apr 17 04:18:10 UTC 2009' to index
+  [4;36;1mShare Load (3.9ms)[0m   [0;1mSELECT * FROM "shares" WHERE (shares.id in ('14','9')) [0m
+Query: esau
+total hits: 2, results delivered: 2
+  [4;35;1mShare Load (6.6ms)[0m   [0mSELECT * FROM "shares" WHERE (shares.id in ('14','9')) [0m
+Query: esau
+total hits: 2, results delivered: 2
+  [4;36;1mShare Load (3.2ms)[0m   [0;1mSELECT * FROM "shares" WHERE (shares.id in ('14','9')) [0m
+Query: esau
+total hits: 2, results delivered: 2
+  [4;35;1mSQL (1.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "shares" [0m
+  [4;35;1mSQL (1.1ms)[0m   [0mSELECT count(*) AS count_all FROM "shares" [0m
+  [4;36;1mShare Load (12.6ms)[0m   [0;1mSELECT * FROM "shares" LIMIT 1000 OFFSET 0[0m
+creating doc for class: Share, id: 7
+Adding field source with value 'via Search' to index
+Adding field license with value '' to index
+Adding field alternative_contact with value 'nooone' to index
+Adding field updated_at with value 'Mon Mar 23 10:27:02 UTC 2009' to index
+Adding field title with value 'Thus' to index
+Adding field link with value 'http://thepiratebay.org/search/librivox/0/99/100' to index
+Adding field website with value 'tada' to index
+Adding field active with value 'true' to index
+Adding field description with value 'Individuals use torrents to legitimately distribute art and information; yet, it’s difficult to find non-copyrighted material amongst the haystack of copyrighted data on places like The Pirate Bay. It isn’t that Open Art isn’t there, but that you have to work to discover it. On Sharearchy, we can share what we find.' to index
+Adding field user_id with value '1' to index
+Adding field created_at with value 'Thu Mar 12 11:14:41 UTC 2009' to index
+creating doc for class: Share, id: 9
+Adding field source with value 'pitchfork' to index
+Adding field license with value '' to index
+Adding field alternative_contact with value 'none' to index
+Adding field updated_at with value 'Mon Mar 23 09:48:39 UTC 2009' to index
+Adding field title with value 'Esau Mwamwaya' to index
+Adding field link with value 'http://sharearchy.com' to index
+Adding field website with value 'http://myspace.com/theverybest' to index
+Adding field active with value 'true' to index
+Adding field description with value 'Born in Malawi.' to index
+Adding field user_id with value '3' to index
+Adding field created_at with value 'Mon Mar 23 09:48:39 UTC 2009' to index
+creating doc for class: Share, id: 10
+Adding field source with value 'there' to index
+Adding field license with value '' to index
+Adding field alternative_contact with value 'none' to index
+Adding field updated_at with value 'Mon Mar 23 09:58:39 UTC 2009' to index
+Adding field title with value 'Boinging' to index
+Adding field link with value 'http://boingboing.net' to index
+Adding field website with value 'http://boingboing.net' to index
+Adding field active with value 'true' to index
+Adding field description with value 'Whence' to index
+Adding field user_id with value '1' to index
+Adding field created_at with value 'Mon Mar 23 09:58:39 UTC 2009' to index
+creating doc for class: Share, id: 11
+Adding field source with value '' to index
+Adding field license with value '' to index
+Adding field alternative_contact with value '' to index
+Adding field updated_at with value 'Sat Apr 11 14:47:40 UTC 2009' to index
+Adding field title with value 'da vinci's notebooks' to index
+Adding field link with value 'http://thepiratebay.org/torrent/3735336/The_Notebooks_of_Leonardo_Da_Vinci___Complete_by_Leonardo_da_Vin' to index
+Adding field website with value 'gutenberg.org' to index
+Adding field active with value 'true' to index
+Adding field description with value '' to index
+Adding field user_id with value '1' to index
+Adding field created_at with value 'Sat Apr 11 14:47:40 UTC 2009' to index
+creating doc for class: Share, id: 14
+Adding field source with value 'blue' to index
+Adding field license with value 'bumper' to index
+Adding field alternative_contact with value '' to index
+Adding field updated_at with value 'Sat Apr 18 05:19:42 UTC 2009' to index
+Adding field title with value 'Esau Mwamwaya and Radioclit are the Very Best (Mixtape)' to index
+Adding field link with value 'http://thepiratebay.org/torrent/4783659/Esau_Mwamwaya_and_Radioclit_Are_The_Very_Best_%28mixtape%29_2008' to index
+Adding field website with value 'buggies' to index
+Adding field active with value 'true' to index
+Adding field description with value 'http://wikipedia.org Niobium is a chemical element with symbol Nb and atomic number 41.
+
+
+A rare, soft, grey, ductile transition and this@hat.com metal, niobium is found in the minerals pyrochlore (the main source for niobium) and columbite. Niobium has similar physical and chemical 
+
+properties to another element, tantalum, and the two are therefore difficult to distinguish. The German chemist Heinrich Rose determined in 1846 that tantalum ores contain a second element, which he named niobium, after Niobe from Greek mythology. It was not until the early 20th century that niobium was first used commercially. Brazil is the leading producer of ' to index
+Adding field user_id with value '1' to index
+Adding field created_at with value 'Thu Apr 16 06:31:26 UTC 2009' to index
+creating doc for class: Share, id: 27
+Adding field source with value 'here' to index
+Adding field license with value 'Green' to index
+Adding field alternative_contact with value '' to index
+Adding field updated_at with value 'Fri Apr 17 04:17:45 UTC 2009' to index
+Adding field title with value '<%= will_paginate @posts %>' to index
+Adding field link with value 'Red' to index
+Adding field website with value 'and YelloW!' to index
+Adding field active with value 'true' to index
+Adding field description with value 'or thereadlfjasdkl' to index
+Adding field user_id with value '1' to index
+Adding field created_at with value 'Fri Apr 17 04:17:45 UTC 2009' to index
+creating doc for class: Share, id: 28
+Adding field source with value 'here' to index
+Adding field license with value 'Green' to index
+Adding field alternative_contact with value '' to index
+Adding field updated_at with value 'Fri Apr 17 04:18:00 UTC 2009' to index
+Adding field title with value '<%= will_paginate @posts %>' to index
+Adding field link with value 'Red' to index
+Adding field website with value 'and YelloW!' to index
+Adding field active with value 'true' to index
+Adding field description with value 'or thereadlfjasdkl' to index
+Adding field user_id with value '1' to index
+Adding field created_at with value 'Fri Apr 17 04:18:00 UTC 2009' to index
+creating doc for class: Share, id: 29
+Adding field source with value 'here' to index
+Adding field license with value 'Green' to index
+Adding field alternative_contact with value '' to index
+Adding field updated_at with value 'Fri Apr 17 04:18:02 UTC 2009' to index
+Adding field title with value '<%= will_paginate @posts %>' to index
+Adding field link with value 'Red' to index
+Adding field website with value 'and YelloW!' to index
+Adding field active with value 'true' to index
+Adding field description with value 'or thereadlfjasdkl' to index
+Adding field user_id with value '1' to index
+Adding field created_at with value 'Fri Apr 17 04:18:02 UTC 2009' to index
+creating doc for class: Share, id: 30
+Adding field source with value 'here' to index
+Adding field license with value 'Green' to index
+Adding field alternative_contact with value '' to index
+Adding field updated_at with value 'Fri Apr 17 04:18:05 UTC 2009' to index
+Adding field title with value '<%= will_paginate @posts %>' to index
+Adding field link with value 'Red' to index
+Adding field website with value 'and YelloW!' to index
+Adding field active with value 'true' to index
+Adding field description with value 'or thereadlfjasdkl' to index
+Adding field user_id with value '1' to index
+Adding field created_at with value 'Fri Apr 17 04:18:05 UTC 2009' to index
+creating doc for class: Share, id: 31
+Adding field source with value 'here' to index
+Adding field license with value 'Green' to index
+Adding field alternative_contact with value '' to index
+Adding field updated_at with value 'Fri Apr 17 04:18:07 UTC 2009' to index
+Adding field title with value '<%= will_paginate @posts %>' to index
+Adding field link with value 'Red' to index
+Adding field website with value 'and YelloW!' to index
+Adding field active with value 'true' to index
+Adding field description with value 'or thereadlfjasdkl' to index
+Adding field user_id with value '1' to index
+Adding field created_at with value 'Fri Apr 17 04:18:07 UTC 2009' to index
+creating doc for class: Share, id: 32
+Adding field source with value 'here' to index
+Adding field license with value 'Green' to index
+Adding field alternative_contact with value '' to index
+Adding field updated_at with value 'Fri Apr 17 04:18:10 UTC 2009' to index
+Adding field title with value '<%= will_paginate @posts %>' to index
+Adding field link with value 'Red' to index
+Adding field website with value 'and YelloW!' to index
+Adding field active with value 'true' to index
+Adding field description with value 'or thereadlfjasdkl' to index
+Adding field user_id with value '1' to index
+Adding field created_at with value 'Fri Apr 17 04:18:10 UTC 2009' to index
+  [4;35;1mShare Load (7.9ms)[0m   [0mSELECT * FROM "shares" WHERE (shares.id in ('14','9')) [0m
+Query: esau
+total hits: 2, results delivered: 2
+  [4;36;1mShare Load (3.6ms)[0m   [0;1mSELECT * FROM "shares" WHERE (shares.id in ('14','9')) [0m
+Query: esau
+total hits: 2, results delivered: 2
+  [4;35;1mShare Load (4.0ms)[0m   [0mSELECT * FROM "shares" WHERE (shares.id in ('14','9')) [0m
+Query: esau
+total hits: 2, results delivered: 2
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-04-19 13:45:19) [GET]
+  Parameters: {"action"=>"index", "controller"=>"shares"}
+
+SyntaxError (/Users/galen/Sites/sa/app/controllers/shares_controller.rb:9: syntax error, unexpected tASSOC, expecting kEND
+    per_page=>5
+              ^):
+  
+
+Rendered rescues/_trace (135.2ms)
+Rendered rescues/_request_and_response (5.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#index (for 127.0.0.1 at 2009-04-19 13:45:40) [GET]
+  Parameters: {"action"=>"index", "controller"=>"shares"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+  [4;36;1mShare Load (6.7ms)[0m   [0;1mSELECT * FROM "shares" ORDER BY created_at DESC LIMIT 5 OFFSET 0[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSELECT count(*) AS count_all FROM "shares" [0m
+Rendering template within layouts/shares
+Rendering shares/index
+Rendered layouts/_show_shares (62.2ms)
+Rendered layouts/_links (78.0ms)
+Completed in 301ms (View: 213, DB: 8) | 200 OK [http://localhost/]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2009-04-19 13:58:41) [GET]
+  Parameters: {"action"=>"index", "controller"=>"shares"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+  [4;36;1mShare Load (11.1ms)[0m   [0;1mSELECT * FROM "shares" ORDER BY created_at DESC LIMIT 5 OFFSET 0[0m
+  [4;35;1mSQL (1.5ms)[0m   [0mSELECT count(*) AS count_all FROM "shares" [0m
+Rendering template within layouts/shares
+Rendering shares/index
+Rendered layouts/_show_shares (33.1ms)
+Rendered layouts/_links (55.2ms)
+Completed in 158ms (View: 106, DB: 13) | 200 OK [http://localhost/]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-04-19 13:58:49) [POST]
+  Parameters: {"commit"=>"Go!", "authenticity_token"=>"R+uY9qj7QMAzlcu2ZyihGpYG0PjeRhZprQlEZId/Ui8=", "q"=>"paginate"}
+
+ActionController::RoutingError (No route matches "/search" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing SharesController#index (for 127.0.0.1 at 2009-04-19 13:58:51) [GET]
+  Parameters: {"action"=>"index", "controller"=>"shares"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+  [4;36;1mShare Load (6.2ms)[0m   [0;1mSELECT * FROM "shares" ORDER BY created_at DESC LIMIT 5 OFFSET 0[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSELECT count(*) AS count_all FROM "shares" [0m
+Rendering template within layouts/shares
+Rendering shares/index
+Rendered layouts/_show_shares (33.5ms)
+Rendered layouts/_links (48.8ms)
+Completed in 139ms (View: 91, DB: 8) | 200 OK [http://localhost/]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2009-04-19 14:00:38) [GET]
+  Parameters: {"action"=>"index", "controller"=>"shares"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+  [4;36;1mShare Load (7.3ms)[0m   [0;1mSELECT * FROM "shares" ORDER BY created_at DESC LIMIT 5 OFFSET 0[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mSELECT count(*) AS count_all FROM "shares" [0m
+Rendering template within layouts/shares
+Rendering shares/index
+Rendered layouts/_show_shares (36.1ms)
+Rendered layouts/_links (51.4ms)
+Completed in 155ms (View: 106, DB: 9) | 200 OK [http://localhost/]
+
+
+Processing SharesController#search (for 127.0.0.1 at 2009-04-19 14:00:44) [POST]
+  Parameters: {"commit"=>"Go!", "action"=>"search", "authenticity_token"=>"PplqFWTDElwU85vV8SEQPn3iVlq8Y/Oc7SQPlVMI2f4=", "controller"=>"shares", "q"=>"paginate"}
+
+ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken):
+  
+
+Rendered rescues/_trace (351.1ms)
+Rendered rescues/_request_and_response (2.1ms)
+Rendering rescues/layout (unprocessable_entity)
+
+
+Processing SharesController#search (for 127.0.0.1 at 2009-04-19 14:02:24) [POST]
+  Parameters: {"commit"=>"Go!", "action"=>"search", "authenticity_token"=>"PplqFWTDElwU85vV8SEQPn3iVlq8Y/Oc7SQPlVMI2f4=", "controller"=>"shares", "q"=>"paginate"}
+
+ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken):
+  
+
+Rendered rescues/_trace (147.2ms)
+Rendered rescues/_request_and_response (1.4ms)
+Rendering rescues/layout (unprocessable_entity)
+
+
+Processing SharesController#index (for 127.0.0.1 at 2009-04-19 14:02:26) [GET]
+  Parameters: {"action"=>"index", "controller"=>"shares"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+  [4;36;1mShare Load (6.6ms)[0m   [0;1mSELECT * FROM "shares" ORDER BY created_at DESC LIMIT 5 OFFSET 0[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSELECT count(*) AS count_all FROM "shares" [0m
+Rendering template within layouts/shares
+Rendering shares/index
+Rendered layouts/_show_shares (34.9ms)
+Rendered layouts/_links (66.3ms)
+Completed in 173ms (View: 125, DB: 8) | 200 OK [http://localhost/]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2009-04-19 14:02:28) [GET]
+  Parameters: {"action"=>"index", "controller"=>"shares"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+  [4;36;1mShare Load (6.4ms)[0m   [0;1mSELECT * FROM "shares" ORDER BY created_at DESC LIMIT 5 OFFSET 0[0m
+  [4;35;1mSQL (1.4ms)[0m   [0mSELECT count(*) AS count_all FROM "shares" [0m
+Rendering template within layouts/shares
+Rendering shares/index
+Rendered layouts/_show_shares (214.0ms)
+Rendered layouts/_links (58.5ms)
+Completed in 324ms (View: 278, DB: 8) | 200 OK [http://localhost/]
+
+
+Processing SharesController#search (for 127.0.0.1 at 2009-04-19 14:03:01) [POST]
+  Parameters: {"commit"=>"Search!", "action"=>"search", "authenticity_token"=>"it0HlRrZiahLdckwCOJiKa/xiH4MUpkeNnG7gtfYFt8=", "controller"=>"shares", "q"=>"esau"}
+
+ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken):
+  
+
+Rendered rescues/_trace (138.0ms)
+Rendered rescues/_request_and_response (0.9ms)
+Rendering rescues/layout (unprocessable_entity)
+
+
+Processing SharesController#index (for 127.0.0.1 at 2009-04-19 14:05:55) [GET]
+  Parameters: {"action"=>"index", "controller"=>"shares"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+  [4;36;1mShare Load (17.5ms)[0m   [0;1mSELECT * FROM "shares" ORDER BY created_at DESC LIMIT 5 OFFSET 0[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mSELECT count(*) AS count_all FROM "shares" [0m
+Rendering template within layouts/shares
+Rendering shares/index
+Rendered layouts/_show_shares (35.1ms)
+Rendered layouts/_links (53.7ms)
+Completed in 157ms (View: 93, DB: 19) | 200 OK [http://localhost/]
+
+
+Processing SharesController#search (for 127.0.0.1 at 2009-04-19 14:06:01) [POST]
+  Parameters: {"commit"=>"Search!", "action"=>"search", "authenticity_token"=>"fEu6rnw/ItqLZNvt09UpKfObXfol9L4gIGATrJvIfyM=", "controller"=>"shares", "q"=>"paginate"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+
+NameError (undefined local variable or method `q' for #<SharesController:0x24cac78>):
+  app/controllers/shares_controller.rb:98:in `search'
+
+Rendered rescues/_trace (155.4ms)
+Rendered rescues/_request_and_response (1.1ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#search (for 127.0.0.1 at 2009-04-19 14:07:19) [POST]
+  Parameters: {"commit"=>"Search!", "action"=>"search", "authenticity_token"=>"fEu6rnw/ItqLZNvt09UpKfObXfol9L4gIGATrJvIfyM=", "controller"=>"shares", "q"=>"paginate"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+Query: paginate
+total hits: 0, results delivered: 0
+Rendering template within layouts/shares
+Rendering shares/search
+
+ActionView::TemplateError (undefined local variable or method `shares' for #<ActionView::Base:0x23aec18>) on line #1 of app/views/shares/search.html.erb:
+1: Total number of results: <%= shares.total_hits %>
+2:  
+3: <% for share in @shares %>
+4: <h3><%= link_to(share.highlight(q, :field => :title, :num_excerpts => 1, :pre_tag => "<strong>", :post_tag => "</strong>"), share_url(share)) %></h3>
+
+    app/views/shares/search.html.erb:1
+
+Rendered rescues/_trace (179.1ms)
+Rendered rescues/_request_and_response (1.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#search (for 127.0.0.1 at 2009-04-19 14:07:57) [POST]
+  Parameters: {"commit"=>"Search!", "action"=>"search", "authenticity_token"=>"fEu6rnw/ItqLZNvt09UpKfObXfol9L4gIGATrJvIfyM=", "controller"=>"shares", "q"=>"paginate"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+Query: paginate
+total hits: 0, results delivered: 0
+Rendering template within layouts/shares
+Rendering shares/search
+
+ActionView::TemplateError (undefined local variable or method `shares' for #<ActionView::Base:0x23d9da0>) on line #1 of app/views/shares/search.html.erb:
+1: Total number of results: <%= shares.total_hits %>
+2:  
+3: <% for share in @shares %>
+4: <h3><%= link_to(share.highlight(q, :field => :title, :num_excerpts => 1, :pre_tag => "<strong>", :post_tag => "</strong>"), share_url(share)) %></h3>
+
+    app/views/shares/search.html.erb:1
+
+Rendered rescues/_trace (346.7ms)
+Rendered rescues/_request_and_response (1.0ms)
+Rendering rescues/layout (internal_server_error)
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:title, :description]
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:title, :description]
+Query: esau
+total hits: 2, results delivered: 2
+  [4;36;1mSQL (2.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (1.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+Query: esau
+total hits: 2, results delivered: 2
+  [4;36;1mSQL (1.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (1.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+Query: esau
+total hits: 2, results delivered: 2
+  [4;36;1mSQL (1.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (1.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+
+
+Processing SharesController#index (for 127.0.0.1 at 2009-04-19 14:12:37) [GET]
+  Parameters: {"action"=>"index", "controller"=>"shares"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+  [4;36;1mShare Load (6.6ms)[0m   [0;1mSELECT * FROM "shares" ORDER BY created_at DESC LIMIT 5 OFFSET 0[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSELECT count(*) AS count_all FROM "shares" [0m
+Rendering template within layouts/shares
+Rendering shares/index
+Rendered layouts/_show_shares (34.0ms)
+Rendered layouts/_links (65.4ms)
+Completed in 158ms (View: 105, DB: 9) | 200 OK [http://localhost/]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2009-04-19 14:14:49) [GET]
+  Parameters: {"action"=>"index", "controller"=>"shares"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+  [4;36;1mShare Load (9.8ms)[0m   [0;1mSELECT * FROM "shares" ORDER BY created_at DESC LIMIT 5 OFFSET 0[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSELECT count(*) AS count_all FROM "shares" [0m
+Rendering template within layouts/shares
+Rendering shares/index
+Rendered layouts/_show_shares (35.4ms)
+Rendered layouts/_links (54.5ms)
+Completed in 155ms (View: 93, DB: 12) | 200 OK [http://localhost/]
+
+
+Processing SharesController#search (for 127.0.0.1 at 2009-04-19 14:14:54) [POST]
+  Parameters: {"commit"=>"Search!", "action"=>"search", "authenticity_token"=>"fEu6rnw/ItqLZNvt09UpKfObXfol9L4gIGATrJvIfyM=", "controller"=>"shares", "q"=>"paginate"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+Query: paginate
+total hits: 0, results delivered: 0
+Rendering template within layouts/shares
+Rendering shares/search
+
+ActionView::TemplateError (undefined local variable or method `shares' for #<ActionView::Base:0x22dd564>) on line #1 of app/views/shares/search.html.erb:
+1: Total number of results: <%= shares.total_hits %>
+2:  
+3: <% for share in @shares %>
+4: <h3><%= link_to(share.highlight(q, :field => :title, :num_excerpts => 1, :pre_tag => "<strong>", :post_tag => "</strong>"), share_url(share)) %></h3>
+
+    app/views/shares/search.html.erb:1
+
+Rendered rescues/_trace (155.3ms)
+Rendered rescues/_request_and_response (0.9ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#search (for 127.0.0.1 at 2009-04-19 14:15:25) [POST]
+  Parameters: {"commit"=>"Search!", "action"=>"search", "authenticity_token"=>"fEu6rnw/ItqLZNvt09UpKfObXfol9L4gIGATrJvIfyM=", "controller"=>"shares", "q"=>"paginate"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+Query: paginate
+total hits: 0, results delivered: 0
+Rendering template within layouts/shares
+Rendering shares/search
+DEPRECATION WARNING: WillPaginate: You are using a paginated collection of class ActsAsFerret::SearchResults which conforms to the old API of WillPaginate::Collection by using `page_count`, while the current method name is `total_pages`. Please upgrade yours or 3rd-party code that provides the paginated collection. (called from will_paginate at /Users/galen/.gem/ruby/1.8/gems/mislav-will_paginate-2.3.8/lib/will_paginate/view_helpers.rb:98)
+Rendered layouts/_links (54.3ms)
+Completed in 102ms (View: 70, DB: 3) | 200 OK [http://localhost/search]
+
+
+Processing SharesController#search (for 127.0.0.1 at 2009-04-19 14:16:47) [POST]
+  Parameters: {"commit"=>"Search!", "action"=>"search", "authenticity_token"=>"fEu6rnw/ItqLZNvt09UpKfObXfol9L4gIGATrJvIfyM=", "controller"=>"shares", "q"=>"esau"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+Query: esau
+total hits: 2, results delivered: 2
+Rendering template within layouts/shares
+Rendering shares/search
+  [4;36;1mSQL (2.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (1.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (1.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+
+ActionView::TemplateError (undefined local variable or method `q' for #<ActionView::Base:0x253c148>) on line #4 of app/views/shares/search.html.erb:
+1: Total number of results: <%= @shares.total_hits %>
+2:  
+3: <% for share in @shares %>
+4: <h3><%= link_to(share.highlight(q, :field => :title, :num_excerpts => 1, :pre_tag => "<strong>", :post_tag => "</strong>"), share_url(share)) %></h3>
+5: <%= share.body %>
+6: <% end %>
+7: 
+
+    app/views/shares/search.html.erb:4
+    app/views/shares/search.html.erb:3
+
+Rendered rescues/_trace (242.2ms)
+Rendered rescues/_request_and_response (1.1ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#search (for 127.0.0.1 at 2009-04-19 14:17:49) [POST]
+  Parameters: {"commit"=>"Search!", "action"=>"search", "authenticity_token"=>"fEu6rnw/ItqLZNvt09UpKfObXfol9L4gIGATrJvIfyM=", "controller"=>"shares", "q"=>"esau"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+Query: esau
+total hits: 2, results delivered: 2
+Rendering template within layouts/shares
+Rendering shares/search
+  [4;36;1mShare Load (2.5ms)[0m   [0;1mSELECT * FROM "shares" WHERE ("shares"."id" = 9) [0m
+
+ActionView::TemplateError (undefined method `body' for #<Share:0x2302404>) on line #5 of app/views/shares/search.html.erb:
+2:  
+3: <% for share in @shares %>
+4: <h3><%= link_to(share.highlight(@q, :field => :title, :num_excerpts => 1, :pre_tag => "<strong>", :post_tag => "</strong>"), share_url(share)) %></h3>
+5: <%= share.body %>
+6: <% end %>
+7: 
+8: <%= will_paginate @shares %>
+
+    app/views/shares/search.html.erb:5
+    app/views/shares/search.html.erb:3
+
+Rendered rescues/_trace (176.1ms)
+Rendered rescues/_request_and_response (1.0ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#search (for 127.0.0.1 at 2009-04-19 14:18:11) [POST]
+  Parameters: {"commit"=>"Search!", "action"=>"search", "authenticity_token"=>"fEu6rnw/ItqLZNvt09UpKfObXfol9L4gIGATrJvIfyM=", "controller"=>"shares", "q"=>"esau"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+Query: esau
+total hits: 2, results delivered: 2
+Rendering template within layouts/shares
+Rendering shares/search
+  [4;35;1mShare Load (2.3ms)[0m   [0mSELECT * FROM "shares" WHERE ("shares"."id" = 9) [0m
+  [4;36;1mShare Load (1.4ms)[0m   [0;1mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+DEPRECATION WARNING: WillPaginate: You are using a paginated collection of class ActsAsFerret::SearchResults which conforms to the old API of WillPaginate::Collection by using `page_count`, while the current method name is `total_pages`. Please upgrade yours or 3rd-party code that provides the paginated collection. (called from will_paginate at /Users/galen/.gem/ruby/1.8/gems/mislav-will_paginate-2.3.8/lib/will_paginate/view_helpers.rb:98)
+Rendered layouts/_links (50.2ms)
+Completed in 129ms (View: 94, DB: 7) | 200 OK [http://localhost/search]
+
+
+Processing SharesController#search (for 127.0.0.1 at 2009-04-19 14:19:51) [POST]
+  Parameters: {"commit"=>"Search!", "action"=>"search", "authenticity_token"=>"fEu6rnw/ItqLZNvt09UpKfObXfol9L4gIGATrJvIfyM=", "controller"=>"shares", "q"=>"esau"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+Query: esau
+total hits: 2, results delivered: 2
+Rendering template within layouts/shares
+Rendering shares/search
+  [4;35;1mShare Load (1.5ms)[0m   [0mSELECT * FROM "shares" WHERE ("shares"."id" = 9) [0m
+  [4;36;1mShare Load (21.5ms)[0m   [0;1mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+DEPRECATION WARNING: WillPaginate: You are using a paginated collection of class ActsAsFerret::SearchResults which conforms to the old API of WillPaginate::Collection by using `page_count`, while the current method name is `total_pages`. Please upgrade yours or 3rd-party code that provides the paginated collection. (called from will_paginate at /Users/galen/.gem/ruby/1.8/gems/mislav-will_paginate-2.3.8/lib/will_paginate/view_helpers.rb:98)
+Rendered layouts/_links (68.7ms)
+Completed in 235ms (View: 118, DB: 69) | 200 OK [http://localhost/search]
+
+
+Processing SharesController#search (for 127.0.0.1 at 2009-04-19 14:20:10) [POST]
+  Parameters: {"commit"=>"Search!", "action"=>"search", "authenticity_token"=>"fEu6rnw/ItqLZNvt09UpKfObXfol9L4gIGATrJvIfyM=", "controller"=>"shares", "q"=>"esau"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+Query: esau
+total hits: 2, results delivered: 2
+Rendering template within layouts/shares
+Rendering shares/search
+  [4;35;1mShare Load (1.5ms)[0m   [0mSELECT * FROM "shares" WHERE ("shares"."id" = 9) [0m
+
+ActionView::TemplateError (undefined method `highlight' for "Esau Mwamwaya":String) on line #4 of app/views/shares/search.html.erb:
+1: Total number of results: <%= @shares.total_hits %>
+2:  
+3: <% for share in @shares %>
+4: <h3><%= link_to(share.title.highlight(@q, :num_excerpts => 1, :pre_tag => "<strong>", :post_tag => "</strong>"), share_url(share)) %></h3>
+5: <%= share.description %>
+6: <% end %>
+7: 
+
+    app/views/shares/search.html.erb:4
+    app/views/shares/search.html.erb:3
+
+Rendered rescues/_trace (333.2ms)
+Rendered rescues/_request_and_response (0.9ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#search (for 127.0.0.1 at 2009-04-19 14:20:43) [POST]
+  Parameters: {"commit"=>"Search!", "action"=>"search", "authenticity_token"=>"fEu6rnw/ItqLZNvt09UpKfObXfol9L4gIGATrJvIfyM=", "controller"=>"shares", "q"=>"esau"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+Query: esau
+total hits: 2, results delivered: 2
+Rendering template within layouts/shares
+Rendering shares/search
+  [4;36;1mShare Load (1.6ms)[0m   [0;1mSELECT * FROM "shares" WHERE ("shares"."id" = 9) [0m
+  [4;35;1mShare Load (2.6ms)[0m   [0mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+DEPRECATION WARNING: WillPaginate: You are using a paginated collection of class ActsAsFerret::SearchResults which conforms to the old API of WillPaginate::Collection by using `page_count`, while the current method name is `total_pages`. Please upgrade yours or 3rd-party code that provides the paginated collection. (called from will_paginate at /Users/galen/.gem/ruby/1.8/gems/mislav-will_paginate-2.3.8/lib/will_paginate/view_helpers.rb:98)
+Rendered layouts/_links (51.4ms)
+Completed in 124ms (View: 88, DB: 7) | 200 OK [http://localhost/search]
+
+
+Processing SharesController#search (for 127.0.0.1 at 2009-04-19 14:20:54) [POST]
+  Parameters: {"commit"=>"Search!", "action"=>"search", "authenticity_token"=>"fEu6rnw/ItqLZNvt09UpKfObXfol9L4gIGATrJvIfyM=", "controller"=>"shares", "q"=>"esau"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+Query: esau
+total hits: 2, results delivered: 2
+Rendering template within layouts/shares
+Rendering shares/search
+  [4;36;1mShare Load (1.7ms)[0m   [0;1mSELECT * FROM "shares" WHERE ("shares"."id" = 9) [0m
+  [4;35;1mSQL (1.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.6ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (1.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+
+ActionView::TemplateError (undefined method `acts_as_ferret_ferret_result_path' for #<ActionView::Base:0x23489b8>) on line #4 of app/views/shares/search.html.erb:
+1: Total number of results: <%= @shares.total_hits %>
+2:  
+3: <% for share in @shares %>
+4: <h3><%= link_to(share.title, share) %></h3>
+5: <%= share.description %>
+6: <% end %>
+7: 
+
+    app/views/shares/search.html.erb:4
+    app/views/shares/search.html.erb:3
+
+Rendered rescues/_trace (217.7ms)
+Rendered rescues/_request_and_response (1.5ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#search (for 127.0.0.1 at 2009-04-19 14:21:07) [POST]
+  Parameters: {"commit"=>"Search!", "action"=>"search", "authenticity_token"=>"fEu6rnw/ItqLZNvt09UpKfObXfol9L4gIGATrJvIfyM=", "controller"=>"shares", "q"=>"paginate"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+Query: paginate
+total hits: 0, results delivered: 0
+Rendering template within layouts/shares
+Rendering shares/search
+DEPRECATION WARNING: WillPaginate: You are using a paginated collection of class ActsAsFerret::SearchResults which conforms to the old API of WillPaginate::Collection by using `page_count`, while the current method name is `total_pages`. Please upgrade yours or 3rd-party code that provides the paginated collection. (called from will_paginate at /Users/galen/.gem/ruby/1.8/gems/mislav-will_paginate-2.3.8/lib/will_paginate/view_helpers.rb:98)
+Rendered layouts/_links (91.9ms)
+Completed in 163ms (View: 118, DB: 4) | 200 OK [http://localhost/search]
+
+
+Processing SharesController#search (for 127.0.0.1 at 2009-04-19 14:21:12) [POST]
+  Parameters: {"commit"=>"Search!", "action"=>"search", "authenticity_token"=>"fEu6rnw/ItqLZNvt09UpKfObXfol9L4gIGATrJvIfyM=", "controller"=>"shares", "q"=>"esau"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+Query: esau
+total hits: 2, results delivered: 2
+Rendering template within layouts/shares
+Rendering shares/search
+  [4;35;1mShare Load (2.1ms)[0m   [0mSELECT * FROM "shares" WHERE ("shares"."id" = 9) [0m
+  [4;36;1mShare Load (2.9ms)[0m   [0;1mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+DEPRECATION WARNING: WillPaginate: You are using a paginated collection of class ActsAsFerret::SearchResults which conforms to the old API of WillPaginate::Collection by using `page_count`, while the current method name is `total_pages`. Please upgrade yours or 3rd-party code that provides the paginated collection. (called from will_paginate at /Users/galen/.gem/ruby/1.8/gems/mislav-will_paginate-2.3.8/lib/will_paginate/view_helpers.rb:98)
+Rendered layouts/_links (131.9ms)
+Completed in 224ms (View: 172, DB: 8) | 200 OK [http://localhost/search]
+
+
+Processing SharesController#search (for 127.0.0.1 at 2009-04-19 14:21:43) [POST]
+  Parameters: {"commit"=>"Search!", "action"=>"search", "authenticity_token"=>"fEu6rnw/ItqLZNvt09UpKfObXfol9L4gIGATrJvIfyM=", "controller"=>"shares", "q"=>"esau"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+Query: esau
+total hits: 2, results delivered: 2
+Rendering template within layouts/shares
+Rendering shares/search
+  [4;35;1mShare Load (1.5ms)[0m   [0mSELECT * FROM "shares" WHERE ("shares"."id" = 9) [0m
+  [4;36;1mShare Load (2.5ms)[0m   [0;1mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+DEPRECATION WARNING: WillPaginate: You are using a paginated collection of class ActsAsFerret::SearchResults which conforms to the old API of WillPaginate::Collection by using `page_count`, while the current method name is `total_pages`. Please upgrade yours or 3rd-party code that provides the paginated collection. (called from will_paginate at /Users/galen/.gem/ruby/1.8/gems/mislav-will_paginate-2.3.8/lib/will_paginate/view_helpers.rb:98)
+Rendered layouts/_links (50.1ms)
+Completed in 124ms (View: 91, DB: 6) | 200 OK [http://localhost/search]
+
+
+Processing SharesController#search (for 127.0.0.1 at 2009-04-19 14:24:11) [POST]
+  Parameters: {"commit"=>"Search!", "action"=>"search", "authenticity_token"=>"fEu6rnw/ItqLZNvt09UpKfObXfol9L4gIGATrJvIfyM=", "controller"=>"shares", "q"=>"esau"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+Query: esau
+total hits: 2, results delivered: 2
+Rendering template within layouts/shares
+Rendering shares/search
+  [4;35;1mShare Load (2.2ms)[0m   [0mSELECT * FROM "shares" WHERE ("shares"."id" = 9) [0m
+  [4;36;1mShare Load (1.4ms)[0m   [0;1mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+DEPRECATION WARNING: WillPaginate: You are using a paginated collection of class ActsAsFerret::SearchResults which conforms to the old API of WillPaginate::Collection by using `page_count`, while the current method name is `total_pages`. Please upgrade yours or 3rd-party code that provides the paginated collection. (called from will_paginate at /Users/galen/.gem/ruby/1.8/gems/mislav-will_paginate-2.3.8/lib/will_paginate/view_helpers.rb:98)
+Rendered layouts/_links (212.9ms)
+Completed in 306ms (View: 272, DB: 6) | 200 OK [http://localhost/search]
+
+
+Processing SharesController#search (for 127.0.0.1 at 2009-04-19 14:24:30) [POST]
+  Parameters: {"commit"=>"Search!", "action"=>"search", "authenticity_token"=>"fEu6rnw/ItqLZNvt09UpKfObXfol9L4gIGATrJvIfyM=", "controller"=>"shares", "q"=>"esau"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+Query: esau
+total hits: 2, results delivered: 2
+Rendering template within layouts/shares
+Rendering shares/search
+  [4;35;1mShare Load (1.5ms)[0m   [0mSELECT * FROM "shares" WHERE ("shares"."id" = 9) [0m
+
+ActionView::TemplateError (can't convert Array into String) on line #5 of app/views/shares/search.html.erb:
+2:  
+3: <% for share in @shares %>
+4: <h3><%= link_to(share.title, share_url(share)) %></h3>
+5: <%= highlight(share.description, :field => :description, :num_excerpts => 1) %>
+6: <% end %>
+7: 
+8: <%= will_paginate @shares %>
+
+    app/views/shares/search.html.erb:5
+    app/views/shares/search.html.erb:3
+
+Rendered rescues/_trace (195.9ms)
+Rendered rescues/_request_and_response (171.9ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#search (for 127.0.0.1 at 2009-04-19 14:24:41) [POST]
+  Parameters: {"commit"=>"Search!", "action"=>"search", "authenticity_token"=>"fEu6rnw/ItqLZNvt09UpKfObXfol9L4gIGATrJvIfyM=", "controller"=>"shares", "q"=>"esau"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+Query: esau
+total hits: 2, results delivered: 2
+Rendering template within layouts/shares
+Rendering shares/search
+  [4;36;1mShare Load (1.6ms)[0m   [0;1mSELECT * FROM "shares" WHERE ("shares"."id" = 9) [0m
+
+ActionView::TemplateError (can't convert Array into String) on line #5 of app/views/shares/search.html.erb:
+2:  
+3: <% for share in @shares %>
+4: <h3><%= link_to(share.title, share_url(share)) %></h3>
+5: <%= highlight(share.description, :field => :description) %>
+6: <% end %>
+7: 
+8: <%= will_paginate @shares %>
+
+    app/views/shares/search.html.erb:5
+    app/views/shares/search.html.erb:3
+
+Rendered rescues/_trace (168.7ms)
+Rendered rescues/_request_and_response (0.9ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SharesController#search (for 127.0.0.1 at 2009-04-19 14:26:05) [POST]
+  Parameters: {"commit"=>"Search!", "action"=>"search", "authenticity_token"=>"fEu6rnw/ItqLZNvt09UpKfObXfol9L4gIGATrJvIfyM=", "controller"=>"shares", "q"=>"esau"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+Query: esau
+total hits: 2, results delivered: 2
+Rendering template within layouts/shares
+Rendering shares/search
+  [4;35;1mShare Load (2.0ms)[0m   [0mSELECT * FROM "shares" WHERE ("shares"."id" = 9) [0m
+  [4;36;1mShare Load (1.5ms)[0m   [0;1mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+DEPRECATION WARNING: WillPaginate: You are using a paginated collection of class ActsAsFerret::SearchResults which conforms to the old API of WillPaginate::Collection by using `page_count`, while the current method name is `total_pages`. Please upgrade yours or 3rd-party code that provides the paginated collection. (called from will_paginate at /Users/galen/.gem/ruby/1.8/gems/mislav-will_paginate-2.3.8/lib/will_paginate/view_helpers.rb:98)
+Rendered layouts/_links (55.8ms)
+Completed in 315ms (View: 96, DB: 6) | 200 OK [http://localhost/search]
+
+
+Processing SharesController#show (for 127.0.0.1 at 2009-04-19 14:26:11) [GET]
+  Parameters: {"action"=>"show", "id"=>"#<ActsAsFerret::FerretResult:0x254c2b4>", "controller"=>"shares"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+  [4;35;1mShare Load (0.6ms)[0m   [0mSELECT * FROM "shares" WHERE ("shares"."id" = 0) [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Share with ID=#<ActsAsFerret::FerretResult:0x254c2b4>):
+  app/controllers/shares_controller.rb:23:in `show'
+
+Rendered rescues/_trace (149.2ms)
+Rendered rescues/_request_and_response (1.0ms)
+Rendering rescues/layout (not_found)
+
+
+Processing SharesController#search (for 127.0.0.1 at 2009-04-19 14:26:51) [POST]
+  Parameters: {"commit"=>"Search!", "action"=>"search", "authenticity_token"=>"fEu6rnw/ItqLZNvt09UpKfObXfol9L4gIGATrJvIfyM=", "controller"=>"shares", "q"=>"esau"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+Query: esau
+total hits: 2, results delivered: 2
+Rendering template within layouts/shares
+Rendering shares/search
+  [4;36;1mShare Load (1.8ms)[0m   [0;1mSELECT * FROM "shares" WHERE ("shares"."id" = 9) [0m
+  [4;35;1mShare Load (3.7ms)[0m   [0mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+DEPRECATION WARNING: WillPaginate: You are using a paginated collection of class ActsAsFerret::SearchResults which conforms to the old API of WillPaginate::Collection by using `page_count`, while the current method name is `total_pages`. Please upgrade yours or 3rd-party code that provides the paginated collection. (called from will_paginate at /Users/galen/.gem/ruby/1.8/gems/mislav-will_paginate-2.3.8/lib/will_paginate/view_helpers.rb:98)
+Rendered layouts/_links (247.8ms)
+Completed in 319ms (View: 284, DB: 8) | 200 OK [http://localhost/search]
+
+
+Processing SharesController#show (for 127.0.0.1 at 2009-04-19 14:26:54) [GET]
+  Parameters: {"action"=>"show", "id"=>"9", "controller"=>"shares"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+  [4;36;1mShare Load (2.5ms)[0m   [0;1mSELECT * FROM "shares" WHERE ("shares"."id" = 9) [0m
+Rendering template within layouts/shares
+Rendering shares/show
+Rendered layouts/_links (3.9ms)
+Completed in 126ms (View: 88, DB: 4) | 200 OK [http://localhost/shares/9]
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2009-04-19 14:26:58) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Rendered layouts/_links (4.5ms)
+Completed in 103ms (View: 52, DB: 1) | 200 OK [http://localhost/user_session/new]
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2009-04-19 14:27:02) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"password"=>"[FILTERED]", "login"=>"Galen", "remember_me"=>"0"}, "action"=>"create", "authenticity_token"=>"fEu6rnw/ItqLZNvt09UpKfObXfol9L4gIGATrJvIfyM=", "controller"=>"user_sessions"}
+  [4;35;1mUser Load (2.6ms)[0m   [0mSELECT * FROM "users" WHERE (LOWER("users".login) = 'galen') LIMIT 1[0m
+  [4;36;1mUser Update (1.0ms)[0m   [0;1mUPDATE "users" SET "login_count" = 27, "last_request_at" = '2009-04-19 05:27:03', "last_login_at" = '2009-04-18 05:00:44', "updated_at" = '2009-04-19 05:27:03', "current_login_at" = '2009-04-19 05:27:02' WHERE "id" = 1[0m
+Redirected to http://localhost:3001/shares
+Completed in 611ms (DB: 6) | 302 Found [http://localhost/user_session]
+
+
+Processing SharesController#index (for 127.0.0.1 at 2009-04-19 14:27:03) [GET]
+  Parameters: {"action"=>"index", "controller"=>"shares"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+  [4;35;1mShare Load (7.0ms)[0m   [0mSELECT * FROM "shares" ORDER BY created_at DESC LIMIT 5 OFFSET 0[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mSELECT count(*) AS count_all FROM "shares" [0m
+Rendering template within layouts/shares
+Rendering shares/index
+Rendered layouts/_show_shares (32.3ms)
+  [4;35;1mUser Load (6.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;36;1mUser Update (1.2ms)[0m   [0;1mUPDATE "users" SET "last_request_at" = '2009-04-19 05:27:03', "updated_at" = '2009-04-19 05:27:03' WHERE "id" = 1[0m
+Rendered layouts/_links (90.0ms)
+Completed in 171ms (View: 120, DB: 17) | 200 OK [http://localhost/shares]
+
+
+Processing SharesController#search (for 127.0.0.1 at 2009-04-19 14:27:07) [POST]
+  Parameters: {"commit"=>"Search!", "action"=>"search", "authenticity_token"=>"fEu6rnw/ItqLZNvt09UpKfObXfol9L4gIGATrJvIfyM=", "controller"=>"shares", "q"=>"esau"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+Query: esau
+total hits: 2, results delivered: 2
+Rendering template within layouts/shares
+Rendering shares/search
+  [4;35;1mShare Load (2.0ms)[0m   [0mSELECT * FROM "shares" WHERE ("shares"."id" = 9) [0m
+  [4;36;1mShare Load (1.4ms)[0m   [0;1mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+DEPRECATION WARNING: WillPaginate: You are using a paginated collection of class ActsAsFerret::SearchResults which conforms to the old API of WillPaginate::Collection by using `page_count`, while the current method name is `total_pages`. Please upgrade yours or 3rd-party code that provides the paginated collection. (called from will_paginate at /Users/galen/.gem/ruby/1.8/gems/mislav-will_paginate-2.3.8/lib/will_paginate/view_helpers.rb:98)
+  [4;35;1mUser Load (1.8ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;36;1mUser Update (3.3ms)[0m   [0;1mUPDATE "users" SET "last_request_at" = '2009-04-19 05:27:07', "updated_at" = '2009-04-19 05:27:07' WHERE "id" = 1[0m
+Rendered layouts/_links (83.1ms)
+Completed in 141ms (View: 102, DB: 11) | 200 OK [http://localhost/search]
+
+
+Processing SharesController#show (for 127.0.0.1 at 2009-04-19 14:27:09) [GET]
+  Parameters: {"action"=>"show", "id"=>"14", "controller"=>"shares"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+  [4;35;1mShare Load (2.2ms)[0m   [0mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+Rendering template within layouts/shares
+Rendering shares/show
+  [4;36;1mUser Load (1.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;35;1mUser Update (1.0ms)[0m   [0mUPDATE "users" SET "last_request_at" = '2009-04-19 05:27:09', "updated_at" = '2009-04-19 05:27:09' WHERE "id" = 1[0m
+Rendered layouts/_links (5.8ms)
+Completed in 142ms (View: 101, DB: 6) | 200 OK [http://localhost/shares/14]
+
+
+Processing SharesController#edit (for 127.0.0.1 at 2009-04-19 14:27:13) [GET]
+  Parameters: {"action"=>"edit", "id"=>"14", "controller"=>"shares"}
+  [4;36;1mUser Load (2.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;35;1mUser Update (1.7ms)[0m   [0mUPDATE "users" SET "last_request_at" = '2009-04-19 05:27:13', "updated_at" = '2009-04-19 05:27:13' WHERE "id" = 1[0m
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+  [4;36;1mShare Load (1.5ms)[0m   [0;1mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+Rendering template within layouts/shares
+Rendering shares/edit
+Rendered shares/_form (37.0ms)
+Rendered layouts/_links (6.4ms)
+Completed in 214ms (View: 78, DB: 7) | 200 OK [http://localhost/shares/14/edit]
+
+
+Processing SharesController#update (for 127.0.0.1 at 2009-04-19 14:27:28) [PUT]
+  Parameters: {"commit"=>"Save", "share"=>{"license"=>"bumper", "title"=>"Esau Mwamwaya and Radioclit are the Very Best (Mixtape)", "website"=>"buggies", "description"=>"http://wikipedia.org Niobium is a chemical element with symbol Nb and atomic number 41.\r\n\r\nEsau! \"esau\" esau\r\n\r\nA rare, soft, grey, ductile transition and this@hat.com metal, niobium is found in the minerals pyrochlore (the main source for niobium) and columbite. Niobium has similar physical and chemical \r\n\r\nproperties to another element, tantalum, and the two are therefore difficult to distinguish. The German chemist Heinrich Rose determined in 1846 that tantalum ores contain a second element, which he named niobium, after Niobe from Greek mythology. It was not until the early 20th century that niobium was first used commercially. Brazil is the leading producer of ", "link"=>"http://thepiratebay.org/torrent/4783659/Esau_Mwamwaya_and_Radioclit_Are_The_Very_Best_%28mixtape%29_2008", "source"=>"blue"}, "action"=>"update", "_method"=>"put", "authenticity_token"=>"fEu6rnw/ItqLZNvt09UpKfObXfol9L4gIGATrJvIfyM=", "id"=>"14", "controller"=>"shares"}
+  [4;35;1mUser Load (1.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;36;1mUser Update (1.2ms)[0m   [0;1mUPDATE "users" SET "last_request_at" = '2009-04-19 05:27:28', "updated_at" = '2009-04-19 05:27:28' WHERE "id" = 1[0m
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+  [4;35;1mShare Load (1.6ms)[0m   [0mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+  [4;36;1mShare Update (1.0ms)[0m   [0;1mUPDATE "shares" SET "description" = 'http://wikipedia.org Niobium is a chemical element with symbol Nb and atomic number 41.
+
+Esau! "esau" esau
+
+A rare, soft, grey, ductile transition and this@hat.com metal, niobium is found in the minerals pyrochlore (the main source for niobium) and columbite. Niobium has similar physical and chemical 
+
+properties to another element, tantalum, and the two are therefore difficult to distinguish. The German chemist Heinrich Rose determined in 1846 that tantalum ores contain a second element, which he named niobium, after Niobe from Greek mythology. It was not until the early 20th century that niobium was first used commercially. Brazil is the leading producer of ', "updated_at" = '2009-04-19 05:27:28' WHERE "id" = 14[0m
+ferret_create/update: Share : 14
+creating doc for class: Share, id: 14
+Adding field description with value 'http://wikipedia.org Niobium is a chemical element with symbol Nb and atomic number 41.
+
+Esau! "esau" esau
+
+A rare, soft, grey, ductile transition and this@hat.com metal, niobium is found in the minerals pyrochlore (the main source for niobium) and columbite. Niobium has similar physical and chemical 
+
+properties to another element, tantalum, and the two are therefore difficult to distinguish. The German chemist Heinrich Rose determined in 1846 that tantalum ores contain a second element, which he named niobium, after Niobe from Greek mythology. It was not until the early 20th century that niobium was first used commercially. Brazil is the leading producer of ' to index
+Adding field title with value 'Esau Mwamwaya and Radioclit are the Very Best (Mixtape)' to index
+Redirected to http://localhost:3001/shares/14
+Completed in 187ms (DB: 8) | 302 Found [http://localhost/shares/14]
+
+
+Processing SharesController#show (for 127.0.0.1 at 2009-04-19 14:27:28) [GET]
+  Parameters: {"action"=>"show", "id"=>"14", "controller"=>"shares"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+  [4;35;1mShare Load (2.2ms)[0m   [0mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+Rendering template within layouts/shares
+Rendering shares/show
+  [4;36;1mUser Load (1.8ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;35;1mUser Update (1.2ms)[0m   [0mUPDATE "users" SET "last_request_at" = '2009-04-19 05:27:28', "updated_at" = '2009-04-19 05:27:28' WHERE "id" = 1[0m
+Rendered layouts/_links (5.7ms)
+Completed in 133ms (View: 92, DB: 6) | 200 OK [http://localhost/shares/14]
+
+
+Processing SharesController#search (for 127.0.0.1 at 2009-04-19 14:27:32) [POST]
+  Parameters: {"commit"=>"Search!", "action"=>"search", "authenticity_token"=>"fEu6rnw/ItqLZNvt09UpKfObXfol9L4gIGATrJvIfyM=", "controller"=>"shares", "q"=>"esau"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+Query: esau
+total hits: 2, results delivered: 2
+Rendering template within layouts/shares
+Rendering shares/search
+  [4;36;1mShare Load (1.9ms)[0m   [0;1mSELECT * FROM "shares" WHERE ("shares"."id" = 14) [0m
+  [4;35;1mShare Load (1.7ms)[0m   [0mSELECT * FROM "shares" WHERE ("shares"."id" = 9) [0m
+DEPRECATION WARNING: WillPaginate: You are using a paginated collection of class ActsAsFerret::SearchResults which conforms to the old API of WillPaginate::Collection by using `page_count`, while the current method name is `total_pages`. Please upgrade yours or 3rd-party code that provides the paginated collection. (called from will_paginate at /Users/galen/.gem/ruby/1.8/gems/mislav-will_paginate-2.3.8/lib/will_paginate/view_helpers.rb:98)
+  [4;36;1mUser Load (2.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;35;1mUser Update (1.2ms)[0m   [0mUPDATE "users" SET "last_request_at" = '2009-04-19 05:27:33', "updated_at" = '2009-04-19 05:27:33' WHERE "id" = 1[0m
+Rendered layouts/_links (277.4ms)
+Completed in 349ms (View: 307, DB: 10) | 200 OK [http://localhost/search]
+
+
+Processing SharesController#show (for 127.0.0.1 at 2009-04-19 14:27:39) [GET]
+  Parameters: {"action"=>"show", "id"=>"9", "controller"=>"shares"}
+Asked for a remote server ? true, ENV["FERRET_USE_LOCAL_INDEX"] is nil, looks like we are not the server
+Will use local index.
+using index in /Users/galen/Sites/sa/index/development/share
+default field list: [:description, :title]
+  [4;36;1mShare Load (1.7ms)[0m   [0;1mSELECT * FROM "shares" WHERE ("shares"."id" = 9) [0m
+Rendering template within layouts/shares
+Rendering shares/show
+  [4;35;1mUser Load (1.8ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;36;1mUser Update (1.0ms)[0m   [0;1mUPDATE "users" SET "last_request_at" = '2009-04-19 05:27:39', "updated_at" = '2009-04-19 05:27:39' WHERE "id" = 1[0m
+Rendered layouts/_links (7.0ms)
+Completed in 137ms (View: 97, DB: 6) | 200 OK [http://localhost/shares/9]

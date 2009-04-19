@@ -1,3 +1,6 @@
 class Share < ActiveRecord::Base
   belongs_to :user
-end
+  # Ferret full text search
+  acts_as_ferret :fields =>{:title => {:store => true},:description => {:store => true}}
+  
+  end

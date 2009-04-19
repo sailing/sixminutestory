@@ -6,7 +6,8 @@ class SharesController < ApplicationController
   # GET /shares.xml
   def index
     page = params[:page] || 1
-    @shares = Share.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 5
+    per_page = 5
+    @shares = Share.paginate :page => params[:page], :order => 'created_at DESC', :per_page => per_page
     @i = 0
     
 
@@ -91,11 +92,19 @@ class SharesController < ApplicationController
     end
   end
   
+  def search
+    per_page = 10
+    page = params[:page] || 1
+    @q = params[:q]
+    @shares = Share.find_with_ferret(@q,:lazy => {[:title],[:description]}, :page => page, :per_page => per_page)
+  end
+  
   def get_description
     if(request.xhr?)
       description = find.first()
       render :text => description
     end
   end
+  
   
 end
