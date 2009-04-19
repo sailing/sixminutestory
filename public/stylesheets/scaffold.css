@@ -146,6 +146,7 @@ img {
 	color: #999;
 	text-align:justify;
 	letter-spacing:.03em;
+	line-height:31px;
 }
 
 #banner strong {
@@ -192,7 +193,7 @@ img {
 	line-height:28px;
 	font-weight:bold;
 	text-align:left;
-	color: #695;
+	color: #666;
 }
 
 .add_share_form textarea {
@@ -317,7 +318,7 @@ img {
 
 #contributed_shares th a {
 	font-size:28px;
-	color: #685;
+	color: #666;
 }
 
 #contributed_shares a {
@@ -329,11 +330,7 @@ img {
 	font-size:15px;
 	font-weight:bold;
 	line-height:18px;
-	color: #685;
-}
-
-#contributed_shares .alternate {
-	background-color:blue;
+	color: #666;
 }
 
 #show_shares table{
@@ -372,6 +369,7 @@ img {
 	font-family:helvetica, verdana, tahoma, arial, sans-serif;
 	letter-spacing:.04em;
 	font-weight:normal;
+	color:#444;
 }
 
 #show_share_title {
