@@ -7,9 +7,7 @@ class SharesController < ApplicationController
   def index
     page = params[:page] || 1
     per_page = 5
-    @shares = Share.paginate :page => params[:page], :order => 'created_at DESC', :per_page => per_page
-    @i = 0
-    
+    @shares = Share.paginate :page => page, :order => 'created_at DESC', :per_page => per_page    
 
     respond_to do |format|
       format.html # index.html.erb
@@ -93,7 +91,7 @@ class SharesController < ApplicationController
   end
   
   def search
-    per_page = 10
+    per_page = 5
     page = params[:page] || 1
     @q = params[:q]
     @shares = Share.find_with_ferret(@q,:lazy => {[:title],[:description]}, :page => page, :per_page => per_page)

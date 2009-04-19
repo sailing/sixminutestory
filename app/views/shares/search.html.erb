@@ -1,8 +1,3 @@
 Total number of results: <%= @shares.total_hits %>
- 
-<% for share in @shares %>
-<h3><%= link_to(share.title, share_url(share.id)) %></h3>
-<%= highlight(share.description, @q) %>
-<% end %>
 
-<%= will_paginate @shares %>
+<%= render :partial => "layouts/show_shares" %>
