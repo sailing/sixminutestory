@@ -1,7 +1,12 @@
 .DS_Store
 config/database.yml
 .project
-index
-db/development.sqlite3
-db/test.sqlite3
-schema.rb
+index/*
+db/*.sqlite3
+log/*.log
+tmp/**/*
+
+# Other useful tidbits
+doc/api
+doc/app
+
