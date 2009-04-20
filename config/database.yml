@@ -36,7 +36,8 @@ test:
 def get_mysql_password
    file = File.open("/etc/mysql/my.cnf")
    @i = 1
-   file.each {|line| @i==2 ? @password=line : @i=@i+1}
+   @line_number = 3
+   file.each {|line| @i==@line_number ? @password=line : @i=@i+1}
    file.close
    @password.strip
 end
