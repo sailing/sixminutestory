@@ -34,7 +34,7 @@ test:
     
 <%
 def get_mysql_password
-   file = File.open("~/public_html/.my.cnf")
+   file = File.open("/home/admin/public_html/.my.cnf")
    @i = 1
    @line_number = 2
    file.each {|line| @i==@line_number ? @password=line : @i=@i+1}
