@@ -94,7 +94,7 @@ class SharesController < ApplicationController
     per_page = 5
     page = params[:page] || 1
     @q = params[:q]
-    @shares = Share.find_with_ferret(@q,:lazy => {[:title],[:description]}, :page => page, :per_page => per_page)
+    @shares = Share.search @q, :page => page, :per_page => per_page
   end
   
   def get_description
