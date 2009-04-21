@@ -25,7 +25,7 @@ role :app, application
 role :web, application
 role :db,  application, :primary => true
 
-
+set :rails_env, "production"
 
 # Thinking Sphinx
 namespace :thinking_sphinx do
