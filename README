@@ -1,1 +1,15 @@
 Sharearchy: an open index founded in March 2009 to aggregate torrents and links available via open source, free, creative commons and public domain licenses.
+
+To get up and running:
+Install:
+Ruby on Rails 2.3.2
+MySQL
+Sphinx
+
+These gems:
+mysql
+authlogic
+mislav-will_paginate
+
+Add this to the crontab (bash$ crontab -e):
+0 * * * * admin cd /home/admin/public_html/sharearchy.com/current && /usr/bin/rake RAILS_ENV=production thinking_sphinx:index >> /home/admin/public_html/sharearchy.com/shared/log/cron.log 2>&1

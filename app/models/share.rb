@@ -2,7 +2,7 @@ class Share < ActiveRecord::Base
   belongs_to :user
   
   define_index do
-    indexes :title
+    indexes :title, :sortable => true
     indexes :description
     
     has :created_at

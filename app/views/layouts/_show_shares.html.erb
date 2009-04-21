@@ -1,7 +1,9 @@
+<% @i = 1 %>
 <div id="show_shares">
 	<h1>Shares | <%= link_to 'New share', new_share_path %> </h1>
 <table>
 <% for share in @shares %>
+<% @i = @i + 1 %>
 
 <tr class="<%= cycle('row_alternate', 'row') -%>">
   	<td class="share_this_share">
