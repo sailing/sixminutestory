@@ -161,6 +161,15 @@ img {
 	font-size:25px;
 }
 
+#banner a {
+	font-weight:bold;
+	color:#45c;
+}
+
+#banner a:hover {
+	color:#fff;
+}
+
 .add_share_form, #show_share, #contributed_shares {
 	background-color:#ddddff;
 	margin:0px auto;

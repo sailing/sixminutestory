@@ -1,9 +1,12 @@
 .DS_Store
 config/database.yml
+config/development.sphinx.conf
 .project
 index/*
 db/*.sqlite3
+db/sphinx/*
 log/*.log
+log/*.pid
 tmp/**/*
 
 # Other useful tidbits
