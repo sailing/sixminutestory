@@ -50,7 +50,6 @@ class SharesController < ApplicationController
 
     respond_to do |format|
       if @share.save
-#        @user = User.find(:first, :conditions => ["id = ?", @current_user.id])
         @user = @current_user
         @share.update_attribute("user_id", @user.id)
         format.html { redirect_to(@share) }
