@@ -1,4 +1,6 @@
 production:
   pid_file: /var/run/sphinx/searchd.pid
   searchd_files: /home/admin/public_html/sharearchy.com/shared/db/sphinx
-  bin_path: '/usr/local/sphinx/bin' 
+  bin_path: '/usr/local/sphinx/bin'
+  enable_star: 1
+   

@@ -7,7 +7,8 @@ class SharesController < ApplicationController
   def index
     page = params[:page] || 1
     per_page = 5
-    @shares = Share.paginate :page => page, :order => 'created_at DESC', :per_page => per_page    
+    condition = true
+    @shares = Share.paginate :page => page, :order => 'created_at DESC', :per_page => per_page, :conditions => {:active => condition}    
 
     respond_to do |format|
       format.html # index.html.erb
@@ -81,7 +82,8 @@ class SharesController < ApplicationController
   # DELETE /shares/1.xml
   def destroy
     @share = Share.find(params[:id])
-    @share.destroy
+    @share.active = false
+    @share.save
 
     respond_to do |format|
       format.html { redirect_to(shares_url) }
@@ -93,7 +95,7 @@ class SharesController < ApplicationController
     per_page = 5
     page = params[:page] || 1
     @q = params[:q]
-    @shares = Share.search @q, :page => page, :per_page => per_page
+    @shares = Share.search @q, :page => page, :per_page => per_page, :conditions => {:active => true}
   end
   
   def get_description
