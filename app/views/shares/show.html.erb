@@ -6,7 +6,20 @@
 	<% else %>
 	<%= link_to 'Submitter\'s profile', profile_url(@share.user_id)%>
 	<% end %>
+	
+		<!-- AddThis Button BEGIN -->
+		<span class="share_this_share">
+			<script type="text/javascript">
+			var addthis_pub="sharearchy";
+			</script>
+			<a href="http://www.addthis.com/bookmark.php?v=20" onmouseover="return addthis_open(this, '', '[URL]', '[TITLE]')" onmouseout="addthis_close()" onclick="return addthis_sendto()"><img src="http://s7.addthis.com/static/btn/lg-share-en.gif" width="125" height="16" border="0" alt="Share" /></a>
+			<script type="text/javascript" src="http://s7.addthis.com/js/200/addthis_widget.js">
+				</script>
+		</span>
+		<!-- AddThis Button END -->
+		
 	</h1>
+	
 
 <table>
 	<tr>
@@ -18,27 +31,23 @@
 	</tr>
 	<tr>
 			<td id="show_share_sidebar">
-				<p>License:</p>
+				<span>License:</span>
 				<p class="show_share_value"><%=h @share.license %>
-				<p>Website:</p>
+				</p>
+				<span>Website:</span>
 					<p class="show_share_value"><%= link_to truncate(h(@share.website)), @share.website %> 
 					</p>
 
 
-				  <p>Found via:</p>
+				  <span>Found via:</span>
 						<p class="show_share_value"><%=h @share.source %>
 						</p>
-						
-		<!-- AddThis Button BEGIN -->
-		<div class="share_this_share">
-			<script type="text/javascript">
-			var addthis_pub="sharearchy";
-			</script>
-			<a href="http://www.addthis.com/bookmark.php?v=20" onmouseover="return addthis_open(this, '', '[URL]', '[TITLE]')" onmouseout="addthis_close()" onclick="return addthis_sendto()"><img src="http://s7.addthis.com/static/btn/lg-share-en.gif" width="125" height="16" border="0" alt="Share" /></a>
-			<script type="text/javascript" src="http://s7.addthis.com/js/200/addthis_widget.js">
-				</script>
-		</div>
-		<!-- AddThis Button END -->
+					<span>Tagged with: </span>
+					<p>	<% @share.tags.each do |tag| -%>
+						    <%= link_to tag.name, tag_url(tag.name) %>
+						  <% end -%>
+					</p>	
+	
 			
 	<!--
 				  <p>Alternative Contact:</p>

@@ -19,8 +19,7 @@ class SharesController < ApplicationController
   # GET /shares/1
   # GET /shares/1.xml
   def show
-    @share = Share.find(params[:id])
-    
+    @share = Share.find(params[:id], :include => :tags)
 
     respond_to do |format|
       format.html # show.html.erb

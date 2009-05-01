@@ -263,6 +263,10 @@ img {
 	border-right:1px dotted #ccc;
 }
 
+#show_share #show_share_sidebar span {
+	color:#333;
+}
+
 #show_share h2 {
 	padding:0px;
 	margin:0px;
@@ -271,7 +275,7 @@ img {
 #show_share h2 a {
 	font-size:23px;
 	line-height:26px;
-	color: #333;
+	color: #666;
 }
 
 #show_share h2 a:hover {

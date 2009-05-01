@@ -1,6 +1,6 @@
 <% @i = 1 %>
 <div id="show_shares">
-	<h1>Shares | <%= link_to 'New share', new_share_path %> </h1>
+	<h1>Shares | <%= link_to 'New share', new_share_path %> | <%= link_to 'Browse by Tags', browse_by_tags_url %></h1>
 <table>
 <% for share in @shares %>
 <% @i = @i + 1 %>
@@ -63,8 +63,10 @@
 </div>
 
 <div id="pagination">
-	<span><%= will_paginate @shares %>
+
+	<span><%=  will_paginate @shares %>
 	</span>
+
 </div>
 
 <br />

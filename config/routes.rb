@@ -2,7 +2,13 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => "shares"
   map.connect '', :controller => "shares"
 
+  map.tags 'tags/:name', :controller => "tags", :action => "show"
+  map.browse_by_tags 'tags', :controller => "tags", :action => "index" 
+
+
   map.resources :shares
+  map.resources :tags
+
   map.resources :users
   map.resource :account, :controller => "users"
 
@@ -15,7 +21,9 @@ ActionController::Routing::Routes.draw do |map|
   
   map.profile 'profile/:id', :controller => "users", :action => "profile"
 
+
   map.catch_all "*", :controller => "shares"
+
 
   # The priority is based upon order of creation: first created -> highest priority.
 
