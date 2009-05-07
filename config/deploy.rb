@@ -27,6 +27,23 @@ role :db,  application, :primary => true
 
 set :rails_env, "production"
 
+namespace :customs do
+  task :config, :roles => :app do
+    run <<-CMD
+      ln -nfs #{shared_path}/system/database.yml #{release_path}/config/database.yml
+    CMD
+  end
+  task :symlink, :roles => :app do
+    run <<-CMD
+      ln -nfs #{shared_path}/system/uploads #{release_path}/public/uploads
+    CMD
+  end
+end
+
+after "deploy:update_code", "customs:config"
+after "deploy:symlink","customs:symlink"
+
+
 # Thinking Sphinx
 namespace :thinking_sphinx do
   task :configure, :roles => [:app] do
@@ -79,7 +96,7 @@ namespace :deploy do
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "touch #{current_path}/tmp/restart.txt"
   end
- 
+  
   task :after_update do
     symlink_sphinx_indexes
    # thinking_sphinx.configure
@@ -98,3 +115,5 @@ namespace :deploy do
   end
 end
 
+after "deploy", "deploy:cleanup"
+after "deploy:migrations", "deploy:cleanup"
