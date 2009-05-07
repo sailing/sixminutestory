@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :comments
+
   map.root :controller => "shares"
   map.connect '', :controller => "shares"
 
@@ -14,7 +16,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.login 'login', :controller => "user_sessions", :action => "new"
   map.logout 'logout', :controller => "user_sessions", :action => "destroy"
-
+  map.register 'register', :controller => "users", :action => "new"
+  
   map.resource :user_session
   
   map.search 'search',:controller => "shares", :action => "search"

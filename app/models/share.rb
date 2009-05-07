@@ -1,6 +1,7 @@
 class Share < ActiveRecord::Base
   acts_as_taggable
   belongs_to :user
+  has_many :comments
   
   define_index do
     indexes :title, :sortable => true

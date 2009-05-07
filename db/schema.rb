@@ -9,7 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090427135124) do
+ActiveRecord::Schema.define(:version => 20090506113406) do
+
+  create_table "comments", :force => true do |t|
+    t.text     "comment"
+    t.integer  "user_id"
+    t.integer  "share_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false

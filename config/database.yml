@@ -33,14 +33,14 @@ test:
     socket: /tmp/mysql.sock
     
 <%
-def get_mysql_password
-   file = File.open("/home/admin/public_html/.my.cnf")
-   @i = 1
-   @line_number = 2
-   file.each {|line| @i==@line_number ? @password=line : @i=@i+1}
-   file.close
-   @password.strip
-end
+#def get_mysql_password
+ #  file = File.open("/home/admin/public_html/.my.cnf")
+ #  @i = 1
+ #  @line_number = 2
+ #  file.each {|line| @i==@line_number ? @password=line : @i=@i+1}
+ #  file.close
+ #  @password.strip
+# end
 %>    
     
 production:
@@ -48,5 +48,5 @@ production:
   encoding: utf8
   database: sharearchy_production
   username: root
-  password: <%= get_mysql_password %>
+  password: 
   socket: /var/run/mysqld/mysqld.sock

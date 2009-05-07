@@ -8,7 +8,10 @@ class SharesController < ApplicationController
     page = params[:page] || 1
     per_page = 5
     condition = true
-    @shares = Share.paginate :page => page, :order => 'created_at DESC', :per_page => per_page, :conditions => {:active => condition}    
+    order = "created_at DESC"
+    @shares = Share.paginate :page => page, :order => order, :per_page => per_page, :conditions => {:active => condition}    
+    
+    
 
     respond_to do |format|
       format.html # index.html.erb
@@ -20,7 +23,15 @@ class SharesController < ApplicationController
   # GET /shares/1.xml
   def show
     @share = Share.find(params[:id], :include => :tags)
-
+    @comment = Comment.new
+    
+    # Comments
+    page = params[:page] || 1
+    per_page = 5
+    condition = true
+    order = "created_at DESC"
+    @comments = Comment.paginate :all, :page => page, :per_page => per_page, :order => order, :conditions => {:share_id => params[:id]}
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @share }

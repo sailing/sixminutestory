@@ -3,5 +3,6 @@ class User < ActiveRecord::Base
   acts_as_tagger
   
   has_many :shares
-
+  has_many :comments
+  
 end
