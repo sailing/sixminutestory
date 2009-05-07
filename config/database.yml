@@ -1,26 +1,26 @@
 # SQLite version 3.x
-#   gem install sqlite3-ruby (not necessary on OS X Leopard)
-
+# gem install sqlite3-ruby (not necessary on OS X Leopard)
+ 
 #<%
 #def get_local_mysql_password
-#   file = File.open("/Users/galen/Sites/my.cnf")
-#   @i = 1
-#   file.each {|line| @i==3 ? @password=line : @i=@i+1}
-#   file.close
-#   @password.strip
+# file = File.open("/Users/galen/Sites/my.cnf")
+# @i = 1
+# file.each {|line| @i==3 ? @password=line : @i=@i+1}
+# file.close
+# @password.strip
 #end
-#%>    
-
+#%>
+ 
 development:
     adapter: mysql
     database: sharearchy_development
     username: root
     password:
     socket: /tmp/mysql.sock
-
-#    adapter: sqlite3
- #   database: db/development.sqlite3
-  #  timeout: 5000
+ 
+# adapter: sqlite3
+ # database: db/development.sqlite3
+  # timeout: 5000
   
 # Warning: The database defined as 'test' will be erased and
 # re-generated from your development database when you run 'rake'.
@@ -29,24 +29,24 @@ test:
     adapter:mysql
     database: sharearchy_test
     username: root
-    password: 
+    password:
     socket: /tmp/mysql.sock
     
 <%
-#def get_mysql_password
- #  file = File.open("/home/admin/public_html/.my.cnf")
- #  @i = 1
- #  @line_number = 2
- #  file.each {|line| @i==@line_number ? @password=line : @i=@i+1}
- #  file.close
- #  @password.strip
-# end
-%>    
+def get_mysql_password
+   file = File.open("/home/admin/public_html/.my.cnf")
+   @i = 1
+   @line_number = 2
+   file.each {|line| @i==@line_number ? @password=line : @i=@i+1}
+   file.close
+   @password.strip
+end
+%>
     
 production:
   adapter: mysql
   encoding: utf8
   database: sharearchy_production
   username: root
-  password: 
+  password: <%= get_mysql_password %>
   socket: /var/run/mysqld/mysqld.sock
