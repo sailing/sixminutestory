@@ -1,0 +1,13 @@
+<h2>Leave a comment</h2>
+
+<% form_for(@comment) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :comment %><br />
+    <%= f.text_area :comment %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>

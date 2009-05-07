@@ -1,0 +1,25 @@
+<% if current_user %>
+
+<div id="comment_form">
+<h1>Leave a comment</h1>
+
+<% form_for(@comment) do |f| %>
+  <%= f.error_messages %>
+  <%= f.hidden_field :share_id, :value => params[:id] %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <p>
+    <%= f.label :comment %><br />
+    <%= f.text_area :comment, :tabindex => 2 %>
+  </p>
+  <p>
+    <%= f.submit 'Create', :tabindex => 3 %>
+  </p>
+</div>
+
+<% end %>
+
+<% else %>
+<div id="signin_or_register">
+<%= link_to "Sign in", login_path %> or <%= link_to "register", register_path %> to leave a comment.
+</div>
+<% end %>
