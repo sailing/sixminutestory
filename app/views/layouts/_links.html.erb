@@ -45,7 +45,7 @@
 -->
 <div id="search">
 	<% form_tag '/search' do -%>
-	    <div><span><%= text_field 'q', :tabindex => 1 %><%= submit_tag 'Search!' %></span></div>
+	    <div><span><%= text_field 'q' %><%= submit_tag 'Search!' %></span></div>
 	  <% end -%>
 </div>
 <% if session['banner'].nil? -%> 
