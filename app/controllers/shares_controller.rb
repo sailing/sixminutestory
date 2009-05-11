@@ -1,5 +1,5 @@
 class SharesController < ApplicationController
-  before_filter :require_user, :only => [:new, :create, :edit, :update]
+  before_filter :require_user, :only => [:new, :create, :edit, :update, :destroy]
   
   
   # GET /shares

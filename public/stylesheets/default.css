@@ -32,7 +32,7 @@ h1 {
 	margin:0px 0px 10px 0px;
 	text-align:left;
 	color:#a62;	
-	border-bottom:2px solid #999;
+	border-bottom:3px solid #ccf;
 	width:100%;
 	text-indent:15px;
 }
@@ -309,6 +309,19 @@ input[type="submit"],input[type="button"] {
 	color:#555;
 	text-indent:5px;
 	padding-bottom:10px;
+}
+
+#show_share_toolbar {
+	width:100%;
+}
+
+#show_share_toolbar div {
+	text-align:center;
+}
+
+
+#show_share_toolbar span {
+	margin-right:50px;
 }
 
 #contributed_shares table {

@@ -1,5 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :comments
 
   map.root :controller => "shares"
   map.connect '', :controller => "shares"
@@ -7,25 +6,25 @@ ActionController::Routing::Routes.draw do |map|
   map.tags 'tags/:name', :controller => "tags", :action => "show"
   map.browse_by_tags 'tags', :controller => "tags", :action => "index" 
 
+  map.resources :users do |user|
+    user.resources :votes
+    user.resources :shares do |share|
+      share.resources :votes
+    end
+  end
 
-  map.resources :shares
+  map.resources :shares do |share|
+    share.resources :votes
+  end
+
+  map.resources :comments
   map.resources :tags
 
-  map.resources :users
+  
   map.resource :account, :controller => "users"
-
-  map.login 'login', :controller => "user_sessions", :action => "new"
-  map.logout 'logout', :controller => "user_sessions", :action => "destroy"
-  map.register 'register', :controller => "users", :action => "new"
-  
   map.resource :user_session
-  
-  map.search 'search',:controller => "shares", :action => "search"
-  
-  map.profile 'profile/:id', :controller => "users", :action => "profile"
 
-
-  map.catch_all "*", :controller => "shares"
+ 
 
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -37,6 +36,16 @@ ActionController::Routing::Routes.draw do |map|
   # Sample of named route:
   #   map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
   # This route can be invoked with purchase_url(:id => product.id)
+
+    map.login 'login', :controller => "user_sessions", :action => "new"
+    map.logout 'logout', :controller => "user_sessions", :action => "destroy"
+    map.register 'register', :controller => "users", :action => "new"
+
+
+    map.search 'search',:controller => "shares", :action => "search"
+
+    map.profile 'profile/:id', :controller => "users", :action => "profile"
+
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   map.resources :products
@@ -67,6 +76,9 @@ ActionController::Routing::Routes.draw do |map|
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing the them or commenting them out if you're using named routes and resources.
+ 
+  map.catch_all "*", :controller => "shares"
+
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end
