@@ -1,0 +1,21 @@
+<% 
+	# You can't vote if it is your share, 
+	# you are not logged in, 
+	# or you have already voted on this item
+	
+	unless !current_user || @share.user_id == current_user	||  
+		current_user.voted_on?(@share)
+%>
+
+	<%= link_to_remote "Vote for", 
+		:url => user_share_votes_path(@share.user_id, @share, :vote => :true), 
+		:method => :post
+	%> 
+	/
+	<%= link_to_remote "Vote against", 
+		:url => user_share_votes_path(@share.user_id, @share, :vote => :false), 
+		:method => :post
+ 	%> 
+<br />
+<% end %>
+<%= @share.votes_for %> to <%= @share.votes_against %>

@@ -1,0 +1,6 @@
+element_share_id = @share.id.to_s
+element_id = "votes_"+element_share_id
+
+update_page do |page|
+  page.replace_html element_id, :partial => "votes/share_vote", :locals => {:share => @share}
+end
