@@ -6,7 +6,7 @@ class Tag < ActiveRecord::Base
     tag_names = []
 
     return tag_names if list.blank?
-
+    
     # first, pull out the quoted tags
     list.gsub!(/\"(.*?)\"\s*/) { tag_names << $1; "" }
 
@@ -15,7 +15,7 @@ class Tag < ActiveRecord::Base
 
     # then, get whatever is left
     tag_names.concat(list.split(/\s/))
-
+    
     # delete any blank tag names
     tag_names = tag_names.delete_if { |t| t.empty? }
 
@@ -25,6 +25,11 @@ class Tag < ActiveRecord::Base
     # remove duplicates
     tag_names = tag_names.uniq
 
+    #strip leading and following whitespaces
+    #tag_names.each do |name| 
+    #  name.gsub(/\s(.*?)\s/,$1) 
+    #end
+    
     return tag_names
   end
 

@@ -31,7 +31,7 @@ class SharesController < ApplicationController
     condition = true
     order = "created_at DESC"
     @comments = Comment.paginate :all, :page => page, :per_page => per_page, :order => order, :conditions => {:share_id => params[:id]}
-    
+      
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @share }
@@ -105,8 +105,10 @@ class SharesController < ApplicationController
     per_page = 5
     page = params[:page] || 1
     @q = params[:q]
-    @shares = Share.search @q, :page => page, :per_page => per_page, :conditions => {:active => true}
+    @shares = Share.search @q, :page => page, :per_page => per_page, :match_mode => :any, :conditions => {:active => true}
   end
+  
+  private
   
   def get_description
     if(request.xhr?)
@@ -115,5 +117,6 @@ class SharesController < ApplicationController
     end
   end
   
-  
+ 
+
 end

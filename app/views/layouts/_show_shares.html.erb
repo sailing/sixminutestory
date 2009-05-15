@@ -1,5 +1,6 @@
 <% @i = 1 %>
 <div id="show_shares">
+
 	<h1>Shares | <%= link_to 'New share', new_share_path %> | <%= link_to 'Browse by Tags', browse_by_tags_url %></h1>
 <table>
 <% for share in @shares %>
@@ -46,8 +47,10 @@
 <tr>
 	<td colspan="4" id="description_drawer">
 	<div id="description<%= @i.to_s %>" style="display:none;">
-
 		<div class="description_in_drawer">
+			<span class = "linked_images">
+			<%= link_to(image_tag("read_more.png"), share_url(share.id)) %>
+			</span>
 		<p>	<%= simple_format(h(share.description)) %>
 		</p>
 			<span class = "linked_images"><%= image_tag "hide_description.png", :onClick => visual_effect(:blind_up,'description' + @i.to_s,:duration => 0.3 )%>

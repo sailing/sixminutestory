@@ -8,7 +8,8 @@ class Share < ActiveRecord::Base
   define_index do
     indexes :title, :sortable => true
     indexes :description
-    indexes tags.name, :as => "tags"
+    indexes :license, :facet => true
+    indexes tags.name, :as => "tags_name"
     
     # attributes
     

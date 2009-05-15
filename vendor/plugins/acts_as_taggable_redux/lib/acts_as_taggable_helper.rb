@@ -1,7 +1,11 @@
 module ActsAsTaggableHelper
   # Create a link to the tag using restful routes and the rel-tag microformat
   def link_to_tag(tag)
-    link_to(tag.name, tag_url(tag), :rel => 'tag')
+    tag_name = tag.name
+    tag_name = tag_name.to_s
+    tag_name = tag_name.strip
+    urlized_tag = CGI::escape(tag_name)
+    link_to(tag.name, tag_url(urlized_tag), :rel => 'tag')
   end
   
   # Generate a tag cloud of the top 100 tags by usage, uses the proposed hTagcloud microformat.
@@ -28,8 +32,12 @@ module ActsAsTaggableHelper
     html =    %(<div class="hTagcloud">\n)
     html <<   %(  <ul class="popularity">\n)
     tags.each do |tag|
+      tag_name = tag.name
+      tag_name = tag_name.to_s
+      tag_name = tag_name.strip
+      urlized_tag = CGI::escape(tag_name)
       html << %(    <li>)
-      html << link_to(tag.name, tag_url(tag.name), :class => classes[(tag.taggings_count - min) / divisor]) 
+      html << link_to(tag_name, tag_url(urlized_tag), :class => classes[(tag.taggings_count - min) / divisor]) 
       html << %(</li> \n)
     end
     html <<   %(  </ul>\n)

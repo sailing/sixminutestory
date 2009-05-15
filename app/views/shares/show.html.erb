@@ -29,8 +29,7 @@
 			<span>
 			
 				<% if current_user && current_user.id == @share.user_id %>
-					<%= link_to 'Edit', edit_share_path(@share) %> |
-					<%= link_to 'Destroy', @share, :confirm => 'Are you sure?', :method => :delete %>
+					<%= link_to 'Edit this Share', edit_share_path(@share) %>
 				<% else %>
 					<%= link_to 'Submitter\'s profile', profile_url(@share.user_id)%>
 				<% end %>
@@ -48,20 +47,20 @@
 	</tr>
 	<tr>
 			<td id="show_share_sidebar">
-				<span>License:</span>
+				<span>License: <%= edit_this %></span>
 				<p class="show_share_value"><%=h @share.license %>
 				</p>
-				<span>Website:</span>
+				<span>Website: <%= edit_this %></span>
 					<p class="show_share_value"><%= link_to truncate(h(@share.website)), @share.website %> 
 					</p>
 
 
-				  <span>Found via:</span>
+				  <span>Found via: <%= edit_this %></span>
 						<p class="show_share_value"><%=h @share.source %>
 						</p>
-					<span>Tagged with: </span>
+					<span>Tagged with: <%= edit_this %></span>
 					<p>	<% @share.tags.each do |tag| -%>
-						    <%= link_to tag.name, tag_url(tag.name) %>
+						    <%= link_to_tag(tag) %>
 						  <% end -%>
 					</p>	
 			

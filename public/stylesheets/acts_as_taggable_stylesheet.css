@@ -1,4 +1,4 @@
-.hTagcloud {margin:0px auto;padding:0;text-align:center;background-color:#eef; width:60%; }
+.hTagcloud {margin:0px auto;padding:15px;text-align:center;background-color:#eef; width:60%; border:2px solid #ccf;}
 .hTagcloud .popularity 		{ margin:0; padding:0; }
 .hTagcloud .popularity li	{ display:inline; text-decoration:none; }
 .hTagcloud .popularity .popular				{ font-size:1.0em; }

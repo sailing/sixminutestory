@@ -367,13 +367,19 @@ input[type="submit"],input[type="button"] {
 	
 }
 
-.row {
-	
+#show_shares td {
+	padding:3px;
+	margin:0px;
 }
 
-.row_alternate {
+.row {
+	background-color:#bbf;
+}
+
+#show_shares .row_alternate {
 	background-color:#cce;
 }
+
 #description_slide_toggle {
 	vertical-align:baseline;
 	width:150px;
@@ -388,7 +394,8 @@ input[type="submit"],input[type="button"] {
 .description_in_drawer {
 	margin:15px 15px 15px 75px;
 	padding:5px;
-	border-left:2px dotted #999;
+	border:2px solid #ccf;
+	background-color:#eef;
 }
 
 .description_in_drawer p {
@@ -397,6 +404,7 @@ input[type="submit"],input[type="button"] {
 	letter-spacing:.04em;
 	font-weight:normal;
 	color:#444;
+	margin-left:25px;
 }
 
 #show_share_title {
