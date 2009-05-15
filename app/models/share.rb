@@ -8,6 +8,11 @@ class Share < ActiveRecord::Base
   define_index do
     indexes :title, :sortable => true
     indexes :description
+    indexes tags.name, :as => "tags"
+    
+    # attributes
+    
+    has tags(:id), :as => :tag_ids
     
     has :created_at
     has :active
