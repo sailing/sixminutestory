@@ -9,7 +9,7 @@ class Share < ActiveRecord::Base
     indexes :title, :sortable => true
     indexes :description
     indexes :license, :facet => true
-    indexes tags.name, :as => "tags_name"
+    indexes tags.name, :as => "tag_names"
     
     # attributes
     

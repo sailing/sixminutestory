@@ -6,7 +6,7 @@ class SharesController < ApplicationController
   # GET /shares.xml
   def index
     page = params[:page] || 1
-    per_page = 5
+    per_page = 30
     condition = true
     order = "created_at DESC"
     @shares = Share.paginate :page => page, :order => order, :per_page => per_page, :conditions => {:active => condition}    
@@ -27,7 +27,7 @@ class SharesController < ApplicationController
     
     # Comments
     page = params[:page] || 1
-    per_page = 5
+    per_page = 10
     condition = true
     order = "created_at DESC"
     @comments = Comment.paginate :all, :page => page, :per_page => per_page, :order => order, :conditions => {:share_id => params[:id]}
@@ -102,10 +102,10 @@ class SharesController < ApplicationController
   end
   
   def search
-    per_page = 5
+    per_page = 30
     page = params[:page] || 1
     @q = params[:q]
-    @shares = Share.search @q, :page => page, :per_page => per_page, :match_mode => :any, :conditions => {:active => true}
+    @shares = Share.search @q, :page => page, :per_page => per_page, :match_mode => :all, :conditions => {:active => true}
   end
   
   private

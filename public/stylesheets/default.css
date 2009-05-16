@@ -373,7 +373,7 @@ input[type="submit"],input[type="button"] {
 }
 
 .row {
-	background-color:#bbf;
+	border:2px #eef solid;
 }
 
 #show_shares .row_alternate {
