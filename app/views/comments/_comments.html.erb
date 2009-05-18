@@ -10,12 +10,12 @@
   <tr>
 	
     <td>
-		<span>
+		<span class="commenter">
 		<%= link_to h(commenter.login), user_path(commenter.id) %> - <%=h comment.created_at %>
 		</span>
 		
 		<p>	
-			<%=h comment.comment %>
+			<%= auto_link(simple_format(h(comment.comment))) %>
 		</p>
 	</td>
   </tr>

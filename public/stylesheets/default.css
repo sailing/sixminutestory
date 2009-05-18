@@ -504,6 +504,9 @@ input[type="submit"],input[type="button"] {
 	font-weight:none;
 }
 
+#comments .commenter {
+}
+
 #comment_form {
 	margin:15px 0px;
 }

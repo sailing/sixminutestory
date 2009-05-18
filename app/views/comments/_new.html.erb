@@ -8,11 +8,10 @@
   <%= f.hidden_field :share_id, :value => params[:id] %>
   <%= f.hidden_field :user_id, :value => current_user.id %>
   <p>
-    <%= f.label :comment %><br />
     <%= f.text_area :comment %>
   </p>
   <p>
-    <%= f.submit 'Create' %>
+    <%= f.submit 'Contribute' %>
   </p>
 </div>
 
