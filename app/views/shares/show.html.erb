@@ -1,96 +1,110 @@
 <div id="show_share">
- <h1><%=h @share.title %>&nbsp;&nbsp;&nbsp;&nbsp;
+ <h1><%=h @share.title %> <span class="edit"><%= edit_this %></span> 
+
 	
 		
 		
 	</h1>
-	
+	<div>
+				<table  id="show_share_toolbar">
+					<tr>
 
-<table>
-	<tr>
-		<td id="show_share_toolbar" colspan="2">
+								<td>
+									<span class="share_this_share">
+										<!-- AddThis Button BEGIN -->
+									<script type="text/javascript">
+										var addthis_pub="sharearchy";
+									</script>
+						<a href="http://www.addthis.com/bookmark.php?v=20" onmouseover="return addthis_open(this, '', '[URL]', '[TITLE]')" onmouseout="addthis_close()" onclick="return addthis_sendto()"><%= image_tag "add_this.png" %></a>
+									<script type="text/javascript" src="http://s7.addthis.com/js/200/addthis_widget.js">
+									</script>
+										<!-- AddThis Button END -->
+									</span>
+									<span>
+											<!-- AddThis Button BEGIN -->
+										<script type="text/javascript">
+											var addthis_pub="sharearchy";
+										</script>
+							<a href="http://www.addthis.com/bookmark.php?v=20" onmouseover="return addthis_open(this, '', '[URL]', '[TITLE]')" onmouseout="addthis_close()" onclick="return addthis_sendto()">Share</a>
+										<script type="text/javascript" src="http://s7.addthis.com/js/200/addthis_widget.js">
+										</script>
+											<!-- AddThis Button END -->									</span>
+						
+								</td>
+													
+						<td>
+							<span class = "share_this_share">
+								<%= link_to(image_tag("download.png"), @share.link ) %>
+							</span> 
+							<span>	
+								<%= link_to "Download", @share.link %>
+							</span>
+						</td>
+					
+					
+				
 			
-			<div>
-			<!-- AddThis Button BEGIN -->
-			<span class="share_this_share">
-				<script type="text/javascript">
-				var addthis_pub="sharearchy";
-				</script>
-				<a href="http://www.addthis.com/bookmark.php?v=20" onmouseover="return addthis_open(this, '', '[URL]', '[TITLE]')" onmouseout="addthis_close()" onclick="return addthis_sendto()"><img src="http://s7.addthis.com/static/btn/lg-share-en.gif" width="125" height="16" border="0" alt="Share" /></a>
-				<script type="text/javascript" src="http://s7.addthis.com/js/200/addthis_widget.js">
-					</script>
-			</span>
-			<!-- AddThis Button END -->
+						<td id="votes_<%= @share.id %>">
+							<%= render :partial => "votes/share_vote", :locals => {:share => @share} %>
+						</td>
 			
-			<span id="votes_<%= @share.id %>" class="show_share_value">
-				<%= render :partial => "votes/share_vote", :locals => {:share => @share} %>
-			</span>
-			
-			<span>
-			
-				<% if current_user && current_user.id == @share.user_id %>
-					<%= link_to 'Edit this Share', edit_share_path(@share) %>
-				<% else %>
-					<%= link_to 'Submitter\'s profile', profile_url(@share.user_id)%>
-				<% end %>
-			</span>
-			
-			</div>
-		</td>
-	</tr>
-	<tr>
-		<td colspan=2>
-			<span><h2><%= link_to truncate(h(@share.link),:length => 60), @share.link %></h2> 
-			</span>
-
-		</td>
-	</tr>
-	<tr>
-			<td id="show_share_sidebar">
-				<span>License: <%= edit_this %></span>
-				<p class="show_share_value"><%=h @share.license %>
-				</p>
-				<span>Website: <%= edit_this %></span>
-					<p class="show_share_value"><%= link_to truncate(h(@share.website)), @share.website %> 
-					</p>
-
-
-				  <span>Found via: <%= edit_this %></span>
-						<p class="show_share_value"><%=h @share.source %>
+						<td style="border:none;">&nbsp;
+							<span>
+							<% if current_user && current_user.id == @share.user_id %>
+								<%= link_to 'Edit this Share', edit_share_path(@share) %> 
+							<% else %>
+								<%= link_to 'Submitter\'s profile', profile_url(@share.user_id)%>
+							<% end %>
+							</span>
+						</td>
+						
+					</tr>
+				</table>
+		</div>
+		<div class="information">
+					<span class="label">license</span>
+						<span class="edit"><%= edit_this %></span>
+						
+						<p class="value">
+							 <%=h @share.license %>
 						</p>
-					<span>Tagged with: <%= edit_this %></span>
-					<p>	<% @share.tags.each do |tag| -%>
-						    <%= link_to_tag(tag) %>
-						  <% end -%>
-					</p>	
+			<div class = "right">
+				  	<span class="label">website</span>
+						<span class="edit"><%= edit_this %></span>
+						
+						<p class="value">
+						
+							<%= link_to truncate(h(@share.website),:length => 30), @share.website  %>
+						</p>
+			</div>
+			<div>
+			  		<span class="label">found via</span>
+						<span class="edit"><%= edit_this %></span>
+						
+						<p class="value">
+							<%=h @share.source %>
+						</p>
+			</div>
 			
+					<span class="label">tags</span>
+						<span class="edit"><%= edit_this %></span>
+						
+						<p class="value">	
+							<% @share.tags.each do |tag| -%>
+					   			<%= link_to_tag(tag) %>
+							<% end -%>
+						</p>
+		</div>	
 	<!--
 				  <p>Alternative Contact:</p>
 						<p class="show_share_value"><%=h @share.alternative_contact %>
 						</p>
 	-->
-			</td>
 		
-		
-		<td class="show_share_description_container">
-			
-		
-  			<p class="show_share_description">
-				<%= auto_link(simple_format(h(@share.description)), :href_options => { :target => '_blank' }) %>
-			</p>
-		</td>
-			
-	</tr>
-	<tr>
-		<td colspan=2>
-			<span><h2><%= link_to truncate(h(@share.link),:length => 60), @share.link %></h2> 
-			</span>
-
-		</td>
-	</tr>
-
-		
-</table>
+		<div class="description">	
+			<%= auto_link(simple_format(h(@share.description)), 
+			:href_options => { :target => '_blank' }) %>
+		</div>
 </div>
 <%= render :partial => "comments/comments" %>
 

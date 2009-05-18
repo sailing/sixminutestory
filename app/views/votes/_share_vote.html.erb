@@ -6,16 +6,39 @@
 	unless !current_user || @share.user_id == current_user.id	||  
 		current_user.voted_on?(@share)
 %>
-
-	<%= link_to_remote "Like", 
+<span>
+	<%= link_to_remote "Love", 
 		:url => user_share_votes_path(@share.user_id, @share, :vote => :true), 
 		:method => :post
 	%> 
 	/
-	<%= link_to_remote "Nonplussed", 
+	<%= link_to_remote "Shrug", 
 		:url => user_share_votes_path(@share.user_id, @share, :vote => :false), 
 		:method => :post
  	%> 
-<br />
+</span><br />
 <% end %>
-Peer Pressure: <%= @share.votes_for - @share.votes_against %>
+
+<span>
+<%= approval_rating %> 
+<%= content_tag 'SPAN', 
+		("<a>[details]</a>"),
+		:class => "details",
+		:onClick => visual_effect(
+			:toggle_blind,'vote_details',
+			:duration => 0.3) 			
+%>
+
+</span>
+<div id="vote_details" style="display:none;">
+<span>
+	<% 
+	shrug = "shrug"
+	love = "love"
+	%>
+	<%= @share.votes_for %> loves,
+</span>
+<span>
+	<%= @share.votes_against %> shrugs
+</span>
+</div>

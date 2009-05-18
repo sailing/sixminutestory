@@ -1,3 +1,18 @@
+
+/*				 							*/
+/*				_  _						*/
+/*				  o	* *						*/
+/*				 							*/				
+/*			CSS and the Sharearchy			*/
+/*			by Galen Sanford				*/
+/*			galenmail@gmail.com				*/
+/*				 							*/
+/*				 							*/
+
+/*							*/
+/* 	Re-styled HTML tags 	*/
+/*							*/
+
 body { background-color: #fff; color: #333; 
 	
   margin:0px;
@@ -37,7 +52,7 @@ h1 {
 	text-indent:15px;
 }
 
-a { color: #555; text-decoration:underline; }
+a { color: #555; text-decoration:underline; padding:2px 3px 1px 3px;}
 a:visited { color: #777; text-decoration:underline;}
 a:active { color: #777; text-decoration:underline;}
 a:hover { color: #fff; background-color:#000; text-decoration:none; }
@@ -98,15 +113,19 @@ input[type="submit"],input[type="button"] {
 	border:2px solid #bbf;
 }
 
+
+
+/*   	 	    	*/
+/* 		Errors	 	*/
+/*        			*/
+
+
 .fieldWithErrors {
   padding: 2px;
-  background-color: red;
-  display: table;
+  background-color: orange;
 }
 
 #errorExplanation {
-  width: 400px;
-  border: 2px solid red;
   padding: 7px;
   padding-bottom: 12px;
   margin-bottom: 20px;
@@ -118,14 +137,13 @@ input[type="submit"],input[type="button"] {
   font-weight: bold;
   padding: 5px 5px 5px 15px;
   font-size: 12px;
-  margin: -7px;
   background-color: #c00;
   color: #fff;
 }
 
 #errorExplanation p {
   color: #333;
-  margin-bottom: 0;
+  margin-bottom: 0px;
   padding: 5px;
 }
 
@@ -133,6 +151,11 @@ input[type="submit"],input[type="button"] {
   font-size: 12px;
   list-style: square;
 }
+
+
+/* 					*/
+/*  	Header		*/
+/* 					*/
 
 #header_links {
 	font-family:helvetica, tahoma, verdana, sans-serif;
@@ -158,6 +181,8 @@ input[type="submit"],input[type="button"] {
 		padding-top:15px;
 }
 
+/* Umm... the logo... */
+
 #logo {
 	font-family:verdana, helvetica, tahoma, verdana, sans-serif;
 	font-weight:bold;
@@ -172,6 +197,7 @@ input[type="submit"],input[type="button"] {
 	background-color:transparent;
 }
 
+/* Introductory banner */
 #banner {
 	margin:35px auto 25px;
 	width:580px;
@@ -207,254 +233,11 @@ input[type="submit"],input[type="button"] {
 	color:#fff;
 }
 
-.add_share_form, #show_share, #contributed_shares {
-	background-color:#ddddff;
-	margin:0px auto;
-	padding:0px;
-}
 
-.add_share_form table {
-	border-collapse:collapse;
-	margin:15px auto;
-	width:90%;
-	padding:0px;
-}
-
-.add_share_form th{
-	text-indent:15px;
-}
-.add_share_form td {
-	padding: 0 0px 0 15px;
-	vertical-align:top;
-	}
-
-.add_share_form .right {
-	border-left:2px dashed gray;
-}
-
-
-.add_share_form label, p {
-	margin:0px;
-	font-size:20px;
-	line-height:28px;
-	font-weight:bold;
-	text-align:left;
-	color: #666;
-}
-
-		
-#show_share table {
-	border-collapse:collapse;
-	padding:5px 0px 15px 0px;
-}
-
-#show_share th {
-	text-indent:15px;
-}
-
-#show_share td {
-	padding: 0px 0px 0px 20px;
-	text-align:left;
-	vertical-align:top;
-}
-
-#show_share #show_share_sidebar {
-	width:220px;
-	padding-top:30px;
-	border-right:1px dotted #ccc;
-}
-
-#show_share #show_share_sidebar span {
-	color:#333;
-}
-
-#show_share h2 {
-	padding:0px;
-	margin:0px;
-}
-
-#show_share h2 a {
-	font-size:23px;
-	line-height:26px;
-	color: #666;
-}
-
-#show_share h2 a:hover {
-	font-size:23px;
-	line-height:26px;
-	color: #fff;
-}
-
-
-#show_share p, span {
-	font-size:20px;
-	font-weight:bold;
-	color: #666;
-	margin:5px 8px 10px 8px;
-}
-
-#show_share .show_share_description_container {
-	padding-right:15px;
-	}
-
-#show_share .show_share_description {
-	font-size:14px;
-	color:#555;
-	letter-spacing:.02em;
-}
-
-
-#show_share .show_share_value {
-	font-size:16px;
-	color:#555;
-	text-indent:5px;
-	padding-bottom:10px;
-}
-
-#show_share_toolbar {
-	width:100%;
-}
-
-#show_share_toolbar div {
-	text-align:center;
-}
-
-
-#show_share_toolbar span {
-	margin-right:50px;
-}
-
-#contributed_shares table {
-	border-collapse:collapse;
-	padding:5px 0px 15px 0px;
-}
-
-#contributed_shares th, th span{
-	text-indent:15px;
-	text-align:left;
-	padding-bottom:10px;
-	font-size:18px;
-	color:#555;
-}
-
-#contributed_shares td {
-	padding: 0px 0px 10px 15px;
-	vertical-align:top;
-	text-align:left;
-}
-
-#contributed_shares th a {
-	font-size:28px;
-	color: #666;
-}
-
-#contributed_shares a {
-	font-size:21px;
-	vertical-align:baseline;
-}
-
-#contributed_shares p, span {
-	font-size:15px;
-	font-weight:bold;
-	line-height:18px;
-	color: #666;
-}
-
-#show_shares table{
-	border-collapse:collapse;
-	padding:0px;
-	margin:0px 10px 10px 30px;
-	
-}
-
-#show_shares td {
-	padding:3px;
-	margin:0px;
-}
-
-.row {
-}
-
-#show_shares .row_alternate {
-	background-color:#cce;
-}
-
-#description_slide_toggle {
-	vertical-align:baseline;
-	width:150px;
-	text-align:right;
-	padding-right:5px;
-}
-
-#description_drawer {
-	width:600px;
-}
-
-.description_in_drawer {
-	margin:15px 15px 15px 75px;
-	padding:5px;
-	border:2px solid #ccf;
-	background-color:#eef;
-}
-
-.description_in_drawer p {
-	font-size:16px;
-	font-family:helvetica, verdana, tahoma, arial, sans-serif;
-	letter-spacing:.04em;
-	font-weight:normal;
-	color:#444;
-	margin-left:25px;
-}
-
-#show_share_title {
-	width:500px;
-}
-
-.share_this_share {
-	vertical_align:middle;
-	line-height:18px;
-	width:30px;
-	margin:0px;
-}
-
-.share_this_share a, #share_this_share a:visited, #share_this_share a:active, #share_this_share a:hover {
-	text-decoration:none;
-	background-color:transparent;
-	color:#333;
-	font-size:16px;
-}
-
-.linked_images a:hover {background-color:transparent;}
-
-.pagination {
-	text-align:center;
-	vertical-align:baseline;
-}
-
-.pagination .disabled {
-	display: none;
-}
-
-.pagination .prev_page, .pagination .next_page, .pagination .current {
-	font-size: 14px;
-}
-
-.pagination a, .pagination a:visited, .pagination a:active, .pagination a:hover {
-	font-size: 14px;
-	font-weight: bold;
-}
-
-#footer {
-	margin:0px auto;
-	font-size:15px;
-	width:100%;
-	text-align:center;
-}
-
-#footer span {
-	text-align:center;
-}
-
+/*							*/
+/*			Search			*/
+/*							*/
+							
 #search {
 	text-align:center;
 }
@@ -488,6 +271,206 @@ input[type="submit"],input[type="button"] {
 	background-color:#eef;
 	border:2px solid #bbf;
 }
+
+
+
+/* 							*/
+/*  	add_share form		*/
+/* 							*/
+
+
+.add_share_form {
+	background-color:#ddf;
+	margin:0px auto;
+	padding:0px;
+}
+
+.add_share_form table {
+	border-collapse:collapse;
+	margin:15px auto;
+	width:90%;
+	padding:0px;
+}
+
+.add_share_form th{
+	text-indent:15px;
+}
+.add_share_form td {
+	padding: 0 0px 0 15px;
+	vertical-align:top;
+	}
+
+.add_share_form .right {
+	border-left:2px dashed gray;
+}
+
+
+.add_share_form label, p {
+	margin:0px;
+	font-size:20px;
+	line-height:28px;
+	font-weight:bold;
+	text-align:left;
+	color: #666;
+}
+
+
+/* 						*/
+/* 		Show Share		*/
+/*  	#show_share		*/
+/* 		(one share)		*/
+/* 						*/
+
+#show_share {
+	background-color:#ddf;
+	margin:0px auto;
+	padding:0px;
+}
+
+#show_share h2 {
+	padding:0px;
+	margin:0px;
+}
+
+#show_share h2 a {
+	font-size:23px;
+	line-height:26px;
+	color: #666;
+}
+
+#show_share h2 a:hover {
+	font-size:23px;
+	line-height:26px;
+	color: #fff;
+}
+
+/* 		Toolbar					*/
+
+#show_share_toolbar {
+	margin:0px auto;
+	width:95%;
+	text-align:center;
+	background-color:#eef;
+	border:2px solid #ccf;
+}
+
+#show_share_toolbar table {
+	width:100%;
+	border-collapse:collapse;
+
+}
+
+#show_share_toolbar td {
+	padding:2px;
+	margin:2px;
+	border-right:1px dashed #ccf;
+}
+
+/* 		Share Information		*/
+
+#show_share .information {
+	margin-top:5px;
+}
+
+#show_share .label {
+	padding:5px 0px 0px 30px;
+	margin:0px;
+	color:#99a;
+	font-size:15px;
+	line-height:30px;
+}
+
+#show_share .value, #show_share .value a {
+	padding:0px 0px 4px 45px;
+	border-bottom: 1px dashed #bbf;
+	margin-bottom:0px;
+	font-family: serif, georgia;
+	font-weight:normal;
+	font-size:20px;
+	line-height:20px;
+	color:#444;
+}
+
+#show_share .value a {
+	border:0px;
+	padding:4px;
+}
+
+#show_share .value a:hover {
+	color:#fff;
+}
+
+#show_share .left {
+	float:left;
+	width:40%;
+
+}
+
+#show_share .right {
+	float:right;
+	width:60%;
+	border-left:1px dashed #bbd;
+
+}
+
+#show_share .right p {
+}
+
+
+
+/* 						*/
+/* 		Show Shares		*/
+/*  	#show_shares	*/
+/* 		(many shares)	*/
+/* 						*/
+
+#show_shares {
+
+}
+
+#show_shares table{
+	border-collapse:collapse;
+	padding:0px;
+	margin:0px auto;
+	
+}
+
+#show_shares td {
+	padding:3px;
+	margin:0px;
+}
+
+#show_shares .title {
+	width:500px;
+	padding-left:10px;
+	font-weight:bold;
+	font-size:15px;
+	letter-spacing:.02em;
+}
+
+.row {
+}
+
+#show_shares .row_alternate {
+	background-color:#cce;
+}
+
+/*  	This is what moves when you click "description"			*/
+#description_slide_toggle {
+	vertical-align:baseline;
+	width:150px;
+	text-align:right;
+	padding-right:5px;
+}
+
+#description_drawer {
+	width:600px;
+}
+
+
+/*								*/
+/*			Comments			*/
+/*								*/
 
 #comments {
 	margin:0px;
@@ -528,3 +511,109 @@ input[type="submit"],input[type="button"] {
 #comment_form form {
 	margin:5px 0px 5px 40px;
 }
+
+/*			Footer			*/
+/*			Footer			*/
+/*			Footer			*/
+
+#footer {
+	margin:0px auto;
+	font-size:15px;
+	width:100%;
+	text-align:center;
+}
+
+#footer span {
+	text-align:center;
+}
+
+/*        			*/
+/* 	Global classes 	*/
+/*        			*/
+
+/*	Linked images shouldn't have black background on hover			*/
+.linked_images a:hover {background-color:transparent;}
+
+/*	edit_this link	*/
+.edit a, .edit {
+	font-size:11px;
+	vertical-align:super;
+	padding:0px 2px 0px 2px;
+	color:#66f;
+}
+
+.edit a:hover {
+	color:#fff;
+}
+
+/*	Details link	*/
+.details a, .details {
+	margin-left:3px;
+	font-size:11px;
+	vertical-align:baseline;
+}
+
+
+/* 	Description of shares (used in #show_share and #show_shares ) 	*/
+
+.description {
+	margin:15px 40px 15px 40px;
+	padding:30px;
+
+	background-color:#eef;
+	border:2px solid #ccd;
+}
+
+.description p {
+	text-indent:15px;
+	text-align:justify;	
+	font-family:georgia;
+	font-size:15px;
+	font-weight:normal;
+	color:#333;
+	letter-spacing:.02em;
+	line-height:24px;
+	margin:0px 0px 15px 0px;
+}
+
+
+/* Sharing shares */
+
+.share_this_share {
+	vertical_align:middle;
+	line-height:18px;
+	margin:0px;
+}
+
+.share_this_share a, #share_this_share a:visited, #share_this_share a:active, #share_this_share a:hover {
+	vertical-align:top;
+	text-decoration:none;
+	background-color:transparent;
+	color:#333;
+	font-size:14px;
+}
+
+/* Pagination */
+
+.pagination {
+	text-align:center;
+	vertical-align:baseline;
+}
+
+.pagination .disabled {
+	display: none;
+}
+
+.pagination .prev_page, .pagination .next_page, .pagination .current {
+	font-size: 14px;
+}
+
+.pagination a, .pagination a:visited, .pagination a:active, .pagination a:hover {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+
+/*								*/
+/*		Clean-up Classes		*/
+/*								*/
