@@ -121,8 +121,10 @@ input[type="submit"],input[type="button"] {
 
 
 .fieldWithErrors {
-  padding: 2px;
-  background-color: orange;
+}
+.fieldWithErrors input, .fieldWithErrors textarea {
+	background-color: #fd3;
+	padding:0px;
 }
 
 #errorExplanation {
@@ -372,6 +374,21 @@ input[type="submit"],input[type="button"] {
 	margin-top:5px;
 }
 
+#show_share .information table {
+	margin:0px auto;
+	width:100%;
+}
+
+#show_share .information td {
+	vertical-align:top;
+	border-bottom:1px dashed #bbf;
+}
+
+#show_share .border_right {
+	width:60%;
+	border-right:1px dashed #bbf;
+}
+
 #show_share .label {
 	padding:5px 0px 0px 30px;
 	margin:0px;
@@ -381,12 +398,11 @@ input[type="submit"],input[type="button"] {
 }
 
 #show_share .value, #show_share .value a {
-	padding:0px 0px 4px 45px;
-	border-bottom: 1px dashed #bbf;
+	padding:0px 0px 4px 35px;
 	margin-bottom:0px;
 	font-family: serif, georgia;
 	font-weight:normal;
-	font-size:20px;
+	font-size:15px;
 	line-height:20px;
 	color:#444;
 }
@@ -399,23 +415,6 @@ input[type="submit"],input[type="button"] {
 #show_share .value a:hover {
 	color:#fff;
 }
-
-#show_share .left {
-	float:left;
-	width:40%;
-
-}
-
-#show_share .right {
-	float:right;
-	width:60%;
-	border-left:1px dashed #bbd;
-
-}
-
-#show_share .right p {
-}
-
 
 
 /* 						*/
@@ -449,10 +448,11 @@ input[type="submit"],input[type="button"] {
 }
 
 .row {
+	background-color:#bfbfff;
 }
 
 #show_shares .row_alternate {
-	background-color:#cce;
+	background-color:#d0d0f0;
 }
 
 /*  	This is what moves when you click "description"			*/
@@ -480,12 +480,11 @@ input[type="submit"],input[type="button"] {
 	margin:0px auto;
 	width:80%;
 	background-color:#eef;
-	border:2px #ccc solid;
+	border:2px #ccd solid;
 	border-collapse:collapse;
 }
 
 #comments tr {
-	border-bottom:1px #ccc dotted;
 }
 
 #comments td {
@@ -505,6 +504,12 @@ input[type="submit"],input[type="button"] {
 }
 
 #comments .commenter {
+	background-color:#e0e0f0;
+	margin-top:6px;
+}
+
+#comments .comment {
+	border-bottom:1px #ccd dashed;
 }
 
 #comment_form {
@@ -514,6 +519,9 @@ input[type="submit"],input[type="button"] {
 #comment_form form {
 	margin:5px 0px 5px 40px;
 }
+
+
+
 
 /*			Footer			*/
 /*			Footer			*/
@@ -530,9 +538,9 @@ input[type="submit"],input[type="button"] {
 	text-align:center;
 }
 
-/*        			*/
-/* 	Global classes 	*/
-/*        			*/
+/*        					*/
+/* 		Global classes 		*/
+/*      shared commonly		*/
 
 /*	Linked images shouldn't have black background on hover			*/
 .linked_images a:hover {background-color:transparent;}
@@ -560,11 +568,14 @@ input[type="submit"],input[type="button"] {
 /* 	Description of shares (used in #show_share and #show_shares ) 	*/
 
 .description {
-	margin:15px 40px 15px 40px;
-	padding:30px;
 
 	background-color:#eef;
 	border:2px solid #ccd;
+	margin:15px 40px 15px 40px;
+}
+
+.description .content {
+	padding:30px;
 }
 
 .description p {
@@ -579,6 +590,18 @@ input[type="submit"],input[type="button"] {
 	margin:0px 0px 15px 0px;
 }
 
+/* notices */
+
+#notice {
+	position:absolute;
+	left:40px;
+	top:40px;
+	background-color:#f0f0f0;
+	color:#333;
+	font-family:monospace;
+	padding:10px;
+	border:2px solid #ccf;
+}
 
 /* Sharing shares */
 

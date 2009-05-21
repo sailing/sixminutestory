@@ -62,38 +62,55 @@
 				</table>
 		</div>
 		<div class="information">
+			<table>
+				<tr>
+					<td class="border_right">
 					<span class="label">license</span>
 						<span class="edit"><%= edit_this %></span>
 						
-						<p class="value">
+						<span class="value">
 							 <%=h @share.license %>
-						</p>
-			<div class = "right">
-				  	<span class="label">website</span>
-						<span class="edit"><%= edit_this %></span>
-						
-						<p class="value">
-						
-							<%= link_to truncate(h(@share.website),:length => 30), @share.website  %>
-						</p>
-			</div>
-			<div>
+						</span>
+					</td>
+					<td>
+						<span class="label">updated</span>
+						<span class="value">
+							<%=h did_when(@share.updated_at) %>
+						</span>
+					</td>
+				<tr>
+					<td class="border_right">
+					<span class="label">website</span>
+					<span class="edit"><%= edit_this %></span>
+
+					<p class="value">
+
+						<%= link_to truncate(h(@share.website),:length => 30), @share.website  %>
+					</p>
+					</td>
+
+					<td>
 			  		<span class="label">found via</span>
 						<span class="edit"><%= edit_this %></span>
 						
 						<p class="value">
 							<%=h @share.source %>
 						</p>
-			</div>
-			
+					</td>
+				</tr>
+				<tr>
+					<td colspan=2>
 					<span class="label">tags</span>
 						<span class="edit"><%= edit_this %></span>
 						
-						<p class="value">	
+						<span class="value">	
 							<% @share.tags.each do |tag| -%>
 					   			<%= link_to_tag(tag) %>
 							<% end -%>
-						</p>
+						</span>
+					</td>
+				</tr>
+			</table>
 		</div>	
 	<!--
 				  <p>Alternative Contact:</p>
@@ -101,9 +118,13 @@
 						</p>
 	-->
 		
+
+		
 		<div class="description">	
+			<div class="content">
 			<%= auto_link(simple_format(h(@share.description)), 
 			:href_options => { :target => '_blank' }) %>
+			</div>
 		</div>
 </div>
 <%= render :partial => "comments/comments" %>

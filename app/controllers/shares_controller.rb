@@ -103,9 +103,9 @@ class SharesController < ApplicationController
   def search
     per_page = 30
     page = params[:page] || 1
-    order = "created_at DESC"
     @q = params[:q]
-    @shares = Share.search @q, :page => page, :per_page => per_page, :match_mode => :all, :order => order, :conditions => {:active => true}
+    order = "@relevance DESC"
+    @shares = Share.search @q, :page => page, :per_page => per_page, :match_mode => :all, :conditions => {:active => true}
   end
   
   private

@@ -1,3 +1,11 @@
 
 
 truncate(h(@share.website))
+
+    order = "created_at DESC"
+, :order => order
+
+
+
+ :field_weights => {"tag_names" => 100, "title" =>
+1, "description" => 1, "license" => 1 },

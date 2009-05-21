@@ -1,4 +1,13 @@
-
+<% if @shares.present? %>
 <%= render :partial => "layouts/show_shares" %>
+<% else %>
+<div>
+	<h1>Wha??
+	</h1>
+	<p style="margin-left:90px;padding-top:15px">
+		Nothing's been tagged with <span style="color:blue;"><%= @tag %></span>!
+	</p>
+</div>
+<% end %>
 
 

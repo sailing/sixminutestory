@@ -4,14 +4,13 @@ class TagsController < ApplicationController
   
   def show
       page = params[:page] || 1
-      per_page = 30
+      per_page = 20
 #      offset = page > 1 ? per_page * page : 0
       offset = per_page
-      order = "@weight ASC created_at DESC"
-      @tag_name = "*"+CGI::unescape(params[:name])+"*"
-      @shares = Share.search @tag_name, :page => page, :per_page => per_page, :order => order, :match_mode => :extended, :field_weights => {"tag_names" => 2, "title" =>
-      1, "description" => 1, "license" => 1 }, :conditions => {:active => true}
-#      {:match => :all, :order => order, :finder => 'find_tagged_with', :page => page, :limit => per_page, :offset => offset}
-    # :page => page, :per_page => per_page, :conditions => {:tag_id => params[:id]}
+      order = "@relevance DESC"
+      @tag = CGI::unescape(params[:name])
+
+#      @shares = Share.paginate :include => :taggings, :conditions => {:tag => @tag}, :page => page, :limit => per_page, :offset => offset, :finder => "find_tagged_with"
+    @shares = Share.search :page => page, :per_page => per_page, :order => order, :match_mode => :extended, :conditions => {:tag => @tag}
   end
 end

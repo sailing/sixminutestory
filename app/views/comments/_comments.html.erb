@@ -1,27 +1,29 @@
 <% unless @comments.empty? %>
 <div id="comments">
+	<div class="notice">
+		<%= flash[:comment] %>
+	</div>
 <h1>Comments</h1>
 
 <table>
-
 <% @comments.each do |comment| %>
 <% 	commenter = User.find(comment.user_id) %>	
 
-  <tr>
-	
-    <td>
-		<span class="commenter">
-		<%= link_to h(commenter.login), user_path(commenter.id) %> - <%=h comment.created_at %>
-		</span>
-		
-		<p>	
-			<%= auto_link(simple_format(h(comment.comment))) %>
-		</p>
-	</td>
-  </tr>
+
+			<tr>
+				<td class="commenter">
+			<%= link_to h(commenter.login), user_path(commenter.id) %> - <%=h did_when(comment.created_at) %>
+				</td>
+			<tr>
+				<td class="comment">
+					<p>	
+						<%= auto_link(simple_format(h(comment.comment))) %>
+					</p>
+				</td>
+			</tr>
+	<br />
 <% end %>
 </table>
-
 <br />
 
 		<%= will_paginate @comments %>
