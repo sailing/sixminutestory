@@ -1,5 +1,4 @@
 class Share < ActiveRecord::Base
-  before_save :clean_url
   
   acts_as_taggable
   acts_as_voteable
@@ -28,27 +27,9 @@ class Share < ActiveRecord::Base
   
     # Validation 
     validates_presence_of     :link, :title, :description, :license, :source
-    validates_format_of :link, :with => /https?:\/\/.*/i
-    validates_format_of :website, :with => /https?:\/\/.*/i, :unless => :check_website?
-    
-    def link=(value)
-      unless value =~ /https?:\/\/.*/
-         write_attribute :link, "http://" + value.to_s
-      else
-         write_attribute :link, value
-      end
-    end
-    
-    def website=(value)
-      unless value.blank?
-        unless value =~ /https?:\/\/.*/
-         write_attribute :website, "http://" + value.to_s
-       else
-         write_attribute :website, value
-       end
-      end
-    end
-    
+    validates_format_of :link, :with => /https?:\/\/.*/i, :message => "Please start URLs with http:// or https://"
+    validates_format_of :website, :with => /https?:\/\/.*/i, :message => "Please start URLs with http:// or https://", :unless => :check_website?
+       
     def check_website?
       self.website.blank?
     end
