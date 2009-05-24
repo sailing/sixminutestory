@@ -123,7 +123,7 @@ input[type="submit"],input[type="button"] {
 	position:relative;
 	left:20px;
 	font-size:16px;
-	color:#b12;
+	color:#b33;
 /*	color:#578; */
 	font-weight:bold;
 }
@@ -133,7 +133,7 @@ padding-left:10px;
 }
 
 .fieldWithErrors input, .fieldWithErrors textarea {
-	background-color: #fd5;
+	background-color: #fea;
 	padding:0px;
 }
 
