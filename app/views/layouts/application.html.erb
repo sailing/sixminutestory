@@ -1,4 +1,75 @@
- <%= render :partial => "layouts/links" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>The Sharearchy</title>
+
+<style type="text/css">
+
+
+  <%= stylesheet_link_tag :all, :cache => true %>
+	<%= javascript_include_tag :all, :cache => true %>
+
+</head>
+<body>
+
+	<div class="logo">
+	<span id="logo"><%= link_to (image_tag "logo.png"),shares_path %></span>
+	</div>
+	<div id="header_links">
+	<% if !current_user %>
+	  	<%= link_to "Join", new_account_path %>
+	  	| <%= link_to "Sign In", login_path %> 
+		| <%= link_to "Shares", shares_path %><br />	
+		<a href="http://blog.sharearchy.com/">blog</a>
+		| <a href="http://blog.sharearchy.com/about">what we're doing here </a>
+	<% else %>
+		<%= link_to "Logout", logout_path, :confirm => "Are you sure you want to logout?" %> 
+		| <%= link_to "My Account", account_path %>
+		| <%= link_to "Shares", shares_path %>
+		| <%= link_to "New Share", new_share_path %><br />
+		<a href="http://blog.sharearchy.com/">blog</a>
+		| <a href="http://blog.sharearchy.com/about">what we're doing here </a>
+	<% end %>
+	
+	</div>  
+<!-- 
+	</div>
+  <b class="statusbar">
+  <b class="statusbar5"></b>
+  <b class="statusbar4"></b>
+  <b class="statusbar3"></b>
+  <b class="statusbar2"><b></b></b>
+  <b class="statusbar1"><b></b></b></b>
+</div>
+-->
+<div id="search">
+	<% form_tag '/search' do -%>
+	    <div><span><%= text_field_tag 'q' %><%= submit_tag 'Search!' %></span></div>
+	<% end -%>
+</div>
+<% if session['banner'].nil? -%> 
+<div id="banner">
+	<p>
+		We started the <strong>Sharearchy</strong> to prove just how many <strong>legal</strong> files there are on torrent trackers like The Pirate Bay. <u>It's easy to contribute evidence</u>: find <strong>Open Art</strong>, <strong>Tools</strong> and <strong>Information</strong> on your favorite torrent tracker and <%= link_to "add it", new_share_path %> to the Sharearchy index.
+	</p>
+<!--	<p>
+		We're making it easy to find <strong>Open Art</strong>, <strong>Tools</strong> and <strong>Information</strong>.&nbsp;&nbsp;By <u>we</u>, we mean <u>you</u>, if you want. <u>Share</u> <b>torrents</b> and <b>links</b> to anything available under <strong>Creative Commons</strong> or <strong>Open Source</strong> licenses and stuff that's <strong>free for all</strong>, whether via a <u>philanthropist</u>, or because we, the <strong>public</strong>, have it in our <strong>domain</strong>. <a href="http://blog.sharearchy.com/about">read more</a>
+	</p>
+-->
+</div>
+
+<% session['banner'] = 1 %>
+<% end %>
+
+<% if flash[:notice] %>
+<div id="notice">
+	<%= flash[:notice] -%>
+</div>
+<% end %>
+
 
  	<div class="spiffyc">
 	  <b class="spiffy">

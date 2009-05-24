@@ -5,12 +5,13 @@ class SharesController < ApplicationController
   # GET /shares
   # GET /shares.xml
   def index
+    per_page = 30
     page = params[:page] || 1
-    per_page = 20
+    @q = params[:q]
     order = "created_at DESC"
-    @shares = Share.paginate :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    
-    
-    
+    timeThen = Time.now.advance(:years => -1)
+   @shares = Share.search :page => page, :per_page => per_page, :order => order, :match_mode => :all, :conditions =>{:active => true, :updated_at => timeThen..Time.now }   
+   #  @shares = Share.paginate :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}   
 
     respond_to do |format|
       format.html # index.html.erb

@@ -18,6 +18,7 @@ class Share < ActiveRecord::Base
     
     has tags(:id), :as => :tag_ids
     
+    has :updated_at
     has :created_at
     has :active
     
