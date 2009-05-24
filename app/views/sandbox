@@ -9,3 +9,5 @@ truncate(h(@share.website))
 
  :field_weights => {"tag_names" => 100, "title" =>
 1, "description" => 1, "license" => 1 },
+
+<%= javascript_include_tag :all, :cache => true %>
