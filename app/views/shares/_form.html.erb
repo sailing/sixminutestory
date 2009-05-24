@@ -4,13 +4,15 @@
 	<tr>
 		<td>
 			<p>
-		  		<%= form.label :link %><br />
+		  		<%= form.label :link %>
+				<%= form.error_message_on 'link' %><br />
 		  		<%= form.text_field :link %>
 			</p>
 		</td>
 		<td>
 			<p>
-		  		<%= form.label :title %><br />
+		  		<%= form.label :title %>
+				<%= form.error_message_on 'title' %><br />
 		  		<%= form.text_field :title %>
 			</p>
 		</td>
@@ -19,17 +21,19 @@
 	<tr>
 		<td>
 			<p>
-				<label for="share_license">What license is it shared under?</label><br />
-				
+				<label for="share_license">With what license is it shared?</label>
+				<%= form.error_message_on 'license' %><br />
 			  	<%= form.text_field :license %>
 			</p>
 			
 			<p>
-			  	<%= form.label :website %><br />
+			  	<%= form.label :website %>
+				<%= form.error_message_on 'website' %><br />
 			  	<%= form.text_field :website %>
 			</p>
 			<p>
-				<label for="share_source">Where did you find this link?</label><br />
+				<label for="share_source">Where did you find this link?</label>
+				<%= form.error_message_on 'source' %><br />
 				
 			  	<%= form.text_field :source %>
 			</p>
@@ -51,7 +55,8 @@
 		
 		<td>
 			<p>
-		  		<%= form.label :description %><br />
+		  		<%= form.label :description %>
+					<%= form.error_message_on 'description' %><br />
 		  		<%= form.text_area :description %>
 			</p>
 		</td>

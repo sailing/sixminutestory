@@ -119,11 +119,21 @@ input[type="submit"],input[type="button"] {
 /* 		Errors	 	*/
 /*        			*/
 
-
-.fieldWithErrors {
+.formError {
+	position:relative;
+	left:20px;
+	font-size:16px;
+	color:#b12;
+/*	color:#578; */
+	font-weight:bold;
 }
+
+.fieldWithErrors label{
+padding-left:10px;
+}
+
 .fieldWithErrors input, .fieldWithErrors textarea {
-	background-color: #fd3;
+	background-color: #fd5;
 	padding:0px;
 }
 
@@ -152,6 +162,7 @@ input[type="submit"],input[type="button"] {
 #errorExplanation ul li {
   font-size: 12px;
   list-style: square;
+
 }
 
 
