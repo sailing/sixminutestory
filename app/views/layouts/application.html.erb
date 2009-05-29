@@ -18,19 +18,20 @@
 	<% if !current_user %>
 	  	<%= link_to "Join", new_account_path %>
 	  	| <%= link_to "Sign In", login_path %> 
-		| <%= link_to "Shares", shares_path %><br />	
+		| <%= link_to "Shares", root_path %><br />	
 		<a href="http://blog.sharearchy.com/">blog</a>
 		| <a href="http://blog.sharearchy.com/about">what we're doing here </a>
 	<% else %>
 		<%= link_to "Logout", logout_path, :confirm => "Are you sure you want to logout?" %> 
 		| <%= link_to "My Account", account_path %>
-		| <%= link_to "Shares", shares_path %>
+		| <%= link_to "Shares", root_path %>
 		| <%= link_to "New Share", new_share_path %><br />
 		<a href="http://blog.sharearchy.com/">blog</a>
-		| <a href="http://blog.sharearchy.com/about">what we're doing here </a>
+		| <%= link_to "what we're doing here", wtf_path %>
 	<% end %>
 	
 	</div>  
+
 <!-- 
 	</div>
   <b class="statusbar">
@@ -41,15 +42,11 @@
   <b class="statusbar1"><b></b></b></b>
 </div>
 -->
-<div id="search">
-	<% form_tag '/search' do -%>
-	    <div><span><%= text_field_tag 'q' %><%= submit_tag 'Search!' %></span></div>
-	<% end -%>
-</div>
+
 <% if session['banner'].nil? -%> 
 <div id="banner">
 	<p>
-		We started the <strong>Sharearchy</strong> to prove just how many <strong>legal</strong> files there are on torrent trackers like The Pirate Bay. <u>It's easy to contribute evidence</u>: find <strong>Open Art</strong>, <strong>Tools</strong> and <strong>Information</strong> on your favorite torrent tracker and <%= link_to "add it", new_share_path %> to the Sharearchy index.
+		We started the <strong>Sharearchy</strong> to prove just how many <strong>legitimate</strong> files there are on torrent trackers like The Pirate Bay. <u>It's easy to contribute</u>: find <strong>Open Art</strong>, <strong>Tools</strong> and <strong>Information</strong> on your favorite torrent tracker and <%= link_to "add it", new_share_path %> to the Sharearchy index. <%= link_to "learn more", wtf_path %>
 	</p>
 <!--	<p>
 		We're making it easy to find <strong>Open Art</strong>, <strong>Tools</strong> and <strong>Information</strong>.&nbsp;&nbsp;By <u>we</u>, we mean <u>you</u>, if you want. <u>Share</u> <b>torrents</b> and <b>links</b> to anything available under <strong>Creative Commons</strong> or <strong>Open Source</strong> licenses and stuff that's <strong>free for all</strong>, whether via a <u>philanthropist</u>, or because we, the <strong>public</strong>, have it in our <strong>domain</strong>. <a href="http://blog.sharearchy.com/about">read more</a>
@@ -60,12 +57,18 @@
 <% session['banner'] = 1 %>
 <% end %>
 
+<div id="search">
+	<% form_tag '/search' do -%>
+	    <div><span><%= text_field_tag 'q' %><%= submit_tag 'Search!' %></span></div>
+	<% end -%>
+</div>
+
+
 <% if flash[:notice] %>
 <div id="notice">
 	<%= flash[:notice] -%>
 </div>
 <% end %>
-
 
  	<div class="spiffyc">
 	  <b class="spiffy">
@@ -89,5 +92,6 @@
 	</div>
 	
 	<%= javascript_include_tag "prototype", "effects", :cache => true %>
+	<br />
 </body>
 </html>
