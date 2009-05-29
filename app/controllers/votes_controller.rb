@@ -1,10 +1,12 @@
 class VotesController < ApplicationController
-
+ 
+   
   # First, figure out our nested scope. User or Share? Important for presenting lists
   before_filter :find_votes_for_my_scope, :only => [:index]
      
   before_filter :require_user, :only => [:new, :edit, :destroy, :create, :update]
   before_filter :must_own_vote,  :only => [:edit, :destroy, :update]
+  # before_filter :update_rating, :only => [:create,:destroy]
 #  before_filter :not_allowed,    :only => [:edit, :update, :new]
 
   # GET /users/:user_id/shares/
@@ -50,6 +52,18 @@ class VotesController < ApplicationController
     
     respond_to do |format|
       if current_user.vote(@share, params[:vote])
+        
+        if @share.votes_count > 0
+            if @share.votes_for > 0
+              pro = (@share.votes_for.to_f / @share.votes_count.to_f)*100
+              @share.rating = pro.ceil
+              @share.save
+            else
+                @share.rating = 0
+                @share.save
+            end
+        end
+        
         format.html { 
           render :update do |page| 
             page.replace_html div_to_replace, :partial => "votes/share_vote", :vote => @vote 
@@ -105,4 +119,16 @@ class VotesController < ApplicationController
     end
   end
 
+  def update_rating(share)
+     if @share.votes_count > 0
+        if @share.votes_for > 0
+          pro = (@share.votes_for.to_f / @share.votes_count.to_f)*100
+          @share.rating = pro.ceil
+          @share.save
+        else
+            @share.rating = 0
+            @share.save
+        end
+    end
+  end
 end

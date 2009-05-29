@@ -1,11 +1,12 @@
 class VotesController < ApplicationController
+   before_save :update_rating 
   # First, figure out our nested scope. User or vote?
 #  before_filter :find_my_scope
   
 #  before_filter :find_user
     
 #  before_filter :login_required, :only => [:new, :edit, :destroy, :create, :update]
-#  before_filter :must_own_vote,  :only => [:edit, :destroy, :update]
+#before_filter :must_own_vote,  :only => [:edit, :destroy, :update]
 
 
   # GET /votes/
@@ -51,8 +52,19 @@ class VotesController < ApplicationController
     def create
       @vote = Vote.new(params[:vote])
       @vote.user = current_user
+      @share = Share.find_by_id(params[:share_id])
 
       respond_to do |format|
+        if @share.votes_for > 0 
+              pro = (@share.votes_for.to_f / @share.votes_count.to_f)*100
+              @share.rating = pro.ceil
+              @share.save
+            else
+                @share.rating = 0
+                @share.save
+            end
+        end
+
         if @vote.save
           flash[:notice] = 'Vote was successfully saved.'
           format.html { redirect_to([@user, @vote]) }
@@ -93,4 +105,19 @@ class VotesController < ApplicationController
       end
     end
 
+    private
+    
+    def update_rating(share)
+      @share = Share.find_by_id(share)
+       if @share.votes_count > 0
+          if @share.votes_for > 0
+            pro = (@share.votes_for.to_f / @share.votes_count.to_f)*100
+            @share.rating = pro.ceil
+            @share.save
+          else
+              share.rating = 0
+              share.save
+          end
+      end
+    end
 end

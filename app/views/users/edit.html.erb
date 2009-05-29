@@ -3,7 +3,6 @@
 	</h1>
 
 <% form_for @user, :url => account_path do |f| %>
-  <%= f.error_messages %>
 
 <table >
 	<tr>
@@ -11,14 +10,17 @@
 		<td>
 			<p>
 				<%= f.label :login %><br />
+				<%= f.error_message_on 'login' %><br />
 				<%= f.text_field :login %>
 			</p>
 			<p>
 				<%= f.label :password, f.object.new_record? ? nil : "Change password" %><br />
+				<%= f.error_message_on 'password' %><br />
 				<%= f.password_field :password %>
 			</p>
 			<p>
 			<%= f.label :password_confirmation %><br />
+			<%= f.error_message_on 'password_confirmation' %><br />
 			<%= f.password_field :password_confirmation %>
 			</p>
 			<p>
@@ -28,14 +30,17 @@
 		<td class="right">
 			<p>
 			  <%= f.label :website %><br />
+				<%= f.error_message_on 'website' %><br />
 			  <%= f.text_field :website %>
 			</p>
 			<p>
 			  <%= f.label :email_address %><br />
+				<%= f.error_message_on 'email_address' %><br />
 			  <%= f.text_field :email_address %>
 			</p>
 			<p>
 			  <%= f.label :profile %><br />
+				<%= f.error_message_on 'profile' %><br />
 			  <%= f.text_area :profile %>
 			</p>
 			

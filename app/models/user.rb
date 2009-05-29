@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
   has_many :shares
   has_many :comments
   
+  validates_format_of :website, :with => /https?:\/\/.*/i, :message => "Please start URLs with http:// or https://", :allow_blank => true
+    
 end

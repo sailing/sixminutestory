@@ -1,18 +1,13 @@
-<% unless @comments.empty? %>
+<% unless @share.comments.empty? %>
 <div id="comments">
-	<div class="notice">
-		<%= flash[:comment] %>
-	</div>
 <h1>Comments</h1>
 
 <table>
-<% @comments.each do |comment| %>
-<% 	commenter = User.find(comment.user_id) %>	
-
+<% @share.comments.each do |comment| %>
 
 			<tr>
 				<td class="commenter">
-			<%= link_to h(commenter.login), user_path(commenter.id) %> - <%=h did_when(comment.created_at) %>
+			<%= link_to h(comment.user.login), user_path(comment.user.id) %> - <%=h did_when(comment.created_at) %>
 				</td>
 			<tr>
 				<td class="comment">
@@ -26,7 +21,6 @@
 </table>
 <br />
 
-		<%= will_paginate @comments %>
 </div>
 <% end %>
 

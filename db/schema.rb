@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090510104124) do
+ActiveRecord::Schema.define(:version => 20090528234054) do
 
   create_table "comments", :force => true do |t|
     t.text     "comment"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(:version => 20090510104124) do
     t.datetime "updated_at"
     t.string   "license"
     t.boolean  "delta",               :default => false
+    t.integer  "rating",              :default => 0
   end
 
   create_table "taggings", :force => true do |t|

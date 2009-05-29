@@ -5,7 +5,11 @@ ActionController::Routing::Routes.draw do |map|
 
   map.tags 'tags/:name', :controller => "tags", :action => "show"
   map.browse_by_tags 'tags', :controller => "tags", :action => "index" 
-
+  
+  map.top 'top', :controller => "shares", :action => "top"
+  
+  map.recent 'recent', :controller => "shares", :action => "recent"
+  
   map.resources :users do |user|
     user.resources :votes
     user.resources :shares do |share|
@@ -44,6 +48,7 @@ ActionController::Routing::Routes.draw do |map|
 
     map.search 'search',:controller => "shares", :action => "search"
 
+    map.profile '/:login', :controller => "users", :action => "profile"
     map.profile 'profile/:id', :controller => "users", :action => "profile"
 
 

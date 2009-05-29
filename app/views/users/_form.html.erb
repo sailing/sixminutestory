@@ -1,23 +1,32 @@
 <%= form.label :login %><br />
+<%= form.error_message_on 'login' %><br />
 <%= form.text_field :login %><br />
 <br />
+
 <%= form.label :password, form.object.new_record? ? nil : "Change password" %><br />
+<%= form.error_message_on 'password' %><br />
 <%= form.password_field :password %><br />
 <br />
+
 <%= form.label :password_confirmation %><br />
+<%= form.error_message_on 'password_confirmation' %><br />
 <%= form.password_field :password_confirmation %><br />
 
 <hr>
 <p>
   <%= form.label :website %><br />
+	<%= form.error_message_on 'website' %><br />
   <%= form.text_field :website %>
 </p>
 <p>
   <%= form.label :email_address %><br />
+	<%= form.error_message_on 'email_address' %><br />
   <%= form.text_field :email_address %>
 </p>
 <p>
   <%= form.label :profile %><br />
+	<%= form.error_message_on 'profile' %><br />
+
   <%= form.text_area :profile %>
 </p>
 
