@@ -5,7 +5,7 @@ class SiteController < ApplicationController
     page = params[:page] || 1
     @q = params[:q]
     order = "created_at DESC"
-    timeThen = Time.now.advance(:weeks => -2)
+    timeThen = Time.now.advance(:years => -1)
    @shares = Share.search(
             :page => page, 
             :per_page => per_page, 
