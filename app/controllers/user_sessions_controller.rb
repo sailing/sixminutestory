@@ -18,6 +18,6 @@ class UserSessionsController < ApplicationController
 
   def destroy
     @current_user_session.destroy
-    redirect_back_or_default shares_path
+    redirect_back_or_default root_path
   end
 end
