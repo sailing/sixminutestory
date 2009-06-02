@@ -14,7 +14,7 @@ ActionController::Routing::Routes.draw do |map|
     map.login 'login', :controller => "user_sessions", :action => "new"
     map.logout 'logout', :controller => "user_sessions", :action => "destroy"
     map.register 'register', :controller => "users", :action => "new"
-
+ 
 
     map.with_options :controller => "site" do |site|
       site.root                                   :action => "recent" 
