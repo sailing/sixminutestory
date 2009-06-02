@@ -21,6 +21,7 @@ class SiteController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @shares }
+      format.rss
     end
   end
 
@@ -41,6 +42,7 @@ class SiteController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @shares }
+      format.rss
     end
   end
   
