@@ -9,11 +9,13 @@ class UserSessionsController < ApplicationController
 
   def create
     @user_session = UserSession.new(params[:user_session])
-    if @user_session.save
-      redirect_back_or_default root_path
-    else
-      render :action => :new
-    end
+    @user_session.save do |result|
+        if result
+          redirect_back_or_default root_url
+        else
+          render :action => :new
+        end
+      end
   end
 
   def destroy

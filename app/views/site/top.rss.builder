@@ -8,7 +8,7 @@ xml.rss :version => "2.0" do
     for share in @shares do
       xml.item do
         xml.title "#{share.title}"
-        xml.description "#{share.description} \n\n -- #{share.link}\n #{share.website}"
+        xml.description "#{share.description}"
         xml.pubDate share.created_at.to_s(:rfc822)
         xml.link formatted_share_url(share, :html)
       end

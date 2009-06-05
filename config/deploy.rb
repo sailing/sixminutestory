@@ -1,6 +1,6 @@
-set :application, "sharearchy.com"
+set :application, "209.41.75.202"
 default_run_options[:pty] = true
-set :port, 27777
+#set :port, 27777
 
 # If you aren't deploying to /u/apps/#{application} on the target
 # servers (which is the default), you can specify the actual location
@@ -8,17 +8,17 @@ set :port, 27777
 # set :deploy_to, "/var/www/#{application}"
 
 
-set :deploy_to, "/home/admin/public_html/sharearchy.com"
+set :deploy_to, "/home/lahiri/public_html/sharearchy.com"
 
 # If you aren't using Subversion to manage your source code, specify
 # your SCM below:
 # set :scm, :subversion
 set :scm, "git"
-set :repository, "git@github.com:sharearchy/sharearchy.git"
+set :repository, "git@github.com:sailing/sharearchy.git"
 set :branch, "master"
 set :deploy_via, :remote_cache
 
-set :user, "admin"
+set :user, "lahiri"
 set :ssh_options, { :forward_agent => true }
 
 role :app, application
@@ -26,23 +26,6 @@ role :web, application
 role :db,  application, :primary => true
 
 set :rails_env, "production"
-
-namespace :customs do
-  task :config, :roles => :app do
-    run <<-CMD
-      ln -nfs #{shared_path}/system/database.yml #{release_path}/config/database.yml
-    CMD
-  end
-  task :symlink, :roles => :app do
-    run <<-CMD
-      ln -nfs #{shared_path}/system/uploads #{release_path}/public/uploads
-    CMD
-  end
-end
-
-after "deploy:update_code", "customs:config"
-after "deploy:symlink","customs:symlink"
-
 
 # Thinking Sphinx
 namespace :thinking_sphinx do
@@ -97,7 +80,17 @@ namespace :deploy do
     run "touch #{current_path}/tmp/restart.txt"
   end
   
+  
   task :after_update do
+      run <<-CMD
+        ln -nfs #{shared_path}/system/database.yml #{release_path}/config/database.yml
+      CMD
+      
+      run <<-CMD
+        ln -nfs #{shared_path}/system/uploads #{release_path}/public/uploads
+      CMD
+      
+    
     symlink_sphinx_indexes
    # thinking_sphinx.configure
     #thinking_sphinx.start
