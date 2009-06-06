@@ -1,3 +1,8 @@
+<% content_for :pagename do %>
+	<%=h ":: " + @share.title %>
+<% end %>
+
+
 <div id="show_share">
  <h1><%=h @share.title %> <span class="edit"><%= edit_this %></span> 
 

@@ -24,15 +24,6 @@ class UsersController < ApplicationController
     @shares = Share.paginate_by_user_id @user.id, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    
   end
   
-  def profile
-     @user = User.find_by_login params[:login]
-     page = params[:page] || 1
-     per_page = 7
-     order = "created_at DESC"
-     @shares = Share.paginate_by_user_id @user.id, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    
-
-         @i = 0
-   end
 
   def edit
     @user = @current_user
