@@ -16,6 +16,26 @@ ActionController::Routing::Routes.draw do |map|
     map.register 'register', :controller => "users", :action => "new"
     map.new '/new', :controller => "shares", :action => "new"
 
+    map.tags 'tags/:name', :controller => "tags", :action => "show"
+
+    map.resources :users do |user|
+       user.resources :votes
+       user.resources :shares do |share|
+         share.resources :votes
+       end
+     end
+
+     map.resources :shares do |share|
+       share.resources :votes
+     end
+
+     map.resources :comments
+     map.resources :tags
+
+
+     map.resource :account, :controller => "users"
+     map.resource :user_session
+
     map.with_options :controller => "site" do |site|
       site.root                                   :action => "recent" 
       site.formatted_root     '/recent.:format',  :action => "recent"
@@ -36,25 +56,7 @@ ActionController::Routing::Routes.draw do |map|
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   map.resources :products
 
-  map.tags 'tags/:name', :controller => "tags", :action => "show"
-  
-  map.resources :users do |user|
-     user.resources :votes
-     user.resources :shares do |share|
-       share.resources :votes
-     end
-   end
 
-   map.resources :shares do |share|
-     share.resources :votes
-   end
-
-   map.resources :comments
-   map.resources :tags
-
-
-   map.resource :account, :controller => "users"
-   map.resource :user_session
   
 
   # Sample resource route with options:
