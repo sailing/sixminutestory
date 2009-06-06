@@ -17,11 +17,11 @@
 	</div>
 	<div id="header_links">
 	<% if !current_user %>
-	  	<%= link_to "Join", new_account_path %>
+	  	<%= link_to "Join", register_path %>
 	  	| <%= link_to "Sign In", login_path %> 
 		| <%= link_to "Shares", root_path %><br />	
 		<a href="http://blog.sharearchy.com/">blog</a>
-		| <a href="http://blog.sharearchy.com/about">what we're doing here </a>
+		| <%= link_to "what we're doing here", wtf_path %>
 	<% else %>
 		<%= link_to "Logout", logout_path, :confirm => "Are you sure you want to logout?" %> 
 		| <%= link_to "My Account", account_path %>
