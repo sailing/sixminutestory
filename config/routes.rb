@@ -14,7 +14,7 @@ ActionController::Routing::Routes.draw do |map|
     map.login 'login', :controller => "user_sessions", :action => "new"
     map.logout 'logout', :controller => "user_sessions", :action => "destroy"
     map.register 'register', :controller => "users", :action => "new"
- 
+    map.new '/new', :controller => "shares", :action => "new"
 
     map.with_options :controller => "site" do |site|
       site.root                                   :action => "recent" 
@@ -30,6 +30,7 @@ ActionController::Routing::Routes.draw do |map|
       site.terms              '/terms',           :action => "terms"
       site.privacy            '/privacy',         :action => "privacy"
       site.api                '/api',             :action => "api"
+      site.profile            '/:login',          :action => "profile" 
     end
     
   # Sample resource route (maps HTTP verbs to controller actions automatically):
@@ -82,11 +83,7 @@ ActionController::Routing::Routes.draw do |map|
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing the them or commenting them out if you're using named routes and resources.
-  map.new '/new', :controller => "shares", :action => "new"
   
-  map.profile '/:login', :controller => "site", :action => "profile"
-  map.profile 'profile/:id', :controller => "site", :action => "profile"
- 
  
   map.catch_all "*", :controller => "shares"
 

@@ -46,7 +46,7 @@
 						<% if current_user && current_user.id == @share.user_id %>
 							<%= link_to 'Edit this Share', edit_share_path(@share) %> 
 						<% else %>
-							<%= link_to 'Submitter\'s profile', profile_url(@share.user_id)%>
+							<%= link_to 'Submitter\'s profile', profile_path(@share.user.login)%>
 						<% end %>
 						</span>
 					</td>
