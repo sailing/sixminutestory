@@ -30,6 +30,7 @@ ActionController::Routing::Routes.draw do |map|
      end
 
      map.resources :comments
+     map.resources :tags
 
      map.resource :account, :controller => "users"
      map.resource :user_session
@@ -41,7 +42,7 @@ ActionController::Routing::Routes.draw do |map|
       site.recent             '/recent',          :action => "recent"
       site.top                '/top',             :action => "top"
       site.formatted_top      '/top.:format',     :action => "top"
-      site.browse_by_tags     '/tags',            :action => "browse_by_tags"
+      site.browse_by_tags     '/cloud',            :action => "browse_by_tags"
       site.wtf                '/wtf',             :action => "wtf" 
       site.about              '/about',           :action => "about"
       site.contact            '/contact',         :action => "contact"
@@ -50,7 +51,7 @@ ActionController::Routing::Routes.draw do |map|
       site.api                '/api',             :action => "api"
       site.profile            '/profile/:login',   :action => "profile" 
     end
-    map.resources :tags
+
 
     
   # Sample resource route (maps HTTP verbs to controller actions automatically):
