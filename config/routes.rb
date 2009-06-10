@@ -50,7 +50,7 @@ ActionController::Routing::Routes.draw do |map|
       site.terms              '/terms',           :action => "terms"
       site.privacy            '/privacy',         :action => "privacy"
       site.api                '/api',             :action => "api"
-      site.profile            '/:login',          :action => "profile" 
+      site.profile            '/profile/:login',   :action => "profile" 
     end
     
   # Sample resource route (maps HTTP verbs to controller actions automatically):
