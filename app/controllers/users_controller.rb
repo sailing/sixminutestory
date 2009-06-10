@@ -9,10 +9,10 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    if @user.save
-      redirect_back_or_default account_url
-    else
-      render :action => :new
+    if verify_recaptcha && @user.save
+        redirect_back_or_default account_url
+      else
+        render :action => :new
     end
   end
 

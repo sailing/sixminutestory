@@ -7,39 +7,7 @@
 	  <%=h @user.login %>
 	</h1>
 
-<table>
-	<tr>
-	<td>
-			<p>
-			  Website:
-			</p>
-			<p class="show_share_value">
-			  <%=h @user.website %>
-			</p>
-
-			<p>
-			  Contact:
-			</p>
-			<p class="show_share_value">  
-			<%= if current_user 
-				then @user.email_address 
-				else
-					link_to "Login to contact users", login_path
-				end
-			%> 
-			</p>
-
-		</td>
-		<td>
-			<p>
-			  Profile:
-			</p>
-			<p class="show_share_description">  
-			<%=h @user.profile %>
-			</p>
-		</td>
-	</tr>
-</table>
+<%= render :partial => "site/profile_block" %>
 
 </div>
 

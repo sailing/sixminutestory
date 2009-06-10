@@ -44,7 +44,7 @@ class SharesController < ApplicationController
     @share = Share.new(params[:share])
 
     respond_to do |format|
-      if @share.save
+      if verify_recaptcha && @share.save
         @user = @current_user
         @share.update_attribute("user_id", @user.id)
         format.html { redirect_to(@share) }

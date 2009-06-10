@@ -7,34 +7,7 @@
 	  <%=h @user.login %> | <%= link_to 'Edit profile', edit_user_path(@user) %>
 	</h1>
 
-<table>
-	<tr>
-	<td>
-			<p>
-			  Website:
-			</p>
-			<p class="show_share_value">
-			  <%= link_to h(@user.website), @user.website %>
-			</p>
-
-			<p>
-			  Email address:
-			</p>
-			<p class="show_share_value">  
-			<%= mail_to h(@user.email_address), @user.email_address %>
-			</p>
-
-		</td>
-		<td>
-			<p>
-			  Profile:
-			</p>
-			<p class="show_share_description">  
-			<%=h @user.profile %>
-			</p>
-		</td>
-	</tr>
-</table>
+	<%= render :partial => "site/profile_block" %>
 
 </div>
 <% else %>

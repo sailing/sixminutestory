@@ -1,0 +1,48 @@
+<div class="information">
+	<table>
+		<tr>
+			<td class="border_right">
+			<span class="label">contact</span>
+				
+				
+				<span class="value">
+					 <%=h @user.email_address %>
+				</span>
+			</td>
+			<td>
+				<span class="label">updated</span>
+				<span class="value">
+					<%=h did_when(@user.updated_at) %>
+				</span>
+			</td>
+		<tr>
+			<td class="border_right">
+			<span class="label">website</span>
+
+
+			<span class="value">
+
+				<%= link_to truncate(h(@user.website),:length => 30), @user.website  %>
+			</span>
+			</td>
+
+			<td>
+	  		<span class="label">shares</span>
+				
+				<span class="value">
+					<%=h @user.shares.count :conditions => {:active => true} %>
+				</span>
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2>
+			<span class="label">description</span>
+				
+				
+				<div class="description">
+						<%= @user.profile %>
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>

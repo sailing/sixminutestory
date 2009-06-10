@@ -46,11 +46,8 @@
 			  	<%= form.text_field :alternative_contact %>
 			</p>
 -->
-			<p>
-			<%= form.submit "Save" %> <% if current_user.id == @share.user_id %>
-					<%= link_to 'Destroy share', @share, :confirm => 'Are you sure you want to remove this share? Your share will no longer be visible!', :method => :delete %>
-					<% end %>
-			</p>
+		
+		
 		</td>
 		
 		<td>
@@ -59,6 +56,22 @@
 					<%= form.error_message_on 'description' %><br />
 		  		<%= form.text_area :description %>
 			</p>
+			
+			<p>
+				<% unless current_user.id == @share.user_id %>
+					<% if session[:recaptcha_error].present? %>
+					 	<span class="formError">Incorrect text entered.</span>
+					<% end %>
+					
+					<%= recaptcha_tags %>
+				<% end %>
+			</p>
+			<br />
+				<p>
+				<%= form.submit "Save" %> <% if current_user.id == @share.user_id %>
+						<%= link_to 'Destroy share', @share, :confirm => 'Are you sure you want to remove this share? Your share will no longer be visible!', :method => :delete %>
+						<% end %>
+				</p>
 		</td>
 	
 	</tr>
