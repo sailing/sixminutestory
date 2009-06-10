@@ -1,7 +1,5 @@
 class TagsController < ApplicationController
-  def index
-  end
-  
+
   def show
       page = params[:page] || 1
       per_page = 20
