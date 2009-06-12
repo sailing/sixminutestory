@@ -6,6 +6,11 @@ class Share < ActiveRecord::Base
   belongs_to :user
   has_many :comments
   
+  def to_param
+    "#{id}-#{title.gsub(/[?'()]+/i, '').gsub(/[^a-z1-9]+/i, '-')}"
+  end
+  
+  
   define_index do
     indexes :title, :sortable => true
     indexes :description

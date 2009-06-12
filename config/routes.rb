@@ -28,7 +28,7 @@ ActionController::Routing::Routes.draw do |map|
      map.resources :shares do |share|
        share.resources :votes
      end
-
+     
      map.resources :comments
      map.resources :tags
 
@@ -42,7 +42,7 @@ ActionController::Routing::Routes.draw do |map|
       site.recent             '/recent',          :action => "recent"
       site.top                '/top',             :action => "top"
       site.formatted_top      '/top.:format',     :action => "top"
-      site.browse_by_tags     '/cloud',            :action => "browse_by_tags"
+      site.browse_by_tags     '/cloud',           :action => "browse_by_tags"
       site.wtf                '/wtf',             :action => "wtf" 
       site.about              '/about',           :action => "about"
       site.contact            '/contact',         :action => "contact"
