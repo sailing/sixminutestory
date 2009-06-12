@@ -656,6 +656,22 @@ padding-left:10px;
 	font-weight: bold;
 }
 
+/* Recaptcha */
+.recaptcha_table .recaptcha_image_cell, #recaptcha_table {
+background-color:#eef;
+ }
+ 
+.recaptcha_image_cell {
+	width:300px;
+}
+ #recaptcha_table {
+ }
+ 
+ #recaptcha_response_field {
+
+ }
+
+
 
 /*								*/
 /*		Clean-up Classes		*/
