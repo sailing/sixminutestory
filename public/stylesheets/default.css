@@ -77,8 +77,6 @@ img {
 }
 
 textarea {
-	width:90%;
-	height:200px;
 	border:2px solid #bbf;
 	background-color:#eef;
 	font-size:20px;
@@ -169,6 +167,15 @@ padding-left:10px;
 /* 					*/
 /*  	Header		*/
 /* 					*/
+
+#navigation {
+	font-family:helvetica, tahoma, verdana, sans-serif;
+	text-align:right;
+	font-weight:bold;
+	font-size:18px;
+	line-height:24px;
+	float:left;
+}
 
 #header_links {
 	font-family:helvetica, tahoma, verdana, sans-serif;
@@ -626,6 +633,8 @@ padding-left:10px;
 	vertical_align:middle;
 	line-height:18px;
 	margin:0px;
+	width:30px;
+	text-align:center;
 }
 
 .share_this_share a, #share_this_share a:visited, #share_this_share a:active, #share_this_share a:hover {

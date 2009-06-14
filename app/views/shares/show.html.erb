@@ -61,9 +61,7 @@
 					</td>
 					
 					<td>
-					<span class="label">by</span>
-						<span class="edit"><%= edit_this %></span>
-						
+					<span class="label">by</span>						
 						<span class="value">	
 							<%= link_to @share.user.login, profile_path(@share.user.login)  %>
 						</span>
@@ -90,7 +88,6 @@
 </div>
 <%= render :partial => "comments/comments" %>
 
-<%= render :partial => "comments/new" %>
 
 
 

@@ -44,11 +44,11 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         flash[:notice] = 'Comment contributed!'
-        format.html { redirect_to(share_path(@comment.share_id)) }
+        format.html { redirect_to :controller => "shares", :action => "show", :id => @comment.share_id, :anchor => "comments" }
         format.xml  { render :xml => @comment, :status => :created, :location => @comment }
       else
         flash[:notice] = 'Comment is free, so give thine to me.'
-        format.html { redirect_to(share_path(@comment.share_id))}
+        format.html { redirect_to share_path(@comment.share_id),:anchor => "comments"}
         format.xml  { render :xml => @comment.errors, :status => :unprocessable_entity }
       end
     end

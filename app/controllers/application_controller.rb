@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
       def require_user
         unless current_user
           store_location
-          flash[:notice] = "You must be logged in to access this page"
+          flash[:notice] = "You must be logged in to access this page. <a href='/register'>Register</a>"
           redirect_to login_url
           return false
         end
@@ -39,8 +39,8 @@ class ApplicationController < ActionController::Base
       def require_no_user
         if current_user
           store_location
-          flash[:notice] = "You must be logged out to access this page"
-          redirect_back_or_default account_url
+          flash[:notice] = "You must be logged out to access this page. No idea why."
+          redirect_back_or_default root_url
           return false
         end
       end

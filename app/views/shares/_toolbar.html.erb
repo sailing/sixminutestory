@@ -43,11 +43,7 @@
 		
 					<td style="border:none;">&nbsp;
 						<span>
-						<% if current_user && current_user.id == @share.user_id %>
-							<%= link_to 'Edit this Share', edit_share_path(@share) %> 
-						<% else %>
-							<%= link_to 'Submitter\'s profile', profile_path(@share.user.login)%>
-						<% end %>
+						<a href="#comments"><%= @share.comments.count -%> comments</a>
 						</span>
 					</td>
 					
