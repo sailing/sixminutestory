@@ -1,0 +1,86 @@
+
+	<div class="center">
+		
+		<b class="sideyard">
+	  <b class="sideyard1"><b></b></b>
+	  <b class="sideyard2"><b></b></b>
+	  <b class="sideyard3"></b>
+	  <b class="sideyard4"></b>
+	  <b class="sideyard5"></b></b>
+		  <div class="sideyardfg">
+
+			<%= form.error_message_on 'description' %><br />
+			<% @editing.present? ? @disabled = true : @disabled = false %>
+			<% @story.description.present? ? @description = @story.description : @description = "when you click here, the timer starts" %>
+			<% @story.title.present? ? @title = @story.title : @title = "title" %>
+			<% @story.tags.present? ? @tags = "" : @tags = "tags" %>
+			
+  			<%= form.text_area :description, :disabled => @disabled, :value => @description, :rows => 20, :cols => 45, :onFocus => 'clearFieldFirstTime(this);' %>
+		</div>
+	  <b class="sideyard">
+	  <b class="sideyard5"></b>
+	  <b class="sideyard4"></b>
+	  <b class="sideyard3"></b>
+	  <b class="sideyard2"><b></b></b>
+	  <b class="sideyard1"><b></b></b></b>
+
+
+			<p>
+
+				<%= form.error_message_on 'title' %><br />
+		  		<%= form.text_field :title, :disabled => @disabled, :onFocus => 'clearFieldFirstTime(this);', :value => @title %>
+			</p>
+				<p>
+					<% if @story.tags.present? -%>
+						<% @story.tags.each do |tag| -%>
+			   				<%= tag %>
+						<% end -%>
+					<% end -%>
+		 			<%= form.text_field :tag_list, :onFocus => 'clearFieldFirstTime(this);', :value => @tags %>
+	  			</p>
+		
+			<p>
+				<label for="story_license">License</label>
+				<%= form.error_message_on 'license' %><br />
+				<select name="story[license]" id="story_license" onchange="">
+					<option value="Creative Commons Attribution 3.0">
+						Creative Commons Attribution 3.0</option>
+			
+					<option value="Creative Commons Attribution-NoDerivs 3.0">
+						Creative Commons Attribution-NoDerivs 3.0</option>
+						
+					<option value="Creative Commons Attribution-NonCommerical-NoDerivs 3.0">
+						Creative Commons Attribution-NonCommercial-NoDerivs 3.0</option>
+			
+					<option value="Creative Commons AttributionNonCommerical 3.0">
+						Creative Commons Attribution-NonCommercial 3.0</option>
+			
+					<option value="Creative Commons Attribution-NonCommerical-ShareAlike 3.0">
+						Creative Commons Attribution-NonCommercial-ShareAlike 3.0</option>
+			
+					<option value="Creative Commons Attribution-ShareAlike 3.0">
+						Creative Commons Attribution-ShareAlike 3.0</option>
+					<option value="Public Domain">Public Domain</option>
+					
+				</select>
+			</p>
+			
+		
+			<p>
+				<% unless current_user.id == @story.user_id %>
+					<% if session[:recaptcha_error].present? %>
+					 	<span class="formError">Incorrect text entered.</span>
+					<% end %>
+					
+					<%= recaptcha_tags :display => {:theme => "clean"} %>
+				<% end %>
+			</p>
+			<br />
+				<p>
+				<%= image_submit_tag("save.png", :name => "save", :id => "save-button", :disabled => @disabled) %>
+				 <% if current_user.id == @story.user_id %>
+						<%= link_to 'Destroy story', @story, :confirm => 'Are you sure you want to remove this story? Your story will no longer be visible!', :method => :delete %>
+						<% end %>
+				</p>
+	
+</div>

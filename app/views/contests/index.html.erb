@@ -1,0 +1,26 @@
+<h1>Listing contests</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Start</th>
+    <th>End</th>
+  </tr>
+
+<% @contests.each do |contest| %>
+  <tr>
+    <td><%=h contest.title %></td>
+    <td><%=h contest.description %></td>
+    <td><%=h contest.start %></td>
+    <td><%=h contest.end %></td>
+    <td><%= link_to 'Show', contest %></td>
+    <td><%= link_to 'Edit', edit_contest_path(contest) %></td>
+    <td><%= link_to 'Destroy', contest, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New contest', new_contest_path %>

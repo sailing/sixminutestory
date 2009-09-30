@@ -1,0 +1,24 @@
+<h1>Listing prompts</h1>
+
+<table>
+  <tr>
+    <th>Hero</th>
+    <th>Villain</th>
+    <th>Goal</th>
+  </tr>
+
+<% @prompts.each do |prompt| %>
+  <tr>
+    <td><%=h prompt.hero %></td>
+    <td><%=h prompt.villain %></td>
+    <td><%=h prompt.goal %></td>
+    <td><%= link_to 'Show', prompt %></td>
+    <td><%= link_to 'Edit', edit_prompt_path(prompt) %></td>
+    <td><%= link_to 'Destroy', prompt, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New prompt', new_prompt_path %>

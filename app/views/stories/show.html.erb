@@ -1,0 +1,61 @@
+<% content_for :pagename do %>
+	<%=h ":: " + @story.title %>
+<% end %>
+
+
+<div id="show_story">
+ <h1><%=h @story.title %>  <span class="attribution">by <%= link_to @story.user.login, profile_path(@story.user.login)  %> <%=h time_ago_in_words(@story.created_at) %> ago</span>
+
+	
+		
+		
+	</h1>
+		<%= 
+		 render :partial => "toolbar", :locals => { :story => @story } 
+		%>
+		
+
+		
+		<div class="description">	
+			<%= auto_link(simple_format(h(@story.description)), 
+			:href_options => { :target => '_blank' }) %>
+		</div>
+
+	<%= 
+	render :partial => "toolbar", :locals => { :story => @story } 
+	%>
+	
+		<div class="information">
+			<table>
+				<tr>
+					<td class="border_right">
+					<span class="label">license</span>
+						
+						<br />
+						<p class="value">
+							 <%=h @story.license %>
+						</p>
+					</td>
+
+					<td class="border_right">
+					<span class="label">tags</span>
+						
+						<br />
+						<p class="value">	
+							<% @story.tags.each do |tag| -%>
+					   			<%= link_to_tag(tag) %>
+							<% end -%>
+						</p>
+					</td>
+				</tr>
+			</table>
+		</div>
+</div>
+<%= render :partial => "comments/comments" %>
+
+
+
+
+
+
+

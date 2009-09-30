@@ -1,0 +1,18 @@
+<p>
+  <b>Hero:</b>
+  <%=h @prompt.hero %>
+</p>
+
+<p>
+  <b>Villain:</b>
+  <%=h @prompt.villain %>
+</p>
+
+<p>
+  <b>Goal:</b>
+  <%=h @prompt.goal %>
+</p>
+
+
+<%= link_to 'Edit', edit_prompt_path(@prompt) %> |
+<%= link_to 'Back', prompts_path %>

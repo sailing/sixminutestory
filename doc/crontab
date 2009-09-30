@@ -1,0 +1,1 @@
+10 * * * * root cd /home/admin/public_html/sixminutestory.com/current && /usr/bin/rake RAILS_ENV=production thinking_sphinx:index >> /home/admin/public_html/sixminutestory.com/storyd/log/cron.log 2>&1

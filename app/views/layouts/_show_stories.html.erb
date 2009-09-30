@@ -1,0 +1,80 @@
+<% @i = 1 %>
+<div id="show_stories">
+
+<%= render :partial => "layouts/browsing" %>
+
+<table>
+<% for story in @stories %>
+<% @i = @i + 1 %>
+
+<tr class="<%= cycle('row_alternate', 'row') -%>">
+	
+  	<td class="story_this_story">
+		<span>
+		<!-- AddThis Button BEGIN -->
+			<script type="text/javascript">
+				var addthis_pub="sixminutestory";
+				var addthis_options = 'facebook, digg, twitter, email, more';
+
+			</script>
+				<a href="http://www.addthis.com/bookmark.php?v=20" onmouseover="return addthis_open(this, '', 'http://sixminutestory.com/stories/<%= story.id %>', '[TITLE]')" onmouseout="addthis_close()" onclick="return addthis_sendto()"><img class="linked_image" src="http://s7.addthis.com/static/btn/sm-share-en.gif" width="83" height="16" alt="Bookmark and Share" style="border:0"/></a>
+			<script type="text/javascript"
+			src="http://s7.addthis.com/js/200/addthis_widget.js">
+			</script>
+		<!-- AddThis Button END -->
+		</span>
+	</td>
+	
+	<td id="description_slide_toggle" >
+		<span>
+		<%= content_tag 'DIV', 
+				(image_tag "show_description.png", 
+				:onClick => 	"this.src='/images/hide_description.png'"), 
+			:onClick => visual_effect(:toggle_blind,'description' + @i.to_s,:duration => 0.5) 			
+		%>
+		</span>
+	
+	</td>
+	
+	<td id="show_stories" class="title">
+		<span>
+			
+			<span class="edit"> 
+			<% if edit_this(story) %>
+				<%= edit_this(story) %> 
+			<% end %>
+			</span>
+			<%= link_to h(story.title), story_url(story) %> 
+	
+		</span>
+	</td>
+
+</tr>
+
+<tr>
+	<td colspan="4" id="description_drawer">
+	<div id="description<%= @i.to_s %>" style="display:none;">
+		<div class="description">
+			<span class="linked_images">
+			<%= link_to(image_tag("read_more.png"), story_url(story)) %>
+			</span>
+			
+				<%= auto_link(simple_format(h(story.description)), 
+				:href_options => { :target => '_blank' }) %>
+		
+			<span class = "linked_images"><%= image_tag "hide_description.png", :onClick => visual_effect(:blind_up,'description' + @i.to_s,:duration => 0.3 )%>
+			<%= link_to(image_tag("read_more.png"), story_url(story)) %>
+			</span>
+		</div>
+	</div>		
+	</td>
+</tr>
+<% end %>
+</table>
+
+</div>
+
+<%=  will_paginate @stories %>
+
+<br />
+

@@ -1,0 +1,24 @@
+<h1>Editing prompt</h1>
+
+<% form_for(@prompt) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :hero %><br />
+    <%= f.text_field :hero %>
+  </p>
+  <p>
+    <%= f.label :villain %><br />
+    <%= f.text_field :villain %>
+  </p>
+  <p>
+    <%= f.label :goal %><br />
+    <%= f.text_field :goal %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @prompt %> |
+<%= link_to 'Back', prompts_path %>

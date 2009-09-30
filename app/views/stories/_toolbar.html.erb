@@ -1,0 +1,47 @@
+
+	<div class="toolbar_container">
+	  <b class="sideyard">
+	  <b class="sideyard1"><b></b></b>
+	  <b class="sideyard2"><b></b></b>
+	  <b class="sideyard3"></b>
+	  <b class="sideyard4"></b>
+	  <b class="sideyard5"></b></b>
+		<div class="sideyardfg">
+		<table  id="show_story_toolbar">
+			<tr>
+
+						<td>
+							<span class="story_this_story">
+								<!-- AddThis Button BEGIN -->
+							<script type="text/javascript">
+								var addthis_pub="sixminutestory";
+							</script>
+				<a href="http://www.addthis.com/bookmark.php?v=20" onmouseover="return addthis_open(this, '', '[URL]', '[TITLE]')" onmouseout="addthis_close()" onclick="return addthis_sendto()"><img class="linked_image" src="http://s7.addthis.com/static/btn/sm-share-en.gif" width="83" height="16" alt="Bookmark and Share" style="border:0"/></a>
+							<script type="text/javascript" src="http://s7.addthis.com/js/200/addthis_widget.js">
+							</script>
+								<!-- AddThis Button END -->
+							</span>
+				
+						</td>
+				
+						<td id="votes_<%= @story.id %>">
+					<%= render :partial => "votes/story_vote", :locals => {:story => @story} %>
+				</td>
+	
+				<td>
+					<span>
+					<a href="#comments"><%= @story.comments.count -%> comments</a>
+					</span>
+				</td>
+				
+			</tr>
+		</table>
+		</div>
+	  <b class="sideyard">
+	  <b class="sideyard5"></b>
+	  <b class="sideyard4"></b>
+	  <b class="sideyard3"></b>
+	  <b class="sideyard2"><b></b></b>
+	  <b class="sideyard1"><b></b></b></b>
+	</div>
+			

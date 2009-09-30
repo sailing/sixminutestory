@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  hero: MyString
+  villain: MyString
+  goal: MyString
+
+two:
+  hero: MyString
+  villain: MyString
+  goal: MyString
