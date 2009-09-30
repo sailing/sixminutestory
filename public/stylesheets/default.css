@@ -3,26 +3,49 @@
 /*				_  _						*/
 /*				  o	* *						*/
 /*				 							*/				
-/*			CSS and the Sharearchy			*/
+/*			CSS and the six minute story	*/
 /*			by Galen Sanford				*/
 /*			galenmail@gmail.com				*/
 /*				 							*/
 /*				 							*/
 
+/* Colors */
+/*
+
+Aqua => #cffff7
+Brown => #522b1d
+Orange => #ff7400
+Purple => #b86ae1
+Greenish-blue => #62d1aa
+
+
+*/
+
+
 /*							*/
 /* 	Re-styled HTML tags 	*/
 /*							*/
 
-body { background-color: #fff; color: #333; 
+
+
+body {
 	
-  margin:0px;
-  padding:0px;
+  	margin:0px;
+  	padding:0px;
+
+	vertical-align:baseline;
+	background: #cffff7 url(../images/sublogo.png) bottom right fixed no-repeat;
+	z-index:1;
+
+	color:#fff; 
+
 }
 
 body, p, ol, ul, td {
   font-family: helvetica, tahoma, verdana, arial, sans-serif;
   font-size:   13px;
   line-height: 18px;
+  margin:0px 0px;
 }
 
 p {
@@ -31,11 +54,11 @@ p {
 
 table {
 	table-layout:fixed;
+	border-collapse:collapse;
 }
 
 
 pre {
-  background-color: #eee;
   padding: 10px;
   font-size: 11px;
 }
@@ -46,30 +69,27 @@ h1 {
 	padding: 2px 0px 4px 0px;
 	margin:0px 0px 10px 0px;
 	text-align:left;
-	color:#a62;	
-	border-bottom:3px solid #ccf;
+	color:#000;	
 	width:100%;
 	text-indent:15px;
 }
 
-a { color: #555; text-decoration:underline; padding:2px 3px 1px 3px;}
-a:visited { color: #777; text-decoration:underline;}
-a:active { color: #777; text-decoration:underline;}
-a:hover { color: #fff; background-color:#000; text-decoration:none; }
-
-h1 a {
-	color:#555;
-	font-size:20px;
+h2 {
+	padding:1px 0px;
+	margin:0px 0px 5px;
 }
 
-h1 a:visited {
-	color:#777;
-	font-size:20px;
+a, a:visited, a:active{ color: #fff; text-decoration:underline; padding:2px 3px 1px 3px;}
+a:hover { color: #522b1d; background-color:#fff;text-decoration:underline; }
+
+h1 a, h1 a:visited, h1 a:active {
+	color: #522b1d;
+	font-size:14px;
+	background:transparent;
 }
 
 h1 a:hover {
-	color:#fff;
-	font-size:20px;
+	background-color:#fff;
 }
 
 img {
@@ -77,38 +97,55 @@ img {
 }
 
 textarea {
-	border:2px solid #bbf;
-	background-color:#eef;
+	width:90%;
+	border:0px solid #bbf;
+	background: transparent;
 	font-size:20px;
-	color:#666
+	color:#fff;
+	padding:10px;
+	margin:0px;
 }
 
-input{
+input, select, option {
 	width:90%;
-	height:35px;
-	border:2px solid #bbf;
-	background-color:#eef;
+	height:25px;
+	padding:3px;
+	border:0;
+ 	background:url(../images/container_bg.png) fixed repeat;
 	font-size:20px;
-	color:#666;
+	font-weight:bold;
+	color:#fff;
 	margin-bottom:20px;
 	vertical-align:middle;
+}
+
+select {
+	height:32px;
+}
+
+option {
+	margin:0px;
+	width:100%;
+	color:#555;
+	font-size:15px;
 }
 
 input[type="checkbox"]{
 	width:20px;
 	height:20px;
-	border:2px solid #bbf;
-	background-color:#eef;
+	border:1px solid #bbf;
+	
 	font-size:10px;
-	color:#666;
+	color:#fff;
 }
 
-input[type="submit"],input[type="button"] {
-	width:150px;
-	font-size:22px;
-	color:#666;
-	background-color:#eef;
-	border:2px solid #bbf;
+
+input[type="image"],input[type="submit"],input[type="button"] {
+	margin-left:10px;
+	width:122px;
+	height:35px;
+	background:transparent;
+	vertical-align:middle;
 }
 
 
@@ -163,55 +200,121 @@ padding-left:10px;
 
 }
 
+/*		 					*/
+/*  Login form	*/
+/* 							*/
 
-/* 					*/
+.loginfg input {
+	width:60px;
+	height:16px;
+	border:1px solid #522b1d;
+  background:#cffff7;
+	font-size:11px;
+	font-weight:normal;
+	color:#522b1d;
+	margin:2px 0px 0px 4px;
+	padding:1px;
+}
+
+.loginfg input[type="checkbox"]{
+	width:10px;
+	height:10px;
+	border:0px solid #bbf;
+	font-size:10px;
+	color:#fff;
+	vertical-align:baseline;
+}
+
+.loginfg input[type="submit"], .loginfg input[type="button"], .loginfg input[type="image"] {
+	width:70px;
+	height:20px;
+	background:transparent;
+	border:0px solid #bbf;
+}
+
+.loginfg label {
+	font-size:12px;
+	font-weight:bold;
+	vertical-align:baseline;
+}
+
+
+.loginfg table, .loginfg tr, .loginfg td {
+	padding:2px 4px 0px;
+	line-height:14px;
+	margin:0px;
+	vertical-align:baseline;
+}
+
+.logged_in span {
+	padding:0px;
+	margin:0px;
+}
+
+.logged_in a, .logged_in a:visited, .logged_in a:active, .logged_in a:hover {
+	color:#fff;
+	font-weight:bold;
+	line-height:16px;
+	font-size:14px;
+	text-decoration:none;
+}
+
+.logged_in a:hover {
+text-decoration:underline;
+background-color:#a759d0;
+}
+
+.logged_in table, .logged_in tr, .logged_in td {
+	margin:0px;
+	padding-top:2px;
+	border-right:1px dotted #a759d0;
+	height:100%;
+	background:#b86ae1;
+}
+
+/* 							*/
 /*  	Header		*/
-/* 					*/
+/* 							*/
 
 #navigation {
 	font-family:helvetica, tahoma, verdana, sans-serif;
 	text-align:right;
 	font-weight:bold;
-	font-size:18px;
+	font-size:14px;
 	line-height:24px;
 	float:left;
 }
 
 #header_links {
-	font-family:helvetica, tahoma, verdana, sans-serif;
 	text-align:center;
 	font-weight:bold;
 	font-size:18px;
 	line-height:24px;
-	padding:0px 75px 0px 0px;
-	margin:-22px 0px 15px 0px;
+	padding:0px 0px 0px 0px;
+	margin:-15px 0px 0px -15px;
 
 }
 
 #header_links a {
-	color:#666;
+	color:#b86ae1;
 }
 
 #header_links a:hover {
-	color:#fff;
+	color:#522b1d;
 }
 
-.logo {
-		text-align:center;
-		padding-top:15px;
-}
 
 /* Umm... the logo... */
 
+.logo {
+	margin:20px 0px 0px;
+
+}
 #logo {
 	font-family:verdana, helvetica, tahoma, verdana, sans-serif;
 	font-weight:bold;
-	font-size:55px;
-	color:#fff;
-	line-height:55px;
-	padding:0px 0px 0px 0px;
-	width:80%;
-}
+	padding:0px;
+	}
 
 #logo a:hover {
 	background-color:transparent;
@@ -226,7 +329,7 @@ padding-left:10px;
 #banner p {
 	font-size:23px;
 	font-weight:normal;
-	color: #999;
+	color: #fff;
 	text-align:justify;
 	letter-spacing:.03em;
 	line-height:35px;
@@ -259,73 +362,110 @@ padding-left:10px;
 /*							*/
 							
 #search {
-	text-align:center;
+	margin:60px 0px 0px 95px;
 }
 
 #search input{
-	width:400px;
-	height:35px;
-	border:2px solid #bbf;
-	background-color:#eef;
-	font-size:30px;
-	color:#666;
-	margin:15px 15px 15px 0px;
-	padding-left:10px;	
+	width:300px;
+	height:23px;
+	font-size:17px;
+	color:#522b1d;
 	vertical-align:middle;
-	
+	padding:2px;
+	margin:0px 0px 0px 0px;
 }
 
 #search input[type="checkbox"]{
-	width:20px;
-	height:20px;
-	border:2px solid #bbf;
-	background-color:#eef;
-	font-size:10px;
-	color:#666;
+	width:12px;
+	height:12px;
 }
 
-#search input[type="submit"],input[type="button"] {
-	width:110px;
-	font-size:22px;
-	color:#666;
-	background-color:#eef;
-	border:2px solid #bbf;
+#search input[type="image"],input[type="submit"],input[type="button"] {
+	margin-left:10px;
+	width:122px;
+	height:35px;
+	background:transparent;
+	vertical-align:middle;
 }
 
 
-
 /* 							*/
-/*  	add_share form		*/
+/*  	sideyard			*/
 /* 							*/
 
+.sideyardfg h2 {
+	text-indent:10px;
+	padding-bottom:4px;
+	border-bottom:1px dotted white;
+}
 
-.add_share_form {
-	background-color:#ddf;
+.sideyardfg span, .sideyardfg p {
+	padding:0px 5px;
+	font-size:12px;
+	color:#fff;
+			
+}
+
+/* 		new story 	*/
+/* 		new story 	*/
+/* 		new story 	*/
+
+.prompt_container {
+	width:70%;
+	margin:20px auto;
+}
+#prompt {
 	margin:0px auto;
+	background: url(../images/black_container_bg.png) fixed repeat;
+	width:100%;
 	padding:0px;
 }
 
-.add_share_form table {
+#prompt .labels {
+	margin-left:15px;
+	font-size:16px;
+	line-height:21px;
+	font-weight:bold;
+	color:#c97bf2;
+}
+
+#prompt .entries {
+	font-size:19px;
+	font-weight:bold;
+}
+
+/*				 							*/
+/*  	add_story form		*/
+/* 											*/
+
+
+.add_story_form {
+	margin:0px auto;
+	padding:0px;
+	display:block;
+}
+
+.add_story_form table {
 	border-collapse:collapse;
 	margin:15px auto;
 	width:90%;
 	padding:0px;
 }
 
-.add_share_form th{
+.add_story_form th{
 	text-indent:15px;
 }
-.add_share_form td {
-	padding: 0 0px 0 15px;
+.add_story_form td {
+	padding: 0px 0px 10px 15px;
 	vertical-align:top;
 	}
 
-.add_share_form .right {
+.add_story_form .right {
 	border-left:2px dashed gray;
 }
 
 
-.add_share_form label, p {
+.add_story_form label, p {
 	margin:0px;
 	font-size:20px;
 	line-height:28px;
@@ -336,128 +476,140 @@ padding-left:10px;
 
 
 /* 						*/
-/* 		Show Share		*/
-/*  	#show_share		*/
-/* 		(one share)		*/
+/* 		Show Story		*/
+/*  	#show_story		*/
+/* 		(one story)		*/
 /* 						*/
 
-#show_share {
-	background-color:#ddf;
+#show_story {
 	margin:0px auto;
 	padding:0px;
 }
 
-#show_share h2 {
+#show_story h2 {
 	padding:0px;
 	margin:0px;
 }
 
-#show_share h2 a {
+#show_story h2 a {
 	font-size:23px;
 	line-height:26px;
 	color: #666;
 }
 
-#show_share h2 a:hover {
+#show_story h2 a:hover {
 	font-size:23px;
 	line-height:26px;
 	color: #fff;
 }
 
+.attribution {
+	
+	font-size:15px;
+}
+
+
+
 /* 		Toolbar					*/
 
-#show_share_toolbar {
+.toolbar_container {
+	width:80%;
+	margin:0px auto;
+}
+
+#show_story_toolbar {
 	margin:0px auto;
 	width:95%;
 	text-align:center;
-	background-color:#eef;
-	border:2px solid #ccf;
+	
+	border:0px solid #ccf;
 }
 
-#show_share_toolbar table {
+#show_story_toolbar table {
 	width:100%;
 	border-collapse:collapse;
 
 }
 
-#show_share_toolbar td {
+#show_story_toolbar td {
 	padding:2px;
 	margin:2px;
-	border-right:1px dashed #ccf;
+	border-right:0px dashed #ccf;
 }
 
-/* 		Share Information		*/
 
-#show_share .information {
-	margin-top:5px;
+
+/* 		Story Information		*/
+
+#show_story .information {
+	margin:15px auto;
 }
 
-#show_share .information table {
+#show_story .information table {
 	margin:0px auto;
 	width:100%;
 }
 
-#show_share .information td {
+#show_story .information td {
 	vertical-align:top;
-	border-bottom:1px dashed #bbf;
+	border-bottom:0px dashed #99c;
 }
 
-#show_share .border_right {
-	width:60%;
-	border-right:1px dashed #bbf;
+#show_story .border_right {
+	width:50%;
+	border-right:0px dashed #bbf;
 }
 
-#show_share .label {
+#show_story .label {
 	padding:5px 0px 0px 30px;
 	margin:0px;
-	color:#99a;
-	font-size:15px;
+	color:#667;
+	font-size:12px;
 	line-height:30px;
 }
 
-#show_share .value, #show_share .value a {
+#show_story .value, #show_story .value a {
 	padding:0px 0px 4px 35px;
 	margin-bottom:0px;
-	font-family: serif, georgia;
 	font-weight:normal;
-	font-size:15px;
+	font-size:14px;
 	line-height:20px;
-	color:#444;
+	color:#000;
 }
 
-#show_share .value a {
+#show_story .value a {
 	border:0px;
 	padding:4px;
 }
 
-#show_share .value a:hover {
-	color:#fff;
+#show_story .value a:hover {
+	color:#000;
 }
 
 
 /* 						*/
-/* 		Show Shares		*/
-/*  	#show_shares	*/
-/* 		(many shares)	*/
+/* 		Show Stories		*/
+/*  	#show_stories	*/
+/* 		(many stories)	*/
 /* 						*/
 
-#show_shares {
+#show_stories {
 
 }
 
-#show_shares table{
+#show_stories table{
 	border-collapse:collapse;
 	padding:0px;
 	margin:0px auto;
 	
 }
 
-#show_shares td {
+#show_stories td {
 	padding:3px;
 	margin:0px;
 }
 
-#show_shares .title {
+#show_stories .title {
 	width:500px;
 	padding-left:10px;
 	font-weight:bold;
@@ -466,11 +618,11 @@ padding-left:10px;
 }
 
 .row {
-	background-color:#bfbfff;
+	background:transparent;
 }
 
-#show_shares .row_alternate {
-	background-color:#d0d0f0;
+#show_stories .row_alternate {
+		background:url(../images/container_bg.png) fixed repeat;
 }
 
 /*  	This is what moves when you click "description"			*/
@@ -490,24 +642,28 @@ padding-left:10px;
 /*			Comments			*/
 /*								*/
 
+.comment_field_container {
+	width:90%;
+	margin:0px auto;
+}
+
+.commenter_container {
+	width:90%;
+	margin:10px 20px;
+}
+
+.comment_container {
+	width:80%;
+	margin:0px 60px;
+}
+
+
+#comment_submit_container {
+	width:200px;
+	margin:5px 65px;
+}
 #comments {
 	margin:0px;
-}
-
-#comments table {
-	margin:0px auto;
-	width:80%;
-	background-color:#eef;
-	border:2px #ccd solid;
-	border-collapse:collapse;
-}
-
-#comments tr {
-}
-
-#comments td {
-
-	padding:5px;
 }
 
 #comments span {
@@ -515,20 +671,26 @@ padding-left:10px;
 }
 
 #comments p {
-	margin-left:10px;
-	font-family:georgia, serif;
+	margin-left:5px;
+	text-indent:5px;
 	font-size: 14px;
-	color:#333;
+	color:#fff;
 	font-weight:normal;
 }
 
 #comments .commenter {
-	background-color:#e0e0f0;
-	margin-top:6px;
+	background:transparent;
+	margin:0px;
+	font-weight:bold;
+	font-size:16px;
+	padding:5px 10px 0px;
+	vertical-align:baseline;
 }
 
 #comments .comment {
-	border-bottom:1px #ccd dashed;
+	margin-top:0px;
+	padding:0px;
+	background:transparent;
 }
 
 #comment_form {
@@ -561,39 +723,39 @@ padding-left:10px;
 	text-align:center;
 }
 
-/*        					*/
-/* 		Global classes 		*/
+/*        								*/
+/* 		Global classes	 		*/
 /*      shared commonly		*/
 
 /*	Linked images shouldn't have black background on hover			*/
-.linked_images a:hover {background-color:transparent;}
+.linked_image a:hover {background-color:transparent;}
 
 /*	edit_this link	*/
 .edit a, .edit {
 	font-size:11px;
 	vertical-align:super;
 	padding:0px 2px 0px 2px;
-	color:#66f;
+	color:#fff;
 }
 
 .edit a:hover {
 	color:#fff;
+	font-size:11px;
+	background:transparent;
 }
 
 /*	Details link	*/
 .details a, .details {
-	margin-left:3px;
+	margin-left:0px;
 	font-size:11px;
 	vertical-align:baseline;
 }
 
 
-/* 	Description of shares (used in #show_share and #show_shares ) 	*/
+/* 	Description of stories (used in #show_story and #show_stories ) 	*/
 
 .description {
-
-	background-color:#eef;
-	border:2px solid #ccd;
+	border:0px solid #ccd;
 	margin:15px 40px 15px 40px;
 	padding:15px 30px;
 }
@@ -605,39 +767,50 @@ padding-left:10px;
 .description p {
 	text-indent:15px;
 	text-align:justify;	
-	font-family:georgia;
+	font-family:monospace;
 	font-size:15px;
 	font-weight:normal;
-	color:#333;
+	background:white;
+	color:black;
 	letter-spacing:.02em;
 	line-height:24px;
 	margin:0px 0px 15px 0px;
+	padding:10px;
 }
 
 /* notices */
-
-#notice {
-	position:absolute;
-	left:40px;
-	top:40px;
-	background-color:#f0f0f0;
-	color:#333;
-	font-family:monospace;
-	padding:10px;
-	border:2px solid #ccf;
+#notice_container {
+	position:fixed;
+	left:60px;
+	top:30px;
+	z-index:100;
+	width:30%;
+	
 }
 
-/* Sharing shares */
+#notice {
+	width:100%;
+	color:#fff;
+	font-family:helvetica, tahoma, sans-serif;
+	line-height:22px;
+	margin:0px;
+	padding:10px;
+	
+	}
 
-.share_this_share {
-	vertical_align:middle;
+#notice img {
+	padding:0px 5px;
+	}
+
+/* Sharing stories */
+
+.story_this_story {
 	line-height:18px;
 	margin:0px;
-	width:30px;
 	text-align:center;
 }
 
-.share_this_share a, #share_this_share a:visited, #share_this_share a:active, #share_this_share a:hover {
+.story_this_story a, #story_this_story a:visited, #story_this_story a:active, #story_this_story a:hover {
 	vertical-align:top;
 	text-decoration:none;
 	background-color:transparent;
@@ -666,14 +839,16 @@ padding-left:10px;
 }
 
 /* Recaptcha */
-.recaptcha_table .recaptcha_image_cell, #recaptcha_table {
-background-color:#eef;
+.recaptcha_table, .recaptcha_image_cell, #recaptcha_table {
+border:0px;
  }
  
 .recaptcha_image_cell {
 	width:300px;
 }
  #recaptcha_table {
+	background-color:white;
+
  }
  
  #recaptcha_response_field {
@@ -685,3 +860,28 @@ background-color:#eef;
 /*								*/
 /*		Clean-up Classes		*/
 /*								*/
+
+.smalltext a, .small_text a:visited, .small_text a:active, .small_text a:hover, .small_text span, .small_text p {
+	font-size:10px;
+}
+
+.center {
+	width:90%;
+	margin:0px auto;
+}
+
+.float_left {
+	float:left;
+}
+
+.float_right {
+	float:right;
+}
+
+.clear {
+	clear:both;
+}
+
+.space {
+	height:15px;
+}

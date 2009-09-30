@@ -1,6 +1,6 @@
 
 
-truncate(h(@share.website))
+truncate(h(@story.website))
 
     order = "created_at DESC"
 , :order => order

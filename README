@@ -1,4 +1,4 @@
-Sharearchy: an open index founded in March 2009 to aggregate torrents and links available via open source, free, creative commons and public domain licenses.
+Storyarchy: an open index founded in March 2009 to aggregate torrents and links available via open source, free, creative commons and public domain licenses.
 
 To get up and running:
 
@@ -14,7 +14,7 @@ Install:
 Config:
 - nginx.conf
 - vhost
-- Add .my.cnf to userdir and make sure the database.yml (in app/shared) points to it.
+- Add .my.cnf to userdir and make sure the database.yml (in /path/to/app/shared) points to it.
 
 These gems:
 - mysql
@@ -23,5 +23,16 @@ These gems:
 - rmagick (for captcha)
 
 Add this to the crontab ALL ON ONE LINE (bash$ crontab -e):
-26 * * * * cd /home/lahiri/public_html/sharearchy.com/current && /usr/local/bin/rake RAILS_ENV=production thinking_sphinx:index /home/lahiri/public_html/sharearchy.com/shared/log/cron.log &> /dev/null
+26 * * * * cd /home/lahiri/public_html/sixminutestory.com/current && /usr/local/bin/rake RAILS_ENV=production thinking_sphinx:index /home/lahiri/public_html/sixminutestory.com/storyd/log/cron.log &> /dev/null
+
+Colors and their reasons:
+Foundations::::
+Aqua: lightheartedness (Background) #cffff7
+Greenish-blue: peaceful and relaxing (substance) #62d1aa
+Deep brown: Provides balance (frames, secondary features) #ed9c56 or #522b1d
+
+Accents::::
+Black: Encourages thought to flow while providing balance. (logo)
+Purple: Associated with enlightenment, prosperity and creativity. May also provide credibility. #b86ae1
+Reddish-orange: Fire! Energy!(textual accents?)#ed9c56 
 

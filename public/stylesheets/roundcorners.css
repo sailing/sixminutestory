@@ -1,46 +1,159 @@
-.spiffyc {
-	width:80%;
-	margin:0px auto 10px;
+/* side of the site (and now all the black boxes) */
+
+.sideyard_container {
+	width:285px;
+	margin:0px 5px 0px 25px;
+	float:left;
+	
 }
-.spiffy{display:block;
-	}
-.spiffy *{
+.sideyard{display:block}
+.sideyard *{
   display:block;
   height:1px;
   overflow:hidden;
   font-size:.01em;
-  background:#ddddff;
-}
-.spiffy1{
+	}
+.sideyard1{
+		background:url(../images/black_container_bg.png) fixed repeat;
   margin-left:3px;
   margin-right:3px;
   padding-left:1px;
   padding-right:1px;
-  border-left:1px solid #f0f0ff;
-  border-right:1px solid #f0f0ff;
-  background:#e5e5ff}
-.spiffy2{
+  border-left:1px solid #377760;
+  border-right:1px solid #377760;
+}
+.sideyard2{
+		background:url(../images/black_container_bg.png) fixed repeat;
   margin-left:1px;
   margin-right:1px;
   padding-right:1px;
   padding-left:1px;
-  border-left:1px solid #fbfbff;
-  border-right:1px solid #fbfbff;
-  background:#e3e3ff}
-.spiffy3{
+  border-left:1px solid #58bc99;
+  border-right:1px solid #58bc99;
+}
+.sideyard3{
+		background:url(../images/black_container_bg.png) fixed repeat;
   margin-left:1px;
   margin-right:1px;
-  border-left:1px solid #e3e3ff;
-  border-right:1px solid #e3e3ff;}
-.spiffy4{
-  border-left:1px solid #f0f0ff;
-  border-right:1px solid #f0f0ff}
-.spiffy5{
-  border-left:1px solid #e5e5ff;
-  border-right:1px solid #e5e5ff}
-.spiffyfg{
-	background-color:#ddddff;
+  border-left:1px solid #122720;
+  border-right:1px solid #122720;}
+.sideyard4{
+	background:url(../images/black_container_bg.png) fixed repeat;
+  border-left:1px solid #377760;
+  border-right:1px solid #377760}
+.sideyard5{
+	background:url(../images/black_container_bg.png) fixed repeat;
+  border-left:1px solid #18342a;
+  border-right:1px solid #18342a}
+.sideyardfg{
+  background:url(../images/black_container_bg.png) fixed repeat;
+	width:100%;
+	margin:0px auto;
+	padding:0px 0px 0px 0px;
+}
+
+/* main greenish blue box */
+
+.house_container {
+	width:65%;
+	margin:0px 15px 0px 5px;
+	float:right;
+}
+.house{display:block;
+	}
+.house *{
+  display:block;
+  height:1px;
+  overflow:hidden;
+  font-size:.01em;
+}
+.house1{
+  margin-left:3px;
+  margin-right:3px;
+  padding-left:1px;
+  padding-right:1px;
+  border-left:1px solid #a0ebd5;
+  border-right:1px solid #a0ebd5;
+  background:url(../images/container_bg.png) fixed repeat;
+}
+.house2{
+  margin-left:1px;
+  margin-right:1px;
+  padding-right:1px;
+  padding-left:1px;
+  border-left:1px solid #c4faef;
+  border-right:1px solid #c4faef;
+  background:url(../images/container_bg.png) fixed repeat
+}
+.house3{
+  margin-left:1px;
+  margin-right:1px;
+  border-left:1px solid #76d9b8;
+  border-right:1px solid #76d9b8;
+  background:url(../images/container_bg.png) fixed repeat
+
+}
+.house4{
+  border-left:1px solid #a0ebd5;
+	  border-right:1px solid #a0ebd5;
+  background:url(../images/container_bg.png) fixed repeat
+
+}
+.house5{
+  border-left:1px solid #7ddcbd;
+  border-right:1px solid #7ddcbd;
+  background:url(../images/container_bg.png) fixed repeat
+
+}
+.housefg{
+	background: url(../images/container_bg.png) fixed repeat;
 	width:100%;
 	margin:0px auto;
 	padding:0px 0px 10px 0px;
 }
+
+/* login box */
+.login_container {
+	position:fixed;
+	left:6px;
+	top:0px;
+	width:310px;
+	display:block;
+}
+
+.login{display:block;}
+.login *{
+  display:block;
+  height:1px;
+  overflow:hidden;
+  font-size:.01em;
+  background:#b86ae1}
+.login1{
+  margin-left:3px;
+  margin-right:3px;
+  padding-left:1px;
+  padding-right:1px;
+  border-left:1px solid #c5beed;
+  border-right:1px solid #c5beed;
+  background:#bd8fe6}
+.login2{
+  margin-left:1px;
+  margin-right:1px;
+  padding-right:1px;
+  padding-left:1px;
+  border-left:1px solid #ccf0f4;
+  border-right:1px solid #ccf0f4;
+  background:#bc86e5}
+.login3{
+  margin-left:1px;
+  margin-right:1px;
+  border-left:1px solid #bc86e5;
+  border-right:1px solid #bc86e5;}
+.login4{
+  border-left:1px solid #c5beed;
+  border-right:1px solid #c5beed}
+.login5{
+  border-left:1px solid #bd8fe6;
+  border-right:1px solid #bd8fe6}
+.loginfg{
+  background:#b86ae1}

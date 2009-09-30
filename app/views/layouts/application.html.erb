@@ -4,53 +4,91 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>The Sharearchy <%= yield(:pagename) %> 		
+  <title>Six Minute Story <%= yield(:pagename) %> 		
 	</title>
 
   	<%= stylesheet_link_tag :all, :cache => true %>
 
 </head>
-<body>
+<body >
+	<div class="login_container">
+	  <div class="loginfg">
+			<% if current_user %>
+				<table class="logged_in">
+					<tr>
+						<td>
+							<span>
+							<%= link_to current_user.login, account_path %>
+							</span>
+						</td>
+							<td >
+								<span class="small_text">
 
-	<div class="logo">
+									<%= link_to "Account", account_path %>
+								</span>
+							</td>
+						<td>
+							<span class="small_text">
+								<%= link_to "Logout", logout_path, :confirm => "Are you sure you want to logout?" %>
+							</span>
+						</td>
+					
+
+					</tr>
+				</table>
+			<% else %>
 		
-	<span id="logo"><%= link_to (image_tag "logo.png"), root_path %></span>
-	</div>
-	<div id="header_links">
-		<% if !current_user %>
-		  	<%= link_to "Join", register_path %>
-		  	| <%= link_to "Sign In", login_path %> 
-			| <a href="http://fora.sharearchy.com">Fora</a>
-			| <a href="http://blog.sharearchy.com/">Blog</a>
-			| <%= link_to "About", wtf_path %><br />
-		<% else %>
-			<%= link_to "Logout", logout_path, :confirm => "Are you sure you want to logout?" %>
-			| <%= link_to "Account", account_path %>
-			| <a href="http://fora.sharearchy.com">Fora</a>
-			| <a href="http://blog.sharearchy.com/">Blog</a>
-			| <%= link_to "About", wtf_path %>
-		<% end %>
-	
-	</div>  
+		<% form_for :user_session, @user_session, :url => user_session_path do |f| %>
 
-<!-- 
+		<table >
+			<tr>
+				<td>
+						<%= f.error_message_on 'login' %>
+				  		<%= f.text_field :login, :value => "username", :onFocus => 'clearFieldFirstTime(this);' %>
+				</td>
+				<td>
+					
+						<%= f.error_message_on 'password' %>
+				  		<%= f.password_field :password, :value => "password", :onFocus => 'clearFieldFirstTime(this);' %>
+						
+				</td>
+				
+						<td>
+									<%= image_submit_tag("login_small.png", :name => "login", :id => "login-button", :disabled => false) %>
+
+						</td>
+
+					
+					<td>
+						<span><label>Save</label><%= f.check_box :remember_me %>  
+						</span>
+					</td>
+				
+				</tr>
+			</table>
+				
+				
+		<% end %>
+		<% end # end login conditional %>
+	  </div>
+
+	  <b class="login">
+	  <b class="login5"></b>
+	  <b class="login4"></b>
+	  <b class="login3"></b>
+	  <b class="login2"><b></b></b>
+	  <b class="login1"><b></b></b></b>
+
 	</div>
-  <b class="statusbar">
-  <b class="statusbar5"></b>
-  <b class="statusbar4"></b>
-  <b class="statusbar3"></b>
-  <b class="statusbar2"><b></b></b>
-  <b class="statusbar1"><b></b></b></b>
-</div>
--->
+	
 
 <% if session['banner'].nil? -%> 
 <div id="banner">
 	<p>
-		We started the <strong>Sharearchy</strong> to prove just how many <strong><%= link_to "open", wtf_path %></strong> files there are on torrent trackers like The Pirate Bay. <u>It's easy to contribute</u>: find <strong>Open Art</strong>, <strong>Tools</strong> and <strong>Information</strong> on your favorite torrent tracker and <%= link_to "add it", new_share_path %> to the Sharearchy index. <%= link_to "more", wtf_path %>
+		We started the <strong>Six Minute Story</strong> to prove just how many <strong><%= link_to "open", wtf_path %></strong> files there are on torrent trackers like The Pirate Bay. <u>It's easy to contribute</u>: find <strong>Open Art</strong>, <strong>Tools</strong> and <strong>Information</strong> on your favorite torrent tracker and <%= link_to "add it", new_path %> to the Storyarchy index. <%= link_to "more", wtf_path %>
 	</p>
 <!--	<p>
-		We're making it easy to find <strong>Open Art</strong>, <strong>Tools</strong> and <strong>Information</strong>.&nbsp;&nbsp;By <u>we</u>, we mean <u>you</u>, if you want. <u>Share</u> <b>torrents</b> and <b>links</b> to anything available under <strong>Creative Commons</strong> or <strong>Open Source</strong> licenses and stuff that's <strong>free for all</strong>, whether via a <u>philanthropist</u>, or because we, the <strong>public</strong>, have it in our <strong>domain</strong>. <a href="http://blog.sharearchy.com/about">read more</a>
+		We're making it easy to find <strong>Open Art</strong>, <strong>Tools</strong> and <strong>Information</strong>.&nbsp;&nbsp;By <u>we</u>, we mean <u>you</u>, if you want. <u>Story</u> <b>torrents</b> and <b>links</b> to anything available under <strong>Creative Commons</strong> or <strong>Open Source</strong> licenses and stuff that's <strong>free for all</strong>, whether via a <u>philanthropist</u>, or because we, the <strong>public</strong>, have it in our <strong>domain</strong>. <a href="http://blog.sixminutestory.com/about">read more</a>
 	</p>
 -->
 </div>
@@ -58,41 +96,136 @@
 <% session['banner'] = 1 %>
 <% end %>
 
-<div id="search">
+<div id="search" class="float_left">
+
 	<% form_tag '/search' do -%>
-	    <div><span><%= text_field_tag 'q' %><%= submit_tag 'Search!' %></span></div>
+	<div class="float_left">    
+	  <b class="house">
+		  <b class="house1"><b></b></b>
+		  <b class="house2"><b></b></b>
+		  <b class="house3"></b>
+		  <b class="house4"></b>
+		  <b class="house5"></b></b>
+		<%= text_field_tag 'q' %>
+		<b class="house">
+	  <b class="house5"></b>
+	  <b class="house4"></b>
+	  <b class="house3"></b>
+	  <b class="house2"><b></b></b>
+	  <b class="house1"><b></b></b></b>
+	</div>
+	<div class="float_right">
+	<%= image_submit_tag("search.png", :name => "search", :id => "search-button", :disabled => false) %>
+	</div>
 	<% end -%>
+
+	
 </div>
+
+<div class="logo float_right">
+	<span id="logo"><%= link_to (image_tag "logo.png"), root_path %></span>
+	<div id="header_links">
+		<% if !current_user %>
+		  	<%= link_to "Join", register_path %>
+			| <%= link_to "Read", read_path %>
+			| <a href="http://fora.sixminutestory.com">Fora</a>
+			| <a href="http://blog.sixminutestory.com/">Blog</a>
+			| <%= link_to "About", wtf_path %><br />
+		<% else %>
+			<%= link_to "Write", write_path %>
+			| <%= link_to "Read", read_path %>
+			| <a href="http://fora.sixminutestory.com">Fora</a>
+			| <a href="http://blog.sixminutestory.com/">Blog</a>
+			| <%= link_to "About", wtf_path %>
+		<% end %>
+	
+	</div>  
+	
+	
+</div>
+
+
+<div class="clear space"></div>
 
 
 <% if flash[:notice] %>
-<div id="notice">
-	<%= flash[:notice] -%>
+<div id="notice_container">
+<b class="sideyard">
+<b class="sideyard1"><b></b></b>
+<b class="sideyard2"><b></b></b>
+<b class="sideyard3"></b>
+<b class="sideyard4"></b>
+<b class="sideyard5"></b></b>
+
+<div class="sideyardfg">
+	<div id="notice">
+		<%= image_tag "close.png", :onClick => visual_effect(:fade,"notice_container",:duration => 0.2) %>
+		<br />
+		<%= flash[:notice] -%>
+		<%= javascript_include_tag :all, :cache => true %>
+
+	</div>
+	
+</div>
+
+<b class="sideyard">
+<b class="sideyard5"></b>
+<b class="sideyard4"></b>
+<b class="sideyard3"></b>
+<b class="sideyard2"><b></b></b>
+<b class="sideyard1"><b></b></b></b>
 </div>
 <% end %>
 
- 	<div class="spiffyc">
-	  <b class="spiffy">
-	  <b class="spiffy1"><b></b></b>
-	  <b class="spiffy2"><b></b></b>
-	  <b class="spiffy3"></b>
-	  <b class="spiffy4"></b>
-	  <b class="spiffy5"></b></b>
+<div class="sideyard_container">
+  <b class="sideyard">
+  <b class="sideyard1"><b></b></b>
+  <b class="sideyard2"><b></b></b>
+  <b class="sideyard3"></b>
+  <b class="sideyard4"></b>
+  <b class="sideyard5"></b></b>
 
-	  <div class="spiffyfg">
+  <div class="sideyardfg">
+	<%= yield(:sideyard) %> 		
+	<h2>Popular Tags</h2>
+    <%= tag_cloud %>
+
+	<h2>Contribute</h2>
+	<%= link_to "Suggest a Prompt", new_prompt_url %>
+	
+  </div>
+
+  <b class="sideyard">
+  <b class="sideyard5"></b>
+  <b class="sideyard4"></b>
+  <b class="sideyard3"></b>
+  <b class="sideyard2"><b></b></b>
+  <b class="sideyard1"><b></b></b></b>
+</div>
+  
+
+ 	<div class="house_container">
+	  <b class="house">
+	  <b class="house1"><b></b></b>
+	  <b class="house2"><b></b></b>
+	  <b class="house3"></b>
+	  <b class="house4"></b>
+	  <b class="house5"></b></b>
+
+	  <div class="housefg">
 
 	    <%= yield  %>
 	  </div>
 
-	  <b class="spiffy">
-	  <b class="spiffy5"></b>
-	  <b class="spiffy4"></b>
-	  <b class="spiffy3"></b>
-	  <b class="spiffy2"><b></b></b>
-	  <b class="spiffy1"><b></b></b></b>
+	  <b class="house">
+	  <b class="house5"></b>
+	  <b class="house4"></b>
+	  <b class="house3"></b>
+	  <b class="house2"><b></b></b>
+	  <b class="house1"><b></b></b></b>
 	</div>
 	
-	<%= javascript_include_tag "prototype", "effects", :cache => true %>
+	<%= javascript_include_tag "prototype", "effects", "application", :cache => true %>
 	<script type="text/javascript">
 	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));

@@ -8,7 +8,7 @@ class TagsController < ApplicationController
       order = "@relevance DESC"
       @tag = CGI::unescape(params[:name])
 
-#      @shares = Share.paginate :include => :taggings, :conditions => {:tag => @tag}, :page => page, :limit => per_page, :offset => offset, :finder => "find_tagged_with"
-    @shares = Share.search :page => page, :per_page => per_page, :order => order, :match_mode => :extended, :conditions => {:tag => @tag}
+#      @stories = Story.paginate :include => :taggings, :conditions => {:tag => @tag}, :page => page, :limit => per_page, :offset => offset, :finder => "find_tagged_with"
+    @stories = Story.search :page => page, :per_page => per_page, :order => order, :match_mode => :extended, :conditions => {:tag => @tag}
   end
 end

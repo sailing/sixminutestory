@@ -1,5 +1,5 @@
-<div class="add_share_form">
-<h1>Join Sharearchy</h1>
+<div class="add_story_form">
+<h1>Join Storyarchy</h1>
 <% form_for @user, :url => account_path do |f| %>
 <table>
 	<tr>
@@ -34,7 +34,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td><%= f.submit "Register" %>
+		<td><%= image_submit_tag("register.png", :name => "register", :id => "register-button", :disabled => false) %>
 		</td>
 	</tr>
 	  

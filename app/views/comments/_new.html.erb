@@ -3,17 +3,35 @@
 	<div id="comment_form">
 		<h1>Leave a comment</h1>
 
-		<% form_for(@comment) do |f| %>
-  			<%= f.hidden_field :share_id, :value => params[:id] %>
-  			<%= f.hidden_field :user_id, :value => current_user.id %>
-  			<p>
-    			<%= f.text_area :comment, :rows => 3, :cols => 55 %>
-  			</p>
-  			<p>
-    			<%= f.submit 'Contribute' %>
-  			</p>
 	
-		<% end %>
+  			
+
+			<b class="sideyard">
+			  <b class="sideyard1"><b></b></b>
+			  <b class="sideyard2"><b></b></b>
+			  <b class="sideyard3"></b>
+			  <b class="sideyard4"></b>
+			  <b class="sideyard5"></b></b>
+
+			  <div class="sideyardfg">
+					<% form_for(@comment) do |f| %>
+			  			<%= f.hidden_field :story_id, :value => params[:id] %>
+			  			<%= f.hidden_field :user_id, :value => current_user.id %>
+					<%= f.text_area :comment, :rows => 3, :cols => 35 %>		
+						<%= f.submit 'Contribute' %>
+					
+					<% end %>
+				
+			  </div>
+
+			  <b class="sideyard">
+			  <b class="sideyard5"></b>
+			  <b class="sideyard4"></b>
+			  <b class="sideyard3"></b>
+			  <b class="sideyard2"><b></b></b>
+			  <b class="sideyard1"><b></b></b></b>
+		
+			
 	</div>
 
 <% else %>

@@ -52,16 +52,16 @@ class VotesController < ApplicationController
     def create
       @vote = Vote.new(params[:vote])
       @vote.user = current_user
-      @share = Share.find_by_id(params[:share_id])
+      @story = Story.find_by_id(params[:story_id])
 
       respond_to do |format|
-        if @share.votes_for > 0 
-              pro = (@share.votes_for.to_f / @share.votes_count.to_f)*100
-              @share.rating = pro.ceil
-              @share.save
+        if @story.votes_for > 0 
+              pro = (@story.votes_for.to_f / @story.votes_count.to_f)*100
+              @story.rating = pro.ceil
+              @story.save
             else
-                @share.rating = 0
-                @share.save
+                @story.rating = 0
+                @story.save
             end
         end
 
@@ -107,16 +107,16 @@ class VotesController < ApplicationController
 
     private
     
-    def update_rating(share)
-      @share = Share.find_by_id(share)
-       if @share.votes_count > 0
-          if @share.votes_for > 0
-            pro = (@share.votes_for.to_f / @share.votes_count.to_f)*100
-            @share.rating = pro.ceil
-            @share.save
+    def update_rating(story)
+      @story = Story.find_by_id(story)
+       if @story.votes_count > 0
+          if @story.votes_for > 0
+            pro = (@story.votes_for.to_f / @story.votes_count.to_f)*100
+            @story.rating = pro.ceil
+            @story.save
           else
-              share.rating = 0
-              share.save
+              story.rating = 0
+              story.save
           end
       end
     end

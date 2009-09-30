@@ -1,7 +1,7 @@
 class VotesController < ApplicationController
  
    
-  # First, figure out our nested scope. User or Share? Important for presenting lists
+  # First, figure out our nested scope. User or Story? Important for presenting lists
   before_filter :find_votes_for_my_scope, :only => [:index]
      
   before_filter :require_user, :only => [:new, :edit, :destroy, :create, :update]
@@ -9,10 +9,10 @@ class VotesController < ApplicationController
   # before_filter :update_rating, :only => [:create,:destroy]
 #  before_filter :not_allowed,    :only => [:edit, :update, :new]
 
-  # GET /users/:user_id/shares/
-  # GET /users/:user_id/shares.xml
-  # GET /users/:user_id/shares/:quote_id/votes/
-  # GET /users/:user_id/shares/:quote_id/votes.xml
+  # GET /users/:user_id/stories/
+  # GET /users/:user_id/stories.xml
+  # GET /users/:user_id/stories/:quote_id/votes/
+  # GET /users/:user_id/stories/:quote_id/votes.xml
   def index
     respond_to do |format|
       format.html # index.html.erb
@@ -25,7 +25,7 @@ class VotesController < ApplicationController
   # GET /users/:user_id/votes/:quote_id/votes/1
   # GET /users/:user_id/votes/:quote_id/1.xml
   def show
-    @share = Vote.find(params[:id])
+    @story = Vote.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -33,10 +33,10 @@ class VotesController < ApplicationController
     end
   end
 
-  # GET /users/:id/shares/new      # INVALID
-  # GET /users/:id/shares/new.xml  # INVALID
-  # GET /users/:id/shares/new      # INVALID
-  # GET /users/:id/shares/new.xml  # INVALID
+  # GET /users/:id/stories/new      # INVALID
+  # GET /users/:id/stories/new.xml  # INVALID
+  # GET /users/:id/stories/new      # INVALID
+  # GET /users/:id/stories/new.xml  # INVALID
   def new
   end
 
@@ -44,29 +44,29 @@ class VotesController < ApplicationController
   def edit
   end
 
-  # POST /shares/:share_id/votes
-  # POST /shares/:vote_id/votes.xml
+  # POST /stories/:story_id/votes
+  # POST /stories/:vote_id/votes.xml
   def create
-    @share = Share.find(params[:share_id])
-    div_to_replace = "votes_"+ @share.id.to_s
+    @story = Story.find(params[:story_id])
+    div_to_replace = "votes_"+ @story.id.to_s
     
     respond_to do |format|
-      if current_user.vote(@share, params[:vote])
+      if current_user.vote(@story, params[:vote])
         
-        if @share.votes_count > 0
-            if @share.votes_for > 0
-              pro = (@share.votes_for.to_f / @share.votes_count.to_f)*100
-              @share.rating = pro.ceil
-              @share.save
+        if @story.votes_count > 0
+            if @story.votes_for > 0
+              pro = (@story.votes_for.to_f / @story.votes_count.to_f)*100
+              @story.rating = pro.ceil
+              @story.save
             else
-                @share.rating = 0
-                @share.save
+                @story.rating = 0
+                @story.save
             end
         end
         
         format.html { 
           render :update do |page| 
-            page.replace_html div_to_replace, :partial => "votes/share_vote", :vote => @vote 
+            page.replace_html div_to_replace, :partial => "votes/story_vote", :vote => @vote 
           end
         }
       else
@@ -97,7 +97,7 @@ class VotesController < ApplicationController
   private
   def find_votes_for_my_scope
     if params[:quote_id]
-      @votes = Vote.for_voteable(Share.find(params[:quote_id])).descending
+      @votes = Vote.for_voteable(Story.find(params[:quote_id])).descending
     elsif params[:user_id]
       @votes = Vote.for_voter(User.find(params[:user_id])).descending         
     else  
@@ -119,15 +119,15 @@ class VotesController < ApplicationController
     end
   end
 
-  def update_rating(share)
-     if @share.votes_count > 0
-        if @share.votes_for > 0
-          pro = (@share.votes_for.to_f / @share.votes_count.to_f)*100
-          @share.rating = pro.ceil
-          @share.save
+  def update_rating(story)
+     if @story.votes_count > 0
+        if @story.votes_for > 0
+          pro = (@story.votes_for.to_f / @story.votes_count.to_f)*100
+          @story.rating = pro.ceil
+          @story.save
         else
-            @share.rating = 0
-            @share.save
+            @story.rating = 0
+            @story.save
         end
     end
   end

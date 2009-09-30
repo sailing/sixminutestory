@@ -13,7 +13,7 @@
 
 development:
     adapter: mysql
-    database: sharearchy_development
+    database: sixminutestory_development
     username: root
     password:
     socket: /tmp/mysql.sock
@@ -27,7 +27,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
     adapter:mysql
-    database: sharearchy_test
+    database: sixminutestory_test
     username: root
     password: 
     socket: /tmp/mysql.sock
@@ -46,7 +46,7 @@ test:
 production:
   adapter: mysql
   encoding: utf8
-  database: sharearchy_production
+  database: sixminutestory_production
   username: root
   password: <%= get_mysql_password %>
   socket: /var/run/mysqld/mysqld.sock

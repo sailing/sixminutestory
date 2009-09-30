@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
       per_page = 5
       condition = true
       order = "created_at DESC"
-      @comments = Comment.paginate :all, :page => page, :per_page => per_page, :order => order, :conditions => {:share_id => params[:id]}
+      @comments = Comment.paginate :all, :page => page, :per_page => per_page, :order => order, :conditions => {:story_id => params[:id]}
       
       respond_to do |format|
         format.html # index.html.erb
@@ -44,11 +44,11 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         flash[:notice] = 'Comment contributed!'
-        format.html { redirect_to :controller => "shares", :action => "show", :id => @comment.share_id, :anchor => "comments" }
+        format.html { redirect_to :controller => "stories", :action => "show", :id => @comment.story_id, :anchor => "comments" }
         format.xml  { render :xml => @comment, :status => :created, :location => @comment }
       else
         flash[:notice] = 'Comment is free, so give thine to me.'
-        format.html { redirect_to share_path(@comment.share_id),:anchor => "comments"}
+        format.html { redirect_to story_path(@comment.story_id),:anchor => "comments"}
         format.xml  { render :xml => @comment.errors, :status => :unprocessable_entity }
       end
     end

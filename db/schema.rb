@@ -9,12 +9,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090528234054) do
+ActiveRecord::Schema.define(:version => 20090929201314) do
 
   create_table "comments", :force => true do |t|
     t.text     "comment"
     t.integer  "user_id"
-    t.integer  "share_id"
+    t.integer  "story_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contests", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "start"
+    t.datetime "end"
+    t.integer  "user_id"
+    t.boolean  "active",      :default => true
+    t.boolean  "delta",       :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "prompts", :force => true do |t|
+    t.string   "hero"
+    t.string   "villain"
+    t.string   "goal"
+    t.integer  "user_id"
+    t.integer  "contest_id", :default => 0
+    t.boolean  "active",     :default => true
+    t.boolean  "delta",      :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -29,20 +53,18 @@ ActiveRecord::Schema.define(:version => 20090528234054) do
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
-  create_table "shares", :force => true do |t|
-    t.string   "link"
+  create_table "stories", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "website"
-    t.string   "source"
-    t.string   "alternative_contact"
-    t.boolean  "active",              :default => true
+    t.string   "license"
+    t.integer  "rating",      :default => 0
     t.integer  "user_id"
+    t.integer  "prompt_id"
+    t.integer  "contest_id",  :default => 0
+    t.boolean  "delta",       :default => false
+    t.boolean  "active",      :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "license"
-    t.boolean  "delta",               :default => false
-    t.integer  "rating",              :default => 0
   end
 
   create_table "taggings", :force => true do |t|

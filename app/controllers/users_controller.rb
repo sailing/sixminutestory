@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     page = params[:page] || 1
     per_page = 10
     order = "created_at DESC"
-    @shares = Share.paginate_by_user_id @user.id, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    
+    @stories = Story.paginate_by_user_id @user.id, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    
   end
   
 

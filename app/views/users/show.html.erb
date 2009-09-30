@@ -1,8 +1,8 @@
 <% if current_user.id == @user.id %>
-<%= render :partial => "layouts/show_shares" %>
+<%= render :partial => "layouts/show_stories" %>
 
 <br /><br />
-<div id="show_share">
+<div id="show_story">
 	<h1>
 	  <%=h @user.login %> | <%= link_to 'Edit profile', edit_user_path(@user) %>
 	</h1>

@@ -1,4 +1,8 @@
-ActionController::Routing::Routes.draw do |map|    
+ActionController::Routing::Routes.draw do |map|
+  map.resources :contests
+
+  map.resources :prompts
+    
 
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -10,23 +14,25 @@ ActionController::Routing::Routes.draw do |map|
   # Sample of named route:
   #   map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
   # This route can be invoked with purchase_url(:id => product.id)
-
+    
+    map.write 'write', :controller => "stories", :action => "new"
+    map.read 'read', :controller => "site", :action => "recent"
     map.login 'login', :controller => "user_sessions", :action => "new"
     map.logout 'logout', :controller => "user_sessions", :action => "destroy"
     map.register 'register', :controller => "users", :action => "new"
-    map.new '/new', :controller => "shares", :action => "new"
+    map.new '/new', :controller => "stories", :action => "new"
 
     map.tags 'tags/:name', :controller => "tags", :action => "show"
 
     map.resources :users do |user|
        user.resources :votes
-       user.resources :shares do |share|
-         share.resources :votes
+       user.resources :stories do |story|
+         story.resources :votes
        end
      end
 
-     map.resources :shares do |share|
-       share.resources :votes
+     map.resources :stories do |story|
+       story.resources :votes
      end
      
      map.resources :comments
@@ -88,7 +94,7 @@ ActionController::Routing::Routes.draw do |map|
   # consider removing the them or commenting them out if you're using named routes and resources.
   
  
-  map.catch_all "*", :controller => "shares"
+  map.catch_all "*", :controller => "stories"
 
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'

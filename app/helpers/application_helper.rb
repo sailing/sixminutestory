@@ -1,15 +1,15 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
 
-    def edit_this(share = {})
-      share = share ? share : @share
-      if current_user && ((@user.present? && current_user.id == @user.id) || (share.present? && current_user.id == share.user_id) || (@share.present? && current_user.id == @share.user_id))
+    def edit_this(story = {})
+      story = story ? story : @story
+      if current_user && ((@user.present? && current_user.id == @user.id) || (story.present? && current_user.id == story.user_id) || (@story.present? && current_user.id == @story.user_id))
       
-            link_to 'edit', edit_share_path(share)
+            link_to 'edit', edit_story_path(story)
       
-      #  if @share 
-       #   if current_user.id == @share.user_id
-        #    link_to 'Edit', edit_share_path(@share) 
+      #  if @story 
+       #   if current_user.id == @story.user_id
+        #    link_to 'Edit', edit_story_path(@story) 
         #  end
       #  end  
       end

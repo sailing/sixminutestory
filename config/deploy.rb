@@ -8,13 +8,13 @@ default_run_options[:pty] = true
 # set :deploy_to, "/var/www/#{application}"
 
 
-set :deploy_to, "/home/lahiri/public_html/sharearchy.com"
+set :deploy_to, "/home/lahiri/public_html/sixminutestory.com"
 
 # If you aren't using Subversion to manage your source code, specify
 # your SCM below:
 # set :scm, :subversion
 set :scm, "git"
-set :repository, "git@github.com:sailing/sharearchy.git"
+set :repository, "git@github.com:sailing/sixminutestory.git"
 set :branch, "master"
 set :deploy_via, :remote_cache
 
@@ -83,11 +83,11 @@ namespace :deploy do
   
   task :after_update do
       run <<-CMD
-        ln -nfs #{shared_path}/system/database.yml #{release_path}/config/database.yml
+        ln -nfs #{storyd_path}/system/database.yml #{release_path}/config/database.yml
       CMD
       
       run <<-CMD
-        ln -nfs #{shared_path}/system/uploads #{release_path}/public/uploads
+        ln -nfs #{storyd_path}/system/uploads #{release_path}/public/uploads
       CMD
       
     
@@ -104,7 +104,7 @@ namespace :deploy do
 
   desc "Link up Sphinx's indexes."
   task :symlink_sphinx_indexes, :roles => [:app] do
-    run "ln -nfs #{shared_path}/db/sphinx #{current_path}/db/sphinx"
+    run "ln -nfs #{storyd_path}/db/sphinx #{current_path}/db/sphinx"
   end
 end
 
