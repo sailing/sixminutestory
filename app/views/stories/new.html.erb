@@ -1,6 +1,6 @@
-<h1>Write a Six Minute Story</h1>
+<div id="prompt_and_timer" style="display:none;">
 
-<div class="prompt_container">
+<div id="prompt_container" class="prompt_container float_left" >
   <b class="sideyard">
   <b class="sideyard1"><b></b></b>
   <b class="sideyard2"><b></b></b>
@@ -14,6 +14,7 @@
 		<span class="labels">villain </span><span class="entries"><%= @prompt.villain -%></span>
 		<br />
 		<span class="labels">goal </span><span class="entries"><%= @prompt.goal -%></span>
+		<span class="labels">id</span><span class="entries"><%= @prompt.id -%></span>
 	</div>
 
   <b class="sideyard">
@@ -22,8 +23,127 @@
   <b class="sideyard3"></b>
   <b class="sideyard2"><b></b></b>
   <b class="sideyard1"><b></b></b></b>
-</div>
 
+
+
+</div>
+<div id="timer_container" class="timer_container float_right">
+		<span id="timer_element" >
+		</span>
+</div>
+</div><!-- Prompt and Timer container -->
+
+
+
+<div class="clear space">
+</div>
 <% form_for(@story) do |f| %>
-  <%= render :partial => "form", :object => f %>
+	<%= hidden_field_tag :prompt, @prompt.id %>
+	
+	<div class="center">
+		
+		<b class="sideyard">
+	  <b class="sideyard1"><b></b></b>
+	  <b class="sideyard2"><b></b></b>
+	  <b class="sideyard3"></b>
+	  <b class="sideyard4"></b>
+	  <b class="sideyard5"></b></b>
+		  <div class="sideyardfg">
+
+			<%= f.error_message_on 'description' %><br />
+			
+		
+			<% if @story.description.present? || @editing.present?
+				 @description = @story.description
+				
+				if @editing.present? 
+					@disabled = true 
+				end
+			%>	
+				<script type="text/javascript">
+					window.onload=function(){
+						document.getElementById('story_description').disabled=true;
+					}
+				</script>
+				
+			<% else
+				@disabled = false
+				@description = "when you click here the prompt will appear and the timer will start"
+			%>
+					
+			<%	end %>
+			
+			<% @story.title.present? ? @title = @story.title : @title = "title" %>
+			<% @story.tags.present? ? @tags = "" : @tags = "tags" %>
+			
+  			<%= f.text_area :description, :value => @description, :rows => 20, :cols => 45, :tabindex => "1", :onFocus => "Effect.Appear('prompt_and_timer',{duration:0.1});getSetWrite(this);" %>
+		</div>
+	  <b class="sideyard">
+	  <b class="sideyard5"></b>
+	  <b class="sideyard4"></b>
+	  <b class="sideyard3"></b>
+	  <b class="sideyard2"><b></b></b>
+	  <b class="sideyard1"><b></b></b></b>
+
+
+			<p>
+
+				<%= f.error_message_on 'title' %><br />
+		  		<%= f.text_field :title, :disabled => @disabled, :onFocus => 'clearFieldFirstTime(this);', :value => @title, :tabindex => "2" %>
+			</p>
+				<p>
+					<% if @story.tags.present? -%>
+						<% @story.tags.each do |tag| -%>
+			   				<%= tag %>
+						<% end -%>
+					<% end -%>
+		 			<%= f.text_field :tag_list, :onFocus => 'clearFieldFirstTime(this);', :value => @tags, :tabindex => "3" %>
+	  			</p>
+		
+			<p>
+				<label for="story_license">License</label>
+				<%= f.error_message_on 'license' %><br />
+				<select name="story[license]" id="story_license" onchange="" tabindex="4">
+					<option value="Creative Commons Attribution 3.0">
+						Creative Commons Attribution 3.0</option>
+			
+					<option value="Creative Commons Attribution-NoDerivs 3.0">
+						Creative Commons Attribution-NoDerivs 3.0</option>
+						
+					<option value="Creative Commons Attribution-NonCommerical-NoDerivs 3.0">
+						Creative Commons Attribution-NonCommercial-NoDerivs 3.0</option>
+			
+					<option value="Creative Commons AttributionNonCommerical 3.0">
+						Creative Commons Attribution-NonCommercial 3.0</option>
+			
+					<option value="Creative Commons Attribution-NonCommerical-ShareAlike 3.0">
+						Creative Commons Attribution-NonCommercial-ShareAlike 3.0</option>
+			
+					<option value="Creative Commons Attribution-ShareAlike 3.0">
+						Creative Commons Attribution-ShareAlike 3.0</option>
+					<option value="Public Domain">Public Domain</option>
+					
+				</select>
+			</p>
+			
+		
+			<p>
+				<% unless current_user.id == @story.user_id %>
+					<% if session[:recaptcha_error].present? %>
+					 	<span class="formError">Incorrect text entered.</span>
+					<% end %>
+					
+					<%= recaptcha_tags :display => {:theme => "clean"} %>
+				<% end %>
+			</p>
+			<br />
+				<p>
+				<%= image_submit_tag("save.png", :name => "save", :id => "save-button", :disabled => @disabled, :tabindex => "5", :onclick => "document.getElementById('story_description').disabled=false;") %>
+				 <% if current_user.id == @story.user_id %>
+						<%= link_to 'Destroy story', @story, :confirm => 'Are you sure you want to remove this story? Your story will no longer be visible!', :method => :delete %>
+						<% end %>
+				</p>
+	
+</div>
 <% end %>
+

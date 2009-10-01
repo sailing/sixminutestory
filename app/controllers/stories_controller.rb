@@ -44,7 +44,8 @@ class StoriesController < ApplicationController
   # POST /stories.xml
   def create
     @story = Story.new(params[:story])
-
+    @prompt = Prompt.find_by_id(params[:prompt])
+    
     respond_to do |format|
       if verify_recaptcha && @story.save
         @user = @current_user

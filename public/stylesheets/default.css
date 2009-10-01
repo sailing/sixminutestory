@@ -34,7 +34,7 @@ body {
   	padding:0px;
 
 	vertical-align:baseline;
-	background: #cffff7 url(../images/sublogo.png) bottom right fixed no-repeat;
+	background: #cffff7 url(../images/sublogo_new.png) bottom right fixed no-repeat;
 	z-index:1;
 
 	color:#fff; 
@@ -46,6 +46,8 @@ body, p, ol, ul, td {
   font-size:   13px;
   line-height: 18px;
   margin:0px 0px;
+	letter-spacing:.75px;
+
 }
 
 p {
@@ -307,7 +309,7 @@ background-color:#a759d0;
 /* Umm... the logo... */
 
 .logo {
-	margin:20px 0px 0px;
+	margin:20px 15px 0px;
 
 }
 #logo {
@@ -410,27 +412,55 @@ background-color:#a759d0;
 /* 		new story 	*/
 /* 		new story 	*/
 
+#prompt_and_timer {
+	width:70%;
+	position:fixed;
+	top:100px;
+	left:150px;
+}
+
 .prompt_container {
 	width:70%;
-	margin:20px auto;
+	margin:0px;
+	
 }
+
 #prompt {
-	margin:0px auto;
-	background: url(../images/black_container_bg.png) fixed repeat;
+	background: #000 url(../images/black_container_bg.png) fixed repeat;
 	width:100%;
 	padding:0px;
 }
 
 #prompt .labels {
-	margin-left:15px;
+	margin-left:20px;
 	font-size:16px;
 	line-height:21px;
 	font-weight:bold;
 	color:#c97bf2;
+
 }
 
 #prompt .entries {
-	font-size:19px;
+	margin-left:2px;
+	font-size:22px;
+	font-weight:normal;
+	letter-spacing:1px;
+	
+}
+
+#timer_container {
+	background: url(../images/timer_background.png) no-repeat;
+	width:122px;
+	height:35px;
+	margin:0px;
+	text-align:center;
+	
+}
+
+#timer_container span {
+	position:relative;
+	top:10px;
+	font-size:23px;
 	font-weight:bold;
 }
 
@@ -504,8 +534,12 @@ background-color:#a759d0;
 }
 
 .attribution {
-	
+	color:#b86ae1;	
 	font-size:15px;
+	font-weight:bold;
+	position: relative;
+	left:35px;
+	bottom:15px;
 }
 
 
@@ -861,7 +895,7 @@ border:0px;
 /*		Clean-up Classes		*/
 /*								*/
 
-.smalltext a, .small_text a:visited, .small_text a:active, .small_text a:hover, .small_text span, .small_text p {
+.small_text a, .small_text a:visited, .small_text a:active, .small_text a:hover, .small_text span, .small_text p {
 	font-size:10px;
 }
 

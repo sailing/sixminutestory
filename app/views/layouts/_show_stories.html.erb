@@ -5,7 +5,9 @@
 
 <table>
 <% for story in @stories %>
-<% @i = @i + 1 %>
+<% 
+@i = @i + 1 #actually semi-important. used to identify entries.
+%>
 
 <tr class="<%= cycle('row_alternate', 'row') -%>">
 	
@@ -38,12 +40,7 @@
 	
 	<td id="show_stories" class="title">
 		<span>
-			
-			<span class="edit"> 
-			<% if edit_this(story) %>
-				<%= edit_this(story) %> 
-			<% end %>
-			</span>
+		
 			<%= link_to h(story.title), story_url(story) %> 
 	
 		</span>

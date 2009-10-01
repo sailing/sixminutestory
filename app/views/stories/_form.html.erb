@@ -11,11 +11,11 @@
 
 			<%= form.error_message_on 'description' %><br />
 			<% @editing.present? ? @disabled = true : @disabled = false %>
-			<% @story.description.present? ? @description = @story.description : @description = "when you click here, the timer starts" %>
+			<% @story.description.present? ? @description = @story.description : @description = "" %>
 			<% @story.title.present? ? @title = @story.title : @title = "title" %>
 			<% @story.tags.present? ? @tags = "" : @tags = "tags" %>
 			
-  			<%= form.text_area :description, :disabled => @disabled, :value => @description, :rows => 20, :cols => 45, :onFocus => 'clearFieldFirstTime(this);' %>
+  			<%= form.text_area :description, :disabled => @disabled, :value => @description, :rows => 20, :cols => 45, :tabindex => "1",:onFocus => 'GetCount(1,11000);' %>
 		</div>
 	  <b class="sideyard">
 	  <b class="sideyard5"></b>

@@ -106,7 +106,7 @@
 		  <b class="house3"></b>
 		  <b class="house4"></b>
 		  <b class="house5"></b></b>
-		<%= text_field_tag 'q' %>
+		<%= text_field_tag 'q', nil, :tabindex => "10" %>
 		<b class="house">
 	  <b class="house5"></b>
 	  <b class="house4"></b>
@@ -191,8 +191,9 @@
     <%= tag_cloud %>
 
 	<h2>Contribute</h2>
+	<p>
 	<%= link_to "Suggest a Prompt", new_prompt_url %>
-	
+	</p>
   </div>
 
   <b class="sideyard">
