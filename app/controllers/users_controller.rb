@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
+    @user.admin_level = 1;
     if verify_recaptcha && @user.save
         redirect_back_or_default account_url
       else

@@ -1,6 +1,12 @@
 element_story_id = @story.id.to_s
 element_id = "votes_"+element_story_id
 
-update_page do |page|
-  page.replace_html element_id, :partial => "votes/story_vote", :locals => {:story => @story}
+ballot_one = render_to_string(:partial => "votes/story_vote")
+ballot_two = render_to_string(:partial => "votes/story_vote")
+
+
+render :update do |page|
+  page.replace_html 'ballot_one', :partial => ballot_one, :locals => {:story => @story}
+  page.replace_html 'ballot_two', :partial => ballot_two, :locals => {:story => @story}
+  
 end

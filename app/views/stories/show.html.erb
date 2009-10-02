@@ -11,7 +11,7 @@
 		
 		
 	
-		<%= 
+		<%=
 		 render :partial => "toolbar", :locals => { :story => @story } 
 		%>
 		
@@ -23,15 +23,21 @@
 		</div>
 
 	<%= 
-	render :partial => "toolbar", :locals => { :story => @story } 
+	#render :partial => "toolbar", :locals => { :story => @story } 
 	%>
-	
+	<div class="information_container">
+	 <b class="house">
+		  <b class="house1"><b></b></b>
+		  <b class="house2"><b></b></b>
+		  <b class="house3"></b>
+		  <b class="house4"></b>
+		  <b class="house5"></b></b>
 		<div class="information">
 			<table>
 				<tr>
 					<td class="border_right">
 					<span class="label">license</span>
-						
+
 						<br />
 						<p class="value">
 							 <%=h @story.license %>
@@ -40,7 +46,7 @@
 
 					<td class="border_right">
 					<span class="label">tags</span>
-						
+
 						<br />
 						<p class="value">	
 							<% @story.tags.each do |tag| -%>
@@ -51,7 +57,15 @@
 				</tr>
 			</table>
 		</div>
+		<b class="house">
+	  <b class="house5"></b>
+	  <b class="house4"></b>
+	  <b class="house3"></b>
+	  <b class="house2"><b></b></b>
+	  <b class="house1"><b></b></b></b>
+	</div>
 </div>
+
 <%= render :partial => "comments/comments" %>
 
 

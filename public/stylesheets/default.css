@@ -575,8 +575,17 @@ background-color:#a759d0;
 
 /* 		Story Information		*/
 
-#show_story .information {
+#show_story .information_container {
+	width:85%;
 	margin:15px auto;
+}
+
+#show_story .information {
+	width:100%;
+	margin:0px auto;
+	background:url(../images/container_bg.png) fixed repeat;
+	
+	
 }
 
 #show_story .information table {
@@ -815,8 +824,8 @@ background-color:#a759d0;
 /* notices */
 #notice_container {
 	position:fixed;
-	left:60px;
-	top:30px;
+	left:30%;
+	top:30%;
 	z-index:100;
 	width:30%;
 	

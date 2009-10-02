@@ -13,6 +13,11 @@
   <%=h @prompt.goal %>
 </p>
 
+<p>
+	<b>Use on:</b>
+	<%=h @prompt.use_on if @prompt.use_on.present? %>
+</p>
+
 
 <%= link_to 'Edit', edit_prompt_path(@prompt) %> |
 <%= link_to 'Back', prompts_path %>

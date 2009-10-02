@@ -1,4 +1,5 @@
 class SiteController < ApplicationController
+   before_filter :must_be_admin, :only => [:admin]
 
   def index
     per_page = 15
@@ -89,6 +90,4 @@ class SiteController < ApplicationController
          @i = 0
    end
   
-  
-
 end

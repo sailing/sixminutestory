@@ -15,6 +15,12 @@
     <%= f.label :goal %><br />
     <%= f.text_field :goal %>
   </p>
+	<p>
+		<%= f.label :use_on %><br />
+		Month: <br /><%= select_month(Date.today)%><br />
+		Day: <br /><%= select_day(Date.today)%><br />
+		Year: <br /><%= select_year(Date.today,:start_year => 2009)%>
+	</p>
   <p>
     <%= f.submit 'Update' %>
   </p>

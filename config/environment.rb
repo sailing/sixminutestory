@@ -3,8 +3,9 @@
 # Uncomment below to force Rails into production mode when
 # you don't control web/app server and can't set it the proper way
 # ENV['RAILS_ENV'] ||= 'production'
-ENV['RECAPTCHA_PUBLIC_KEY'] = '6Lcu1QYAAAAAAI3UgTNBuNnMUZQGHLWazXG2J_rb'
-ENV['RECAPTCHA_PRIVATE_KEY'] = '6Lcu1QYAAAAAACCIgc6QB8Lt60awOmYzoXD2yMvQ'
+
+ENV['RECAPTCHA_PUBLIC_KEY'] = '6Le0WgcAAAAAAMgYEpHaYoNKQ4EnQJN6smla0xU2'
+ENV['RECAPTCHA_PRIVATE_KEY'] = '6Le0WgcAAAAAABp7pJR1gRULDVe1z1_eGybvZsLe'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
 RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
@@ -19,6 +20,7 @@ Rails::Initializer.run do |config|
   config.gem 'mislav-will_paginate', 
       :lib => 'will_paginate', 
       :source => 'http://gems.github.com'
+      
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
@@ -63,7 +65,7 @@ Rails::Initializer.run do |config|
   # Make sure the secret is at least 30 characters and all random, 
   # no regular words or you'll be exposed to dictionary attacks.
   config.action_controller.session = {
-    :session_key => '_sa_session',
+    :session_key => '_6ms_session',
     :secret      => '3410c440d2b2685a47cfdb39d376f9352c47510103871943edb52d9410bc578ec6e6922e713a62e41e21aed293c4bc9eb7308616b2281cad74b54df7405b270c'
   }
 

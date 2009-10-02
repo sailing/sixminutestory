@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090929201314) do
+ActiveRecord::Schema.define(:version => 20091002024658) do
 
   create_table "comments", :force => true do |t|
     t.text     "comment"
@@ -35,9 +35,11 @@ ActiveRecord::Schema.define(:version => 20090929201314) do
     t.string   "hero"
     t.string   "villain"
     t.string   "goal"
+    t.date     "use_on"
     t.integer  "user_id"
     t.integer  "contest_id", :default => 0
     t.boolean  "active",     :default => true
+    t.boolean  "verified",   :default => false
     t.boolean  "delta",      :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -102,6 +104,7 @@ ActiveRecord::Schema.define(:version => 20090929201314) do
     t.datetime "current_login_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "admin_level"
   end
 
   create_table "votes", :force => true do |t|

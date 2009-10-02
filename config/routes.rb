@@ -15,14 +15,24 @@ ActionController::Routing::Routes.draw do |map|
   #   map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
   # This route can be invoked with purchase_url(:id => product.id)
     
+    # site activities
     map.write 'write', :controller => "stories", :action => "new"
+    map.write_to_prompt 'write/:prompt', :controller => "stories", :action => "new"
     map.read 'read', :controller => "site", :action => "recent"
+    map.past 'archives', :controller => "prompts", :action => "past"
+    
+    #user activities
     map.login 'login', :controller => "user_sessions", :action => "new"
     map.logout 'logout', :controller => "user_sessions", :action => "destroy"
     map.register 'register', :controller => "users", :action => "new"
-    map.new '/new', :controller => "stories", :action => "new"
-
+    
+    #administration
+    map.prompts_admin "admin/prompts", :controller => "prompts", :action => "admin"
+    map.users_admin "admin/users", :controller => "users", :action => "admin"
+    map.stories_admin "admin/stories", :controller => "stories", :action => "admin"
+    map.contests_admin "admin/contests", :controller => "contests", :action => "admin"
     map.tags 'tags/:name', :controller => "tags", :action => "show"
+
 
     map.resources :users do |user|
        user.resources :votes
@@ -38,9 +48,11 @@ ActionController::Routing::Routes.draw do |map|
      map.resources :comments
      map.resources :tags
 
-     map.resource :account, :controller => "users"
      map.resource :user_session
-
+     
+     map.resource :account, :controller => "users"
+     
+     
     map.with_options :controller => "site" do |site|
       site.root                                   :action => "recent" 
       site.formatted_root     '/recent.:format',  :action => "recent"
@@ -55,7 +67,8 @@ ActionController::Routing::Routes.draw do |map|
       site.terms              '/terms',           :action => "terms"
       site.privacy            '/privacy',         :action => "privacy"
       site.api                '/api',             :action => "api"
-      site.profile            '/profile/:login',   :action => "profile" 
+      site.profile            '/profile/:login',   :action => "profile"
+      site.admin              '/admin/',          :action => "admin"
     end
 
 

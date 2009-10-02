@@ -26,7 +26,7 @@ class StoriesController < ApplicationController
   # GET /stories/new.xml
   def new
     @story = Story.new
-    @prompt = Prompt.find(:first, :order => 'created_at DESC')
+    params[:prompt].present? ? @prompt = Prompt.find_by_id(params[:prompt], :conditions => {:active => true, :verified => true}) : @prompt = Prompt.find(:first, :conditions => {:use_on => Date.today,:active => true, :verified => true})
     
     respond_to do |format|
       format.html # new.html.erb
