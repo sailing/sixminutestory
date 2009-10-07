@@ -55,8 +55,8 @@ class VotesController < ApplicationController
         
         if @story.votes_count > 0
             if @story.votes_for > 0
-              pro = (@story.votes_for.to_f / @story.votes_count.to_f)*100
-              @story.rating = pro.ceil
+              #pro = (@story.votes_for.to_f / @story.votes_count.to_f)*100
+              @story.rating += 1
               @story.save
             else
                 @story.rating = 0

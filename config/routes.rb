@@ -16,10 +16,20 @@ ActionController::Routing::Routes.draw do |map|
   # This route can be invoked with purchase_url(:id => product.id)
     
     # site activities
+      # writing / prompts
     map.write 'write', :controller => "stories", :action => "new"
+    map.write_random 'random/write', :controller => "prompts", :action => "random"
     map.write_to_prompt 'write/:prompt', :controller => "stories", :action => "new"
+    map.past_prompts 'archives', :controller => "prompts", :action => "past"
+    map.contribute_a_prompt 'contribute/prompt', :controller => "prompts", :action => "new"
+    
+      # reading
     map.read 'read', :controller => "site", :action => "recent"
-    map.past 'archives', :controller => "prompts", :action => "past"
+    map.read_random 'random/read', :controller => "stories", :action => "random"
+    map.read_story 'read/:id', :controller => "stories", :action => "show"
+    map.read_story_with_title 'read/:id/:title', :controller => "stories", :action => "show", :requirements => { :title => /.*/ }
+    map.flag_story 'flag', :controller => "stories", :action => "flag_story", :conditions => { :method => :post }
+    map.tags 'tags/:name', :controller => "tags", :action => "show", :requirements => { :name => /.*/ }
     
     #user activities
     map.login 'login', :controller => "user_sessions", :action => "new"
@@ -28,10 +38,14 @@ ActionController::Routing::Routes.draw do |map|
     
     #administration
     map.prompts_admin "admin/prompts", :controller => "prompts", :action => "admin"
+    map.verified_prompts "admin/prompts/verified", :controller => "prompts", :action => "verified" 
     map.users_admin "admin/users", :controller => "users", :action => "admin"
     map.stories_admin "admin/stories", :controller => "stories", :action => "admin"
+    map.disabled_stories "admin/stories/disabled", :controller => "stories", :action => "disabled"
+    map.enable_story "admin/stories/enable/:id", :controller => "stories", :action => "enable_story"
+    map.disable_story "admin/stories/disable/:id", :controller => "stories", :action => "disable_story"
     map.contests_admin "admin/contests", :controller => "contests", :action => "admin"
-    map.tags 'tags/:name', :controller => "tags", :action => "show"
+    
 
 
     map.resources :users do |user|
@@ -46,7 +60,6 @@ ActionController::Routing::Routes.draw do |map|
      end
      
      map.resources :comments
-     map.resources :tags
 
      map.resource :user_session
      

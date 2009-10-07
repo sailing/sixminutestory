@@ -1,18 +1,16 @@
 class PromptsController < ApplicationController
   before_filter :require_user, :only => [:new,:create] 
-  before_filter :must_be_admin, :only => [:verify_prompt, :verified, :edit, :update,:admin,:destroy]
+  before_filter :must_be_admin, :only => [:enable_prompt, :disable_prompt, :verified, :edit, :update,:admin,:destroy]
  
   # GET /prompts
   # GET /prompts.xml
  
   def verified
     page = params[:page] || 1
-    today_per_page = 100
      per_page = 15
-     order = "start ASC"
-      today = DateTime.now.advance(:hours => -12).strftime("%Y%m%d")
+     order = "updated_at DESC"
     
-    @prompts = Prompt.all(:order => order,:conditions => ["active = :active AND verified = :verified AND (end > :now OR start > :now)", {:active => true, :verified => true, :now => Time.zone.now.advance(:hours => -12)} ])
+    @prompts = Prompt.paginate :page => page, :per_page => per_page, :order => order, :conditions => ["active = :active AND (use_on IS NOT :use_on)", {:active => true, :use_on => nil} ]
   
   end
   
@@ -24,9 +22,9 @@ class PromptsController < ApplicationController
     @prompts = Prompt.paginate :page => page, :order => order, :per_page => per_page, :conditions => {:active => true, :verified => false}
   end
   
-  def verify_prompt
+  def enable_prompt
     @prompt = Prompt.find(params[:id])
-    @prompt.verified = 1
+    @prompt.active = 1
      respond_to do |format|
        if @prompt.save
          flash[:notice] = 'Prompt verified.'
@@ -39,6 +37,23 @@ class PromptsController < ApplicationController
        end
      end
   end
+  
+  def disable_prompt
+    @prompt = Prompt.find(params[:id])
+    @prompt.active = 0
+     respond_to do |format|
+       if @prompt.save
+         flash[:notice] = 'Prompt verified.'
+         format.html { redirect_to(prompts_admin_path) }
+         format.xml  { head :ok }
+       else
+         flash[:notice] = 'Prompt NOT verified.'
+         format.html { redirect_to(prompts_admin_path) }
+         format.xml  { render :xml => @prompt.errors, :status => :unprocessable_entity }
+       end
+     end
+  end
+  
   
   def past
      page = params[:page] || 1
@@ -53,7 +68,11 @@ class PromptsController < ApplicationController
   # GET /prompts
   # GET /prompts.xml
   def admin
-    @prompts = Prompt.all
+      page = params[:page] || 1
+      per_page = 15
+      order = "created_at DESC"
+
+      @prompts = Prompt.paginate :page => page, :order => order, :per_page => per_page, :conditions => ["active = :active AND use_on IS :use_on", {:active => true, :use_on => nil} ]
 
     respond_to do |format|
       format.html # index.html.erb
@@ -124,13 +143,20 @@ class PromptsController < ApplicationController
 
   # DELETE /prompts/1
   # DELETE /prompts/1.xml
-  def destroy
-    @prompt = Prompt.find(params[:id])
-    @prompt.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(prompts_url) }
-      format.xml  { head :ok }
+
+  def random
+    e = ActiveRecord::RecordNotFound
+    begin
+      get_random()
+    rescue Exception => e
+      redirect_to write_random_url
+    else
+      redirect_to write_to_prompt_url(@prompt)
+      
     end
+      
   end
+
+
 end

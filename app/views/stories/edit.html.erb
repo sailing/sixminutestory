@@ -1,14 +1,6 @@
 
 
-<% if current_user.id == @story.user_id %>
 	<% form_for(@story) do |f| %>
   		<%= f.error_messages %>
   		<%= render :partial => "form", :object => f %>
 	<% end %>
-<% else %>
-	
-	<div>
-		<h2>You didn't create this story, so you can't edit it. <br /><br />How did you even get here?
-		</h2>
-	</div>
-<% end %>

@@ -2,29 +2,39 @@
 	<%=h ":: " + @story.title %>
 <% end %>
 
-
+<%= @controller_name %>
 <div id="show_story">
- <h1><%=h @story.title %></h1> 
-<span class="attribution">by <%= link_to @story.user.login, profile_path(@story.user.login)  %> <%=h time_ago_in_words(@story.created_at) %> ago</span>
+ <h1><%=h @story.title %></h1>
 
+			<span class="attribution">by <%= link_to @story.user.login, profile_path(@story.user.login)  %> 
+			<%=h time_ago_in_words(@story.created_at) %> ago</span>
+		
 	
-		
-		
-	
-		<%=
-		 render :partial => "toolbar", :locals => { :story => @story } 
-		%>
-		
 
 		
-		<div class="description">	
-			<%= auto_link(simple_format(h(@story.description)), 
-			:href_options => { :target => '_blank' }) %>
+		<div class="description">
+			<!-- This is how people flag stories -->
+			<% if is_admin %>
+				<span>
+				<%= @story.flagged %> flags
+				</span>
+			<% end %>
+			
+			<% if is_user %>
+			<% form_tag(flag_story_path, :method => "post") do -%>
+	    
+			<%= hidden_field_tag 'story', @story.id %>
+			<%= image_submit_tag 'flag.png', 
+				:name => "flag", 
+				:id => "flag-button", 
+				:disabled => false %>
+		
+	  		<% end -%>	
+			<% end -%>
+			<%= simple_format(h(@story.description)) %>
 		</div>
 
-	<%= 
-	#render :partial => "toolbar", :locals => { :story => @story } 
-	%>
+
 	<div class="information_container">
 	 <b class="house">
 		  <b class="house1"><b></b></b>
@@ -64,6 +74,11 @@
 	  <b class="house2"><b></b></b>
 	  <b class="house1"><b></b></b></b>
 	</div>
+	<%=
+	 render :partial => "toolbar", :locals => { :story => @story } 
+	%>
+
+
 </div>
 
 <%= render :partial => "comments/comments" %>

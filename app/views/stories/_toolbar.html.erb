@@ -9,31 +9,53 @@
 		<div class="sideyardfg">
 		<table  id="show_story_toolbar">
 			<tr>
-
-						<td>
-							<span class="story_this_story">
-								<!-- AddThis Button BEGIN -->
-							<script type="text/javascript">
-								var addthis_pub="sixminutestory";
-							</script>
-				<a href="http://www.addthis.com/bookmark.php?v=20" onmouseover="return addthis_open(this, '', '[URL]', '[TITLE]')" onmouseout="addthis_close()" onclick="return addthis_sendto()"><img class="linked_image" src="http://s7.addthis.com/static/btn/sm-share-en.gif" width="83" height="16" alt="Bookmark and Share" style="border:0"/></a>
-							<script type="text/javascript" src="http://s7.addthis.com/js/200/addthis_widget.js">
-							</script>
-								<!-- AddThis Button END -->
+						<td class="toolbar_button black_button">
+							<span>
+								<a href="<%=@previous%>">&lt;&lt; Previous</a>
 							</span>
-				
 						</td>
+					
 				
-						<td id="votes_<%= @story.id %>">
-					<%= render :partial => "votes/story_vote", :locals => {:story => @story} %>
-				</td>
+					
 	
-				<td>
-					<span>
-					<a href="#comments"><%= @story.comments.count -%> comments</a>
-					</span>
-				</td>
+			
+							<td class="toolbar_button black_button">
+								<span>
+									<a href="<%=@next%>">Next &gt;&gt;</a>
+								</span>
+							</td>
+							
+							<td class="toolbar_button orange_button">
+								<span>
+									<%= link_to "Random", read_random_url %>
+								</span>
+							</td>
+								
 				
+								
+			</tr>
+			<tr>
+					<td id="votes_<%= @story.id %>" class="toolbar_button purple_button">
+						<%= render :partial => "votes/story_vote", :locals => {:story => @story} %>
+					</td>
+					<td class="toolbar_button orange_button">
+						<span>
+							<!-- AddThis Button BEGIN -->
+						<script type="text/javascript">
+							var addthis_pub="sixminutestory";
+						</script>
+			<a href="http://www.addthis.com/bookmark.php?v=20" onmouseover="return addthis_open(this, '', '[URL]', '[TITLE]')" onmouseout="addthis_close()" onclick="return addthis_sendto()">Share</a>
+						<script type="text/javascript" src="http://s7.addthis.com/js/200/addthis_widget.js">
+						</script>
+							<!-- AddThis Button END -->
+						</span>
+			
+					</td>
+					<td class="toolbar_button purple_button">
+						<span>
+							<a href="#comments"><%= @story.comments.count -%> comments</a>
+						</span>
+					</td>
 			</tr>
 		</table>
 		</div>

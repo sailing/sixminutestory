@@ -43,12 +43,12 @@
 		<table >
 			<tr>
 				<td>
-						<%= f.error_message_on 'login' %>
+						
 				  		<%= f.text_field :login, :value => "username", :onFocus => 'clearFieldFirstTime(this);' %>
 				</td>
 				<td>
 					
-						<%= f.error_message_on 'password' %>
+						
 				  		<%= f.password_field :password, :value => "password", :onFocus => 'clearFieldFirstTime(this);' %>
 						
 				</td>
@@ -81,20 +81,48 @@
 
 	</div>
 	
+<% if is_admin %>	
+	<div class="admin_container">
+	  <div class="loginfg">
+		<table class="logged_in">
+			<tr>
+				<td>
+					<span>
+						<%= link_to "Admin", admin_url %>
+					</span>
+				</td>
+				<td>
+					
+					<span class="small_text">
+						<%= link_to "Prompts", prompts_admin_url %>
+					</span>
+				</td>
+				<td>
+					<span class="small_text">
+						<%= link_to "Users", users_admin_url %>
+					</span>
+				</td>
+			 	<td>
+					<span class="small_text">
+						<%= link_to "Stories", stories_admin_url %>
+					</span>
+				</td>
+			</tr>
+		</table>
+			
+	  </div>
 
-<% if session['banner'].nil? -%> 
-<div id="banner">
-	<p>
-		We started the <strong>Six Minute Story</strong> to prove just how many <strong><%= link_to "open", wtf_path %></strong> files there are on torrent trackers like The Pirate Bay. <u>It's easy to contribute</u>: find <strong>Open Art</strong>, <strong>Tools</strong> and <strong>Information</strong> on your favorite torrent tracker and <%= link_to "add it", new_path %> to the Storyarchy index. <%= link_to "more", wtf_path %>
-	</p>
-<!--	<p>
-		We're making it easy to find <strong>Open Art</strong>, <strong>Tools</strong> and <strong>Information</strong>.&nbsp;&nbsp;By <u>we</u>, we mean <u>you</u>, if you want. <u>Story</u> <b>torrents</b> and <b>links</b> to anything available under <strong>Creative Commons</strong> or <strong>Open Source</strong> licenses and stuff that's <strong>free for all</strong>, whether via a <u>philanthropist</u>, or because we, the <strong>public</strong>, have it in our <strong>domain</strong>. <a href="http://blog.sixminutestory.com/about">read more</a>
-	</p>
--->
-</div>
+	  <b class="login">
+	  <b class="login5"></b>
+	  <b class="login4"></b>
+	  <b class="login3"></b>
+	  <b class="login2"><b></b></b>
+	  <b class="login1"><b></b></b></b>
 
-<% session['banner'] = 1 %>
-<% end %>
+	</div>
+
+<% end # end admin box %>
+
 
 <div id="search" class="float_left">
 
@@ -147,42 +175,7 @@
 
 <div class="clear space"></div>
 
-
-<% if flash[:notice] %>
-<div id="notice_container">
-<b class="sideyard">
-<b class="sideyard1"><b></b></b>
-<b class="sideyard2"><b></b></b>
-<b class="sideyard3"></b>
-<b class="sideyard4"></b>
-<b class="sideyard5"></b></b>
-
-<div class="sideyardfg">
-	<div id="notice">
-		<%= image_tag "close.png", :onClick => visual_effect(:fade,"notice_container",:duration => 0.2) %>
-		<br />
-		<%= flash[:notice] -%>
-		<%= javascript_include_tag :all, :cache => true %>
-
-	</div>
-	
-</div>
-
-<b class="sideyard">
-<b class="sideyard5"></b>
-<b class="sideyard4"></b>
-<b class="sideyard3"></b>
-<b class="sideyard2"><b></b></b>
-<b class="sideyard1"><b></b></b></b>
-</div>
-
-<script type="text/javascript">
-	window.onload=function(){
-		Effect.Fade('notice_container',{duration:4.0});
-	}
-</script>
-
-<% end %>
+<div id="left_section">
 
 <div class="sideyard_container">
   <b class="sideyard">
@@ -198,9 +191,13 @@
     <%= tag_cloud %>
 
 	<h2>Contribute</h2>
+	<!-- List of things to add: donate button, share button, -->
+	<% if is_user %>
 	<p>
 	<%= link_to "Suggest a Prompt", new_prompt_url %>
 	</p>
+	<% end %>
+	<br />
   </div>
 
   <b class="sideyard">
@@ -210,9 +207,12 @@
   <b class="sideyard2"><b></b></b>
   <b class="sideyard1"><b></b></b></b>
 </div>
+
+</div> <!-- close left layout container -->
   
 
- 	<div class="house_container">
+ 	<div class="right_container">
+	<div class="house_container">
 	  <b class="house">
 	  <b class="house1"><b></b></b>
 	  <b class="house2"><b></b></b>
@@ -232,6 +232,45 @@
 	  <b class="house2"><b></b></b>
 	  <b class="house1"><b></b></b></b>
 	</div>
+	</div><!-- Close layout containers -->
+
+	
+	<% if flash[:notice] %>
+	<!-- Notice appears, then fades out over a few seconds. -->
+	<div id="notice_container">
+	<b class="sideyard">
+	<b class="sideyard1"><b></b></b>
+	<b class="sideyard2"><b></b></b>
+	<b class="sideyard3"></b>
+	<b class="sideyard4"></b>
+	<b class="sideyard5"></b></b>
+
+	<div class="sideyardfg">
+		<div id="notice">
+			<%= image_tag "close.png", :onClick => visual_effect(:fade,"notice_container",:duration => 0.2) %>
+			<br />
+			<%= flash[:notice] -%>
+			<%= javascript_include_tag :all, :cache => true %>
+
+		</div>
+		<b class="sideyard">
+		<b class="sideyard5"></b>
+		<b class="sideyard4"></b>
+		<b class="sideyard3"></b>
+		<b class="sideyard2"><b></b></b>
+		<b class="sideyard1"><b></b></b></b>
+		</div>
+
+		<script type="text/javascript">
+			window.onload=function(){
+				Effect.Fade('notice_container',{duration:4.0});
+			}
+		</script>
+
+<% end %>
+
+	</div>
+	
 	
 	<%= javascript_include_tag "prototype", "effects", "application", :cache => true %>
 	<script type="text/javascript">

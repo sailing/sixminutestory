@@ -14,7 +14,8 @@ class UserSessionsController < ApplicationController
         if result
           redirect_back_or_default root_url
         else
-          render :action => :new
+          flash[:notice] = "Username or password incorrect"
+          redirect_to login_url
         end
       end
   end

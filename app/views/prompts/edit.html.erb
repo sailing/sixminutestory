@@ -22,9 +22,8 @@
 		Year: <br /><%= select_year(Date.today,:start_year => 2009)%>
 	</p>
   <p>
-    <%= f.submit 'Update' %>
-  </p>
+<%= image_submit_tag("save.png", :name => "save", :id => "save-button", :disabled => false) %>  </p>
 <% end %>
 
-<%= link_to 'Show', @prompt %> |
-<%= link_to 'Back', prompts_path %>
+<%= link_to 'Destroy', @prompt, :confirm => 'Are you sure?', :method => :delete %> || 
+<%= link_to 'Back', prompts_admin_path %>

@@ -1,4 +1,17 @@
 
+	<% if is_admin %>
+		<% if @story.active == true %>
+		<%= link_to image_tag('disable.png'), disable_story_url(@story), 
+		:confirm => 'Are you sure you want to disable this story? The story will no longer be visible!', 
+		:method => :delete %>
+		<% elsif @story.active == false %>
+		<%= link_to image_tag('enable.png'), enable_story_url(@story), 
+		:confirm => 'Are you sure you want to enable this story? The story will become visible!'
+		%>
+		
+		<% end %>
+	<% end %>
+
 	<div class="center">
 		
 		<b class="sideyard">
@@ -78,9 +91,7 @@
 			<br />
 				<p>
 				<%= image_submit_tag("save.png", :name => "save", :id => "save-button", :disabled => @disabled) %>
-				 <% if current_user.id == @story.user_id %>
-						<%= link_to 'Destroy story', @story, :confirm => 'Are you sure you want to remove this story? Your story will no longer be visible!', :method => :delete %>
-						<% end %>
+			
 				</p>
 	
 </div>

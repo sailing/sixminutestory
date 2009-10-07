@@ -28,11 +28,11 @@
      objecttolerance="10"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.4131682"
-     inkscape:cx="861.76186"
-     inkscape:cy="346.56103"
+     inkscape:zoom="0.60582034"
+     inkscape:cx="518.86078"
+     inkscape:cy="630.32466"
      inkscape:document-units="px"
-     inkscape:current-layer="g3813"
+     inkscape:current-layer="g2506"
      showgrid="false"
      inkscape:window-width="1020"
      inkscape:window-height="701"
@@ -307,10 +307,8 @@
        inkscape:export-ydpi="140.84406"
        ry="0.26499999" />
     <g
-       id="g4345"
-       inkscape:export-filename="/Users/galen/www/6ms/public/images/contribute.png"
-       inkscape:export-xdpi="89.730782"
-       inkscape:export-ydpi="89.730782">
+       id="g3367"
+       transform="translate(-6.2158949,-2.486414)">
       <rect
          ry="4.9999995"
          rx="4.9999995"
@@ -319,7 +317,7 @@
          height="35.105"
          width="122.86752"
          id="rect4336"
-         style="fill:#ff7400;fill-opacity:0.75294119;stroke:none;stroke-width:5.15999985000000017;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.50000000000000000;stroke-dasharray:none;stroke-opacity:1" />
+         style="fill:#ff7400;fill-opacity:0.75294118;stroke:none;stroke-width:5.15999985;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.5;stroke-dasharray:none;stroke-opacity:1" />
       <text
          id="text4338"
          y="711.96161"
@@ -355,6 +353,285 @@
            x="787.78308"
            id="tspan4356"
            sodipodi:role="line">Close</tspan></text>
+    </g>
+    <rect
+       style="fill:#000000;fill-opacity:0.75294119;stroke:none;stroke-width:5.15999985000000017;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.50000000000000000;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2585"
+       width="122.86752"
+       height="35.105"
+       x="774.81128"
+       y="733.96033"
+       rx="4.9999995"
+       ry="4.9999995"
+       inkscape:export-filename="/Users/galen/www/6ms/public/images/black_button_background.png"
+       inkscape:export-xdpi="89.364517"
+       inkscape:export-ydpi="89.364517" />
+    <g
+       id="g3382"
+       inkscape:export-filename="/Users/galen/www/6ms/public/images/share_small.png"
+       inkscape:export-xdpi="66.65715"
+       inkscape:export-ydpi="66.65715"
+       transform="translate(-7.0446811,-0.414393)">
+      <rect
+         ry="4.9999995"
+         rx="4.9999995"
+         y="612.54321"
+         x="796.35974"
+         height="35.105"
+         width="122.86752"
+         id="rect3373"
+         style="fill:#ff7400;fill-opacity:0.75294118;stroke:none;stroke-width:5.15999985;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.5;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         id="text3375"
+         y="636.67053"
+         x="828.09918"
+         style="font-size:21.26732445px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Helvetica;-inkscape-font-specification:Helvetica"
+         xml:space="preserve"><tspan
+           y="636.67053"
+           x="828.09918"
+           id="tspan3377"
+           sodipodi:role="line">Share</tspan></text>
+    </g>
+    <g
+       id="g3387"
+       inkscape:export-filename="/Users/galen/www/6ms/public/images/read_more.png"
+       inkscape:export-xdpi="90.13076"
+       inkscape:export-ydpi="90.13076"
+       transform="matrix(0.7395608,0,0,0.7395608,190.85039,-152.43982)">
+      <g
+         id="g3395"
+         inkscape:export-filename="/Users/galen/www/6ms/public/images/read_more.png"
+         inkscape:export-xdpi="89.730858"
+         inkscape:export-ydpi="89.730858">
+        <rect
+           style="fill:#b86ae1;fill-opacity:0.75294118;stroke:none;stroke-width:5.15999985;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.5;stroke-dasharray:none;stroke-opacity:1"
+           id="rect3389"
+           width="122.86752"
+           height="35.105"
+           x="796.35974"
+           y="612.54321"
+           rx="6.7607684"
+           ry="6.7607684" />
+        <text
+           xml:space="preserve"
+           style="font-size:21.26732445px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Helvetica;-inkscape-font-specification:Helvetica"
+           x="802.85468"
+           y="636.67053"
+           id="text3391"><tspan
+             sodipodi:role="line"
+             id="tspan3393"
+             x="802.85468"
+             y="636.67053">Read More</tspan></text>
+      </g>
+    </g>
+    <g
+       inkscape:export-ydpi="66.657211"
+       inkscape:export-xdpi="66.657211"
+       inkscape:export-filename="/Users/galen/www/6ms/public/images/hide_description.png"
+       id="g3400"
+       transform="translate(-5.0097224,-26.437201)">
+      <g
+         id="g3408"
+         inkscape:export-filename="/Users/galen/www/6ms/public/images/hide_description.png"
+         inkscape:export-xdpi="89.730858"
+         inkscape:export-ydpi="89.730858"
+         transform="translate(31.697656,-35.92401)">
+        <rect
+           style="fill:#000000;fill-opacity:0.6;stroke:none;stroke-width:5.15999985;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.5;stroke-dasharray:none;stroke-opacity:1"
+           id="rect3402"
+           width="122.86752"
+           height="35.105"
+           x="761.37549"
+           y="194.84428"
+           rx="4.9999995"
+           ry="4.9999995" />
+        <text
+           xml:space="preserve"
+           style="font-size:21.26732445px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Helvetica;-inkscape-font-specification:Helvetica"
+           x="793.66016"
+           y="218.55722"
+           id="text3404"><tspan
+             sodipodi:role="line"
+             id="tspan3406"
+             x="793.66016"
+             y="218.55722">Close</tspan></text>
+      </g>
+    </g>
+    <g
+       id="g3413"
+       inkscape:export-filename="/Users/galen/www/6ms/public/images/share.png"
+       inkscape:export-xdpi="89.730782"
+       inkscape:export-ydpi="89.730782"
+       transform="translate(-25.201736,-418.77801)">
+      <g
+         id="g3415"
+         inkscape:export-filename="/Users/galen/www/6ms/public/images/read_more.png"
+         inkscape:export-xdpi="89.730858"
+         inkscape:export-ydpi="89.730858">
+        <g
+           id="g3423"
+           inkscape:export-filename="/Users/galen/www/6ms/public/images/show_description.png"
+           inkscape:export-xdpi="89.730858"
+           inkscape:export-ydpi="89.730858"
+           transform="matrix(0.7395608,0,0,0.7395608,207.43244,168.67297)">
+          <rect
+             ry="6.7607684"
+             rx="6.7607684"
+             y="612.54321"
+             x="796.47168"
+             height="35.105"
+             width="122.86752"
+             id="rect3417"
+             style="fill:#b86ae1;fill-opacity:0.75294118;stroke:none;stroke-width:5.15999985;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.5;stroke-dasharray:none;stroke-opacity:1" />
+          <text
+             id="text3419"
+             y="636.67053"
+             x="799.16589"
+             style="font-size:21.26732445px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Helvetica;-inkscape-font-specification:Helvetica"
+             xml:space="preserve"><tspan
+               y="636.67053"
+               x="799.16589"
+               id="tspan3421"
+               sodipodi:role="line">Show Story</tspan></text>
+        </g>
+      </g>
+    </g>
+    <g
+       id="g2460"
+       inkscape:export-filename="/Users/galen/www/6ms/public/images/edit.png"
+       inkscape:export-xdpi="65.360001"
+       inkscape:export-ydpi="65.360001"
+       transform="matrix(1.3983272,0,0,1.3983272,-158.43752,-17.04065)">
+      <g
+         id="g2468">
+        <g
+           id="g2473"
+           inkscape:export-filename="/Users/galen/www/6ms/public/images/disable.png"
+           inkscape:export-xdpi="89.730858"
+           inkscape:export-ydpi="89.730858">
+          <rect
+             ry="3.5757008"
+             rx="3.5757008"
+             y="258.05222"
+             x="767.55396"
+             height="25.104998"
+             width="87.8675"
+             id="rect2462"
+             style="fill:#000000;fill-opacity:0.6;stroke:none;stroke-width:5.15999985;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.5;stroke-dasharray:none;stroke-opacity:1" />
+          <text
+             id="text2464"
+             y="275.01028"
+             x="784.06226"
+             style="font-size:15.20911884px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Helvetica;-inkscape-font-specification:Helvetica"
+             xml:space="preserve"><tspan
+               y="275.01028"
+               x="784.06226"
+               id="tspan2466"
+               sodipodi:role="line">Disable</tspan></text>
+        </g>
+      </g>
+    </g>
+    <g
+       id="g2478"
+       inkscape:export-filename="/Users/galen/www/6ms/public/images/read_more.png"
+       inkscape:export-xdpi="90.13076"
+       inkscape:export-ydpi="90.13076"
+       transform="matrix(0.9929394,0,0,0.9929394,134.96915,-341.75974)">
+      <g
+         id="g2480"
+         inkscape:export-filename="/Users/galen/www/6ms/public/images/read_more.png"
+         inkscape:export-xdpi="89.730858"
+         inkscape:export-ydpi="89.730858">
+        <g
+           id="g2488"
+           inkscape:export-filename="/Users/galen/www/6ms/public/images/enable.png"
+           inkscape:export-xdpi="90.368919"
+           inkscape:export-ydpi="90.368919">
+          <rect
+             ry="5.0355535"
+             rx="5.0355535"
+             y="612.54321"
+             x="796.35974"
+             height="35.105"
+             width="122.86752"
+             id="rect2482"
+             style="fill:#b86ae1;fill-opacity:0.75294118;stroke:none;stroke-width:5.15999985;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.5;stroke-dasharray:none;stroke-opacity:1" />
+          <text
+             id="text2484"
+             y="636.67053"
+             x="822.32544"
+             style="font-size:21.26732445px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Helvetica;-inkscape-font-specification:Helvetica"
+             xml:space="preserve"><tspan
+               y="636.67053"
+               x="822.32544"
+               id="tspan2486"
+               sodipodi:role="line">Enable</tspan></text>
+        </g>
+      </g>
+    </g>
+    <g
+       inkscape:export-ydpi="89.730858"
+       inkscape:export-xdpi="89.730858"
+       inkscape:export-filename="/Users/galen/www/6ms/public/images/save.png"
+       id="g2493"
+       transform="translate(156.02879,260.58571)">
+      <g
+         id="g2501"
+         inkscape:export-filename="/Users/galen/www/6ms/public/images/login.png"
+         inkscape:export-xdpi="89.730858"
+         inkscape:export-ydpi="89.730858">
+        <rect
+           style="fill:#000000;fill-opacity:0.6;stroke:none;stroke-width:5.15999985;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.5;stroke-dasharray:none;stroke-opacity:1"
+           id="rect2495"
+           width="122.86752"
+           height="35.105"
+           x="761.37549"
+           y="194.84428"
+           rx="4.9999995"
+           ry="4.9999995" />
+        <text
+           xml:space="preserve"
+           style="font-size:21.26732445px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Helvetica;-inkscape-font-specification:Helvetica"
+           x="793.74841"
+           y="218.55722"
+           id="text2497"><tspan
+             sodipodi:role="line"
+             id="tspan2499"
+             x="793.74841"
+             y="218.55722">Login</tspan></text>
+      </g>
+    </g>
+    <g
+       transform="matrix(1.4128531,0,0,1.4128531,-287.54442,218.61199)"
+       inkscape:export-ydpi="87.659508"
+       inkscape:export-xdpi="87.659508"
+       inkscape:export-filename="/Users/galen/www/6ms/public/images/login_small.png"
+       id="g2506">
+      <g
+         id="g2514"
+         inkscape:export-filename="/Users/galen/www/6ms/public/images/flag.png"
+         inkscape:export-xdpi="88.911751"
+         inkscape:export-ydpi="88.911751">
+        <rect
+           style="fill:#000000;fill-opacity:0.6;stroke:none;stroke-width:5.15999985;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.5;stroke-dasharray:none;stroke-opacity:1"
+           id="rect2508"
+           width="50.868004"
+           height="14.533712"
+           x="762.2428"
+           y="98.001434"
+           rx="3.5389385"
+           ry="3.5389385" />
+        <text
+           xml:space="preserve"
+           style="font-size:8.80481911px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Helvetica;-inkscape-font-specification:Helvetica"
+           x="778.57532"
+           y="107.81876"
+           id="text2510"><tspan
+             sodipodi:role="line"
+             id="tspan2512"
+             x="778.57532"
+             y="107.81876">Flag</tspan></text>
+      </g>
     </g>
   </g>
 </svg>

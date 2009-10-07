@@ -3,7 +3,7 @@ module StoriesHelper
   def approval_rating
     if @story.votes_count > 0
       if @story.votes_for > 0
-        @story.rating.to_s + "% love it"
+        @story.rating.to_s + " has love"
       else
           result =  @story.votes_against.to_s + " shrugged"
       end

@@ -1,5 +1,35 @@
+######### Ratings stuff #################
 
 
+/
+<%= link_to_remote "Shrug", 
+	:url => user_story_votes_path(@story.user_id, @story, :vote => :false), 
+	:method => :post
+%> 
+
+<%= content_tag 'SPAN', 
+		("<a>[details]</a>"),
+		:class => "details",
+		:onClick => visual_effect(
+			:toggle_blind,@vote_element,
+			:duration => 0.3) 			
+%>
+
+</span>
+<div id="<%=@vote_element%>" style="display:none;">
+<span>
+	<% 
+	shrug = "shrug"
+	love = "love"
+	%>
+	<%= @story.votes_for %> loves,
+</span>
+<span>
+	<%= @story.votes_against %> shrugs
+</span>
+</div>
+
+######### close ratings stuff ###############
 truncate(h(@story.website))
 
     order = "created_at DESC"

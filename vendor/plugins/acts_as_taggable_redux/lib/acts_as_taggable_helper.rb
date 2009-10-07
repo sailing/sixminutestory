@@ -4,8 +4,8 @@ module ActsAsTaggableHelper
     tag_name = tag.name
     tag_name = tag_name.to_s
     tag_name = tag_name.strip
-    urlized_tag = CGI::escape(tag_name)
-    link_to(tag.name, tag_url(urlized_tag), :rel => 'tag')
+    urlized_tag = sanitize(tag_name)
+    link_to(tag.name, tags_url(urlized_tag), :rel => 'tag')
   end
   
   # Generate a tag cloud of the top 100 tags by usage, uses the proposed hTagcloud microformat.
@@ -35,9 +35,9 @@ module ActsAsTaggableHelper
       tag_name = tag.name
       tag_name = tag_name.to_s
       tag_name = tag_name.strip
-      urlized_tag = CGI::escape(tag_name)
+      urlized_tag = sanitize(tag_name)
       html << %(    <li>)
-      html << link_to(tag_name, tag_url(urlized_tag), :class => classes[(tag.taggings_count - min) / divisor]) 
+      html << link_to(h(tag_name), tags_url(urlized_tag), :class => classes[(tag.taggings_count - min) / divisor]) 
       html << %(</li> \n)
     end
     html <<   %(  </ul>\n)

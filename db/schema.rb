@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091002024658) do
+ActiveRecord::Schema.define(:version => 20091004214943) do
 
   create_table "comments", :force => true do |t|
     t.text     "comment"
@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(:version => 20091002024658) do
     t.boolean  "delta",      :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "counter",    :default => 0
+    t.integer  "rating",     :default => 0
   end
 
   create_table "sessions", :force => true do |t|
@@ -67,6 +69,8 @@ ActiveRecord::Schema.define(:version => 20091002024658) do
     t.boolean  "active",      :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "counter",     :default => 0
+    t.integer  "flagged",     :default => 0
   end
 
   create_table "taggings", :force => true do |t|

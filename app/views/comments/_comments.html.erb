@@ -14,7 +14,7 @@
 
 		  <div class="sideyardfg">
 					<div class="commenter">
-				<%= link_to h(comment.user.login), user_path(comment.user.id) %> - <%=h did_when(comment.created_at) %>
+				<%= link_to h(comment.user.login), user_path(comment.user.id) %> - <%=h time_ago_in_words(comment.created_at) %> ago
 					</div>
 		
 		
@@ -39,7 +39,8 @@
 			  <div class="housefg">
 				<div class="comment">
 						<p>
-							<%= auto_link(simple_format(h(comment.comment))) %>
+							<%= auto_link(simple_format(sanitize(comment.comment)),
+							:href_options => { :target => '_blank' }) %>
 						</p>
 				</div>
 			  </div>

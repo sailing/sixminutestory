@@ -112,6 +112,16 @@
 	padding:10px 0px 10px 0px;
 }
 
+/* Admin box */
+.admin_container {
+	position:fixed;
+	right:6px;
+	top:0px;
+	width:360px;
+	display:block;
+}
+
+
 /* login box */
 .login_container {
 	position:fixed;

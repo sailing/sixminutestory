@@ -1,5 +1,9 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+  
+ 
+   
+   
 
     def edit_this(story = {})
       story = story ? story : @story
@@ -14,6 +18,10 @@ module ApplicationHelper
       #  end  
       end
     
+    end
+
+    def is_user
+      return true if current_user
     end
 
     def is_owner_or_admin

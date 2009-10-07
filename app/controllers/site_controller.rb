@@ -31,7 +31,7 @@ class SiteController < ApplicationController
     page = params[:page] || 1
     @q = params[:q]
     order = "created_at DESC"
-    timeThen = Time.now.advance(:years => -1)
+    timeThen = Time.now.advance(:months => -1)
    @stories = Story.search(
             :page => page, 
             :per_page => per_page, 
@@ -89,5 +89,12 @@ class SiteController < ApplicationController
 
          @i = 0
    end
-  
+   
+   def admin
+     page = params[:page] || 1
+     per_page = 15
+     order = "flagged DESC, updated_at DESC"
+     
+     @stories = Story.paginate :page => page, :order => order, :per_page => per_page, :conditions => ["flagged >= :flagged",{:flagged => 1}]
+  end 
 end

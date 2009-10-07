@@ -10,22 +10,11 @@
 %>
 
 <tr class="<%= cycle('row_alternate', 'row') -%>">
-	
-  	<td class="story_this_story">
-		<span>
-		<!-- AddThis Button BEGIN -->
-			<script type="text/javascript">
-				var addthis_pub="sixminutestory";
-				var addthis_options = 'facebook, digg, twitter, email, more';
-
-			</script>
-				<a href="http://www.addthis.com/bookmark.php?v=20" onmouseover="return addthis_open(this, '', 'http://sixminutestory.com/stories/<%= story.id %>', '[TITLE]')" onmouseout="addthis_close()" onclick="return addthis_sendto()"><img class="linked_image" src="http://s7.addthis.com/static/btn/sm-share-en.gif" width="83" height="16" alt="Bookmark and Share" style="border:0"/></a>
-			<script type="text/javascript"
-			src="http://s7.addthis.com/js/200/addthis_widget.js">
-			</script>
-		<!-- AddThis Button END -->
-		</span>
-	</td>
+	<% if is_admin %>
+  		<td class="story_this_story">
+			<%= link_to image_tag('edit.png'), edit_story_url(story) %>
+		</td>
+	<% end # end if is_admin %>
 	
 	<td id="description_slide_toggle" >
 		<span>
@@ -40,28 +29,61 @@
 	
 	<td id="show_stories" class="title">
 		<span>
-		
-			<%= link_to h(story.title), story_url(story) %> 
-	
+			<!-- Story title as a link in the listings -->
+			<%= link_to h(story.title), read_story_with_title_url(story,sanitize(story.title))%>
 		</span>
 	</td>
 
 </tr>
 
 <tr>
-	<td colspan="4" id="description_drawer">
+	<td colspan="3" id="description_drawer">
 	<div id="description<%= @i.to_s %>" style="display:none;">
 		<div class="description">
+			
 			<span class="linked_images">
 			<%= link_to(image_tag("read_more.png"), story_url(story)) %>
 			</span>
 			
-				<%= auto_link(simple_format(h(story.description)), 
+				<span>
+				<!-- AddThis Button BEGIN -->
+					<script type="text/javascript">
+						var addthis_pub="sixminutestory";
+						var addthis_options = 'facebook, digg, twitter, email, more';
+
+					</script>
+						<a href="http://www.addthis.com/bookmark.php?v=20" onmouseover="return addthis_open(this, '', 'http://sixminutestory.com/stories/<%= story.id %>', '[TITLE]')" onmouseout="addthis_close()" onclick="return addthis_sendto()"><%= image_tag 'share_small.png' %></a>
+					<script type="text/javascript"
+					src="http://s7.addthis.com/js/200/addthis_widget.js">
+					</script>
+				<!-- AddThis Button END -->
+				</span>
+				
+				<!-- Show the story here -->
+				<%= auto_link(simple_format(sanitize(story.description)), 
 				:href_options => { :target => '_blank' }) %>
 		
-			<span class = "linked_images"><%= image_tag "hide_description.png", :onClick => visual_effect(:blind_up,'description' + @i.to_s,:duration => 0.3 )%>
+			<span class = "linked_image">
+			<%= image_tag "hide_description.png", 
+			:onClick => visual_effect(	:blind_up,'description' + @i.to_s,
+										:duration => 0.3 )%>
+			
 			<%= link_to(image_tag("read_more.png"), story_url(story)) %>
+			
 			</span>
+				<span>
+				<!-- AddThis Button BEGIN -->
+					<script type="text/javascript">
+						var addthis_pub="sixminutestory";
+						var addthis_options = 'facebook, digg, twitter, email, more';
+
+					</script>
+						<a href="http://www.addthis.com/bookmark.php?v=20" onmouseover="return addthis_open(this, '', 'http://sixminutestory.com/stories/<%= story.id %>', '[TITLE]')" onmouseout="addthis_close()" onclick="return addthis_sendto()"><%= image_tag 'share_small.png', :class => "linked_image" %></a>
+					<script type="text/javascript"
+					src="http://s7.addthis.com/js/200/addthis_widget.js">
+					</script>
+				<!-- AddThis Button END -->
+				</span>
 		</div>
 	</div>		
 	</td>

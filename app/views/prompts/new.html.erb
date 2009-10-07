@@ -20,4 +20,6 @@
   </p>
 <% end %>
 
-<%= link_to 'Back', prompts_path %>
+<% if is_admin %>
+<%= link_to 'Back', prompts_admin_path %>
+<% end %>

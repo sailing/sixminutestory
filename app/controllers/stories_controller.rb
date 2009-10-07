@@ -1,38 +1,112 @@
 class StoriesController < ApplicationController
   before_filter :require_user, :only => [:new, :create, :edit, :update, :destroy]
-  
+  before_filter :must_be_admin, :only => [:admin, :disabled, :enable_story, :disable_story]
   
  # GET /stories/1
   # GET /stories/1.xml
   def show
-    page = params[:page] || 1
-    per_page = 10
-    condition = true
-    order = "created_at DESC"
-    @story = Story.find(params[:id], :conditions => {:active => true}, :include => :tags)
-    @comment = Comment.new
-    
-    # Comments
 
-#    @comments = Comment.paginate :all, :page => page, :per_page => per_page, :order => order, :conditions => {:story_id => params[:id]}
+    e = ActiveRecord::RecordNotFound
+    begin
+      @story = Story.find(params[:id], :conditions => {:active => true}, :include => :tags)
       
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @story }
+    rescue Exception => e
+      flash[:notice] = 'That story doesn\'t exist.'
+      store_location
+      redirect_to read_url
+    else 
+         # Initialize a comment 
+           @comment = Comment.new
+
+           # find previous and next stories
+             @previous = @story.id - 1
+             @next = @story.id + 1
+
+           if Story.find_by_id(@previous,:conditions => {:active => true})
+             @previous = @previous
+           else 
+             @previous = "#"
+           end
+
+
+           if Story.find_by_id(@next,:conditions => {:active => true})
+             @next = @next
+           else 
+             @next = "#"
+           end
+
+           # increment story counter
+             if @story.counter 
+               @story.counter += 1 
+               @story.save ? @saved = "saved" : @saved = "not saved"
+             end
+
+             respond_to do |format|
+               format.html # show.html.erb
+               format.xml  { render :xml => @story }
+             end
     end
+    
+     
+  end
+  
+  def random
+    e = ActiveRecord::RecordNotFound
+    begin
+      get_random()
+    rescue Exception => e
+      redirect_to read_random_url
+    else
+      redirect_to read_story_url(@story)
+      
+    end
+      
   end
 
   # GET /stories/new
   # GET /stories/new.xml
   def new
     @story = Story.new
-    params[:prompt].present? ? @prompt = Prompt.find_by_id(params[:prompt], :conditions => {:active => true, :verified => true}) : @prompt = Prompt.find(:first, :conditions => {:use_on => Date.today,:active => true, :verified => true})
-    
+      if params[:prompt].present?  
+        @prompt = Prompt.find_by_id(params[:prompt], :conditions => ["active = :active AND (use_on <= :today)", {:active => true, :today => Date.today}])
+      else
+       if !@prompt = Prompt.find(:first, :conditions => {:use_on => Date.today,:active => true})
+        @prompt = Prompt.find(:first,:order => "use_on DESC", :conditions => ["active = :active AND (use_on IS NOT :use_on)", {:active => true, :use_on => nil}])
+       end
+      end
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @story }
     end
   end
+
+
+  def admin
+      page = params[:page] || 1
+      per_page = 15
+      order = "created_at DESC"
+
+      @stories = Story.paginate :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @stories }
+    end
+  end
+
+  def disabled
+      page = params[:page] || 1
+      per_page = 15
+      order = "updated_at DESC"
+
+      @stories = Story.paginate :page => page, :order => order, :per_page => per_page, :conditions => {:active => false}
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @stories }
+    end
+  end
+
 
   # GET /stories/1/edit
   def edit
@@ -40,16 +114,51 @@ class StoriesController < ApplicationController
     @editing = true
   end
 
+  def enable_story
+    @story = Story.find(params[:id])
+    @story.active = 1
+     respond_to do |format|
+       if @story.save
+         flash[:notice] = 'Story enabled.'
+         format.html { redirect_to(stories_admin_path) }
+         format.xml  { head :ok }
+       else
+         flash[:notice] = 'Story NOT enabled.'
+         format.html { redirect_to(stories_admin_path) }
+         format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
+       end
+     end
+  end
+  
+  def disable_story
+    @story = Story.find(params[:id])
+    @story.active = 0
+     respond_to do |format|
+       if @story.save
+         flash[:notice] = 'Story disabled.'
+         format.html { redirect_to(stories_admin_path) }
+         format.xml  { head :ok }
+       else
+         flash[:notice] = 'Story NOT disabled.'
+         format.html { redirect_to(stories_admin_path) }
+         format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
+       end
+     end
+  end
+
   # POST /stories
   # POST /stories.xml
   def create
     @story = Story.new(params[:story])
-    @prompt = Prompt.find_by_id(params[:prompt])
-    
+    @story.user_id = @current_user.id
+    @story.prompt_id = params[:prompt]
+    @prompt = Prompt.find_by_id(@story.prompt_id)
+ 
     respond_to do |format|
       if verify_recaptcha && @story.save
-        @user = @current_user
-        @story.update_attribute("user_id", @user.id)
+        @prompt.counter += 1 
+        @prompt.save
+        
         format.html { redirect_to(@story) }
         format.xml  { render :xml => @story, :status => :created, :location => @story }
       else
@@ -74,19 +183,25 @@ class StoriesController < ApplicationController
       end
     end
   end
-
-  # DELETE /stories/1
-  # DELETE /stories/1.xml
-  def destroy
-    @story = Story.find(params[:id])
-    @story.active = false
-    @story.save
-
-    respond_to do |format|
-      format.html { redirect_to(account_url) }
-      format.xml  { head :ok }
-    end
+  
+  
+  def flag_story
+    @story = Story.find(params[:story])
+    @story.flagged += 1
+     respond_to do |format|
+       if @story.save
+         flash[:notice] = 'Thank you for flagging the story.'
+         format.html { redirect_to(read_story_url(@story)) }
+         format.xml  { head :ok }
+       else
+         flash[:notice] = 'Something went wrong at the story was not flagged. Please contact us directly.'
+         format.html { redirect_to(read_story_url(@story)) }
+         format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
+       end
+     end
+    
   end
+    
   
   
   private

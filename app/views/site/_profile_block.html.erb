@@ -10,9 +10,9 @@
 				</span>
 			</td>
 			<td>
-				<span class="label">updated</span>
+				<span class="label">joined</span>
 				<span class="value">
-					<%=h did_when(@user.updated_at) %>
+					<%=h time_ago_in_words(@user.created_at) %> ago
 				</span>
 			</td>
 		<tr>

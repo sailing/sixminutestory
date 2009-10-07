@@ -18,39 +18,13 @@
 
 %>
 <span id="<%= @ballot_element %>">
-	toolbar number is <%= @toolbar %>
 	<%= link_to_remote "Love", 
 		:url => user_story_votes_path(@story.user_id, @story, :vote => :true), 
 		:method => :post
 	%> 
-	/
-	<%= link_to_remote "Shrug", 
-		:url => user_story_votes_path(@story.user_id, @story, :vote => :false), 
-		:method => :post
- 	%> 
 </span><br />
 <% end %>
 
 <span>
 <%= approval_rating %> 
-<%= content_tag 'SPAN', 
-		("<a>[details]</a>"),
-		:class => "details",
-		:onClick => visual_effect(
-			:toggle_blind,@vote_element,
-			:duration => 0.3) 			
-%>
-
 </span>
-<div id="<%=@vote_element%>" style="display:none;">
-<span>
-	<% 
-	shrug = "shrug"
-	love = "love"
-	%>
-	<%= @story.votes_for %> loves,
-</span>
-<span>
-	<%= @story.votes_against %> shrugs
-</span>
-</div>

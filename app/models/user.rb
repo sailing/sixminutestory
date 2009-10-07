@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   has_many :stories
   has_many :comments
   
-  validates_format_of :website, :with => /https?:\/\/.*/i, :message => "Please start URLs with http:// or https://", :allow_blank => true
-    
+  def self.find_by_login_or_email(login)
+    User.find_by_login(login) || User.find_by_email_address(login)
+  end
+      
 end

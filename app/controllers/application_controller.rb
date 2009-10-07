@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
-  protect_from_forgery #:secret => '2399bfac621fb2d960be1129899ad517'
+  protect_from_forgery :secret => '2399bfac621fb2d960be1129899ad517'
   
   # See ActionController::Base for details 
   # Uncomment this to filter the contents of submitted sensitive data parameters
@@ -55,20 +55,19 @@ class ApplicationController < ActionController::Base
     
     def must_be_admin
       (current_user && @current_user.admin_level > 1) || ownership_violation
-      
      end
     
     def must_own_user
         if current_user
           @user ||= User.find(params[:id])
-          @user == @current_user || @current_user.admin_level == (2 or 3) || ownership_violation
+          @user == @current_user || @current_user.admin_level > 1 || ownership_violation
         end
     end
     
     def must_own_story
       if current_user
        @story ||= Story.find(params[:id])
-        if !@story.user == current_user && !current_user.admin? 
+        if !@story.user == current_user && !current_user.admin_level > 1 
           ownership_violation
         end
       end 
@@ -78,9 +77,47 @@ class ApplicationController < ActionController::Base
        respond_to do |format|
          flash[:notice] = 'You don\'t have clearance to do that.'
          format.html do
-           redirect_to account_path
-         end
+           store_location
+           redirect_back_or_default root_url
+          end
        end
      end
 
+     def rand_with_range(values = nil)
+         if values.respond_to? :sort_by
+           values.sort_by { rand }.first
+         else
+           rand(values)
+         end
+       end
+
+       def get_random()
+          model = params[:controller].singularize.classify.constantize
+          name = params[:controller].singularize
+          
+          if (name == "prompt")
+            @count = model.count :conditions => ["use_on <= :today", {:today => Date.today} ]
+            # choose a record to select
+              @get_this = rand_with_range(1..@count)
+
+            # try to get it
+              instance_variable_set("@#{name}", model.find(@get_this, :conditions => ["active = :active AND (use_on <= :today)", {:active => true, :today => Date.today} ]))
+            
+          
+          else            
+            # count model to get a set to choose among
+            @count = model.count
+            
+            # choose a record to select
+              @get_this = rand_with_range(1..@count)
+
+            # try to get it
+              instance_variable_set("@#{name}", model.find(@get_this, :conditions => {:active => true}))
+            
+          end
+            
+        end # end get_random
+        
+        
+      
 end

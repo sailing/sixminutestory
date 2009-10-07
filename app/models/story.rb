@@ -6,12 +6,7 @@ class Story < ActiveRecord::Base
   belongs_to :user
   has_one :prompt
   has_one :contest
-  has_many :comments
-  
-  def to_param
-    "#{id}-#{title.gsub(/[?'()]+/i, '').gsub(/[^a-z1-9]+/i, '-')}"
-  end
-  
+  has_many :comments  
   
   define_index do
     indexes :title, :sortable => true
