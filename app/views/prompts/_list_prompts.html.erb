@@ -1,0 +1,30 @@
+<table>
+  <tr>
+    <th>Hero</th>
+    <th>Villain</th>
+    <th>Goal</th>
+	<th>Options</th>
+  	<% if is_admin %>
+		<th>Use on:</th>
+	<% end %>
+</tr>
+
+<% @prompts.each do |prompt| %>
+  <tr class="<%= cycle('row_alternate', 'row') -%>">
+    <td><%=h prompt.hero %></td>
+    <td><%=h prompt.villain %></td>
+    <td><%=h prompt.goal %></td>
+    <td>
+	<%= link_to 'Use this Prompt',write_to_prompt_path(prompt.id)%>
+	
+	<% if is_admin %>
+	<%= link_to 'Edit', edit_prompt_path(prompt) %>
+	</td>
+	<td>
+		<%=h prompt.use_on %>
+		
+	<% end %>
+	</td>
+  </tr>
+<% end %>
+</table>

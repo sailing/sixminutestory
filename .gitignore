@@ -9,6 +9,7 @@ db/sphinx/*
 log/*.log
 log/*.pid
 tmp/**/*
+.picasa.ini
 
 # Other useful tidbits
 doc/api
