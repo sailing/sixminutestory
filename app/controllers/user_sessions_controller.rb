@@ -15,13 +15,13 @@ class UserSessionsController < ApplicationController
           redirect_back_or_default root_url
         else
           flash[:notice] = "Username or password incorrect"
-          redirect_to login_url
+          redirect_back_or_default login_url
         end
       end
   end
 
   def destroy
     @current_user_session.destroy
-    redirect_back_or_default root_path
+    redirect_to root_url
   end
 end

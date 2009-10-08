@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     @user.admin_level = 1;
     if verify_recaptcha && @user.save
-        redirect_back_or_default account_url
+        redirect_to account_url
       else
         render :action => :new
     end

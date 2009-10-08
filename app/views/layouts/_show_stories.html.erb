@@ -28,10 +28,18 @@
 	</td>
 	
 	<td id="show_stories" class="title">
+		<% if story.title.present? %>
 		<span>
 			<!-- Story title as a link in the listings -->
 			<%= link_to h(story.title), read_story_with_title_url(story,sanitize(story.title))%>
 		</span>
+		<% else %>
+		<span>
+			<!-- Story title as a link in the listings -->
+			<%= link_to "Untitled Story", read_story_url(story)%>
+		</span>
+		
+		<% end %>
 	</td>
 
 </tr>

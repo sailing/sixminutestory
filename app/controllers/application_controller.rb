@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
     def require_no_user
       if current_user
         store_location
-        redirect_back_or_default root_url
+        redirect_to account_url
         return false
       end
     end
@@ -77,8 +77,7 @@ class ApplicationController < ActionController::Base
        respond_to do |format|
          flash[:notice] = 'You don\'t have clearance to do that.'
          format.html do
-           store_location
-           redirect_back_or_default root_url
+           redirect_to account_url
           end
        end
      end
@@ -118,6 +117,23 @@ class ApplicationController < ActionController::Base
             
         end # end get_random
         
+        
+        def rescue_action_in_public(exception)
+          case exception
+            when ActiveRecord::RecordNotFound, ActionController::RoutingError, ActionController::UnknownController, ActionController::UnknownAction
+              render_404
+            else          
+              render_500
+          end
+        end
+        
+        def render_404
+          render :template => "shared/error_404", :layout => 'application', :status => :not_found
+        end
+        
+        def render_500
+          render :template => "shared/error_500", :layout => 'application', :status => :internal_server_error
+        end
         
       
 end
