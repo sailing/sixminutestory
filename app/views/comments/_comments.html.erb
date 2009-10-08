@@ -61,7 +61,7 @@
 <% if current_user %>
 
 	<div id="comment_form">
-		<h1>Leave a comment</h1>
+		<h1>remark</h1>
 
 		<% form_for(@comment) do |f| %>
   			<%= f.hidden_field :story_id, :value => params[:id] %>
@@ -98,7 +98,7 @@
 
 <% else %>
 	<div id="signin_or_register">
-		<%= link_to "Sign in", login_path %> or <%= link_to "join", register_path %> to leave a comment.
+		<%= link_to "Sign in", login_path %> or <%= link_to "join", register_path %> to remark.
 	</div>
 <% end %>
 

@@ -1,4 +1,12 @@
-<% @i = 1 %>
+<% 
+# this is used to number the stories, so the javascript that 
+# opens and closes the drawers knows what to move
+@i = 1
+
+# set colspan
+is_admin ? @colspan = 4 : @colspan = 2
+	
+ %>
 <div id="show_stories">
 
 <%= render :partial => "layouts/browsing" %>
@@ -14,7 +22,21 @@
   		<td class="story_this_story">
 			<%= link_to image_tag('edit.png'), edit_story_url(story) %>
 		</td>
+		<td>
+			<% if is_admin %>
+				<span>
+				<%= story.flagged %> flags
+				</span>
+			<% end %>
+		</td>
 	<% end # end if is_admin %>
+	<td class="story_comments">
+		<!-- number of comments -->
+			<%= link_to story.comment_counter, read_story_with_title_url(story,sanitize(story.title)) %>
+	</td>
+	<td>	
+		<!-- rating -->
+	</td>
 	
 	<td id="description_slide_toggle" >
 		<span>
@@ -31,7 +53,7 @@
 		<% if story.title.present? %>
 		<span>
 			<!-- Story title as a link in the listings -->
-			<%= link_to h(story.title), read_story_with_title_url(story,sanitize(story.title))%>
+			<%= link_to h(story.title), read_story_with_title_url(story,sanitize(story.title)) %>
 		</span>
 		<% else %>
 		<span>
@@ -45,7 +67,7 @@
 </tr>
 
 <tr>
-	<td colspan="3" id="description_drawer">
+	<td colspan="<%=@colspan%>" id="description_drawer">
 	<div id="description<%= @i.to_s %>" style="display:none;">
 		<div class="description">
 			

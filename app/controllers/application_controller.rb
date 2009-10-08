@@ -3,13 +3,13 @@
 
 class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation
-    helper_method :current_user_session, :current_user
+  helper_method :current_user_session, :current_user
 
   helper :all # include all helpers, all the time
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
-  protect_from_forgery :secret => '2399bfac621fb2d960be1129899ad517'
+  protect_from_forgery #:secret => '2399bfac621fb2d960be1129899ad517'
   
   # See ActionController::Base for details 
   # Uncomment this to filter the contents of submitted sensitive data parameters
@@ -128,11 +128,11 @@ class ApplicationController < ActionController::Base
         end
         
         def render_404
-          render :template => "shared/error_404", :layout => 'application', :status => :not_found
+          render :template => "site/error_404", :layout => 'application', :status => :not_found
         end
         
         def render_500
-          render :template => "shared/error_500", :layout => 'application', :status => :internal_server_error
+          render :template => "site/error_500", :status => :internal_server_error
         end
         
       

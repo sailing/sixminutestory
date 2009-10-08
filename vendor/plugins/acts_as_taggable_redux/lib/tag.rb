@@ -13,8 +13,7 @@ class Tag < ActiveRecord::Base
     # then, replace all commas with a space
       # then, replace any other non-alphanumeric-underscore characters with nothing
   
-    list.gsub!(/,/, " ").gsub!(/\W/, "")
-
+    list.gsub(/,/, " ").gsub(/\W/, "")
   
     
     # then, get whatever is left

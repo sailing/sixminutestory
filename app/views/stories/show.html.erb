@@ -4,34 +4,44 @@
 
 <%= @controller_name %>
 <div id="show_story">
- <h1><%=h @story.title %></h1>
+ <h1>read</h1>
 
-			<span class="attribution">by <%= link_to @story.user.login, profile_path(@story.user.login)  %> 
-			<%=h time_ago_in_words(@story.created_at) %> ago</span>
+	<div id="title"> 
 		
-	
+		<h2 class="story_title">
+			<%=h @story.title %>
+		</h2>
+				
+		<h3 class="attribution">
+			by <%= link_to @story.user.login, profile_path(@story.user.login)  %> 
+			<%=h time_ago_in_words(@story.created_at) %> ago
+		</h3>
+		
+	</div>	
 
 		
 		<div class="description">
-			<!-- This is how people flag stories -->
-			<% if is_admin %>
-				<span>
-				<%= @story.flagged %> flags
-				</span>
-			<% end %>
 			
-			<% if is_user %>
-			<% form_tag(flag_story_path, :method => "post") do -%>
-	    
-			<%= hidden_field_tag 'story', @story.id %>
-			<%= image_submit_tag 'flag.png', 
-				:name => "flag", 
-				:id => "flag-button", 
-				:disabled => false %>
-		
-	  		<% end -%>	
-			<% end -%>
-			<%= simple_format(h(@story.description)) %>
+			<!-- Here's the story -->
+			<%= simple_format(sanitize(h(@story.description))) %>
+				
+				
+				<!-- This is how people flag stories -->
+							
+				<% if is_user %>
+					<% form_tag(flag_story_path, :method => "post") do -%>
+
+					<%= hidden_field_tag 'story', @story.id %>
+					<%= image_submit_tag 'flag.png', 
+						:name => "flag", 
+						:id => "flag-button", 
+						:disabled => false %>
+
+		  			<% end -%>	
+				<% end -%>
+				
+				
+				
 		</div>
 
 

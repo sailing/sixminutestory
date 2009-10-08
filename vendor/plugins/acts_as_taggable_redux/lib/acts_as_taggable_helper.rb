@@ -4,7 +4,7 @@ module ActsAsTaggableHelper
     tag_name = tag.name
     tag_name = tag_name.to_s
     tag_name = tag_name.strip
-    urlized_tag = sanitize(tag_name)
+ #   urlized_tag = CGI.escape(tag_name)
     link_to(tag.name, tags_url(urlized_tag), :rel => 'tag')
   end
   
@@ -35,7 +35,7 @@ module ActsAsTaggableHelper
       tag_name = tag.name
       tag_name = tag_name.to_s
       tag_name = tag_name.strip
-      urlized_tag = sanitize(tag_name)
+  #    urlized_tag = CGI.escape(tag_name)
       html << %(    <li>)
       html << link_to(h(tag_name), tags_url(urlized_tag), :class => classes[(tag.taggings_count - min) / divisor]) 
       html << %(</li> \n)
