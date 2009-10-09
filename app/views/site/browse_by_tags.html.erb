@@ -1,5 +1,6 @@
 <%= render :partial => "layouts/browsing" %>
 
+<h1>tags</h1>
 <div class="tag_cloud_container">
   <b class="sideyard">
   <b class="sideyard1"><b></b></b>
@@ -9,7 +10,23 @@
   <b class="sideyard5"></b></b>
 
   <div class="sideyardfg">
-	<%= tag_cloud %>
+	<% if @tags.empty? -%>
+	
+	  <p>No tags :/</p>
+	
+	<% else -%>
+	
+	  <div id="tag-cloud">
+	
+	    <% tag_cloud(@tags, @levels) do |tag,level| -%>
+	
+	      <span class="<%= level %>"><%= link_to h(tag), tag_url(h(tag)) %></span>
+	
+	    <% end -%>
+	
+	  </div>
+	
+	<% end -%>
 	
   </div>
 

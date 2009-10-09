@@ -4,7 +4,7 @@
 @i = 1
 
 # set colspan
-is_admin ? @colspan = 4 : @colspan = 2
+is_admin ? @colspan = 6 : @colspan = 4
 	
  %>
 <div id="show_stories">
@@ -30,13 +30,6 @@ is_admin ? @colspan = 4 : @colspan = 2
 			<% end %>
 		</td>
 	<% end # end if is_admin %>
-	<td class="story_comments">
-		<!-- number of comments -->
-			<%= link_to story.comment_counter, read_story_with_title_url(story,sanitize(story.title)) %>
-	</td>
-	<td>	
-		<!-- rating -->
-	</td>
 	
 	<td id="description_slide_toggle" >
 		<span>
@@ -48,6 +41,18 @@ is_admin ? @colspan = 4 : @colspan = 2
 		</span>
 	
 	</td>
+	
+	<td class="story_comments">
+		<!-- number of comments -->
+			<%= link_to story.comment_counter, 
+				read_story_with_title_url(story,sanitize(story.title),:anchor => "comments")
+			%>
+	</td>
+	<td>	
+		<%= story.rating %>
+	</td>
+	
+	
 	
 	<td id="show_stories" class="title">
 		<% if story.title.present? %>

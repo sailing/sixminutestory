@@ -79,6 +79,14 @@ class SiteController < ApplicationController
     end
   end
   
+  def browse_by_tags 
+    #
+    @tags = Story.tag_counts
+    #
+    @levels = (1 .. 5).map { |i| "level-#{i}" }
+  
+  end
+  
   def search
     per_page = 30
     page = params[:page] || 1
@@ -96,6 +104,8 @@ class SiteController < ApplicationController
 
          @i = 0
    end
+   
+   
    
    def admin
      page = params[:page] || 1

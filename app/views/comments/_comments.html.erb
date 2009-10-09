@@ -1,6 +1,9 @@
 <div id="comments">	
+
 <% unless @story.comments.empty? %>
-<h1>Comments</h1>
+
+<h1>remarks</h1>
+
 <% @story.comments.each do |comment| %>
 
 	<div class="commenter_container">
@@ -69,25 +72,11 @@
   			
 			<div class="comment_field_container">
 				
-				<b class="sideyard">
-				  <b class="sideyard1"><b></b></b>
-				  <b class="sideyard2"><b></b></b>
-				  <b class="sideyard3"></b>
-				  <b class="sideyard4"></b>
-				  <b class="sideyard5"></b></b>
-
-				  <div class="sideyardfg">
 					<%= f.text_area :comment, :rows => 3, :cols => 55 %>
 	    		
-				  </div>
+		  	</div>
 
-				  <b class="sideyard">
-				  <b class="sideyard5"></b>
-				  <b class="sideyard4"></b>
-				  <b class="sideyard3"></b>
-				  <b class="sideyard2"><b></b></b>
-				  <b class="sideyard1"><b></b></b></b>
-  			</div>
+			
 			<div id="comment_submit_container" class="center">
 				<%= image_submit_tag("contribute.png", :name => "contribute", :id => "contribute-button", :disabled => false) %>
  

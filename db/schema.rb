@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091008060910) do
+ActiveRecord::Schema.define(:version => 20091008200601) do
 
   create_table "comments", :force => true do |t|
     t.text     "comment"
@@ -75,24 +75,21 @@ ActiveRecord::Schema.define(:version => 20091008060910) do
   end
 
   create_table "taggings", :force => true do |t|
-    t.integer "tag_id"
-    t.integer "taggable_id"
-    t.string  "taggable_type"
-    t.integer "user_id"
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "taggable_type"
+    t.string   "context"
+    t.datetime "created_at"
   end
 
-  add_index "taggings", ["tag_id", "taggable_type"], :name => "index_taggings_on_tag_id_and_taggable_type"
-  add_index "taggings", ["taggable_id", "taggable_type"], :name => "index_taggings_on_taggable_id_and_taggable_type"
-  add_index "taggings", ["user_id", "tag_id", "taggable_type"], :name => "index_taggings_on_user_id_and_tag_id_and_taggable_type"
-  add_index "taggings", ["user_id", "taggable_id", "taggable_type"], :name => "index_taggings_on_user_id_and_taggable_id_and_taggable_type"
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
 
   create_table "tags", :force => true do |t|
-    t.string  "name"
-    t.integer "taggings_count", :default => 0, :null => false
+    t.string "name"
   end
-
-  add_index "tags", ["name"], :name => "index_tags_on_name"
-  add_index "tags", ["taggings_count"], :name => "index_tags_on_taggings_count"
 
   create_table "users", :force => true do |t|
     t.string   "login"

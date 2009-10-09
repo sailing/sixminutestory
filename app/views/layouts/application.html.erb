@@ -10,7 +10,7 @@
   	<%= stylesheet_link_tag :all, :cache => true %>
 
 </head>
-<body >
+<body>
 	<div class="login_container">
 	  <div class="loginfg">
 			<% if current_user %>
@@ -72,12 +72,6 @@
 		<% end # end login conditional %>
 	  </div>
 
-	  <b class="login">
-	  <b class="login5"></b>
-	  <b class="login4"></b>
-	  <b class="login3"></b>
-	  <b class="login2"><b></b></b>
-	  <b class="login1"><b></b></b></b>
 
 	</div>
 	
@@ -111,36 +105,18 @@
 		</table>
 			
 	  </div>
-
-	  <b class="login">
-	  <b class="login5"></b>
-	  <b class="login4"></b>
-	  <b class="login3"></b>
-	  <b class="login2"><b></b></b>
-	  <b class="login1"><b></b></b></b>
-
 	</div>
 
 <% end # end admin box %>
 
 
-<div id="search" class="float_left">
+<div id="search_container" class="float_left">
 
 	<% form_tag '/search' do -%>
 	<div class="float_left">    
-	  <b class="house">
-		  <b class="house1"><b></b></b>
-		  <b class="house2"><b></b></b>
-		  <b class="house3"></b>
-		  <b class="house4"></b>
-		  <b class="house5"></b></b>
+	  
 		<%= text_field_tag 'q', nil, :tabindex => "10" %>
-		<b class="house">
-	  <b class="house5"></b>
-	  <b class="house4"></b>
-	  <b class="house3"></b>
-	  <b class="house2"><b></b></b>
-	  <b class="house1"><b></b></b></b>
+	
 	</div>
 	<div class="float_right">
 	<%= image_submit_tag("search.png", :name => "search", :id => "search-button", :disabled => false) %>
@@ -187,17 +163,44 @@
 
   <div class="sideyardfg">
 	<%= yield(:sideyard) %> 		
-	<h2>Popular Tags</h2>
-    <%= tag_cloud %>
-
 	<h2>Contribute</h2>
-	<!-- List of things to add: donate button, share button, -->
+	<!-- List of things to add: donate button, share button, fan on facebook -->
 	<% if is_user %>
 	<p>
 	<%= link_to "Suggest a Prompt", new_prompt_url %>
 	</p>
 	<% end %>
 	<br />
+
+	<!-- twitter widget -->
+	<div id="twitter_widget">
+	<div id="twtr-search-widget"></div>
+	<script src="http://widgets.twimg.com/j/1/widget.js"></script>
+	<script>
+	new TWTR.Widget({
+	  search: '@6minutestory OR \"six minute story\" OR sixminutestory OR from:6minutestory',
+	  id: 'twtr-search-widget',
+	  loop: true,
+	  title: 'Recent tweets about',
+	  subject: 'Six Minute Story',
+	  width: 200,
+	  height: 300,
+	  theme: {
+	    shell: {
+	      background: '#a75ac1',
+	      color: '#ffffff'
+	    },
+	    tweets: {
+	      background: '#ffffff',
+	      color: '#444444',
+	      links: '#1985b5'
+	    }
+	  }
+	}).render().start();
+	</script>
+	</div>
+	<!-- end twitter widget -->
+
   </div>
 
   <b class="sideyard">

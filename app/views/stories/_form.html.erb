@@ -14,13 +14,7 @@
 
 	<div class="center">
 		
-		<b class="sideyard">
-	  <b class="sideyard1"><b></b></b>
-	  <b class="sideyard2"><b></b></b>
-	  <b class="sideyard3"></b>
-	  <b class="sideyard4"></b>
-	  <b class="sideyard5"></b></b>
-		  <div class="sideyardfg">
+	
 
 			<%= form.error_message_on 'description' %><br />
 			<% @editing.present? ? @disabled = true : @disabled = false %>
@@ -29,14 +23,7 @@
 			<% @story.tags.present? ? @tags = "" : @tags = "tags" %>
 			
   			<%= form.text_area :description, :disabled => @disabled, :value => @description, :rows => 20, :cols => 45, :tabindex => "1",:onFocus => 'GetCount(1,11000);' %>
-		</div>
-	  <b class="sideyard">
-	  <b class="sideyard5"></b>
-	  <b class="sideyard4"></b>
-	  <b class="sideyard3"></b>
-	  <b class="sideyard2"><b></b></b>
-	  <b class="sideyard1"><b></b></b></b>
-
+	
 
 			<p>
 
