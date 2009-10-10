@@ -1,1 +1,18 @@
+<% if !@stories.empty? %>
+
 <%= render :partial => "layouts/show_stories" %>
+
+<% else %>
+
+	<h1>Erm...
+	</h1>
+	<%= render :partial => "layouts/browsing" %>
+
+<div id="no_stories">
+		
+	<p>
+		Apparently no one loves one story more than another. They love them <em>all the same</em>.
+	</p>
+
+</div>
+<% end %>

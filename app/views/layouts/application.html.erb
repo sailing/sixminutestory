@@ -58,12 +58,6 @@
 
 						</td>
 
-					
-					<td>
-						<span><label>Save</label><%= f.check_box :remember_me %>  
-						</span>
-					</td>
-				
 				</tr>
 			</table>
 				
@@ -91,11 +85,6 @@
 						<%= link_to "Prompts", prompts_admin_url %>
 					</span>
 				</td>
-				<td>
-					<span class="small_text">
-						<%= link_to "Users", users_admin_url %>
-					</span>
-				</td>
 			 	<td>
 					<span class="small_text">
 						<%= link_to "Stories", stories_admin_url %>
@@ -115,7 +104,7 @@
 	<% form_tag '/search' do -%>
 	<div class="float_left">    
 	  
-		<%= text_field_tag 'q', nil, :tabindex => "10" %>
+		<%= text_field_tag 'q', nil, :tabindex => "20" %>
 	
 	</div>
 	<div class="float_right">
@@ -132,15 +121,11 @@
 		<% if !current_user %>
 		  	<%= link_to "Join", register_path %>
 			| <%= link_to "Read", read_path %>
-			| <a href="http://fora.sixminutestory.com">Fora</a>
-			| <a href="http://blog.sixminutestory.com/">Blog</a>
-			| <%= link_to "About", wtf_path %><br />
+			| <a href="http://twitter.com/6minutestory">Blog</a>
 		<% else %>
 			<%= link_to "Write", write_path %>
 			| <%= link_to "Read", read_path %>
-			| <a href="http://fora.sixminutestory.com">Fora</a>
-			| <a href="http://blog.sixminutestory.com/">Blog</a>
-			| <%= link_to "About", wtf_path %>
+			| <a href="http://twitter.com/6minutestory/">Blog</a>
 		<% end %>
 	
 	</div>  
@@ -154,15 +139,17 @@
 <div id="left_section">
 
 <div class="sideyard_container">
-  <b class="sideyard">
-  <b class="sideyard1"><b></b></b>
-  <b class="sideyard2"><b></b></b>
-  <b class="sideyard3"></b>
-  <b class="sideyard4"></b>
-  <b class="sideyard5"></b></b>
-
-  <div class="sideyardfg">
-	<%= yield(:sideyard) %> 		
+	
+	<% if @content_for_sideyard.blank? %>
+	
+	<h2>Welcome</h2>
+		<p>
+			Since current language must be <strong>concise, immediate and eloquent</strong>, I created <em>Six Minute Story</em> &mdash; a user-driven, <a href="http://en.wikipedia.org/wiki/Micro_fiction">micro-fiction</a> application &mdash; to provide an arena to practice <em>the art of the ad-lib</em>, the impromptu.
+		</p>
+		<p>
+			Turns out <strong>it's kind of fun</strong>.
+		</p>
+	
 	<h2>Contribute</h2>
 	<!-- List of things to add: donate button, share button, fan on facebook -->
 	<% if is_user %>
@@ -171,7 +158,9 @@
 	</p>
 	<% end %>
 	<br />
-
+ 	
+	<h2>Updates</h2>
+	
 	<!-- twitter widget -->
 	<div id="twitter_widget">
 	<div id="twtr-search-widget"></div>
@@ -183,7 +172,7 @@
 	  loop: true,
 	  title: 'Recent tweets about',
 	  subject: 'Six Minute Story',
-	  width: 200,
+	  width: 230,
 	  height: 300,
 	  theme: {
 	    shell: {
@@ -200,40 +189,33 @@
 	</script>
 	</div>
 	<!-- end twitter widget -->
+	<% else %>
+		
+		<%= yield(:sideyard) %> 
+		
+		<h2>Contribute</h2>
+		<!-- List of things to add: donate button, share button, fan on facebook -->
+		<% if is_user %>
+		<p>
+		<%= link_to "Suggest a Prompt", new_prompt_url %>
+		</p>
+		<% end %>
+		<br />
+				
+	
+	<% end # close yield conditional %>
 
-  </div>
-
-  <b class="sideyard">
-  <b class="sideyard5"></b>
-  <b class="sideyard4"></b>
-  <b class="sideyard3"></b>
-  <b class="sideyard2"><b></b></b>
-  <b class="sideyard1"><b></b></b></b>
-</div>
+ 
+	</div> <!-- close sideyard_container -->
 
 </div> <!-- close left layout container -->
   
 
  	<div class="right_container">
 	<div class="house_container">
-	  <b class="house">
-	  <b class="house1"><b></b></b>
-	  <b class="house2"><b></b></b>
-	  <b class="house3"></b>
-	  <b class="house4"></b>
-	  <b class="house5"></b></b>
-
-	  <div class="housefg">
 
 	    <%= yield  %>
-	  </div>
 
-	  <b class="house">
-	  <b class="house5"></b>
-	  <b class="house4"></b>
-	  <b class="house3"></b>
-	  <b class="house2"><b></b></b>
-	  <b class="house1"><b></b></b></b>
 	</div>
 	</div><!-- Close layout containers -->
 
@@ -241,12 +223,6 @@
 	<% if flash[:notice] %>
 	<!-- Notice appears, then fades out over a few seconds. -->
 	<div id="notice_container">
-	<b class="sideyard">
-	<b class="sideyard1"><b></b></b>
-	<b class="sideyard2"><b></b></b>
-	<b class="sideyard3"></b>
-	<b class="sideyard4"></b>
-	<b class="sideyard5"></b></b>
 
 	<div class="sideyardfg">
 		<div id="notice">
@@ -256,13 +232,7 @@
 			<%= javascript_include_tag :all, :cache => true %>
 
 		</div>
-		<b class="sideyard">
-		<b class="sideyard5"></b>
-		<b class="sideyard4"></b>
-		<b class="sideyard3"></b>
-		<b class="sideyard2"><b></b></b>
-		<b class="sideyard1"><b></b></b></b>
-		</div>
+	</div>
 
 		<script type="text/javascript">
 			window.onload=function(){

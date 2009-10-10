@@ -6,35 +6,35 @@
 		<td>
 			<label for="user_login">Username</label>
 			<%= f.error_message_on 'login' %><br />
-		<%= f.text_field :login %>
+		<%= f.text_field :login, :tabindex => "1" %>
 		</td>
 	</tr>
 	<tr>
 		<td><%= f.label :email_address, f.object.new_record? ? nil : "Change email" %><br />
 			<%= f.error_message_on 'email_address' %><br />	
-		<%= f.text_field :email_address %>
+		<%= f.text_field :email_address, :tabindex => "2" %>
 		</td>
 	</tr>
 
 	<tr>
 		<td><%= f.label :password, f.object.new_record? ? nil : "Change password" %><br />
 			<%= f.error_message_on 'password' %><br />
-		<%= f.password_field :password %>
+		<%= f.password_field :password, :tabindex => "3" %>
 		</td>
 	</tr>
 	<tr>
 		<td><%= f.label :password_confirmation %><br />
 			<%= f.error_message_on 'password_confirmation' %><br />
-		<%= f.password_field :password_confirmation %>
+		<%= f.password_field :password_confirmation, :tabindex => "4" %>
 		</td>
 	</tr>
 	<tr>
 		<td>
-		<%= recaptcha_tags :display => {:theme => "clean"} %>
+		<%= recaptcha_tags :display => {:theme => "clean", :tabindex => "5"} %>
 		</td>
 	</tr>
 	<tr>
-		<td><%= image_submit_tag("register.png", :name => "register", :id => "register-button", :disabled => false) %>
+		<td><%= image_submit_tag("register.png", :name => "register", :id => "register-button", :disabled => false, :tabindex => "6") %>
 		</td>
 	</tr>
 	  

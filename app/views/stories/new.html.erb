@@ -1,3 +1,17 @@
+<% content_for :sideyard do %>
+	<h2>
+		Instructions
+	</h2>
+	<p>You get <em>six minutes</em> to write a story <strong>based on the prompt</strong>. 
+	</p>
+	<p>	
+		When the timer stops, <em>you won't be able to type anymore</em>, so use the last seconds <strong>wisely</strong>. 
+	</p>
+	<p>	
+		<em>Before submitting</em> choose a <strong>title</strong>, relevant <strong>tags</strong> and a <strong>license</strong> for your story.
+	</p>
+<% end %>
+
 <div id="prompt_and_timer" style="display:none;">
 	
 	<%= render :partial => 'prompt' %>
@@ -92,12 +106,12 @@
 					 	<span class="formError">Incorrect text entered.</span>
 					<% end %>
 					
-					<%= recaptcha_tags :display => {:theme => "clean"} %>
+					<%= recaptcha_tags :display => {:theme => "clean", :tabindex => "5"} %>
 				<% end %>
 			</p>
 			<br />
 				<p>
-				<%= image_submit_tag("save.png", :name => "save", :id => "save-button", :disabled => @disabled, :tabindex => "5", :onclick => "document.getElementById('story_description').disabled=false;") %>
+				<%= image_submit_tag("save.png", :name => "save", :id => "save-button", :disabled => @disabled, :tabindex => "6", :onclick => "document.getElementById('story_description').disabled=false;") %>
 				 <% if current_user.id == @story.user_id %>
 						<%= link_to 'Destroy story', @story, :confirm => 'Are you sure you want to remove this story? Your story will no longer be visible!', :method => :delete %>
 						<% end %>

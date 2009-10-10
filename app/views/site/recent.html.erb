@@ -1,1 +1,19 @@
-<%= render :partial => "layouts/show_stories" %>
+<% if !@stories.empty? %>
+	
+	<%= render :partial => "layouts/show_stories" %>
+
+<% else %>
+
+<%= render :partial => "layouts/browsing" %>
+
+<h1>Erm...
+</h1>
+
+	<div id="no_stories">
+		
+		<p>
+			There are no <em>recent</em> stories! However, you may find more stories <%= link_to "elsewhere", browse_by_tags_path %>.
+		</p>
+		
+	</div>
+<% end %>

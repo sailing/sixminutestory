@@ -2,8 +2,14 @@
 
 .sideyard_container {
 	width:285px;
-	margin:0px 0% 0px 3%;
+	margin:0% 0% 0% 3%;
+	padding:10px 0px;
 	float:left;
+	background:#000 fixed repeat;
+	opacity:0.8;
+	-moz-border-radius:5px;  
+	-webkit-border-radius:5px;
+	border:1px solid #000;  
 	
 }
 .sideyard{display:block}
@@ -46,7 +52,6 @@
   border-left:1px solid #18342a;
   border-right:1px solid #18342a}
 .sideyardfg{
-  background:url(../images/black_container_bg.png) fixed repeat;
 	width:100%;
 	margin:0px auto;
 	padding:0px 0px 0px 0px;
@@ -57,7 +62,15 @@
 .house_container {
 	width:65%;
 	margin:0px 3% 0px 0%;
+	padding:15px 0px;
 	float:right;
+	
+	background:#62d1aa;
+	opacity:0.9;
+	-moz-border-radius:5px;  
+	-webkit-border-radius:5px;
+	border:1px solid #62d1aa;  
+	
 }
 .house{display:block;
 	}
@@ -124,7 +137,7 @@
 	-moz-border-radius-bottomright:5px;
 	-webkit-border-bottom-right-radius:5px;
 	border:1px solid #b86ae1;
-
+  z-index:9999;
 }
 
 
@@ -133,6 +146,7 @@
 	position:fixed;
 	left:6px;
 	top:0px;
+	z-index:9999;
 	width:310px;
 	display:block;
 	-moz-border-radius-bottomleft:5px;  

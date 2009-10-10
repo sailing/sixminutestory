@@ -1,9 +1,14 @@
-<% if @stories.present? %>
+<% if !@stories.empty? %>
 <%= render :partial => "layouts/show_stories" %>
 <% else %>
-<div>
-	<h1>Erm...
-	</h1>
+
+<%= render :partial => "layouts/browsing" %>
+
+<h1>Erm...
+</h1>
+
+<div id="no_stories">
+	
 	<p style="margin-left:90px;padding-top:15px">
 		Search <em><%= @q %></em> returned no results!
 	</p>

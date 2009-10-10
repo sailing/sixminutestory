@@ -11,6 +11,8 @@ is_admin ? @colspan = 6 : @colspan = 4
 
 <%= render :partial => "layouts/browsing" %>
 
+<% if !@stories.empty? %>
+
 <table>
 <% for story in @stories %>
 <% 
@@ -48,8 +50,10 @@ is_admin ? @colspan = 6 : @colspan = 4
 				read_story_with_title_url(story,sanitize(story.title),:anchor => "comments")
 			%>
 	</td>
-	<td>	
-		<%= story.rating %>
+	<td class="story_rating">	
+		<span>
+			<%= story.rating %>
+		</span>
 	</td>
 	
 	
@@ -128,7 +132,19 @@ is_admin ? @colspan = 6 : @colspan = 4
 
 </div>
 
-<%=  will_paginate @stories %>
+<div id="pagination_container">		
+	<%=  will_paginate @stories %>
+</div>
 
-<br />
-
+<% else # else for if !@stories.empty? %>
+	<%= render :partial => "layouts/browsing" %>
+	<h1>
+		Erm...
+	</h1>
+	
+	<div id="no_stories">
+		<p>
+			No stories await you here.
+		</p>
+	</div>	
+<% end %>
