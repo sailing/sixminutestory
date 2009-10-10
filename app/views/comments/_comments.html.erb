@@ -8,52 +8,21 @@
 
 	<div class="commenter_container">
 		
-		<b class="sideyard">
-		  <b class="sideyard1"><b></b></b>
-		  <b class="sideyard2"><b></b></b>
-		  <b class="sideyard3"></b>
-		  <b class="sideyard4"></b>
-		  <b class="sideyard5"></b></b>
-
-		  <div class="sideyardfg">
-					<div class="commenter">
+	
+					<div>
 				<%= link_to h(comment.user.login), user_path(comment.user.id) %> - <%=h time_ago_in_words(comment.created_at) %> ago
 					</div>
 		
 		
-		  </div>
-
-		  <b class="sideyard">
-		  <b class="sideyard5"></b>
-		  <b class="sideyard4"></b>
-		  <b class="sideyard3"></b>
-		  <b class="sideyard2"><b></b></b>
-		  <b class="sideyard1"><b></b></b></b>
 	</div>
 		
 			<div class="comment_container">
-			  <b class="house">
-			  <b class="house1"><b></b></b>
-			  <b class="house2"><b></b></b>
-			  <b class="house3"></b>
-			  <b class="house4"></b>
-			  <b class="house5"></b></b>
-
-			  <div class="housefg">
-				<div class="comment">
+				<div>
 						<p>
 							<%= auto_link(simple_format(sanitize(comment.comment)),
 							:href_options => { :target => '_blank' }) %>
 						</p>
 				</div>
-			  </div>
-
-			  <b class="house">
-			  <b class="house5"></b>
-			  <b class="house4"></b>
-			  <b class="house3"></b>
-			  <b class="house2"><b></b></b>
-			  <b class="house1"><b></b></b></b>
 			</div>
 
 			

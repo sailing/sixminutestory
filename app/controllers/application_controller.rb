@@ -118,14 +118,14 @@ class ApplicationController < ActionController::Base
         end # end get_random
         
         
-        def rescue_action_in_public(exception)
-          case exception
-            when ActiveRecord::RecordNotFound, ActionController::RoutingError, ActionController::UnknownController, ActionController::UnknownAction
-              render_404
-            else          
-              render_500
-          end
-        end
+ #       def rescue_action_in_public(exception)
+#          case exception
+ #           when ActiveRecord::RecordNotFound, ActionController::RoutingError, ActionController::UnknownController, ActionController::UnknownAction
+#              render_404
+ #           else          
+#              render_500
+ #         end
+  #      end
         
         def render_404
           render :template => "site/error_404", :layout => 'application', :status => :not_found
