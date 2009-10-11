@@ -484,11 +484,12 @@ background-color:#a759d0;
 	color:#ff7400;
 }
 
-#twitter_widget {
+#twitter_widget, #facebook_widget, #share_links {
 	width:80%;
 	margin:0px auto 15px;
 	
 }
+
 
 /* 		new story 	*/
 /* 		new story 	*/
