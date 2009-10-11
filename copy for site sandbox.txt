@@ -1,0 +1,16 @@
+
+And so on Six Minute Story, you can choose to license what you write under various Creative Commons licenses, each of which at minimum stipulate that if a person copies your story, they must also make it available for copying, and the work must be attributed to you.
+
+You may have noticed the option to license the stories you write. I fully believe the artist should control usage of their art -- but not it's . However, when art is created in view of the public, the public inherently contributes. Such art rots if not shared. 
+</p>
+<p>	
+However, the primary reason a creator should control their content is not a monetary one, but is rather because art is an extension of the artist, part of their persona. To that end, when another person shares content (which <em>will</em> happen if a person finds the content interesting) the originator should at least be acknowledged. 
+</p>
+<p>
+If the artist wishes tighter control of their persona, they have the option to license a story using various <a href="http://creativecommons.org">Creative Commons</a> licenses on Six Minute Story. Artists can stipulate their content can not be remixed into other content, or cannot be used commercially without consent, and all content carries with it the stipulation that if copied, it must be licensed in such a way that it can be copied again.
+</p>
+
+
+	<p>
+		Read Six Minute Story's <%= link_to "acknowledgements", acknowledgements_url %>.
+	</p>

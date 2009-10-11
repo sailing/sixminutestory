@@ -44,7 +44,9 @@
 					</td>
 					<td class="toolbar_button purple_button">
 						<span>
-							<a href="#comments"><%= @story.comment_counter -%> comments</a>
+							<a href="#comments">
+								<%= pluralize(@story.comment_counter, 'comment') -%>
+							</a>
 						</span>
 					</td>
 			</tr>

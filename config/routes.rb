@@ -81,7 +81,8 @@ ActionController::Routing::Routes.draw do |map|
       site.privacy            '/privacy',         :action => "privacy"
       site.api                '/api',             :action => "api"
       site.profile            '/profile/:login',   :action => "profile"
-      site.admin              '/admin/',          :action => "admin"
+      site.admin              '/admin',          :action => "admin"
+      site.acknowledgements   '/acknowledgements', :action => "acknowledgements"
     end
 
 

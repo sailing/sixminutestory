@@ -9,10 +9,13 @@ is_admin ? @colspan = 6 : @colspan = 4
  %>
 <div id="show_stories">
 
-<%= render :partial => "layouts/browsing" %>
+
 
 <% if !@stories.empty? %>
 
+<%= render :partial => "layouts/browsing" %>
+
+<%= page_entries_info @stories %>
 <table>
 <% for story in @stories %>
 <% 
@@ -132,9 +135,7 @@ is_admin ? @colspan = 6 : @colspan = 4
 
 </div>
 
-<div id="pagination_container">		
 	<%=  will_paginate @stories %>
-</div>
 
 <% else # else for if !@stories.empty? %>
 	<%= render :partial => "layouts/browsing" %>
@@ -144,7 +145,7 @@ is_admin ? @colspan = 6 : @colspan = 4
 	
 	<div id="no_stories">
 		<p>
-			No stories await you here.
+			No stories await you here. Go <%= link_to "write your own", write_url %>.
 		</p>
 	</div>	
 <% end %>

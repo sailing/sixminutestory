@@ -35,10 +35,12 @@ class CommentsController < ApplicationController
   # POST /comment.xml
   def create
     @comment = Comment.new(params[:comment])
-    @comment.story.comment_counter += 1
+    @story = Story.find(@comment.story_id)
     
     respond_to do |format|
       if @comment.save
+        @story.comment_counter += 1
+        @story.save
         flash[:notice] = 'Comment contributed!'
         format.html { redirect_to :controller => "stories", :action => "show", :id => @comment.story_id, :anchor => "comments" }
         format.xml  { render :xml => @comment, :status => :created, :location => @comment }
