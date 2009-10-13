@@ -11,7 +11,7 @@ class Story < ActiveRecord::Base
   define_index do
     indexes :title, :sortable => true
     indexes :description
-    indexes :license, :sortable => true, :facet => true
+    indexes :license, :sortable => true
     indexes tags.name, :as => "tag"
     indexes comments.comment, :as => "comments"
     
@@ -24,6 +24,7 @@ class Story < ActiveRecord::Base
     has :active
     
     set_property :delta => true
+    where "posts.state = 'published'"
     
   end
   
