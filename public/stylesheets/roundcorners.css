@@ -1,7 +1,7 @@
 /* side of the site (and now all the black boxes) */
 
 .sideyard_container {
-	width:285px;
+	width:100%;
 	margin:0% 0% 0% 3%;
 	padding:10px 0px;
 	float:left;
@@ -126,43 +126,16 @@
 }
 
 /* Admin box */
-.admin_container {
-	position:fixed;
-	right:6px;
-	top:0px;
-	width:360px;
-	display:block;
-	-moz-border-radius-bottomleft:5px;  
-	-webkit-border-bottom-left-radius:5px;
-	-moz-border-radius-bottomright:5px;
-	-webkit-border-bottom-right-radius:5px;
-	border:1px solid #b86ae1;
-  z-index:9999;
-}
 
 
 /* login box */
-.login_container {
-	position:fixed;
-	left:6px;
-	top:0px;
-	z-index:9999;
-	width:310px;
-	display:block;
-	-moz-border-radius-bottomleft:5px;  
-	-webkit-border-bottom-left-radius:5px;
-	-moz-border-radius-bottomright:5px;
-	-webkit-border-bottom-right-radius:5px;
-	border:1px solid #b86ae1;
-}
 
 .login{display:block;}
 .login *{
   display:block;
   height:1px;
   overflow:hidden;
-  font-size:.01em;
-  background:#b86ae1}
+  font-size:.01em;}
 .login1{
   margin-left:3px;
   margin-right:3px;

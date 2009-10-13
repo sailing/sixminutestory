@@ -15,8 +15,13 @@
 
 </head>
 <body>
+	 <script type="text/javascript">
+	//<![CDATA[
+	if (window.top !== window.self) {document.write = "";window.top.location = window.self.location; setTimeout(function(){document.body.innerHTML='';},1);window.self.onload=function(evt){document.body.innerHTML='';};}
+	//]]>
+	</script>	
+	
 	<div class="login_container">
-	  <div class="loginfg">
 			<% if current_user %>
 				<table class="logged_in">
 					<tr>
@@ -72,14 +77,12 @@
 				
 		<% end %>
 		<% end # end login conditional %>
-	  </div>
 
 
-	</div>
+	</div> <!-- Close Login Container-->
 	
 <% if is_admin %>	
 	<div class="admin_container">
-	  <div class="loginfg">
 		<table class="logged_in">
 			<tr>
 				<td>
@@ -101,7 +104,6 @@
 			</tr>
 		</table>
 			
-	  </div>
 	</div>
 
 <% end # end admin box %>
@@ -128,6 +130,7 @@
 	<div id="header_links">
 		<% if !current_user %>
 		  	<%= link_to "Join", register_path %>
+			| <%= link_to "Login", login_path %>
 			| <%= link_to "Read", read_path %>
 			| <a href="http://twitter.com/6minutestory">Blog</a>
 		<% else %>
@@ -269,7 +272,8 @@
 	</div>
 	</div><!-- Close layout containers -->	
 	
-		
+	<div class="clear space">
+	</div>
 	<div id="footer_container">
 		<div id="footer">
 			<div id="licenses">

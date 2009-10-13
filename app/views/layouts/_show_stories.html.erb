@@ -15,8 +15,13 @@ is_admin ? @colspan = 6 : @colspan = 4
 
 <%= render :partial => "layouts/browsing" %>
 
-<%= page_entries_info @stories %>
 <table>
+	<tr>
+		<td colspan="<%= @colspan %>">
+			<%= page_entries_info @stories %>
+		</td>
+	</tr>	
+	
 <% for story in @stories %>
 <% 
 @i = @i + 1 #actually semi-important. used to identify entries.
@@ -131,11 +136,16 @@ is_admin ? @colspan = 6 : @colspan = 4
 	</td>
 </tr>
 <% end %>
+<tr>
+	<td colspan="<%= @colspan %>">
+		<%=  will_paginate @stories %>
+		
+	</td>
+</tr>	
 </table>
 
 </div>
 
-	<%=  will_paginate @stories %>
 
 <% else # else for if !@stories.empty? %>
 	<%= render :partial => "layouts/browsing" %>

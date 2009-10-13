@@ -20,10 +20,9 @@ These gems:
 - mysql
 - authlogic
 - mislav-will_paginate
-- rmagick (for captcha)
 
 Add this to the crontab ALL ON ONE LINE (bash$ crontab -e):
-26 * * * * cd /home/lahiri/public_html/sixminutestory.com/current && /usr/local/bin/rake RAILS_ENV=production thinking_sphinx:index /home/lahiri/public_html/sixminutestory.com/storyd/log/cron.log &> /dev/null
+26 * * * * cd /home/lahiri/public_html/sixminutestory.com/current && /usr/local/bin/rake RAILS_ENV=production thinking_sphinx:index /home/lahiri/public_html/sixminutestory.com/shared/log/cron.log &> /dev/null
 
 Colors and their reasons:
 Foundations::::

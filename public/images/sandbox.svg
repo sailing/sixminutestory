@@ -680,5 +680,46 @@
            id="tspan3265"
            sodipodi:role="line">story</tspan></text>
     </g>
+    <g
+       id="g2519"
+       transform="matrix(1.3694797,0,0,1.3694797,-241.57981,-321.74917)"
+       inkscape:export-filename="/Users/galen/www/6ms/public/images/logo_square.png"
+       inkscape:export-xdpi="89.958084"
+       inkscape:export-ydpi="89.958084">
+      <text
+         sodipodi:linespacing="125%"
+         transform="scale(0.9964878,1.0035245)"
+         id="text2491"
+         y="953.24725"
+         x="579.49677"
+         style="font-size:115.99593353px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#aacc31;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:LiHei Pro;-inkscape-font-specification:LiHei Pro"
+         xml:space="preserve"><tspan
+           y="953.24725"
+           x="579.49677"
+           id="tspan2493"
+           sodipodi:role="line">6'</tspan></text>
+      <text
+         transform="scale(0.9964878,1.0035246)"
+         id="text2495"
+         y="917.49078"
+         x="653.15863"
+         style="font-size:25.7778759px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;fill:#522b1d;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:LiHei Pro;-inkscape-font-specification:LiHei Pro Bold"
+         xml:space="preserve"><tspan
+           y="917.49078"
+           x="653.15863"
+           id="tspan2497"
+           sodipodi:role="line">minute</tspan></text>
+      <text
+         transform="scale(0.9964878,1.0035246)"
+         id="text2499"
+         y="938.24579"
+         x="652.43182"
+         style="font-size:25.7778759px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;fill:#ff7400;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:LiHei Pro;-inkscape-font-specification:LiHei Pro Bold"
+         xml:space="preserve"><tspan
+           y="938.24579"
+           x="652.43182"
+           id="tspan2501"
+           sodipodi:role="line">story</tspan></text>
+    </g>
   </g>
 </svg>
