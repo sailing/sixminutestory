@@ -86,6 +86,10 @@ class ApplicationManifest < Moonshine::Manifest::Rails
   
   recipe :ssh
   
+  plugin :god
+  
+  recipe :god
+  
   plugin :sphinx
   
   recipe :sphinx
