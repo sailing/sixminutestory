@@ -1,6 +1,6 @@
 :ruby: ree
 :application: sixminutestory.com
-:user: lahiri
+:user: rails
 #:time_zone: UTC
 :deploy_to: /srv/sixminutestory.com/
 :domain: sixminutestory.com
