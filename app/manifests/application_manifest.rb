@@ -35,7 +35,7 @@ class ApplicationManifest < Moonshine::Manifest::Rails
       cron 'ts:rebuild',
           :command => "cd #{rails_root} && RAILS_ENV=#{ENV['RAILS_ENV']} rake thinking_sphinx:rebuild",
           :user => configuration[:user],
-          :minute => 15
+          :minute => 26
           
       
     # %w( root rails ).each do |user|
