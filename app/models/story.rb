@@ -24,7 +24,7 @@ class Story < ActiveRecord::Base
     has :active
     
     set_property :delta => true
-    where "posts.state = 'published'"
+    where "story.active = '1'"
     
   end
   
