@@ -10,6 +10,8 @@ log/*.log
 log/*.pid
 tmp/**/*
 .picasa.ini
+public/stylesheets/all.css
+public/javascripts/all.js
 
 # Other useful tidbits
 doc/api
