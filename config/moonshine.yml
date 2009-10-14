@@ -39,5 +39,5 @@
 :passenger:
   :max_pool_size: 3
 :mysql:
-  :innodb_buffer_pool_size: 128M
+  :default_storage_engine: MyISAM
   
