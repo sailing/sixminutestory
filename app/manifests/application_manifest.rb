@@ -61,7 +61,7 @@ class ApplicationManifest < Moonshine::Manifest::Rails
   recipe :application_packages
   
   configure({
-    :ssh => { :port => 27777, :allow_users => ['rails'] }
+    :ssh => { :port => 27777, :allow_users => ['rails'] },
     
     :iptables => { :rules => [
           '-A INPUT -m state —state RELATED,ESTABLISHED -j ACCEPT',
