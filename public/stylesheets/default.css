@@ -60,7 +60,6 @@ p {
 }
 
 table {
-	table-layout:fixed;
 }
 
 
@@ -839,8 +838,8 @@ background-color:#a759d0;
 }
 
 #show_stories td {
-	border:2px solid transparent;
-	padding:0px;
+	border:0px;
+	padding:4px;
 	margin:0px;
 }
 
@@ -855,15 +854,41 @@ background-color:#a759d0;
 
 /*  	This is what moves when you click "description"			*/
 #description_slide_toggle {
+	width:92px;
 	cursor:pointer;
 	vertical-align:baseline;
 	text-align:left;
-	padding:5px;
+
 }
 
 #description_drawer {
 	width:100%;
 }
+
+#show_stories .story_comments, #show_stories .story_rating {
+	cursor:pointer;
+	width:27px;
+	background:url(../images/comment_icon.png) center no-repeat;
+	text-align:center;
+	vertical-align:middle;
+}
+
+#show_stories .story_rating {
+	background:url(../images/rating_icon.png) center no-repeat;	
+	cursor:auto;
+}
+
+#show_stories .story_comments a, #show_stories .story_rating span {
+	color:#444;
+	text-decoration:none;
+	font-weight:600;
+
+	display:block;
+	width:100%;
+	height:100%;
+	
+}
+
 
 
 #show_stories .title {
@@ -877,29 +902,6 @@ background-color:#a759d0;
 
 #show_stories .title a {
 	color:#522b1d;
-}
-
-#show_stories .story_comments, #show_stories .story_rating {
-	cursor:pointer;
-	width:27px;
-	background:url(../images/comment_icon.png) center no-repeat;
-	text-align:center;
-	vertical-align:middle;
-}
-
-#show_stories .story_rating {
-	background:url(../images/rating_icon.png) center no-repeat;	
-}
-
-#show_stories .story_comments a, #show_stories .story_rating span {
-	color:#444;
-	text-decoration:none;
-	font-weight:600;
-
-	display:block;
-	width:100%;
-	height:100%;
-	
 }
 
 .browse_links {
@@ -925,6 +927,17 @@ background-color:#a759d0;
 .tag_cloud_container {
 	width:80%;
 	margin:0px auto;
+	
+	background:#000;
+	opacity:0.9;
+	filter: alpha(opacity = 90);
+	zoom:1;
+	
+	-moz-border-radius:5px;  
+	-webkit-border-radius:5px;
+	border:1px solid #000;
+	padding:4px;
+	
 }
 
 

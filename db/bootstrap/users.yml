@@ -1,0 +1,7 @@
+admin:
+  id:1
+  login:galen
+  password:pass
+  email:galen@sixminutestory.com
+  admin_level:3
+  

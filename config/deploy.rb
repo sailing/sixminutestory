@@ -1,1 +1,1 @@
-server "sixminutestory.com", :app, :web, :db, :primary => true
+server "6ms", :app, :web, :db, :primary => true

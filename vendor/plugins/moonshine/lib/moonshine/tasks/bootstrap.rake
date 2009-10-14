@@ -34,7 +34,22 @@ namespace :moonshine do
   namespace :app do
     desc "Overwrite this task in your app if you have any bootstrap tasks that need to be run"
     task :bootstrap do
-      #
+      require 'vendor/plugins/thinking-sphinx/recipes/thinking_sphinx'
+      
+      task :before_update_code, :roles => [:app] do
+        thinking_sphinx.stop
+      end
+
+      task :after_update_code, :roles => [:app] do
+        symlink_sphinx_indexes
+        thinking_sphinx.configure
+        thinking_sphinx.start
+      end
+
+      task :symlink_sphinx_indexes, :roles => [:app] do
+        run "ln -nfs #{shared_path}/db/sphinx #{current_path}/db/sphinx"
+      end
+      
     end
   end
 

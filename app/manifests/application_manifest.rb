@@ -29,6 +29,8 @@ class ApplicationManifest < Moonshine::Manifest::Rails
     # package 'some_native_package', :ensure => :installed
     
     # some_rake_task = "/usr/bin/rake -f #{configuration[:deploy_to]}/current/Rakefile custom:task RAILS_ENV=#{ENV['RAILS_ENV']}"
+    #some_rake_task = "/usr/bin/rake -f #{configuration[:deploy_to]}/current/Rakefile custom:task RAILS_ENV=#{ENV['RAILS_ENV']}"
+    
     # cron 'custom:task', :command => some_rake_task, :user => configuration[:user], :minute => 0, :hour => 0
       cron 'ts:rebuild',
           :command => "cd #{rails_root} && RAILS_ENV=#{ENV['RAILS_ENV']} rake thinking_sphinx:rebuild",
@@ -55,6 +57,43 @@ class ApplicationManifest < Moonshine::Manifest::Rails
     # end
   end
   # The following line includes the 'application_packages' recipe defined above
+  
+  configure({
+
+    :ssh => { :port => 27777, :allow_users => [‘rails’] },
+
+    :iptables => { :rules => [
+
+        ‘-A INPUT -m state —state RELATED,ESTABLISHED -j ACCEPT’,
+
+        ‘-A INPUT -p icmp -j ACCEPT’,
+
+        ‘-A INPUT -p tcp -m tcp —dport 25 -j ACCEPT’,
+
+        ‘-A INPUT -p tcp -m tcp —dport 27777 -j ACCEPT’,
+
+        ‘-A INPUT -p tcp -m tcp —dport 80 -j ACCEPT’,
+
+        ‘-A INPUT -p tcp -m tcp —dport 443 -j ACCEPT’,
+
+        ‘-A INPUT -s 127.0.0.1 -j ACCEPT’,
+
+        ‘-A INPUT -p tcp -m tcp —dport 8000:10000 -j ACCEPT’,
+
+        ‘-A INPUT -p udp -m udp —dport 8000:10000 -j ACCEPT’
+
+    ]}
+
+  })
+
+  plugin :iptables
+
+  plugin :ssh
+
+  recipe :iptables
+
+  recipe :ssh
+  
   
   recipe :application_packages
 
