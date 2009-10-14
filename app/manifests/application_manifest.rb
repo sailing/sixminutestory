@@ -58,18 +58,34 @@ class ApplicationManifest < Moonshine::Manifest::Rails
   end
   # The following line includes the 'application_packages' recipe defined above
   
+  recipe :application_packages
+  
   configure({
     :ssh => { :port => 27777, :allow_users => ['rails'] }
     
+    :iptables => { :rules => [
+          '-A INPUT -m state —state RELATED,ESTABLISHED -j ACCEPT',
+          '-A INPUT -p icmp -j ACCEPT',
+          '-A INPUT -p tcp -m tcp —dport 25 -j ACCEPT',
+          '-A INPUT -p tcp -m tcp —dport 2222 -j ACCEPT',
+          '-A INPUT -p tcp -m tcp —dport 80 -j ACCEPT',
+          '-A INPUT -p tcp -m tcp —dport 443 -j ACCEPT',
+          '-A INPUT -s 127.0.0.1 -j ACCEPT',
+          '-A INPUT -p tcp -m tcp —dport 8000:10000 -j ACCEPT',
+          '-A INPUT -p udp -m udp —dport 8000:10000 -j ACCEPT'
+      ]}
+    
+    
   })
-
+  
+  plugin :iptables
+  
   plugin :ssh
 
+  recipe :iptables
+  
   recipe :ssh
   
-  
-  recipe :application_packages
-
   plugin :sphinx
   
   recipe :sphinx
