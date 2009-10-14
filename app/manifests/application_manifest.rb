@@ -59,9 +59,8 @@ class ApplicationManifest < Moonshine::Manifest::Rails
   # The following line includes the 'application_packages' recipe defined above
   
   configure({
-
-    :ssh => { :port => 27777, :allow_users => [‘rails’] },
-
+    :ssh => { :port => 27777, :allow_users => ['rails'] }
+    
   })
 
   plugin :ssh
