@@ -12,7 +12,7 @@ class CreatePrompts < ActiveRecord::Migration
       t.references :contest, :default => 0
 
       t.boolean :active, :default => true
-      t.boolean :verified, :default => false
+      t.boolean :verified, :default => true
       t.boolean :delta, :default => false      
       
       t.timestamps

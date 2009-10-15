@@ -1,14 +1,20 @@
+<%
+is_admin ? @colspan = 2 : @colspan = 1
+%>
 <div class="information">
 	<table>
 		<tr>
+		<% if is_admin %>
+
 			<td class="border_right">
-			<span class="label">contact</span>
-				
+				<span class="label">contact</span>
 				
 				<span class="value">
 					 <%=h @user.email_address %>
 				</span>
 			</td>
+		<% end %>
+			
 			<td>
 				<span class="label">joined</span>
 				<span class="value">
@@ -16,17 +22,8 @@
 				</span>
 			</td>
 		<tr>
-			<td class="border_right">
-			<span class="label">website</span>
-
-
-			<span class="value">
-
-				<%= link_to truncate(h(@user.website),:length => 30), @user.website  %>
-			</span>
-			</td>
-
-			<td>
+		
+			<td colspan="<%= @colspan%>">
 	  		<span class="label">stories</span>
 				
 				<span class="value">
@@ -35,7 +32,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td colspan=2>
+			<td colspan="<%= @colspan%>">
 			<span class="label">profile</span>
 				
 				
