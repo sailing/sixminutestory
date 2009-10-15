@@ -6,7 +6,9 @@ class CreateContests < ActiveRecord::Migration
       t.datetime :start
       t.datetime :end
 
-      t.references :user      
+      t.references :user 
+      t.references :prompt, :default => 0
+           
       t.boolean :active, :default => true
       t.boolean :delta, :default => false      
 

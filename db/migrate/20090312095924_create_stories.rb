@@ -5,7 +5,10 @@ class CreateStories < ActiveRecord::Migration
       t.text :description
       t.string :license
       t.integer :rating, :default => 0
-
+      t.integer :comment_counter, :default => 0
+      t.integer :flagged, :default => 0
+      t.integer :counter, :default => 0    
+      
       t.references :user
       t.references :prompt
       t.references :contest, :default => 0

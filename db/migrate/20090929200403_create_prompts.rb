@@ -5,7 +5,9 @@ class CreatePrompts < ActiveRecord::Migration
       t.string :villain
       t.string :goal
       t.date :use_on
-
+      t.integer :rating, :default => 0
+      t.integer :counter, :default => 0
+      
       t.references :user      
       t.references :contest, :default => 0
 

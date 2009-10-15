@@ -405,7 +405,7 @@ module Riddle
             "Connection to #{@server} on #{@port} timed out after #{@timeout} seconds"
         end
       end
-      
+
       begin
         yield socket
       ensure
@@ -414,8 +414,8 @@ module Riddle
     end
     
     def initialise_connection
-      socket = TCPSocket.new @server, @port
-      
+      socket = initialise_socket
+
       # Checking version
       version = socket.recv(4).unpack('N*').first
       if version < 1
@@ -429,6 +429,19 @@ module Riddle
       socket
     end
     
+    def initialise_socket
+      tries = 0
+      begin
+        socket = TCPSocket.new @server, @port
+      rescue Errno::ECONNREFUSED => e
+        retry if (tries += 1) < 5
+        raise Riddle::ConnectionError,
+          "Connection to #{@server} on #{@port} failed. #{e.message}"
+      end
+      
+      socket
+    end
+    
     # Send a collection of messages, for a command type (eg, search, excerpts,
     # update), to the Sphinx daemon.
     def request(command, messages)
@@ -437,6 +450,9 @@ module Riddle
       version  = 0
       length   = 0
       message  = Array(messages).join("")
+      if message.respond_to?(:force_encoding)
+        message = message.force_encoding('ASCII-8BIT')
+      end
           
       connect do |socket|
         case command

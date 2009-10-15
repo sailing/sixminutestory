@@ -8,6 +8,9 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email_address
       t.text :profile
       t.boolean :active, :default => 1
+      t.integer :admin_level, :default => 1
+      
+      
       t.string :persistence_token
       t.integer :login_count
       t.datetime :last_request_at

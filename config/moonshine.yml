@@ -4,8 +4,8 @@
 #:time_zone: UTC
 :deploy_to: /srv/sixminutestory.com/
 :domain: sixminutestory.com
-#:domain_aliases:
-#  - assets1.yourapp.com
+:domain_aliases:
+  - www.sixminutestory.com
 #  - assets2.yourapp.com
 #:scm: git
 :repository: git@galen.unfuddle.com:galen/sms.git
@@ -37,8 +37,14 @@
 #
 # See all the options for Passenger, Apache vhosts, and MySQL in the
 # respective templates: moonshine/lib/moonshine/manifest/rails/templates
+:ssh:
+  :port:27777
+  :allow_users:
+    - rails
 :passenger:
   :max_pool_size: 2
+  :use_global_queue: true
 :mysql:
   :default_storage_engine: MyISAM
-  
+  :innodb_buffer_pool_size: 32M
+  :auto_increment_increment: 1
