@@ -51,4 +51,11 @@ class Moonshine::Manifest::Rails < Moonshine::Manifest
     self.class.recipe :rails_rake_environment, :rails_gems, :rails_directories, :rails_bootstrap, :rails_migrations, :rails_logrotate
     self.class.recipe :ntp, :time_zone, :postfix, :cron_packages, :motd, :security_updates
   end
+  def default_stack_sans_db
+    self.class.recipe :apache_server
+    self.class.recipe :passenger_gem, :passenger_configure_gem_path, :passenger_apache_module, :passenger_site
+    #database installation removed
+    self.class.recipe :rails_rake_environment, :rails_gems, :rails_directories, :rails_bootstrap, :rails_migrations, :rails_logrotate
+    self.class.recipe :ntp, :time_zone, :postfix, :cron_packages, :motd, :security_updates
+  end
 end

@@ -17,7 +17,7 @@ Brown => #522b1d
 Orange => #ff7400
 Purple => #b86ae1
 Purple for text => #a85ac1
-Greenish-blue => #62d1aa
+Greenish-blue => #62d1cc
 Lighter Greenish-blue => #84f3cc
 Pastel Green => #aacc31
 
@@ -447,13 +447,13 @@ background-color:#a759d0;
 	color:#fff;
 	padding:5px 7px 1px;
 	margin:0px;
-	background-color:#62d1aa;
+	background-color:#62d1cc;
 	opacity:0.6;
 	filter: alpha(opacity = 60);
 	zoom:1;
 	-moz-border-radius:5px;  
 	-webkit-border-radius:5px;
-	border:1px solid #62d1aa;
+	border:1px solid #62d1cc;
 
 }
 
@@ -848,7 +848,7 @@ background-color:#a759d0;
 }
 
 #show_stories .row_alternate {
-	background:#84f3cc;
+	background:#52c1bc;
 	opacity:1;
 }
 

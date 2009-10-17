@@ -18,7 +18,7 @@ is_admin ? @colspan = 2 : @colspan = 1
 			<td>
 				<span class="label">joined</span>
 				<span class="value">
-					<%=h time_ago_in_words(@user.created_at) %> ago
+					<%= time_ago_in_words(@user.created_at) %> ago
 				</span>
 			</td>
 		<tr>
