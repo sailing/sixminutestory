@@ -17,9 +17,7 @@
   </p>
 	<p>
 		<%= f.label :use_on %><br />
-		Month: <br /><%= select_month(Date.today)%><br />
-		Day: <br /><%= select_day(Date.today)%><br />
-		Year: <br /><%= select_year(Date.today,:start_year => 2009)%>
+		<%= date_select("prompt","use_on", :default => 1.day.from_now)%>
 	</p>
   <p>
 <%= image_submit_tag("save.png", :name => "save", :id => "save-button", :disabled => false) %>  </p>

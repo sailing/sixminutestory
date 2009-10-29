@@ -111,7 +111,7 @@ class PromptsController < ApplicationController
   # POST /prompts.xml
   def create
     @prompt = Prompt.new(params[:prompt])
-
+    @prompt.user_id = current_user.id
     respond_to do |format|
       if @prompt.save
         flash[:notice] = 'Prompt was successfully created.'
@@ -127,8 +127,7 @@ class PromptsController < ApplicationController
   # PUT /prompts/1.xml
   def update
     @prompt = Prompt.find(params[:id])
-    @prompt.use_on = Date.new(params[:date]['year'].to_i,params[:date]['month'].to_i,params[:date]['day'].to_i)
-
+    
     respond_to do |format|
       if @prompt.save && @prompt.update_attributes(params[:prompt])
         flash[:notice] = 'Prompt was successfully updated.'
