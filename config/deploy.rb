@@ -86,10 +86,11 @@ namespace :deploy do
       CMD
       
     
-    symlink_sphinx_indexes
-   # thinking_sphinx.configure
-    #thinking_sphinx.start
+    thinking_sphinx.configure
     thinking_sphinx.index
+    thinking_sphinx.start
+    symlink_sphinx_indexes
+
   end 
   	
   [:start, :stop].each do |t|
