@@ -21,7 +21,7 @@ every 2.hours do
   rake "ts:index"
 end
 
-ever :reboot do
+every :reboot do
   rake "ts:index"
   rake "ts:start"
 end

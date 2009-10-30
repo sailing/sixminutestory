@@ -1,4 +1,4 @@
-set :application, '6ms'
+set :application, 'sixminutestory.com'
 default_run_options[:pty] = true
 
 # If you aren't deploying to /u/apps/#{application} on the target
@@ -6,7 +6,7 @@ default_run_options[:pty] = true
 # via the :deploy_to variable:
 # set :deploy_to, "/var/www/#{application}"
 
-set :deploy_to, "/www/sixminutestory.com"
+set :deploy_to, "/home/rails/www/sixminutestory.com"
 
 # If you aren't using Subversion to manage your source code, specify
 # your SCM below:
@@ -17,6 +17,7 @@ set :branch, "master"
 set :deploy_via, :remote_cache
 
 set :user, "rails"
+set :use_sudo, false
 set :ssh_options, { :forward_agent => true }
 
 role :app, application
@@ -89,13 +90,12 @@ namespace :deploy do
    # thinking_sphinx.configure
     #thinking_sphinx.start
     thinking_sphinx.index
-
-	desc "Update the crontab file"
+  end 
+	  desc "Update the crontab file"
 	    task :update_crontab, :roles => :db do
 	      run "cd #{release_path} && whenever --update-crontab #{application}"
 	    end
-  	end
- 
+  	
   [:start, :stop].each do |t|
     desc "#{t} task is a no-op with mod_rails"
     task t, :roles => :app do ; end
