@@ -6,5 +6,5 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Major.create(:name => 'Daley', :city => cities.first)
 
-admin = User.create([{:login => 'Galen', :password => 'pass', :admin_level => 3},{:name => 'User', :password => 'pass', :admin_level => 1}])
+admin = User.create([{:login => 'Galen', :password => 'pass', :admin_level => 3},{:login => 'User', :password => 'pass', :admin_level => 1}])
 first_prompt = Prompt.create([{:hero => 'Pirate with a Wooden Leg', :villain => 'Woodpecker', :goal => 'Float to Shore', :use_on => '20091017'}])

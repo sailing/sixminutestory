@@ -71,7 +71,7 @@ end
 namespace :deploy do
  # task :before_update do
     # Stop Thinking Sphinx before the update so it finds its configuration file.
-  #  thinking_sphinx.stop
+#   thinking_sphinx.stop
   #end
 
   desc "Restarting mod_rails with restart.txt"
@@ -91,10 +91,6 @@ namespace :deploy do
     #thinking_sphinx.start
     thinking_sphinx.index
   end 
-	  desc "Update the crontab file"
-	    task :update_crontab, :roles => :db do
-	      run "cd #{release_path} && whenever --update-crontab #{application}"
-	    end
   	
   [:start, :stop].each do |t|
     desc "#{t} task is a no-op with mod_rails"
@@ -102,10 +98,14 @@ namespace :deploy do
   end
 
   desc "Link up Sphinx's indexes."
-  task :symlink_sphinx_indexes, :roles => [:app] do
-    run "ln -nfs #{shared_path}/db/sphinx #{current_path}/db/sphinx"
-  end
+    task :symlink_sphinx_indexes, :roles => [:app] do
+      run "ln -nfs #{shared_path}/db/sphinx #{current_path}/db/sphinx"
+    end
 
+  desc "Update the crontab file"
+	  task :update_crontab, :roles => :db do
+	    run "cd #{release_path} && whenever --update-crontab #{application}"
+    end
 end
 
 after "deploy:symlink", "deploy:update_crontab"
