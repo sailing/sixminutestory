@@ -1,12 +1,33 @@
 set :application, 'sixminutestory.com'
+
+task :to_dev do
+  
 default_run_options[:pty] = true
 
-# If you aren't deploying to /u/apps/#{application} on the target
-# servers (which is the default), you can specify the actual location
-# via the :deploy_to variable:
-# set :deploy_to, "/var/www/#{application}"
+set :location, '192.168.1.101'
+role :app, location
+role :web, location
+role :db,  location, :primary => true
+
+set :deploy_to, "/home/lahiri/www/sixminutestory.com"
+set :user, "lahiri"
+set :runner, "lahiri"
+
+end
+
+task :to_prod do
+  
+default_run_options[:pty] = true
+
+role :app, application
+role :web, application
+role :db,  application, :primary => true
 
 set :deploy_to, "/home/rails/www/sixminutestory.com"
+set :user, "rails"
+set :runner, "rails"
+
+end
 
 # If you aren't using Subversion to manage your source code, specify
 # your SCM below:
@@ -16,13 +37,9 @@ set :repository, "git@galen.unfuddle.com:galen/sms.git"
 set :branch, "master"
 set :deploy_via, :remote_cache
 
-set :user, "rails"
 set :use_sudo, false
 set :ssh_options, { :forward_agent => true }
 
-role :app, application
-role :web, application
-role :db,  application, :primary => true
 
 set :rails_env, "production"
 
@@ -69,9 +86,9 @@ end
 # :update  -> update_code, symlink
 
 namespace :deploy do
- # task :before_update do
+  #task :before_update do
     # Stop Thinking Sphinx before the update so it finds its configuration file.
-#   thinking_sphinx.stop
+  # thinking_sphinx.stop
   #end
 
   desc "Restarting mod_rails with restart.txt"
