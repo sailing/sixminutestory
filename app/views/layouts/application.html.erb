@@ -110,23 +110,8 @@
 <% end # end admin box %>
 
 
-<div id="search_container" class="float_right">
 
-	<% form_tag '/search' do -%>
-	<div class="float_left">    
-	  
-		<%= text_field_tag 'q', nil, :tabindex => "20" %>
-	
-	</div>
-	<div class="float_right">
-	<%= image_submit_tag("search.png", :name => "search", :id => "search-button", :disabled => false) %>
-	</div>
-	<% end -%>
-
-	
-</div>
-
-<div class="logo float_right">
+<div class="logo float_left">
 	
 	<span id="logo"><%= link_to (image_tag "logo2.png"), root_path %></span>
 
@@ -144,6 +129,21 @@
 	
 	</div>  
 	
+	
+</div>
+<div id="search_container" class="float_right">
+
+	<% form_tag '/search' do -%>
+	<div class="float_left">    
+	  
+		<%= text_field_tag 'q', nil, :tabindex => "20" %>
+	
+	</div>
+	<div class="float_right">
+	<%= image_submit_tag("search.png", :name => "search", :id => "search-button", :disabled => false) %>
+	</div>
+	<% end -%>
+
 	
 </div>
 
