@@ -233,6 +233,8 @@ input[type="checkbox"]{
 
 }
 
+
+
 /*							*/
 /*	Admin box		*/
 /*  						*/
@@ -485,6 +487,33 @@ background-color:#a759d0;
 #right_container {
 	float:right;
 	width:60%;
+}
+
+.sideyard_container {
+	width:100%;
+	margin:0% 0% 0% 3%;
+	padding:10px 0px;
+	float:left;
+	background:#000 fixed repeat;
+	opacity:0.8;
+	-moz-border-radius:5px;  
+	-webkit-border-radius:5px;
+	border:1px solid #000;  
+	
+}
+
+.house_container {
+	width:65%;
+	margin:0px 3% 30px 0%;
+	padding:15px 0px;
+	float:right;
+	
+	background:#62d1c5;
+	opacity:0.9;
+	-moz-border-radius:5px;  
+	-webkit-border-radius:5px;
+	border:1px solid #62d1c5;  
+	
 }
 
 
