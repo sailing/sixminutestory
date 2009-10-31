@@ -1,5 +1,5 @@
 production:
-  pid_file: /home/rails/www/sixminutestory.com/shared/tmp/searchd.pid
-  searchd_files: /home/rails/www/sixminutestory.com/shared/db/sphinx
+  pid_file: /home/lahiri/www/sixminutestory.com/shared/tmp/searchd.pid
+  searchd_files: /home/lahiri/www/sixminutestory.com/shared/db/sphinx
   bin_path: '/usr/local/bin'
   enable_star: true
