@@ -86,10 +86,10 @@ end
 # :update  -> update_code, symlink
 
 namespace :deploy do
-  #task :before_update do
+  task :before_update do
     # Stop Thinking Sphinx before the update so it finds its configuration file.
-  # thinking_sphinx.stop
-  #end
+   thinking_sphinx.stop
+  end
 
   desc "Restarting mod_rails with restart.txt"
   task :restart, :roles => :app, :except => { :no_release => true } do
