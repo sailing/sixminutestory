@@ -31,7 +31,7 @@ class SiteController < ApplicationController
     page = params[:page] || 1
     @q = params[:q]
     order = "created_at DESC"
-    timeThen = Time.now.advance(:months => -1)
+    timeThen = Time.zone.now.advance(:months => -1)
       begin
       #   @stories = Story.search(
       #      :page => page, 
@@ -43,7 +43,7 @@ class SiteController < ApplicationController
       #        :created_at => timeThen..Time.now 
       #        }
       #    )
-      @stories = Story.paginate :page => page, :order => order, :per_page => per_page, :conditions => {:active => true, :created_at => timeThen..Time.now }   
+      @stories = Story.paginate :page => page, :order => order, :per_page => per_page, :conditions => {:active => true, :created_at => timeThen..Time.zone.now }   
       rescue
         flash[:notice] = "There are no recent stories. Why not write your own?"
         redirect_to write_url
