@@ -9,8 +9,6 @@ is_admin ? @colspan = 6 : @colspan = 4
  %>
 <div id="show_stories">
 
-
-
 <% if !@stories.empty? %>
 
 <%= render :partial => "layouts/browsing" %>
@@ -24,7 +22,8 @@ is_admin ? @colspan = 6 : @colspan = 4
 	
 <% for story in @stories %>
 <% 
-@i = @i + 1 #actually semi-important. used to identify entries.
+@i = @i + 1 
+#actually semi-important. used to identify entries.
 %>
 
 <tr class="<%= cycle('row_alternate', 'row') -%>">
