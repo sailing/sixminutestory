@@ -3,3 +3,4 @@ production:
   searchd_files: /home/rails/www/sixminutestory.com/shared/db/sphinx
   bin_path: '/usr/local/bin'
   enable_star: true
+  

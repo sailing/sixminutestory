@@ -9,9 +9,9 @@ role :app, location
 role :web, location
 role :db,  location, :primary => true
 
-set :deploy_to, "/home/lahiri/www/sixminutestory.com"
-set :user, "lahiri"
-set :runner, "lahiri"
+set :deploy_to, "/home/rails/www/sixminutestory.com"
+set :user, "rails"
+set :runner, "rails"
 
 end
 
@@ -86,6 +86,7 @@ end
 # :update  -> update_code, symlink
 
 namespace :deploy do
+  
   task :before_update do
     # Stop Thinking Sphinx before the update so it finds its configuration file.
    thinking_sphinx.stop
