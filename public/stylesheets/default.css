@@ -574,7 +574,7 @@ background-color:#a759d0;
 #prompt_and_timer {
 	width:70%;
 	position:fixed;
-	top:100px;
+	top:10%;
 	left:150px;
 	z-index:10000;
 

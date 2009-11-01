@@ -4,7 +4,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>Six Minute Story <%= yield(:pagename) %> 		
+  <title>Six Minute Story 
+	<% if @content_for_pagename.blank? %>
+		 	:: A Microfiction Experiment
+	<% else %>
+			<%= yield(:pagename) %> 		
+	<% end %>
 	</title>
 
   	<%= stylesheet_link_tag :all, :cache => true %>
@@ -160,13 +165,13 @@
 	
 	<h2>Welcome</h2>
 		<p>
-			Since current language must be <strong>concise, immediate and eloquent</strong>, I created <em>Six Minute Story</em> &mdash; a user-driven, <a href="http://en.wikipedia.org/wiki/Micro_fiction">micro-fiction</a> application &mdash; to provide an arena to practice <em>the art of the ad-lib</em>, the impromptu.
+			Since current language must be <strong>concise, immediate and eloquent</strong>, I created <em>Six Minute Story</em> &mdash; a user-driven, <a href="http://en.wikipedia.org/wiki/Micro_fiction" target="_blank">micro-fiction</a> application &mdash; to provide an arena to practice <em>the art of the ad-lib</em>, the impromptu.
 		</p>
 		<p>
 			Turns out <strong>it's kind of fun</strong>.
 		</p>
 	
-	<h2>Community</h2>
+	<h2>Connect</h2>
 	<!-- List of things to add: donate button, share button, fan on facebook -->
 	<% if is_user %>
 	<p>
@@ -285,7 +290,7 @@
 				Publishing digital art is like going to a rooftop and tearing open a feather pillow. Can you control where the feathers go? Can you gather them all again? So it is with digital art.
 			</p>
 			<p>
-				We can't control who copies our art, nor how they use it. Yet, we can at least ask those who find the feathers to think of us. To that end Six Minute Story empowers writers to license their work under six <a href="http://creativecommons.org">Creative Commons</a> licenses or to the Public Domain.
+				We can't control who copies our art, nor how they use it. Yet, we can at least ask those who find the feathers to think of us. To that end Six Minute Story empowers writers to license their work under six <a href="http://creativecommons.org" target="_blank">Creative Commons</a> licenses or to the Public Domain.
 			</p> 
 		
 			</div>
@@ -296,7 +301,7 @@
 				I like to hear from people who enjoy what I create. I also appreciate constructive criticism and suggestions for improvements. If your suggestion is feasible, I'll consider it and attempt to implement it. 
 				</p>
 				<p>
-				You can get in touch with me via <a href="http://twitter.com/6minutestory">twitter</a>, Six Minute Story's <a href="http://www.facebook.com/pages/Six-Minute-Story/177100150707">Facebook profile</a> or plain old email @ galen at six minute story dot com.
+				You can get in touch with me via <a href="http://twitter.com/6minutestory" target="_blank">twitter</a>, Six Minute Story's <a href="http://www.facebook.com/pages/Six-Minute-Story/177100150707" target="_blank">Facebook profile</a> or plain old email @ galen at six minute story dot com.
 				</p>
 		</div>
 			<div class="clear">

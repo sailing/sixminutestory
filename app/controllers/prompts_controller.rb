@@ -114,7 +114,7 @@ class PromptsController < ApplicationController
     @prompt.user_id = current_user.id
     respond_to do |format|
       if @prompt.save
-        flash[:notice] = 'Prompt was successfully created.'
+        flash[:notice] = 'Thanks! We received your suggestion and will review it soon.'
         format.html { redirect_to(new_prompt_url) }
       else
         format.html { render :action => "new" }
