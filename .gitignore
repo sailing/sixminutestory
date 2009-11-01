@@ -13,6 +13,7 @@ tmp/**/*
 .picasa.ini
 public/stylesheets/all.css
 public/javascripts/all.js
+config/sphinx.yml
 
 # Other useful tidbits
 doc/api

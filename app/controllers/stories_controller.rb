@@ -68,10 +68,10 @@ class StoriesController < ApplicationController
   def new
     @story = Story.new
       if params[:prompt].present?  
-        @prompt = Prompt.find_by_id(params[:prompt], :conditions => ["active = :active AND (use_on <= :today)", {:active => true, :today => Date.today}])
+        @prompt = Prompt.find_by_id(params[:prompt], :with => ["active = :active AND (use_on <= :today)", {:active => true, :today => Date.today}])
       else
-       if !@prompt = Prompt.find(:first, :conditions => {:use_on => Date.today,:active => true})
-        @prompt = Prompt.find(:first,:order => "use_on DESC", :conditions => ["active = :active AND (use_on IS NOT :use_on)", {:active => true, :use_on => nil}])
+       unless @prompt = Prompt.find(:first, :with => {:use_on => Date.today,:active => true})
+        @prompt = Prompt.find(:first,:order => "use_on DESC", :with => ["active = :active AND (use_on < :today)", {:active => true, :today => Date.today}])
        end
       end
     respond_to do |format|
