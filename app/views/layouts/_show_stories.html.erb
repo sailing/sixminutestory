@@ -39,7 +39,7 @@ is_admin ? @colspan = 6 : @colspan = 4
 				</span>
 			<% end %>
 		</td>
-	<% end # end if is_admin %>
+	<% end %>
 	
 	<td id="description_slide_toggle" >
 		<span>
@@ -147,7 +147,8 @@ is_admin ? @colspan = 6 : @colspan = 4
 </div>
 
 
-<% else # else for if !@stories.empty? %>
+<% else  %>
+<% # else for if !@stories.empty? %>
 	<%= render :partial => "layouts/browsing" %>
 	<h1>
 		Erm...
