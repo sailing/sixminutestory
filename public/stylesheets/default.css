@@ -338,7 +338,7 @@ text-decoration:underline;
 background-color:#a759d0;
 }
 
-.logged_in table, .logged_in tr, .logged_in td, .share_container table, .share_container tr, .share_container td {
+.logged_in table, .logged_in tr, .logged_in td {
 	margin:0px;
 	padding-top:2px;
 	border-right:1px dotted #a759d0;
@@ -361,8 +361,21 @@ background-color:#a759d0;
 	-webkit-border-bottom-left-radius:5px;
 	-moz-border-radius-bottomright:5px;
 	-webkit-border-bottom-right-radius:5px;
+	padding:3px;
 	border:1px solid #444;
-	background-color:#444;
+	border-top:0;
+	background-color:#fff;
+}
+
+#share_container table {
+	width:100%;
+	background:#fff;
+}
+
+
+#share_container tr, #share_container td {
+	background:#fff;
+	text-align:center;
 }
 								
 								
