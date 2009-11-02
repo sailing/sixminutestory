@@ -368,8 +368,9 @@ background-color:#a759d0;
 }
 
 #share_container table {
-	width:100%;
+	width:95%;
 	background:#fff;
+	border-collapse:collapse;
 }
 
 
@@ -377,7 +378,12 @@ background-color:#a759d0;
 	background:#fff;
 	text-align:center;
 }
-								
+
+#share_container td {
+	width:20%;
+	padding:0px;
+	margin:0;
+}								
 								
 /* 							*/
 /*  	Header		*/
