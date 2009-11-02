@@ -1,11 +1,14 @@
 <% content_for :pagename do %>
-	<%=h ":: " + @user.login %>
+	<%= ":: Profile for " + h(@user.login) %>
 <% end %>
 
 <div id="show_story">
 	<h1>
-	  <%=h @user.login %>
+		profile
 	</h1>
+	<h3>
+		<%=h @user.login %>
+	</h3>
 
 <%= render :partial => "site/profile_block" %>
 

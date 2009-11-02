@@ -97,7 +97,7 @@ class SiteController < ApplicationController
   end
   
   def profile
-     @user = User.find_by_login params[:login]
+     @user = User.find_by_login(params[:login])
      page = params[:page] || 1
      per_page = 7
      order = "created_at DESC"

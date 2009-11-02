@@ -90,10 +90,26 @@ h1 {
 	
 }
 
-h2 {
-	font-size:1.5em;
+h3 {
+	font-size:1em;
 	padding:1px 0px;
-	margin:0px 0px 5px;
+	text-align:center;
+	
+	width:20%;
+	background:#aacc31;
+	opacity:0.8;
+	filter: alpha(opacity = 80);
+	zoom:1;
+	
+	padding: 2px 0px 2px;
+	margin:0px 0px 10px -1px;	
+	
+	-moz-border-radius-topright:5px;  
+	-webkit-border-top-right-radius:5px;
+	-moz-border-radius-bottomright:5px;
+	-webkit-border-bottom-right-radius:5px;
+	border:1px solid #aacc31;
+
 }
 
 a, a:visited, a:active{ color: #fff; text-decoration:underline;letter-spacing:.07em;}
@@ -564,9 +580,9 @@ background-color:#a759d0;
 	text-indent:10px;
 	font-weight:500;
 	letter-spacing:.13em;
-	border-bottom:1px dotted white;
 	margin-bottom:15px;
 	padding:4px 0px;
+	border-bottom:1px dotted #aacc31;
 
 }
 
