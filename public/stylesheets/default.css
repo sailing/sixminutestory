@@ -304,15 +304,8 @@ input[type="checkbox"]{
 	border:0px solid #bbf;
 }
 
-.login_container label {
-	font-size:12px;
-	font-weight:600;
-	vertical-align:baseline;
-}
-
-
 .login_container table, .login_container tr, .login_container td {
-	padding:2px 4px 2px;
+	padding:2px 4px 0px;
 	line-height:14px;
 	margin:0px;
 	vertical-align:middle;
@@ -320,23 +313,30 @@ input[type="checkbox"]{
 	
 }
 
+.login_container a, .login_container a:visited, .login_container a:active, .login_container a:hover {
+	color:#fff;
+	font-weight:600;
+	line-height:.7em;
+	font-size:.7em;
+	text-decoration:none;
+}
+
+.login_container a:hover {
+text-decoration:underline;
+background-color:#a759d0;
+}
+
+#login_name a {
+	font-size:1em;
+}
+
+
 .logged_in span {
 	padding:0px;
 	margin:0px;
 }
 
-.logged_in a, .logged_in a:visited, .logged_in a:active, .logged_in a:hover {
-	color:#fff;
-	font-weight:600;
-	line-height:1em;
-	font-size:1em;
-	text-decoration:none;
-}
 
-.logged_in a:hover {
-text-decoration:underline;
-background-color:#a759d0;
-}
 
 .logged_in table, .logged_in tr, .logged_in td {
 	margin:0px;

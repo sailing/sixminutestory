@@ -31,18 +31,18 @@
 				<table class="logged_in">
 					<tr>
 						<td>
-							<span>
+							<span id="login_name">
 							<%= link_to current_user.login, account_path %>
 							</span>
 						</td>
 							<td >
-								<span class="small_text">
+								<span>
 
 									<%= link_to "Account", account_path %>
 								</span>
 							</td>
 						<td>
-							<span class="small_text">
+							<span>
 								<%= link_to "Logout", logout_path, :confirm => "Are you sure you want to logout?" %>
 							</span>
 						</td>		
