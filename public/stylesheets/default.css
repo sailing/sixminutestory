@@ -244,7 +244,7 @@ input[type="checkbox"]{
 	position:fixed;
 	right:6px;
 	top:0px;
-	width:360px;
+	width:200px;
 	-moz-border-radius-bottomleft:5px;  
 	-webkit-border-bottom-left-radius:5px;
 	-moz-border-radius-bottomright:5px;
@@ -338,7 +338,7 @@ text-decoration:underline;
 background-color:#a759d0;
 }
 
-.logged_in table, .logged_in tr, .logged_in td {
+.logged_in table, .logged_in tr, .logged_in td, .share_container table, .share_container tr, .share_container td {
 	margin:0px;
 	padding-top:2px;
 	border-right:1px dotted #a759d0;
@@ -348,6 +348,24 @@ background-color:#a759d0;
 	
 }
 
+/* 								*/
+/*		Share links */
+/*								*/
+#share_container {
+	position:fixed;
+	left:336px;
+	top:0px;
+	z-index:10001;
+	width:420px;
+	-moz-border-radius-bottomleft:5px;  
+	-webkit-border-bottom-left-radius:5px;
+	-moz-border-radius-bottomright:5px;
+	-webkit-border-bottom-right-radius:5px;
+	border:1px solid #444;
+	background-color:#444;
+}
+								
+								
 /* 							*/
 /*  	Header		*/
 /* 							*/
@@ -563,6 +581,16 @@ background-color:#a759d0;
 #twitter_widget, #facebook_widget, #share_links {
 	width:80%;
 	margin:0px auto 15px;
+	
+}
+
+.share {
+	display:block;
+	  float:left;
+	  padding:0;
+	  margin:0;
+	  overflow:hidden;
+	line-height:1em;
 	
 }
 

@@ -45,8 +45,7 @@
 							<span class="small_text">
 								<%= link_to "Logout", logout_path, :confirm => "Are you sure you want to logout?" %>
 							</span>
-						</td>
-					
+						</td>		
 
 					</tr>
 				</table>
@@ -84,8 +83,9 @@
 		<% end %>
 
 
-	</div> 
-	<!-- Close Login Container-->
+	</div>	<!-- Close Login Container-->
+	
+
 	
 <% if is_admin %>	
 	<div class="admin_container">
@@ -179,39 +179,6 @@
 	</p>
 	<% end %>
 	
-	<!-- Share links -->
-	<div id="share_links">
-			<script type="text/javascript">
-			
-					var addthis_options = 'email, facebook, delicious, google, reddit, newsvine, slashdot, spurl, stumbleupon, tumblr, twitter, more';  
-			</script>
-
-		<table>
-			<tr>
-				<td>
-			<script type="text/javascript" src="http://tweetmeme.com/i/scripts/button.js"></script>
-				</td>
-			
-				<td>
-			<script src="http://digg.com/tools/diggthis.js" type="text/javascript"></script> 
-				</td>
-				<td>
-					<a name="fb_share" type="box_count" href="http://www.facebook.com/sharer.php">Share</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
-				</td>
-			</tr>
-			<tr>
-					<td colspan=3>
-
-				<!-- AddThis Button BEGIN -->
-				<a href="http://www.addthis.com/bookmark.php?v=250&pub=xa-4a575e99434e72bb" onmouseover="return addthis_open(this, '', '[URL]', '[TITLE]')" onmouseout="addthis_close()" onclick="return addthis_sendto()"><img src="http://s7.addthis.com/static/btn/sm-share-en.gif" width="83" height="16" alt="Bookmark and Share" style="border:0"/></a><script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js?pub=xa-4a575e99434e72bb"></script>
-				<!-- AddThis Button END -->
-					
-					
-				</td>
-			</tr>
-		</table>
-	</div>
-	<!-- Close share links -->
 	
 	<!-- Facebook fan link-->
 	<div id="facebook_widget">
@@ -309,6 +276,60 @@
 			<div class="clear">
 			</div>
 		</div>
+	</div>
+	
+	<div id="share_container">
+	<script type="text/javascript">
+	
+			var addthis_options = 'email, facebook, delicious, google, reddit, newsvine, slashdot, spurl, stumbleupon, tumblr, twitter, more';
+			
+			digg_skin = 'compact';
+			digg_window = 'new';
+			
+			tweetmeme_style = 'compact';  
+	</script>
+	
+		<table>
+			<tr>
+				<td>
+					<a 	name="fb_share" class="fb_share" type="button_count" 
+						href="http://www.facebook.com/sharer.php">Share</a>
+						<script 	src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" 	
+									type="text/javascript">
+						</script>
+					
+				</td>
+				<td>
+					<script 	type="text/javascript"
+					 			src="http://tweetmeme.com/i/scripts/button.js">
+					</script>
+				</td>
+				<td>
+					<script 
+								src="http://digg.com/tools/diggthis.js" 
+								type="text/javascript">
+					</script> 
+				</td>
+				<td>
+						<!-- AddThis Button BEGIN -->
+						<a 	href="http://www.addthis.com/bookmark.php?v=250&pub=xa-4a575e99434e72bb" 
+							onmouseover="return addthis_open(this, '', '[URL]', '[TITLE]')" 
+							onmouseout="addthis_close()" 
+							onclick="return addthis_sendto()">
+						<img src="http://s7.addthis.com/static/btn/sm-share-en.gif" 
+							width="83" 
+							height="16" 
+							alt="Bookmark and Share" 
+							style="border:0"/>
+						</a>
+							<script 
+							type="text/javascript"
+						src="http://s7.addthis.com/js/250/addthis_widget.js?pub=xa-4a575e99434e72bb">
+							</script>
+						<!-- AddThis Button END -->
+				</td>
+			</tr>
+		</table>
 	</div>
 	
 		<% if flash[:notice] %>
