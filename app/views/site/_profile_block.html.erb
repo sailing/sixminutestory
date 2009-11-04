@@ -2,11 +2,15 @@
 		<%=h @user.login %>
 		
 		<% if is_user && current_user.id == @user.id %>
-			<%= link_to "manage profile", edit_account_path %>
+			<span class="small_text">
+				<%= link_to "manage profile", edit_account_path %>
+			</span>
 		<% end %> 
 		
 		<% if is_user && current_user.id != @user.id %>
-			<span class="small_text"><%= link_to "Follow", followings_path(:writer_id => @user), :method => :post %></span>
+			<span class="small_text">
+				<%= link_to "Follow", followings_path(:writer_id => @user), :method => :post %>
+			</span>
 		<% end %>
 </h2>
 

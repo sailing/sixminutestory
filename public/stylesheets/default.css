@@ -1421,7 +1421,7 @@ background-color:#a759d0;
 
 
 .small_text a, .small_text a:visited, .small_text a:active, .small_text a:hover, .small_text span, .small_text p {
-	font-size:10px;
+	font-size:.7em;
 }
 
 .center {
