@@ -612,6 +612,7 @@ background-color:#a759d0;
 
 .sideyard_container ul {
 	list-style-type:none;
+	margin:-5px 5px 20px;
 }
 
 .sideyard_container li {
