@@ -301,7 +301,7 @@
 				<%= image_tag "close.png", :onClick => visual_effect(:fade,"notice_container",:duration => 0.2) %>
 				<br />
 				<%= flash[:notice] -%>
-				<%= javascript_include_tag :all, :cache => true %>
+				<%= javascript_include_tag "prototype", "effects", :cache => true %>
 
 			</div>
 		</div>
