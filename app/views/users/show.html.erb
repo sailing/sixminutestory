@@ -22,11 +22,9 @@
 			
 	<% end %>
   	<% else %>
-		<ul>
-			<li>
-				You're not following anyone yet.
-			</li>
-		</ul>
+		<span>
+				Not following anyone yet.
+		</span>
 	<% end %>
 </ul>
 <h2>Followers (<%= @user.followers.count :conditions => :active %>)</h2>
@@ -39,7 +37,9 @@
 	    
 	  <% end %>
 	<% else %>
-	  No followers as of yet.
+		<span>
+				No followers as of yet.
+		</span>
 	<% end %>
 	
 </ul>
