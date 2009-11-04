@@ -55,12 +55,14 @@ class ApplicationController < ActionController::Base
     
     def must_be_admin
       (current_user && @current_user.admin_level > 1) || ownership_violation
+      return false
      end
     
     def must_own_user
         if current_user
           @user ||= User.find(params[:id])
           @user == @current_user || @current_user.admin_level > 1 || ownership_violation
+          return false
         end
     end
     
@@ -70,6 +72,7 @@ class ApplicationController < ActionController::Base
         if !@story.user == current_user && !current_user.admin_level > 1 
           ownership_violation
         end
+        return false
       end 
      end
 
@@ -77,7 +80,12 @@ class ApplicationController < ActionController::Base
        respond_to do |format|
          flash[:notice] = 'You don\'t have clearance to do that.'
          format.html do
-           redirect_to account_url
+           if current_user
+              redirect_to account_url
+           else
+              redirect_to root_url
+           end
+          
           end
        end
      end

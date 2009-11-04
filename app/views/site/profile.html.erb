@@ -2,18 +2,15 @@
 	<%= ":: Profile for " + h(@user.login) %>
 <% end %>
 
-<div id="show_story">
-	<h1>
-		profile
-	</h1>
-	<h4>
+<% content_for :sideyard do %>
+<h2>
 		<%=h @user.login %>
-	</h4>
+</h2>
+	<%= render :partial => "site/profile_block" %>
+<% end %>
 
-<%= render :partial => "site/profile_block" %>
-
-</div>
-
-<br /><br />
  <%= render :partial => "layouts/show_stories" %>
+
+
+
 

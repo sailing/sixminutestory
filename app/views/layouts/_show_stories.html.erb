@@ -39,17 +39,7 @@ is_admin ? @colspan = 6 : @colspan = 4
 			<% end %>
 		</td>
 	<% end %>
-	
-	<td id="description_slide_toggle" >
-		<span>
-		<%= content_tag 'DIV', 
-				(image_tag "show_description.png", 
-				:onClick => 	"this.src='/images/hide_description.png'"), 
-			:onClick => visual_effect(:toggle_blind,'description' + @i.to_s,:duration => 0.5) 			
-		%>
-		</span>
-	
-	</td>
+
 	
 	<td class="story_comments">
 		<!-- number of comments -->
@@ -63,7 +53,9 @@ is_admin ? @colspan = 6 : @colspan = 4
 		</span>
 	</td>
 	
-	
+	<td id="show_stories" class="author">
+		<%= link_to h(story.user.login), profile_url(story.user.login) %>
+	</td>
 	
 	<td id="show_stories" class="title">
 		<% if story.title.present? %>
@@ -82,58 +74,7 @@ is_admin ? @colspan = 6 : @colspan = 4
 
 </tr>
 
-<tr>
-	<td colspan="<%=@colspan%>" id="description_drawer">
-	<div id="description<%= @i.to_s %>" style="display:none;">
-		<div class="description">
-			
-			<span class="linked_images">
-			<%= link_to(image_tag("read_more.png"), read_story_url(story)) %>
-			</span>
-			
-				<span>
-				<!-- AddThis Button BEGIN -->
-					<script type="text/javascript">
-						var addthis_pub="sixminutestory";
-						var addthis_options = 'facebook, digg, twitter, email, more';
 
-					</script>
-						<a href="http://www.addthis.com/bookmark.php?v=20" onmouseover="return addthis_open(this, '', 'http://sixminutestory.com/stories/<%= story.id %>', '[TITLE]')" onmouseout="addthis_close()" onclick="return addthis_sendto()"><%= image_tag 'share_small.png' %></a>
-					<script type="text/javascript"
-					src="http://s7.addthis.com/js/200/addthis_widget.js">
-					</script>
-				<!-- AddThis Button END -->
-				</span>
-				
-				<!-- Show the story here -->
-				<%= auto_link(simple_format(sanitize(story.description)), 
-				:href_options => { :target => '_blank' }) %>
-		
-			<span class = "linked_image">
-			<%= image_tag "hide_description.png", 
-			:onClick => visual_effect(	:blind_up,'description' + @i.to_s,
-										:duration => 0.3 )%>
-			
-			<%= link_to(image_tag("read_more.png"), read_story_url(story)) %>
-			
-			</span>
-				<span>
-				<!-- AddThis Button BEGIN -->
-					<script type="text/javascript">
-						var addthis_pub="sixminutestory";
-						var addthis_options = 'facebook, digg, twitter, email, more';
-
-					</script>
-						<a href="http://www.addthis.com/bookmark.php?v=20" onmouseover="return addthis_open(this, '', 'http://sixminutestory.com/stories/<%= story.id %>', '[TITLE]')" onmouseout="addthis_close()" onclick="return addthis_sendto()"><%= image_tag 'share_small.png', :class => "linked_image" %></a>
-					<script type="text/javascript"
-					src="http://s7.addthis.com/js/200/addthis_widget.js">
-					</script>
-				<!-- AddThis Button END -->
-				</span>
-		</div>
-	</div>		
-	</td>
-</tr>
 <% end %>
 <tr>
 	<td colspan="<%= @colspan %>">

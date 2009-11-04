@@ -69,7 +69,7 @@ class SiteController < ApplicationController
           :start_at => 1.year.ago,
           :end_at => Time.now,
           :limit => 20,
-          :order => "stories.rating DESC",
+          :order => "stories.rating DESC, created_at DESC",
           :conditions => ["stories.active = ? AND votes.vote  = ?", true, true]
       }).paginate(:per_page => per_page, :page => page)
       

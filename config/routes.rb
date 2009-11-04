@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :followings
+
   map.resources :contests
 
   map.resources :prompts
@@ -35,6 +37,9 @@ ActionController::Routing::Routes.draw do |map|
     map.login 'login', :controller => "user_sessions", :action => "new"
     map.logout 'logout', :controller => "user_sessions", :action => "destroy"
     map.register 'register', :controller => "users", :action => "new"
+    
+    map.profile            '/profile/:login', :controller => "users", :action => "show"
+    
     
     #administration
     map.prompts_admin "admin/prompts", :controller => "prompts", :action => "admin"
@@ -80,7 +85,6 @@ ActionController::Routing::Routes.draw do |map|
       site.terms              '/terms',           :action => "terms"
       site.privacy            '/privacy',         :action => "privacy"
       site.api                '/api',             :action => "api"
-      site.profile            '/profile/:login',   :action => "profile"
       site.admin              '/admin',          :action => "admin"
       site.acknowledgements   '/acknowledgements', :action => "acknowledgements"
     end

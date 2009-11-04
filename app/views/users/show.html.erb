@@ -1,18 +1,42 @@
-<% if current_user.id == @user.id %>
-<%= render :partial => "layouts/show_stories" %>
-
-<br /><br />
-<div id="show_story">
-	<h1>
-		profile
-	</h1>
-	<h1>
-		<%= link_to 'edit', edit_account_path %>
-	</h1>
-
-	<%= render :partial => "site/profile_block" %>
-
-</div>
-<% else %>
-<%= render :action => "profile" %>
+<% content_for :pagename do %>
+	<%= ":: Profile for " + h(@user.login) %>
 <% end %>
+
+<% content_for :sideyard do %>
+	
+	<%= render :partial => "site/profile_block" %>
+	
+<h2>Following (<%= @user.writers.count :conditions => :active %>)</h2>
+
+<ul>
+	
+	<% if @user.followings.present? %>
+
+	  <% for following in @user.followings %>
+	    <li>
+			<%= link_to h(following.writer.login), profile_url(following.writer.login) %>
+			<span class="small_text">
+				(<%= link_to "remove", following, :method => :delete %>)
+	  		</span>
+	<% end %>
+  	<% else %>
+		No one.
+	<% end %>
+</ul>
+<h2>Followers (<%= @user.followers.count :conditions => :active %>)</h2>
+<ul>
+	<% if @user.followers.present? %>
+	  <% for follower in @user.followers %>
+		<li>
+			<%=h follower.login %>
+		</li>
+	    
+	  <% end %>
+	<% else %>
+	  No followers as of yet.
+	<% end %>
+	
+</ul>
+<% end %>
+
+ <%= render :partial => "layouts/show_stories" %>

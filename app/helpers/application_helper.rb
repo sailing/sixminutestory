@@ -23,7 +23,7 @@ module ApplicationHelper
     def is_user
       return true if current_user
     end
-
+    
     def is_owner_or_admin
 
           if current_user && (current_user == @user || current_user.admin_level > 1 || (@story && current_user.id == @story.user_id ))

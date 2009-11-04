@@ -72,7 +72,7 @@
 						</td>
 				
 				<td>
-					<%= link_to "Register", register_url %>
+					<%= link_to "Sign up", register_url %>
 				</td>
 
 				</tr>
@@ -122,8 +122,7 @@
 
 	<div id="header_links">
 		<% if !current_user %>
-		  	<%= link_to "Join", register_path %>
-			| <%= link_to "Login", login_path %>
+		  	<%= link_to "Sign up", register_path %>
 			| <%= link_to "Read", read_path %>
 			| <a href="http://www.facebook.com/pages/Six-Minute-Story/177100150707">Blog</a>
 		<% else %>
@@ -181,42 +180,14 @@
 	
 	
 	<!-- Facebook fan link-->
+	<div class="center">
 	<div id="facebook_widget">
-	<script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php/en_US"></script><script type="text/javascript">FB.init("174e4db809eb853141cb0cdc69064c2f");</script><fb:fan profile_id="177100150707" stream="" connections="10" width="230"></fb:fan><div style="font-size:8px; padding-left:10px"> </div>
+<script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php/en_US"></script><script type="text/javascript">FB.init("174e4db809eb853141cb0cdc69064c2f");</script><fb:fan profile_id="177100150707" stream="1" connections="8" width="290"></fb:fan>
+	</div>
 	</div>
 	<!-- Close Facebook fan link -->
-	<br />
  	
-	<h2>Updates</h2>
-	
-	<!-- twitter widget -->
-	<div id="twitter_widget">
-	<div id="twtr-search-widget"></div>
-	<script src="http://widgets.twimg.com/j/1/widget.js"></script>
-	<script>
-	new TWTR.Widget({
-	  search: '@6minutestory OR \"six minute story\" OR sixminutestory OR from:6minutestory',
-	  id: 'twtr-search-widget',
-	  loop: true,
-	  title: 'Recent tweets about',
-	  subject: 'Six Minute Story',
-	  width: 230,
-	  height: 300,
-	  theme: {
-	    shell: {
-	      background: '#a75ac1',
-	      color: '#ffffff'
-	    },
-	    tweets: {
-	      background: '#ffffff',
-	      color: '#444444',
-	      links: '#1985b5'
-	    }
-	  }
-	}).render().start();
-	</script>
-	</div>
-	<!-- end twitter widget -->
+
 	
 	<% else %>
 		
@@ -242,7 +213,7 @@
   
  	<div class="right_container">
 		<div class="house_container">
-
+	
 	    	<%= yield  %>
 
 		</div>
@@ -347,8 +318,8 @@
 
 		</div> <!-- End Notice div -->
 	
-	<!-- Javascripts to include -->
-	<%= javascript_include_tag "prototype", "effects", "application", :cache => true %>
+		<!-- Javascripts to include -->
+		<%= javascript_include_tag "application", :cache => true %>
 	
 	<!-- Google analytics code snippet -->
 	<script type="text/javascript">

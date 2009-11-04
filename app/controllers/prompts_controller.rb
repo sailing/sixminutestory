@@ -8,7 +8,7 @@ class PromptsController < ApplicationController
   def verified
     page = params[:page] || 1
      per_page = 15
-     order = "updated_at DESC"
+     order = "use_on DESC"
     
     @prompts = Prompt.paginate :page => page, :per_page => per_page, :order => order, :conditions => ["active = :active AND (use_on IS NOT :use_on)", {:active => true, :use_on => nil} ]
   

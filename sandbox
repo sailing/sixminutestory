@@ -1,3 +1,38 @@
+######### Twitter Widget ###############
+
+<h2>Updates</h2>
+
+<!-- twitter widget -->
+<div id="twitter_widget">
+<div id="twtr-search-widget"></div>
+<script src="http://widgets.twimg.com/j/1/widget.js"></script>
+<script>
+new TWTR.Widget({
+  search: '@6minutestory OR \"six minute story\" OR sixminutestory OR from:6minutestory',
+  id: 'twtr-search-widget',
+  loop: true,
+  title: 'Recent tweets about',
+  subject: 'Six Minute Story',
+  width: 230,
+  height: 300,
+  theme: {
+    shell: {
+      background: '#a75ac1',
+      color: '#ffffff'
+    },
+    tweets: {
+      background: '#ffffff',
+      color: '#444444',
+      links: '#1985b5'
+    }
+  }
+}).render().start();
+</script>
+</div>
+<!-- end twitter widget -->
+
+######### Close Twitter Widget #########
+
 ######### Ratings stuff #################
 
 

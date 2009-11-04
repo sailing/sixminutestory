@@ -3,6 +3,11 @@ class User < ActiveRecord::Base
   acts_as_tagger
   acts_as_voter
   
+  has_many :followings
+  has_many :writers, :through => :followings
+  has_many :inverse_followings, :class_name => "Following", :foreign_key => "writer_id"
+  has_many :followers, :through => :inverse_followings, :source => :user
+  
   has_many :stories
   has_many :comments
   

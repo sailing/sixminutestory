@@ -17,6 +17,7 @@ class StoriesController < ApplicationController
     else 
          # Initialize a comment 
            @comment = Comment.new
+           @user = @story.user
 
            # find previous and next stories
              @previous = @story.id - 1
@@ -132,6 +133,7 @@ class StoriesController < ApplicationController
   
   def disable_story
     @story = Story.find(params[:id])
+
     @story.active = 0
      respond_to do |format|
        if @story.save

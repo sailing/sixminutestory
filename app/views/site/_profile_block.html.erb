@@ -1,44 +1,57 @@
-<%
-is_admin ? @colspan = 2 : @colspan = 1
-%>
+<h2>
+		<%=h @user.login %>
+		
+		<% if is_user && current_user.id == @user.id %>
+			<%= link_to "manage profile", edit_account_path %>
+		<% end %> 
+		
+		<% if is_user && current_user.id != @user.id %>
+			<span class="small_text"><%= link_to "Follow", followings_path(:writer_id => @user), :method => :post %></span>
+		<% end %>
+</h2>
+
 <div class="information">
 	<table>
+	<% if is_admin %>
 		<tr>
-		<% if is_admin %>
-
-			<td class="border_right">
-				<span class="label">contact</span>
-				
-				<span class="value">
+			<th>
+				contact
+			</th>
+			<td>
+				<span>
 					 <%=h @user.email_address %>
 				</span>
 			</td>
-		<% end %>
-			
-			<td>
-				<span class="label">joined</span>
-				<span class="value">
-					<%= time_ago_in_words(@user.created_at) %> ago
-				</span>
-			</td>
+		</tr>
+	<% end %>
 		<tr>
-		
-			<td colspan="<%= @colspan%>">
-	  		<span class="label">stories</span>
-				
-				<span class="value">
-					<%=h @user.stories.count :conditions => {:active => true} %>
+			<th>
+				joined
+			</th>
+			<td>
+				<span>
+					<%= time_ago_in_words(h(@user.created_at)) %> ago
 				</span>
 			</td>
 		</tr>
 		<tr>
-			<td colspan="<%= @colspan%>">
-			<span class="label">profile</span>
+		
+			<th>
+	  		stories
+			</th>
+			<td>
+				<span>
+					<%= link_to h(@user.stories.count :conditions => {:active => true}), profile_url(@user.login) %>
+				</span>
+			</td>
+		</tr>
+		<tr>
+			<th>
+			profile
+			</th>
+			<td>
+				<%= auto_link(simple_format(h(@user.profile))) %>
 				
-				
-				<div class="description">
-						<%= @user.profile %>
-				</div>
 			</td>
 		</tr>
 	</table>

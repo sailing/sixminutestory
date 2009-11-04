@@ -2,7 +2,12 @@
 	<%=h ":: " + @story.title %>
 <% end %>
 
-<%= @controller_name %>
+<% content_for :sideyard do %>
+
+		<%= render :partial => "site/profile_block" %>
+		
+<% end %>
+
 <div id="show_story">
  <h1>read</h1>
 

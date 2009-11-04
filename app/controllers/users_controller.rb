@@ -1,8 +1,8 @@
 # app/controllers/users_controller.rb
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
-    before_filter :require_user, :only => [:show, :edit, :update]
-    
+    before_filter :require_user, :only => [:edit, :update]
+  
   def new
     @user = User.new
   end
@@ -18,11 +18,23 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = @current_user
+    @user = User.find_by_login(params[:login]) || current_user
+    
+    
     page = params[:page] || 1
     per_page = 10
     order = "created_at DESC"
-    @stories = Story.paginate_by_user_id @user.id, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    
+    
+    if current_user == @user
+      writers = Array.new
+      @user.followings.each do |writer|
+        writers << writer.writer_id
+      end
+      
+      @stories = Story.paginate_by_user_id writers, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    
+    else  
+      @stories = Story.paginate_by_user_id @user.id, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    
+    end
   end
   
 
