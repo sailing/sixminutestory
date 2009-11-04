@@ -95,7 +95,7 @@ h4 {
 	padding:1px 0px;
 	text-align:center;
 	
-	width:30%;
+	width:33%;
 	background:#aacc31;
 	opacity:0.8;
 	filter: alpha(opacity = 80);
@@ -625,8 +625,8 @@ background-color:#a759d0;
 
 
 #facebook_widget {
-
-	margin:0;
+	width:80%;
+	margin:0px auto;
 }
 
 .share {

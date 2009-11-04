@@ -14,10 +14,12 @@
 
 	  <% for following in @user.followings %>
 	    <li>
+		
 			<%= link_to h(following.writer.login), profile_url(following.writer.login) %>
-			<span class="small_text">
-				(<%= link_to "remove", following, :method => :delete %>)
-	  		</span>
+				<span class="small_text">
+					(<%= link_to "remove", following, :method => :delete %>)
+		  		</span> 
+			
 	<% end %>
   	<% else %>
 		No one.
@@ -28,7 +30,7 @@
 	<% if @user.followers.present? %>
 	  <% for follower in @user.followers %>
 		<li>
-			<%=h follower.login %>
+			<%= link_to h(follower.login), profile_url(follower.login) %>
 		</li>
 	    
 	  <% end %>
@@ -38,5 +40,13 @@
 	
 </ul>
 <% end %>
+
+<h4>
+	<% if is_user && current_user.id == @user.id %>
+		Stories by writers you follow
+	<% else %>
+		Stories by <%= @user.login %>
+	<% end %>
+</h4>
 
  <%= render :partial => "layouts/show_stories" %>
