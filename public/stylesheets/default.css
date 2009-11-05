@@ -980,6 +980,10 @@ background-color:#a759d0;
 	
 }
 
+#show_stories tr {
+	height:30px;
+}
+
 #show_stories td {
 	border:0px;
 	padding:4px;
