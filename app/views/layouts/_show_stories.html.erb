@@ -27,19 +27,10 @@ is_admin ? @colspan = 6 : @colspan = 4
 %>
 
 <tr class="<%= cycle('row_alternate', 'row') -%>">
-	<% if is_admin %>
-  		<td class="story_this_story">
-			<%= link_to image_tag('edit.png'), edit_story_url(story) %>
-		</td>
-		<td>
-			<% if is_admin %>
-				<span>
-				<%= story.flagged %> flags
-				</span>
-			<% end %>
-		</td>
-	<% end %>
-
+	
+	<td id="show_stories" class="author">
+		<%= link_to h(story.user.login), profile_url(story.user.login) %>
+	</td>
 	
 	<td class="story_comments">
 		<!-- number of comments -->
@@ -51,10 +42,6 @@ is_admin ? @colspan = 6 : @colspan = 4
 		<span>
 			<%= story.rating %>
 		</span>
-	</td>
-	
-	<td id="show_stories" class="author">
-		<%= link_to h(story.user.login), profile_url(story.user.login) %>
 	</td>
 	
 	<td id="show_stories" class="title">
@@ -71,7 +58,20 @@ is_admin ? @colspan = 6 : @colspan = 4
 		
 		<% end %>
 	</td>
-
+	
+	<% if is_admin %>
+  		<td class="story_this_story">
+			<%= link_to image_tag('edit.png'), edit_story_url(story) %>
+		</td>
+		<td>
+			<% if is_admin %>
+				<span>
+				<%= story.flagged %> flags
+				</span>
+			<% end %>
+		</td>
+	<% end %>
+	
 </tr>
 
 

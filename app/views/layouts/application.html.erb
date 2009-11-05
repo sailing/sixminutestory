@@ -132,20 +132,26 @@
 		<% end %>
 	
 	</div>  
-	
-	
+
 </div>
+
 <div id="search_container" class="float_right">
 
 	<% form_tag '/search' do -%>
-	<div class="float_left">    
+	<table>
+		<tr>
+			<td>
 	  
-		<%= text_field_tag 'q', nil, :tabindex => "20" %>
-	
-	</div>
-	<div class="float_right">
-	<%= image_submit_tag("search.png", :name => "search", :id => "search-button", :disabled => false) %>
-	</div>
+				<%= text_field_tag 'q', nil, :tabindex => "20" %>
+			</td>
+			<th>
+				<%= image_submit_tag("search.png", 
+					:name => "search", 
+					:id => "search-button", 
+					:disabled => false) %>
+			</th>
+		</tr>
+	</table>
 	<% end -%>
 
 	
