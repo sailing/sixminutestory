@@ -9,9 +9,15 @@ is_admin ? @colspan = 6 : @colspan = 4
  %>
 <div id="show_stories">
 
-<% if !@stories.empty? %>
+	<h1>read</h1>
+	<span class="browse_links">
+	<%= link_to image_tag('top_rated.png'), top_path %>
+	<%= link_to image_tag('recent.png'), recent_path %> 
+	<%= link_to image_tag('by_tags.png'), browse_by_tags_path %>
+	</span>
 
-<%= render :partial => "layouts/browsing" %>
+
+<% if !@stories.empty? %>
 
 <table>
 	<tr>
@@ -34,11 +40,14 @@ is_admin ? @colspan = 6 : @colspan = 4
 	
 	<td class="story_comments">
 		<!-- number of comments -->
+			<%= image_tag('comment_icon.png')%><br />
 			<%= link_to story.comment_counter, 
 				read_story_url(story,:anchor => "comments")
 			%>
 	</td>
 	<td class="story_rating">	
+		<%= image_tag('rating_icon.png')%>
+		<br />
 		<span>
 			<%= story.rating %>
 		</span>
@@ -89,7 +98,6 @@ is_admin ? @colspan = 6 : @colspan = 4
 
 <% else  %>
 <% # else for if !@stories.empty? %>
-	<%= render :partial => "layouts/browsing" %>
 	<h1>
 		Erm...
 	</h1>

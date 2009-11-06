@@ -1,3 +1,20 @@
+
+background:url(../images/comment_icon.png) center no-repeat;
+
+######## description drawer ############
+/*  	This is what moves when you click "description"			*/
+#description_slide_toggle {
+	width:92px;
+	cursor:pointer;
+	vertical-align:baseline;
+	text-align:left;
+
+}
+
+#description_drawer {
+	width:100%;
+}
+
 ######### Twitter Widget ###############
 
 <h2>Updates</h2>

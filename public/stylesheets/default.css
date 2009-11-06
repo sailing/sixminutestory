@@ -263,22 +263,21 @@ input[type="checkbox"]{
 	right:6px;
 	top:0px;
 	width:200px;
-	-moz-border-radius-bottomleft:5px;  
-	-webkit-border-bottom-left-radius:5px;
-	-moz-border-radius-bottomright:5px;
-	-webkit-border-bottom-right-radius:5px;
+	-moz-border-radius-bottomleft:10px;  
+	-webkit-border-bottom-left-radius:10px;
+	-moz-border-radius-bottomright:10px;
+	-webkit-border-bottom-right-radius:10px;
 	border:1px solid #b86ae1;
   z-index:9999;
 	background:#b86ae1;
-
+	padding:3px;
 }
 
 .admin_container table, .admin_container tr, .admin_container td {
+	padding:2px 4px 0px;
+	line-height:14px;
 	margin:0px;
-	padding-top:2px;
-	border-right:1px dotted #a759d0;
-	height:100%;
-	background:#b86ae1;
+	vertical-align:middle;
 	border-collapse:collapse;
 }
 
@@ -293,10 +292,10 @@ input[type="checkbox"]{
 	top:0px;
 	z-index:9999;
 	width:310px;
-	-moz-border-radius-bottomleft:5px;  
-	-webkit-border-bottom-left-radius:5px;
-	-moz-border-radius-bottomright:5px;
-	-webkit-border-bottom-right-radius:5px;
+	-moz-border-radius-bottomleft:10px;  
+	-webkit-border-bottom-left-radius:10px;
+	-moz-border-radius-bottomright:10px;
+	-webkit-border-bottom-right-radius:10px;
 	border:1px solid #b86ae1;
 	background-color:#b86ae1;
 	padding:3px;
@@ -332,12 +331,13 @@ input[type="checkbox"]{
 	
 }
 
-.login_container a, .login_container a:visited, .login_container a:active, .login_container a:hover {
+.login_container a, .admin_container a {
 	color:#fff;
 	font-weight:600;
-	line-height:.7em;
+	line-height:1em;
 	font-size:.7em;
 	text-decoration:none;
+	
 }
 
 .login_container a:hover {
@@ -986,7 +986,6 @@ background-color:#a759d0;
 
 #show_stories td {
 	border:0px;
-	padding:4px;
 	margin:0px;
 	font-size:.75em;
 }
@@ -1000,44 +999,37 @@ background-color:#a759d0;
 	opacity:1;
 }
 
-/*  	This is what moves when you click "description"			*/
-#description_slide_toggle {
-	width:92px;
-	cursor:pointer;
-	vertical-align:baseline;
-	text-align:left;
 
-}
-
-#description_drawer {
-	width:100%;
-}
 
 #show_stories .story_comments, #show_stories .story_rating {
-	cursor:pointer;
-	width:27px;
-	background:url(../images/comment_icon.png) center no-repeat;
 	text-align:center;
+	width:27px;
 	vertical-align:middle;
 }
 
-#show_stories .story_rating {
-	background:url(../images/rating_icon.png) center no-repeat;	
-	cursor:auto;
+#show_stories img {
+	position:relative;
+	top:7px;
+	padding:0;
+	margin:-5px 0px;
 }
 
 #show_stories .story_comments a, #show_stories .story_rating span {
+	position:relative;
+	top:-8px;
+	
 	color:#444;
 	text-decoration:none;
 	font-weight:600;
-
-	display:block;
-	width:100%;
-	height:100%;
 	
+	display:block;
+	height:100%;
+	width:100%;
 }
 
-
+#show_stories .story_rating span {
+	cursor:auto;
+}
 
 #show_stories .title {
 	width:500px;
@@ -1048,31 +1040,35 @@ background-color:#a759d0;
 }
 
 
-#show_stories .title a {
-	color:#522b1d;
-	font-size:.8em;
-	letter-spacing:.08em;
+#show_stories .title a, #show_stories .author a {
+	font-size:1em;
 	font-weight:600;
+	text-decoration:none;
+	padding:5px;
+}
+
+#show_stories .author a {
+	font-size:.8em;
+}
+
+#show_stories .title a:hover, #show_stories .author a:hover {
+	background-color:#aacc31;
+	
+	-moz-border-radius:5px;  
+	-webkit-border-radius:5px;
+	
+}
+
+#show_stories .title a {
+	letter-spacing:.08em;
+	color:#522b1d;
+	
 }
 
 #show_stories .author {
 	text-align:right;
+	width:100px;
 
-}
-
-#show_stories .author a {
-	font-style:underline;
-	font-size:.8em;
-	font-weight:600;
-}
-
-.browse_links {
-	margin: 0px 55px;
-}
-
-.browse_links a {
-	font-size:1.5em;
-	font-weight:600;
 }
 
 #no_stories {
@@ -1083,6 +1079,19 @@ background-color:#a759d0;
 #no_stories em {
 	color:#b86ae1;
 	font-style:normal;
+}
+
+.browse_links {
+	display:block;
+	position:relative;
+	left:55px;
+	
+	margin-bottom:15px;
+}
+ 
+.browse_links a {
+	font-size:1.5em;
+	font-weight:600;
 }
 
 /* Tag Cloud on Browse By Tags */
