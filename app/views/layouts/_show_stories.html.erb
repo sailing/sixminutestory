@@ -4,7 +4,7 @@
 @i = 1
 
 # set colspan
-is_admin ? @colspan = 6 : @colspan = 4
+is_admin ? @colspan = 5 : @colspan = 3
 	
  %>
 <div id="show_stories">
@@ -34,10 +34,6 @@ is_admin ? @colspan = 6 : @colspan = 4
 
 <tr class="<%= cycle('row_alternate', 'row') -%>">
 	
-	<td id="show_stories" class="author">
-		<%= link_to h(story.user.login), profile_url(story.user.login) %>
-	</td>
-	
 	<td class="story_comments">
 		<!-- number of comments -->
 			<%= image_tag('comment_icon.png')%><br />
@@ -54,6 +50,9 @@ is_admin ? @colspan = 6 : @colspan = 4
 	</td>
 	
 	<td id="show_stories" class="title">
+		<span class="author">
+		<%= link_to h(story.user.login), profile_url(story.user.login) %>
+		</span>
 		<% if story.title.present? %>
 		<span>
 			<!-- Story title as a link in the listings -->

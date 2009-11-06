@@ -501,7 +501,7 @@ background-color:#a759d0;
 	top:55px;
 */
 	width:100%;
-	margin:0% 0% 0% 3%;
+	margin:0% 0% 10px 3%;
 	text-align:center;
 }
 
@@ -1035,7 +1035,7 @@ background-color:#a759d0;
 }
 
 #show_stories .title {
-	width:500px;
+	width:600px;
 	padding-left:10px;
 	font-weight:500;
 	letter-spacing:.07em;
@@ -1050,8 +1050,10 @@ background-color:#a759d0;
 	padding:5px;
 }
 
-#show_stories .author a {
-	font-size:.8em;
+#show_stories .title a {
+	letter-spacing:.08em;
+	color:#522b1d;
+	
 }
 
 #show_stories .title a:hover, #show_stories .author a:hover {
@@ -1062,10 +1064,10 @@ background-color:#a759d0;
 	
 }
 
-#show_stories .title a {
-	letter-spacing:.08em;
-	color:#522b1d;
-	
+#show_stories .author a {
+	color:#fff;
+	font-size:.8em;
+
 }
 
 #show_stories .author {
