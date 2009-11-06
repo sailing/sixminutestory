@@ -3,27 +3,35 @@ class SiteController < ApplicationController
 
   def index
     per_page = 15
-    page = params[:page] || 1
-    @q = params[:q]
-    order = "created_at DESC"
-    timeThen = Time.now.advance(:years => -1)
-   @stories = Story.search(
-            :page => page, 
-            :per_page => per_page, 
-            :order => order, 
-            :match_mode => :all, 
-            :conditions =>{
-              :active => true, 
-              :updated_at => timeThen..Time.now 
-            })
-               
-   #  @stories = Story.paginate :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}   
+     page = params[:page] || 1
+     @q = params[:q]
+     order = "created_at DESC"
+     timeThen = Time.zone.now.advance(:months => -1)
+       begin
+       #   @stories = Story.search(
+       #      :page => page, 
+       #      :per_page => per_page, 
+       #      :order => order, 
+       #      :match_mode => :all, 
+       #      :conditions =>{
+       #        :active => true, 
+       #        :created_at => timeThen..Time.now 
+       #        }
+       #    )
+       @stories = Story.paginate :page => page, :order => order, :per_page => per_page, :conditions => {:active => true, :created_at => timeThen..Time.zone.now }   
+       rescue
+         flash[:notice] = "There are no recent stories. Why not write your own?"
+         redirect_to write_url
+       else 
+          respond_to do |format|
+             format.html # index.html.erb
+             format.xml  { render :xml => @stories }
+             format.rss
+           end  
+       end
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @stories }
-      format.rss
-    end
+    #  @stories = Story.paginate :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}   
+   
   end
 
   def recent
@@ -92,8 +100,8 @@ class SiteController < ApplicationController
     per_page = 30
     page = params[:page] || 1
     @q = params[:q]
-    order = "@relevance DESC"
-    @stories = Story.search @q, :page => page, :per_page => per_page, :match_mode => :all, :conditions => {:active => true}
+    order = "@relevance DESC, created_at DESC"
+    @stories = Story.search "*"+@q+"*", :page => page, :per_page => per_page, :match_mode => :all, :conditions => {:active => true}
   end
   
   def profile

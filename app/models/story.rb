@@ -12,8 +12,10 @@ class Story < ActiveRecord::Base
     indexes :title, :sortable => true
     indexes :description
     indexes :license, :sortable => true
+    indexes user.login, :as => "user"
     indexes tags.name, :as => "tag"
     indexes comments.comment, :as => "comments"
+    
     
     # attributes
     

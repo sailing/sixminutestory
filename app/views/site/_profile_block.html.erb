@@ -45,7 +45,7 @@
 			</th>
 			<td>
 				<span>
-					<%= link_to h(@user.stories.count :conditions => {:active => true}), profile_url(@user.login) %>
+					<%= link_to h(@user.stories.count :conditions => {:active => true}), profile_url(@user.login) %> (<%= link_to "view more", profile_url(@user.login)%>)
 				</span>
 			</td>
 		</tr>

@@ -135,34 +135,26 @@
 
 </div>
 
-<div id="search_container" class="float_right">
-
-	<% form_tag '/search' do -%>
-	<table>
-		<tr>
-			<td>
-	  
-				<%= text_field_tag 'q', nil, :tabindex => "20" %>
-			</td>
-			<th>
-				<%= image_submit_tag("search.png", 
-					:name => "search", 
-					:id => "search-button", 
-					:disabled => false) %>
-			</th>
-		</tr>
-	</table>
-	<% end -%>
-
-	
-</div>
-
 
 	<div class="clear space">
 		&nbsp;
 	</div>
 
 	<div id="left_container">
+
+		<div id="search_container">
+
+			<% form_tag '/search' do -%>
+			
+				<%= text_field_tag 'q', 
+					"Type your search. Hit enter.", 
+					:tabindex => "20", 
+					:onFocus => 'clearFieldFirstTime(this);' %>
+
+			<% end -%>
+
+
+		</div>
 
 		<div class="sideyard_container">
 	
