@@ -68,7 +68,7 @@ class SiteController < ApplicationController
    end
 
   def top
-    per_page = 5
+    per_page = 15
     page = params[:page] || 1
     value = 1    
     @stories = Story.tally(
@@ -76,7 +76,7 @@ class SiteController < ApplicationController
           :at_most => 10000,  
           :start_at => 1.year.ago,
           :end_at => Time.now,
-          :limit => 20,
+          :limit => 15,
           :order => "stories.rating DESC, created_at DESC",
           :conditions => ["stories.active = ? AND votes.vote  = ?", true, true]
       }).paginate(:per_page => per_page, :page => page)

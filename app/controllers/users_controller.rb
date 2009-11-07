@@ -26,15 +26,25 @@ class UsersController < ApplicationController
     order = "created_at DESC"
     
     if current_user == @user
-      writers = Array.new
-      @user.followings.each do |writer|
-        writers << writer.writer_id
+      if @user.followings.present? 
+        writers = Array.new
+        @user.followings.each do |writer|
+          writers << writer.writer_id
+        end
+      else
+        writers = nil
       end
       
       @stories = Story.paginate_by_user_id writers, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    
     else  
       @stories = Story.paginate_by_user_id @user.id, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    
     end
+    
+    respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @stories }
+        format.rss
+      end
   end
   
 

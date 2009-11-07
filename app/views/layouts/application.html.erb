@@ -17,7 +17,8 @@
 	<meta name="title" content="Six Minute Story" />
 	<meta name="description" content="Six Minute Story is a user-driven, micro-fiction website for ad-libbed eloquence." />
 	<link rel="image_src" href="http://sixminutestory.com/images/logo_square.png" />
-
+	
+	<link rel="alternate" href="<%= @rss_url.present? ? @rss_url : 'http://sixminutestory.com/recent.rss' %>" type="application/rss+xml" media="screen" title="RSS" charset="utf-8">
 </head>
 <body>
 <script type="text/javascript">
@@ -124,11 +125,11 @@
 		<% if !current_user %>
 		  	<%= link_to "Sign up", register_path %>
 			| <%= link_to "Read", read_path %>
-			| <a href="http://www.facebook.com/pages/Six-Minute-Story/177100150707">Blog</a>
+			| <a href="http://blog.sixminutestory.com">Blog</a>
 		<% else %>
 			<%= link_to "Write", write_path %>
 			| <%= link_to "Read", read_path %>
-			| <a href="http://www.facebook.com/pages/Six-Minute-Story/177100150707">Blog</a>
+			| <a href="http://blog.sixminutestory.com">Blog</a>
 		<% end %>
 	
 	</div>  
@@ -144,7 +145,7 @@
 
 		<div id="search_container">
 
-			<% form_tag '/search' do -%>
+			<% form_tag '/search', :method => :get do -%>
 			
 				<%= text_field_tag 'q', 
 					"Type your search. Hit enter.", 
