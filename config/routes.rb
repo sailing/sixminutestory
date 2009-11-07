@@ -39,7 +39,7 @@ ActionController::Routing::Routes.draw do |map|
     map.register 'register', :controller => "users", :action => "new"
     
     map.profile            '/profile/:login', :controller => "users", :action => "show"
-    map.formatted_profile '/profile/:login.:format', :controller => "users", :action => "show"
+    map.formatted_profile '/profile/:id.:format', :controller => "users", :action => "show"
     
     #administration
     map.prompts_admin "admin/prompts", :controller => "prompts", :action => "admin"

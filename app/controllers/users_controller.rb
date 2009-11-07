@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by_login(params[:login]) || current_user
+    @user = User.find_by_login(params[:login]) || current_user || User.find_by_id(params[:id])
     
     
     page = params[:page] || 1
