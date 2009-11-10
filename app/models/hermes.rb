@@ -1,6 +1,7 @@
 class Hermes < ActionMailer::Base
 
   ActionMailer::Base.default_url_options[:host] = "sixminutestory.com"
+  ActionMailer::Base.default_content_type = "text/html"
 
 
   def comment_notification(writer, story, commenter, comment)
