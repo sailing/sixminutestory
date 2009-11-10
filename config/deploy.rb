@@ -29,6 +29,17 @@ set :runner, "rails"
 
 end
 
+task :disable_web, :roles => :web do
+  on_rollback { delete "#{current_path}/system/maintenance.html" }
+  
+  maintenance = render("./app/views/layouts/maintenance.html.erb", 
+                       :deadline => ENV['UNTIL'],
+                       :reason => ENV['REASON'])
+                       
+  put maintenance, "#{current_path}/system/maintenance.html", 
+                   :mode => 0644
+end
+
 # If you aren't using Subversion to manage your source code, specify
 # your SCM below:
 # set :scm, :subversion

@@ -2,6 +2,7 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
+  before_filter :check_for_maintenance
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user
 
@@ -89,6 +90,20 @@ class ApplicationController < ActionController::Base
           end
        end
      end
+     
+     ## Check to see if user is an admin
+     def is_admin?
+       if current_user && current_user.admin_level > 1
+        return true
+       end
+     end
+     
+     def check_for_maintenence
+         if File.exist? "#{RAILS_ROOT}/maintenence.html"
+           return render( :file =>  "#{RAILS_ROOT}/maintenence.html") unless current_user.is_admin?
+        end
+     end
+     
 
      def rand_with_range(values = nil)
          if values.respond_to? :sort_by

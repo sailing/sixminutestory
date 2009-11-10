@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Six Minute Story :: A Microfiction Experiment
+	</title>
+
+ 	<link rel="stylesheet" href="stylesheets/default.css" type="text/css" media="screen" title="no title" charset="utf-8"> 
+
+	</head>
+	<body>
+
+	<div id="error_logo">
+		<a href="http://sixminutestory.com"><img src="images/logo.png"></a>
+	</div>
+
+
+
+		<div id="explanation">
+
+			<p>
+			  We're currently down for <%= reason ? reason : "maintenance" %>
+			  as of <%= Time.now.strftime("%H:%M %Z") %>.
+			</p>
+			<p>
+			  Sorry for the inconvenience. We'll be back 
+			  <%= deadline ? "by " + deadline.to_s : "shortly" %>.
+			  Please email us if you need to get in touch.
+			</p>
+ 
+
+			<p>
+				Follow <a href="http://blog.sixminutestory.com">our blog</a> for updates.
+			</p>
+		</div>
+
+
+
+
+	
+	
+	<!-- Google analytics code snippet -->
+	<script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+	try {
+	var pageTracker = _gat._getTracker("UA-9195656-3");
+	pageTracker._trackPageview();
+	} catch(err) {}
+	</script>
+	
+	<!-- end Google analytics code snippet -->
+	
+	
+</body>
+</html>
