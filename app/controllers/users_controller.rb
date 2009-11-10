@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by_login(params[:login]) || current_user || User.find_by_id(params[:id])
+    @user = User.find_by_login(params[:login]) || User.find_by_id(params[:id]) || current_user 
     
     # tests to see if a following relationship exists
     following_exists

@@ -1123,6 +1123,10 @@ background-color:#a759d0;
 	margin:0px auto;
 }
 
+#no_stories p {
+	text-indent:2em;
+}
+
 #no_stories em {
 	color:#b86ae1;
 	font-style:normal;
