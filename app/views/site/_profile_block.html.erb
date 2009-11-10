@@ -7,7 +7,7 @@
 		<span class="small_text">
 			<%= link_to "manage profile", edit_account_path %>
 		</span>
-	<% else %>
+	<% elsif is_user && current_user.id != @user.id %>
 		<%= render :partial => 'site/following_toggle', :locals => {:user => @user} %>
 	
 	<% end %>

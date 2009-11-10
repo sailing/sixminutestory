@@ -1,0 +1,7 @@
+Hi <%= @recipient.login %>,
+
+<%= @follower.login %> is now following you on Six Minute Story.
+
+You can view their profile here: <%= link_to profile_url(@follower.login), profile_url(@follower.login) %>.
+
+View your own profile here: <%= link_to profile_url(@recipient.login), profile_url(@recipient.login) %>.

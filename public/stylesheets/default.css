@@ -687,8 +687,8 @@ background-color:#a759d0;
 	text-indent:15px;
 }
 
-#following_button {
-	background-color:#ff7400;
+#following_button, #unfollowing_button {
+	background-color:#aacc31;
 	padding:0;
 	margin-left:15px;
 	
@@ -696,7 +696,8 @@ background-color:#a759d0;
 	height:25px;
 }
 
-#following_button a {
+
+#following_button a, #unfollowing_button a {
 	position:relative;
 	top:3px;
 	color:#fff;
@@ -707,6 +708,10 @@ background-color:#a759d0;
 	display:block;
 	width:100%;
 	height:100%;
+}
+
+#unfollowing_button {
+	background-color:#ff7400;
 }
 
 

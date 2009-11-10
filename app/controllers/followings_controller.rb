@@ -2,9 +2,12 @@ class FollowingsController < ApplicationController
   def create
     @following = current_user.followings.build(:writer_id => params[:writer_id])
     if @following.save
+      @user = User.find(params[:writer_id])
+      
+      Hermes.deliver_following_notification(@user, current_user)
+      
       respond_to do |format|
         format.html { 
-          @user = User.find(params[:writer_id])
           render :update do |page| 
             page.replace_html 'following_toggle', :partial => 'site/following_toggle', :locals => {:user => @user, :following => @following}
           end

@@ -9,7 +9,7 @@
 			</div>
 			<% else %>
 
-				<div id="following_button" class="button_container">
+				<div id="unfollowing_button" class="button_container">
 					<%= link_to_remote "Unfollow", 
 						:url => following_url(@following),
 						:method => :delete 

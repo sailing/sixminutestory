@@ -15,3 +15,14 @@ config.action_controller.perform_caching             = false
 
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = false
+
+# Email Settings
+ActionMailer::Base.smtp_settings = {
+    :enable_starttls_auto => true,
+    :address        => 'smtp.gmail.com',
+    :port           => 587,
+    :domain         => 'sixminutestory.com',
+    :authentication => :plain,
+    :user_name      => 'no-reply@sixminutestory.com',
+    :password       => '!1h3rm3s'
+  }

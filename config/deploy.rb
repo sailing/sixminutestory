@@ -4,7 +4,7 @@ task :to_dev do
   
 default_run_options[:pty] = true
 
-set :location, '192.168.1.101'
+set :location, '192.168.1.105'
 role :app, location
 role :web, location
 role :db,  location, :primary => true

@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     @user.admin_level = 1;
     if verify_recaptcha && @user.save
+        Hermes.deliver_signup_notification(@user)
         redirect_to account_url
       else
         render :action => :new

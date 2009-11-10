@@ -22,3 +22,12 @@ config.action_controller.perform_caching             = true
 
 # Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
+ActionMailer::Base.smtp_settings = {
+    :enable_starttls_auto => true,
+    :address        => 'smtp.gmail.com',
+    :port           => 587,
+    :domain         => 'sixminutestory.com',
+    :authentication => :plain,
+    :user_name      => 'no-reply@sixminutestory.com',
+    :password       => '!1h3rm3s'
+  }
