@@ -170,7 +170,7 @@ class StoriesController < ApplicationController
           followers << follower.email_address
         end
         
-        Hermes.deliver_new_story_notification(followers, @story, @story.user)
+       # Hermes.deliver_new_story_notification(followers, @story, @story.user)
         
         format.html { redirect_to(@story) }
         format.xml  { render :xml => @story, :status => :created, :location => @story }
