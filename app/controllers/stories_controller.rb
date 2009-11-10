@@ -18,8 +18,12 @@ class StoriesController < ApplicationController
          # Initialize a comment 
            @comment = Comment.new
            @user = @story.user
-
-           # find previous and next stories
+           @prompt = Prompt.find_by_id(@story.prompt_id)
+           
+        # tests to see if a following relationship exists
+           following_exists
+          
+        # find previous and next stories
              @previous = @story.id - 1
              @next = @story.id + 1
 

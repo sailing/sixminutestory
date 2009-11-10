@@ -59,7 +59,7 @@ class VotesController < ApplicationController
               @story.rating += 1
               @story.save
             else
-                @story.rating = 0
+                @story.rating -= 1
                 @story.save
             end
         end

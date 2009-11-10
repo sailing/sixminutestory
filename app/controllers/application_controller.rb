@@ -137,6 +137,16 @@ class ApplicationController < ActionController::Base
           return if text.nil?
           l = length - truncate_string.chars.length
           text.chars.length > length ? text[/\A.{#{l}}\w*\;?/m][/.*[\w\;]/m] + truncate_string : text
+        end
+        
+        # This tests to see if the current user is 
+        # following the writer whose story or profile they're viewing.
+        def following_exists
+          if current_user
+            unless @following = current_user.followings.find_by_writer_id(@user.id)
+              @following = nil
+            end
+          end
         end      
         
  #       def rescue_action_in_public(exception)

@@ -21,7 +21,7 @@
 	  <% for following in @user.followings %>
 	    <li>
 		
-			<%= link_to h(following.writer.login), profile_url(following.writer.login) %>
+			<%= link_to h(following.writer.login), profile_url(h(following.writer.login)) %>
 				<span class="small_text">
 					(<%= link_to "remove", following, :method => :delete %>)
 		  		</span> 

@@ -1,18 +1,16 @@
 <h2>
 		<%=h @user.login %>
 		
-		<% if is_user && current_user.id == @user.id %>
-			<span class="small_text">
-				<%= link_to "manage profile", edit_account_path %>
-			</span>
-		<% end %> 
-		
-		<% if is_user && current_user.id != @user.id %>
-			<span class="small_text">
-				<%= link_to "Follow", followings_path(:writer_id => @user), :method => :post %>
-			</span>
-		<% end %>
 </h2>
+
+	<% if is_user && current_user.id == @user.id %>
+		<span class="small_text">
+			<%= link_to "manage profile", edit_account_path %>
+		</span>
+	<% else %>
+		<%= render :partial => 'site/following_toggle', :locals => {:user => @user} %>
+	
+	<% end %>
 
 <div class="information">
 	<table>

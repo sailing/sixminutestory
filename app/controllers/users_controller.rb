@@ -20,6 +20,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by_login(params[:login]) || current_user || User.find_by_id(params[:id])
     
+    # tests to see if a following relationship exists
+    following_exists
     
     page = params[:page] || 1
     per_page = 10
