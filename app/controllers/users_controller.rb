@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     per_page = 10
     order = "created_at DESC"
     
-    if current_user == @user or request.format == "rss"
+    if (current_user == @user or request.format == "rss") and !@user.writers.empty?
       #if @user.writers.present? 
       #  writers = Array.new
       #  @user.writers.each do |writer|

@@ -93,14 +93,14 @@ h1 {
 }
 
 h4 {
-	font-size:1em;
+	font-size:1.2em;
 	padding:1px 0px;
 	text-align:center;
-	
-	width:33%;
-	background:#aacc31;
-	opacity:0.8;
-	filter: alpha(opacity = 80);
+	line-height: 1.5em;
+	width:41%;
+	background:#522b1d;
+	opacity:.9;
+	filter: alpha(opacity = 90);
 	zoom:1;
 	
 	padding: 2px 0px 2px;
@@ -110,7 +110,6 @@ h4 {
 	-webkit-border-top-right-radius:5px;
 	-moz-border-radius-bottomright:5px;
 	-webkit-border-bottom-right-radius:5px;
-	border:1px solid #aacc31;
 
 }
 
