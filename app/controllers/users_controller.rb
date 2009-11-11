@@ -19,7 +19,16 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by_login(params[:login]) || User.find_by_id(params[:id]) || current_user 
+    
+     e = ActiveRecord::RecordNotFound
+      begin
+        @user = User.find_by_login(params[:login]) || User.find_by_id(params[:id]) || current_user 
+
+      rescue Exception => e
+        flash[:notice] = 'That user doesn\'t exist.'
+        store_location
+        redirect_to root_url
+      else
     
     # tests to see if a following relationship exists
     following_exists
@@ -48,6 +57,7 @@ class UsersController < ApplicationController
         format.xml  { render :xml => @stories }
         format.rss
       end
+    end
   end
   
 
