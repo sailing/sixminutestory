@@ -14,5 +14,12 @@ class User < ActiveRecord::Base
   def self.find_by_login_or_email(login)
     User.find_by_login(login) || User.find_by_email_address(login)
   end
+  
+  def is_admin?
+    if self.admin_level > 1
+     return true
+    end
+  end
+  
       
 end

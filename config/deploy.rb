@@ -30,13 +30,13 @@ set :runner, "rails"
 end
 
 task :disable_web, :roles => :web do
-  on_rollback { delete "#{current_path}/system/maintenance.html" }
+  on_rollback { delete "#{current_path}/maintenance.html.erb" }
   
   maintenance = render("./app/views/layouts/maintenance.html.erb", 
                        :deadline => ENV['UNTIL'],
                        :reason => ENV['REASON'])
                        
-  put maintenance, "#{current_path}/system/maintenance.html", 
+  put maintenance, "#{current_path}/maintenance.html.erb", 
                    :mode => 0644
 end
 
