@@ -26,10 +26,9 @@ class UsersController < ApplicationController
 
       rescue Exception => e
         flash[:notice] = 'That user doesn\'t exist.'
-        store_location
         redirect_to root_url
       else
-    
+  if @user.present?
     # tests to see if a following relationship exists
     following_exists
     
@@ -51,12 +50,16 @@ class UsersController < ApplicationController
     else  
       @stories = Story.paginate_by_user_id @user.id, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    
     end
-    
+  
     respond_to do |format|
         format.html # show.html.erb
         format.xml  { render :xml => @stories }
         format.rss
       end
+    else
+        flash[:notice] = 'That user doesn\'t exist.'
+        redirect_to root_url
+    end
     end
   end
   
