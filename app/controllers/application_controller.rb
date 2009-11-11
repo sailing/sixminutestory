@@ -94,8 +94,8 @@ class ApplicationController < ActionController::Base
      ## Check to see if user is an admin
      
      def check_for_maintenance
-         if File.exist? "#{RAILS_ROOT}/public/maintenance.html.erb"
-           return render( :file =>  "#{RAILS_ROOT}/public/maintenance.html.erb") unless current_user && current_user.is_admin?
+         if File.exist? "#{RAILS_ROOT}/public/maintenance.html"
+           return render( :file =>  "#{RAILS_ROOT}/public/maintenance.html") unless (current_user && current_user.is_admin?)
         end
      end
      

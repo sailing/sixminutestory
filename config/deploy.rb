@@ -29,17 +29,6 @@ set :runner, "rails"
 
 end
 
-task :disable_web, :roles => :web do
-  on_rollback { delete "#{current_path}/maintenance.html.erb" }
-  
-  maintenance = render("./app/views/layouts/maintenance.html.erb", 
-                       :deadline => ENV['UNTIL'],
-                       :reason => ENV['REASON'])
-                       
-  put maintenance, "#{current_path}/maintenance.html.erb", 
-                   :mode => 0644
-end
-
 # If you aren't using Subversion to manage your source code, specify
 # your SCM below:
 # set :scm, :subversion
@@ -97,6 +86,20 @@ end
 # :update  -> update_code, symlink
 
 namespace :deploy do
+  namespace :web do
+    task :disable, :roles => :web do
+          # invoke with  
+          # UNTIL="16:00 MST" REASON="a database upgrade" cap deploy:web:disable
+
+          on_rollback { rm "#{current_path}/public/maintenance.html" }
+
+          require 'erb'
+          deadline, reason = ENV['UNTIL'], ENV['REASON']
+          maintenance = ERB.new(File.read("./app/views/layouts/maintenance.erb")).result(binding)
+
+          put maintenance, "#{current_path}/public/maintenance.html", :mode => 0644
+    end
+  end
   
   task :before_update do
     # Stop Thinking Sphinx before the update so it finds its configuration file.

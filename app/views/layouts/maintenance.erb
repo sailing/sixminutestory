@@ -20,10 +20,10 @@
 
 		<div id="explanation">
 			<p>
-			  We're currently down for maintenance as of <%= Time.now.strftime("%H:%M %Z") %>.
+			  We're currently down for <%= reason ? reason : "maintenance" %> as of <%= Time.now.strftime("%H:%M %Z") %>.
 			</p>
 			<p>
-			  Sorry for the inconvenience. We'll be back shortly
+			  Sorry for the inconvenience. We'll be back <%= deadline ? deadline : "shortly" %>.
 				  
 			</p>
  
