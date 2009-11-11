@@ -1019,13 +1019,12 @@ background-color:#a759d0;
 #show_stories table {
 	border-collapse:collapse;
 	padding:0px;
-	margin:0px auto;
-	width:100%;
+	margin:0 auto;
+	width:98%;
 	
 }
 
 #show_stories tr {
-	height:30px;
 }
 
 #show_stories td {

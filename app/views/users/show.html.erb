@@ -51,7 +51,7 @@
 
 <h4>
 	<% if is_user && current_user.id == @user.id && !@user.writers.empty? %>
-		Stories by writers you follow
+		Stories by <br /> Writers You Follow
 	<% else %>
 		Stories by <%= @user.login %>
 	<% end %>
