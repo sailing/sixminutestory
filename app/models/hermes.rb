@@ -1,6 +1,5 @@
 class Hermes < ActionMailer::Base
 
-  ActionMailer::Base.delivery_method = :sendmail
   ActionMailer::Base.default_url_options[:host] = "sixminutestory.com"
   ActionMailer::Base.default_content_type = "text/html"
 
