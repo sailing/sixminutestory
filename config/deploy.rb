@@ -81,9 +81,6 @@ namespace :ts do
   end
 end
 
-# http://github.com/jamis/capistrano/blob/master/lib/capistrano/recipes/deploy.rb
-# :default -> update, restart
-# :update  -> update_code, symlink
 
 namespace :deploy do
   namespace :web do
