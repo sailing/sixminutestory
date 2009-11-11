@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :preferences
+
   map.resources :followings
 
   map.resources :contests

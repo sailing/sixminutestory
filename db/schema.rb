@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091104092338) do
+ActiveRecord::Schema.define(:version => 20091111111214) do
 
   create_table "comments", :force => true do |t|
     t.text     "comment"
@@ -114,6 +114,9 @@ ActiveRecord::Schema.define(:version => 20091104092338) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "admin_level"
+    t.boolean  "send_comments",     :default => true
+    t.boolean  "send_stories",      :default => true
+    t.boolean  "send_followings",   :default => true
   end
 
   create_table "votes", :force => true do |t|

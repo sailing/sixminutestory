@@ -41,7 +41,9 @@ class CommentsController < ApplicationController
       if @comment.save
         @story.comment_counter += 1
         @story.save
-        Hermes.deliver_comment_notification(@story.user, @story, @comment.user, @comment)
+        
+        Hermes.deliver_comment_notification(@story.user, @story, @comment.user, @comment) unless @story.user.send_comments == false
+      
         flash[:notice] = 'Comment contributed!'
         format.html { redirect_to :controller => "stories", :action => "show", :id => @comment.story_id, :anchor => "comments" }
         format.xml  { render :xml => @comment, :status => :created, :location => @comment }

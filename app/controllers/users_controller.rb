@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     @user.admin_level = 1;
+    
     if verify_recaptcha && @user.save
         Hermes.deliver_signup_notification(@user)
         redirect_to account_url
@@ -36,20 +37,16 @@ class UsersController < ApplicationController
     per_page = 10
     order = "created_at DESC"
     
-    if (current_user == @user or request.format == "rss") and !@user.writers.empty?
-      #if @user.writers.present? 
-      #  writers = Array.new
-      #  @user.writers.each do |writer|
-      #    writers << writer.id
-      #  end
-      #else
-      #  writers = nil
-      #end
-      
+    if request.path.include?("profile")  
+      @stories = Story.paginate_by_user_id @user.id, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    
+
+    elsif (current_user == @user or request.format == "rss") and !@user.writers.empty?
       @stories = Story.paginate_by_user_id @user.writers, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    
-    else  
+      
+    else
       @stories = Story.paginate_by_user_id @user.id, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    
     end
+    
   
     respond_to do |format|
         format.html # show.html.erb
@@ -71,6 +68,7 @@ class UsersController < ApplicationController
   def update
     @user = @current_user # makes our views "cleaner" and more consistent
     if @user.update_attributes(params[:user])
+      flash[:notice] = 'Settings saved.'
       redirect_to account_url
     else
       render :action => :edit

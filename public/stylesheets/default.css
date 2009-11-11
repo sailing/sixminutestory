@@ -643,6 +643,10 @@ background-color:#a759d0;
 	color:#aacc31;
 }
 
+#elevator_pitch p {
+	font-size:1.1em;
+	line-height:1.5em;
+}
 
 #facebook_widget {
 	width:80%;
@@ -816,6 +820,22 @@ background-color:#a759d0;
 	vertical-align:top;
 	}
 
+.add_story_form table div h2 {
+	font-size:1.2em;
+}
+
+.add_story_form table div label {
+	font-size:.6em;
+	color:#522b1d;
+}
+
+.add_story_form input[type="checkbox"] {
+	width:1.2em;
+	height:1.2em;
+	
+	margin:0;
+	
+}
 .add_story_form .right {
 	border-left:2px dashed gray;
 }

@@ -1,5 +1,6 @@
+
 <div class="add_story_form">
-	<h1>Login information:
+	<h1>edit profile
 	</h1>
 
 <% form_for @user, :url => account_path do |f| %>
@@ -23,6 +24,21 @@
 			<%= f.error_message_on 'password_confirmation' %><br />
 			<%= f.password_field :password_confirmation %>
 			</p>
+		
+			<div id="email_preferences">
+					<h2>
+						Receive notifications when
+					</h2>
+			  <p>
+				<%= f.check_box :send_comments %>    
+				<%= f.label :send_comments, "someone comments on your story" %>
+			    
+			  </p>
+			  <p>
+			    <%= f.check_box :send_followings %>
+			    <%= f.label :send_followings, "someone follows you" %>
+			  </p>
+			</div>
 			<p>
 				<%= image_submit_tag("save.png", :name => "save", :id => "save-button", :disabled => false) %>
 			</p>
@@ -42,26 +58,8 @@
 				<%= f.label :profile %><br />
 				<%= f.error_message_on 'profile' %><br />
 
-					<b class="sideyard">
-					  <b class="sideyard1"><b></b></b>
-					  <b class="sideyard2"><b></b></b>
-					  <b class="sideyard3"></b>
-					  <b class="sideyard4"></b>
-					  <b class="sideyard5"></b></b>
-
-					  <div class="sideyardfg">
-
+				
 						<%= f.text_area :profile, :rows => 15, :cols => 25 %>
-
-					  </div>
-
-					  <b class="sideyard">
-					  <b class="sideyard5"></b>
-					  <b class="sideyard4"></b>
-					  <b class="sideyard3"></b>
-					  <b class="sideyard2"><b></b></b>
-					  <b class="sideyard1"><b></b></b></b>
-			  
 			</p>
 			
 		</td>
