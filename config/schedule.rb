@@ -24,6 +24,8 @@ end
 every :reboot do
   rake "ts:index"
   rake "ts:start"
+  
+  command "ar_sendmail -d -b 100 --max-age 0 --delay 60 -c \"/home/rails/www/sixminutestory.com/current\" -e \"production\""
 end
 
 # Learn more: http://github.com/javan/whenever

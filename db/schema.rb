@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091111111214) do
+ActiveRecord::Schema.define(:version => 20091116071348) do
 
   create_table "comments", :force => true do |t|
     t.text     "comment"
@@ -29,6 +29,14 @@ ActiveRecord::Schema.define(:version => 20091111111214) do
     t.boolean  "delta",       :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "emails", :force => true do |t|
+    t.string   "from"
+    t.string   "to"
+    t.integer  "last_send_attempt", :default => 0
+    t.text     "mail"
+    t.datetime "created_on"
   end
 
   create_table "followings", :force => true do |t|
