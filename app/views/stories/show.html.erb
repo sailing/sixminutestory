@@ -4,6 +4,8 @@
 
 <% content_for :sideyard do %>
 
+		<%= render :partial => "toolbar", :locals => { :story => @story } %>
+
 		<%= render :partial => "site/profile_block" %>
 		
 <% end %>
@@ -80,9 +82,6 @@
 			</table>
 		</div>
 	</div>
-	<%=
-	 render :partial => "toolbar", :locals => { :story => @story } 
-	%>
 
 
 </div>

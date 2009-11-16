@@ -3,34 +3,31 @@
 
 		<table  id="show_story_toolbar">
 			<tr>
-						<td class="toolbar_button green_button">
-							<span>
+						<td class="green button_container">
 								<a href="<%=@previous%>">&lt;&lt; Previous</a>
-							</span>
 						</td>		
 	
 			
-							<td class="toolbar_button green_button">
-								<span>
+							<td class="green button_container">
 									<a href="<%=@next%>">Next &gt;&gt;</a>
-								</span>
 							</td>
-							
-							<td class="toolbar_button orange_button">
-								<span>
-									<%= link_to "Random", read_random_url %>
-								</span>
-							</td>
+		
 								
 				
 								
 			</tr>
 			<tr>
-					<td id="votes_<%= @story.id %>" class="toolbar_button purple_button">
-						<%= render :partial => "votes/story_vote", :locals => {:story => @story} %>
-					</td>
-					<td class="toolbar_button orange_button">
-						<span>
+							<td class="brown button_container">
+										<%= link_to "Random", read_random_url %>
+							</td>
+						
+							<td id="votes_<%= @story.id %>" class="purple button_container">
+								<%= render 	:partial => "votes/story_vote", 
+											:locals => {:story => @story} %>	
+							</td>
+			</tr>
+			<tr>
+					<td class="brown button_container">
 							<!-- AddThis Button BEGIN -->
 						<script type="text/javascript">
 							var addthis_pub="sixminutestory";
@@ -39,15 +36,12 @@
 						<script type="text/javascript" src="http://s7.addthis.com/js/200/addthis_widget.js">
 						</script>
 							<!-- AddThis Button END -->
-						</span>
 			
 					</td>
-					<td class="toolbar_button purple_button">
-						<span>
+					<td class="purple button_container">
 							<a href="#comments">
 								<%= pluralize(@story.comment_counter, 'comment') -%>
 							</a>
-						</span>
 					</td>
 			</tr>
 		</table>

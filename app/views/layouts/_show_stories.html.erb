@@ -10,11 +10,17 @@ is_admin ? @colspan = 5 : @colspan = 3
 <div id="show_stories">
 
 	<h1>read</h1>
-	<span class="browse_links">
-	<%= link_to image_tag('top_rated.png'), top_path %>
-	<%= link_to image_tag('recent.png'), recent_path %> 
-	<%= link_to image_tag('by_tags.png'), browse_by_tags_path %>
-	</span>
+	<div class="browse_links">
+		<div class="brown button_container">
+			<%= link_to "Top Rated", top_path %>
+		</div>
+		<div class="green button_container">
+			<%= link_to "Recent", recent_path %> 
+		</div>
+		<div class="purple button_container">
+			<%= link_to "by Tags", browse_by_tags_path %>
+		</div>
+	</div>
 
 
 <% if !@stories.empty? %>

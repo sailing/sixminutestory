@@ -17,14 +17,14 @@
 		
 
 %>
-<span id="<%= @ballot_element %>">
+<div id="<%= @ballot_element %>">
 	<%= link_to_remote "Applaud!", 
 		:url => user_story_votes_path(@story.user_id, @story, :vote => :true), 
 		:method => :post
 	%> 
-</span><br />
-<% end %>
-
+</div>
+<% else %>
 <span>
-<%= approval_rating %> 
+	<%= approval_rating %> 
 </span>
+<% end %>
