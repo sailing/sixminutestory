@@ -40,7 +40,7 @@ ActionController::Routing::Routes.draw do |map|
     map.logout 'logout', :controller => "user_sessions", :action => "destroy"
     map.register 'register', :controller => "users", :action => "new"
     
-    map.profile            '/profile/:login', :controller => "users", :action => "show"
+    map.profile            '/profile/:login', :controller => "users", :action => "show", :requirements => { :login => /.*/ }
     map.formatted_profile '/profile/:id.:format', :controller => "users", :action => "show"
     
     #administration

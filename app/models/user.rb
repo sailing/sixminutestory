@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :stories
   has_many :comments
   
-  has_one :preference 
+  has_one :preference
   
   def self.find_by_login_or_email(login)
     User.find_by_login(login) || User.find_by_email_address(login)
