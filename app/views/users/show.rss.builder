@@ -9,7 +9,7 @@ xml.rss :version => "2.0" do
       xml.item do
         xml.title story.title
         xml.author story.user.login
-        xml.description simple_format(h(truncate(story.description, :length => 700)))
+        xml.description simple_format(h(story.description, :length => 700))
         xml.pubDate story.created_at.rfc822
         xml.link formatted_story_url(story, :html)
       end

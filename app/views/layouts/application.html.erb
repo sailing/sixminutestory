@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>Six Minute Story 
@@ -11,9 +11,13 @@
 			<%= yield(:pagename) %> 		
 	<% end %>
 	</title>
+	<!-- Javascripts to include -->
+	<%= javascript_include_tag :all, :cache => true %>
 
   	<%= stylesheet_link_tag :all, :cache => true %>
-
+	
+	<script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" type="text/javascript"></script>
+	
 	<meta name="title" content="Six Minute Story" />
 	<meta name="description" content="Six Minute Story is a user-driven, flash-fiction experiment. Our goal is to fill the world with ad-libbed eloquence." />
 	<link rel="image_src" href="http://sixminutestory.com/images/logo_square.png" />
@@ -21,12 +25,19 @@
 	<link rel="alternate" href="<%= @rss_url.present? ? @rss_url : 'http://feeds.feedburner.com/SixMinuteStoryRecentStories' %>" type="application/rss+xml" media="screen" title="RSS" charset="utf-8">
 </head>
 <body>
-<script type="text/javascript">
+	
+	<!-- for facebook connect -->
+	<%= fb_connect_javascript_tag %>
+ 	<%= init_fb_connect "XFBML" %>
+	
+	<!-- escapes frames -->
+	<script type="text/javascript">
 	//<![CDATA[
 	if (window.top !== window.self) {document.write = "";window.top.location = window.self.location; setTimeout(function(){document.body.innerHTML='';},1);window.self.onload=function(evt){document.body.innerHTML='';};}
 	//]]>
 </script>	
 	
+
 	<div class="login_container">
 			<% if current_user %>
 				<table class="logged_in">
@@ -72,10 +83,6 @@
 
 						</td>
 				
-				<td>
-					<%= link_to "Sign up", register_url %>
-				</td>
-
 				</tr>
 			</table>
 				
@@ -337,8 +344,6 @@
 
 		</div> <!-- End Notice div -->
 	
-		<!-- Javascripts to include -->
-		<%= javascript_include_tag "prototype", "effects", "application", :cache => true %>
 	
 	<!-- Google analytics code snippet -->
 	<script type="text/javascript">

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091116071348) do
+ActiveRecord::Schema.define(:version => 20091120041056) do
 
   create_table "comments", :force => true do |t|
     t.text     "comment"
@@ -72,6 +72,18 @@ ActiveRecord::Schema.define(:version => 20091116071348) do
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
+  create_table "slugs", :force => true do |t|
+    t.string   "name"
+    t.integer  "sluggable_id"
+    t.integer  "sequence",                     :default => 1, :null => false
+    t.string   "sluggable_type", :limit => 40
+    t.string   "scope",          :limit => 40
+    t.datetime "created_at"
+  end
+
+  add_index "slugs", ["name", "sluggable_type", "scope", "sequence"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
+  add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
+
   create_table "stories", :force => true do |t|
     t.string   "title"
     t.text     "description"
@@ -87,6 +99,7 @@ ActiveRecord::Schema.define(:version => 20091116071348) do
     t.integer  "counter",         :default => 0
     t.integer  "flagged",         :default => 0
     t.integer  "comment_counter", :default => 0
+    t.string   "cached_slug"
   end
 
   create_table "taggings", :force => true do |t|
@@ -113,7 +126,7 @@ ActiveRecord::Schema.define(:version => 20091116071348) do
     t.string   "website"
     t.string   "email_address"
     t.text     "profile"
-    t.boolean  "active",            :default => true
+    t.boolean  "active",                         :default => true
     t.string   "persistence_token"
     t.integer  "login_count"
     t.datetime "last_request_at"
@@ -121,10 +134,12 @@ ActiveRecord::Schema.define(:version => 20091116071348) do
     t.datetime "current_login_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "admin_level"
-    t.boolean  "send_comments",     :default => true
-    t.boolean  "send_stories",      :default => true
-    t.boolean  "send_followings",   :default => true
+    t.integer  "admin_level",                    :default => 1
+    t.boolean  "send_comments",                  :default => true
+    t.boolean  "send_stories",                   :default => true
+    t.boolean  "send_followings",                :default => true
+    t.string   "name"
+    t.integer  "facebook_uid",      :limit => 8
   end
 
   create_table "votes", :force => true do |t|

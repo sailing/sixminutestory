@@ -1,14 +1,14 @@
+
 <% content_for :pagename do %>
 	<%= ":: Profile for " + h(@user.login) %>
 <% end %>
 
-
-<% 
-	# This is for the RSS feed
-	@rss_url = "http://sixminutestory.com/profile/"+@user.id.to_s+".rss"
-%>
-
 <% content_for :sideyard do %>
+	
+	Id <%= current_user.id %><br />
+	Fb (via C_U) <%= current_user.facebook_uid %>
+	
+	Fb: <%= @user.facebook_uid unless @user.facebook_uid.blank? %>
 	
 	<%= render :partial => "site/profile_block" %>
 	

@@ -15,6 +15,21 @@ set :runner, "rails"
 
 end
 
+task :to_stage do
+  
+default_run_options[:pty] = true
+
+role :app, application
+role :web, application
+role :db,  application, :primary => true
+
+set :deploy_to, "/home/rails/www/stage.sixminutestory.com"
+set :user, "rails"
+set :runner, "rails"
+
+end
+
+
 task :to_prod do
   
 default_run_options[:pty] = true

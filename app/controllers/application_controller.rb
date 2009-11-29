@@ -2,12 +2,15 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  before_filter :check_for_maintenance
-  filter_parameter_logging :password, :password_confirmation
+  before_filter :check_for_maintenance 
+  filter_parameter_logging :password, :password_confirmation, :fb_sig_friends
   helper_method :current_user_session, :current_user
-
+ 
   helper :all # include all helpers, all the time
-
+  
+  #facebook bits
+   #ensure_application_is_installed_by_facebook_user
+   
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery #:secret => '2399bfac621fb2d960be1129899ad517'
@@ -25,7 +28,7 @@ class ApplicationController < ActionController::Base
 
     def current_user
        return @current_user if defined?(@current_user)
-       @current_user = current_user_session && current_user_session.user
+       @current_user = current_user_session && current_user_session.record
     end
   
     def require_user
@@ -46,7 +49,12 @@ class ApplicationController < ActionController::Base
     end
 
     def store_location
-      session[:return_to] = request.request_uri
+      session[:return_to] =
+      if request.get?
+        request.request_uri
+      else
+        request.referer
+      end
     end
 
     def redirect_back_or_default(default)
@@ -54,6 +62,7 @@ class ApplicationController < ActionController::Base
       session[:return_to] = nil
     end
     
+         # Check to see if user is an admin
     def must_be_admin
       (current_user && @current_user.admin_level > 1) || ownership_violation
       return false
@@ -91,7 +100,7 @@ class ApplicationController < ActionController::Base
        end
      end
      
-     ## Check to see if user is an admin
+
      
      def check_for_maintenance
          if File.exist? "#{RAILS_ROOT}/public/maintenance.html"

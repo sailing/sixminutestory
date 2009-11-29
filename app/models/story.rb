@@ -3,6 +3,8 @@ class Story < ActiveRecord::Base
   acts_as_taggable_on :tags
   acts_as_voteable
   
+  has_friendly_id :title, :use_slug => true
+  
   belongs_to :user
   has_one :prompt
   has_one :contest

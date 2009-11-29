@@ -1,7 +1,0 @@
---- 
-- :name: authlogic
-- :source: http://gems.github.com
-  :name: mislav-will_paginate
-- :name: mysql
-- :name: rails
-  :version: 2.3.2

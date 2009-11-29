@@ -1,7 +1,9 @@
-<div class="add_story_form">
+<h1>Login</h1>
+
+<div class="add_story_form float_left">
 <% form_for @user_session, :url => user_session_path do |f| %>
 
-	<h1>Login</h1>
+
 	<% if @user_session.errors.present? %>
 	<div id="errorExplanation">    
 		<span>
@@ -11,41 +13,56 @@
 	<% end %>
 <table >
 	<tr>
+		<th>
+				<%= f.label :login, "Email" %>
+		</th>
 		<td>
-				<%= f.label :login, "Username or Email" %><br />
 		  		<%= f.text_field :login %>
 		</td>
+	</tr>
+	<tr>
+		<th>			
+				<%= f.label :password %>
+		</th>
 		<td>
-				
+		  
+				<%= f.password_field :password %>
 		</td>
-		</tr>
-		<tr>
-			<td>
-				<%= f.label :password %><br />
-		  		<%= f.password_field :password %>
-			</td>
-		</tr>
-		<tr>
+	</tr>
+	<tr>
+	<td colspan=2>
 			
-		<td>	
-				<span><%= f.check_box :remember_me %> Remember me</span>
-				<br />
-				<span>
-					<%= image_submit_tag("login.png", 
+				<%= image_submit_tag("login.png", 
 						:name => "login", 
 						:id => "login-button", 
 						:disabled => false) %>	 
-				</span>
-				<br />
-				<span>Don't have an account? 
+	</td>
+	</tr>
+	<tr>
+	<td colspan=2>
+		<div>
+				<%= f.check_box :remember_me %>
+				<%= f.label :remember_me, "Remember me" %>
+				
+		</div>
+	</td>
+	</tr>
+	<tr>	
+	<td colspan=2>
+			<h5>
+				Don't have an account? 
 				<%= link_to "Sign up", register_path %>
-				</span>
-		</td>
-		<td>
-						
-			
-		</td>
+			</h5>
+	</td>
 	</tr>
 </table>
 <% end %>
+</div>
+<div id="facebook_login_container">
+	<h3>
+		Login with facebook
+	</h3>
+	<div id="facebook_login_button">
+		<%= authlogic_facebook_login_button :length => "long" %>
+	</div>		
 </div>
