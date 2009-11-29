@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   acts_as_tagger
   acts_as_voter
   
-  has_friendly_id :login
+  #has_friendly_id :login
     
   has_many :followings
   has_many :writers, :through => :followings
