@@ -1,0 +1,6 @@
+to run on deploy:
+
+do bloody test it this time.
+
+sudo gem install facebooker, friendly_id
+rake db:migrate

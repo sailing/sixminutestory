@@ -1,0 +1,117 @@
+<% 
+# this is used to number the stories, so the javascript that 
+# opens and closes the drawers knows what to move
+@i = 1
+
+# set colspan
+is_admin ? @colspan = 5 : @colspan = 3
+	
+ %>
+<div id="show_stories">
+
+	<h1>read</h1>
+	<div class="browse_links">
+		<div class="brown button_container">
+			<%= link_to "Top Rated", top_path %>
+		</div>
+		<div class="green button_container">
+			<%= link_to "Recent", recent_path %> 
+		</div>
+		<div class="purple button_container">
+			<%= link_to "by Tags", browse_by_tags_path %>
+		</div>
+	</div>
+
+
+<% if !@stories.empty? %>
+
+<table>
+	<tr>
+		<td colspan="<%= @colspan %>">
+			<%= page_entries_info @stories %>
+		</td>
+	</tr>	
+	
+<% for story in @stories %>
+<% 
+@i = @i + 1 
+#actually semi-important. used to identify entries.
+%>
+
+<tr class="<%= cycle('row_alternate', 'row') -%>">
+	
+	<td class="story_comments">
+		<!-- number of comments -->
+			<%= image_tag('comment_icon.png')%><br />
+			<%= link_to story.comment_counter, 
+				read_story_url(story,:anchor => "comments")
+			%>
+	</td>
+	<td class="story_rating">	
+		<%= image_tag('rating_icon.png')%>
+		<br />
+		<span>
+			<%= story.rating %>
+		</span>
+	</td>
+	
+	<td id="show_stories" class="title">
+		<span class="author">
+		<%= link_to h(story.user.login), profile_url(story.user.login) %>
+		</span>
+		<% if story.title.present? %>
+		<span>
+			<!-- Story title as a link in the listings -->
+			<%= link_to h(story.title), read_story_url(story) %>
+		</span>
+		<% else %>
+		<span>
+			<!-- Story title as a link in the listings -->
+			<%= link_to "Untitled Story", read_story_url(story)%>
+		</span>
+		
+		<% end %>
+	</td>
+	
+	<% if is_admin %>
+  		<td class="story_this_story">
+			<%= link_to image_tag('edit.png'), edit_story_url(story) %>
+		</td>
+		<td>
+			<% if is_admin %>
+				<span>
+				<%= story.flagged %> flags
+				</span>
+			<% end %>
+		</td>
+	<% end %>
+	
+</tr>
+
+
+<% end %>
+<tr>
+	<td colspan="<%= @colspan %>">
+		<%=  will_paginate @stories %>
+		
+	</td>
+</tr>	
+</table>
+
+</div>
+
+
+<% else  %>
+<% 
+# else for if !@stories.empty? 
+%>
+	<h1>
+		Erm...
+	</h1>
+	
+	<div id="no_stories">
+		<p>
+			No stories await you here. Go <%= link_to "write your own", write_url %>.
+		</p>
+	</div>	
+<% end %>
