@@ -39,9 +39,10 @@ test:
 production:
   api_key: b1dfbe892f3f9f3867a67788bf8d0a99
   secret_key: ef628a5808360eeeed8d1a417d7ffc16
-  canvas_page_name: 
-  callback_url: 
-  set_asset_host_to_callback_url: true   
+  canvas_page_name: http://apps.facebook.com/sixminutestory
+  callback_url: http://stage.sixminutestory.com
+  pretty_errors: true
+  set_asset_host_to_callback_url: false
   tunnel:
     public_host_username: 
     public_host: 
