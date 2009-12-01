@@ -26,7 +26,7 @@ Rails::Initializer.run do |config|
   config.gem "adzap-ar_mailer", :lib => 'action_mailer/ar_mailer', :source => 'http://gems.github.com'
         
 #  config.gem "friendly_id"
-  
+  config.gem "authlogic"
   config.gem "facebooker"
   
   # Settings in config/environments/* take precedence over those specified here.

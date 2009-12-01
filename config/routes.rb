@@ -35,7 +35,6 @@ ActionController::Routing::Routes.draw do |map|
     map.tag 'tag/:name', :controller => "tags", :action => "show", :requirements => { :name => /.*/ }
     
     #user activities
-    map.login_fb 'login', :controller => "user_sessions", :action => "create", :conditions => { :method => :get }
     map.login 'login', :controller => "user_sessions", :action => "new"
     map.logout 'logout', :controller => "user_sessions", :action => "destroy"
     map.register 'register', :controller => "users", :action => "new"
