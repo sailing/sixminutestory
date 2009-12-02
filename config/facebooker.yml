@@ -10,7 +10,7 @@
 
 development:
   api_key: b1dfbe892f3f9f3867a67788bf8d0a99
-  secret_key: ef628a5808360eeeed8d1a417d7ffc16
+  secret_key: 7cd507e84238d3fbec244fd72f0686d0
   canvas_page_name: 
   callback_url: http://stage.sixminutestory.com
   pretty_errors: true
@@ -25,7 +25,7 @@ development:
 
 test:
   api_key: b1dfbe892f3f9f3867a67788bf8d0a99
-  secret_key: ef628a5808360eeeed8d1a417d7ffc16
+  secret_key: 7cd507e84238d3fbec244fd72f0686d0
   canvas_page_name: 
   callback_url:
   set_asset_host_to_callback_url: true
@@ -38,7 +38,7 @@ test:
 
 production:
   api_key: b1dfbe892f3f9f3867a67788bf8d0a99
-  secret_key: ef628a5808360eeeed8d1a417d7ffc16
+  secret_key: 7cd507e84238d3fbec244fd72f0686d0
   canvas_page_name:
   callback_url: http://stage.sixminutestory.com/
   pretty_errors: true
