@@ -9,8 +9,8 @@
 # This should only be necessary until the final version of the new profile is released.
 
 development:
-  api_key: b1dfbe892f3f9f3867a67788bf8d0a99
-  secret_key: 7cd507e84238d3fbec244fd72f0686d0
+  api_key: 174e4db809eb853141cb0cdc69064c2f
+  secret_key: b15b718dfeb258bd470f226ea5327010
   canvas_page_name: 
   callback_url: http://stage.sixminutestory.com
   pretty_errors: true
@@ -37,8 +37,8 @@ test:
     server_alive_interval: 0
 
 production:
-  api_key: b1dfbe892f3f9f3867a67788bf8d0a99
-  secret_key: 7cd507e84238d3fbec244fd72f0686d0
+  api_key: 174e4db809eb853141cb0cdc69064c2f
+  secret_key: b15b718dfeb258bd470f226ea5327010
   canvas_page_name:
   callback_url: http://stage.sixminutestory.com/
   pretty_errors: true
