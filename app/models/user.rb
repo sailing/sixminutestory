@@ -18,12 +18,12 @@ class User < ActiveRecord::Base
   has_many :stories
   has_many :comments
 
-  def before_connect(facebook_session)
-      self.name = facebook_session.user.name
-    end
-    
   def login
-      login.present? ? login.downcase : name
+        if login.present? 
+          login.downcase
+        else 
+          self.login = facebook_session.user.name
+        end
   end
   
   def self.find_by_login_or_email(login)
