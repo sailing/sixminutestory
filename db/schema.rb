@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091120041056) do
+ActiveRecord::Schema.define(:version => 20091208000547) do
 
   create_table "comments", :force => true do |t|
     t.text     "comment"
@@ -126,7 +126,7 @@ ActiveRecord::Schema.define(:version => 20091120041056) do
     t.string   "website"
     t.string   "email_address"
     t.text     "profile"
-    t.boolean  "active",                         :default => true
+    t.boolean  "active",                            :default => true
     t.string   "persistence_token"
     t.integer  "login_count"
     t.datetime "last_request_at"
@@ -134,12 +134,13 @@ ActiveRecord::Schema.define(:version => 20091120041056) do
     t.datetime "current_login_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "admin_level",                    :default => 1
-    t.boolean  "send_comments",                  :default => true
-    t.boolean  "send_stories",                   :default => true
-    t.boolean  "send_followings",                :default => true
+    t.integer  "admin_level",                       :default => 1
+    t.boolean  "send_comments",                     :default => true
+    t.boolean  "send_stories",                      :default => true
+    t.boolean  "send_followings",                   :default => true
     t.string   "name"
-    t.integer  "facebook_uid",      :limit => 8
+    t.integer  "facebook_uid",         :limit => 8
+    t.string   "facebook_session_key"
   end
 
   create_table "votes", :force => true do |t|
