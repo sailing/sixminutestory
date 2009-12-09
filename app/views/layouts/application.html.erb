@@ -44,7 +44,9 @@
 					<tr>
 						<td>
 							<span id="login_name">
-							<%= link_to current_user.login, account_path %>
+							<% if current_user.login.present? %> 
+								<%= link_to current_user.login, account_path %>
+							<% end %>
 							</span>
 						</td>
 							<td >

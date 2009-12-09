@@ -112,7 +112,7 @@ namespace :deploy do
           put maintenance, "#{current_path}/public/maintenance.html", :mode => 0644
     end
   end
-  
+
   task :before_update do
     # Stop Thinking Sphinx before the update so it finds its configuration file.
    thinking_sphinx.stop

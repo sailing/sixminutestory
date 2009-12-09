@@ -12,7 +12,7 @@ development:
   api_key: 174e4db809eb853141cb0cdc69064c2f
   secret_key: b15b718dfeb258bd470f226ea5327010
   canvas_page_name: 
-  callback_url: http://stage.sixminutestory.com
+  callback_url: http://localhost:3000
   pretty_errors: true
   set_asset_host_to_callback_url: false
   tunnel:

@@ -1,19 +1,25 @@
-
-<div class="add_story_form">
 	<h1>edit profile
 	</h1>
+<div class="edit_user_form center">
+
 
 <% form_for @user, :url => account_path do |f| %>
 
 <table >
-	<tr>
-		
+	<tr>		
 		<td>
 			<p>
-				<%= f.label :login %><br />
+				<%= f.label :login, "Username" %><br />
 				<%= f.error_message_on 'login' %><br />
 				<%= f.text_field :login %>
 			</p>
+			
+			<p>
+			  <%= f.label :email_address %><br />
+				<%= f.error_message_on 'email_address' %><br />
+			  <%= f.text_field :email_address %>
+			</p>
+			
 			<p>
 				<%= f.label :password, f.object.new_record? ? nil : "Change password" %><br />
 				<%= f.error_message_on 'password' %><br />
@@ -43,17 +49,13 @@
 				<%= image_submit_tag("save.png", :name => "save", :id => "save-button", :disabled => false) %>
 			</p>
 		</td>
-		<td class="right">
+		<td>
 			<p>
 			  <%= f.label :website %><br />
 				<%= f.error_message_on 'website' %><br />
 			  <%= f.text_field :website %>
 			</p>
-			<p>
-			  <%= f.label :email_address %><br />
-				<%= f.error_message_on 'email_address' %><br />
-			  <%= f.text_field :email_address %>
-			</p>
+
 			<p>
 				<%= f.label :profile %><br />
 				<%= f.error_message_on 'profile' %><br />

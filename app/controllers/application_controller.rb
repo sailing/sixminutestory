@@ -5,7 +5,8 @@ class ApplicationController < ActionController::Base
   before_filter :check_for_maintenance 
   filter_parameter_logging :password, :password_confirmation, :fb_sig_friends
   helper_method :current_user_session, :current_user
- 
+  before_filter :require_username, :except => [:edit,:update]
+  
   helper :all # include all helpers, all the time
   
   #facebook bits
@@ -100,7 +101,15 @@ class ApplicationController < ActionController::Base
        end
      end
      
-
+     def require_username 
+       if current_user
+         unless current_user.login.present?
+            flash[:notice] = "Please choose a username to represent you on Six Minute Story."
+            redirect_to edit_account_url
+         end
+       end
+     end
+     
      
      def check_for_maintenance
          if File.exist? "#{RAILS_ROOT}/public/maintenance.html"

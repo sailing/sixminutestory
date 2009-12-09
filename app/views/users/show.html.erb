@@ -5,10 +5,10 @@
 
 <% content_for :sideyard do %>
 	
-	Id <%= current_user.id %><br />
-	Fb (via C_U) <%= current_user.facebook_uid %>
+	 <%= "id is " + current_user.id.to_s if current_user %>
+ <%= "	Fb (via C_U) is " + current_user.facebook_uid.to_s if current_user %>
 	
-	Fb: <%= @user.facebook_uid unless @user.facebook_uid.blank? %>
+<%= "fb id is " + @user.facebook_uid.to_s unless @user.facebook_uid.blank? %>
 	
 	<%= render :partial => "site/profile_block" %>
 	
@@ -21,7 +21,7 @@
 	  <% for following in @user.followings %>
 	    <li>
 		
-			<%= link_to h(following.writer.login), profile_url(h(following.writer.login)) %>
+			<%= link_to h(following.writer.login), profile_path((following.writer.login)) %>
 				
 			
 	<% end %>
@@ -36,7 +36,7 @@
 	<% if @user.followers.present? %>
 	  <% for follower in @user.followers %>
 		<li>
-			<%= link_to h(follower.login), profile_url(follower.login) %>
+			<%= link_to h(follower.login), profile_path((follower.login)) %>
 		</li>
 	    
 	  <% end %>

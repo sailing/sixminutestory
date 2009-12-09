@@ -1,6 +1,6 @@
 <h2>
 		<%=h @user.login %>
-		
+	
 </h2>
 
 	<% if is_user && current_user.id == @user.id %>
@@ -21,7 +21,15 @@
 			</th>
 			<td>
 				<span>
-					 <%=h @user.email_address %>
+					 <%	
+						if @user.email_address.present? 
+							h(@user.email_address)
+						elsif @user.facebook_uid.present?
+							h(facebook_session.user.name)
+							h(@user.facebook_uid)
+						end 
+				 	%>
+					
 				</span>
 			</td>
 		</tr>
@@ -43,7 +51,7 @@
 			</th>
 			<td>
 				<span>
-					<%= link_to h(@user.stories.count :conditions => {:active => true}), profile_url(@user.login) %> (<%= link_to "view more", profile_url(@user.login)%>)
+					<%= link_to h(@user.stories.count :conditions => {:active => true}), profile_path(@user.login) %> (<%= link_to "view more", profile_path(@user.login)%>)
 				</span>
 			</td>
 		</tr>
