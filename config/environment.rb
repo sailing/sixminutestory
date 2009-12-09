@@ -25,6 +25,12 @@ Rails::Initializer.run do |config|
   
   config.gem "adzap-ar_mailer", :lib => 'action_mailer/ar_mailer', :source => 'http://gems.github.com'
         
+  config.gem(
+     'thinking-sphinx',
+     :lib     => 'thinking_sphinx',
+     :version => '1.3.8'
+   )      
+        
 #  config.gem "friendly_id"
   config.gem "authlogic"
   config.gem "facebooker"
