@@ -9,24 +9,23 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-        
-        @user.save do |result|
-          if result
-               Hermes.deliver_signup_notification(@user) unless @user.email_address.blank?
-               redirect_back_or_default account_url
-          else
-            render :action => :new
-          end
+      @user.save do |result|
+        if result
+          Hermes.deliver_signup_notification(@user) unless @user.email_address.blank?
+          render :action => :show
+          # redirect_to account_url
+        else
+          render :action => :new
         end
-        
-#    (verify_recaptcha && @user.save) do |result|
+      end
   end
 
   def show
     
      e = ActiveRecord::RecordNotFound
       begin
-        @user = User.find_by_login(params[:login]) || User.find_by_id(params[:id]) || current_user
+       # @user = User.find_by_login(params[:login]) || User.find_by_id(params[:id]) || current_user
+        @user = User.find(params[:id]) || current_user
 
       rescue Exception => e
         flash[:notice] = 'That user doesn\'t exist.'
@@ -53,12 +52,12 @@ class UsersController < ApplicationController
     end
     
   
-    respond_to do |format|
+      respond_to do |format|
         format.html # show.html.erb
         format.xml  { render :xml => @stories }
         format.rss
       end
-    else
+  else
         flash[:notice] = 'That user doesn\'t exist.'
         redirect_to root_url
     end
@@ -72,16 +71,25 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user # makes our views "cleaner" and more consistent
-    @user.attributes = params[:user]
-    @user.save do |result|
-      if result
-        flash[:notice] = "Account updated!"
-        redirect_to account_url
-      else
-        render :action => :edit
-      end
+    if @user.update_attributes(params[:user])
+      redirect_to account_url
+    else
+      render :action => :edit
     end
   end
+
+#  def update
+#    @user = current_user # makes our views "cleaner" and more consistent
+#    @user.attributes = params[:user]
+#    @user.save do |result|
+#      if result
+#        flash[:notice] = "Account updated!"
+#        redirect_to account_url
+#      else
+#        render :action => :edit
+#      end
+#     end
+#  end
 
   
 end

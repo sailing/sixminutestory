@@ -34,12 +34,23 @@
 
 <div class="clear space">
 </div>
+<div id="new_story_form">
 <% form_for(@story) do |f| %>
 	<%= hidden_field_tag :prompt, @prompt.id %>
-	
+
+<% unless f.error_messages.empty? %>
+<h1>Errors</h1>
+<div id="errorExplanation">
+	<h2>Your story hasn't been saved yet.</h2>
+	<h3>Please check for errors below.</h3>
+</div>
+<% end %>
+
+<h4>Write your story</h4>
+
 	<div class="center">
 
-			<%= f.error_message_on 'description' %><br />
+			<%= f.error_message_on 'description' %>
 			
 		
 			<% if @story.description.present? || @editing.present?
@@ -55,35 +66,62 @@
 					}
 				</script>
 				
-			<% else
-				@disabled = false
-				@description = "when you click here the prompt will appear and the timer will start"
+			<% 
+				else
+					@disabled = false
+					@description = "when you click here the prompt will appear and the timer will start"
+			
+				end
 			%>
 					
-			<%	end %>
-			
-			<% @story.title.present? ? @title = @story.title : @title = "title" %>
-			<% @story.tags.present? ? @tags = "" : @tags = "tags" %>
-			
-  			<%= f.text_area :description, :value => @description, :rows => 20, :cols => 45, :tabindex => "1", :onFocus => "Effect.Appear('prompt_and_timer',{duration:0.1});getSetWrite(this);" %>
-		
-			<p>
+			<%= f.text_area :description, :value => @description, :rows => 20, :cols => 45, :tabindex => "1", :onFocus => "Effect.Appear('prompt_and_timer',{duration:0.1});getSetWrite(this);" %>
+</div>
 
-				<%= f.error_message_on 'title' %><br />
+<div class="clear space">
+</div>
+
+<h4>Title, Describe and <br/> License your story</h4>
+
+	<table>
+		<tr>
+			<td colspan=2>
+				<%= f.error_message_on 'title' %>
+			</td>
+		
+			<td colspan=2>
+			</td>
+		</tr>
+		<tr>
+			
+			<th>
+				<label for="story_title">Title</label>
+			</th>
+			<td>	
 		  		<%= f.text_field :title, :disabled => @disabled, :onFocus => 'clearFieldFirstTime(this);', :value => @title, :tabindex => "2" %>
-			</p>
-				<p>
+			</td>
+			<th>
+				<label for="story_tags">Adjectives</label>
+			</th>
+			<td>	
 					<% if @story.tags.present? -%>
 						<% @story.tags.each do |tag| -%>
 			   				<%= tag %>
 						<% end -%>
 					<% end -%>
 		 			<%= f.text_field :tag_list, :onFocus => 'clearFieldFirstTime(this);', :value => @tags, :tabindex => "3" %>
-	  			</p>
-		
-			<p>
+	  		</td>
+		</tr>
+		<tr>
+			<td colspan=4>
+				&nbsp; 	<%= f.error_message_on 'license' %>
+			</td>
+		</tr>
+		<tr>
+			<th>
 				<label for="story_license">License</label>
-				<%= f.error_message_on 'license' %><br />
+			</th>
+			<td colspan=3>
+				
 				<select name="story[license]" id="story_license" onchange="" tabindex="4">
 					<option value="Creative Commons Attribution 3.0">
 						Creative Commons Attribution 3.0</option>
@@ -100,22 +138,29 @@
 					<option value="Creative Commons Attribution-NonCommerical-ShareAlike 3.0">
 						Creative Commons Attribution-NonCommercial-ShareAlike 3.0</option>
 			
-					<option value="Creative Commons Attribution-ShareAlike 3.0">
+					<option value="Creative Commons Attribution-ShareAlike 3.0" selected="selected">
 						Creative Commons Attribution-ShareAlike 3.0</option>
 					<option value="Public Domain">Public Domain</option>
 					
 				</select>
-			</p>
-			
-		
+			</td>
+		</tr>
+	</table>
+	
+	<div class="clear space">
+	</div>
+<h4>Prove you're human</h4>
+		<div class="center">
 			<p>
-				<% unless @editing.present? %>
-					<% if session[:recaptcha_error].present? %>
-					 	<span class="formError">Incorrect text entered.</span>
+					<% unless @editing.present? %>
+						<% if session[:recaptcha_error].present? %>
+						 	<span class="formError">Incorrect text entered.</span>
+						<% end %>
+
+						<%= recaptcha_tags :display => {:tabindex => "5"} %>
 					<% end %>
-					
-					<%= recaptcha_tags :display => {:theme => "clean", :tabindex => "5"} %>
-				<% end %>
+
+				
 			</p>
 			<br />
 				<p>
@@ -124,7 +169,8 @@
 						<%= link_to 'Destroy story', @story, :confirm => 'Are you sure you want to remove this story? Your story will no longer be visible!', :method => :delete %>
 						<% end %>
 				</p>
-	
+
 </div>
 <% end %>
+</div>
 

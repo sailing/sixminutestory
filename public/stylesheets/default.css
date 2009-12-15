@@ -144,17 +144,16 @@ textarea {
 	border:0px solid #bbf;
 	background: transparent;
 	font-size:20px;
-	color:#fff;
+	color:#000;
 	padding:10px;
 	margin:0px;
-	background-color:#000;
+	background-color:#fff;
 	opacity:0.7;
 	filter: alpha(opacity = 70);
 	zoom:1;
 	
 	-moz-border-radius:15px;  
 	-webkit-border-radius:15px;
-	border:1px solid #000;
 
 }
 
@@ -165,10 +164,10 @@ input, select, option {
 	border:0px;
 	font-size:20px;
 	font-weight:600;
-	color:#fff;
+	color:#000;
 	vertical-align:middle;
 
-	background-color:#000;
+	background-color:#fff;
 	opacity:0.6;
 	filter: alpha(opacity = 60);
 	zoom:1;
@@ -206,9 +205,7 @@ input[type="checkbox"]{
 .formError {
 	position:relative;
 	left:20px;
-	font-size:16px;
-	color:#b33;
-/*	color:#578; */
+	font-size:1em;
 	font-weight:600;
 }
 
@@ -217,26 +214,25 @@ input[type="checkbox"]{
 
 .fieldWithErrors input, .fieldWithErrors textarea {
 	background-color: #000;
+	color:#fff;
 }
 
 #errorExplanation {
   padding: 7px;
   padding-bottom: 12px;
-  margin: 0px 15px 20px;
-  background-color: #000;
+  margin: 0px 15px 10px;
 	width:60%;
 }
 
 #errorExplanation h2 {
   text-align: left;
   font-weight: 600;
-  font-size: 12px;
-  background-color: #c00;
+  font-size: 1em;
   color: #fff;
 }
 
 #errorExplanation span {
-  color: #fff;
+  color: #522b1d;
 	font-size:14px;
   margin-bottom: 0px;
   padding: 5px;
@@ -826,9 +822,9 @@ background-color:#a759d0;
 	font-weight:600;
 }
 
-/*				 							*/
-/*  	add_story form		*/
-/* 											*/
+/*				 										*/
+/*  	user and story  forms		*/
+/* 														*/
 
 #facebook_login_container {
 	width:40%;
@@ -838,6 +834,48 @@ background-color:#a759d0;
 
 #facebook_login_button {
 	margin:20% auto;
+}
+
+
+#new_story_form input, select, .user_form input, select {
+	width:80%;
+	-moz-border-radius-bottomleft:0px;  
+	-webkit-border-bottom-left-radius:0px;
+	-moz-border-radius-topleft:0px;
+	-webkit-border-top-left-radius:0px;
+	-moz-border-radius-topright:5px;  
+	-webkit-border-top-right-radius:5px;
+	-moz-border-radius-bottomright:5px;
+	-webkit-border-bottom-right-radius:5px;
+}
+
+#new_story_form input[type="image"], .user_form input[type="image"] {
+	width:122px;
+	height:35px;
+}
+
+#new_story_form table {
+	width:90%;
+	margin:15px auto 25px;
+	border-collapse:collapse;
+}
+
+#new_story_form tr {
+}
+
+#new_story_form th, .user_form th{
+	padding:0 6px;
+	text-align:right;
+	-moz-border-radius-bottomleft:5px;  
+	-webkit-border-bottom-left-radius:5px;
+	-moz-border-radius-topleft:5px;
+	-webkit-border-top-left-radius:5px;
+	background-color:#a85ac1;
+}
+
+#new_story_form td, .user_form td {
+	padding:0;
+	text-align:left;
 }
 
 .user_form, .edit_user_form {
@@ -862,24 +900,13 @@ background-color:#a759d0;
 	padding:0px;
 }
 
-.user_form th, .user_form td {
-	padding:5px;
-	padding-right:15px;
-	vertical-align:middle;
-	text-align:right;
-}
-
-.user_form td {
-	padding:5px;
-}
-	
 .user_form table label, .edit_user_form table label {
 	font-size:1.2em;
 	letter-spacing:-.02em;
 	font-weight:bold;
 }
 
-.user_form table div label, .edit_user_form table div label {
+.user_form .notification_option, .edit_user_form .notification_option {
 	font-size:.9em;
 	color:#522b1d;
 }

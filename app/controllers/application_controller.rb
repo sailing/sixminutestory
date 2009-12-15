@@ -3,9 +3,10 @@
 
 class ApplicationController < ActionController::Base
   before_filter :check_for_maintenance 
+  before_filter :require_username, :except => [:edit, :update, :create]
+
   filter_parameter_logging :password, :password_confirmation, :fb_sig_friends
   helper_method :current_user_session, :current_user
-  before_filter :require_username, :except => [:edit,:update]
   
   helper :all # include all helpers, all the time
   

@@ -31,7 +31,7 @@ Rails::Initializer.run do |config|
      :version => '1.3.8'
    )      
         
-#  config.gem "friendly_id"
+  config.gem "friendly_id"
   config.gem "authlogic"
   config.gem "facebooker"
   

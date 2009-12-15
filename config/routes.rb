@@ -2,7 +2,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :followings
 
-  map.resources :contests
+#  map.resources :contests
 
   map.resources :prompts
     
@@ -39,9 +39,9 @@ ActionController::Routing::Routes.draw do |map|
     map.logout 'logout', :controller => "user_sessions", :action => "destroy"
     map.register 'register', :controller => "users", :action => "new"
     
-    map.profile            '/profile/:login', :controller => "users", :action => "show", :requirements => {:login => /.*/}
-    map.formatted_profile '/profile/:id.:format', :controller => "users", :action => "show"
-    map.formatted_profile_personal '/profile/personal/:id.:format', :controller => "users", :action => "show"
+  #  map.profile            '/profile/:login', :controller => "users", :action => "show", :requirements => {:login => /.*/}
+  #  map.formatted_profile '/profile/:id.:format', :controller => "users", :action => "show"
+  #  map.formatted_profile_personal '/profile/personal/:id.:format', :controller => "users", :action => "show"
     
     #administration
     map.prompts_admin "admin/prompts", :controller => "prompts", :action => "admin"
@@ -61,7 +61,11 @@ ActionController::Routing::Routes.draw do |map|
          story.resources :votes
        end
      end
-
+     
+   map.resource :account, :controller => "users"
+   map.resources :profile, :controller => "users"
+ 
+ 
      map.resources :stories do |story|
        story.resources :votes
      end
@@ -70,7 +74,7 @@ ActionController::Routing::Routes.draw do |map|
 
      map.resource :user_session
      
-     map.resource :account, :controller => "users"
+  
      
      
     map.with_options :controller => "site" do |site|

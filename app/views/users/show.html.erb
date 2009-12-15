@@ -21,7 +21,7 @@
 	  <% for following in @user.followings %>
 	    <li>
 		
-			<%= link_to h(following.writer.login), profile_path((following.writer.login)) %>
+			<%= link_to h(following.writer.login), profile_path(following.writer) %>
 				
 			
 	<% end %>
@@ -36,7 +36,7 @@
 	<% if @user.followers.present? %>
 	  <% for follower in @user.followers %>
 		<li>
-			<%= link_to h(follower.login), profile_path((follower.login)) %>
+			<%= link_to h(follower.login), profile_path(follower) %>
 		</li>
 	    
 	  <% end %>

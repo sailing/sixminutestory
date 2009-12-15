@@ -19,7 +19,7 @@
 	<script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" type="text/javascript"></script>
 	
 	<meta name="title" content="Six Minute Story" />
-	<meta name="description" content="Six Minute Story is a user-driven, flash-fiction experiment. Our goal is to fill the world with ad-libbed eloquence." />
+	<meta name="description" content="Six Minute Story is a user-driven, flash-fiction experiment. The goal is to fill the world with ad-libbed eloquence." />
 	<link rel="image_src" href="http://sixminutestory.com/images/logo_square.png" />
 	
 	<link rel="alternate" href="<%= @rss_url.present? ? @rss_url : 'http://feeds.feedburner.com/SixMinuteStoryRecentStories' %>" type="application/rss+xml" media="screen" title="RSS" charset="utf-8">
@@ -60,7 +60,7 @@
 								<%= link_to "Logout", logout_path, :confirm => "Are you sure you want to logout?" %>
 							</span>
 						</td>		
-
+						
 					</tr>
 				</table>
 			<% else %>
@@ -84,7 +84,9 @@
 									<%= image_submit_tag("login_small.png", :name => "login", :id => "login-button", :disabled => false) %>
 
 						</td>
-				
+						<td>
+								<%= authlogic_facebook_login_button %>
+						</td>
 				</tr>
 			</table>
 				
@@ -323,7 +325,7 @@
 		</table>
 	</div>
 	
-		<% if flash[:notice] %>
+		<% if flash[:notice] || flash[:error] %>
 		<!-- Notice appears, then fades out over a few seconds. -->
 		<div id="notice_container">
 
@@ -331,8 +333,9 @@
 			<div id="notice">
 				<%= image_tag "close.png", :onClick => visual_effect(:fade,"notice_container",:duration => 0.2) %>
 				<br />
-				<%= flash[:notice] -%>
-
+				<%= flash[:notice]  -%>
+				<br />
+				<%= flash[:error] -%>
 			</div>
 		</div>
 

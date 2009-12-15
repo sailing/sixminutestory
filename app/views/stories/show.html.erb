@@ -1,5 +1,5 @@
 <% content_for :pagename do %>
-	<%=h ":: " + @story.title %>
+	<%=h ":: " + h(@story.title) %>
 <% end %>
 
 <% content_for :sideyard do %>
@@ -20,7 +20,7 @@
 		</h2>
 				
 		<h3 class="attribution">
-			by <%= link_to @story.user.login, profile_path(@story.user.login)  %> 
+			by <%= link_to @story.user.login, profile_path(@story.user)  %> 
 			<%=h time_ago_in_words(@story.created_at) %> ago
 		</h3>
 		

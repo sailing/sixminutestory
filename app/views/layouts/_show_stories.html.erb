@@ -57,7 +57,7 @@ is_admin ? @colspan = 5 : @colspan = 3
 	
 	<td id="show_stories" class="title">
 		<span class="author">
-		<%= link_to h(story.user.login), profile_path(story.user.login) %>
+		<%= link_to h(story.user.login), profile_path(story.user) %>
 		</span>
 		<% if story.title.present? %>
 		<span>
