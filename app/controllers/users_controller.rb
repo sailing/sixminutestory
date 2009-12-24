@@ -23,8 +23,8 @@ class UsersController < ApplicationController
     
      e = ActiveRecord::RecordNotFound
       begin
-       # @user = User.find_by_login(params[:login]) || User.find_by_id(params[:id]) || current_user
-        @user = User.find(params[:id]) || current_user
+        @user = User.find_by_login(params[:login]) || User.find(params[:id]) || current_user
+      #  @user = User.find(params[:id]) || current_user
 
       rescue Exception => e
         flash[:notice] = 'That user doesn\'t exist.'

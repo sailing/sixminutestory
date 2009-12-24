@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
     c.maintain_sessions = false
     c.perishable_token_valid_for = 24.hours
     c.logged_in_timeout = 30.minutes
+    
   end
   acts_as_tagger
   acts_as_voter
