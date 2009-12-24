@@ -12,8 +12,7 @@ class UsersController < ApplicationController
       @user.save do |result|
         if result
           Hermes.deliver_signup_notification(@user) unless @user.email_address.blank?
-          render :action => :show
-          # redirect_to account_url
+           redirect_to account_url
         else
           render :action => :new
         end
