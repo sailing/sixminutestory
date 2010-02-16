@@ -7,6 +7,8 @@
 ENV['RECAPTCHA_PUBLIC_KEY'] = '6Le0WgcAAAAAAMgYEpHaYoNKQ4EnQJN6smla0xU2'
 ENV['RECAPTCHA_PRIVATE_KEY'] = '6Le0WgcAAAAAABp7pJR1gRULDVe1z1_eGybvZsLe'
 
+RPX_API_KEY = 'c37c053204545279866b1c267510c078a3c7ef6c'
+
 # Specifies gem version of Rails to use when vendor/rails is not present
 RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
 
@@ -31,9 +33,11 @@ Rails::Initializer.run do |config|
      :version => '1.3.8'
    )      
         
-  config.gem "friendly_id"
-  config.gem "authlogic"
-  config.gem "facebooker"
+#  config.gem "friendly_id"
+  config.gem 'authlogic', :version => '>= 2.1.3'
+  config.gem 'rpx_now', :version => '>= 0.6.12', :source => 'http://gemcutter.org'
+  config.gem 'authlogic_rpx', :version => '>= 1.1.1', :source => 'http://gemcutter.org'
+
   
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers

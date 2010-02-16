@@ -76,11 +76,7 @@
 </table>
 <% end %>
 </div>
-<div id="facebook_login_container">
-	<h3>
-		Login with facebook
-	</h3>
-	<div id="facebook_login_button">
-		<%= authlogic_facebook_login_button :length => "long" %>
-	</div>		
-</div>
+
+	<%= 
+		rpx_embed( :link_text => "Register/Sign in with RPX..", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false )
+	%>

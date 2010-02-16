@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091208000547) do
+ActiveRecord::Schema.define(:version => 20100216091941) do
 
   create_table "comments", :force => true do |t|
     t.text     "comment"
@@ -61,6 +61,17 @@ ActiveRecord::Schema.define(:version => 20091208000547) do
     t.integer  "counter",    :default => 0
     t.integer  "rating",     :default => 0
   end
+
+  create_table "rpx_identifiers", :force => true do |t|
+    t.string   "identifier",    :null => false
+    t.string   "provider_name"
+    t.integer  "user_id",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rpx_identifiers", ["identifier"], :name => "index_rpx_identifiers_on_identifier", :unique => true
+  add_index "rpx_identifiers", ["user_id"], :name => "index_rpx_identifiers_on_user_id"
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false

@@ -2,5 +2,9 @@ to run on deploy:
 
 do bloody test it this time.
 
-sudo gem install facebooker, friendly_id
+sudo gem install friendly_id
+sudo gem install rpx_now --source http://gemcutter.org
+sudo gem install authlogic_rpx --source http://gemcutter.org
+
+
 rake db:migrate

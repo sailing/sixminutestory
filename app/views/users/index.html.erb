@@ -1,0 +1,61 @@
+<div id="content">
+<h2>Administration &lt; users</h2>
+<div id="protests" class="float_left">
+<table>
+	<tr>
+
+		<% if is_admin %>
+			<th>status</th>
+				<th>options</th>
+		<% end %>
+					<th>username</th>
+						<th>email</th>
+	</tr>
+<% for user in @users %>
+
+<tr class="<%= cycle('row_alternate', 'row') -%>">
+	<% if is_admin %>
+	
+		<td>
+		<span>
+		
+				<%= user.active? ? "Active" : "Suspended" %>
+				| <%= user.admin? ? "Admin" : "User" %>
+		</span>
+		</td>
+		
+		<td>
+			<%= link_to "Verify / Edit", edit_user_path(user) %>
+		</td>
+	<% end %>
+		<td id="show_shares" class="title">
+
+		<span>
+			<%= link_to h(user.login), user %> 
+	
+		</span>
+	</td>
+	<td>
+		<span>
+		<%= h(user.email_address) %>
+		</span>
+	</td>
+	</tr>
+</tr>
+
+<% end %>
+
+<% if @users.present? %>
+
+<tr id="pagination">
+	<td colspan=2>
+			<%= will_paginate @users %>
+	</td>
+</tr>
+<% end %>
+
+
+</table>
+
+</div>
+ </div>

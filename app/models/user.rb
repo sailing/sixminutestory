@@ -4,12 +4,19 @@ class User < ActiveRecord::Base
     c.maintain_sessions = false
     c.perishable_token_valid_for = 24.hours
     c.logged_in_timeout = 30.minutes
+  
+  # enable Authlogic_RPX account merging (false by default, if this statement is not present)
+    c.account_merge_enabled true
+    
+  # set Authlogic_RPX account mapping mode
+    c.account_mapping_mode :internal
+    
     
   end
   acts_as_tagger
   acts_as_voter
   
-#  has_friendly_id :login, :use_slug => true
+  #has_friendly_id :login, :use_slug => true
     
   has_many :followings
   has_many :writers, :through => :followings

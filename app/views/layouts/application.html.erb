@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>Six Minute Story 
@@ -16,8 +16,6 @@
 
   	<%= stylesheet_link_tag :all, :cache => true %>
 	
-	<script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" type="text/javascript"></script>
-	
 	<meta name="title" content="Six Minute Story" />
 	<meta name="description" content="Six Minute Story is a user-driven, flash-fiction experiment. The goal is to fill the world with ad-libbed eloquence." />
 	<link rel="image_src" href="http://sixminutestory.com/images/logo_square.png" />
@@ -26,10 +24,7 @@
 </head>
 <body>
 	
-	<!-- for facebook connect -->
-	<%= fb_connect_javascript_tag %>
- 	<%= init_fb_connect "XFBML" %>
-	
+
 	<!-- escapes frames -->
 	<script type="text/javascript">
 	//<![CDATA[
@@ -85,7 +80,7 @@
 
 						</td>
 						<td>
-								<%= authlogic_facebook_login_button %>
+								<%= rpx_popup( :link_text => "OpenID / Facebook / etc", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false ) %>
 						</td>
 				</tr>
 			</table>
@@ -269,10 +264,10 @@
 			<div id="how_to_contact">
 				<h3>If you want to tell us something</h3>
 				<p>
-				I like to hear from people who enjoy what I create. I also appreciate constructive criticism and suggestions for improvements. If your suggestion is feasible, I'll consider it and attempt to implement it. 
+				We like to hear from people who enjoy what we create. We also appreciate constructive criticism and suggestions for improvements. If your suggestion is feasible, we'll consider it and attempt to implement it. 
 				</p>
 				<p>
-				You can get in touch with me via <a href="http://twitter.com/6minutestory" target="_blank">twitter</a>, Six Minute Story's <a href="http://www.facebook.com/pages/Six-Minute-Story/177100150707" target="_blank">Facebook profile</a> or plain old email @ galen at six minute story dot com.
+				You can get in touch with us via <a href="http://twitter.com/6minutestory" target="_blank">twitter</a>, Six Minute Story's <a href="http://www.facebook.com/pages/Six-Minute-Story/177100150707" target="_blank">Facebook profile</a> or plain old email @ galen at six minute story dot com.
 				</p>
 		</div>
 			<div class="clear">
