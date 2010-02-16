@@ -81,13 +81,11 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user # makes our views "cleaner" and more consistent
-    if @user.save
-      flash[:notice] = "Successfully updated user."
-      redirect_back_or_default account_path
+    if @user.update_attributes(params[:user])
+      redirect_to account_url
     else
-      render :action => 'edit'
+      render :action => :edit
     end
-  
   end
 
 #  def update
