@@ -20,7 +20,7 @@ class UserSessionsController < ApplicationController
                                 redirect_to edit_user_path( :current )
                         else
                                 if @user_session.registration_complete?
-                                        flash[:notice] = "Successfully signed in."
+                                        #flash[:notice] = "Successfully signed in."
                                         redirect_back_or_default account_path
                                 else
                                         flash[:notice] = "Welcome back! Please complete required registration details before continuing.."
@@ -37,7 +37,7 @@ class UserSessionsController < ApplicationController
         def destroy
                     @user_session = current_user_session
                     @user_session.destroy if @user_session
-                    flash[:notice] = "Successfully signed out."
+                    #flash[:notice] = "Successfully signed out."
                     redirect_to root_url
             end
   

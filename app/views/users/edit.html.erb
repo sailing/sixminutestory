@@ -5,9 +5,10 @@
 
 <% form_for @user, :url => account_path do |f| %>
 
-<table >
+<table>
 	<tr>		
 		<td>
+			<h2>Account Settings</h2>
 			<p>
 				<%= f.label :login, "Username" %><br />
 				<%= f.error_message_on 'login' %><br />
@@ -32,9 +33,10 @@
 			</p>
 		
 			<div id="email_preferences">
-					<h2>
+				<h2>Email Preferences</h2>	
+					<h3>
 						Receive notifications when
-					</h2>
+					</h3>
 			  <p>
 				<%= f.check_box :send_comments %>    
 				<%= f.label :send_comments, "someone comments on your story", :class => "notification_option" %>
@@ -45,11 +47,24 @@
 			    <%= f.label :send_followings, "someone follows you", :class => "notification_option"%>
 			  </p>
 			</div>
+			
+		
 			<p>
 				<%= image_submit_tag("save.png", :name => "save", :id => "save-button", :disabled => false) %>
 			</p>
 		</td>
 		<td>
+			<h2>Link Accounts</h2>
+					<p>
+						<%= rpx_popup( 
+							:link_text => "Add OpenID, Facebook, Twitter, etc to your account", 
+							:app_name => "six-minute-story", 
+							:return_url => addrpxauth_url, 
+							:add_rpx => true, 
+							:unobtrusive => false ) %>
+
+					</p>
+			<h2>Public Profile</h2>
 			<p>
 			  <%= f.label :website %><br />
 				<%= f.error_message_on 'website' %><br />

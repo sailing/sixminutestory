@@ -82,24 +82,26 @@ class UsersController < ApplicationController
   def update
     @user = current_user # makes our views "cleaner" and more consistent
     if @user.update_attributes(params[:user])
+      flash[:notice] = 'Profile updated!'
       redirect_to account_url
     else
       render :action => :edit
     end
   end
 
-#  def update
-#    @user = current_user # makes our views "cleaner" and more consistent
-#    @user.attributes = params[:user]
-#    @user.save do |result|
-#      if result
-#        flash[:notice] = "Account updated!"
-#        redirect_to account_url
-#      else
-#        render :action => :edit
-#      end
-#     end
-#  end
+# This action has the special purpose of receiving an update of the RPX identity information
+# for current user - to add RPX authentication to an existing non-RPX account.
+# RPX only supports :post, so this cannot simply go to update method (:put)
+def addrpxauth
+  @user = current_user
+  if @user.save
+    flash[:notice] = "Successfully added RPX authentication for this account."
+    render :action => 'edit'
+  else
+    render :action => 'edit'
+  end
+end
+
 
   
 end
