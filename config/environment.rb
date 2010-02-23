@@ -17,23 +17,31 @@ require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
     
+# Pagination
   config.gem 'mislav-will_paginate', 
       :lib => 'will_paginate', 
       :source => 'http://gems.github.com'
       
+# Database
   config.gem "mysql"
   
+# Cron Scheduler
   config.gem 'whenever', :lib => false, :source => 'http://gemcutter.org/'
   
+# Background Mailer
   config.gem "adzap-ar_mailer", :lib => 'action_mailer/ar_mailer', :source => 'http://gems.github.com'
-        
+
+# Search        
   config.gem(
      'thinking-sphinx',
      :lib     => 'thinking_sphinx',
      :version => '1.3.8'
    )      
-        
-#  config.gem "friendly_id"
+
+# Friendly ID
+  config.gem "friendly_id"
+ 
+ # Authentication Gems
   config.gem 'authlogic', :version => '>= 2.1.3'
   config.gem 'rpx_now', :version => '>= 0.6.12', :source => 'http://gemcutter.org'
   config.gem 'authlogic_rpx', :version => '>= 1.1.1', :source => 'http://gemcutter.org'

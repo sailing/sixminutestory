@@ -6,7 +6,7 @@ class SiteController < ApplicationController
      page = params[:page] || 1
      @q = params[:q]
      order = "created_at DESC"
-     timeThen = Time.zone.now.advance(:months => -1)
+     timeThen = Time.zone.now.advance(:months => -6)
        begin
        #   @stories = Story.search(
        #      :page => page, 
@@ -39,7 +39,7 @@ class SiteController < ApplicationController
     page = params[:page] || 1
     @q = params[:q]
     order = "created_at DESC"
-    timeThen = Time.zone.now.advance(:months => -1)
+    timeThen = Time.zone.now.advance(:months => -6)
       begin
       #   @stories = Story.search(
       #      :page => page, 

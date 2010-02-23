@@ -11,6 +11,8 @@ class StoriesController < ApplicationController
     begin
       @story = Story.find(params[:id], :conditions => {:active => true}, :include => :tags)
       
+      
+       
     rescue Exception => e
       flash[:notice] = 'That story doesn\'t exist.'
       store_location
@@ -25,6 +27,11 @@ class StoriesController < ApplicationController
            following_exists
           
         # find previous and next stories
+        
+        #@previous_story = Story.previous(@story)
+        #@next_story = Story.next(@story)
+        
+        
              @previous = @story.id - 1
              @next = @story.id + 1
 
