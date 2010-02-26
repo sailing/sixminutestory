@@ -39,38 +39,34 @@ class UsersController < ApplicationController
         redirect_to root_url
       else
         
-  if @user.present?
+    if @user.present?
     
-    page = params[:page] || 1
-    per_page = 10
-    order = "created_at DESC"
+        page = params[:page] || 1
+        per_page = 10
+        order = "created_at DESC"
     
-
-    
-    
- #   if request.path.include?("profile") or (request.path.include?("profile") and request.format == "rss") 
- #     @stories = Story.paginate_by_user_id @user.id, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    
-#      @rss_url = "http://sixminutestory.com/profile/"+@user.id.to_s+".rss"
+        if (current_user == @user or (request.path.include?("personal") and request.format == "rss")) and !@user.writers.empty?
+            @stories = Story.paginate_by_user_id @user.writers, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    
+            #  @rss_url = "http://sixminutestory.com/profile/personal/"+@user.id.to_s+".rss"
       
-#    elsif (current_user == @user or (request.path.include?("personal") and request.format == "rss")) and !@user.writers.empty?
- #     @stories = Story.paginate_by_user_id @user.writers, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    
-#      @rss_url = "http://sixminutestory.com/profile/personal/"+@user.id.to_s+".rss"
-#    else
-      @stories = Story.paginate_by_user_id @user.id, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    
- #   end
+        else 
+            #request.path.include?("profile") or (request.path.include?("profile") and request.format == "rss") 
+            @stories = Story.paginate_by_user_id @user.id, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    
+            #    @rss_url = "http://sixminutestory.com/profile/"+@user.id.to_s+".rss"
     
-  
+        end
+    
       respond_to do |format|
         format.html # show.html.erb
         format.xml  { render :xml => @stories }
         format.rss
       end
-  else
+    else
         flash[:notice] = 'That user doesn\'t exist.'
         redirect_to root_url
     end
     end
-  end
+end
   
 
   def edit

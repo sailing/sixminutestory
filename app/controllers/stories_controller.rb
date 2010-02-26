@@ -3,6 +3,9 @@ class StoriesController < ApplicationController
   before_filter :must_be_admin, :only => [:admin, :disabled, :enable_story, :disable_story]
 #  before_filter ensure_current_post_url, :only => :show
   
+  def index
+  end
+  
  # GET /stories/1
   # GET /stories/1.xml
   def show

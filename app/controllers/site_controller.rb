@@ -2,25 +2,15 @@ class SiteController < ApplicationController
    before_filter :must_be_admin, :only => [:admin]
 
   def index
-    per_page = 15
+    per_page = 5
      page = params[:page] || 1
      @q = params[:q]
      order = "created_at DESC"
-     timeThen = Time.zone.now.advance(:months => -6)
        begin
-       #   @stories = Story.search(
-       #      :page => page, 
-       #      :per_page => per_page, 
-       #      :order => order, 
-       #      :match_mode => :all, 
-       #      :conditions =>{
-       #        :active => true, 
-       #        :created_at => timeThen..Time.now 
-       #        }
-       #    )
-       @stories = Story.paginate :page => page, :order => order, :per_page => per_page, :conditions => {:active => true, :created_at => timeThen..Time.zone.now }   
+
+       @stories = Story.paginate :page => page, :order => order, :per_page => per_page, :conditions => ["stories.active = ? AND stories.rating >= ?", true, 2]  
        rescue
-         flash[:notice] = "There are no recent stories. Why not write your own?"
+         flash[:notice] = "There are no recent stories. \r\n Why not write your own?"
          redirect_to write_url
        else 
           respond_to do |format|
@@ -28,10 +18,7 @@ class SiteController < ApplicationController
              format.xml  { render :xml => @stories }
              format.rss
            end  
-       end
-
-    #  @stories = Story.paginate :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}   
-   
+       end   
   end
 
   def recent

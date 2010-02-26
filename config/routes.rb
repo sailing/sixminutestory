@@ -27,7 +27,7 @@ ActionController::Routing::Routes.draw do |map|
     map.contribute_a_prompt 'contribute/prompt', :controller => "prompts", :action => "new"
     
       # reading
-    map.read 'read', :controller => "site", :action => "recent"
+    map.read 'read', :controller => "site", :action => "index"
     map.read_random 'random/read', :controller => "stories", :action => "random"
     map.read_story 'read/:id', :controller => "stories", :action => "show"
     map.read_story_with_title 'read/:id/:title', :controller => "stories", :action => "show", :requirements => { :title => /.*/ }
@@ -79,7 +79,7 @@ ActionController::Routing::Routes.draw do |map|
      
      
     map.with_options :controller => "site" do |site|
-      site.root                                   :action => "recent" 
+      site.root                                   :action => "index" 
       site.formatted_root     '/recent.:format',  :action => "recent"
       site.search             '/search',          :action => "search"
       site.recent             '/recent',          :action => "recent"

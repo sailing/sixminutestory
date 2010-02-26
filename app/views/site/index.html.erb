@@ -1,4 +1,92 @@
 
-<%= render :partial => "layouts/show_stories" %>
+<%= # render :partial => "layouts/show_stories" 
+%>
 
+<h1>read</h1>
+<div class="browse_links">
+	<div class="brown button_container">
+		<%= link_to "Top Rated", top_path %>
+	</div>
+	<div class="green button_container">
+		<%= link_to "Recent", recent_path %> 
+	</div>
+	<div class="purple button_container">
+		<%= link_to "by Tags", browse_by_tags_path %>
+	</div>
+</div>
+
+
+<div id="show_stories">
+
+
+
+<% if !@stories.empty? %>
+
+	<% for story in @stories %>	
+	<div id="indStory" >
+		<div id="title_bar" class="<%= cycle('indStory', 'indStoryAlternate') -%>">
+		
+		
+			<% if story.title.present? %>
+			<span class="title">
+				<!-- Story title as a link in the listings -->
+				<%= link_to h(story.title), read_story_url(story) %>
+			</span>
+			<% else %>
+			<span>
+				<!-- Story title as a link in the listings -->
+				<%= link_to "Untitled Story", read_story_url(story)%>
+			</span>
+
+			<% end %>
+			
+				<span class="author">
+				by <%= link_to h(story.user.login), profile_path(story.user) %>
+				</span>
+		</div>
+		<div id="storyAndMeta">
+			<div class="story">
+				<%= simple_format(sanitize(h(story.description))) %>
+			</div>
+		
+			<div class="meta">
+				<span><%= link_to "#{story.comment_counter} comments", read_story_url(story, :anchor => "comments") %></span>
+				<span>&nbsp;||&nbsp;</span>
+				<span>
+					<%= pluralize(story.rating, 'cheer', 'cheers') %>
+				</span>
+			
+			</div>
+			<% if is_admin %>
+				<div class = "meta">
+					<%= link_to 'Edit', edit_story_url(story) %>&nbsp;||&nbsp;<%= story.flagged %>&nbsp;flags	</div>
+			<% end %>
+		</div>
+	</div>
+	<% end %>
+
+	<% # Stories count
+	 %>	
+		<%= 
+		# page_entries_info @stories 
+		%>
+
+	<% #pagination
+	%>
+		<%=  will_paginate @stories %>
+
+<% else  %>
+<% 
+# else for if !@stories.empty? 
+%>
+	<h1>
+		Erm...
+	</h1>
+	
+	<div id="no_stories">
+		<p>
+			No stories await you here. Go <%= link_to "write your own", write_url %>.
+		</p>
+	</div>	
+<% end %>
 

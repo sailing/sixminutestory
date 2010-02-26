@@ -26,11 +26,6 @@ is_admin ? @colspan = 5 : @colspan = 3
 <% if !@stories.empty? %>
 
 <table>
-	<tr>
-		<td colspan="<%= @colspan %>">
-			<%= page_entries_info @stories %>
-		</td>
-	</tr>	
 	
 <% for story in @stories %>
 <% 
@@ -74,15 +69,10 @@ is_admin ? @colspan = 5 : @colspan = 3
 	</td>
 	
 	<% if is_admin %>
-  		<td class="story_this_story">
-			<%= link_to image_tag('edit.png'), edit_story_url(story) %>
-		</td>
-		<td>
-			<% if is_admin %>
-				<span>
-				<%= story.flagged %> flags
-				</span>
-			<% end %>
+  		<td>
+			<span>
+				<%= link_to 'Edit', edit_story_url(story) %>&nbsp;||&nbsp;<%= story.flagged %>&nbsp;flags
+			</span>
 		</td>
 	<% end %>
 	
@@ -90,6 +80,14 @@ is_admin ? @colspan = 5 : @colspan = 3
 
 
 <% end %>
+
+<tr>
+	<td colspan="<%= @colspan %>">
+		<%= page_entries_info @stories %>
+	</td>
+</tr>	
+
+
 <tr>
 	<td colspan="<%= @colspan %>">
 		<%=  will_paginate @stories %>

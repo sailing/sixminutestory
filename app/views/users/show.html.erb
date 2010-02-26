@@ -5,11 +5,6 @@
 
 <% content_for :sideyard do %>
 	
-	 <%= "id is " + current_user.id.to_s if current_user %>
- <%= "	Fb (via C_U) is " + current_user.facebook_uid.to_s if current_user %>
-	
-<%= "fb id is " + @user.facebook_uid.to_s unless @user.facebook_uid.blank? %>
-	
 	<%= render :partial => "site/profile_block" %>
 	
 <h2>Following (<%= @user.writers.count :conditions => :active %>)</h2>
