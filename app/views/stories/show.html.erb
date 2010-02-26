@@ -38,22 +38,23 @@
 				
 				<!-- This is how people flag stories -->
 							
-				<% if is_user %>
-					<% form_tag(flag_story_path, :method => "post") do -%>
-
-					<%= hidden_field_tag 'story', @story.id %>
-					<%= image_submit_tag 'flag.png', 
-						:name => "flag", 
-						:id => "flag-button", 
-						:disabled => false %>
-
-		  			<% end -%>	
-				<% end -%>
 				
 				
 				
 		</div>
+		<% if is_user %>
+		<div id="flag">
+			<% form_tag(flag_story_path, :method => "post") do -%>
 
+			<%= hidden_field_tag 'story', @story.id %>
+			<%= image_submit_tag 'flag.png', 
+				:name => "flag", 
+				:id => "flag-button", 
+				:disabled => false %>
+
+  			<% end -%>	
+		<% end -%>
+		</div>
 
 	<div id="information_container">
 		<div>

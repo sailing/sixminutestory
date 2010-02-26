@@ -4,6 +4,9 @@
 
 <h1>read</h1>
 <div class="browse_links">
+	<div class="orange button_container">
+		<%= link_to "Featured", read_path %>
+	</div>
 	<div class="brown button_container">
 		<%= link_to "Top Rated", top_path %>
 	</div>
@@ -50,7 +53,7 @@
 			</div>
 		
 			<div class="meta">
-				<span><%= link_to "#{story.comment_counter} comments", read_story_url(story, :anchor => "comments") %></span>
+				<span><%= link_to pluralize(story.comment_counter, 'remark'), read_story_url(story, :anchor => "comments") %></span>
 				<span>&nbsp;||&nbsp;</span>
 				<span>
 					<%= pluralize(story.rating, 'cheer', 'cheers') %>

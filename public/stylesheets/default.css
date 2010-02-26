@@ -730,7 +730,7 @@ background-color:#a759d0;
 	-moz-border-radius:10px;  
 	-webkit-border-radius:10px;
 	border:1px solid #000;
-	padding:4px;
+	padding:10px 4px;
 	
 	float:left;
 }
@@ -742,7 +742,7 @@ background-color:#a759d0;
 
 #prompt .labels {
 	margin-left:20px;
-	font-size:16px;
+	font-size:1em;
 	line-height:21px;
 	font-weight:500;
 	color:#c97bf2;
@@ -751,10 +751,10 @@ background-color:#a759d0;
 
 #prompt .entries {
 	margin-left:2px;
-	font-size:22px;
+	font-size:1.5em;
 	font-weight:normal;
 	letter-spacing:1px;
-	
+	line-height:2em;
 }
 
 .button_container {
@@ -771,6 +771,9 @@ background-color:#a759d0;
 	
 }
 
+.orange {
+	background-color:#ff7400;
+}
 
 .brown {
 	background-color:#522b1d;
@@ -790,8 +793,8 @@ background-color:#a759d0;
 
 	color:#fff;
 	font-weight:600;
-	font-size:.95em;
-	letter-spacing:-.02em;
+	font-size:.85em;
+	letter-spacing:.085em;
 	text-decoration:none;
 	
 	display:block;
@@ -1065,7 +1068,7 @@ background-color:#a759d0;
 
 #title_bar {
 	color:#333;
-	font-size:.9em;
+	font-size:.85em;
 	opacity:1;
 	-moz-border-radius-topleft:10px;  
 	-webkit-border-top-left-radius:10px;
@@ -1097,13 +1100,13 @@ background-color:#a759d0;
 
 .story p {
 	font-size:.9em;
-	color:#000;
-	font-family:arial, verdana, sans-serif;
-	text-align:justify;
+	text-indent:2em;
+	text-align:justify;	
+	font-weight:normal;
+	font-family:verdana;
+	letter-spacing:.12em;
 	line-height:1.8em;
-	letter-spacing:.02em;
-	padding-left:3px;
-	padding-right:3px;
+	color:#000;
 }
 
 .meta {
@@ -1186,10 +1189,10 @@ background-color:#a759d0;
 
 
 #show_stories .title a, #show_stories .author a {
-	font-size:1em;
+
 	font-weight:600;
 	text-decoration:none;
-	padding:5px;
+	padding:2px;
 }
 
 #show_stories .title a {
@@ -1208,7 +1211,7 @@ background-color:#a759d0;
 
 #show_stories .author a {
 	color:#fff;
-	font-size:.8em;
+	font-size:.9em;
 
 }
 
@@ -1430,7 +1433,13 @@ background-color:#a759d0;
 .description {
 	border:0px solid #ccd;
 	margin:15px 40px 5px;
-	padding:15px 20px 0px;
+	padding:15px 20px;
+
+	-moz-border-radius:10px;  
+	-webkit-border-radius:10px;
+
+	background:#fff;
+
 }
 
 .description .content {
@@ -1444,17 +1453,16 @@ background-color:#a759d0;
 	font-weight:normal;
 	font-family:verdana;
 	letter-spacing:.12em;
-	line-height:2;
+	line-height:1.8em;
 	color:#000;
 	
-	background:white;
-	margin:0px 0px 15px 0px;
-	padding:20px 40px;
 	
-	-moz-border-radius:10px;  
-	-webkit-border-radius:10px;
-	
-	
+}
+
+#flag {
+	width:20%;
+	margin:10px 30px;
+
 }
 
 /* notices */
