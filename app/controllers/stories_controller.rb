@@ -168,11 +168,11 @@ class StoriesController < ApplicationController
      respond_to do |format|
        if @story.save
          flash[:notice] = 'Story featured.'
-         format.html { redirect_to(story_path(@story)) }
+         format.html { redirect_to(read_story_path(@story)) }
          format.xml  { head :ok }
        else
          flash[:notice] = 'Story NOT featured.'
-         format.html { redirect_to(story_path(@story)) }
+         format.html { redirect_to(read_story_path(@story)) }
          format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
        end
      end
@@ -185,11 +185,11 @@ class StoriesController < ApplicationController
      respond_to do |format|
        if @story.save
          flash[:notice] = 'Story unfeatured.'
-         format.html { redirect_to(story_path(@story)) }
+         format.html { redirect_to(read_story_path(@story)) }
          format.xml  { head :ok }
        else
          flash[:notice] = 'Story still featured.'
-         format.html { redirect_to(story_path(@story)) }
+         format.html { redirect_to(read_story_path(@story)) }
          format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
        end
      end
