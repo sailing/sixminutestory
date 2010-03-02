@@ -74,10 +74,11 @@ class CommentsController < ApplicationController
   # DELETE /comment/1.xml
   def destroy
     @comment = Comment.find(params[:id])
+    @story = @comment.story
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to(comment_url) }
+      format.html { redirect_to(read_story_path(@story)) }
       format.xml  { head :ok }
     end
   end

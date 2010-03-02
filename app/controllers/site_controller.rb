@@ -66,7 +66,7 @@ class SiteController < ApplicationController
   end
 
   def top
-    per_page = 3
+    per_page = 15
     page = params[:page] || 1
     order = "rating DESC"
     begin

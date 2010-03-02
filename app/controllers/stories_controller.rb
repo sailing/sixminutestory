@@ -34,21 +34,17 @@ class StoriesController < ApplicationController
         @next = Story.next(@story)
         
         
-        #     @previous = @story.id - 1
-        #     @next = @story.id + 1
-
-           if Story.find(@previous,:conditions => {:active => true})
-             @previous = @previous
-           else 
-             @previous = "#"
-           end
-
-
-           if Story.find(@next,:conditions => {:active => true})
-             @next = @next
-           else 
-             @next = "#"
-           end
+#        if Story.find(@previous,:conditions => {:active => true})
+        #     @previous = @previous
+        #   else 
+        #     @previous = "#"
+        #   end
+        
+         #  if Story.find(@next,:conditions => {:active => true})
+         #    @next = @next
+         #  else 
+         #    @next = "#"
+         #  end
 
            # increment story counter
              if @story.counter 

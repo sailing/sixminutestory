@@ -5,14 +5,22 @@
 			<tr>
 						<td >
 							<div class="green button_container">	
+								<% if(@previous.present?) %>
 								<%= link_to "<< Previous", story_path(@previous)%>
+								<% else %>
+									<span>El Fin</span>
+								<% end %>
 							</div>
 						</td>		
 	
 			
 							<td>
 								<div class="green button_container">	
+								<% if(@next.present?) %>
 									<%= link_to "Next >> ", story_path(@next)%>
+								<% else %>
+									<span>El Fin</span>
+								<% end %>
 								</div>
 							</td>
 		
