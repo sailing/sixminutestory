@@ -1,12 +1,12 @@
 <p>
-Hi <%= @recipient.login %>,
+Hi <%= @recipient.id %>,
 </p>
 <p>
-<%= @follower.login %> is now following you on Six Minute Story.
+<%= @follower.id %> is now following you on Six Minute Story.
 </p>
 <p>
-You can view their profile here: <%= link_to profile_url(@follower.login), profile_url(@follower.login) %>.
+You can view their profile here: <%= link_to profile_url(@follower.id), profile_url(@follower.id) %>.
 </p>
 <p>
-View your own profile here: <%= link_to profile_url(@recipient.login), profile_url(@recipient.login) %>.
+View your own profile here: <%= link_to profile_url(@recipient.id), profile_url(@recipient.id) %>.
 </p>

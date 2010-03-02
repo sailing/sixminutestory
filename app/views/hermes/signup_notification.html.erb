@@ -1,11 +1,11 @@
 <p>
-Hi <%= @recipient.login %>,
+Hi <%= @recipient.id %>,
 </p>
 <p>
 Welcome to Six Minute Story. You can jump right in and start <%= link_to "writing", write_url %> now!
 </p>
 <p>
-<%= link_to "View your profile", profile_url(@recipient.login) %>.
+<%= link_to "View your profile", profile_url(@recipient.id) %>.
 </p>
 <p>	
 Cheers!

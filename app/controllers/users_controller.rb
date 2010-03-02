@@ -45,15 +45,17 @@ class UsersController < ApplicationController
         per_page = 10
         order = "created_at DESC"
     
-        if (current_user == @user or (request.path.include?("personal") and request.format == "rss")) and !@user.writers.empty?
-            @stories = Story.paginate_by_user_id @user.writers, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    
-            #  @rss_url = "http://sixminutestory.com/profile/personal/"+@user.id.to_s+".rss"
-      
-        else 
-            #request.path.include?("profile") or (request.path.include?("profile") and request.format == "rss") 
+        if request.path.include?("profile") or (request.path.include?("profile") and request.format == "rss") 
             @stories = Story.paginate_by_user_id @user.id, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    
             #    @rss_url = "http://sixminutestory.com/profile/"+@user.id.to_s+".rss"
-    
+      
+        elsif (current_user == @user or (request.path.include?("personal") and request.format == "rss")) and !@user.writers.empty?
+            @stories = Story.paginate_by_user_id @user.writers, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}
+            #  @rss_url = "http://sixminutestory.com/profile/personal/"+@user.id.to_s+".rss"
+            
+        else
+            @stories = Story.paginate_by_user_id @user.id, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    
+                    
         end
     
       respond_to do |format|

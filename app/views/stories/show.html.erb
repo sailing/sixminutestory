@@ -36,14 +36,12 @@
 			<%= simple_format(sanitize(h(@story.description))) %>
 				
 				
-				<!-- This is how people flag stories -->
-							
-				
-				
 				
 		</div>
 		<% if is_user %>
 		<div id="flag">
+						<!-- This is how people flag stories -->
+		
 			<% form_tag(flag_story_path, :method => "post") do -%>
 
 			<%= hidden_field_tag 'story', @story.id %>
@@ -53,8 +51,8 @@
 				:disabled => false %>
 
   			<% end -%>	
-		<% end -%>
 		</div>
+		<% end -%>
 
 	<div id="information_container">
 		<div>

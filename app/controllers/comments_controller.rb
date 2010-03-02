@@ -35,12 +35,10 @@ class CommentsController < ApplicationController
   # POST /comment.xml
   def create
     @comment = Comment.new(params[:comment])
-    @story = Story.find(@comment.story_id)
+    @story = Story.find_by_id(@comment.story.id)
     
     respond_to do |format|
       if @comment.save
-        @story.comment_counter += 1
-        @story.save
         
         Hermes.deliver_comment_notification(@story.user, @story, @comment.user, @comment) unless @story.user.send_comments == false
       

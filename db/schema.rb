@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100216091941) do
+ActiveRecord::Schema.define(:version => 20100302104040) do
 
   create_table "comments", :force => true do |t|
     t.text     "comment"
@@ -52,14 +52,15 @@ ActiveRecord::Schema.define(:version => 20100216091941) do
     t.string   "goal"
     t.date     "use_on"
     t.integer  "user_id"
-    t.integer  "contest_id", :default => 0
-    t.boolean  "active",     :default => true
-    t.boolean  "verified",   :default => false
-    t.boolean  "delta",      :default => false
+    t.integer  "contest_id",    :default => 0
+    t.boolean  "active",        :default => true
+    t.boolean  "verified",      :default => false
+    t.boolean  "delta",         :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "counter",    :default => 0
-    t.integer  "rating",     :default => 0
+    t.integer  "counter",       :default => 0
+    t.integer  "rating",        :default => 0
+    t.integer  "stories_count"
   end
 
   create_table "rpx_identifiers", :force => true do |t|
@@ -111,6 +112,7 @@ ActiveRecord::Schema.define(:version => 20100216091941) do
     t.integer  "flagged",         :default => 0
     t.integer  "comment_counter", :default => 0
     t.string   "cached_slug"
+    t.integer  "comments_count"
   end
 
   create_table "taggings", :force => true do |t|
@@ -152,6 +154,8 @@ ActiveRecord::Schema.define(:version => 20100216091941) do
     t.string   "name"
     t.integer  "facebook_uid",         :limit => 8
     t.string   "facebook_session_key"
+    t.integer  "comments_count"
+    t.integer  "stories_count"
   end
 
   create_table "votes", :force => true do |t|

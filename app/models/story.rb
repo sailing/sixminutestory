@@ -5,8 +5,8 @@ class Story < ActiveRecord::Base
   
   has_friendly_id :title, :use_slug => true
   
-  belongs_to :user
-  has_one :prompt
+  belongs_to :user, :counter_cache => true
+  has_one :prompt, :counter_cache => true
   has_one :contest
   has_many :comments  
   
