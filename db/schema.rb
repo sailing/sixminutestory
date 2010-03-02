@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100302104040) do
+ActiveRecord::Schema.define(:version => 20100302222910) do
 
   create_table "comments", :force => true do |t|
     t.text     "comment"
@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(:version => 20100302104040) do
     t.integer  "comment_counter", :default => 0
     t.string   "cached_slug"
     t.integer  "comments_count"
+    t.boolean  "featured",        :default => false
   end
 
   create_table "taggings", :force => true do |t|
@@ -156,6 +157,7 @@ ActiveRecord::Schema.define(:version => 20100302104040) do
     t.string   "facebook_session_key"
     t.integer  "comments_count"
     t.integer  "stories_count"
+    t.boolean  "featured",                          :default => false
   end
 
   create_table "votes", :force => true do |t|

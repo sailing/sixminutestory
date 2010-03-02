@@ -52,6 +52,9 @@ ActionController::Routing::Routes.draw do |map|
     map.disabled_stories "admin/stories/disabled", :controller => "stories", :action => "disabled"
     map.enable_story "admin/stories/enable/:id", :controller => "stories", :action => "enable_story"
     map.disable_story "admin/stories/disable/:id", :controller => "stories", :action => "disable_story"
+    map.feature_story "admin/stories/feature/:id", :controller => "stories", :action => "feature_story"
+    map.unfeature_story "admin/stories/unfeature/:id", :controller => "stories", :action => "unfeature_story"
+
     map.contests_admin "admin/contests", :controller => "contests", :action => "admin"
     
 
@@ -83,6 +86,7 @@ ActionController::Routing::Routes.draw do |map|
       site.formatted_root     '/recent.:format',  :action => "recent"
       site.search             '/search',          :action => "search"
       site.recent             '/recent',          :action => "recent"
+      site.popular             '/popular',          :action => "popular"
       site.top                '/top',             :action => "top"
       site.formatted_top      '/top.:format',     :action => "top"
       site.browse_by_tags     '/cloud',           :action => "browse_by_tags"

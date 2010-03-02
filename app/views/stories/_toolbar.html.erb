@@ -5,14 +5,14 @@
 			<tr>
 						<td >
 							<div class="green button_container">	
-								<a href="<%=@previous%>">&lt;&lt; Previous</a>
+								<%= link_to "<< Previous", story_path(@previous)%>
 							</div>
 						</td>		
 	
 			
 							<td>
 								<div class="green button_container">	
-									<a href="<%=@next%>">Next &gt;&gt;</a>
+									<%= link_to "Next >> ", story_path(@next)%>
 								</div>
 							</td>
 		

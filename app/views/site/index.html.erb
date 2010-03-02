@@ -2,26 +2,11 @@
 <%= # render :partial => "layouts/show_stories" 
 %>
 
-<h1>read</h1>
-<div class="browse_links">
-	<div class="orange button_container">
-		<%= link_to "Featured", read_path %>
-	</div>
-	<div class="brown button_container">
-		<%= link_to "Top Rated", top_path %>
-	</div>
-	<div class="green button_container">
-		<%= link_to "Recent", recent_path %> 
-	</div>
-	<div class="purple button_container">
-		<%= link_to "by Tags", browse_by_tags_path %>
-	</div>
-</div>
+	<h1>read</h1>
+	<%= render :partial => "layouts/browsing" %>
 
 
 <div id="show_stories">
-
-
 
 <% if !@stories.empty? %>
 
@@ -53,7 +38,7 @@
 			</div>
 		
 			<div class="meta">
-				<span><%= link_to pluralize(story.comment_counter, 'remark'), read_story_url(story, :anchor => "comments") %></span>
+				<span><%= link_to pluralize(story.comments_count, 'remark'), read_story_url(story, :anchor => "comments") %></span>
 				<span>&nbsp;||&nbsp;</span>
 				<span>
 					<%= pluralize(story.rating, 'cheer', 'cheers') %>

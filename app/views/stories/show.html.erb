@@ -24,8 +24,39 @@
 			<%=h time_ago_in_words(@story.created_at) %> ago
 		</h3>
 		
-	</div>	
+	</div>
+		
 	<div class="clear space"></div>
+	<% if is_admin %>
+		<% if @story.active == true %>
+		<div id="unfollowing_button" class="button_container">
+		<%= link_to "Disable", disable_story_url(@story), 
+		:confirm => 'Are you sure you want to disable this story? The story will no longer be visible!', 
+		:method => :delete %>
+		</div>
+		<% elsif @story.active == false %>
+		<div id="following_button" class="button_container">
+		<%= link_to "Enable", enable_story_url(@story), 
+		:confirm => 'Are you sure you want to enable this story? The story will become visible!'
+		%>
+		</div>
+		<% end %>
+		
+			<% if @story.featured == true %>
+			<div id="unfollowing_button" class="button_container">
+			<%= link_to "Unfeature", unfeature_story_url(@story), 
+			:confirm => 'Are you sure you want to unfeature this story? The story will no longer be featured!', 
+			:method => :delete %>
+			</div>
+			<% elsif @story.featured == false %>
+			<div id="following_button" class="button_container">
+			<%= link_to "Feature", feature_story_url(@story), 
+			:confirm => 'Are you sure you want to feature this story? The story will become featured!'
+			%>
+			</div>
+		
+		<% end %>
+	<% end %>
 	<div class="center">
 		<%= render :partial => "prompt" %>
 	</div>

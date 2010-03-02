@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
   before_filter :require_user, :only => [:new, :create, :edit, :update, :destroy]
-  before_filter :must_be_admin, :only => [:admin, :disabled, :enable_story, :disable_story]
+  before_filter :must_be_admin, :only => [:admin, :disabled, :enable_story, :disable_story, :feature_story, :unfeature_story]
 #  before_filter ensure_current_post_url, :only => :show
   
   def index
@@ -13,13 +13,12 @@ class StoriesController < ApplicationController
     e = ActiveRecord::RecordNotFound
     begin
       @story = Story.find(params[:id], :conditions => {:active => true}, :include => :tags)
-      
-      
        
     rescue Exception => e
       flash[:notice] = 'That story doesn\'t exist.'
       store_location
       redirect_to read_url
+    
     else 
          # Initialize a comment 
            @comment = Comment.new
@@ -31,21 +30,21 @@ class StoriesController < ApplicationController
           
         # find previous and next stories
         
-        #@previous_story = Story.previous(@story)
-        #@next_story = Story.next(@story)
+        @previous = Story.previous(@story)
+        @next = Story.next(@story)
         
         
-             @previous = @story.id - 1
-             @next = @story.id + 1
+        #     @previous = @story.id - 1
+        #     @next = @story.id + 1
 
-           if Story.find_by_id(@previous,:conditions => {:active => true})
+           if Story.find(@previous,:conditions => {:active => true})
              @previous = @previous
            else 
              @previous = "#"
            end
 
 
-           if Story.find_by_id(@next,:conditions => {:active => true})
+           if Story.find(@next,:conditions => {:active => true})
              @next = @next
            else 
              @next = "#"
@@ -158,6 +157,39 @@ class StoriesController < ApplicationController
        else
          flash[:notice] = 'Story NOT disabled.'
          format.html { redirect_to(stories_admin_path) }
+         format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
+       end
+     end
+  end
+  
+  def feature_story
+    @story = Story.find(params[:id])
+    @story.featured = 1
+     respond_to do |format|
+       if @story.save
+         flash[:notice] = 'Story featured.'
+         format.html { redirect_to(story_path(@story)) }
+         format.xml  { head :ok }
+       else
+         flash[:notice] = 'Story NOT featured.'
+         format.html { redirect_to(story_path(@story)) }
+         format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
+       end
+     end
+  end
+  
+  def unfeature_story
+    @story = Story.find(params[:id])
+
+    @story.featured = 0
+     respond_to do |format|
+       if @story.save
+         flash[:notice] = 'Story unfeatured.'
+         format.html { redirect_to(story_path(@story)) }
+         format.xml  { head :ok }
+       else
+         flash[:notice] = 'Story still featured.'
+         format.html { redirect_to(story_path(@story)) }
          format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
        end
      end

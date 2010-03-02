@@ -2,13 +2,13 @@ class SiteController < ApplicationController
    before_filter :must_be_admin, :only => [:admin]
 
   def index
-    per_page = 5
+    per_page = 1
      page = params[:page] || 1
      @q = params[:q]
-     order = "created_at DESC"
+     order = "updated_at DESC"
        begin
 
-       @stories = Story.paginate :page => page, :order => order, :per_page => per_page, :conditions => ["stories.active = ? AND stories.rating >= ?", true, 2]  
+       @stories = Story.active.featured.paginate :page => page, :order => order, :per_page => per_page  
        rescue
          flash[:notice] = "There are no recent stories. \r\n Why not write your own?"
          redirect_to write_url
@@ -20,25 +20,39 @@ class SiteController < ApplicationController
            end  
        end   
   end
+  
+  def popular 
+      per_page = 15
+      page = params[:page] || 1
+      @q = params[:q]
+      order = "comments_count DESC, rating DESC, created_at DESC"
+  
+      begin
 
+        @stories = Story.active.popular.paginate :page => page, :order => order, :per_page => per_page   
+        rescue
+          flash[:notice] = "There are no popular stories. Why not write your own?"
+          redirect_to write_url
+        else 
+           respond_to do |format|
+              format.html # index.html.erb
+              format.xml  { render :xml => @stories }
+              format.rss
+            end  
+        end
+  
+      
+  end      
+  
   def recent
     per_page = 15
     page = params[:page] || 1
     @q = params[:q]
     order = "created_at DESC"
-    timeThen = Time.zone.now.advance(:months => -6)
+#    timeThen = Time.zone.now.advance(:months => -6)
       begin
-      #   @stories = Story.search(
-      #      :page => page, 
-      #      :per_page => per_page, 
-      #      :order => order, 
-      #      :match_mode => :all, 
-      #      :conditions =>{
-      #        :active => true, 
-      #        :created_at => timeThen..Time.now 
-      #        }
-      #    )
-      @stories = Story.paginate :page => page, :order => order, :per_page => per_page, :conditions => {:active => true, :created_at => timeThen..Time.zone.now }   
+  
+      @stories = Story.active.recent.paginate :page => page, :order => order, :per_page => per_page   
       rescue
         flash[:notice] = "There are no recent stories. Why not write your own?"
         redirect_to write_url
@@ -49,29 +63,23 @@ class SiteController < ApplicationController
             format.rss
           end  
       end
-               
-   #  @stories = Story.paginate :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}   
-
-   end
+  end
 
   def top
-    per_page = 15
+    per_page = 3
     page = params[:page] || 1
-    value = 1    
-    @stories = Story.tally(
-      {   :at_least => 1, 
-          :at_most => 10000,  
-          :start_at => 1.year.ago,
-          :end_at => Time.now,
-          :limit => 15,
-          :order => "stories.rating DESC, created_at DESC",
-          :conditions => ["stories.active = ? AND votes.vote  = ?", true, true]
-      }).paginate(:per_page => per_page, :page => page)
-      
+    order = "rating DESC"
+    begin
+    @stories = Story.active.top.paginate :page => page, :order => order, :per_page => per_page   
+    rescue
+        flash[:notice] = "There are no recent stories. Why not write your own?"
+        redirect_to write_url
+    else
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @stories }
       format.rss
+    end
     end
   end
   
