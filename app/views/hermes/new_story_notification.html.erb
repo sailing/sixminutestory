@@ -1,5 +1,5 @@
 <p>
-A writer you follow, <%= @writer.id %>, wrote a new story entitled, "<%= @story.title %>".
+A writer you follow, <%= @writer.login %>, wrote a new story entitled, "<%= @story.title %>".
 </p>
 <p>
 View it here: <%= link_to read_story_url(@story), read_story_url(@story) %>
