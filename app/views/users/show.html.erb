@@ -8,40 +8,45 @@
 	<%= render :partial => "site/profile_block" %>
 	
 <h2>Following (<%= @user.writers.count :conditions => :active %>)</h2>
+<% if @user.followings.present? %>
 
 <ul>
 	
-	<% if @user.followings.present? %>
 
 	  <% for following in @user.followings %>
 	    <li>
 		
-			<%= link_to h(following.writer.login), profile_path(following.writer) %>
+			<%= 
+			 link_to h(following.writer.login), profile_path(following.writer) 
+			%>
 				
 			
 	<% end %>
+</ul>
+
   	<% else %>
 		<span>
 				Not following anyone yet.
 		</span>
 	<% end %>
-</ul>
 <h2>Followers (<%= @user.followers.count :conditions => :active %>)</h2>
-<ul>
+
 	<% if @user.followers.present? %>
+<ul>
 	  <% for follower in @user.followers %>
 		<li>
 			<%= link_to h(follower.login), profile_path(follower) %>
 		</li>
 	    
 	  <% end %>
+</ul>
+
 	<% else %>
 		<span>
 				No followers as of yet.
 		</span>
 	<% end %>
 	
-</ul>
 <% end %>
 
 <h4>

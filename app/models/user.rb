@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
     c.maintain_sessions = false
     c.perishable_token_valid_for = 24.hours
     c.logged_in_timeout = 30.minutes
+    
+  # validations
+    c.merge_validates_length_of_password_field_options :allow_blank => true
   
   # enable Authlogic_RPX account merging (false by default, if this statement is not present)
     c.account_merge_enabled true
