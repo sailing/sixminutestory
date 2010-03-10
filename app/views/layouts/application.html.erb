@@ -129,12 +129,15 @@
 
 	<div id="header_links">
 		<% if !current_user %>
-		  	<%= link_to "Sign up", register_path %>
+		  	<%= link_to "Write", login_path %>
 			| <%= link_to "Read", read_path %>
+			| <%= link_to "FAQ", faq_path %>
 			| <a href="http://blog.sixminutestory.com">Blog</a>
+			
 		<% else %>
 			<%= link_to "Write", write_path %>
 			| <%= link_to "Read", read_path %>
+			| <%= link_to "FAQ", faq_path %>
 			| <a href="http://blog.sixminutestory.com">Blog</a>
 		<% end %>
 	
@@ -178,7 +181,7 @@
 					<strong>experiment</strong>.
 			</p>
 			<p>
-					The goal is to fill <strong>the cities of the earth</strong> with eloquence.
+					The goal is to fill <strong>the cities of the earth</strong> with eloquence. <%= link_to "read more", faq_url %>
 			</p>
 			
 			<% if is_user %>
@@ -253,10 +256,10 @@
 			<div id="licenses">
 			<h3>A bit about Licenses</h3>
 			<p>
-				Publishing digital art is like going to a rooftop and tearing open a feather pillow. Can you control where the feathers go? Can you gather them all again? So it is with digital art.
+				Publishing digital art is like going to a rooftop and tearing open a feather pillow. You can't control where the feathers go. You can't gather them all again. Ditto for digital art.
 			</p>
 			<p>
-				We can't control who copies our art, nor how they use it. Yet, we can at least ask those who find the feathers to think of us. To that end Six Minute Story empowers writers to license their work under six <a href="http://creativecommons.org" target="_blank">Creative Commons</a> licenses or to the Public Domain.
+				We can't control who copies our art, nor how they use it. But we can at least ask those who find the feathers to think of us. To that end Six Minute Story empowers writers to license their work under six <a href="http://creativecommons.org" target="_blank">Creative Commons</a> licenses or to the Public Domain.
 			</p> 
 		
 			</div>
@@ -267,7 +270,7 @@
 				We like to hear from people who enjoy what we create. We also appreciate constructive criticism and suggestions for improvements. If your suggestion is feasible, we'll consider it and attempt to implement it. 
 				</p>
 				<p>
-				You can get in touch with us via <a href="http://twitter.com/6minutestory" target="_blank">twitter</a>, Six Minute Story's <a href="http://www.facebook.com/pages/Six-Minute-Story/177100150707" target="_blank">Facebook profile</a> or plain old email @ galen at six minute story dot com.
+				You can get in touch with us via <a href="http://twitter.com/6minutestory" target="_blank">twitter</a>, Six Minute Story's <a href="http://www.facebook.com/pages/Six-Minute-Story/177100150707" target="_blank">Facebook profile</a> or plain old email @ gal<a href="http://mailhide.recaptcha.net/d?k=01NVE5r2FxoXPjX0It0Uxrjg==&amp;c=x9M5O1NrHFEwNqfRggM75oEAY0FEyf3ENUVmk1zK9Hk=" onclick="window.open('http://mailhide.recaptcha.net/d?k=01NVE5r2FxoXPjX0It0Uxrjg==&amp;c=x9M5O1NrHFEwNqfRggM75oEAY0FEyf3ENUVmk1zK9Hk=', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;" title="Reveal this e-mail address">...</a>@sixminutestory.com.
 				</p>
 		</div>
 			<div class="clear">

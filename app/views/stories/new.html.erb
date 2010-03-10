@@ -24,7 +24,7 @@
 <div id="prompt_and_timer" style="display:none;">
 	<%= render :partial => 'prompt' %>
 	
-	<div id="timer_container" class="button_container">
+	<div id="timer_container" class="orange button_container">
 		<span id="timer_element" >
 		</span>
 	</div>
@@ -32,8 +32,7 @@
 
 
 
-<div class="clear space">
-</div>
+
 <div id="new_story_form">
 <% form_for(@story) do |f| %>
 	<%= hidden_field_tag :prompt, @prompt.id %>

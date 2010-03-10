@@ -90,7 +90,7 @@ ActionController::Routing::Routes.draw do |map|
       site.top                '/top',             :action => "top"
       site.formatted_top      '/top.:format',     :action => "top"
       site.browse_by_tags     '/cloud',           :action => "browse_by_tags"
-      site.wtf                '/wtf',             :action => "wtf" 
+      site.faq                '/faq',             :action => "faq" 
       site.about              '/about',           :action => "about"
       site.contact            '/contact',         :action => "contact"
       site.terms              '/terms',           :action => "terms"
