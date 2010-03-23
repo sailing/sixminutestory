@@ -840,7 +840,7 @@ background-color:#a759d0;
 
 
 #new_story_form input, select, .user_form input, select {
-	width:80%;
+	width:90%;
 	-moz-border-radius-bottomleft:0px;  
 	-webkit-border-bottom-left-radius:0px;
 	-moz-border-radius-topleft:0px;
@@ -882,7 +882,7 @@ background-color:#a759d0;
 
 .user_form, .edit_user_form {
 	margin:0 auto;
-	width:50%;
+	width:35%;
 	padding:0 15px;
 	display:block;
 

@@ -42,6 +42,15 @@
 	</tr>
 	
 	<tr>
+		<tr>
+		<td colspan=2>
+			<div>
+					<%= f.check_box :remember_me %>
+					<%= f.label :remember_me, "Remember me" %><br /><br />
+
+			</div>
+		</td>
+		</tr>
 	<td colspan=2>
 			
 				<%= image_submit_tag("login.png", 
@@ -56,15 +65,7 @@
 		</td>
 	</tr>
 	
-	<tr>
-	<td colspan=2>
-		<div>
-				<%= f.check_box :remember_me %>
-				<%= f.label :remember_me, "Remember me" %>
-				
-		</div>
-	</td>
-	</tr>
+
 	<tr>	
 	<td colspan=2>
 			<h5>
