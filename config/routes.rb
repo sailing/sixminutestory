@@ -83,10 +83,11 @@ ActionController::Routing::Routes.draw do |map|
      
     map.with_options :controller => "site" do |site|
       site.root                                   :action => "index" 
-      site.formatted_root     '/recent.:format',  :action => "recent"
+      site.formatted_root     '/featured.:format',  :action => "featured"
       site.search             '/search',          :action => "search"
       site.featured             '/featured',        :action => "featured"
       site.recent             '/recent',          :action => "recent"
+      site.formatted_recent     '/recent.:format',  :action => "recent"
       site.popular             '/popular',          :action => "popular"
       site.top                '/top',             :action => "top"
       site.formatted_top      '/top.:format',     :action => "top"
