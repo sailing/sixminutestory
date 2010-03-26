@@ -54,7 +54,8 @@ ActionController::Routing::Routes.draw do |map|
     map.disable_story "admin/stories/disable/:id", :controller => "stories", :action => "disable_story"
     map.feature_story "admin/stories/feature/:id", :controller => "stories", :action => "feature_story"
     map.unfeature_story "admin/stories/unfeature/:id", :controller => "stories", :action => "unfeature_story"
-
+    map.enable_user "admin/users/enable/:id", :controller => "users", :action => "enable_user"
+     map.disable_user "admin/users/disable/:id", :controller => "users", :action => "disable_user"
     map.contests_admin "admin/contests", :controller => "contests", :action => "admin"
     
 

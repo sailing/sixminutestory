@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
-  before_filter :require_user, :only => [:new, :create, :edit, :update, :destroy]
-  before_filter :must_be_admin, :only => [:admin, :disabled, :enable_story, :disable_story, :feature_story, :unfeature_story]
+  before_filter :require_user, :only => [:new, :create, :destroy]
+  before_filter :must_be_admin, :only => [:admin, :edit, :update, :disabled, :enable_story, :disable_story, :feature_story, :unfeature_story]
 #  before_filter ensure_current_post_url, :only => :show
   
   def index
@@ -122,7 +122,7 @@ class StoriesController < ApplicationController
   # GET /stories/1/edit
   def edit
     @story = Story.find(params[:id])
-    @editing = true
+
   end
 
   def enable_story

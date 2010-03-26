@@ -45,7 +45,7 @@ class SiteController < ApplicationController
       per_page = 15
       page = params[:page] || 1
       @q = params[:q]
-      order = "comments_count DESC, rating DESC, created_at DESC"
+      order = "counter DESC, comments_count DESC, rating DESC, created_at DESC"
   
       begin
 

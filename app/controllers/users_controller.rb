@@ -1,8 +1,9 @@
 # app/controllers/users_controller.rb
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
-    before_filter :require_user, :only => [:edit, :update]
-  
+  before_filter :require_user, :only => [:edit, :update]
+  before_filter :must_be_admin, :only => [:index, :enable_user, :disable_user]
+    
     def index
           page = params[:page] || 1
            per_page = 20
@@ -85,6 +86,39 @@ end
     else
       render :action => :edit
     end
+  end
+
+  def enable_user
+    @user = User.find(params[:id])
+    @user.active = 1
+     respond_to do |format|
+       if @user.save
+         flash[:notice] = 'User enabled.'
+         format.html { redirect_to(users_path) }
+         format.xml  { head :ok }
+       else
+         flash[:notice] = 'User NOT enabled.'
+         format.html { redirect_to(users_path) }
+         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+       end
+     end
+  end
+  
+  def disable_user
+    @user = User.find(params[:id])
+
+    @user.active = 0
+     respond_to do |format|
+       if @user.save
+         flash[:notice] = 'User disabled.'
+         format.html { redirect_to(users_path) }
+         format.xml  { head :ok }
+       else
+         flash[:notice] = 'User NOT disabled.'
+         format.html { redirect_to(users_path) }
+         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+       end
+     end
   end
 
 # This action has the special purpose of receiving an update of the RPX identity information
