@@ -107,8 +107,14 @@
 			   				<%= tag %>
 						<% end -%>
 					<% end -%>
+						
 		 			<%= f.text_field :tag_list, :onFocus => 'clearFieldFirstTime(this);', :value => @tags, :tabindex => "3" %>
+				
 	  		</td>
+		</tr>
+		<tr>
+			<td colspan=2>&nbsp;</td>
+			<td colspan=2 style="text-align:center;">separate tags with commas</td>
 		</tr>
 		<tr>
 			<td colspan=4>

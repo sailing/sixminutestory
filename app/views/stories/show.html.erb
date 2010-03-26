@@ -56,6 +56,9 @@
 			</div>
 		
 		<% end %>
+		<div id="following_button" class="brown button_container">
+			<%= link_to "Edit Details", edit_story_url(@story) %>
+		</div>
 	<% end %>
 	<div class="center">
 		<%= render :partial => "prompt" %>
