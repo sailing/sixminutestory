@@ -22,7 +22,7 @@ class SiteController < ApplicationController
   end
   
   def featured
-    per_page = 1
+    per_page = 30
      page = params[:page] || 1
      @q = params[:q]
      order = "updated_at DESC"
