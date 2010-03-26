@@ -85,6 +85,7 @@ ActionController::Routing::Routes.draw do |map|
       site.root                                   :action => "index" 
       site.formatted_root     '/recent.:format',  :action => "recent"
       site.search             '/search',          :action => "search"
+      site.featured             '/featured',        :action => "featured"
       site.recent             '/recent',          :action => "recent"
       site.popular             '/popular',          :action => "popular"
       site.top                '/top',             :action => "top"

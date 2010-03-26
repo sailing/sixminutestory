@@ -21,6 +21,26 @@ class SiteController < ApplicationController
        end   
   end
   
+  def featured
+    per_page = 1
+     page = params[:page] || 1
+     @q = params[:q]
+     order = "updated_at DESC"
+       begin
+
+       @stories = Story.active.featured.paginate :page => page, :order => order, :per_page => per_page  
+       rescue
+         flash[:notice] = "There are no recent stories. \r\n Why not write your own?"
+         redirect_to write_url
+       else 
+          respond_to do |format|
+             format.html # index.html.erb
+             format.xml  { render :xml => @stories }
+             format.rss
+           end  
+       end   
+  end
+  
   def popular 
       per_page = 15
       page = params[:page] || 1
