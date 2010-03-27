@@ -33,6 +33,7 @@ ActionController::Routing::Routes.draw do |map|
     map.read_story_with_title 'read/:id/:title', :controller => "stories", :action => "show", :requirements => { :title => /.*/ }
     map.flag_story 'flag', :controller => "stories", :action => "flag_story", :conditions => { :method => :post }
     map.tag 'tag/:name', :controller => "tags", :action => "show", :requirements => { :name => /.*/ }
+    map.rss 'rss/:id', :controller => "users", :action => "show"
     
     #user activities
     map.login 'login', :controller => "user_sessions", :action => "new"

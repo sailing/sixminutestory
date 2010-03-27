@@ -48,11 +48,11 @@ class UsersController < ApplicationController
     
         if request.path.include?("profile") or (request.path.include?("profile") and request.format == "rss") 
             @stories = Story.paginate_by_user_id @user.id, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    
-            #    @rss_url = "http://sixminutestory.com/profile/"+@user.id.to_s+".rss"
+            @rss_url = "http://sixminutestory.com/profile/"+params[:id]+".rss"
       
-        elsif (current_user == @user or (request.path.include?("personal") and request.format == "rss")) and !@user.writers.empty?
+        elsif (current_user == @user or (request.path.include?("rss") and request.format == "rss")) and !@user.writers.empty?
             @stories = Story.paginate_by_user_id @user.writers, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}
-            #  @rss_url = "http://sixminutestory.com/profile/personal/"+@user.id.to_s+".rss"
+              @rss_url = rss_url(@user.login, :format => :rss)
             
         else
             @stories = Story.paginate_by_user_id @user.id, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    

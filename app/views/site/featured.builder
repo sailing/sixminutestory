@@ -3,7 +3,7 @@ xml.rss :version => "2.0" do
   xml.channel do
     xml.title "Six Minute Story: Recent stories"
     xml.description "Recent stories on http://sixminutestory.com" 
-    xml.link formatted_root_url(:rss)
+    xml.link featured_url(:format => :rss)
     
     for story in @stories do
       xml.item do
@@ -11,7 +11,7 @@ xml.rss :version => "2.0" do
         xml.author story.user.login
         xml.description simple_format(h(story.description))
         xml.pubDate story.created_at.rfc822
-        xml.link formatted_story_url(story, :html)
+        xml.link read_story_url(story, :format => :html)
       end
     end
   end
