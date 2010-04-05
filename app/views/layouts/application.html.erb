@@ -16,6 +16,9 @@
 
   	<%= stylesheet_link_tag 'default', :cache => true %>
 	
+	<!-- tweetmeme meta tags -->
+  	<meta name="tweetmeme-title" content="Six Minute Story :: <%= @content_for_pagename %>" />  
+	
 	<meta name="title" content="Six Minute Story" />
 	<meta name="description" content="Six Minute Story is a user-driven, flash-fiction experiment. The goal is to fill the world with ad-libbed eloquence." />
 	<link rel="image_src" href="http://sixminutestory.com/images/logo_square.png" />
@@ -206,38 +209,31 @@
 			<% end %>
 		</div>
 		
-	<h2>Connect</h2>
-	<!-- List of things to add:  -->
-	<% if is_user %>
-	<p>
-	<%= link_to "Suggest a Prompt", new_prompt_url %>
-	</p>
-	<% end %>
-	
-	
-	<!-- Facebook fan link-->
-	<div id="facebook_widget">
-<script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php/en_US"></script><script type="text/javascript">FB.init("174e4db809eb853141cb0cdc69064c2f");</script><fb:fan profile_id="177100150707" stream="" connections="8" width="250"></fb:fan>
-	</div>
-	<!-- Close Facebook fan link -->
- 	
-
-	
 	<% else %>
 		
 		<%= yield(:sideyard) %> 
 		
-		<% if is_user %>
-		<h2>Contribute</h2>
-		<p>
-		<%= link_to "Suggest a Prompt", new_prompt_url %>
-		</p>
-		<% end %>
-		<br />
-				
-	
 	<% end %>
 
+	<h2>Connect</h2>
+	<!-- List of things to add:  -->
+	<% if is_user %>
+		<p>
+			<%= link_to "Suggest a Prompt", new_prompt_url %>
+		</p>
+	<% end %>
+	<div>
+	<p>
+	<a href="http://www.twitter.com/6minutestory">
+			<img 	src="http://twitter-badges.s3.amazonaws.com/follow_us-a.png" 
+					alt="Follow Six Minute Story on Twitter" />
+		</a>
+	</p>
+	<p>
+		<a href="http://facebook.com/sixminutestory"><%= image_tag "facebook.png" %></a>
+	</p>
+	</div>
+	
  
 		</div> 
 		<!-- close sideyard_container -->
@@ -275,14 +271,14 @@
 				We like to hear from people who enjoy what we create. We also appreciate constructive criticism and suggestions for improvements. If your suggestion is feasible, we'll consider it and attempt to implement it. 
 				</p>
 				<p>
-				You can get in touch with us via <a href="http://twitter.com/6minutestory" target="_blank">twitter</a>, Six Minute Story's <a href="http://www.facebook.com/pages/Six-Minute-Story/177100150707" target="_blank">Facebook profile</a> or plain old email @ gal<a href="http://mailhide.recaptcha.net/d?k=01NVE5r2FxoXPjX0It0Uxrjg==&amp;c=x9M5O1NrHFEwNqfRggM75oEAY0FEyf3ENUVmk1zK9Hk=" onclick="window.open('http://mailhide.recaptcha.net/d?k=01NVE5r2FxoXPjX0It0Uxrjg==&amp;c=x9M5O1NrHFEwNqfRggM75oEAY0FEyf3ENUVmk1zK9Hk=', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;" title="Reveal this e-mail address">...</a>@sixminutestory.com.
+				You can get in touch with us via <a href="http://twitter.com/6minutestory" target="_blank">twitter</a>, Six Minute Story's <a href="http://www.facebook.com/sixminutestory" target="_blank">Facebook profile</a> or plain old email @ gal<a href="http://mailhide.recaptcha.net/d?k=01NVE5r2FxoXPjX0It0Uxrjg==&amp;c=x9M5O1NrHFEwNqfRggM75oEAY0FEyf3ENUVmk1zK9Hk=" onclick="window.open('http://mailhide.recaptcha.net/d?k=01NVE5r2FxoXPjX0It0Uxrjg==&amp;c=x9M5O1NrHFEwNqfRggM75oEAY0FEyf3ENUVmk1zK9Hk=', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;" title="Reveal this e-mail address">...</a>@sixminutestory.com.
 				</p>
 		</div>
 			<div class="clear">
 			</div>
 		</div>
 	</div>
-	
+	<% if !request.path.include?("write") %>
 	<div id="share_container">
 	<script type="text/javascript">
 	
@@ -327,6 +323,7 @@
 			</tr>
 		</table>
 	</div>
+	<% end %>
 	
 		<% if flash[:notice] || flash[:error] %>
 		<!-- Notice appears, then fades out over a few seconds. -->

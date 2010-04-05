@@ -922,6 +922,45 @@ background-color:#a759d0;
 }
 
 
+/* 											*/
+/* Thanks for writing 	*/
+/*											*/
+#thanks_for_writing {
+	width:75%;
+	margin:0px auto;
+
+	background:#000;
+	opacity:1;
+	-moz-border-radius:10px;  
+	-webkit-border-radius:10px;
+	padding:15px;
+
+
+}
+
+#thanks_for_writing p {
+	float: left;
+	width:55%;
+	
+	font-size:.9em;
+	line-height:2em;
+}
+
+#thanks_for_writing #share {
+	float:right;
+	width:40%;
+
+	text-align:center;
+	background:#222;
+	opacity:1;
+	-moz-border-radius:10px;  
+	-webkit-border-radius:10px;
+	padding:4px;
+
+	
+}
+											
+											
 /* 						*/
 /* 		Show Story		*/
 /*  	#show_story		*/
@@ -1041,6 +1080,8 @@ background-color:#a759d0;
 }
 
 
+
+
 /* 											*/
 /* 	Stories on Index		*/
 /* 											*/
@@ -1095,6 +1136,10 @@ background-color:#a759d0;
 
 .story {
 	padding:10px 15px 0;
+}
+
+.story a {
+	font-size:.8em;
 }
 
 .story p {
@@ -1241,8 +1286,20 @@ background-color:#a759d0;
 	
 	margin-bottom:15px;
 }
- 
 
+#rss_feed {
+	margin-left:15px;
+} 
+#rss_feed img {
+	position:relative;
+	top:2px;
+	left:-5px;
+}
+
+#rss_feed a {
+	font-size:.7em;
+	text-decoration: none;
+}
 
 /*								*/
 /*			Comments			*/

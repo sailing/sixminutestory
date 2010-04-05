@@ -6,6 +6,51 @@ class StoriesController < ApplicationController
   def index
   end
   
+  # POST /stories
+  # POST /stories.xml
+  def create
+    @story = Story.new(params[:story])
+    @story.user_id = @current_user.id
+    @story.prompt_id = params[:prompt]
+    @prompt = Prompt.find_by_id(@story.prompt_id)
+ 
+    respond_to do |format|
+      if verify_recaptcha && @story.save
+        @prompt.counter += 1 
+        @prompt.save
+        
+        #followers = Array.new
+        #@story.user.followers.each do |follower|
+        #  followers << follower.email_address
+        #end
+        
+       # Hermes.deliver_new_story_notification(followers, @story, @story.user)
+        
+        format.html { redirect_to thanks_url(@story) }
+        format.xml  { render :xml => @story, :status => :created, :location => @story }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /stories/1
+  # PUT /stories/1.xml
+  def update
+    @story = Story.find(params[:id])
+
+    respond_to do |format|
+      if @story.update_attributes(params[:story])
+        format.html { redirect_to(@story) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+  
  # GET /stories/1
   # GET /stories/1.xml
   def show
@@ -61,6 +106,14 @@ class StoriesController < ApplicationController
      
   end
   
+  def thanks_for_writing
+      page = page || 1
+      order = "created_at DESC"
+      per_page = 15
+    @story = Story.find(params[:id])
+    @stories = Story.paginate_by_prompt_id(@story.prompt_id, :page => page, :order => order, :per_page => per_page)
+  end
+  
   def random
     e = ActiveRecord::RecordNotFound
     begin
@@ -91,19 +144,6 @@ class StoriesController < ApplicationController
     end
   end
 
-
-  def admin
-      page = params[:page] || 1
-      per_page = 15
-      order = "created_at DESC"
-
-      @stories = Story.paginate :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @stories }
-    end
-  end
 
   def disabled
       page = params[:page] || 1
@@ -191,50 +231,7 @@ class StoriesController < ApplicationController
      end
   end
 
-  # POST /stories
-  # POST /stories.xml
-  def create
-    @story = Story.new(params[:story])
-    @story.user_id = @current_user.id
-    @story.prompt_id = params[:prompt]
-    @prompt = Prompt.find_by_id(@story.prompt_id)
- 
-    respond_to do |format|
-      if verify_recaptcha && @story.save
-        @prompt.counter += 1 
-        @prompt.save
-        
-        followers = Array.new
-        @story.user.followers.each do |follower|
-          followers << follower.email_address
-        end
-        
-       # Hermes.deliver_new_story_notification(followers, @story, @story.user)
-        
-        format.html { redirect_to(@story) }
-        format.xml  { render :xml => @story, :status => :created, :location => @story }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
 
-  # PUT /stories/1
-  # PUT /stories/1.xml
-  def update
-    @story = Story.find(params[:id])
-
-    respond_to do |format|
-      if @story.update_attributes(params[:story])
-        format.html { redirect_to(@story) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
   
   
   def flag_story

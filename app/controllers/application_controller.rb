@@ -95,7 +95,7 @@ class ApplicationController < ActionController::Base
            if current_user
               redirect_to account_url
            else
-              redirect_to root_url
+              redirect_to login_url
            end
           
           end
@@ -153,20 +153,6 @@ class ApplicationController < ActionController::Base
           end
             
         end # end get_random
-  
-  
-  
-        # Awesome truncate
-        # First regex truncates to the length, plus the rest of that word, if any.
-        # Second regex removes any trailing whitespace or punctuation (except ;).
-        # Unlike the regular truncate method, this avoids the problem with cutting
-        # in the middle of an entity ex.: truncate("this &amp; that",9)  => "this &am..."
-        # though it will not be the exact length.
-        def awesome_truncate(text, length = 30, truncate_string = "...")
-          return if text.nil?
-          l = length - truncate_string.chars.length
-          text.chars.length > length ? text[/\A.{#{l}}\w*\;?/m][/.*[\w\;]/m] + truncate_string : text
-        end
         
         # This tests to see if the current user is 
         # following the writer whose story or profile they're viewing.

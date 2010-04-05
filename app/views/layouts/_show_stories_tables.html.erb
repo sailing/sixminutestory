@@ -1,0 +1,101 @@
+<% 
+# this is used to number the stories, so the javascript that 
+# opens and closes the drawers knows what to move
+@i = 1
+
+# set colspan
+is_admin ? @colspan = 5 : @colspan = 3
+	
+ %>
+<div id="show_stories">
+
+<% if !@stories.empty? %>
+
+<table>
+	
+<% for story in @stories %>
+<% 
+@i = @i + 1 
+#actually semi-important. used to identify entries.
+%>
+
+<tr class="<%= cycle('row_alternate', 'row') -%>">
+	
+	<td class="story_comments">
+		<!-- number of comments -->
+			<%= image_tag('comment_icon.png')%><br />
+			<%= link_to story.comments_count || '0', 
+				read_story_url(story, :anchor => "comments")
+			%>
+	</td>
+	<td class="story_rating">	
+		<%= image_tag('rating_icon.png')%>
+		<br />
+		<span>
+			<%= story.rating %>
+		</span>
+	</td>
+	
+	<td id="show_stories" class="title">
+		<span class="author">
+		<%= link_to h(story.user.login), profile_path(story.user) %>
+		</span>
+		<% if story.title.present? %>
+		<span>
+			<!-- Story title as a link in the listings -->
+			<%= link_to h(story.title), read_story_url(story) %> <% if request.path.include?("popular") %> &#8211; Read <%= story.counter %> times <% end %>
+		</span>
+		<% else %>
+		<span>
+			<!-- Story title as a link in the listings -->
+			<%= link_to "Untitled Story", read_story_url(story)%>
+		</span>
+		
+		<% end %>
+	</td>
+	
+	<% if is_admin %>
+  		<td>
+			<span>
+				<%= link_to 'Edit', edit_story_url(story) %>&nbsp;||&nbsp;<%= story.flagged %>&nbsp;flags
+			</span>
+		</td>
+	<% end %>
+	
+</tr>
+
+
+<% end %>
+
+<tr>
+	<td colspan="<%= @colspan %>">
+		<%= page_entries_info @stories %>
+	</td>
+</tr>	
+
+
+<tr>
+	<td colspan="<%= @colspan %>">
+		<%=  will_paginate @stories %>
+		
+	</td>
+</tr>	
+</table>
+
+</div>
+
+
+<% else  %>
+<% 
+# else for if !@stories.empty? 
+%>
+	<h1>
+		Erm...
+	</h1>
+	
+	<div id="no_stories">
+		<p>
+			No stories await you here. Go <%= link_to "write your own", write_url %>.
+		</p>
+	</div>	
+<% end %>

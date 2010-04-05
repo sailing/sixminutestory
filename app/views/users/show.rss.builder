@@ -8,7 +8,7 @@ xml.rss :version => "2.0" do
     for story in @stories do
       xml.item do
         xml.title story.title
-        xml.author story.user.id
+        xml.author story.user.login
         xml.description simple_format(h(story.description))
         xml.pubDate story.created_at.rfc822
         xml.link read_story_url(story, :format => :html)

@@ -2,7 +2,12 @@
 module ApplicationHelper
   
  
-   
+   def rss_feed
+       if @rss_url
+           content_tag 'div', (content_tag 'div', ( link_to ((image_tag "rss_22.png") + "Subscribe"), @rss_url),
+                                :class => "brown button_container"), :id => "rss_feed"
+       end
+   end
    
 
     def edit_this(story = {})

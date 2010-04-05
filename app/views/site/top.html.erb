@@ -1,10 +1,16 @@
-<% if !@stories.empty? %>
-
 <%
 	# This is for the RSS feed
 	@rss_url = "http://feeds.feedburner.com/SixMinuteStoryTopRatedStories"
 	#@rss_url = "http://localhost:3000/top.rss"
 %>
+
+<%= render :partial => "layouts/browsing" %>
+
+<% if !@stories.empty? %>
+<h1>top rated</h1>
+<%= rss_feed %>
+	
+
 
 <%= render :partial => "layouts/show_stories" %>
 

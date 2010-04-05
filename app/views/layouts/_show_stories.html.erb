@@ -1,92 +1,64 @@
-<% 
-# this is used to number the stories, so the javascript that 
-# opens and closes the drawers knows what to move
-@i = 1
 
-# set colspan
-is_admin ? @colspan = 5 : @colspan = 3
-	
- %>
 <div id="show_stories">
-
-	<h1>read</h1>
-	<%= render :partial => "layouts/browsing" %>
 
 <% if !@stories.empty? %>
 
-<table>
-	
-<% for story in @stories %>
-<% 
-@i = @i + 1 
-#actually semi-important. used to identify entries.
-%>
-
-<tr class="<%= cycle('row_alternate', 'row') -%>">
-	
-	<td class="story_comments">
-		<!-- number of comments -->
-			<%= image_tag('comment_icon.png')%><br />
-			<%= link_to story.comments_count || '0', 
-				read_story_url(story, :anchor => "comments")
-			%>
-	</td>
-	<td class="story_rating">	
-		<%= image_tag('rating_icon.png')%>
-		<br />
-		<span>
-			<%= story.rating %>
-		</span>
-	</td>
-	
-	<td id="show_stories" class="title">
-		<span class="author">
-		<%= link_to h(story.user.login), profile_path(story.user) %>
-		</span>
-		<% if story.title.present? %>
-		<span>
-			<!-- Story title as a link in the listings -->
-			<%= link_to h(story.title), read_story_url(story) %> <% if request.path.include?("popular") %> &#8211; Read <%= story.counter %> times <% end %>
-		</span>
-		<% else %>
-		<span>
-			<!-- Story title as a link in the listings -->
-			<%= link_to "Untitled Story", read_story_url(story)%>
-		</span>
+	<% for story in @stories %>	
+	<div id="indStory" >
+		<div id="title_bar" class="<%= cycle('indStory', 'indStoryAlternate') -%>">
 		
-		<% end %>
-	</td>
-	
-	<% if is_admin %>
-  		<td>
-			<span>
-				<%= link_to 'Edit', edit_story_url(story) %>&nbsp;||&nbsp;<%= story.flagged %>&nbsp;flags
+		
+			<% if story.title.present? %>
+			<span class="title">
+				<!-- Story title as a link in the listings -->
+				<%= link_to h(story.title), read_story_url(story) %>
 			</span>
-		</td>
-	<% end %>
-	
-</tr>
+			<% else %>
+			<span>
+				<!-- Story title as a link in the listings -->
+				<%= link_to "Untitled Story", read_story_url(story)%>
+			</span>
 
-
-<% end %>
-
-<tr>
-	<td colspan="<%= @colspan %>">
-		<%= page_entries_info @stories %>
-	</td>
-</tr>	
-
-
-<tr>
-	<td colspan="<%= @colspan %>">
-		<%=  will_paginate @stories %>
+			<% end %>
+			
+				<span class="author">
+				by <%= link_to h(story.user.login), profile_path(story.user) %>
+				</span>
+		</div>
+		<div id="storyAndMeta">
+			<div class="story">
+				<% if @truncation %>
+					<%= simple_format(sanitize(h(story.description))) %>
+				<% else %>
+					<%= simple_format(sanitize(truncate(h(story.description), :length => 300, :omission => " [" + link_to("Read more...", read_story_url(story)) +"] " ))) %>
+				<% end %>
+			</div>
 		
-	</td>
-</tr>	
-</table>
+			<div class="meta">
+				<span><%= link_to pluralize(story.comments_count, 'remark'), read_story_url(story, :anchor => "comments") %></span>
+				<span>&nbsp;||&nbsp;</span>
+				<span>
+					<%= pluralize(story.rating, 'cheer', 'cheers') %>
+				</span>
+			
+			</div>
+			<% if is_admin %>
+				<div class = "meta">
+					<%= link_to 'Edit', edit_story_url(story) %>&nbsp;||&nbsp;<%= story.flagged %>&nbsp;flags	</div>
+			<% end %>
+		</div>
+	</div>
+	<% end %>
 
-</div>
+	<% # Stories count
+	 %>	
+		<%= 
+		# page_entries_info @stories 
+		%>
 
+	<% #pagination
+	%>
+		<%=  will_paginate @stories %>
 
 <% else  %>
 <% 
@@ -102,3 +74,4 @@ is_admin ? @colspan = 5 : @colspan = 3
 		</p>
 	</div>	
 <% end %>
+

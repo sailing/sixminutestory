@@ -25,12 +25,11 @@ ActionController::Routing::Routes.draw do |map|
     map.write_to_prompt 'write/:prompt', :controller => "stories", :action => "new"
     map.past_prompts 'archives', :controller => "prompts", :action => "past"
     map.contribute_a_prompt 'contribute/prompt', :controller => "prompts", :action => "new"
-    
+    map.thanks 'thanks/:id', :controller => "stories", :action => "thanks_for_writing"
       # reading
     map.read 'read', :controller => "site", :action => "index"
-    map.read_random 'random/read', :controller => "stories", :action => "random"
+    map.read_random 'random', :controller => "stories", :action => "random"
     map.read_story 'read/:id', :controller => "stories", :action => "show"
-    map.read_story_with_title 'read/:id/:title', :controller => "stories", :action => "show", :requirements => { :title => /.*/ }
     map.flag_story 'flag', :controller => "stories", :action => "flag_story", :conditions => { :method => :post }
     map.tag 'tag/:name', :controller => "tags", :action => "show", :requirements => { :name => /.*/ }
     map.rss 'rss/:id', :controller => "users", :action => "show"
@@ -70,11 +69,13 @@ ActionController::Routing::Routes.draw do |map|
      
    map.resource :account, :controller => "users"
    map.resources :profile, :controller => "users"
- 
+
  
      map.resources :stories do |story|
        story.resources :votes
      end
+     
+     map.resources :read, :controller => "stories"
      
      map.resources :comments
 

@@ -40,7 +40,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         
-        Hermes.deliver_comment_notification(@story.user, @story, @comment.user, @comment) unless @story.user.send_comments == false
+        #Hermes.deliver_comment_notification(@story.user, @story, @comment.user, @comment) unless @story.user.send_comments == false
       
         flash[:notice] = 'Comment contributed!'
         format.html { redirect_to :controller => "stories", :action => "show", :id => @story, :anchor => "comments" }

@@ -1,5 +1,10 @@
+
+<%= render :partial => "layouts/browsing" %>
+
 <% if !@stories.empty? %>
-	
+<h1>popular</h1>
+<%= rss_feed %>
+
 	<%= render :partial => "layouts/show_stories" %>
 
 <% else %>

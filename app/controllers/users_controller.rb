@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       
         if verify_recaptcha && @user.save
           redirect_to account_url
-          Hermes.deliver_signup_notification(@user) unless @user.email_address.blank?
+          #Hermes.deliver_signup_notification(@user) unless @user.email_address.blank?
         else
           render :action => :new
         end
