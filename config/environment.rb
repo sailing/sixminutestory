@@ -26,7 +26,7 @@ Rails::Initializer.run do |config|
 #  config.gem "mysql"
   
 # Cron Scheduler
-  config.gem 'whenever', :lib => false, :source => 'http://gemcutter.org/'
+#  config.gem 'whenever', :lib => false, :source => 'http://gemcutter.org/'
   
 # Background Mailer
 #  config.gem "adzap-ar_mailer", :lib => 'action_mailer/ar_mailer', :source => 'http://gems.github.com'
@@ -98,7 +98,7 @@ Rails::Initializer.run do |config|
   # Use the database for sessions instead of the cookie-based default,
   # which shouldn't be used to store highly confidential information
   # (create the session table with "rake db:sessions:create")
-  config.action_controller.session_store = :active_record_store
+ # config.action_controller.session_store = :active_record_store
 
   # Use SQL instead of Active Record's schema dumper when creating the test database.
   # This is necessary if your schema can't be completely dumped by the schema dumper,
