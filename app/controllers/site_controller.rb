@@ -61,8 +61,32 @@ class SiteController < ApplicationController
             end  
         end
   
+  end
+  
+  def commented 
+      per_page = 15
+      page = params[:page] || 1
+      @q = params[:q]
+      order = "updated_at DESC, comments_count DESC"
+  
+      begin
+
+        @stories = Story.active.commented.paginate :page => page, :order => order, :per_page => per_page   
+        rescue
+          flash[:notice] = "There are no exceptionally active stories. Why not write your own?"
+          redirect_to write_url
+        else 
+           respond_to do |format|
+              format.html # index.html.erb
+              format.xml  { render :xml => @stories }
+              format.rss
+            end  
+        end
+  
       
   end      
+        
+
   
   def recent
     per_page = 15

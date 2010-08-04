@@ -92,6 +92,7 @@ ActionController::Routing::Routes.draw do |map|
       site.recent             '/recent',          :action => "recent"
       site.formatted_recent     '/recent.:format',  :action => "recent"
       site.popular             '/popular',          :action => "popular"
+      site.commented             '/commented',          :action => "commented"
       site.top                '/top',             :action => "top"
       site.formatted_top      '/top.:format',     :action => "top"
       site.browse_by_tags     '/cloud',           :action => "browse_by_tags"
