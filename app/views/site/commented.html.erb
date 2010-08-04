@@ -1,0 +1,24 @@
+
+<%= render :partial => "layouts/browsing" %>
+
+<% if !@stories.empty? %>
+<h1>popular</h1>
+<%= rss_feed %>
+
+	<%= render :partial => "layouts/show_stories" %>
+
+<% else %>
+
+<%= render :partial => "layouts/browsing" %>
+
+<h1>Erm...
+</h1>
+
+	<div id="no_stories">
+		
+		<p>
+			There are no <em>exceptionally active</em> stories. However, you may find more stories <%= link_to "elsewhere", recent_path %>.
+		</p>
+		
+	</div>
+<% end %>
