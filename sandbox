@@ -1,3 +1,19 @@
+search: 
+<div id="search_container">
+
+	<% form_tag '/search', :method => :get do -%>
+	
+		<%= text_field_tag 'q', 
+			"Type your search. Hit enter.", 
+			:tabindex => "20", 
+			:onFocus => 'clearFieldFirstTime(this);' %>
+
+	<% end -%>
+
+
+</div>
+
+
 
 background:url(../images/comment_icon.png) center no-repeat;
 

@@ -23,20 +23,20 @@ Rails::Initializer.run do |config|
       :source => 'http://gems.github.com'
       
 # Database
-  config.gem "mysql"
+#  config.gem "mysql"
   
 # Cron Scheduler
   config.gem 'whenever', :lib => false, :source => 'http://gemcutter.org/'
   
 # Background Mailer
-  config.gem "adzap-ar_mailer", :lib => 'action_mailer/ar_mailer', :source => 'http://gems.github.com'
+#  config.gem "adzap-ar_mailer", :lib => 'action_mailer/ar_mailer', :source => 'http://gems.github.com'
 
 # Search        
-  config.gem(
-     'thinking-sphinx',
-     :lib     => 'thinking_sphinx',
-     :version => '1.3.8'
-   )      
+ # config.gem(
+  #   'thinking-sphinx',
+  #   :lib     => 'thinking_sphinx',
+  #   :version => '1.3.8'
+  # )      
 
 # Friendly ID
   config.gem "friendly_id"

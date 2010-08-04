@@ -160,20 +160,6 @@
 
 	<div id="left_container">
 
-		<div id="search_container">
-
-			<% form_tag '/search', :method => :get do -%>
-			
-				<%= text_field_tag 'q', 
-					"Type your search. Hit enter.", 
-					:tabindex => "20", 
-					:onFocus => 'clearFieldFirstTime(this);' %>
-
-			<% end -%>
-
-
-		</div>
-
 		<div class="sideyard_container">
 	
 	<% if @content_for_sideyard.blank? %>
