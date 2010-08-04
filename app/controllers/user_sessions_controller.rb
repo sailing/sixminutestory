@@ -21,7 +21,7 @@ class UserSessionsController < ApplicationController
                         else
                                 if @user_session.registration_complete?
                                         #flash[:notice] = "Successfully signed in."
-                                        redirect_back_or_default write_url
+                                        redirect_back_or_default account_url
                                 else
                                         flash[:notice] = "Welcome back! Please complete required registration details before continuing..."
                                         redirect_to edit_user_path( :current )
