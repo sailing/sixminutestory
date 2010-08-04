@@ -22,27 +22,27 @@ class Story < ActiveRecord::Base
   named_scope :previous, lambda { |p| {:conditions => ["id < ? AND active = ?", p.id, true], :limit => 1, :order => "id DESC"} }
   
   # Indexing for Searching with Sphinx
-  define_index do
-    indexes :title, :sortable => true
-    indexes :description
-    indexes :license, :sortable => true
-    indexes user.login, :as => "user"
-    indexes tags.name, :as => "tag"
-    indexes comments.comment, :as => "comments"
+#  define_index do
+#    indexes :title, :sortable => true
+#    indexes :description
+#    indexes :license, :sortable => true
+#    indexes user.login, :as => "user"
+#    indexes tags.name, :as => "tag"
+#    indexes comments.comment, :as => "comments"
     
     
     # attributes
     
-    has tags(:id), :as => :tag_ids
+#    has tags(:id), :as => :tag_ids
     
-    has :updated_at
-    has :created_at
-    has :active
+#    has :updated_at
+#    has :created_at
+#    has :active
     
-    set_property :delta => true
-    where "stories.active = '1'"
+#    set_property :delta => true
+#    where "stories.active = '1'"
     
-  end
+#  end
   
     # Validation 
     validates_presence_of   :title, :message => "Without a title, your story is invisible!"

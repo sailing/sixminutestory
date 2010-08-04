@@ -13,7 +13,7 @@
 
 development:
     adapter: mysql
-    database: sixminutestory_development
+    database: sixminutestory_production
     username: root
     password:
     socket: /tmp/mysql.sock

@@ -10,7 +10,7 @@ ENV['RECAPTCHA_PRIVATE_KEY'] = '6Le0WgcAAAAAABp7pJR1gRULDVe1z1_eGybvZsLe'
 RPX_API_KEY = 'c37c053204545279866b1c267510c078a3c7ef6c'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
+#RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
