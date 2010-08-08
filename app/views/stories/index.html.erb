@@ -1,7 +1,10 @@
 <%
 	# This is for the RSS feed
-	@rss_url = "http://feeds.feedburner.com/sixminutestory/" + @title
-	#@rss_url = "http://localhost:3000/featured.rss"
+	if request.path == "/"
+		@rss_url = "http://feeds.feedburner.com/sixminutestory/recent.rss"
+	else
+		@rss_url = "http://feeds.feedburner.com/sixminutestory" + request.path + ".rss"
+	end
 %>
 
 <%= render :partial => "layouts/browsing" %>
@@ -12,7 +15,7 @@
 
 
 	<%= 
-	#rss_feed 
+	rss_feed 
 	%>
 <div id="show_stories">
 	<% for story in @stories %>	
