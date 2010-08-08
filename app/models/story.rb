@@ -15,7 +15,7 @@ class Story < ActiveRecord::Base
   named_scope :inactive, :conditions => {:active => false}
   named_scope :recent, lambda { { :conditions => ['created_at > ?', 5.months.ago], :order => 'created_at DESC' } }
   named_scope :popular, lambda { { :conditions => ['(comments_count >= ? or rating >= ?) AND created_at > ?', 2, 2, 6.months.ago], :order => 'counter DESC, rating DESC, updated_at ASC' } }
-  named_scope :commented, lambda { { :conditions => ['(comments_count >= ?) AND created_at > ?', 2, 6.months.ago], :order => 'comments_count DESC, counter DESC, updated_at ASC' } }
+  named_scope :commented, lambda { { :conditions => ['(comments_count >= ?) AND created_at > ?', 2, 6.months.ago], :order => 'comments_count DESC, rating DESC, counter DESC, updated_at ASC' } }
   named_scope :top, lambda { { :conditions => ['rating > 0'], :order => 'rating DESC, counter ASC' } }
   named_scope :featured, :limit => 1, :conditions => { :featured => true }, :order => 'updated_at ASC'
   

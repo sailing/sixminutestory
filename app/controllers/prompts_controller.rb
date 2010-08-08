@@ -112,6 +112,11 @@ class PromptsController < ApplicationController
   def create
     @prompt = Prompt.new(params[:prompt])
     @prompt.user_id = current_user.id
+      
+      if @prompt.kind.blank? 
+        @prompt.kind = "hvg"
+      end
+      
     respond_to do |format|
       if @prompt.save
         flash[:notice] = 'Thanks! We received your suggestion and will review it soon.'
