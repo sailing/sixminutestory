@@ -52,7 +52,7 @@ class StoriesController < ApplicationController
     @prompt = Prompt.find_by_id(@story.prompt_id)
  
     respond_to do |format|
-      if verify_recaptcha && @story.save
+      if @story.save
         @prompt.counter += 1 
         @prompt.save
         
