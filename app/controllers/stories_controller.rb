@@ -4,7 +4,7 @@ class StoriesController < ApplicationController
 #  before_filter ensure_current_post_url, :only => :show
   
    def index 
-       per_page = 10
+       per_page = 5
        page = params[:page] || 1
                       
       @truncate = true
@@ -12,25 +12,20 @@ class StoriesController < ApplicationController
       begin
       case request.path
         when /^\/popular/
-            order = "counter DESC, comments_count DESC, rating DESC, created_at DESC"
-            @stories = Story.active.popular.paginate :page => page, :order => order, :per_page => per_page   
+            @stories = Story.active.popular.paginate :page => page, :per_page => per_page   
             @title = "popular stories"
         when /^\/commented/
-            order = "updated_at DESC, comments_count DESC"
-            @stories = Story.active.commented.paginate :page => page, :order => order, :per_page => per_page
+            @stories = Story.active.commented.paginate :page => page, :per_page => per_page
             @title = "most active stories"
         when /^\/recent/
-            order = "created_at DESC"
-            @stories = Story.active.recent.paginate :page => page, :order => order, :per_page => per_page
+            @stories = Story.active.recent.paginate :page => page, :per_page => per_page
             @title = "most recent stories"
         when /^\/top/
-            order = "rating DESC"
-            @stories = Story.active.top.paginate :page => page, :order => order, :per_page => per_page   
+            @stories = Story.active.top.paginate :page => page, :per_page => per_page   
             @title = "top rated stories"
       else
           #return recent
-          order = "created_at DESC"
-          @stories = Story.active.recent.paginate :page => page, :order => order, :per_page => per_page
+          @stories = Story.active.recent.paginate :page => page, :per_page => per_page
           @title = "most recent stories"
       end
         

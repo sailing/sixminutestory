@@ -87,25 +87,28 @@
 <h1>Details, details, details</h1>
 
 	<table>
-		<tr>
-			<td colspan=2>
-				<%= f.error_message_on 'title' %>
-			</td>
 		
-			<td colspan=2>
-			</td>
-		</tr>
 		<tr>
 			
-			<th>
+			<td>
 				<label for="story_title">Title</label>
-			</th>
+			</td>
+			
 			<td>	
 		  		<%= f.text_field :title, :disabled => @disabled, :onFocus => 'clearFieldFirstTime(this);', :value => @title, :tabindex => "2" %>
 			</td>
-			<th>
-				<label for="story_tags">Adjectives</label>
-			</th>
+		</tr>
+		<tr>
+			<td colspan=2>
+				&nbsp; <%= f.error_message_on 'title' %>
+			</td>
+		
+		</tr>
+		<tr>	
+			<td>
+				<label for="story_tags">Adjectives</label><br />
+				<span style="font-size:x-small">separate adjectives with commas</span>
+			</td>
 			<td>	
 					<% if @story.tags.present? -%>
 						<% @story.tags.each do |tag| -%>
@@ -118,19 +121,15 @@
 	  		</td>
 		</tr>
 		<tr>
-			<td colspan=2>&nbsp;</td>
-			<td colspan=2 style="text-align:center;"><h5>separate adjectives with commas</h5></td>
-		</tr>
-		<tr>
-			<td colspan=4>
+			<td colspan=2>
 				&nbsp; 	<%= f.error_message_on 'license' %>
 			</td>
 		</tr>
 		<tr>
-			<th>
+			<td>
 				<label for="story_license">License</label>
-			</th>
-			<td colspan=3>
+			</td>
+			<td>
 				
 				<select name="story[license]" id="story_license" onchange="" tabindex="4">
 					<option value="Creative Commons Attribution 3.0">

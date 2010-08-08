@@ -2,7 +2,7 @@
 
 <% form_for(@prompt) do |f| %>
   <%= f.error_messages %>
-
+<h4>Heros, Villains, Goals</h4>
   <p>
     <%= f.label :hero %><br />
     <%= f.text_field :hero %>
@@ -16,20 +16,14 @@
     <%= f.text_field :goal %>
   </p>
 
-<p>
-	Or, submit a link to a creative commons licensed flickr image. (Please link to the flickr page, not the image directly.) 
-	</p>
-
+<h4>Images</h4>
 	<p>
-    <%= f.label :attribution_url %><br />
+    <%= f.label :attribution_url, "	Or, submit a link to a Creative Commons licensed flickr image." %><br />
+	<span style="font-size:small;">(Please link to the flickr page, not the image directly.)</span> <br />
     <%= f.text_field :attribution_url %>
   </p>
 	
   <p>
     <%= image_submit_tag("contribute.png", :name => "contribute", :id => "contribute-button", :disabled => false) %>
   </p>
-<% end %>
-
-<% if is_admin %>
-<%= link_to 'Back', prompts_admin_path %>
 <% end %>
