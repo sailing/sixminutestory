@@ -3,8 +3,50 @@ class StoriesController < ApplicationController
   before_filter :must_be_admin, :only => [:admin, :edit, :update, :disabled, :enable_story, :disable_story, :feature_story, :unfeature_story]
 #  before_filter ensure_current_post_url, :only => :show
   
-  def index
-  end
+   def index 
+       per_page = 10
+       page = params[:page] || 1
+                      
+      @truncate = true
+      
+      begin
+      case request.path
+        when /^\/popular/
+            order = "counter DESC, comments_count DESC, rating DESC, created_at DESC"
+            @stories = Story.active.popular.paginate :page => page, :order => order, :per_page => per_page   
+            @title = "popular stories"
+        when /^\/commented/
+            order = "updated_at DESC, comments_count DESC"
+            @stories = Story.active.commented.paginate :page => page, :order => order, :per_page => per_page
+            @title = "most active stories"
+        when /^\/recent/
+            order = "created_at DESC"
+            @stories = Story.active.recent.paginate :page => page, :order => order, :per_page => per_page
+            @title = "most recent stories"
+        when /^\/top/
+            order = "rating DESC"
+            @stories = Story.active.top.paginate :page => page, :order => order, :per_page => per_page   
+            @title = "top rated stories"
+      else
+          #return recent
+          order = "created_at DESC"
+          @stories = Story.active.recent.paginate :page => page, :order => order, :per_page => per_page
+          @title = "most recent stories"
+      end
+        
+      rescue
+           flash[:notice] = "There are no stories. Why not write your own?"
+           redirect_to write_url
+      else 
+            respond_to do |format|
+               format.html # index.html.erb
+               format.xml  { render :xml => @stories }
+               format.rss
+             end  
+      end
+      
+ 
+   end
   
   # POST /stories
   # POST /stories.xml
@@ -54,10 +96,28 @@ class StoriesController < ApplicationController
  # GET /stories/1
   # GET /stories/1.xml
   def show
+    session[:return_to] = request.url
 
     e = ActiveRecord::RecordNotFound
     begin
-      @story = Story.find(params[:id], :conditions => {:active => true}, :include => :tags)
+      
+          if request.path.include?("featured") and params[:id].blank?
+              @story = Story.first(:conditions => {:active => true, :featured => true},:order => "updated_at ASC")
+              @featured = true
+              @previous_featured = Story.previous_featured(@story)
+              @next_featured = Story.next_featured(@story)
+          elsif request.path.include?("featured") and params[:id].present?
+              @story = Story.find(params[:id], :conditions => {:active => true}, :include => :tags)
+              @featured = true
+              @previous_featured = Story.previous_featured(@story)
+              @next_featured = Story.next_featured(@story)
+          
+          else
+              @story = Story.find(params[:id], :conditions => {:active => true}, :include => :tags)
+              @previous = Story.previous(@story)
+              @next = Story.next(@story)
+            
+          end
        
     rescue Exception => e
       flash[:notice] = 'That story doesn\'t exist.'
@@ -75,21 +135,6 @@ class StoriesController < ApplicationController
           
         # find previous and next stories
         
-        @previous = Story.previous(@story)
-        @next = Story.next(@story)
-        
-        
-#        if Story.find(@previous,:conditions => {:active => true})
-        #     @previous = @previous
-        #   else 
-        #     @previous = "#"
-        #   end
-        
-         #  if Story.find(@next,:conditions => {:active => true})
-         #    @next = @next
-         #  else 
-         #    @next = "#"
-         #  end
 
            # increment story counter
              if @story.counter 
@@ -111,7 +156,9 @@ class StoriesController < ApplicationController
       order = "created_at DESC"
       per_page = 15
     @story = Story.find(params[:id])
-    @stories = Story.paginate_by_prompt_id(@story.prompt_id, :page => page, :order => order, :per_page => per_page)
+    @prompt = Prompt.find(@story.prompt_id)
+    @stories = Story.paginate_by_prompt_id(@prompt.id, :page => page, :order => order, :per_page => per_page)
+    
   end
   
   def random
@@ -131,17 +178,25 @@ class StoriesController < ApplicationController
   # GET /stories/new.xml
   def new
     @story = Story.new
-      if params[:prompt].present?  
-        @prompt = Prompt.find_by_id(params[:prompt], :conditions => ["active = :active AND (use_on <= :today)", {:active => true, :today => Date.today}])
-      else
-       unless @prompt = Prompt.find(:first, :conditions => {:use_on => Date.today,:active => true})
-        @prompt = Prompt.find(:first,:order => "use_on DESC", :conditions => ["active = :active AND (use_on < :today)", {:active => true, :today => Date.today}])
-       end
-      end
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @story }
-    end
+    e = ActiveRecord::RecordNotFound
+    
+        begin
+          unless @prompt = Prompt.find_by_id(params[:prompt], :conditions => ["active = :active AND (use_on <= :today)", {:active => true, :today => Date.today}])
+            unless @prompt = Prompt.find(:first, :conditions => {:use_on => Date.today,:active => true})
+              @prompt = Prompt.find(:first,:order => "use_on DESC", :conditions => ["active = :active AND (use_on < :today)", {:active => true, :today => Date.today}])
+             end
+          end
+        rescue Exception => e
+          flash[:notice] = 'That prompt doesn\'t exist. Try this one instead.'
+          redirect_to write_url
+        else
+          respond_to do |format|
+            format.html # new.html.erb
+            format.xml  { render :xml => @story }
+          end
+        end
+      
+    
   end
 
 
@@ -171,11 +226,11 @@ class StoriesController < ApplicationController
      respond_to do |format|
        if @story.save
          flash[:notice] = 'Story enabled.'
-         format.html { redirect_to(stories_admin_path) }
+         format.html { redirect_to(stories_path) }
          format.xml  { head :ok }
        else
          flash[:notice] = 'Story NOT enabled.'
-         format.html { redirect_to(stories_admin_path) }
+         format.html { redirect_to(stories_path) }
          format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
        end
      end
@@ -188,11 +243,11 @@ class StoriesController < ApplicationController
      respond_to do |format|
        if @story.save
          flash[:notice] = 'Story disabled.'
-         format.html { redirect_to(stories_admin_path) }
+         format.html { redirect_to(stories_path) }
          format.xml  { head :ok }
        else
          flash[:notice] = 'Story NOT disabled.'
-         format.html { redirect_to(stories_admin_path) }
+         format.html { redirect_to(stories_path) }
          format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
        end
      end
@@ -251,9 +306,12 @@ class StoriesController < ApplicationController
     
   end
     
+
+  private  
   
-  
-  private
+  def ensure_current_post_url
+      redirect_to @story, :status => :moved_permanently unless @story.friendly_id_status.best?
+  end
   
   def get_description
     if(request.xhr?)

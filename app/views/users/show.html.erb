@@ -51,7 +51,7 @@
 
 <h4>
 	<% if is_user && current_user.id == @user.id && !@user.writers.empty? && request.path.include?("account") %>
-		Stories by <br /> Writers You Follow
+		Stories by Writers You Follow
 	<% else %>
 		Stories by <%= @user.login %>
 	<% end %>

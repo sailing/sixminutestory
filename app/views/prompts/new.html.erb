@@ -15,6 +15,16 @@
     <%= f.label :goal %><br />
     <%= f.text_field :goal %>
   </p>
+
+<p>
+	Or, submit a link to a creative commons licensed flickr image. (Please link to the flickr page, not the image directly.) 
+	</p>
+
+	<p>
+    <%= f.label :attribution_url %><br />
+    <%= f.text_field :attribution_url %>
+  </p>
+	
   <p>
     <%= image_submit_tag("contribute.png", :name => "contribute", :id => "contribute-button", :disabled => false) %>
   </p>

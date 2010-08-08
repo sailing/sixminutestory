@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100302222910) do
+ActiveRecord::Schema.define(:version => 20100805072001) do
 
   create_table "comments", :force => true do |t|
     t.text     "comment"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20100302222910) do
     t.datetime "start"
     t.datetime "end"
     t.integer  "user_id"
+    t.integer  "prompt_id",   :default => 0
     t.boolean  "active",      :default => true
     t.boolean  "delta",       :default => false
     t.datetime "created_at"
@@ -51,16 +52,21 @@ ActiveRecord::Schema.define(:version => 20100302222910) do
     t.string   "villain"
     t.string   "goal"
     t.date     "use_on"
+    t.integer  "rating",          :default => 0
+    t.integer  "counter",         :default => 0
     t.integer  "user_id"
-    t.integer  "contest_id",    :default => 0
-    t.boolean  "active",        :default => true
-    t.boolean  "verified",      :default => false
-    t.boolean  "delta",         :default => false
+    t.integer  "contest_id",      :default => 0
+    t.boolean  "active",          :default => true
+    t.boolean  "verified",        :default => true
+    t.boolean  "delta",           :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "counter",       :default => 0
-    t.integer  "rating",        :default => 0
     t.integer  "stories_count"
+    t.string   "refcode"
+    t.string   "kind"
+    t.string   "attribution"
+    t.string   "attribution_url"
+    t.string   "license"
   end
 
   create_table "rpx_identifiers", :force => true do |t|
@@ -101,6 +107,9 @@ ActiveRecord::Schema.define(:version => 20100302222910) do
     t.text     "description"
     t.string   "license"
     t.integer  "rating",          :default => 0
+    t.integer  "comment_counter", :default => 0
+    t.integer  "flagged",         :default => 0
+    t.integer  "counter",         :default => 0
     t.integer  "user_id"
     t.integer  "prompt_id"
     t.integer  "contest_id",      :default => 0
@@ -108,9 +117,6 @@ ActiveRecord::Schema.define(:version => 20100302222910) do
     t.boolean  "active",          :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "counter",         :default => 0
-    t.integer  "flagged",         :default => 0
-    t.integer  "comment_counter", :default => 0
     t.string   "cached_slug"
     t.integer  "comments_count"
     t.boolean  "featured",        :default => false
@@ -127,7 +133,6 @@ ActiveRecord::Schema.define(:version => 20100302222910) do
   end
 
   add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
-  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
 
   create_table "tags", :force => true do |t|
     t.string "name"
@@ -141,6 +146,7 @@ ActiveRecord::Schema.define(:version => 20100302222910) do
     t.string   "email_address"
     t.text     "profile"
     t.boolean  "active",                            :default => true
+    t.integer  "admin_level",                       :default => 1
     t.string   "persistence_token"
     t.integer  "login_count"
     t.datetime "last_request_at"
@@ -148,7 +154,6 @@ ActiveRecord::Schema.define(:version => 20100302222910) do
     t.datetime "current_login_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "admin_level",                       :default => 1
     t.boolean  "send_comments",                     :default => true
     t.boolean  "send_stories",                      :default => true
     t.boolean  "send_followings",                   :default => true

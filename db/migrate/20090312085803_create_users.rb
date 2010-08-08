@@ -7,7 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :website
       t.string :email_address
       t.text :profile
-      t.boolean :active, :default => 1
+      t.boolean :active, :default => true
       t.integer :admin_level, :default => 1
       
       

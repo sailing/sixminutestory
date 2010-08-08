@@ -76,7 +76,7 @@ function getSetWrite(element){
 
 	if (element.focused == 1) {
 			clearFieldFirstTime(element);
-			GetCount(2,361000,element);
+			GetCount(2,366555,element);
 			
 	}
 	

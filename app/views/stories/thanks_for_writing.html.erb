@@ -3,26 +3,21 @@
 <% end %>
 
 <% content_for :sideyard do %>
-
-		<%= render :partial => "toolbar", :locals => { :story => @story } %>
-		
+	<h2>More about the Prompt</h2>
+		<%= show_prompt %>
 <% end %>
 
-<div id="show_story">
+
  <h1>Thanks!</h1>
 	<div id="thanks_for_writing">
-	<p> 
-		Thank you for writing!
-		Your story was posted. <%= link_to "View it here.", read_story_url(@story) %> 
-		<br />Take a moment to share your story now!
-	</p>
+
 	
 	<div id="share">
 		
 		<script type="text/javascript">
 
-				var addthis_options = 'email, facebook, delicious, google, reddit, spurl, stumbleupon, tumblr, twitter, digg, more';
-				tweetmeme_style='compact'
+				var addthis_options = 'email, facebook, delicious, buzz, reddit, spurl, stumbleupon, tumblr, twitter, digg, more';
+				//tweetmeme_style='compact'
 		 		tweetmeme_url='<%= read_story_url(@story) %>'
 				tweetmeme_source='6minutestory'
 				tweetmeme_service='bit.ly'
@@ -66,16 +61,37 @@
 					
 		
 	</div>
-	<div class="clear"></div>
+	<!-- close share div -->
+	<div id="thanks">
+	<p> 
+		Your story has been posted. 
+	</p>
+	<p>	
+		<%= link_to "View it here.", read_story_url(@story) %> 
+	</p>
+	<p>
+		Take a moment to share your story now. It’s a tangible contribution to the happiness of your loved ones. 
+	</p>
+	<p>	
+		It’s art. It’s a masterpiece. They’ll adore you for it. 
+	</p>
+	<p>	
+		Yeah, no promises there.
+	</p>	
+	<p>
+		Since we were rushing you, you likely didn’t have much time to contemplate the prompt. So, because you worked so hard, we’re letting you have another look. 
+	</p>
+	<p>	
+		No timers. Stay as long as you like. If you like what you see, share it with your friends. There’s an attribution link on every prompt.
+	</p>
+	</div>
 	</div>
 
 	
 	<div class="clear space"></div>
 	
-<h4>Other stories by this prompt</h4>
+	<h4>Other stories for this prompt</h4>
 	<%= render :partial => 'layouts/show_stories', :locals => { :stories => @stories } %>
-	
-</div>
 		
 		
 

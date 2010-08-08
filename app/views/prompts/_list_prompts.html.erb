@@ -1,4 +1,4 @@
-<div id="show_stories">
+<div id="listPrompts">
 <table>
 	
 
@@ -6,6 +6,7 @@
   		<th>Hero</th>
     	<th>Villain</th>
     	<th>Goal</th>
+		<th>Image</th>
 		<th>Options</th>
 		<% if is_admin %>
 			<th>Use on:</th>
@@ -13,22 +14,28 @@
 		
 </tr>
 <% @prompts.each do |prompt| %>
-  <tr class="<%= cycle('row_alternate', 'row') -%>">
-    <td style="text-align:center"><%=h prompt.hero %></td>
-    <td style="text-align:center"><%=h prompt.villain %></td>
-    <td style="text-align:center"><%=h prompt.goal %></td>
-    <td style="text-align:center">
-	<%= link_to 'Use this Prompt',write_to_prompt_path(prompt.id)%>
-	
-	<% if is_admin %>
-		<%= link_to 'Edit', edit_prompt_path(prompt) %>
-		</td>
-		<td>
-		<%=h prompt.use_on %>	
-	<% end %>
+ 		<tr class="<%= cycle('row_alternate', 'row') -%>">
+	    <td><%=h prompt.hero %></td>
+	    <td><%=h prompt.villain %></td>
+	    <td><%=h prompt.goal %></td>
+		<td><img src="<%=h prompt.refcode%>" style="height:10%"/></td>
+	    <td>
+		<%= link_to 'Use this Prompt',write_to_prompt_path(prompt.id)%>
 
-	</td>
-  </tr>
+		<% if is_admin %>
+
+			</td>
+			<td>
+
+			<%=h prompt.use_on %>	
+				<%= link_to 'Edit', edit_prompt_path(prompt) %>
+		<% end %>
+
+		</td>
+	  </tr>
+
+
+
 <% end %>
 </table>
 </div>

@@ -43,11 +43,11 @@ class CommentsController < ApplicationController
         #Hermes.deliver_comment_notification(@story.user, @story, @comment.user, @comment) unless @story.user.send_comments == false
       
         flash[:notice] = 'Comment contributed!'
-        format.html { redirect_to :controller => "stories", :action => "show", :id => @story, :anchor => "comments" }
+        format.html { redirect_to read_story_path(@comment.story),:anchor => "comments" }
         format.xml  { render :xml => @comment, :status => :created, :location => @comment }
       else
         flash[:notice] = 'Comment is free, so give thine to me.'
-        format.html { redirect_to story_path(@comment.story.id),:anchor => "comments"}
+        format.html { redirect_to read_story_path(@comment.story),:anchor => "comments"}
         format.xml  { render :xml => @comment.errors, :status => :unprocessable_entity }
       end
     end

@@ -5,8 +5,6 @@ ActionController::Routing::Routes.draw do |map|
 #  map.resources :contests
 
   map.resources :prompts
-    
-
 
   # The priority is based upon order of creation: first created -> highest priority.
 
@@ -27,9 +25,8 @@ ActionController::Routing::Routes.draw do |map|
     map.contribute_a_prompt 'contribute/prompt', :controller => "prompts", :action => "new"
     map.thanks 'thanks/:id', :controller => "stories", :action => "thanks_for_writing"
       # reading
-    map.read 'read', :controller => "site", :action => "index"
+
     map.read_random 'random', :controller => "stories", :action => "random"
-    map.read_story 'read/:id', :controller => "stories", :action => "show"
     map.flag_story 'flag', :controller => "stories", :action => "flag_story", :conditions => { :method => :post }
     map.tag 'tag/:name', :controller => "tags", :action => "show", :requirements => { :name => /.*/ }
     map.rss 'rss/:id', :controller => "users", :action => "show"
@@ -69,32 +66,42 @@ ActionController::Routing::Routes.draw do |map|
      
    map.resource :account, :controller => "users"
    map.resources :profile, :controller => "users"
-
  
      map.resources :stories do |story|
        story.resources :votes
      end
-     
-     map.resources :read, :controller => "stories"
-     
+        
      map.resources :comments
 
      map.resource :user_session
+
+     map.with_options :controller => "stories", :action => "show" do |story|     
+ 
+       story.read_story             'read/:id'
+       story.read_featured_story    'featured/:id'
+       story.featured             '/featured'     
+       story.formatted_featured     '/featured.:format'
      
-    
+     end
+     map.resources :read, :controller => "stories"
      
      
-    map.with_options :controller => "site" do |site|
-      site.root                                   :action => "index" 
-      site.formatted_root     '/featured.:format',  :action => "featured"
+     
+     map.with_options :controller => "stories", :action => "index" do |story|     
+       story.read                 '/recent'
+
+       story.recent               '/recent'          
+       story.formatted_recent     '/recent.:format'
+       story.popular              '/popular'
+       story.formatted_popular     '/popular.:format'
+       story.commented            '/commented'
+       story.formatted_commented     '/commented.:format'
+       story.top                  '/top'
+       story.formatted_top        '/top.:format'
+     end
+     
+    map.with_options :controller => "site" do |site| 
       site.search             '/search',          :action => "search"
-      site.featured             '/featured',        :action => "featured"
-      site.recent             '/recent',          :action => "recent"
-      site.formatted_recent     '/recent.:format',  :action => "recent"
-      site.popular             '/popular',          :action => "popular"
-      site.commented             '/commented',          :action => "commented"
-      site.top                '/top',             :action => "top"
-      site.formatted_top      '/top.:format',     :action => "top"
       site.browse_by_tags     '/cloud',           :action => "browse_by_tags"
       site.faq                '/faq',             :action => "faq" 
       site.about              '/about',           :action => "about"
@@ -106,7 +113,8 @@ ActionController::Routing::Routes.draw do |map|
       site.acknowledgements   '/acknowledgements', :action => "acknowledgements"
     end
 
-
+    map.root                  :controller => "stories",     :action => "index"
+    map.formatted_root     '/featured.:format', :controller => "stories",  :action => "index"
     
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   map.resources :products

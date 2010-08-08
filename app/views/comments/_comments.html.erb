@@ -6,18 +6,11 @@
 
 <% @story.comments.each do |comment| %>
 
-	<div class="commenter_container" id="comment_<%= comment.id %>">
 		
-	
-					<div>
-				<%= link_to h(comment.user.login), user_path(comment.user.id) %> - <%=h time_ago_in_words(comment.created_at) %> ago
-					</div>
-		
-		
-	</div>
-		
-			<div class="comment_container">
-			
+			<div class="comment_container" id="comment_<%= comment.id %>">
+				
+			<h4>	<%= link_to h(comment.user.login), user_path(comment.user.id) %> - <%=h time_ago_in_words(comment.created_at) %> ago
+			</h4>	
 						<p>
 							<%= auto_link(simple_format(sanitize(comment.comment)),
 							:href_options => { :target => '_blank' }) %>
@@ -48,21 +41,25 @@
 			<div class="comment_field_container">
 				
 					<%= f.text_area :comment, :rows => 3, :cols => 55 %>
-	    		
+
+	    			<div id="comment_submit_container" class="center">
+						<%= image_submit_tag("contribute.png", :name => "contribute", :id => "contribute-button", :disabled => false) %>
+
+					</div>
+				
 		  	</div>
 
 			
-			<div id="comment_submit_container" class="center">
-				<%= image_submit_tag("contribute.png", :name => "contribute", :id => "contribute-button", :disabled => false) %>
- 
-			</div>
 	
 		<% end %>
 	</div>
 
 <% else %>
 	<div id="signin_or_register">
-		<%= link_to "Sign in", login_path %> or <%= link_to "join", register_path %> to remark.
+		<%= rpx_popup( :link_text => "Login", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false ) %>
+		or
+		<%= rpx_popup( :link_text => "Join", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false ) %> 
+		to remark.
 	</div>
 <% end %>
 

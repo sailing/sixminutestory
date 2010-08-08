@@ -2,76 +2,94 @@
 	:: <%= h(@story.title) %>
 <% end %>
 
+
+
 <% content_for :sideyard do %>
 
 		<%= render :partial => "toolbar", :locals => { :story => @story } %>
 
 		<%= render :partial => "site/profile_block" %>
 		
-<% end %>
-
-<div id="show_story">
- <h1>read</h1>
-
-	<div id="title"> 
-		
-		<h2 class="story_title">
-			<%=h @story.title %>
-		</h2>
-				
-		<h3 class="attribution">
-			by <%= link_to @story.user.login, profile_path(@story.user)  %> 
-			<%=h time_ago_in_words(@story.created_at) %> ago
-		</h3>
-		
-	</div>
-		
-	<div class="clear space"></div>
-	<% if is_admin %>
-		<% if @story.active == true %>
-		<div id="unfollowing_button" class="button_container">
-		<%= link_to "Disable", disable_story_url(@story), 
-		:confirm => 'Are you sure you want to disable this story? The story will no longer be visible!', 
-		:method => :delete %>
-		</div>
-		<% elsif @story.active == false %>
-		<div id="following_button" class="button_container">
-		<%= link_to "Enable", enable_story_url(@story), 
-		:confirm => 'Are you sure you want to enable this story? The story will become visible!'
-		%>
-		</div>
-		<% end %>
-		
-			<% if @story.featured == true %>
+		<div class="clear space"></div>
+		<% if is_admin %>
+			<% if @story.active == true %>
 			<div id="unfollowing_button" class="button_container">
-			<%= link_to "Unfeature", unfeature_story_url(@story), 
-			:confirm => 'Are you sure you want to unfeature this story? The story will no longer be featured!', 
+			<%= link_to "Disable", disable_story_url(@story), 
+			:confirm => 'Are you sure you want to disable this story? The story will no longer be visible!', 
 			:method => :delete %>
 			</div>
-			<% elsif @story.featured == false %>
+			<% elsif @story.active == false %>
 			<div id="following_button" class="button_container">
-			<%= link_to "Feature", feature_story_url(@story), 
-			:confirm => 'Are you sure you want to feature this story? The story will become featured!'
+			<%= link_to "Enable", enable_story_url(@story), 
+			:confirm => 'Are you sure you want to enable this story? The story will become visible!'
 			%>
 			</div>
-		
+			<% end %>
+
+				<% if @story.featured == true %>
+				<div id="unfollowing_button" class="button_container">
+				<%= link_to "Unfeature", unfeature_story_url(@story), 
+				:confirm => 'Are you sure you want to unfeature this story? The story will no longer be featured!', 
+				:method => :delete %>
+				</div>
+				<% elsif @story.featured == false %>
+				<div id="following_button" class="button_container">
+				<%= link_to "Feature", feature_story_url(@story), 
+				:confirm => 'Are you sure you want to feature this story? The story will become featured!'
+				%>
+				</div>
+
+			<% end %>
+			<div id="following_button" class="brown button_container">
+				<%= link_to "Edit Details", edit_story_url(@story) %>
+			</div>
 		<% end %>
-		<div id="following_button" class="brown button_container">
-			<%= link_to "Edit Details", edit_story_url(@story) %>
-		</div>
-	<% end %>
-	<div class="center">
-		<%= render :partial => "prompt" %>
-	</div>
-	<div class="clear"></div>
-		<div class="description">
+		<h2>The prompt for this story</h2>
+			<%= show_prompt %>
+		<div class="clear"></div>
+		
+<% end %>
+
+<%= render :partial => "layouts/browsing" %>
+
+
+ <h1><%= @featured ? "featured story" : "" %></h1>
+
+
+	
+	
+	<div id="show_stories">
+		
+		<div id="indStory" >
+			<div id="title_bar" class="indStory">
+
+
+				<% if @story.title.present? %>
+				<span class="title">
+					<!-- Story title as a link in the listings -->
+					<%= link_to h(@story.title), read_story_url(@story) %>
+				</span>
+				<% else %>
+				<span>
+					<!-- Story title as a link in the listings -->
+					<%= link_to "Untitled Story", read_story_url(@story)%>
+				</span>
+
+				<% end %>
+
+					<span class="author">
+					by <%= link_to h(@story.user.login), profile_path(@story.user) %>
+					<%=h time_ago_in_words(@story.created_at) %> ago
 			
-			<!-- Here's the story -->
-			<%= simple_format(sanitize(h(@story.description))) %>
-				
-				
-				
-		</div>
+					</span>
+			
+			</div>
+		
+	
+			<div id="storyAndMeta">
+				<div class="story">
+					<%= simple_format(sanitize(h(@story.description))) %>
+				</div>
 		<% if is_user %>
 		<div id="flag">
 						<!-- This is how people flag stories -->
@@ -87,7 +105,10 @@
   			<% end -%>	
 		</div>
 		<% end -%>
-
+		
+	</div>
+	</div>
+	<div id="show_story">
 	<div id="information_container">
 		<div>
 			<table>

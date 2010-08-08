@@ -1,8 +1,8 @@
 xml.instruct! :xml, :version => "1.0"
 xml.rss :version => "2.0" do
   xml.channel do
-    xml.title "Six Minute Story: Recent stories"
-    xml.description "Recent stories on http://sixminutestory.com" 
+    xml.title "Six Minute Story: Featured stories"
+    xml.description "Featured stories on http://sixminutestory.com" 
     xml.link featured_url(:format => :rss)
     
     for story in @stories do

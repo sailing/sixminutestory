@@ -10,9 +10,6 @@ class ApplicationController < ActionController::Base
   
   helper :all # include all helpers, all the time
   
-  #facebook bits
-   #ensure_application_is_installed_by_facebook_user
-   
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery :secret => '2399bfac621fb2d960be1129899ad517'
@@ -118,7 +115,6 @@ class ApplicationController < ActionController::Base
         end
      end
      
-
      def rand_with_range(values = nil)
          if values.respond_to? :sort_by
            values.sort_by { rand }.first

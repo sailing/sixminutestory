@@ -4,7 +4,7 @@ class UserSessionsController < ApplicationController
   before_filter :require_user, :only => :destroy
 
   def index
-      redirect_to current_user ? root_url : new_user_session_url
+      redirect_to current_user ? account_url : new_user_session_url
   end
 
 
@@ -21,7 +21,7 @@ class UserSessionsController < ApplicationController
                         else
                                 if @user_session.registration_complete?
                                         #flash[:notice] = "Successfully signed in."
-                                        redirect_back_or_default account_url
+                                        redirect_back_or_default account_path
                                 else
                                         flash[:notice] = "Welcome back! Please complete required registration details before continuing..."
                                         redirect_to edit_user_path( :current )

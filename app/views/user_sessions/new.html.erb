@@ -1,6 +1,16 @@
+
 <h1>Login</h1>
 
-<div class="user_form float_left">
+<div class="left_container">
+	<div id="login">
+		<%= rpx_embed( 
+			:link_text => "Register/Sign in with RPX..", 
+			:app_name => "six-minute-story", 
+			:return_url => user_session_url) %>
+	</div>
+</div>
+<% content_for :sideyard do %>
+<div id="user_form">
 <% form_for @user_session, :url => user_session_path do |f| %>
 
 
@@ -77,7 +87,4 @@
 </table>
 <% end %>
 </div>
-
-	<%= 
-		rpx_embed( :link_text => "Register/Sign in with RPX..", :app_name => "six-minute-story", :return_url => user_session_url)
-	%>
+<% end %>

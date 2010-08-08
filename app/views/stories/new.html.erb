@@ -1,4 +1,17 @@
 <% content_for :sideyard do %>
+
+	<div id="prompt_and_timer" style="display:none;">
+		<div id="prompt_container" class="prompt_container" >
+			<div id="timer_container" class="orange button_container">
+				<span id="timer_element">
+				</span>
+			</div>
+			<%= show_prompt %>
+			
+		</div>
+
+	</div><!-- Prompt and Timer container -->
+	<div id="instructions">
 	<h2>
 		Options
 	</h2>
@@ -15,29 +28,24 @@
 	<p>	
 		<em>Before submitting</em> choose a <strong>title</strong>, relevant <strong>tags</strong> and a <strong>license</strong> for your story.
 	</p>
-
+</div>
 <% end %>
-
 <%= javascript_include_tag "prototype", "effects", :cache => true %>
 
 
-<div id="prompt_and_timer" style="display:none;">
-	<%= render :partial => 'prompt' %>
-	
-	<div id="timer_container" class="orange button_container">
-		<span id="timer_element" >
-		</span>
-	</div>
-</div><!-- Prompt and Timer container -->
+
 
 
 
 
 <div id="new_story_form">
 <% form_for(@story) do |f| %>
+
+	<!-- Include the prompt so we can use it on the next page. Is this really necessary? Isn't it in the scope? -->
 	<%= hidden_field_tag :prompt, @prompt.id %>
 
 <% unless f.error_messages.empty? %>
+	<!-- ERROOOOOOOooooOOORSSSSSSSSSSSSSSSSS -->
 <h1>Errors</h1>
 <div id="errorExplanation">
 	<h2>Your story hasn't been saved yet.</h2>
@@ -45,9 +53,6 @@
 </div>
 <% end %>
 
-<h4>Write your story</h4>
-
-	<div class="center">
 
 			<%= f.error_message_on 'description' %>
 			
@@ -73,13 +78,13 @@
 				end
 			%>
 					
-			<%= f.text_area :description, :value => @description, :rows => 20, :cols => 45, :tabindex => "1", :onFocus => "Effect.Appear('prompt_and_timer',{duration:0.1});getSetWrite(this);" %>
+			<%= f.text_area :description, :value => @description, :rows => 12, :cols => 45, :tabindex => "1", :onFocus => "Effect.Appear('prompt_and_timer',{duration:0.1});Effect.Fade('instructions',{duration:0.1});getSetWrite(this);" %>
 </div>
 
 <div class="clear space">
 </div>
 
-<h4>Title, Describe and <br/> License your story</h4>
+<h1>Details, details, details</h1>
 
 	<table>
 		<tr>
@@ -114,7 +119,7 @@
 		</tr>
 		<tr>
 			<td colspan=2>&nbsp;</td>
-			<td colspan=2 style="text-align:center;">separate tags with commas</td>
+			<td colspan=2 style="text-align:center;"><h5>separate adjectives with commas</h5></td>
 		</tr>
 		<tr>
 			<td colspan=4>
@@ -154,7 +159,7 @@
 	
 	<div class="clear space">
 	</div>
-<h4>Prove you're human</h4>
+<h1>Prove you're human</h1>
 		<div class="center">
 			<p>
 					<% unless @editing.present? %>
@@ -175,7 +180,6 @@
 						<% end %>
 				</p>
 
-</div>
 <% end %>
 </div>
 

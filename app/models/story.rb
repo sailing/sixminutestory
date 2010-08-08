@@ -1,13 +1,5 @@
 class Story < ActiveRecord::Base
-  
-  named_scope :active, :conditions => {:active => true}
-  named_scope :inactive, :conditions => {:active => false}
-  named_scope :recent, lambda { { :conditions => ['created_at > ?', 5.months.ago] } }
-  named_scope :popular, lambda { { :conditions => ['(comments_count >= ? or rating >= ?) AND created_at > ?', 2, 2, 6.months.ago] } }
-  named_scope :commented, lambda { { :conditions => ['(comments_count >= ?) AND updated_at > ?', 2, 2.months.ago] } }
-  named_scope :top, lambda { { :conditions => ['rating > 0'] } }
-  named_scope :featured, :conditions => { :featured => true }
-  
+    
   acts_as_taggable_on :tags
   acts_as_voteable
   
@@ -17,10 +9,23 @@ class Story < ActiveRecord::Base
   has_one :prompt, :counter_cache => true
   has_one :contest
   has_many :comments  
+  # Named Scopes
+  
+  named_scope :active, :conditions => {:active => true}
+  named_scope :inactive, :conditions => {:active => false}
+  named_scope :recent, lambda { { :conditions => ['created_at > ?', 5.months.ago] } }
+  named_scope :popular, lambda { { :conditions => ['(comments_count >= ? or rating >= ?) AND created_at > ?', 2, 2, 6.months.ago] } }
+  named_scope :commented, lambda { { :conditions => ['(comments_count >= ?) AND updated_at > ?', 2, 2.months.ago] } }
+  named_scope :top, lambda { { :conditions => ['rating > 0'] } }
+  named_scope :featured, :limit => 1, :conditions => { :featured => true }, :order => 'updated_at ASC'
   
   # Next and Previous links
   named_scope :next, lambda { |p| {:conditions => ["id > ? AND active = ?", p.id, true], :limit => 1, :order => "id"} }
   named_scope :previous, lambda { |p| {:conditions => ["id < ? AND active = ?", p.id, true], :limit => 1, :order => "id DESC"} }
+
+  named_scope :next_featured, lambda { |p| {:conditions => ["id > ? AND active = ? AND featured = ?", p.id, true, true], :limit => 1, :order => "id"} }
+  named_scope :previous_featured, lambda { |p| {:conditions => ["id < ? AND active = ? AND featured = ?", p.id, true, true], :limit => 1, :order => "id DESC"} }
+
   
   # Indexing for Searching with Sphinx
 #  define_index do

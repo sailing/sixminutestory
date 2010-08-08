@@ -2,11 +2,38 @@
 	<div class="toolbar_container">
 		<div id="show_story_toolbar">
 		<table>
+			<% if @featured %>
+				<tr>
+							<td >
+								<div class="green button_container">	
+									<% if(@previous_featured.present?) %>
+									<%= link_to "<< Previous", read_featured_story_path(@previous_featured)%>
+									<% else %>
+										<span>El Fin</span>
+									<% end %>
+								</div>
+							</td>		
+
+
+								<td>
+									<div class="green button_container">	
+									<% if(@next_featured.present?) %>
+										<%= link_to "Next >> ", read_featured_story_path(@next_featured)%>
+									<% else %>
+										<span>El Fin</span>
+									<% end %>
+									</div>
+								</td>
+
+
+				</tr>
+				
+			<% else %>
 			<tr>
 						<td >
 							<div class="green button_container">	
 								<% if(@previous.present?) %>
-								<%= link_to "<< Previous", story_path(@previous)%>
+								<%= link_to "<< Previous", read_story_path(@previous)%>
 								<% else %>
 									<span>El Fin</span>
 								<% end %>
@@ -17,7 +44,7 @@
 							<td>
 								<div class="green button_container">	
 								<% if(@next.present?) %>
-									<%= link_to "Next >> ", story_path(@next)%>
+									<%= link_to "Next >> ", read_story_path(@next)%>
 								<% else %>
 									<span>El Fin</span>
 								<% end %>
@@ -26,6 +53,7 @@
 		
 								
 			</tr>
+			
 			<tr>
 							<td>
 								<div class="brown button_container">	
@@ -42,6 +70,8 @@
 								</div>
 							</td>
 			</tr>
+			<% end %>
+			
 			<tr>
 							<td>
 								<div class="brown button_container">	
@@ -67,7 +97,7 @@
 							<div class="purple button_container">	
 							
 							<a href="#comments">
-								<%= pluralize(@story.comment_counter, 'remark') -%>
+								<%= pluralize(@story.comments_count, 'remark') -%>
 							</a>
 							</div>
 					</td>
