@@ -5,23 +5,47 @@ class PromptsController < ApplicationController
   # GET /prompts
   # GET /prompts.xml
  
-  def verified
-    page = params[:page] || 1
-     per_page = 15
-     order = "use_on DESC"
-    
-    @prompts = Prompt.paginate :page => page, :per_page => per_page, :order => order, :conditions => ["active = :active AND (use_on IS NOT :use_on)", {:active => true, :use_on => nil} ]
-  
+  # GET /prompts
+  # GET /prompts.xml
+  def index
+      page = params[:page] || 1
+      page_i = params[:page_i] || 1
+      per_page = 10
+      order = "created_at DESC"
+      
+      @filters = Prompt::FILTERS
+    if params[:show] && params[:show] != "verified" && @filters.collect{|f| f[:scope]}.include?(params[:show])
+          @prompts = Prompt.verified.send(params[:show]).paginate :page => page, :per_page => per_page, :order => order
+          @table = params[:show]
+    else
+        
+      begin
+        case request.path
+          when /^\/prompts\/unverified/
+            @images = Prompt.unverified.images.paginate :page => page_i, :per_page => per_page, :order => order
+            @hvg = Prompt.unverified.hvg.paginate :page => page, :per_page => per_page, :order => order
+            
+        else
+            @images = Prompt.verified.images.paginate :page => page_i, :per_page => per_page, :order => order
+            @hvg = Prompt.verified.hvg.paginate :page => page, :per_page => per_page, :order => order
+        end
+          
+      rescue
+         flash[:notice] = "There are no stories. Why not write your own?"
+        redirect_to write_url
+      else 
+        respond_to do |format|
+          format.html # index.html.erb
+          format.xml  { render :xml => @stories }
+          format.rss
+        end 
+        #end respond_to
+      end
+      #end begin
+    end
+    #end if params[:show]  
   end
-  
-  def verify
-    page = params[:page] || 1
-     per_page = 20
-     order = "created_at DESC"
     
-    @prompts = Prompt.paginate :page => page, :order => order, :per_page => per_page, :conditions => {:active => true, :verified => false}
-  end
-  
   def enable_prompt
     @prompt = Prompt.find(params[:id])
     @prompt.active = 1
@@ -53,32 +77,7 @@ class PromptsController < ApplicationController
        end
      end
   end
-  
-  
-  def past
-     page = params[:page] || 1
-     
-       per_page = 15
-       order = "use_on DESC"
 
-      @prompts = Prompt.paginate :page => page, :order => order, :per_page => per_page, :conditions => ["active = :active AND verified = :verified AND use_on < :now", {:active => true, :verified => true, :now => Date.today} ]
-    
-  end
-
-  # GET /prompts
-  # GET /prompts.xml
-  def admin
-      page = params[:page] || 1
-      per_page = 15
-      order = "created_at DESC"
-
-      @prompts = Prompt.paginate :page => page, :order => order, :per_page => per_page, :conditions => ["active = :active AND use_on IS :use_on", {:active => true, :use_on => nil} ]
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @prompts }
-    end
-  end
 
   # GET /prompts/1
   # GET /prompts/1.xml

@@ -4,7 +4,7 @@ ActionController::Routing::Routes.draw do |map|
 
 #  map.resources :contests
 
-  map.resources :prompts
+
 
   # The priority is based upon order of creation: first created -> highest priority.
 
@@ -21,8 +21,8 @@ ActionController::Routing::Routes.draw do |map|
     map.write 'write', :controller => "stories", :action => "new"
     map.write_random 'random/write', :controller => "prompts", :action => "random"
     map.write_to_prompt 'write/:prompt', :controller => "stories", :action => "new"
-    map.past_prompts 'archives', :controller => "prompts", :action => "past"
-    map.contribute_a_prompt 'contribute/prompt', :controller => "prompts", :action => "new"
+    map.past_prompts 'archives', :controller => "prompts", :action => "index"
+    map.suggest_a_prompt 'prompts/suggest', :controller => "prompts", :action => "new"
     map.thanks 'thanks/:id', :controller => "stories", :action => "thanks_for_writing"
       # reading
 
@@ -42,8 +42,7 @@ ActionController::Routing::Routes.draw do |map|
   #  map.formatted_profile_personal '/profile/personal/:id.:format', :controller => "users", :action => "show"
     
     #administration
-    map.prompts_admin "admin/prompts", :controller => "prompts", :action => "admin"
-    map.verified_prompts "admin/prompts/verified", :controller => "prompts", :action => "verified" 
+    map.unverified_prompts "/prompts/unverified", :controller => "prompts", :action => "index" 
     map.users_admin "admin/users", :controller => "users", :action => "admin"
     map.stories_admin "admin/stories", :controller => "stories", :action => "admin"
     map.disabled_stories "admin/stories/disabled", :controller => "stories", :action => "disabled"
@@ -70,6 +69,8 @@ ActionController::Routing::Routes.draw do |map|
      map.resources :stories do |story|
        story.resources :votes
      end
+     
+       map.resources :prompts
         
      map.resources :comments
 

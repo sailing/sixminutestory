@@ -1,5 +1,193 @@
-<%= render :partial => 'list_prompts' %>
+<% if is_admin %>
+	<%= link_to 'New prompt', suggest_a_prompt_path %>
+	| <%= link_to 'Verify prompts', unverified_prompts_path %>
+	| <%= link_to 'View active prompts', prompts_path %>
+<% end %>
+<br />
+<%= select_tag_for_filter("prompts", @filters, params) %>
+
+<div id="listPrompts">
+<% if @table == "hvg" %>
+<% unless @prompts.empty? %>
+	<table>
+
+
+	  <tr>
+	  		<th>Hero</th>
+	    	<th>Villain</th>
+	    	<th>Goal</th>
+			<th>Write</th>
+			<% if is_admin %>
+				<th>Use on:</th>
+			<% end %>
+
+	</tr>
+	<% @prompts.each do |prompt| %>
+	 		<tr class="<%= cycle('row_alternate', 'row') -%>">
+		    <td><%=h prompt.hero %></td>
+		    <td><%=h prompt.villain %></td>
+		    <td><%=h prompt.goal %></td>
+		    <td>
+			<%= link_to 'Use this Prompt',write_to_prompt_path(prompt.id)%>
+
+			<% if is_admin %>
+
+				</td>
+				<td>
+
+				<%=h prompt.use_on %>	
+					<%= link_to 'Edit', edit_prompt_path(prompt) %>
+			<% end %>
+
+			</td>
+		  </tr>
+
+
+
+	<% end %>
+	<tr class="row">
+		<% is_admin ? @colspan = 5 : @colspan = 4 %>
+		<td colspan=<%=@colspan%>>
+			<%= will_paginate @prompts %>
+		</td>
+	</tr>
+	</table>
+
+	
+<% end %>
+
+<% elsif @table == "images" %>	
+
+<% unless @prompts.empty? %>
+	<table>
+	<% i = 0 %>
+<% @prompts.each do |prompt| %>
+	<% i += 1 %>
+		<% if i == 1 %>
+			<tr>
+		<% end %>
+
+		<td>
+			<%= link_to tag("img", { :src => prompt.refcode, :style => "width:250px;" }), write_to_prompt_url(prompt) %>
+			<br />
+			<%= link_to "click to use", write_to_prompt_url(prompt) %>
+			
+			<% if is_admin %>
+			
+				| <%= link_to "edit", edit_prompt_url(prompt) %>
+			<% end %>
+			
+		</td>
+		
+		<% if i == 2 %>
+			</tr>
+			<% i = 0 %>
+		<% elsif @prompts.size == 1%>
+			</tr>
+		<% end %>
+		
+	<% end %>
+<tr>
+	<td colspan=2>
+		<%= will_paginate @prompts %>
+	</td>
+</tr>
+</table>
+<% end %>
+
+<% else %>
+<!-- Images -->
+<% unless @images.empty? %>
+	<table>
+<% i = 0 %>
+<% @images.each do |prompt| %>
+	<% i += 1 %>
+		<% if i == 1 %>
+			<tr>
+		<% end %>
+
+		<td>
+			<%= link_to tag("img", { :src => prompt.refcode, :style => "width:250px;" }), write_to_prompt_url(prompt) %>
+			<br />
+			<%= link_to "click to use", write_to_prompt_url(prompt) %>
+			
+			<% if is_admin %>
+			
+				| <%= link_to "edit", edit_prompt_url(prompt) %>
+			<% end %>
+		</td>
+		
+			<% if i == 2 %>
+				</tr>
+				<% i = 0 %>
+			<% elsif @images.size == 1%>
+				</tr>
+			<% end %>
+
+	<% end %>
+
+<tr>
+	<td>
+		
+		<%= will_paginate @images %>
+	</td>
+</tr>
+</table>
+
+<% end %>
+
+
+<!-- hero villain goal -->
+<% unless @hvg.empty? %>
+<table>
+
+
+  <tr>
+  		<th>Hero</th>
+    	<th>Villain</th>
+    	<th>Goal</th>
+		<th>Write</th>
+		<% if is_admin %>
+			<th>Use on:</th>
+		<% end %>
+
+</tr>
+<% @hvg.each do |prompt| %>
+	<tr class="<%= cycle('row_alternate', 'row') -%>">
+	    <td><%=h prompt.hero %></td>
+	    <td><%=h prompt.villain %></td>
+	    <td><%=h prompt.goal %></td>
+	    <td>
+		<%= link_to 'Use this Prompt',write_to_prompt_path(prompt.id)%>
+
+		<% if is_admin %>
+
+			</td>
+			<td>
+
+			<%=h prompt.use_on %>	
+				<%= link_to 'Edit', edit_prompt_path(prompt) %>
+		<% end %>
+
+		</td>
+	  </tr>
+
+
+
+<% end %>
+
+<tr class="row">
+	<% is_admin ? @colspan = 5 : @colspan = 4 %>
+	<td colspan=<%=@colspan%>>
+		<%= will_paginate @hvg %>
+	</td>
+</tr>
+</table>
+<% end %>
+	
+
+<% end %>
+</div>
 
 <br />
 
-<%= link_to 'New prompt', new_prompt_path %>

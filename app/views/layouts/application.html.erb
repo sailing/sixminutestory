@@ -20,10 +20,10 @@
   	<meta name="tweetmeme-title" content="Six Minute Story :: <%= @content_for_pagename %>" />  
 	
 	<meta name="title" content="Six Minute Story" />
-	<meta name="description" content="Six Minute Story is a user-driven, flash-fiction experiment. The goal is to fill the world with ad-libbed eloquence." />
+	<meta name="description" content="Six Minute Story is a growing collection of stories written in six minutes. Together, we are filling the world with ad-libbed eloquence." />
 	<link rel="image_src" href="http://sixminutestory.com/images/logo_square.png" />
 	
-	<link rel="alternate" href="<%= @rss_url.present? ? @rss_url : 'http://feeds.feedburner.com/SixMinuteStoryRecentStories' %>" type="application/rss+xml" media="screen" title="RSS" charset="utf-8">
+	<link rel="alternate" href="<%= @rss_url.present? ? @rss_url : 'http://feeds.feedburner.com/sixminutestory/recent' %>" type="application/rss+xml" media="screen" title="RSS" charset="utf-8">
 </head>
 <body>
 	
@@ -109,7 +109,7 @@
 				<td>
 					
 					<span class="small_text">
-						<%= link_to "Prompts", prompts_admin_url %>
+						<%= link_to "Prompts", prompts_url %>
 					</span>
 				</td>
 			 	<td>

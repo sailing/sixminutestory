@@ -1,23 +1,12 @@
-<p>
-  <b>Hero:</b>
-  <%=h @prompt.hero %>
-</p>
+<div id="show_prompt">
+<%= show_prompt %>
 
-<p>
-  <b>Villain:</b>
-  <%=h @prompt.villain %>
-</p>
-
-<p>
-  <b>Goal:</b>
-  <%=h @prompt.goal %>
-</p>
-
+</div>
+<% if is_admin %>
 <p>
 	<b>Use on:</b>
 	<%=h @prompt.use_on if @prompt.use_on.present? %>
 </p>
-
-
 <%= link_to 'Edit', edit_prompt_path(@prompt) %> |
-<%= link_to 'Back', prompts_admin_path %>
+<%= link_to 'Back', prompts_path %>
+<% end %>

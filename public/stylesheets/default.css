@@ -149,7 +149,7 @@ textarea {
 	padding:2%;
 	margin:0 auto;
 	background-color:#fff;
-	opacity:0.7;
+	opacity:0.9;
 	filter: alpha(opacity = 70);
 	zoom:1;
 	
@@ -159,7 +159,7 @@ textarea {
 }
 
 input, select, option {
-	width:90%;
+	width:70%;
 	height:25px;
 	padding:3px;
 	border:0px;
@@ -169,7 +169,7 @@ input, select, option {
 	vertical-align:middle;
 
 	background-color:#fff;
-	opacity:0.6;
+	opacity:0.9;
 	filter: alpha(opacity = 60);
 	zoom:1;
 	
@@ -867,7 +867,7 @@ background-color:#a759d0;
 
 
 #new_story_form input, select, #user_form input, select {
-	width:100%;
+	width:70%;
 	-moz-border-radius-bottomleft:0px;  
 	-webkit-border-bottom-left-radius:0px;
 	-moz-border-radius-topleft:0px;
@@ -1165,29 +1165,63 @@ background-color:#a759d0;
 /* 						*/
 
 #listPrompts {
-	background: #fff;
-	opacity:0.9;
-	
+	opacity:.9;
 }
 
 #listPrompts table, #listPrompts td {
-	color:#111;
+	color:#555;
 	font-family:"univers", helvetica;
 	font-size:.9em;
+
+
 }
 
 #listPrompts table {
 	width:90%;
-	margin:0 auto;
+	margin:20px auto;
+	border-collapse:collapse;
+	-moz-border-radius:10px;  
+	-webkit-border-radius:10px;
+
+	background: #fff;
+	}
+
+#listPrompts th {
+	padding:10px 0;
 }
 
 #listPrompts td {
-	padding:0 1%;
-	text-align:left;
+	padding:1% 1%;
+	text-align:center;
+	background:transparent;
 }
 
-#listPrompts a {
-	color:#222;
+#listPrompts img {
+	-moz-border-radius:5px;  
+	-webkit-border-radius:5px;
+	border:5px solid black;
+	margin:1% 0;
+}
+
+#listPrompts img:hover {
+	opacity:.7;
+}
+
+#listPrompts table a {
+	color:#111;
+}
+
+#listPrompts .row {
+	background: #999;
+	color:#fff;
+}
+
+#listPrompts .row td, #listPrompts .row a {
+	color:#fff;
+}
+
+#show_prompt {
+	color:#fff;
 }
 
 #show_stories .story_comments, #show_stories .story_rating {
