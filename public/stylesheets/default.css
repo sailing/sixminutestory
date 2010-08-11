@@ -283,7 +283,7 @@ input[type="checkbox"]{
 
 .login_container {
 	position:fixed;
-	left:6px;
+	right:6px;
 	top:0px;
 	z-index:9999;
 	-moz-border-radius-bottomleft:10px;  
@@ -422,11 +422,14 @@ background-color:#a759d0;
 
 #header_links {
 	text-align:center;
+	position:relative;
+	left:25px;
+	
 	font-weight:600;
 	font-size:18px;
 	line-height:24px;
 	padding:0px 0px 0px 0px;
-	margin:0 0 10px -15px;
+	margin:0 10px;
 	z-index:100;
 }
 
@@ -443,9 +446,8 @@ background-color:#a759d0;
 
 .logo {
 	position:relative;
-	left:85px;
-	top:35px;
-	margin:35px 0;
+	left:45px;
+	margin:25px 0;
 }
 
 .logo img {
