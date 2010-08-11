@@ -286,7 +286,6 @@ input[type="checkbox"]{
 	left:6px;
 	top:0px;
 	z-index:9999;
-	width:360px;
 	-moz-border-radius-bottomleft:10px;  
 	-webkit-border-bottom-left-radius:10px;
 	-moz-border-radius-bottomright:10px;
@@ -344,7 +343,6 @@ background-color:#a759d0;
 	font-size:1em;
 }
 
-
 .logged_in span {
 	padding:0px;
 	margin:0px;
@@ -353,7 +351,7 @@ background-color:#a759d0;
 
 
 .logged_in table, .logged_in tr, .logged_in td {
-	margin:0px;
+	margin:5px 0;
 	padding-top:2px;
 	border-right:1px dotted #a759d0;
 	height:100%;
@@ -375,6 +373,7 @@ background-color:#a759d0;
 /*		Share links */
 /*								*/
 #share_container {
+	visibility:hidden;
 	position:fixed;
 	left:420px;
 	top:0px;
@@ -427,7 +426,7 @@ background-color:#a759d0;
 	font-size:18px;
 	line-height:24px;
 	padding:0px 0px 0px 0px;
-	margin:-15px 0px 10px -15px;
+	margin:0 0 10px -15px;
 	z-index:100;
 }
 
@@ -577,7 +576,7 @@ background-color:#a759d0;
 	padding:10px 0px;
 	float:right;
 	background-color:#111;
-	opacity:1
+	opacity:1;
 	-moz-border-radius:10px;  
 	-webkit-border-radius:10px;
 	z-index:1000;
@@ -937,7 +936,7 @@ background-color:#a759d0;
 	font-size:1.2em;
 	letter-spacing:-.02em;
 	font-weight:bold;
-	color:#fff;
+	color:#000;
 }
 
 #user_form .notification_option, .edit_user_form .notification_option {
