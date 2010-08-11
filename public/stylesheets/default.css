@@ -20,6 +20,7 @@ Purple for text => #a85ac1
 Greenish-blue => #62d1cc
 Lighter Greenish-blue => #84f3cc
 Pastel Green => #aacc31
+New Blue => #8fcfef
 #6fdfcf
 Great Green => #5f9f3f
 
@@ -35,10 +36,10 @@ Great Green => #5f9f3f
 body {
 	
   margin:0px;
-  padding:0px;
+  padding:0 1%;
 
 	vertical-align:baseline;
-	background: #cffff7 url(../images/sublogo_new.png) bottom right fixed no-repeat;
+	background: #dfffff url(../images/sublogo_new.png) bottom right fixed no-repeat;
 	z-index:1;
 
 
@@ -426,8 +427,8 @@ background-color:#a759d0;
 	font-size:18px;
 	line-height:24px;
 	padding:0px 0px 0px 0px;
-	margin:-15px 0px 0px -15px;
-
+	margin:-15px 0px 10px -15px;
+	z-index:100;
 }
 
 #header_links a {
@@ -435,15 +436,21 @@ background-color:#a759d0;
 }
 
 #header_links a:hover {
-	color:#522b1d;
+	color:#8fcfef;
 }
 
 
 /* Umm... the logo... */
 
 .logo {
-	margin:40px 0px 10px 85px;
+	position:relative;
+	left:85px;
+	top:35px;
+	margin:35px 0;
+}
 
+.logo img {
+		opacity:.9;
 }
 #logo {
 	font-weight:600;
@@ -653,8 +660,8 @@ background-color:#a759d0;
 
 #elevator_pitch {
 		width:90%;
-		margin:auto;
-}
+		margin:5% auto;
+	}
 
 #elevator_pitch div {
 	margin:0 4%;
@@ -847,7 +854,7 @@ background-color:#a759d0;
 }
 
 .button_container:hover {
-	background-color:#ff7400;
+	background-color:#8fcfef;
 }
 
 #timer_container {

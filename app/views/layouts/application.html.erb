@@ -167,61 +167,9 @@
 
 					<div class="sideyard_container">
 
-				<% if @content_for_sideyard.blank? %>
-
-				<h2>Welcome</h2>
-					<div id="elevator_pitch">
-						<p>
-						<!-- 
-						Since current language must be <strong>concise, immediate and eloquent</strong>, I created <em>Six Minute Story</em> &mdash; a user-driven, <a href="http://en.wikipedia.org/wiki/Micro_fiction" target="_blank">micro-fiction</a> application &mdash; to provide an arena to practice <em>the art of the ad-lib</em>, the impromptu.
-						-->
-								<strong>Six Minute Story</strong> is a crowd-driven, 
-								<a href="http://en.wikipedia.org/wiki/Micro_fiction" target="_blank">flash-fiction</a> 
-								<strong>experiment</strong>.
-						</p>
-						<p>
-								The goal is to fill <strong>the cities of the earth</strong> with eloquence. <%= link_to "read more", faq_url %>
-						</p>
-
-						<% if is_user %>
-						<div class="green button_container">
-							<%= link_to "Go Write", write_url %>
-						</div>
-						<% else %>
-						<div class="green button_container">
-							<%= link_to "Sign Up", register_url %>
-						</div>
-
-						<div class="purple button_container">
-							<%= link_to "Sign in", login_url %>
-						</div>
-						<div class="clear space">
-						</div>
-						<% end %>
-					</div>
-						<h2>Connect</h2>
-						<!-- List of things to add:  -->
-						<% if is_user %>
-							<p>
-								<%= link_to "Suggest a Prompt", new_prompt_url %>
-							</p>
-						<% end %>
-						<div>
-						<p>
-						<a href="http://www.twitter.com/6minutestory">
-								<img 	src="http://twitter-badges.s3.amazonaws.com/follow_us-a.png" 
-										alt="Follow Six Minute Story on Twitter" />
-							</a>
-						</p>
-						<p>
-							<a href="http://facebook.com/sixminutestory"><%= image_tag "facebook.png" %></a>
-						</p>
-						</div>
-				<% else %>
 
 					<%= yield(:sideyard) %> 
 
-				<% end %>
 
 			
 
