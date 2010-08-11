@@ -45,7 +45,7 @@ body {
 
 }
 
-body, p, ol, ul, td, h1, h4 {
+body, p, td, h1, h4 {
   font-family: "univers", helvetica, tahoma, verdana, arial, sans-serif;
   line-height: 1.2em;
 	font-size:100%;
@@ -1434,13 +1434,14 @@ background-color:#a759d0;
 
 }
 
-.answer p {
+.answer p, .answer ol {
 	text-align:justify;
 	line-height:1.9em;
 	font-size:1.2em;
 	letter-spacing:.09em;
 	color:#000;
 	font-family:"ITC Avant Garde Gothic Pro", georgia, serif;
+
 }
 
 .answer a {
