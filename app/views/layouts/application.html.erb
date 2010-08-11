@@ -92,42 +92,41 @@
 		<% end %>
 		<% end %>
 
+		<% if is_admin %>	
+				<table class="logged_in">
+					<tr>
+						<td>
+							<span>
+								<%= link_to "Admin", admin_url %>
+							</span>
+						</td>
+						<td>
+
+							<span class="small_text">
+								<%= link_to "Prompts", prompts_url %>
+							</span>
+						</td>
+					 	<td>
+							<span class="small_text">
+								<%= link_to "Stories", read_url %>
+							</span>
+						</td>
+						<td>
+							<span class="small_text">
+								<%= link_to "Users", users_url %>
+							</span>
+						</td>
+					</tr>
+				</table>
+
+	
+		<% end %>
 
 	</div>	<!-- Close Login Container-->
 	
 
 	
-<% if is_admin %>	
-	<div class="admin_container">
-		<table class="logged_in">
-			<tr>
-				<td>
-					<span>
-						<%= link_to "Admin", admin_url %>
-					</span>
-				</td>
-				<td>
-					
-					<span class="small_text">
-						<%= link_to "Prompts", prompts_url %>
-					</span>
-				</td>
-			 	<td>
-					<span class="small_text">
-						<%= link_to "Stories", read_url %>
-					</span>
-				</td>
-				<td>
-					<span class="small_text">
-						<%= link_to "Users", users_url %>
-					</span>
-				</td>
-			</tr>
-		</table>
-			
-	</div>
 
-<% end %>
 
 
 
@@ -139,13 +138,13 @@
 		<% if !current_user %>
 		  	<%= link_to "Write", write_path %>
 			| <%= link_to "Read", read_path %>
-			| <%= link_to "FAQ", faq_path %>
+			| <%= link_to "How's it work?", faq_path %>
 			| <a href="http://twitter.com/6minutestory">Blog</a>
 			
 		<% else %>
 			<%= link_to "Write", write_path %>
 			| <%= link_to "Read", read_path %>
-			| <%= link_to "FAQ", faq_path %>
+			| <%= link_to "How's it work?", faq_path %>
 			| <a href="http://twitter.com/6minutestory">Blog</a>
 		<% end %>
 	
