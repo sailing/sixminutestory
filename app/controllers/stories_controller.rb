@@ -53,9 +53,7 @@ class StoriesController < ApplicationController
  
     respond_to do |format|
       if @story.save
-        @prompt.counter += 1 
-        @prompt.save
-        
+       
         #followers = Array.new
         #@story.user.followers.each do |follower|
         #  followers << follower.email_address

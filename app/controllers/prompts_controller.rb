@@ -112,8 +112,11 @@ class PromptsController < ApplicationController
     @prompt = Prompt.new(params[:prompt])
     @prompt.user_id = current_user.id
       
-      if @prompt.kind.blank? 
+      if @prompt.hero.present?
+       
         @prompt.kind = "hvg"
+      else
+        @prompt.kind = "flickr"
       end
       
     respond_to do |format|
