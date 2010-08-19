@@ -1,10 +1,10 @@
-to run on deploy:
+2.1 roadmap:
+- change padding so footer extends 100%
+- make prompts display images if they exist
+- make prompts automatically assign flickr "kind" if attribution is listed
+- add attribution on "use other prompts" page
+- 
 
-do bloody test it this time.
-
-sudo gem install friendly_id
-sudo gem install rpx_now --source http://gemcutter.org
-sudo gem install authlogic_rpx --source http://gemcutter.org
-
-
-rake db:migrate
+2.2 roadmap:
+spellcheck
+integrate flickr api

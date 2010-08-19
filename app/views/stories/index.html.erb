@@ -96,9 +96,13 @@
 				<span class="author">
 				by <%= link_to h(story.user.login), profile_path(story.user) %>
 				</span>
-				<span style="font-size:.8em">
-					:: <%= pluralize(story.counter, 'view') %>
+				<!-- <span style="font-size:.8em">
+					:: 
+					<%= 
+					# pluralize(story.counter, 'view') 
+					%>
 				</span>
+				-->
 		</div>
 		<div id="storyAndMeta">
 			<div class="story">

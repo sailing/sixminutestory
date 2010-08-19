@@ -12,56 +12,8 @@
 	<div id="thanks_for_writing">
 
 	
-	<div id="share">
-		
-		<script type="text/javascript">
+<%= render :partial => 'share_in_story' %>
 
-				var addthis_options = 'email, facebook, delicious, buzz, reddit, spurl, stumbleupon, tumblr, twitter, digg, more';
-				//tweetmeme_style='compact'
-		 		tweetmeme_url='<%= read_story_url(@story) %>'
-				tweetmeme_source='6minutestory'
-				tweetmeme_service='bit.ly'
-				service_api = 'R_7d9a33865d37be3eda125f7d3c353230'
-		</script>
-		
-			<script 	type="text/javascript"
-		 			src="http://tweetmeme.com/i/scripts/button.js">
-			</script>
-					<br /><br />
-		<a 	name="fb_share" class="fb_share" 
-							type="button_count" 
-							share_url="<%= read_story_url(@story) %>"
-							href="http://www.facebook.com/sharer.php">Share</a>
-								<script 	src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" 	
-											type="text/javascript">
-								</script>
-						<br /><br />
-								<!-- AddThis Button BEGIN -->
-								<a 	href="http://www.addthis.com/bookmark.php?v=250&pub=xa-4a575e99434e72bb" 
-									onmouseover="return addthis_open(this, '', '[URL]', '[TITLE]')" 
-									onmouseout="addthis_close()" 
-									onclick="return addthis_sendto()"
-									addthis:url="<%= read_story_url(@story) %>"
-									addthis:title="<%= @story.title %>"
-									addthis:description="<%= truncate(@story.description, 
-														:length =>150) %>"
-									>
-								<img src="http://s7.addthis.com/static/btn/sm-share-en.gif" 
-									width="83" 
-									height="16" 
-									alt="Bookmark and Share" 
-									style="border:0"/>
-								</a>
-									<script 
-									type="text/javascript"
-								src="http://s7.addthis.com/js/250/addthis_widget.js?pub=xa-4a575e99434e72bb">
-									</script>
-								<!-- AddThis Button END -->
-				
-					
-		
-	</div>
-	<!-- close share div -->
 	<div id="thanks">
 	<p> 
 		Your story has been posted. 
