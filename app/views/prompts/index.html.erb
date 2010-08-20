@@ -2,8 +2,7 @@
 	<%= link_to 'New prompt', suggest_a_prompt_path %>
 	| <%= link_to 'Verify prompts', unverified_prompts_path %>
 	| <%= link_to 'View active prompts', prompts_path %>
-	
-	<%= link_to "FridayFlash", edit_prompt_path('25') %>
+	| <%= link_to "FridayFlash", edit_prompt_path('25') %>
 <% end %>
 <br />
 <%= select_tag_for_filter("prompts", @filters, params) %>
