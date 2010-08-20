@@ -36,7 +36,7 @@ Great Green => #5f9f3f
 body {
 	
   margin:0px;
-  padding:0 1%;
+  padding:0;
 
 	vertical-align:baseline;
 	background: #dfffff url(../images/sublogo_new.png) bottom right fixed no-repeat;
@@ -1140,7 +1140,7 @@ background-color:#a759d0;
 }
 
 .story {
-	padding:10px 15px 0;
+	padding:25px 25px 0;
 }
 
 .story a {

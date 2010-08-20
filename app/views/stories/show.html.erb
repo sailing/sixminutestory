@@ -87,9 +87,10 @@
 		
 	
 			<div id="storyAndMeta">
-				<%= render :partial => 'share_in_story' %>
 				
 				<div class="story">
+										<%= render :partial => 'share_in_story' %>
+	
 					<%= simple_format(sanitize(h(@story.description))) %>
 				</div>
 		<% if is_user %>

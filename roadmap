@@ -1,0 +1,11 @@
+2.1 roadmap:
+X change padding so footer extends 100%
+X make prompts automatically assign flickr "kind" if attribution is listed
+X add attribution on "use other prompts" page
+
+2.1.1 
+- Fix Pagination
+
+2.2 roadmap:
+spellcheck
+integrate flickr api

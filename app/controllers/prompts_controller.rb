@@ -112,16 +112,15 @@ class PromptsController < ApplicationController
     @prompt = Prompt.new(params[:prompt])
     @prompt.user_id = current_user.id
       
-      if @prompt.hero.present?
-       
-        @prompt.kind = "hvg"
+      if @prompt.attribution_url.present?
+        @prompt.kind = "flickr"        
       else
-        @prompt.kind = "flickr"
+        @prompt.kind = "hvg"
       end
       
     respond_to do |format|
       if @prompt.save
-        flash[:notice] = 'Thanks! We received your suggestion and will review it soon.'
+        flash[:notice] = 'Thanks! We received your suggestion <br /> and will review it soon.'
         format.html { redirect_to(new_prompt_url) }
       else
         format.html { render :action => "new" }
