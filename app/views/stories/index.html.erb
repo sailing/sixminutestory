@@ -135,10 +135,11 @@
 		# page_entries_info @stories 
 		%>
 
-	<% #pagination
-	  
-		#will_paginate @stories 
-		%>
+	<%= #pagination
+		if @paginate
+			will_paginate @stories 
+		end 
+	%>
 
 <% else  %>
 <% 

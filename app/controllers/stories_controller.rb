@@ -4,9 +4,9 @@ class StoriesController < ApplicationController
 #  before_filter ensure_current_post_url, :only => :show
   
    def index 
-       per_page = 5
+       per_page = 10
        page = params[:page] || 1
-                      
+      
       @truncate = true
       
       begin
@@ -20,6 +20,7 @@ class StoriesController < ApplicationController
         when /^\/recent/
             @stories = Story.active.recent.paginate :page => page, :per_page => per_page
             @title = "most recent stories"
+            @paginate = true
         when /^\/top/
             @stories = Story.active.top.paginate :page => page, :per_page => per_page   
             @title = "top rated stories"
@@ -27,6 +28,7 @@ class StoriesController < ApplicationController
           #return recent
           @stories = Story.active.recent.paginate :page => page, :per_page => per_page
           @title = "most recent stories"
+          @paginate = true
       end
         
       rescue
