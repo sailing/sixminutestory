@@ -136,10 +136,10 @@
 		%>
 
 	<% #pagination
-	%>
-	<% unless @featured %>
-		<%=  will_paginate @stories %>
-	<% end %>	
+	  
+		#will_paginate @stories 
+		%>
+
 <% else  %>
 <% 
 # else for if !@stories.empty? 

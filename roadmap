@@ -2,10 +2,25 @@
 X change padding so footer extends 100%
 X make prompts automatically assign flickr "kind" if attribution is listed
 X add attribution on "use other prompts" page
+- Add facebook fan box?
 
 2.1.1 
-- Fix Pagination
+- make Pagination keep track of named scope
+- Make facebook sharing include title, etc automatically
+
+
+2.1.2
+- troubleshoot this readonly record error
 
 2.2 roadmap:
-spellcheck
-integrate flickr api
+- add quotes as prompts
+- spellcheck
+- integrate flickr api
+- enable deleting prompts
+- integrate emails
+
+2.3 
+- new logo
+
+2.4 
+- music prompts
