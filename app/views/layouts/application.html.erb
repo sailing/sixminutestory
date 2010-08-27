@@ -6,7 +6,7 @@
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>Six Minute Story 
 	<% if @content_for_pagename.blank? %>
-		 	:: A Microfiction Experiment
+		 	– A Microfiction Experiment
 	<% else %>
 			<%= yield(:pagename) %> 		
 	<% end %>
@@ -17,7 +17,7 @@
   	<%= stylesheet_link_tag 'default', :cache => true %>
 	
 	<!-- tweetmeme meta tags -->
-  	<meta name="tweetmeme-title" content="Six Minute Story :: <%= @content_for_pagename %>" />  
+  	<meta name="tweetmeme-title" content="Six Minute Story – <%= @content_for_pagename %>" />  
 	
 	<meta name="title" content="Six Minute Story" />
 	<meta name="description" content="Six Minute Story is a growing collection of stories written in six minutes. Together, we are filling the world with ad-libbed eloquence." />
