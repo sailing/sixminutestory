@@ -62,7 +62,7 @@ class PromptsController < ApplicationController
      end
   end
   
-  def disable_prompt
+  def destroy
     @prompt = Prompt.find(params[:id])
     @prompt.active = 0
      respond_to do |format|
@@ -83,7 +83,11 @@ class PromptsController < ApplicationController
   # GET /prompts/1.xml
   def show
     @prompt = Prompt.find(params[:id])
-
+    
+    page = page || 1
+    order = "created_at DESC"
+    per_page = 10
+    @stories = Story.paginate_by_prompt_id(@prompt.id, :page => page, :order => order, :per_page => per_page)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @prompt }
@@ -163,5 +167,20 @@ class PromptsController < ApplicationController
       
   end
 
+  def destroy
+     @prompt = Prompt.find(params[:id])
+     @prompt.active = 0
+      respond_to do |format|
+        if @prompt.save
+          flash[:notice] = 'Prompt hidden.'
+          format.html { redirect_to(prompts_path) }
+          format.xml  { head :ok }
+        else
+          flash[:notice] = 'Prompt NOT hidden.'
+          format.html { redirect_to(prompts_path) }
+          format.xml  { render :xml => @prompt.errors, :status => :unprocessable_entity }
+        end
+      end
+   end
 
 end

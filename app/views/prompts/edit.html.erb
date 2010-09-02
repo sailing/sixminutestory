@@ -47,5 +47,7 @@
 <%= image_submit_tag("save.png", :name => "save", :id => "save-button", :disabled => false) %>  </p>
 <% end %>
 
+<% if is_admin %>
 <%= link_to 'Destroy', @prompt, :confirm => 'Are you sure?', :method => :delete %> || 
 <%= link_to 'Back', prompts_path %>
+<% end %>

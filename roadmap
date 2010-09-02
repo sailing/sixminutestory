@@ -5,11 +5,12 @@ X add attribution on "use other prompts" page
 
 2.1.1 
 ? make Pagination keep track of named scope
-- Make facebook sharing include title, etc automatically
+x Make facebook sharing include title, etc automatically
 
 
 2.1.2
 - troubleshoot this readonly record error
+- improve show prompts page
 
 2.2 roadmap:
 - add quotes as prompts

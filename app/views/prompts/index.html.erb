@@ -17,7 +17,8 @@
 	  		<th>Hero</th>
 	    	<th>Villain</th>
 	    	<th>Goal</th>
-			<th>Write</th>
+			<th colspan=2>Write</th>
+			
 			<% if is_admin %>
 				<th>Use on:</th>
 			<% end %>
@@ -28,9 +29,10 @@
 		    <td><%=h prompt.hero %></td>
 		    <td><%=h prompt.villain %></td>
 		    <td><%=h prompt.goal %></td>
+			<td><%= link_to "details", prompt_url(prompt) -%></td>
 		    <td>
 			<%= link_to 'Use this Prompt',write_to_prompt_path(prompt.id)%>
-
+			
 			<% if is_admin %>
 
 				</td>
@@ -78,7 +80,7 @@
 			<% end %>
 			<br />
 			<%= link_to "click to use", write_to_prompt_url(prompt) %>
-			
+ 			<%= link_to "details", prompt_url(prompt) -%>
 			<% if is_admin %>
 			
 				| <%= link_to "edit", edit_prompt_url(prompt) %>
@@ -117,6 +119,7 @@
 			<%= link_to tag("img", { :src => prompt.refcode, :style => "width:250px;" }), write_to_prompt_url(prompt) %>
 			<br />
 			<%= link_to "click to use", write_to_prompt_url(prompt) %>
+			| <%= link_to "details", prompt_url(prompt) -%>
 			
 			<% if is_admin %>
 			
@@ -153,9 +156,9 @@
   		<th>Hero</th>
     	<th>Villain</th>
     	<th>Goal</th>
-		<th>Write</th>
+		<th colspan=2>Write</th>
 		<% if is_admin %>
-			<th>Use on:</th>
+			<th>Use on</th>
 		<% end %>
 
 </tr>
@@ -164,9 +167,12 @@
 	    <td><%=h prompt.hero %></td>
 	    <td><%=h prompt.villain %></td>
 	    <td><%=h prompt.goal %></td>
+		<td><%= link_to "details", prompt_url(prompt) -%></td>
+	
 	    <td>
 		<%= link_to 'Use this Prompt',write_to_prompt_path(prompt.id)%>
-
+		<%= link_to "details", prompt_url(prompt) -%>
+		
 		<% if is_admin %>
 
 			</td>
@@ -184,7 +190,7 @@
 <% end %>
 
 <tr class="row">
-	<% is_admin ? @colspan = 5 : @colspan = 4 %>
+	<% is_admin ? @colspan = 6 : @colspan = 5 %>
 	<td colspan=<%=@colspan%>>
 		<%= will_paginate @hvg %>
 	</td>

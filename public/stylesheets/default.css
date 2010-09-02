@@ -1,13 +1,13 @@
 
-/*				 							*/
-/*				_  _						*/
-/*				  o	* *						*/
-/*				 							*/				
+/*				 														*/
+/*				_  _												*/
+/*				  o	* *											*/
+/*				 														*/				
 /*			CSS and the six minute story	*/
-/*			by Galen Sanford				*/
-/*			galenmail@gmail.com				*/
-/*				 							*/
-/*				 							*/
+/*			by Galen Sanford							*/
+/*			galenmail@gmail.com						*/
+/*				 														*/
+/*				 														*/
 
 /* Colors */
 /*
@@ -27,9 +27,9 @@ Great Green => #5f9f3f
 */
 
 
-/*							*/
+/*												*/
 /* 	Re-styled HTML tags 	*/
-/*							*/
+/*												*/
 
 
 
@@ -39,7 +39,7 @@ body {
   padding:0;
 
 	vertical-align:baseline;
-	background: #dfffff url(../images/sublogo_new.png) bottom right fixed no-repeat;
+	background: #dfffff url(../images/sublogo_new_cropped.png) bottom right fixed no-repeat;
 	z-index:1;
 
 
@@ -776,8 +776,13 @@ background-color:#a759d0;
 }
 
 #prompt {
-	width:100%;
-	padding:0px;
+	width:50%;
+	padding:10px;
+	background: #000;
+
+	-moz-border-radius:10px;  
+	-webkit-border-radius:10px;
+
 }
 
 #prompt .labels {
