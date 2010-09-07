@@ -11,8 +11,11 @@ x Make facebook sharing include title, etc automatically
 
 2.1.2
 - troubleshoot this readonly record error
-- troubleshoot pagination on archived prompts
+x troubleshoot pagination on archived prompts
+x troubleshoot pagination on unverified archived prompts
 x improve show prompts page
+- create write link on show prompt page
+- and a "write to this prompt" on show story page
 
 2.2 roadmap:
 - add quotes as prompts
