@@ -15,14 +15,21 @@
 	<%= javascript_include_tag :all, :cache => true %>
 
   	<%= stylesheet_link_tag 'default', :cache => true %>
+	<% if @story.present? %>
+		<!-- tweetmeme meta tags -->
+	  	<meta name="tweetmeme-title" content="<%= @story.title -%> – Six Minute Story" />  
 	
-	<!-- tweetmeme meta tags -->
-  	<meta name="tweetmeme-title" content="Six Minute Story – <%= @content_for_pagename %>" />  
+		<meta name="title" content="<%= @story.title -%> – Six Minute Story" />
+		<meta name="description" content="<%= truncate(@story.description, 150) -%>" />
+	<% else %>
+		<!-- tweetmeme meta tags -->
+	  	<meta name="tweetmeme-title" content="Six Minute Story – <%= @content_for_pagename %>" />  
 	
-	<meta name="title" content="Six Minute Story" />
-	<meta name="description" content="Six Minute Story is a growing collection of stories written in six minutes. Together, we are filling the world with ad-libbed eloquence." />
+		<meta name="title" content="Six Minute Story" />
+		<meta name="description" content="Six Minute Story is a growing collection of stories written in six minutes. Together, we are filling the world with ad-libbed eloquence." />
+	<% end %>
 	<link rel="image_src" href="http://sixminutestory.com/images/logo_square.png" />
-	
+
 	<link rel="alternate" href="<%= @rss_url.present? ? @rss_url : 'http://feeds.feedburner.com/sixminutestory/recent' %>" type="application/rss+xml" media="screen" title="RSS" charset="utf-8">
 </head>
 <body>
@@ -217,52 +224,6 @@
 			</div>
 		</div>
 	</div>
-	<% if !request.path.include?("write") %>
-	<div id="share_container">
-	<script type="text/javascript">
-	
-			var addthis_options = 'email, facebook, delicious, google, reddit, spurl, stumbleupon, tumblr, twitter, digg, more';
-			
-			tweetmeme_style = 'compact';  
-	</script>
-	
-		<table>
-			<tr>
-					<td>
-						<a 	name="fb_share" class="fb_share" type="button_count" 
-							href="http://www.facebook.com/sharer.php">Share</a>
-							<script 	src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" 	
-										type="text/javascript">
-							</script>
-					</td>
-					<td>
-							<!-- AddThis Button BEGIN -->
-							<a 	href="http://www.addthis.com/bookmark.php?v=250&pub=xa-4a575e99434e72bb" 
-								onmouseover="return addthis_open(this, '', '[URL]', '[TITLE]')" 
-								onmouseout="addthis_close()" 
-								onclick="return addthis_sendto()">
-							<img src="http://s7.addthis.com/static/btn/sm-share-en.gif" 
-								width="83" 
-								height="16" 
-								alt="Bookmark and Share" 
-								style="border:0"/>
-							</a>
-								<script 
-								type="text/javascript"
-							src="http://s7.addthis.com/js/250/addthis_widget.js?pub=xa-4a575e99434e72bb">
-								</script>
-							<!-- AddThis Button END -->
-					</td>
-			
-				<td>
-					<script 	type="text/javascript"
-				 			src="http://tweetmeme.com/i/scripts/button.js">
-					</script>
-				</td>
-			</tr>
-		</table>
-	</div>
-	<% end %>
 	
 		<% if flash[:notice] || flash[:error] %>
 		<!-- Notice appears, then fades out over a few seconds. -->
