@@ -10,6 +10,7 @@ class PromptsController < ApplicationController
   def index
       page = params[:page] || 1
       page_i = params[:page_i] || 1
+      page_firstlines = params[:page_firstlines] || 1
       per_page = 10
       order = "created_at DESC"
       
@@ -24,10 +25,14 @@ class PromptsController < ApplicationController
           when /^\/prompts\/unverified/
             @images = Prompt.unverified.images.paginate :page => page_i, :per_page => per_page, :order => order
             @hvg = Prompt.unverified.hvg.paginate :page => page, :per_page => per_page, :order => order
-            
+            @firstlines = Prompt.unverified.firstlines.paginate :page => page_firstlines, :per_page => per_page, :order => order
+         #   @threewords = Prompt.unverified.threewords.paginate :page => page_threewords, :per_page => per_page, :order => order
         else
             @images = Prompt.verified.images.paginate :page => page_i, :per_page => per_page, :order => order
             @hvg = Prompt.verified.hvg.paginate :page => page, :per_page => per_page, :order => order
+            @firstlines = Prompt.verified.firstlines.paginate :page => page_firstlines, :per_page => per_page, :order => order
+ #           @threewords = Prompt.verified.threewords.paginate :page => page_threewords, :per_page => per_page, :order => order
+        
         end
           
       rescue
@@ -116,8 +121,11 @@ class PromptsController < ApplicationController
     @prompt = Prompt.new(params[:prompt])
     @prompt.user_id = current_user.id
       
-      if @prompt.attribution_url.present?
-        @prompt.kind = "flickr"        
+      if @prompt.attribution_url.present? and @prompt.refcode.blank?
+        @prompt.kind = "flickr" 
+      elsif @prompt.refcode.present?
+        @prompt.kind = "firstline" 
+      # 3ww??
       else
         @prompt.kind = "hvg"
       end

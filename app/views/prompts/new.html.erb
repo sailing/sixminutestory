@@ -15,6 +15,9 @@
     <%= f.label :goal %><br />
     <%= f.text_field :goal %>
   </p>
+ <p>
+    <%= image_submit_tag("contribute.png", :name => "contribute", :id => "contribute-button", :disabled => false) %>
+  </p>
 
 <h4>Images</h4>
 	<p>
@@ -22,8 +25,21 @@
 	<span style="font-size:small;">(Please link to the flickr page, not the image directly.)</span> <br />
     <%= f.text_field :attribution_url %>
   </p>
+ <p>
+    <%= image_submit_tag("contribute.png", :name => "contribute", :id => "contribute-button", :disabled => false) %>
+  </p>
+
+<h4>First line</h4>
+	<p>
+    <%= f.label :refcode, "Suggest the first line of a story. Writers will then continue the story in six minutes or less." %>
 	
-  <p>
+	<br />
+	
+	<span style="font-size:small;">(Please only supply lines you create yourself. You will be attributed.)</span> <br />
+    <%= f.text_field :refcode %>
+  </p>
+
+ <p>
     <%= image_submit_tag("contribute.png", :name => "contribute", :id => "contribute-button", :disabled => false) %>
   </p>
 <% end %>

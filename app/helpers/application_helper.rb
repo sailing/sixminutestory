@@ -46,30 +46,57 @@ module ApplicationHelper
         
       def show_prompt  
         if @prompt
+          unless request.path.include?("write")   
+            write_to_prompt = content_tag (:div, (link_to "Write your own story to this prompt", write_to_prompt_url(@prompt)))
+            freeform = "Freeform prompt. Every Friday, writers face a blank page without any prompt. They write whatever they want in six minutes or less."
+          else
+            freeform = "Write as you please, <br /> in six minutes, <br /> like a breeze."
+            write_to_prompt = ""
+          end
           case @prompt.kind
           when "flickr"
             if @prompt.refcode.present?
             # flickr img code
             @content_tags = content_tag(:div, tag("img", { :src => @prompt.refcode }), :class => "prompt")
             	if @prompt.attribution.present? and @prompt.attribution_url.present? and @prompt.kind.present? and @prompt.license.present?
-             @content_tags << content_tag(:div, content_tag(:span, "image by <a href='#{@prompt.attribution_url}'>#{@prompt.attribution}</a> on #{@prompt.kind}. Licensed under #{@prompt.license}."), :class => "prompt")
-            end
-            @content_tags
+                  @content_tags << content_tag(:div, content_tag(:span, "image by <a href='#{@prompt.attribution_url}'>#{@prompt.attribution}</a> on #{@prompt.kind}. <br /> Licensed under #{@prompt.license}."), :class => "prompt")
+              end
+            
+            
           else
-            content_tag(:p, "Write as you please, in six minutes, like a breeze.")
+            @content_tags = content_tag(:div, freeform)
           end
-          when @prompt.kind == "youtube"
+          when "youtube"
             #youtube embed code
-
+            
           when "vimeo"
             #vimeo embed code
           when "quotation"
             #text w attributions
+          when "firstline"
+            if @prompt.refcode
+              
+              @content_tags = content_tag(:div, @prompt.refcode, :class => "firstline")
+                
+              
+            else
+              @content_tags = content_tag(:div, freeform)
+            end
             
           when "3ww"
             #three word wednesdays??
+            if @prompt.refcode
+              
+              @content_tags = content_tag(:div, @prompt.refcode, :class => "firstline")
+                
+              
+            else
+              @content_tags = content_tag(:div, freeform)
+            end
+            
           when "hvg"
             # hero villain goal
+            
             @content_tags = content_tag(:span, "hero", :class => "labels") 
             @content_tags << content_tag(:span, (h @prompt.hero), :class => "entries")
             @content_tags << tag("br")
@@ -79,17 +106,20 @@ module ApplicationHelper
             @content_tags << content_tag(:span, "goal", :class => "labels") 
             @content_tags <<   content_tag(:span, (h @prompt.goal), :class => "entries")
             @content_tags <<   tag("br")
-            content_tag(
-            :div, (
-                @content_tags
-                  ), 
-            :id => "prompt")
-
+            
+            
           else
-            content_tag(:p, "Write as you please, in six minutes, like a breeze.")
+            @content_tags = content_tag(:div, freeform, :class => "entries")
+            @content_tags << content_tag(:div, write_to_prompt, :class => "entries")
+            
           end
-      
-        end
+            if @prompt.user_id.present?
+                @content_tags << tag("br")
+                @content_tags << content_tag(:div, content_tag(:span, "prompt " + " (" + (link_to "details", prompt_url(@prompt)) + ")" + " suggested by " + (link_to @prompt.user.login, profile_url(@prompt.user)) + "<br /> #{write_to_prompt}"), :class => "prompt")
+             end
+             content_tag(:div, @content_tags, :id => "prompt")
+             
+            end
       end
 
         def select_tag_for_filter(model, nvpairs, params)

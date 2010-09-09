@@ -73,7 +73,12 @@
 	
 	<div id="no_stories">
 		<p>
-			No stories await you here. Go <%= link_to "write your own", write_url %>.
+			No stories await you here. Go 
+			<% if @prompt.present? %>
+				<%= link_to "write your own", write_to_prompt_url(@prompt) %>
+			<% else %>	
+				<%= link_to "write your own", write_url %>.
+			<% end %>
 		</p>
 	</div>	
 <% end %>

@@ -17,7 +17,7 @@
 	  		<th>Hero</th>
 	    	<th>Villain</th>
 	    	<th>Goal</th>
-			<th colspan=2>Write</th>
+			<th>Write</th>
 			
 			<% if is_admin %>
 				<th>Use on:</th>
@@ -29,10 +29,9 @@
 		    <td><%=h prompt.hero %></td>
 		    <td><%=h prompt.villain %></td>
 		    <td><%=h prompt.goal %></td>
-			<td><%= link_to "details", prompt_url(prompt) -%></td>
 		    <td>
 			<%= link_to 'Use this Prompt',write_to_prompt_path(prompt.id)%>
-			
+			| <%= link_to "details", prompt_url(prompt) -%>		
 			<% if is_admin %>
 
 				</td>
@@ -61,51 +60,113 @@
 
 <% elsif @table == "images" %>	
 
-<% unless @prompts.empty? %>
-	<table>
-	<% i = 0 %>
-<% @prompts.each do |prompt| %>
-	<% i += 1 %>
-		<% if i == 1 %>
-			<tr>
-		<% end %>
-
-		<td>
-			<%= link_to tag("img", { :src => prompt.refcode, :style => "width:250px;" }), write_to_prompt_url(prompt) %>
-			<% if prompt.attribution.present? and prompt.attribution_url.present? and prompt.kind.present? and prompt.license.present? %>
-			<br />
-			
-			by 
-			<%= link_to prompt.attribution, prompt.attribution_url %> on <%= prompt.kind %>. Licensed under <%= prompt.license %>.
-			<% end %>
-			<br />
-			<%= link_to "click to use", write_to_prompt_url(prompt) %>
- 			| <%= link_to "details", prompt_url(prompt) -%>
-			<% if is_admin %>
-			
-				| <%= link_to "edit", edit_prompt_url(prompt) %>
-			<% end %>
-			
-		</td>
-		
-		<% if i == 2 %>
-			</tr>
+	<% unless @prompts.empty? %>
+		<table>
 			<% i = 0 %>
-		<% elsif @prompts.size == 1%>
-			</tr>
-		<% end %>
+			<% @prompts.each do |prompt| %>
+				<% i += 1 %>
+				<% if i == 1 %>
+					<tr>
+				<% end %>
+
+				<td>
+					<%= link_to tag("img", { :src => prompt.refcode, :style => "width:250px;" }), write_to_prompt_url(prompt) %>
+					<% if prompt.attribution.present? and prompt.attribution_url.present? and prompt.kind.present? and prompt.license.present? %>
+
+							<br />
+			
+							by <%= link_to prompt.attribution, prompt.attribution_url %> 
+							on <%= prompt.kind %>. Licensed under <%= prompt.license %>.
+					<% end %>
+					<br />
+			
+					<%= link_to "click to use", write_to_prompt_url(prompt) %>
+	 				| <%= link_to "details", prompt_url(prompt) -%>
+				
+					<% if is_admin %>
+						| <%= link_to "edit", edit_prompt_url(prompt) %>
+					<% end %>
+			
+				</td>
 		
+				<% if i == 2 %>
+					</tr>
+					<% i = 0 %>
+				<% elsif @prompts.size == 1%>
+					</tr>
+				<% end %>
+		
+			<% end %>
+			<tr>
+				<td colspan=2>
+					<%= will_paginate @prompts %>
+				</td>
+			</tr>
+		</table>
+
+
 	<% end %>
-<tr>
-	<td colspan=2>
-		<%= will_paginate @prompts %>
-	</td>
-</tr>
-</table>
+
+<% elsif @table == "firstlines" %>
+	<% unless @prompts.empty? %>
+		<table>
+		<% @prompts.each do |prompt| %>
+
+				<tr>
+					<td>
+						<%= truncate(prompt.refcode,100) %>
+					</td>
+					<td>
+						<%= link_to "click to use", write_to_prompt_url(prompt) %>
+						| <%= link_to "details", prompt_url(prompt) -%>
+						<% if is_admin %>
+
+							| <%= link_to "edit", edit_prompt_url(prompt) %>
+						<% end %>
+					</td>
+				</tr>
+		<% end %>
+		<tr>
+			<td colspan=2>
+				<%= will_paginate @prompts %>
+			</td>
+		</tr>
+		</table>
+
+	<% end %>
+	
+<% else %>
+
+<!-- firstlines -->
+<% unless @firstlines.empty? %>
+	<table>
+	<% @firstlines.each do |prompt| %>
+		
+			<tr>
+				<td>
+					<%= truncate(prompt.refcode,100) %>
+				</td>
+				<td>
+					<%= link_to "click to use", write_to_prompt_url(prompt) %>
+					| <%= link_to "details", prompt_url(prompt) -%>
+					<% if is_admin %>
+
+						| <%= link_to "edit", edit_prompt_url(prompt) %>
+					<% end %>
+				</td>
+			</tr>
+	<% end %>
+	<tr>
+		<td>
+
+			<%= will_paginate @firstlines, :param_name => :page_firstlines %>
+		</td>
+	</tr>
+	</table>
 <% end %>
 
-<% else %>
 <!-- Images -->
+
 <% unless @images.empty? %>
 	<table>
 <% i = 0 %>
@@ -163,7 +224,7 @@
   		<th>Hero</th>
     	<th>Villain</th>
     	<th>Goal</th>
-		<th colspan=2>Write</th>
+		<th>Write</th>
 		<% if is_admin %>
 			<th>Use on</th>
 		<% end %>
@@ -174,11 +235,10 @@
 	    <td><%=h prompt.hero %></td>
 	    <td><%=h prompt.villain %></td>
 	    <td><%=h prompt.goal %></td>
-		<td><%= link_to "details", prompt_url(prompt) -%></td>
 	
 	    <td>
 		<%= link_to 'Use this Prompt',write_to_prompt_path(prompt.id)%>
-		<%= link_to "details", prompt_url(prompt) -%>
+		| <%= link_to "details", prompt_url(prompt) -%>
 		
 		<% if is_admin %>
 
@@ -197,7 +257,7 @@
 <% end %>
 
 <tr class="row">
-	<% is_admin ? @colspan = 6 : @colspan = 5 %>
+	<% is_admin ? @colspan = 5 : @colspan = 4 %>
 	<td colspan=<%=@colspan%>>
 		<%= will_paginate @hvg %>
 	</td>

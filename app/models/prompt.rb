@@ -13,8 +13,8 @@ class Prompt < ActiveRecord::Base
   named_scope :unverified, lambda { { :conditions => ['active = ? AND (use_on IS ? OR use_on > ?)', true, nil, Date.today] } }
   named_scope :images, lambda { { :conditions => ['active = ? AND kind = ? ', true, "flickr"]} }
   named_scope :hvg, lambda { { :conditions => ['active = ? AND kind = ? ', true, "hvg" ]} }
-  
-
+  named_scope :firstlines, lambda { { :conditions => ['active = ? AND kind = ? ', true, "firstline" ]} }
+  named_scope :threewords, lambda { { :conditions => ['active = ? AND kind = ? ', true, "3ww" ]} }
   # Validations
 #  validates_presence_of   :hero, :message => "Need a hero. Sort of Important."
 #  validates_presence_of   :villain, :message => "Who's the villain?"
@@ -24,10 +24,12 @@ class Prompt < ActiveRecord::Base
   FILTERS = [
     {:scope => "verified",    :label => "All"},
     {:scope => "images",    :label => "Images"},
-    {:scope => "hvg",       :label => "Hero Villain Goal"}
+    {:scope => "hvg",       :label => "Hero Villain Goal"},
+    {:scope => "firstlines", :label => "First lines"}
   ]
 
 #  {:scope => "popular", :label => "Popular"} 
+# {:scope => "threewords", :label => "#3WW"}
 
 #  {:scope => "active",      :label => "Active"},
 #   {:scope => "inactive",    :label => "Inactive"}, 

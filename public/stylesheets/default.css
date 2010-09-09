@@ -776,18 +776,34 @@ background-color:#a759d0;
 }
 
 #prompt {
-	width:50%;
-	padding:10px;
-	background: #000;
-
+	width:100%;
+	padding:0px;
+	background: #111;
 	-moz-border-radius:10px;  
 	-webkit-border-radius:10px;
 
 }
 
+#prompt p {
+		display:inline;
+		color:#fff;
+		position:relative;
+		left:1%;
+}
+
+#prompt span {
+	font-size:.8em;
+	
+}
+
+#prompt .firstline {
+	width:90%; 
+	margin:0px auto;
+	
+}
 #prompt .labels {
 	margin-left:2%;
-	font-size:.8em;
+	font-size:1em;
 	line-height:21px;
 	font-weight:500;
 	color:#c97bf2;
@@ -800,6 +816,7 @@ background-color:#a759d0;
 	font-weight:normal;
 	letter-spacing:.075em;
 	line-height:2em;
+	color:#fff;
 }
 
 .button_container {
