@@ -47,7 +47,7 @@ module ApplicationHelper
       def show_prompt  
         if @prompt
           unless request.path.include?("write")   
-            write_to_prompt = content_tag (:div, (link_to "Write your own story to this prompt", write_to_prompt_url(@prompt)))
+            write_to_prompt = content_tag(:div, (link_to "Write your own story to this prompt", write_to_prompt_url(@prompt)))
             freeform = "Freeform prompt. Every Friday, writers face a blank page without any prompt. They write whatever they want in six minutes or less."
           else
             freeform = "Write as you please, <br /> in six minutes, <br /> like a breeze."

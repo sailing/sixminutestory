@@ -9,21 +9,21 @@ class Hermes < ActionMailer::Base
   def comment_notification(writer, story, commenter, comment)
      from "no-reply@sixminutestory.com"
      recipients writer.email_address
-     subject "Six Minute Story - #{commenter.login} commented on your story \"#{story.title}\""
+     subject "Six Minute Story – #{commenter.login} commented on your story \"#{story.title}\""
      body :recipient => writer, :story => story, :commenter => commenter, :comment => comment
    end
    
    def signup_notification(recipient)
      from "no-reply@sixminutestory.com"
        recipients recipient.email_address
-       subject "Six Minute Story - Welcome!"
+       subject "Six Minute Story – Welcome!"
        body :recipient => recipient
    end
    
    def following_notification(writer, follower)
      from "no-reply@sixminutestory.com"
       recipients writer.email_address
-      subject "Six Minute Story - #{follower.login} is now following you!"
+      subject "Six Minute Story – #{follower.login} is now following you!"
       body :recipient => writer, :follower => follower
    end
    
@@ -31,7 +31,7 @@ class Hermes < ActionMailer::Base
     from "no-reply@sixminutestory.com"
      recipients "no-reply@sixminutestory.com"
      bcc followers
-     subject "Six Minute Story - #{writer.login} has written a new story!"
+     subject "Six Minute Story – #{writer.login} has written a new story!"
      body :story => story, :writer => writer
   end
 end
