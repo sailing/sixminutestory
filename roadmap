@@ -17,11 +17,12 @@ x and a "write to this prompt" on show story page
 
 2.2 roadmap:
 x add firstlines as prompts
+- automatically include first lines when story starts.
 - integrate flickr api
 - integrate emails ***************
 
 2.2.1
-- enable deleting prompts
+x enable deleting prompts
 
 2.3 
 - spellcheck
