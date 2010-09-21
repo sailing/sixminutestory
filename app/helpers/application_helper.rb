@@ -56,8 +56,8 @@ module ApplicationHelper
           case @prompt.kind
           when "flickr"
             if @prompt.refcode.present?
-            # flickr img code
-            @content_tags = content_tag(:div, tag("img", { :src => @prompt.refcode }), :class => "prompt")
+            # flickr img code            
+            @content_tags << content_tag(:div, tag("img", { :src => @prompt.refcode }), :class => "prompt")
             	if @prompt.attribution.present? and @prompt.attribution_url.present? and @prompt.kind.present? and @prompt.license.present?
                   @content_tags << content_tag(:div, content_tag(:span, "image by <a href='#{@prompt.attribution_url}'>#{@prompt.attribution}</a> on #{@prompt.kind}. <br /> Licensed under #{@prompt.license}."), :class => "prompt")
               end
@@ -75,8 +75,9 @@ module ApplicationHelper
             #text w attributions
           when "firstline"
             if @prompt.refcode
+              @content_tags = content_tag(:h2, "First line:")
               
-              @content_tags = content_tag(:div, @prompt.refcode, :class => "firstline")
+              @content_tags << content_tag(:div, @prompt.refcode, :class => "firstline")
                 
               
             else
@@ -96,7 +97,6 @@ module ApplicationHelper
             
           when "hvg"
             # hero villain goal
-            
             @content_tags = content_tag(:span, "hero", :class => "labels") 
             @content_tags << content_tag(:span, (h @prompt.hero), :class => "entries")
             @content_tags << tag("br")

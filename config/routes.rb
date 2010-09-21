@@ -29,7 +29,7 @@ ActionController::Routing::Routes.draw do |map|
     map.read_random 'random', :controller => "stories", :action => "random"
     map.flag_story 'flag', :controller => "stories", :action => "flag_story", :conditions => { :method => :post }
     map.tag 'tag/:name', :controller => "tags", :action => "show", :requirements => { :name => /.*/ }
-    map.rss 'rss/:id', :controller => "users", :action => "show"
+    #map.rss 'rss/:id', :controller => "users", :action => "show"
     
     #user activities
     map.login 'login', :controller => "user_sessions", :action => "new"

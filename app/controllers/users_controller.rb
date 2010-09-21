@@ -52,7 +52,7 @@ class UsersController < ApplicationController
       
         elsif (current_user == @user or (request.path.include?("rss") and request.format == "rss")) and !@user.writers.empty?
             @stories = Story.paginate_by_user_id @user.writers, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}
-              @rss_url = rss_url(@user.login, :format => :rss)
+              #@rss_url = rss_url(@user.login, :format => :rss)
             
         else
             @stories = Story.paginate_by_user_id @user.id, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    

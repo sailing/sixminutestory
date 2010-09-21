@@ -132,10 +132,10 @@ class StoriesController < ApplicationController
         
 
            # increment story counter
-             if @story.counter 
-               @story.counter += 1 
-               @story.save ? @saved = "saved" : @saved = "not saved"
-             end
+             #if @story.counter 
+            #   @story.counter += 1 
+             #  @story.save ? @saved = "saved" : @saved = "not saved"
+             #end
 
              respond_to do |format|
                format.html # show.html.erb
@@ -285,10 +285,11 @@ class StoriesController < ApplicationController
   
   
   def flag_story
-    @story = Story.find(params[:story])
+    @story = Story.find(params[:story], :readonly => false)
     @story.flagged += 1
+    
      respond_to do |format|
-       if @story.save
+       if @story.save!
          flash[:notice] = 'Thank you for flagging the story.'
          format.html { redirect_to(read_story_url(@story)) }
          format.xml  { head :ok }

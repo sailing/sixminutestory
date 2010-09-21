@@ -1007,13 +1007,13 @@ background-color:#a759d0;
 
 #share {
 	float:right;
-	width:40%;
-	text-align:center;
+	width:50px;
+	text-align:left;
 	background:#bfcfdf;
 	-moz-border-radius:10px;  
 	-webkit-border-radius:10px;
-	padding:25px 0px;
-	margin: 0 15px 15px;
+	padding:25px 15px;
+	margin: 0 1% 2% 5%;
 	
 }
 											

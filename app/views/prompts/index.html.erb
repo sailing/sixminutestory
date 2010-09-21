@@ -10,6 +10,7 @@
 <div id="listPrompts">
 <% if @table == "hvg" %>
 <% unless @prompts.empty? %>
+<h2>Hero-Villain-Goal</h2>
 	<table>
 
 
@@ -61,6 +62,7 @@
 <% elsif @table == "images" %>	
 
 	<% unless @prompts.empty? %>
+	<h2>Images</h2>
 		<table>
 			<% i = 0 %>
 			<% @prompts.each do |prompt| %>
@@ -109,6 +111,7 @@
 
 <% elsif @table == "firstlines" %>
 	<% unless @prompts.empty? %>
+	<h2>First lines</h2>
 		<table>
 		<% @prompts.each do |prompt| %>
 
@@ -139,6 +142,7 @@
 
 <!-- firstlines -->
 <% unless @firstlines.empty? %>
+<h2>First lines</h2>
 	<table>
 	<% @firstlines.each do |prompt| %>
 		
@@ -168,6 +172,7 @@
 <!-- Images -->
 
 <% unless @images.empty? %>
+<h2>Images</h2>
 	<table>
 <% i = 0 %>
 <% @images.each do |prompt| %>
@@ -217,6 +222,7 @@
 
 <!-- hero villain goal -->
 <% unless @hvg.empty? %>
+<h2>Hero-Villain-Goal</h2>
 <table>
 
 
