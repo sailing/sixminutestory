@@ -300,9 +300,12 @@ class StoriesController < ApplicationController
     
      respond_to do |format|
        if @story.save!
-         flash[:notice] = 'Thank you for flagging the story.'
-         format.html { redirect_to(read_story_url(@story)) }
-         format.xml  { head :ok }
+         format.html { 
+           render :update do |page| 
+              page.replace_html :flag_button, "Flagged. Thanks."
+            end
+            }
+         format.xml  { head :ok }         
        else
          flash[:notice] = 'Something went wrong at the story was not flagged. Please contact us directly.'
          format.html { redirect_to(read_story_url(@story)) }

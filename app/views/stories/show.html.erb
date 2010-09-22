@@ -79,7 +79,7 @@
 		
 
 	<% end %><!-- end if frontpage conditional -->
-<h2>Browse</h2>
+<h2>Browse <%= @featured ? "featured" : "stories" %></h2>
 	<div id="toolbar">
 		<%= render :partial => "toolbar", :locals => { :story => @story } %>
 	</div>
@@ -174,14 +174,15 @@
 		<div id="flag">
 						<!-- This is how people flag stories -->
 		
-			<% form_tag(flag_story_url, :method => "post") do -%>
+			<% form_remote_tag(:url => flag_story_url, :method => "post") do -%>
 
 			<%= hidden_field_tag 'story', @story.id %>
+			<div id="flag_button">
 			<%= image_submit_tag 'flag.png', 
 				:name => "flag", 
-				:id => "flag-button", 
+				:id => "flag-button",
 				:disabled => false %>
-
+			</div>
   			<% end -%>	
 		</div>
 		<% end -%>
