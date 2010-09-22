@@ -61,14 +61,17 @@
 										<%= link_to "Random", read_random_url %>
 								</div>
 							</td>
+							
+				<td>
+						<div class="purple button_container">	
 						
-							<td id="votes_<%= @story.id %>">
-								<div class="purple button_container">	
-								
-								<%= render 	:partial => "votes/story_vote", 
-											:locals => {:story => @story} %>	
-								</div>
-							</td>
+						<a href="#comments">
+							<div id="comments_count"><%= pluralize(@story.comments_count, 'remark') -%></div>
+						</a>
+						</div>
+				</td>
+						
+						
 			</tr>
 			<% end %>
 			
@@ -93,14 +96,14 @@
 								
 								</div>
 							</td>
-					<td>
-							<div class="purple button_container">	
 							
-							<a href="#comments">
-								<div id="comments_count"><%= pluralize(@story.comments_count, 'remark') -%></div>
-							</a>
-							</div>
-					</td>
+								<td id="votes_<%= @story.id %>">
+									<div class="purple button_container">	
+
+									<%= render 	:partial => "votes/story_vote", 
+												:locals => {:story => @story} %>	
+									</div>
+								</td>
 			</tr>
 		</table>
 		</div>

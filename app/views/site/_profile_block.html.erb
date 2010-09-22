@@ -21,14 +21,9 @@
 			</th>
 			<td>
 				<span>
-					 <%	
-						if @user.email_address.present? 
-							h(@user.email_address)
-						elsif @user.facebook_uid.present?
-							h(facebook_session.user.name)
-							h(@user.facebook_uid)
-						end 
-				 	%>
+					 <%	if @user.email_address.present? %> 
+						<%=h @user.email_address %>
+					<% end %>
 					
 				</span>
 			</td>

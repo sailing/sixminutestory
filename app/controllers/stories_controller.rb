@@ -96,22 +96,30 @@ class StoriesController < ApplicationController
     e = ActiveRecord::RecordNotFound
     begin
       
-          if request.path.include?("featured") and params[:id].blank?
+          unless request.path.include?("featured")
+            if params[:id].present?
+              @story = Story.find(params[:id], :conditions => {:active => true}, :include => :tags)
+              @previous = Story.previous(@story)
+              @next = Story.next(@story)
+            else
+              @story = Story.first(:conditions => {:active => true, :featured => true},:order => "updated_at ASC")
+              @featured = true
+              @frontpage = true
+              @previous_featured = Story.previous_featured(@story)
+              @next_featured = Story.next_featured(@story)
+            end
+          else
+            if params[:id].blank?
               @story = Story.first(:conditions => {:active => true, :featured => true},:order => "updated_at ASC")
               @featured = true
               @previous_featured = Story.previous_featured(@story)
               @next_featured = Story.next_featured(@story)
-          elsif request.path.include?("featured") and params[:id].present?
+            elsif
               @story = Story.find(params[:id], :conditions => {:active => true}, :include => :tags)
               @featured = true
               @previous_featured = Story.previous_featured(@story)
               @next_featured = Story.next_featured(@story)
-          
-          else
-              @story = Story.find(params[:id], :conditions => {:active => true}, :include => :tags)
-              @previous = Story.previous(@story)
-              @next = Story.next(@story)
-            
+            end  
           end
        
     rescue Exception => e

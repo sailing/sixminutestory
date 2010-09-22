@@ -114,7 +114,7 @@ ActionController::Routing::Routes.draw do |map|
       site.acknowledgements   '/acknowledgements', :action => "acknowledgements"
     end
 
-    map.root                  :controller => "stories",     :action => "index"
+    map.root              :controller => "stories",     :action => "show"
     map.formatted_root     '/featured.:format', :controller => "stories",  :action => "index"
     
   # Sample resource route (maps HTTP verbs to controller actions automatically):

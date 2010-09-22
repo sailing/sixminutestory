@@ -8,8 +8,9 @@
 	<div id="toolbar">
 		<%= render :partial => "toolbar", :locals => { :story => @story } %>
 	</div>
+	<% unless @frontpage %>
 		<%= render :partial => "site/profile_block" %>
-		
+	<% end %>
 		<div class="clear space"></div>
 		<% if is_admin %>
 			<% if @story.active == true %>
@@ -52,9 +53,9 @@
 
 
 
-
+<% unless @frontpage %>
  <h1><%= @featured ? "featured story" : "" %></h1>
- 
+<% end %>
 <%= render :partial => "layouts/browsing" %>
 	
 	
@@ -112,6 +113,8 @@
 		
 	</div>
 	</div>
+
+<% unless @frontpage %>
 	<div id="show_story">
 	<div id="information_container">
 		<div>
@@ -143,7 +146,6 @@
 
 
 </div>
-
 
 
 <div id="comments">
@@ -186,6 +188,6 @@
 		to remark.
 	</div>
 <% end %>
-
+<% end %> <!-- ending unless @frontpage -->
 
 
