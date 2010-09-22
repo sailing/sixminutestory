@@ -659,8 +659,9 @@ background-color:#a759d0;
 }
 
 #elevator_pitch {
-		width:90%;
+		width:80%;
 		margin:5% auto;
+		text-align:left;
 	}
 
 #elevator_pitch div {
@@ -1169,7 +1170,14 @@ background-color:#a759d0;
 }
 
 .story p {
+	text-align:justify;
+	line-height:1.9em;
+	font-size:1.2em;
+	letter-spacing:.09em;
+	color:#000;
+	font-family:"ITC Avant Garde Gothic Pro", georgia, serif;
 	
+	/*
 	text-indent:1em;
 	text-align:justify;	
 	color:#000;
@@ -1178,6 +1186,7 @@ background-color:#a759d0;
 	letter-spacing:.08em;
 	line-height:1.6em;
 	margin:0 0 15px;
+	*/
 }
 
 
