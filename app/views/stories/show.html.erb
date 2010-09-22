@@ -6,6 +6,8 @@
 
 <% content_for :sideyard do %>
 	<% if @frontpage %>
+	<% unless is_user %>
+
 	<div id="elevator_pitch">
 		
 		<!-- 
@@ -26,31 +28,25 @@
 		<p>
 			Together, we're <em>filling the world</em> with ad-libbed eloquence.
 		</p>
-		<% if is_user %>
-		<div class="green button_container">
-			<%= link_to "Go Write", write_url %>
-		</div>
-		<% else %>
-		
-
+	
+	</div>
+			<div id="show_story_toolbar" class="toolbar_container">
+				<table>
+					<tr>
+						<td>
+							<div class="green button_container">
+								<%= link_to "Learn more", faq_url %>
+							</div>
+						</td>
+						<td>
+							<div class="purple button_container">
+								<%= link_to "Join", register_url %>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
 		<% end %>
-	</div>
-	<div id="show_story_toolbar" class="toolbar_container">
-		<table>
-			<tr>
-				<td>
-					<div class="green button_container">
-						<%= link_to "Learn more", faq_url %>
-					</div>
-				</td>
-				<td>
-					<div class="purple button_container">
-						<%= link_to "Join", register_url %>
-					</div>
-				</td>
-			</tr>
-		</table>
-	</div>
 
 		<h2>Connect</h2>
 		<!-- List of things to add:  -->
