@@ -7,28 +7,6 @@
 	end
 %>
 
-<% content_for :sideyard do %>
-		
-			<h2>Connect</h2>
-			<!-- List of things to add:  -->
-			<% if is_user %>
-				<p>
-					<%= link_to "Suggest a Prompt", suggest_a_prompt_url %>
-				</p>
-			<% end %>
-			<div>
-			<p>
-			<a href="http://www.twitter.com/6minutestory">
-					<img 	src="http://twitter-badges.s3.amazonaws.com/follow_us-a.png" 
-							alt="Follow Six Minute Story on Twitter" />
-				</a>
-			</p>
-			<p>
-				<a href="http://facebook.com/sixminutestory"><%= image_tag "facebook.png" %></a>
-			</p>
-			</div>
-			
-<% end %>
 
 <% if !@stories.empty? %>
 
