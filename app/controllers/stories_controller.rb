@@ -132,10 +132,12 @@ class StoriesController < ApplicationController
         
 
            # increment story counter
-             #if @story.counter 
-            #   @story.counter += 1 
-             #  @story.save ? @saved = "saved" : @saved = "not saved"
-             #end
+             if @story.counter 
+               unless (current_user == @user)
+                 @story.counter += 1 
+                 @story.save
+              end
+             end
 
              respond_to do |format|
                format.html # show.html.erb

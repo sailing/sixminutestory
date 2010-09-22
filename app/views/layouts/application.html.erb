@@ -232,10 +232,12 @@
 		<div class="sideyardfg">
 			<div id="notice">
 				<%= image_tag "close.png", :onClick => visual_effect(:fade,"notice_container",:duration => 0.2) %>
+
 				<br />
 				<%= flash[:notice]  -%>
 				<br />
 				<%= flash[:error] -%>
+
 			</div>
 		</div>
 

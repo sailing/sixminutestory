@@ -18,8 +18,11 @@ x and a "write to this prompt" on show story page
 2.2 roadmap:
 x add firstlines as prompts
 - automatically include first lines when story starts.
-- integrate flickr api
-- integrate emails ***************
+x integrate emails ***************
+- new ways to praise consistent authors
+	- most followed authors list
+	- authors w most total cheers
+	- featured author page
 
 2.2.1
 x enable deleting prompts
@@ -27,6 +30,7 @@ x enable deleting prompts
 2.3 
 - spellcheck
 - new logo
+- integrate flickr api
 
 2.4 
 - music prompts

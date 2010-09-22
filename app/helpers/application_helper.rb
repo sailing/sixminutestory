@@ -110,7 +110,7 @@ module ApplicationHelper
             
           else
             @content_tags = content_tag(:div, freeform, :class => "entries")
-            @content_tags << content_tag(:div, write_to_prompt, :class => "entries")
+            
             
           end
             if @prompt.user_id.present?

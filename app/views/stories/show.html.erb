@@ -5,9 +5,9 @@
 
 
 <% content_for :sideyard do %>
-
+	<div id="toolbar">
 		<%= render :partial => "toolbar", :locals => { :story => @story } %>
-
+	</div>
 		<%= render :partial => "site/profile_block" %>
 		
 		<div class="clear space"></div>
@@ -144,11 +144,48 @@
 
 </div>
 
-<%= render :partial => "comments/comments" %>
 
 
+<div id="comments">
 
+	<% if @story.comments.present? %>
+	<h1>remarks</h1>
+			<%= render :partial => "comments/comment", :collection => @story.comments %>
+	<% end %>
+</div>
+<% if current_user %>
 
+	<div id="comment_form">
+		<h1>remark</h1>
+
+		<% form_remote_for :comment, :url => comments_path, :html => { :id => 'comments_form' } do |f| %>
+  			<%= f.hidden_field :story_id, :value => @story.id %>
+  			<%= f.hidden_field :user_id, :value => current_user.id %>
+  			
+			<div class="comment_field_container">
+				
+					<%= f.text_area :comment, :rows => 3, :cols => 55 %>
+
+	    			<div id="comment_submit_container" class="center">
+						<%= image_submit_tag("contribute.png", :name => "contribute", :id => "contribute-button", :disabled => false) %>
+
+					</div>
+				
+		  	</div>
+
+			
+	
+		<% end %>
+	</div>
+
+<% else %>
+	<div id="signin_or_register">
+		<%= rpx_popup( :link_text => "Login", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false ) %>
+		or
+		<%= rpx_popup( :link_text => "Join", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false ) %> 
+		to remark.
+	</div>
+<% end %>
 
 
 
