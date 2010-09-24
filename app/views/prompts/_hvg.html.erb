@@ -1,0 +1,20 @@
+	<tr class="<%= cycle('row_alternate', 'row') -%>">
+	    <td><%=h prompt.hero %></td>
+	    <td><%=h prompt.villain %></td>
+	    <td><%=h prompt.goal %></td>
+		<td><%= link_to (h(prompt.stories_count)), prompt_url(prompt) %></td>
+	    <td>
+		<%= link_to 'Use this Prompt',write_to_prompt_path(prompt.id)%>
+		| <%= link_to "details", prompt_url(prompt) -%>
+		
+		<% if is_admin %>
+
+			</td>
+			<td>
+
+			<%=h prompt.use_on %>	
+				<%= link_to 'Edit', edit_prompt_path(prompt) %>
+		<% end %>
+
+		</td>
+	  </tr>

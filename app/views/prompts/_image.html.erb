@@ -1,0 +1,24 @@
+
+				<td>
+					<%= link_to tag("img", { :src => prompt.refcode, :style => "width:250px;" }), write_to_prompt_url(prompt) %>
+					<% if prompt.attribution.present? and prompt.attribution_url.present? and prompt.kind.present? and prompt.license.present? %>
+
+							<br />
+			
+							by <%= link_to prompt.attribution, prompt.attribution_url %> 
+							on <%= prompt.kind %>. Licensed under <%= prompt.license %>.
+					<% end %>
+					<br />
+			
+					<%= link_to "click to use", write_to_prompt_url(prompt) %>
+	 				| <%= link_to "details", prompt_url(prompt) -%> | <%=h prompt.stories_count %> stories
+					
+				
+					<% if is_admin %>
+						| <%= link_to "edit", edit_prompt_url(prompt) %>
+					<% end %>
+			
+				</td>
+		
+			
+		

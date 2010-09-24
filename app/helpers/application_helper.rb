@@ -117,6 +117,7 @@ module ApplicationHelper
                 @content_tags << tag("br")
                 @content_tags << content_tag(:div, content_tag(:span, "prompt " + " (" + (link_to "details", prompt_url(@prompt)) + ")" + " suggested by " + (link_to @prompt.user.login, profile_url(@prompt.user)) + "<br /> #{write_to_prompt}"), :class => "prompt")
              end
+             
              content_tag(:div, @content_tags, :id => "prompt")
              
             end

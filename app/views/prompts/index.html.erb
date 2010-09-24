@@ -18,6 +18,7 @@
 	  		<th>Hero</th>
 	    	<th>Villain</th>
 	    	<th>Goal</th>
+			<th>Stories</th>
 			<th>Write</th>
 			
 			<% if is_admin %>
@@ -26,30 +27,11 @@
 
 	</tr>
 	<% @prompts.each do |prompt| %>
-	 		<tr class="<%= cycle('row_alternate', 'row') -%>">
-		    <td><%=h prompt.hero %></td>
-		    <td><%=h prompt.villain %></td>
-		    <td><%=h prompt.goal %></td>
-		    <td>
-			<%= link_to 'Use this Prompt',write_to_prompt_path(prompt.id)%>
-			| <%= link_to "details", prompt_url(prompt) -%>		
-			<% if is_admin %>
-
-				</td>
-				<td>
-
-				<%=h prompt.use_on %>	
-					<%= link_to 'Edit', edit_prompt_path(prompt) %>
-			<% end %>
-
-			</td>
-		  </tr>
-
-
-
+	 	<%= render :partial => 'hvg', :locals => {:prompt => prompt} %>
+		
 	<% end %>
 	<tr class="row">
-		<% is_admin ? @colspan = 5 : @colspan = 4 %>
+		<% is_admin ? @colspan = 6 : @colspan = 5 %>
 		<td colspan=<%=@colspan%>>
 			<%= will_paginate @prompts %>
 		</td>
@@ -71,33 +53,17 @@
 					<tr>
 				<% end %>
 
-				<td>
-					<%= link_to tag("img", { :src => prompt.refcode, :style => "width:250px;" }), write_to_prompt_url(prompt) %>
-					<% if prompt.attribution.present? and prompt.attribution_url.present? and prompt.kind.present? and prompt.license.present? %>
+				<%= render :partial => 'image', :locals => { :prompt => prompt }  %>
 
-							<br />
-			
-							by <%= link_to prompt.attribution, prompt.attribution_url %> 
-							on <%= prompt.kind %>. Licensed under <%= prompt.license %>.
-					<% end %>
-					<br />
-			
-					<%= link_to "click to use", write_to_prompt_url(prompt) %>
-	 				| <%= link_to "details", prompt_url(prompt) -%>
-				
-					<% if is_admin %>
-						| <%= link_to "edit", edit_prompt_url(prompt) %>
-					<% end %>
-			
-				</td>
-		
 				<% if i == 2 %>
 					</tr>
 					<% i = 0 %>
-				<% elsif @prompts.size == 1%>
+
+				<% elsif @prompts.size == 1 %>
 					</tr>
 				<% end %>
-		
+			
+
 			<% end %>
 			<tr>
 				<td colspan=2>
@@ -114,23 +80,10 @@
 	<h2>First lines</h2>
 		<table>
 		<% @prompts.each do |prompt| %>
-
-				<tr>
-					<td>
-						<%= truncate(prompt.refcode,100) %>
-					</td>
-					<td>
-						<%= link_to "click to use", write_to_prompt_url(prompt) %>
-						| <%= link_to "details", prompt_url(prompt) -%>
-						<% if is_admin %>
-
-							| <%= link_to "edit", edit_prompt_url(prompt) %>
-						<% end %>
-					</td>
-				</tr>
+			<%= render :partial => 'firstline', :locals => {:prompt => prompt } %>
 		<% end %>
 		<tr>
-			<td colspan=2>
+			<td colspan=3>
 				<%= will_paginate @prompts %>
 			</td>
 		</tr>
@@ -146,22 +99,11 @@
 	<table>
 	<% @firstlines.each do |prompt| %>
 		
-			<tr>
-				<td>
-					<%= truncate(prompt.refcode,100) %>
-				</td>
-				<td>
-					<%= link_to "click to use", write_to_prompt_url(prompt) %>
-					| <%= link_to "details", prompt_url(prompt) -%>
-					<% if is_admin %>
+		<%= render :partial => 'firstline', :locals => {:prompt => prompt } %>
 
-						| <%= link_to "edit", edit_prompt_url(prompt) %>
-					<% end %>
-				</td>
-			</tr>
 	<% end %>
 	<tr>
-		<td>
+		<td colspan=3>
 
 			<%= will_paginate @firstlines, :param_name => :page_firstlines %>
 		</td>
@@ -175,42 +117,26 @@
 <h2>Images</h2>
 	<table>
 <% i = 0 %>
-<% @images.each do |prompt| %>
-	<% i += 1 %>
+	<% @images.each do |prompt| %>
+		<% i += 1 %>
 		<% if i == 1 %>
 			<tr>
 		<% end %>
-
-		<td>
-			<%= link_to tag("img", { :src => prompt.refcode, :style => "width:250px;" }), write_to_prompt_url(prompt) %>
-				<% if prompt.attribution.present? and prompt.attribution_url.present? and prompt.kind.present? and prompt.license.present? %>
-				<br />
-
-				by 
-				<%= link_to prompt.attribution, prompt.attribution_url %> on <%= prompt.kind %>. Licensed under <%= prompt.license %>.
-				<% end %>
-			
-			<br />
-			<%= link_to "click to use", write_to_prompt_url(prompt) %>
-			| <%= link_to "details", prompt_url(prompt) -%>
-			
-			<% if is_admin %>
-			
-				| <%= link_to "edit", edit_prompt_url(prompt) %>
-			<% end %>
-		</td>
+	
+			<%= render :partial => 'image', :locals => { :prompt => prompt }  %>
+					
+		<% if i == 2 %>
+			</tr>
+			<% i = 0 %>
 		
-			<% if i == 2 %>
-				</tr>
-				<% i = 0 %>
-			<% elsif @images.size == 1%>
-				</tr>
-			<% end %>
-
+		<% elsif @images.size == 1 %>
+			</tr>
+		<% end %>
+	
 	<% end %>
 
 <tr>
-	<td>
+	<td colspan=2>
 		
 		<%= will_paginate @images, :param_name => :page_i %>
 	</td>
@@ -230,40 +156,22 @@
   		<th>Hero</th>
     	<th>Villain</th>
     	<th>Goal</th>
+		<th>Stories</th>
 		<th>Write</th>
+
 		<% if is_admin %>
 			<th>Use on</th>
 		<% end %>
 
 </tr>
 <% @hvg.each do |prompt| %>
-	<tr class="<%= cycle('row_alternate', 'row') -%>">
-	    <td><%=h prompt.hero %></td>
-	    <td><%=h prompt.villain %></td>
-	    <td><%=h prompt.goal %></td>
 	
-	    <td>
-		<%= link_to 'Use this Prompt',write_to_prompt_path(prompt.id)%>
-		| <%= link_to "details", prompt_url(prompt) -%>
-		
-		<% if is_admin %>
-
-			</td>
-			<td>
-
-			<%=h prompt.use_on %>	
-				<%= link_to 'Edit', edit_prompt_path(prompt) %>
-		<% end %>
-
-		</td>
-	  </tr>
-
-
-
+	<%= render :partial => 'hvg', :locals => {:prompt => prompt} %>
+	
 <% end %>
 
 <tr class="row">
-	<% is_admin ? @colspan = 5 : @colspan = 4 %>
+	<% is_admin ? @colspan = 6 : @colspan = 5 %>
 	<td colspan=<%=@colspan%>>
 		<%= will_paginate @hvg %>
 	</td>
