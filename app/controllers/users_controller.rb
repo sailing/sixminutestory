@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     def index
           page = params[:page] || 1
            per_page = 20
-           order = "created_at DESC" 
+           order = params[:order] || "created_at DESC" 
 
           @users = User.paginate :page => page, :order => order, :per_page => per_page
         end
@@ -50,7 +50,7 @@ class UsersController < ApplicationController
             @stories = Story.paginate_by_user_id @user.id, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    
             @rss_url = "http://sixminutestory.com/profile/"+params[:id]+".rss"
       
-        elsif (current_user == @user or (request.path.include?("rss") and request.format == "rss")) and !@user.writers.empty?
+        elsif (request.path.include?("account") or (request.path.include?("rss") and request.format == "rss")) and !@user.writers.empty?
             @stories = Story.paginate_by_user_id @user.writers, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}
               #@rss_url = rss_url(@user.login, :format => :rss)
             

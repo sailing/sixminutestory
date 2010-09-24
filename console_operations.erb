@@ -1,0 +1,16 @@
+# Sync users' stories_count to actual stories count
+users = User.find(:all)
+for user in @users do
+
+	stories_count = user.stories.count :conditions => {:active => true}
+	user.save
+end
+
+# Destroy friendly_id-unfriendly stories (all disabled stories)
+@stories = Story.find(:all, :conditions => {:cached_slug => nil})
+##### ensure correctness of stories
+for story in @stories do story.destroy end
+
+# Sync comments_count to actual comments count
+@stories = Story.find(:all)
+for story in @stories do comments_count = story.comments.count; story.save end

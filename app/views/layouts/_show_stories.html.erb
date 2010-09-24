@@ -55,10 +55,11 @@
 
 	<% # Stories count
 	 %>	
+	<% if is_admin %>
 		<%= 
-		# page_entries_info @stories 
+		 page_entries_info @stories 
 		%>
-
+	<% end %>
 	<% #pagination
 	%>
 		<%=  will_paginate @stories %>
