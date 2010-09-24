@@ -1,3 +1,44 @@
+<html>
+<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" bgcolor='#dfffff' >
+
+
+<STYLE>
+ .headerTop { background-color:#dfffff; border-top:0px solid #000000; border-bottom:1px solid #FFFFFF; text-align:center; }
+ .adminText { font-size:10px; color:#996600; line-height:200%; font-family:verdana; text-decoration:none; }
+ .headerBar { background-color:#FFFFFF; border-top:0px solid #333333; border-bottom:10px solid #FFFFFF; }
+ .title { font-size:20px; font-weight:bold; color:#CC6600; font-family:arial; line-height:110%; }
+ .subTitle { font-size:11px; font-weight:normal; color:#666666; font-style:italic; font-family:arial; }
+ .defaultText { font-size:12px; color:#000000; line-height:150%; font-family:trebuchet ms; }
+ .footerRow { background-color:#FFFFCC; border-top:10px solid #FFFFFF; }
+ .footerText { font-size:10px; color:#996600; line-height:100%; font-family:verdana; }
+ a { color:#FF6600; color:#FF6600; color:#FF6600; }
+</STYLE>
+
+
+
+<table width="100%" cellpadding="10" cellspacing="0" class="backgroundTable" bgcolor='#dfffff' >
+<tr>
+<td valign="top" align="center">
+
+
+<table width="550" cellpadding="0" cellspacing="0">
+
+ 
+<tr>
+<td style="background-color:#FFFFFF;border-top:0px solid #333333;border-bottom:10px solid #FFFFFF;"><center><a href=""><IMG id=editableImg1 SRC="http://sixminutestory.com/images/logo2.png" BORDER="0" title="Your Company"  alt="Your Company" align="center"></a></center></td>
+</tr>
+
+
+</table>
+
+
+<table width="550" cellpadding="20" cellspacing="0" bgcolor="#FFFFFF">
+<tr>
+<td bgcolor="#FFFFFF" valign="top" style="font-size:12px;color:#000000;line-height:150%;font-family:trebuchet ms;">
+
+<p>
+<span style="font-size:20px;font-weight:bold;color:#CC6600;font-family:arial;line-height:110%;">You have a new follower</span><br>
+
 <p>
 Hi <%= @recipient.login %>,
 </p>
@@ -10,3 +51,36 @@ You can view their profile here: <%= link_to profile_url(@follower.id), profile_
 <p>
 View your own profile here: <%= link_to profile_url(@recipient.id), profile_url(@recipient.id) %>.
 </p>
+
+
+
+
+</td>
+</tr>
+
+<tr>
+<td style="background-color:#FFFFCC;border-top:10px solid #FFFFFF;" valign="top">
+<span style="font-size:10px;color:#996600;line-height:100%;font-family:verdana;">
+You received this email as per your preferences on Six Minute Story. <br />
+<br />
+<a href="http://sixminutestory.com/account/edit">Update your preferences</a>
+<br />
+<br />
+Find us on twitter:<br />
+<a href="http://twitter.com/6minutestory">@6minutestory</a><br />
+<br />
+  
+
+</span>
+</td>
+</tr>
+
+</table>
+
+</td>
+</tr>
+</table>
+
+
+</body>
+</html>
