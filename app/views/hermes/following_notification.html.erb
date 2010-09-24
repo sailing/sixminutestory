@@ -46,10 +46,10 @@ Hi <%= @recipient.login %>,
 <%= @follower.login %> is now following your stories on Six Minute Story.
 </p>
 <p>
-You can view their profile here: <%= link_to profile_url(@follower.id), profile_url(@follower.id) %>.
+You can view their profile here: <%= link_to profile_url(@follower), profile_url(@follower) %>.
 </p>
 <p>
-View your own profile here: <%= link_to profile_url(@recipient.id), profile_url(@recipient.id) %>.
+View your own profile here: <%= link_to profile_url(@recipient), profile_url(@recipient) %>.
 </p>
 
 
