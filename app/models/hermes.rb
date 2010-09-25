@@ -24,6 +24,13 @@ class Hermes < ActionMailer::Base
       body :recipient => writer, :follower => follower
    end
    
+   def featured_story_notification(writer, story)
+      from "\"Six Minute Story\" <no-reply@sixminutestory.com>"
+       recipients writer.email_address
+       subject "Six Minute Story – Your story #{story.title} has been featured!"
+       body :writer => writer, :story => story
+    end
+   
   def new_story_notification(followers, story, writer)
     from "\"Six Minute Story\" <no-reply@sixminutestory.com>"
      recipients "no-reply@sixminutestory.com"

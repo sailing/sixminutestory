@@ -102,7 +102,7 @@ class StoriesController < ApplicationController
               @previous = Story.previous(@story)
               @next = Story.next(@story)
             else
-              @story = Story.first(:conditions => {:active => true, :featured => true},:order => "updated_at ASC")
+              @story = Story.active.featured.first
               @featured = true
               @frontpage = true
               @previous_featured = Story.previous_featured(@story)
@@ -110,7 +110,7 @@ class StoriesController < ApplicationController
             end
           else
             if params[:id].blank?
-              @story = Story.first(:conditions => {:active => true, :featured => true},:order => "updated_at ASC")
+              @story = Story.active.featured.first
               @featured = true
               @previous_featured = Story.previous_featured(@story)
               @next_featured = Story.next_featured(@story)
@@ -263,8 +263,10 @@ class StoriesController < ApplicationController
     @story.featured = 1
      respond_to do |format|
        if @story.save
+         Hermes.deliver_featured_story_notification(@story.user, @story) unless (@story.user.send_stories == false or @story.user.email_address.blank?)
+         
          flash[:notice] = 'Story featured.'
-         format.html { redirect_to(read_story_path(@story)) }
+         format.html { redirect_to(read_featured_story_path(@story)) }
          format.xml  { head :ok }
        else
          flash[:notice] = 'Story NOT featured.'

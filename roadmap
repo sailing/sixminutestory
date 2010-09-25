@@ -5,10 +5,11 @@ X add attribution on "use other prompts" page
 
 2.1.1 
 ? make Pagination keep track of named scope
-- Make facebook sharing include title, etc automatically
+x Make facebook sharing include title, etc automatically
 
 2.1.2
-- troubleshoot this readonly record error
+| troubleshoot this readonly record error
+	(it's limited now. mostly fixed...)
 x troubleshoot pagination on archived prompts
 x troubleshoot pagination on unverified archived prompts
 x improve show prompts page
@@ -28,9 +29,13 @@ x integrate emails ***************
 x enable deleting prompts
 - inactive stories view
 
-2.3 
-- spellcheck
+2.3
+- contests?
 - new logo
+
+2.4 
+- spellcheck
+
 - integrate flickr api
 
 2.4 
