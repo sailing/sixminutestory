@@ -20,14 +20,19 @@ x and a "write to this prompt" on show story page
 x add firstlines as prompts
 - automatically include first lines when story starts.
 x integrate emails ***************
+	x new comments
+	x new followers
+	x featured stories
 - new ways to praise consistent authors
 	- most followed authors list
 	- authors w most total cheers
 	- featured author page
 
+
 2.2.1
 x enable deleting prompts
 - inactive stories view
+- create followers counter cache to reduce load
 
 2.3
 - contests?

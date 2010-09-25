@@ -97,17 +97,21 @@ class StoriesController < ApplicationController
     begin
       
           unless request.path.include?("featured")
-            if params[:id].present?
-              @story = Story.find(params[:id], :conditions => {:active => true}, :include => :tags)
-              @previous = Story.previous(@story)
-              @next = Story.next(@story)
-            else
-              @story = Story.active.featured.first
-              @featured = true
-              @frontpage = true
-              @previous_featured = Story.previous_featured(@story)
-              @next_featured = Story.next_featured(@story)
-            end
+              if params[:id].present?
+                @story = Story.find(params[:id], :conditions => {:active => true}, :include => :tags)
+                @previous = Story.previous(@story)
+                @next = Story.next(@story)              
+              else
+                if @story = Story.active.featured.first
+                  @featured = true
+                  @previous_featured = Story.previous_featured(@story)
+                  @next_featured = Story.next_featured(@story)
+                else
+                  @story = Story.active.top.first
+                  @previous = Story.previous(@story)
+                  @next = Story.next(@story)                              
+                end
+              end
           else
             if params[:id].blank?
               @story = Story.active.featured.first
@@ -125,7 +129,7 @@ class StoriesController < ApplicationController
     rescue Exception => e
       flash[:notice] = 'That story doesn\'t exist.'
       store_location
-      redirect_to read_url
+      redirect_to recent_url
     
     else 
          # Initialize a comment 
