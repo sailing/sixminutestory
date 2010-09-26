@@ -186,7 +186,6 @@
 	</div>
 	</div>
 
-<% unless @frontpage %>
 	<div id="show_story">
 	<div id="information_container">
 		<div>
@@ -253,13 +252,15 @@
 	</div>
 
 <% else %>
+
+
 	<div id="signin_or_register">
 		<%= rpx_popup( :link_text => "Login", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false ) %>
 		or
 		<%= rpx_popup( :link_text => "Join", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false ) %> 
 		to remark.
 	</div>
-<% end %>
-<% end %> <!-- ending unless @frontpage -->
+
+<% end %> 
 
 

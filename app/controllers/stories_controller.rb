@@ -102,6 +102,7 @@ class StoriesController < ApplicationController
                 @previous = Story.previous(@story)
                 @next = Story.next(@story)              
               else
+                @frontpage = true
                 if @story = Story.active.featured.first
                   @featured = true
                   @previous_featured = Story.previous_featured(@story)
