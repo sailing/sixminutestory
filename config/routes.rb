@@ -28,7 +28,6 @@ ActionController::Routing::Routes.draw do |map|
 
     map.read_random 'random', :controller => "stories", :action => "random"
     map.flag_story 'flag', :controller => "stories", :action => "flag_story", :conditions => { :method => :post }
-    map.tag 'tag/:name', :controller => "tags", :action => "show", :requirements => { :name => /.*/ }
     #map.rss 'rss/:id', :controller => "users", :action => "show"
     
     #user activities
@@ -85,6 +84,7 @@ ActionController::Routing::Routes.draw do |map|
      
      end
      map.resources :read, :controller => "stories"
+     map.browse_by_tags     '/tags',     :controller => "stories",      :action => "tag_cloud"
      
      
      
@@ -99,11 +99,11 @@ ActionController::Routing::Routes.draw do |map|
        story.formatted_commented     '/commented.:format'
        story.top                  '/top'
        story.formatted_top        '/top.:format'
+       story.tag                  '/tag/:tag', :requirements => { :tag => /.*/ }
      end
      
     map.with_options :controller => "site" do |site| 
       site.search             '/search',          :action => "search"
-      site.browse_by_tags     '/cloud',           :action => "browse_by_tags"
       site.faq                '/faq',             :action => "faq" 
       site.about              '/about',           :action => "about"
       site.contact            '/contact',         :action => "contact"

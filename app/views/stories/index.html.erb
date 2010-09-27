@@ -72,20 +72,21 @@
 		</div>
 	</div>
 	<% end %>
+	
 
-	<% # Stories count
-	 %>	
-	<% if is_admin %>
-		<%= 
-		 page_entries_info @stories 
-		%>
+	<% if is_admin %> 
+		<% # count of stories %>
+		<%= page_entries_info @stories %>
+		
 	<% end %>
-
-	<%= #pagination
-		if @paginate
-			will_paginate @stories 
-		end 
-	%>
+	
+	<% if @paginate %>
+	
+	<% #pagination %>	
+			
+		<%= will_paginate @stories %>
+			
+	<% end %>
 
 <% else  %>
 <% 

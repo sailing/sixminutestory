@@ -1,0 +1,21 @@
+<%= render :partial => "layouts/browsing" %>
+
+<h1>tags</h1>
+<div class="tag_cloud_container">
+	<% if @tags.empty? -%>
+	
+	  <p>No tags :|</p>
+	
+	<% else -%>
+	
+	  <div id="TagCloud">
+	
+	   	  <% tag_cloud @tags, %w(css1 css2 css3 css4) do |tag, css_class| %>
+		    <%= link_to tag.name, tag_url(tag.name), :class => css_class %>
+		  <% end %>
+	
+	  </div>
+	
+	<% end -%>
+	
+</div>

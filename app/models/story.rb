@@ -1,6 +1,7 @@
 class Story < ActiveRecord::Base
-    
+  acts_as_taggable  
   acts_as_taggable_on :tags
+  acts_as_taggable_on :genres
   acts_as_voteable
   
   has_friendly_id :title, :use_slug => true
@@ -18,6 +19,9 @@ class Story < ActiveRecord::Base
   named_scope :commented, lambda { { :conditions => ['(comments_count >= ?) AND created_at > ?', 2, 2.months.ago], :order => 'comments_count DESC, rating DESC, counter DESC, updated_at ASC' } }
   named_scope :top, lambda { { :conditions => ['rating > 0'], :order => 'rating DESC, counter ASC' } }
   named_scope :featured, :limit => 1, :conditions => ['featured = ? AND created_at > ?', true, 1.month.ago], :order => 'updated_at ASC'
+  
+  # Filters
+  named_scope :by_date, :order => "created_at DESC"
   
   # Next and Previous links
   named_scope :next, lambda { |p| {:conditions => ["id > ? AND active = ?", p.id, true], :limit => 1, :order => "id"} }

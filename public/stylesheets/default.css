@@ -12,15 +12,15 @@
 /* Colors */
 /*
 
-Aqua => #dfffff
+Aqua => #efffff
 Brown => #522b1d
 Orange => #ff7400
 Purple => #b86ae1
 Purple for text => #a85ac1
-Greenish-blue => #62d1cc
-Lighter Greenish-blue => #84f3cc
+Possible purple for text areas: #e8daf0
 Pastel Green => #aacc31
 New Blue => #8fcfef
+
 #6fdfcf
 Great Green => #5f9f3f
 
@@ -39,9 +39,9 @@ body {
   padding:0;
 
 	vertical-align:baseline;
-	background: #dfffff url(../images/sublogo_new_cropped.png) bottom right fixed no-repeat;
+/*	background: #dfffff url(../images/sublogo_new_cropped.png) bottom right fixed no-repeat; */
+	background: #efffff;
 	z-index:1;
-
 
 }
 
@@ -144,12 +144,14 @@ textarea {
 	border:0px solid #bbf;
 	background: transparent;
 	font-family:"ITC Avant Garde Gothic Pro", georgia, serif;
-	font-size:1.3em;
+	font-size:1.4em;
 	line-height:1.6em;
+	letter-spacing:.1em;
+	word-spacing:.2em;
 	color:#000;
 	padding:2%;
 	margin:0 auto;
-	background-color:#fff;
+	background-color:#ddedff;
 	opacity:0.9;
 	filter: alpha(opacity = 70);
 	zoom:1;
@@ -161,15 +163,15 @@ textarea {
 
 input, select, option {
 	width:70%;
-	height:25px;
-	padding:3px;
+	height:35px;
+	padding:3px 2%;
 	border:0px;
 	font-size:20px;
 	font-weight:600;
-	color:#000;
+	color:#111;
 	vertical-align:middle;
 
-	background-color:#fff;
+	background-color:#ddedff;
 	opacity:0.9;
 	filter: alpha(opacity = 60);
 	zoom:1;
@@ -191,12 +193,7 @@ option {
 }
 
 input[type="checkbox"]{
-	width:14px;
-	height:14px;
-	border:1px solid #bbf;
-	
 	font-size:10px;
-	color:#fff;
 }
 
 
@@ -1768,7 +1765,7 @@ background-color:#a759d0;
 	
 }
 
-.css1 { font-size: 0.6em; padding:0 5px; color:#84f3cc; }
-.css2 { font-size: 1.2em; padding:0 10px; color:#b86ae1;}
-.css3 { font-size: 1.8em; padding:0 15px; color:#cffff7;}
-.css4 { font-size: 2.2em; padding:0 20px; color:#aacc31;}
+.css1, .css1:visited { font-size: 0.6em; padding:0 5px; color:#84f3cc; }
+.css2, .css2:visited { font-size: 0.8em; padding:0 10px; color:#b86ae1;}
+.css3, .css3:visited { font-size: 1em; padding:0 15px; color:#cffff7;}
+.css4, .css4:visited { font-size: 1.6em; padding:0 20px; color:#aacc31;}

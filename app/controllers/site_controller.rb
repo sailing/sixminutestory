@@ -5,7 +5,7 @@ class SiteController < ApplicationController
   
   def browse_by_tags 
     #
-    @tags = Story.tag_counts
+    @tags = Story.tag_counts_on(:tags)
     #
     @levels = (1 .. 5).map { |i| "level-#{i}" }
   

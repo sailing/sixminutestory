@@ -1,3 +1,6 @@
+ or plain old email @ gal<a href="http://mailhide.recaptcha.net/d?k=01NVE5r2FxoXPjX0It0Uxrjg==&amp;c=x9M5O1NrHFEwNqfRggM75oEAY0FEyf3ENUVmk1zK9Hk=" onclick="window.open('http://mailhide.recaptcha.net/d?k=01NVE5r2FxoXPjX0It0Uxrjg==&amp;c=x9M5O1NrHFEwNqfRggM75oEAY0FEyf3ENUVmk1zK9Hk=', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;" title="Reveal this e-mail address">...</a>@sixminutestory.com.
+
+
 	<p>
 	    <%= f.check_box :send_followings %>
 	    <%= f.label :send_followings, "someone follows you", :class => "notification_option"%>

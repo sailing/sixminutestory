@@ -24,6 +24,12 @@ class StoriesController < ApplicationController
         when /^\/top/
             @stories = Story.active.top.paginate :page => page, :per_page => per_page   
             @title = "top rated stories"
+        when /^\/tag\/./
+            @tag = params[:tag]
+            @stories = Story.tagged_with(@tag, :any => true).by_date.paginate :page => page, :per_page => per_page
+            @title = "stories tagged with #{@tag}"
+            @paginate = true
+  
       else
           #return recent
           @stories = Story.active.recent.paginate :page => page, :per_page => per_page
@@ -161,6 +167,12 @@ class StoriesController < ApplicationController
      
   end
   
+  
+  def tag_cloud
+       @tags = Story.tag_counts_on(:tags, :at_least => "2")
+  end
+     
+     
   def thanks_for_writing
       page = page || 1
       order = "created_at DESC"
