@@ -83,6 +83,9 @@
 		<%= render :partial => "site/profile_block" %>
 	<% end %>
 		<div class="clear space"></div>
+		
+		<!-- ADMIN SECTION -->
+		
 		<% if is_admin %>
 			<% if @story.active == true %>
 			<div id="unfollowing_button" class="button_container">
@@ -152,7 +155,8 @@
 					<span class="author">
 					by <%= link_to h(@story.user.login), profile_path(@story.user) %>
 					<%=h time_ago_in_words(@story.created_at) %> ago
-			
+					<%= link_to "Edit Story Details", edit_story_url(@story) if is_owner_or_admin %>
+					
 					</span>
 			
 			</div>
@@ -161,6 +165,7 @@
 			<div id="storyAndMeta">
 				
 				<div class="story">
+					
 										<%= render :partial => 'share_in_story' %>
 	
 					<%= simple_format(sanitize(h(@story.description))) %>
@@ -199,7 +204,16 @@
 							 <%=h @story.license %>
 						</p>
 					</td>
+					<td class="border_right">
+					<span class="label">genres</span>
 
+						<br />
+						<p class="value">	
+							<% @story.genres.each do |genre| -%>
+					   			<%= link_to h(genre.name), genre_url(h(genre.name)) %>
+							<% end -%>
+						</p>
+					</td>
 					<td class="border_right">
 					<span class="label">tags</span>
 

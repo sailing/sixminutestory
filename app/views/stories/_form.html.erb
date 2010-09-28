@@ -17,67 +17,93 @@
 	
 
 			<%= form.error_message_on 'description' %><br />
-			<% @editing.present? ? @disabled = true : @disabled = false %>
-			<% @story.description.present? ? @description = @story.description : @description = "" %>
-			<% @story.title.present? ? @title = @story.title : @title = "title" %>
-			<% @story.tags.present? ? @tags = "" : @tags = "tags" %>
+			<% is_admin ? @disabled = false : @disabled = true %>
 			
-  			<%= form.text_area :description, :disabled => @disabled, :value => @description, :rows => 20, :cols => 45, :tabindex => "1",:onFocus => 'GetCount(1,11000);' %>
+  			<%= form.text_area :description, :disabled => @disabled, :value => @description, :rows => 20, :cols => 45, :tabindex => "1" %>
 	
+	
+	<div class="clear space">
+	</div>
+			<h1>Details, details, details</h1>
 
-			<p>
+				<table>
 
-				<%= form.error_message_on 'title' %><br />
-		  		<%= form.text_field :title, :disabled => @disabled, :onFocus => 'clearFieldFirstTime(this);', :value => @title %>
-			</p>
+					<tr>
+
+						<td>
+							<label for="story_title">Title</label>
+						</td>
+
+						<td>	
+					  		<%= form.text_field :title, :tabindex => "2" %>
+						</td>
+					</tr>
+					<tr>
+						<td colspan=2>
+							&nbsp; <%= form.error_message_on 'title' %>
+						</td>
+
+					</tr>
+					<tr>	
+						<td>
+							<label for="story_tags">Adjectives</label><br />
+							<span style="font-size:x-small">separate adjectives with commas</span>
+						</td>
+						<td>	
+
+					 			<%= form.text_field :tag_list, :tabindex => "3" %>
+
+				  		</td>
+					</tr>
+					<tr>	
+						<td>
+							<label for="story_genres">Genres</label><br />
+							<span style="font-size:x-small">separate genres with commas</span>
+						</td>
+						<td>	
+					 			<%= form.text_field :genre_list, :tabindex => "4" %>
+
+				  		</td>
+					</tr>
+
+					<tr>
+						<td colspan=2>
+							&nbsp; 	<%= form.error_message_on 'license' %>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="story_license">License</label>
+						</td>
+						<td>
+
+							<select name="story[license]" id="story_license" onchange="" tabindex="5">
+								<option value="Creative Commons Attribution 3.0">
+									Creative Commons Attribution 3.0</option>
+
+								<option value="Creative Commons Attribution-NoDerivs 3.0">
+									Creative Commons Attribution-NoDerivs 3.0</option>
+
+								<option value="Creative Commons Attribution-NonCommerical-NoDerivs 3.0">
+									Creative Commons Attribution-NonCommercial-NoDerivs 3.0</option>
+
+								<option value="Creative Commons AttributionNonCommerical 3.0">
+									Creative Commons Attribution-NonCommercial 3.0</option>
+
+								<option value="Creative Commons Attribution-NonCommerical-ShareAlike 3.0">
+									Creative Commons Attribution-NonCommercial-ShareAlike 3.0</option>
+
+								<option value="Creative Commons Attribution-ShareAlike 3.0" selected="selected">
+									Creative Commons Attribution-ShareAlike 3.0</option>
+								<option value="Public Domain">Public Domain</option>
+
+							</select>
+						</td>
+					</tr>
+				</table>
+				
 				<p>
-					<% if @story.tags.present? -%>
-						<% @story.tags.each do |tag| -%>
-			   				<%= tag %>
-						<% end -%>
-					<% end -%>
-		 			<%= form.text_field :tag_list, :onFocus => 'clearFieldFirstTime(this);', :value => @tags %>
-	  			</p>
-		
-			<p>
-				<label for="story_license">License</label>
-				<%= form.error_message_on 'license' %><br />
-				<select name="story[license]" id="story_license" onchange="">
-					<option value="Creative Commons Attribution 3.0">
-						Creative Commons Attribution 3.0</option>
-			
-					<option value="Creative Commons Attribution-NoDerivs 3.0">
-						Creative Commons Attribution-NoDerivs 3.0</option>
-						
-					<option value="Creative Commons Attribution-NonCommerical-NoDerivs 3.0">
-						Creative Commons Attribution-NonCommercial-NoDerivs 3.0</option>
-			
-					<option value="Creative Commons AttributionNonCommerical 3.0">
-						Creative Commons Attribution-NonCommercial 3.0</option>
-			
-					<option value="Creative Commons Attribution-NonCommerical-ShareAlike 3.0">
-						Creative Commons Attribution-NonCommercial-ShareAlike 3.0</option>
-			
-					<option value="Creative Commons Attribution-ShareAlike 3.0">
-						Creative Commons Attribution-ShareAlike 3.0</option>
-					<option value="Public Domain">Public Domain</option>
-					
-				</select>
-			</p>
-			
-		
-			<p>
-				<% unless current_user.id == @story.user_id %>
-					<% if session[:recaptcha_error].present? %>
-					 	<span class="formError">Incorrect text entered.</span>
-					<% end %>
-					
-					<%= recaptcha_tags :display => {:theme => "clean"} %>
-				<% end %>
-			</p>
-			<br />
-				<p>
-				<%= image_submit_tag("save.png", :name => "save", :id => "save-button", :disabled => @disabled) %>
+				<%= image_submit_tag("save.png", :name => "save", :id => "save-button") %>
 			
 				</p>
 	

@@ -1,12 +1,6 @@
 # Delete unused tags
-@tags = ["parents","rain","tragedy","death","beijing","china","weird","red"]
-for tag in @tags do 
-	
-@stories = Story.tagged_with("rain") 
-		for story in @stories do story.tag_list.remove(tag); story.save end
-		
-		
-end
+@stories = Story.tagged_with("tags") 
+		for story in @stories do story.tag_list.remove("tags"); story.save end
 
 
 # Sync users' stories_count to actual stories count

@@ -63,10 +63,7 @@
 		
 			<% if @story.description.present? || @editing.present?
 				 @description = @story.description
-				
-				if @editing.present? 
-					@disabled = true 
-				end
+				 @disabled = true
 			%>	
 				<script type="text/javascript">
 					window.onload=function(){
@@ -99,7 +96,7 @@
 			</td>
 			
 			<td>	
-		  		<%= f.text_field :title, :disabled => @disabled, :onFocus => 'clearFieldFirstTime(this);', :value => @title, :tabindex => "2" %>
+		  		<%= f.text_field :title, :onFocus => 'clearFieldFirstTime(this);', :tabindex => "2" %>
 			</td>
 		</tr>
 		<tr>
@@ -114,16 +111,22 @@
 				<span style="font-size:x-small">separate adjectives with commas</span>
 			</td>
 			<td>	
-					<% if @story.tags.present? -%>
-						<% @story.tags.each do |tag| -%>
-			   				<%= tag %>
-						<% end -%>
-					<% end -%>
 						
-		 			<%= f.text_field :tag_list, :onFocus => 'clearFieldFirstTime(this);', :value => @tags, :tabindex => "3" %>
+		 			<%= f.text_field :tag_list, :onFocus => 'clearFieldFirstTime(this);', :tabindex => "3" %>
 				
 	  		</td>
 		</tr>
+		<tr>	
+			<td>
+				<label for="story_genres">Genres</label><br />
+				<span style="font-size:x-small">separate genres with commas</span>
+			</td>
+			<td>	
+		 			<%= f.text_field :genre_list, :onFocus => 'clearFieldFirstTime(this);', :tabindex => "4" %>
+				
+	  		</td>
+		</tr>
+		
 		<tr>
 			<td colspan=2>
 				&nbsp; 	<%= f.error_message_on 'license' %>
@@ -135,7 +138,7 @@
 			</td>
 			<td>
 				
-				<select name="story[license]" id="story_license" onchange="" tabindex="4">
+				<select name="story[license]" id="story_license" onchange="" tabindex="5">
 					<option value="Creative Commons Attribution 3.0">
 						Creative Commons Attribution 3.0</option>
 			
@@ -170,14 +173,14 @@
 						 	<span class="formError">Incorrect text entered.</span>
 						<% end %>
 
-						<%= recaptcha_tags :display => {:tabindex => "5"} %>
+						<%= recaptcha_tags :display => {:tabindex => "7"} %>
 					<% end %>
 
 				
 			</p>
 			<br />
 				<p>
-				<%= image_submit_tag("save.png", :name => "save", :id => "save-button", :tabindex => "6", :onclick => "document.getElementById('story_description').disabled=false;") %>
+				<%= image_submit_tag("save.png", :name => "save", :id => "save-button", :tabindex => "8", :onclick => "document.getElementById('story_description').disabled=false;") %>
 				 <% if current_user.id == @story.user_id %>
 						<%= link_to 'Destroy story', @story, :confirm => 'Are you sure you want to remove this story? Your story will no longer be visible!', :method => :delete %>
 						<% end %>

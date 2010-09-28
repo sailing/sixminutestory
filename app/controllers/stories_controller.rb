@@ -1,6 +1,7 @@
 class StoriesController < ApplicationController
-  before_filter :require_user, :only => [:new, :create, :destroy]
-  before_filter :must_be_admin, :only => [:admin, :edit, :update, :disabled, :enable_story, :disable_story, :feature_story, :unfeature_story]
+  before_filter :require_user, :only => [:new, :create, :destroy, :flag_story]
+  before_filter :must_own_story, :only => [:edit, :update]
+  before_filter :must_be_admin, :only => [:admin, :disabled, :enable_story, :disable_story, :feature_story, :unfeature_story]
 #  before_filter ensure_current_post_url, :only => :show
   
    def index 
@@ -24,10 +25,15 @@ class StoriesController < ApplicationController
         when /^\/top/
             @stories = Story.active.top.paginate :page => page, :per_page => per_page   
             @title = "top rated stories"
-        when /^\/tag\/./
+        when /^\/(tag)\/./
             @tag = params[:tag]
             @stories = Story.tagged_with(@tag, :any => true).by_date.paginate :page => page, :per_page => per_page
             @title = "stories tagged with #{@tag}"
+            @paginate = true
+        when /^\/(genre)\/./
+            @genre = params[:tag]
+            @stories = Story.tagged_with(@genre, :on => :genres).by_date.paginate :page => page, :per_page => per_page
+            @title = "stories in #{@genre} genre"
             @paginate = true
   
       else
@@ -169,7 +175,14 @@ class StoriesController < ApplicationController
   
   
   def tag_cloud
+    if request.path.include?("genres")
+      @title = "genres"
+      @tags = Story.tag_counts_on(:genres, :at_least => "1")
+      @genres = true
+    else
+      @title = "adjectives"
        @tags = Story.tag_counts_on(:tags, :at_least => "2")
+    end
   end
      
      

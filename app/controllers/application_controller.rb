@@ -78,7 +78,7 @@ class ApplicationController < ActionController::Base
     def must_own_story
       if current_user
        @story ||= Story.find(params[:id])
-        if !@story.user == current_user && !current_user.admin_level > 1 
+        unless @story.user == current_user or current_user.admin_level > 1
           ownership_violation
         end
         return false

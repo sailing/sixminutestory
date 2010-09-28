@@ -32,16 +32,12 @@ module ApplicationHelper
     end
     
     def is_owner_or_admin
+        return true if (current_user && (current_user == @story.user or current_user.admin_level > 1 or (@user && current_user.id == @user.id)))
+    end
 
-          if current_user && (current_user == @user || current_user.admin_level > 1 || (@story && current_user.id == @story.user_id ))
-                  return true        
-          end
-
-        end
-
-        def is_admin
-            return true if current_user && current_user.admin_level > 1
-        end
+    def is_admin
+      return true if current_user && current_user.admin_level > 1
+    end
         
         
       def show_prompt  

@@ -85,6 +85,7 @@ ActionController::Routing::Routes.draw do |map|
      end
      map.resources :read, :controller => "stories"
      map.browse_by_tags     '/tags',     :controller => "stories",      :action => "tag_cloud"
+     map.browse_by_genres     '/genres',     :controller => "stories",      :action => "tag_cloud"
      
      
      
@@ -100,6 +101,7 @@ ActionController::Routing::Routes.draw do |map|
        story.top                  '/top'
        story.formatted_top        '/top.:format'
        story.tag                  '/tag/:tag', :requirements => { :tag => /.*/ }
+       story.genre                '/genre/:tag', :requirements => { :tag => /.*/ }
      end
      
     map.with_options :controller => "site" do |site| 
