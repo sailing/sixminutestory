@@ -177,14 +177,26 @@ class StoriesController < ApplicationController
   
   
   def tag_cloud
-    if request.path.include?("genres")
-      @title = "genres"
-      @tags = Story.tag_counts_on(:genres, :at_least => "1")
-      @genres = true
-    else
-      @title = "adjectives"
-       @tags = Story.tag_counts_on(:tags, :at_least => "2")
-    end
+  e = ActiveRecord::RecordNotFound
+      begin
+        if request.path.include?("genres")
+          @title = "genres"
+          @tags = Story.tag_counts_on(:genres, :at_least => "1")
+          @genres = true
+        else
+          @title = "adjectives"
+           @tags = Story.tag_counts_on(:tags, :at_least => "2")
+        end
+      rescue Exception => e
+        flash[:notice] = 'No genres have been tagged yet.'
+        store_location
+        redirect_to recent_url
+
+      else
+        respond_to do |format|
+           format.html # tag_cloud.html.erb
+         end
+      end
   end
      
      
