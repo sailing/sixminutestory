@@ -27,17 +27,19 @@ x integrate emails ***************
 	- most followed authors list
 	- authors w most total cheers
 	- featured author page
-- restore tags?
+x restore tags?
+
 2.2.1
 x enable deleting prompts
 - inactive stories view
 - create followers counter cache to reduce load
 
-
 2.3
+- stories you've commented on
 - new rating system (5 star?)
 - contests?
 - new logo
+
 
 2.4 
 - spellcheck

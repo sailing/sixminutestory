@@ -25,17 +25,19 @@ class StoriesController < ApplicationController
         when /^\/top/
             @stories = Story.active.top.paginate :page => page, :per_page => per_page   
             @title = "top rated stories"
-        when /^\/(tag)\/./
+        when /^\/tag\/./
             @tag = params[:tag]
             @stories = Story.tagged_with(@tag, :any => true).by_date.paginate :page => page, :per_page => per_page
             @title = "stories tagged with #{@tag}"
             @paginate = true
-        when /^\/(genre)\/./
+        when /^\/genre\/./
             @genre = params[:tag]
             @stories = Story.tagged_with(@genre, :on => :genres).by_date.paginate :page => page, :per_page => per_page
             @title = "stories in #{@genre} genre"
             @paginate = true
-  
+        #when /^\/account\/commented/
+         #   @stories = Story.updated_after_users_last_comment_in_post(current_user)
+          #  @title = "recent comments"
       else
           #return recent
           @stories = Story.active.recent.paginate :page => page, :per_page => per_page

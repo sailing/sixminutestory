@@ -100,6 +100,7 @@ ActionController::Routing::Routes.draw do |map|
        story.formatted_commented     '/commented.:format'
        story.top                  '/top'
        story.formatted_top        '/top.:format'
+#       story.newer_comments         '/account/commented'
        story.tag                  '/tag/:tag', :requirements => { :tag => /.*/ }
        story.genre                '/genre/:tag', :requirements => { :tag => /.*/ }
      end
