@@ -185,7 +185,7 @@ class StoriesController < ApplicationController
           @genres = true
         else
           @title = "adjectives"
-           @tags = Story.tag_counts_on(:tags, :at_least => "2")
+           @tags = Story.tag_counts_on(:tags)
         end
       rescue Exception => e
         flash[:notice] = 'No genres have been tagged yet.'
