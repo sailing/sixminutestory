@@ -32,7 +32,7 @@ class Story < ActiveRecord::Base
 
 #  named_scope :with_unseen_comments_for_user, lambda { |user| {
 #       :select => "DISTINCT stories.*", :joins => "INNER JOIN comments, 
-#          comments others_comments, users ON (comments.user_id = users.id AND 
+#         comments others_comments, users ON (comments.user_id = users.id AND 
 #          others_comments.story_id = story.id AND comments.story_id = stories.id", 
 #        :conditions => ["users.id = ? AND 
 #          comments_stories.updated_at > users.updated_at", user]
@@ -65,7 +65,7 @@ class Story < ActiveRecord::Base
     
 #  end
   
-    # Validation 
+    # Validation
     validates_presence_of   :title, :message => "Without a title, your story is invisible!"
     validates_presence_of   :description, :message => "Perhaps you should write a story."
     validates_presence_of   :license, :message => "What license?"

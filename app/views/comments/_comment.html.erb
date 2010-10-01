@@ -1,7 +1,7 @@
 		
 			<div class="comment_container" id="comment_<%= comment.id %>">
 				
-			<h4>	<%= link_to h(comment.user.login), user_path(comment.user.id) %> - <%=h time_ago_in_words(comment.created_at) %> ago
+			<h4>	<%= link_to h(comment.user.login), profile_path(comment.user) %> - <%=h time_ago_in_words(comment.created_at) %> ago
 			</h4>	
 						<p>
 							<%= auto_link(simple_format(sanitize(comment.comment))) %>
