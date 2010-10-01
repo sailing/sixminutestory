@@ -3,7 +3,7 @@
 <%= render :partial => "layouts/browsing" %>
 
 <div class="tag_cloud_container">
-	<% unless @tags.blank? -%>
+	<% if @tags -%>
 		<div id="TagCloud">
 	
 	   		<% tag_cloud @tags, %w(css1 css2 css3 css4) do |tag, css_class| %>
