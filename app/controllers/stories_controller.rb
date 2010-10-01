@@ -181,7 +181,7 @@ class StoriesController < ApplicationController
       begin
         if request.path.include?("genres")
           @title = "genres"
-          @tags = Story.tag_counts_on(:genres, :at_least => "1")
+          @tags = Story.tag_counts_on(:genres)
           @genres = true
         else
           @title = "adjectives"
