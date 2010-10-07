@@ -18,7 +18,25 @@ class VotesController < ApplicationController
  
     page = params[:page] || 1
     per_page = params[:per_page] || 10
-    order = params[:order] || "votes.created_at DESC"
+
+    if params[:order]
+      case params[:order]
+        when /^popular/
+          order = "counter DESC"
+        when /^most/
+          order = "rating DESC"
+        when /^recent/
+          order = "votes.created_at DESC"
+        when /^earliest/
+          order = "votes.created_at ASC"
+      else
+        order = "votes.created_at DESC"
+      end
+    end
+    
+    order = order || "votes.created_at DESC"
+    
+    
 #    @stories = Story.find_by_sql(["select stories.* from stories, votes where votes.voter_id = ? AND stories.id = votes.voteable_id", @user]).paginate :per_page => 3, :page => page
   @stories = Story.find(:all, :include => :votes, :conditions => ["votes.voter_id = ? AND stories.id = votes.voteable_id", @user], :order => order).paginate :per_page => per_page, :page => page
  #   @stories = Story.favorites

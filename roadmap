@@ -23,18 +23,19 @@ x integrate emails ***************
 	x new comments
 	x new followers
 	x featured stories
-- new ways to praise consistent authors
-	- most followed authors list
-	- authors w most total favorites (karma)
-	- featured author page
 x restore tags?
 
 2.2.1
 x enable deleting prompts
 - inactive stories view
 - create followers counter cache to reduce load
+	- be sure to sync as well
 
 2.3
+- new ways to praise consistent authors
+	- most followed authors list
+	- authors w most total favorites (karma)
+	- featured author page
 - change "cheers" to "favorites"
 	- upgrade to thumbs_up?
 	- add voting on prompts (as => "like") 
