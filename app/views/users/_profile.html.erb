@@ -2,6 +2,10 @@
 	
 	<%= render :partial => "site/profile_block" %>
 	
+<h2>Favorites (<%= @user.votes.count %>)</h2>
+<p>
+	<%= link_to "View favorites", favorites_path(@user) %>
+</p>	
 <h2>Likes (<%= @user.writers.count :conditions => :active %>)</h2>
 <% if @user.followings.present? %>
 
@@ -38,7 +42,7 @@
 
 	<% else %>
 		<span>
-				No followers as of yet.
+				No fans as of yet.
 		</span>
 	<% end %>
 	

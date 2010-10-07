@@ -15,9 +15,11 @@ class StoriesController < ApplicationController
         when /^\/popular/
             @stories = Story.active.popular.paginate :page => page, :per_page => per_page   
             @title = "popular stories"
+        #    @popular = true
         when /^\/commented/
             @stories = Story.active.commented.paginate :page => page, :per_page => per_page
             @title = "most active stories"
+            #@paginate = true
         when /^\/recent/
             @stories = Story.active.recent.paginate :page => page, :per_page => per_page
             @title = "most recent stories"
@@ -134,7 +136,7 @@ class StoriesController < ApplicationController
               @previous_featured = Story.previous_featured(@story)
               @next_featured = Story.next_featured(@story)
             elsif
-              @story = Story.find(params[:id], :conditions => {:active => true}, :include => :tags)
+              @story = Story.find(params[:id], :conditions => {:active => true, :featured => true}, :include => :tags)
               @featured = true
               @previous_featured = Story.previous_featured(@story)
               @next_featured = Story.next_featured(@story)
@@ -142,7 +144,11 @@ class StoriesController < ApplicationController
           end
        
     rescue Exception => e
-      flash[:notice] = 'That story doesn\'t exist.'
+      unless request.path.include?("featured")
+        flash[:notice] = 'That story doesn\'t exist.'
+      else
+        flash[:notice] = 'That story isn\'t featured.'
+      end
       store_location
       redirect_to recent_url
     

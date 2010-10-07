@@ -24,9 +24,7 @@
 				<span class="author">
 				by <%= link_to h(story.user.login), profile_path(story.user) %>
 				</span>
-				<span style="font-size:.8em">
-					:: <%= pluralize(story.counter, 'view') %>
-				</span>
+				
 		</div>
 		<div id="storyAndMeta">
 			<div class="story">
@@ -41,7 +39,7 @@
 				<span><%= link_to pluralize(story.comments_count, 'remark'), read_story_url(story, :anchor => "comments") %></span>
 				<span>&nbsp;||&nbsp;</span>
 				<span>
-					<%= pluralize(story.rating, 'cheer', 'cheers') %>
+					<%= pluralize(story.rating, 'favorite', 'favorites') %>
 				</span>
 			
 			</div>
