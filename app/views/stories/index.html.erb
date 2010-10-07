@@ -8,6 +8,8 @@
 %>
 
 
+
+
 <% if !@stories.empty? %>
 
 <h1><%= @title %></h1>
@@ -101,5 +103,8 @@
 			No stories await you here. Go <%= link_to "write your own", write_url %>.
 		</p>
 	</div>	
+<% end %>
+<% content_for :sideyard do %>
+	<%= render :partial => "layouts/facebook_box" -%>
 <% end %>
 

@@ -18,14 +18,14 @@ x and a "write to this prompt" on show story page
 
 2.2 roadmap:
 x add firstlines as prompts
-- automatically include first lines when story starts.
+? automatically include first lines when story starts.
 x integrate emails ***************
 	x new comments
 	x new followers
 	x featured stories
 - new ways to praise consistent authors
 	- most followed authors list
-	- authors w most total cheers
+	- authors w most total favorites (karma)
 	- featured author page
 x restore tags?
 
@@ -35,7 +35,13 @@ x enable deleting prompts
 - create followers counter cache to reduce load
 
 2.3
-- stories you've commented on
+- change "cheers" to "favorites"
+	- upgrade to thumbs_up?
+	- add voting on prompts (as => "like") 
+	- and comments (as => "agree")
+- add to users account / profile:
+	- stories you've commented on
+	- stories you've favorited
 - new rating system (5 star?)
 - contests?
 - new logo

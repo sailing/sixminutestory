@@ -159,12 +159,9 @@ class StoriesController < ApplicationController
         
 
            # increment story counter
-             if @story.counter 
-               unless (current_user == @user)
-                 @story.counter += 1 
-                 @story.save
-              end
-             end
+           unless (current_user == @user)
+            Story.increment_counter(:counter, @story)
+           end
 
              respond_to do |format|
                format.html # show.html.erb
@@ -285,7 +282,7 @@ class StoriesController < ApplicationController
      end
   end
   
-  def disable_story
+  def destroy
     @story = Story.find(params[:id])
 
     @story.active = 0

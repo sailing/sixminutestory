@@ -822,7 +822,7 @@ background-color:#a759d0;
 	-webkit-border-radius:5px;
 	width:100px;
 	height:25px;
-	margin:auto;
+	margin:2px auto;
 	text-align:center;
 	vertical-align:middle;
 	display:inline-block;
@@ -1348,7 +1348,7 @@ background-color:#a759d0;
 .browse_links {
 	display:block;
 	padding:15px 0 15px 60px;
-
+	
 }
 
 #rss_feed {

@@ -69,5 +69,6 @@ class Story < ActiveRecord::Base
     validates_presence_of   :title, :message => "Without a title, your story is invisible!"
     validates_presence_of   :description, :message => "Perhaps you should write a story."
     validates_presence_of   :license, :message => "What license?"
+    validates_presence_of   :prompt_id, :message => "Prompt is necessary."
            
 end

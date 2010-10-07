@@ -3,51 +3,8 @@
 	<%= ":: Profile for " + h(@user.login) %>
 <% end %>
 
-<% content_for :sideyard do %>
-	
-	<%= render :partial => "site/profile_block" %>
-	
-<h2>Following (<%= @user.writers.count :conditions => :active %>)</h2>
-<% if @user.followings.present? %>
+<%= render :partial => 'profile' %>
 
-<ul>
-	
-
-	  <% for following in @user.followings %>
-	    <li>
-		
-			<%= 
-			 link_to h(following.writer.login), profile_path(following.writer) 
-			%>
-				
-			
-	<% end %>
-</ul>
-
-  	<% else %>
-		<span>
-				Not following anyone yet.
-		</span>
-	<% end %>
-<h2>Followers (<%= @user.followers.count :conditions => :active %>)</h2>
-
-	<% if @user.followers.present? %>
-<ul>
-	  <% for follower in @user.followers %>
-		<li>
-			<%= link_to h(follower.login), profile_path(follower) %>
-		</li>
-	    
-	  <% end %>
-</ul>
-
-	<% else %>
-		<span>
-				No followers as of yet.
-		</span>
-	<% end %>
-	
-<% end %>
 
 <h4>
 	<% if is_user && current_user.id == @user.id && !@user.writers.empty? && request.path.include?("account") %>

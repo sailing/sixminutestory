@@ -62,9 +62,11 @@ ActionController::Routing::Routes.draw do |map|
        end
      end
      
-   map.resource :account, :controller => "users"
-   map.resources :profile, :controller => "users"
- 
+    map.resource :account, :controller => "users"
+    map.resources :profile, :controller => "users"
+    
+    map.favorites 'profile/:user/favorites', :controller => "votes", :action => "index"
+  
      map.resources :stories do |story|
        story.resources :votes
      end

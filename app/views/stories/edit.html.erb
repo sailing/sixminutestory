@@ -1,8 +1,137 @@
 
 <h1>
-	edit
+	edit story details
 </h1>
-	<% form_for(@story) do |f| %>
-  		<%= f.error_messages %>
-  		<%= render :partial => "form", :object => f %>
+	<% form_for(@story) do |form| %>
+  		<%= form.error_messages %>
+  		
+			<% if is_owner_or_admin %>
+				<% if @story.active == true %>
+					<div class="brown button_container">
+						<%= link_to "Destroy", @story,
+							:confirm => 'Are you sure you want to destroy this story? It will disappear!', 
+							:method => :delete %>
+					</div>
+				<% elsif @story.active == false %>
+					<div class="brown button_container">
+						<%= link_to "Enable", enable_story_url(@story), 
+						:confirm => 'Are you sure you want to enable this story? The story will become visible!'
+						%>
+					</div>
+				<% end %>
+			<% end %>
+
+			<div class="center">
+				<% if is_admin %>
+					<p>
+					<h2>Prompt</h2>
+					<%= form.error_message_on 'prompt_id' %><br />
+				
+					<%= form.text_field :prompt_id %>
+					</p>
+						<p>
+						<%= image_submit_tag("save.png", :name => "save", :id => "save-button") %>
+
+						</p>
+				<% end %>
+						
+				
+					<p>
+					<% is_admin ? @disabled = false : @disabled = true %>
+					
+					<h2>Story</h2>
+					<span>Story cannot be edited.</span>
+					
+					<%= form.error_message_on 'description' %><br />
+					
+					<%= form.text_area :description, :disabled => @disabled, :value => @description, :rows => 20, :cols => 45, :tabindex => "1" %>
+			</p>
+
+			<div class="clear space">
+			</div>
+					<h1>Story details</h1>
+
+						<table>
+
+							<tr>
+
+								<td>
+									<label for="story_title">Title</label>
+								</td>
+
+								<td>	
+							  		<%= form.text_field :title, :tabindex => "2" %>
+								</td>
+							</tr>
+							<tr>
+								<td colspan=2>
+									&nbsp; <%= form.error_message_on 'title' %>
+								</td>
+
+							</tr>
+							<tr>	
+								<td>
+									<label for="story_tags">Adjectives</label><br />
+									<span style="font-size:x-small">separate adjectives with commas</span>
+								</td>
+								<td>	
+
+							 			<%= form.text_field :tag_list, :tabindex => "3" %>
+
+						  		</td>
+							</tr>
+							<tr>	
+								<td>
+									<label for="story_genres">Genres</label><br />
+									<span style="font-size:x-small">separate genres with commas</span>
+								</td>
+								<td>	
+							 			<%= form.text_field :genre_list, :tabindex => "4" %>
+
+						  		</td>
+							</tr>
+
+							<tr>
+								<td colspan=2>
+									&nbsp; 	<%= form.error_message_on 'license' %>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label for="story_license">License</label>
+								</td>
+								<td>
+
+									<select name="story[license]" id="story_license" onchange="" tabindex="5">
+										<option value="Creative Commons Attribution 3.0">
+											Creative Commons Attribution 3.0</option>
+
+										<option value="Creative Commons Attribution-NoDerivs 3.0">
+											Creative Commons Attribution-NoDerivs 3.0</option>
+
+										<option value="Creative Commons Attribution-NonCommerical-NoDerivs 3.0">
+											Creative Commons Attribution-NonCommercial-NoDerivs 3.0</option>
+
+										<option value="Creative Commons AttributionNonCommerical 3.0">
+											Creative Commons Attribution-NonCommercial 3.0</option>
+
+										<option value="Creative Commons Attribution-NonCommerical-ShareAlike 3.0">
+											Creative Commons Attribution-NonCommercial-ShareAlike 3.0</option>
+
+										<option value="Creative Commons Attribution-ShareAlike 3.0" selected="selected">
+											Creative Commons Attribution-ShareAlike 3.0</option>
+										<option value="Public Domain">Public Domain</option>
+
+									</select>
+								</td>
+							</tr>
+						</table>
+
+						<p>
+						<%= image_submit_tag("save.png", :name => "save", :id => "save-button") %>
+
+						</p>
+
+		</div>
+
 	<% end %>

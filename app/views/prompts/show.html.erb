@@ -1,15 +1,29 @@
+<% content_for :sideyard do %>
+
 <% if is_admin %>
-<p>
-	<b>Use on:</b>
-	<%=h @prompt.use_on if @prompt.use_on.present? %>
-</p>
-<%= link_to 'Edit', edit_prompt_path(@prompt) %> |
-<%= link_to 'Back', prompts_path %>
+<div class="prompt">
+	<span>
+		<%= link_to 'Edit', edit_prompt_path(@prompt) %> |
+		<%= link_to 'Back', prompts_path %>
+	</span>
+</div>
 <% end %>
 
-<div id="show_prompt">
-	<%= show_prompt %>
-</div>
+
+	<div id="show_prompt">
+		<%= show_prompt %>
+		<div class="prompt">
+			<span>
+				Originally displayed on:<br /> <%=h @prompt.use_on.strftime("%B %d, %Y") if @prompt.use_on.present? %>
+			</span>
+		</div>
+	</div>
+
+
+<% end %>
+
+
+
 
 <div class="clear space"></div>
 

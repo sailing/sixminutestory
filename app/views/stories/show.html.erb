@@ -163,13 +163,16 @@
 		
 	
 			<div id="storyAndMeta">
-				
-				<div class="story">
-					
-										<%= render :partial => 'share_in_story' %>
-	
+			
+				<div class="story">					
+						<%= render :partial => 'share_in_story' %>
 					<%= simple_format(sanitize(h(@story.description))) %>
+					
+					
 				</div>
+				
+				
+				
 				<iframe src="http://www.facebook.com/plugins/like.php?href=<%=h read_story_url(@story) %>&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;font=segoe+ui&amp;colorscheme=light&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:200px; height:65px;" allowTransparency="true"></iframe>
 		<% if is_user %>
 		<div id="flag">

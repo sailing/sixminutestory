@@ -14,6 +14,15 @@ class VotesController < ApplicationController
   # GET /users/:user_id/stories/:quote_id/votes/
   # GET /users/:user_id/stories/:quote_id/votes.xml
   def index
+    @user = User.find(params[:user]) || current_user
+ 
+    page = params[:page] || 1
+    per_page = params[:per_page] || 10
+    order = params[:order] || "votes.created_at DESC"
+#    @stories = Story.find_by_sql(["select stories.* from stories, votes where votes.voter_id = ? AND stories.id = votes.voteable_id", @user]).paginate :per_page => 3, :page => page
+  @stories = Story.find(:all, :include => :votes, :conditions => ["votes.voter_id = ? AND stories.id = votes.voteable_id", @user], :order => order).paginate :per_page => per_page, :page => page
+ #   @stories = Story.favorites
+  #  @stories.paginate :per_page => 3, :page => page
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @votes }

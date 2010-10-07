@@ -27,7 +27,9 @@ class User < ActiveRecord::Base
   has_many :followers, :through => :inverse_followings, :source => :user
   
   has_many :stories
+  has_karma :stories
   has_many :comments
+
 
   
   def self.find_by_login_or_email(login)
