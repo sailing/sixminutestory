@@ -2,7 +2,7 @@
 	
 	<%= render :partial => "site/profile_block" %>
 	
-<h2>Following (<%= @user.writers.count :conditions => :active %>)</h2>
+<h2>Likes (<%= @user.writers.count :conditions => :active %>)</h2>
 <% if @user.followings.present? %>
 
 <ul>
@@ -24,7 +24,7 @@
 				Not following anyone yet.
 		</span>
 	<% end %>
-<h2>Followers (<%= @user.followers.count :conditions => :active %>)</h2>
+<h2>Fans (<%= @user.followers.count :conditions => :active %>)</h2>
 
 	<% if @user.followers.present? %>
 <ul>
