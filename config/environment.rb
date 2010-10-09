@@ -47,6 +47,9 @@ Rails::Initializer.run do |config|
   config.gem 'rpx_now', :version => '>= 0.6.12', :source => 'http://gemcutter.org'
   config.gem 'authlogic_rpx', :version => '>= 1.1.1', :source => 'http://gemcutter.org'
 
+# Caching
+  config.gem 'memcached-northscale', :lib => 'memcached'
+  require 'memcached'
   
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
