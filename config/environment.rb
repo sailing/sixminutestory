@@ -26,9 +26,6 @@ Rails::Initializer.run do |config|
 # Database
 #  config.gem "mysql"
   
-# Cron Scheduler
-#  config.gem 'whenever', :lib => false, :source => 'http://gemcutter.org/'
-  
 # Background Mailer
 #  config.gem "adzap-ar_mailer", :lib => 'action_mailer/ar_mailer', :source => 'http://gems.github.com'
 
