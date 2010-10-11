@@ -22,6 +22,17 @@
 		<meta name="title" content="<%= @story.title -%> – Six Minute Story" />
 		<meta name="description" content="<%= truncate(@story.description, 150) -%>" />
 		
+		<% if @prompt %>
+			<% if @prompt.refcode.present? %>
+				<link rel="image_src" href="<%= @prompt.refcode %>" />
+			<% else %>
+				<link rel="image_src" href="http://sixminutestory.com/images/logo_square.png" />
+			<% end %>
+		<% elsif @story.prompt.refcode.present? %>
+			<link rel="image_src" href="<%= @story.prompt.refcode %>" />
+		<% else %>
+			<link rel="image_src" href="http://sixminutestory.com/images/logo_square.png" />
+		<% end %>
 
 	<% else %>
 		<!-- tweetmeme meta tags -->

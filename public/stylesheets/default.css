@@ -20,7 +20,7 @@ Purple for text => #a85ac1
 Possible purple for text areas: #e8daf0
 Pastel Green => #aacc31
 New Blue => #8fcfef
-
+Pro Blue Grey => #e6f6f6
 #6fdfcf
 Great Green => #5f9f3f
 
@@ -40,7 +40,7 @@ body {
 
 	vertical-align:baseline;
 /*	background: #dfffff url(../images/sublogo_new_cropped.png) bottom right fixed no-repeat; */
-	background: #efffff;
+	background: #e9faff;
 	z-index:1;
 
 }
