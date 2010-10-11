@@ -36,13 +36,13 @@ x enable deleting prompts
 	- most followed authors list
 	- authors w most total favorites (karma)
 	- featured author page
-- change "cheers" to "favorites"
+x change "cheers" to "favorites"
 	- upgrade to thumbs_up?
 	- add voting on prompts (as => "like") 
 	- and comments (as => "agree")
 - add to users account / profile:
 	- stories you've commented on
-	- stories you've favorited
+	x stories you've favorited
 - new rating system (5 star?)
 - contests?
 - new logo
