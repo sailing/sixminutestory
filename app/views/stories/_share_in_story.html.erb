@@ -6,6 +6,7 @@
 				//tweetmeme_style='compact'
 		 		tweetmeme_url='<%= read_story_url(@story) %>'
 				tweetmeme_source='6minutestory'
+				tweetmeme_title='"<%= @story.title %>" by <%= @story.user.login %>'
 				tweetmeme_service='bit.ly'
 				service_api = 'R_7d9a33865d37be3eda125f7d3c353230'
 		</script>

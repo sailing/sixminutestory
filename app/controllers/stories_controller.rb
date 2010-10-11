@@ -1,7 +1,7 @@
 class StoriesController < ApplicationController
-  before_filter :require_user, :only => [:new, :create, :destroy, :flag_story]
-  before_filter :must_own_story, :only => [:edit, :update]
-  before_filter :must_be_admin, :only => [:admin, :disabled, :enable_story, :disable_story, :feature_story, :unfeature_story]
+  before_filter :require_user, :only => [:new, :create, :flag_story]
+  before_filter :must_own_story, :only => [:edit, :destroy, :update]
+  before_filter :must_be_admin, :only => [:admin, :disabled, :enable_story, :feature_story, :unfeature_story]
 #  before_filter ensure_current_post_url, :only => :show
   
    def index 
