@@ -6,14 +6,12 @@
 				//tweetmeme_style='compact'
 		 		tweetmeme_url='<%= read_story_url(@story) %>'
 				tweetmeme_source='6minutestory'
-				tweetmeme_title='"<%= @story.title %>" by <%= @story.user.login %>'
+				tweetmeme-title='"<%= @story.title %>" by <%= @story.user.login %>'
 				tweetmeme_service='bit.ly'
 				service_api = 'R_7d9a33865d37be3eda125f7d3c353230'
 		</script>
 		
-			<script 	type="text/javascript"
-		 			src="http://tweetmeme.com/i/scripts/button.js">
-			</script>
+			<a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= read_story_url(@story) -%>" data-text="Read &quot;<%= @story.title %>&quot; by <%= @story.user.login %>:" data-count="vertical" data-via="6minutestory" data-related="galensanford:The brain behind the site.">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 			<br /><br />
 				<script src="http://www.stumbleupon.com/hostedbadge.php?s=5&r=<%=h read_story_url(@story) %>"></script>
 					<br /><br />
