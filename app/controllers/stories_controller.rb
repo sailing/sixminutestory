@@ -156,7 +156,8 @@ class StoriesController < ApplicationController
          # Initialize a comment 
            @comment = Comment.new
            @user = @story.user
-           @prompt = Prompt.find_by_id(@story.prompt_id)
+           @prompt = @story.prompt
+           #Prompt.find_by_id(@story.prompt_id)
            
         # tests to see if a following relationship exists
            following_exists
@@ -208,8 +209,8 @@ class StoriesController < ApplicationController
       order = "created_at DESC"
       per_page = 15
     @story = Story.find(params[:id])
-    @prompt = Prompt.find(@story.prompt_id)
-    @stories = Story.paginate_by_prompt_id(@prompt.id, :page => page, :order => order, :per_page => per_page)
+    @prompt = @story.prompt
+    @stories = Story.active.paginate_by_prompt_id(@prompt.id, :page => page, :order => order, :per_page => per_page)
     
   end
   

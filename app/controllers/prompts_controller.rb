@@ -92,7 +92,7 @@ class PromptsController < ApplicationController
     page = page || 1
     order = "created_at DESC"
     per_page = 10
-    @stories = Story.paginate_by_prompt_id(@prompt.id, :page => page, :order => order, :per_page => per_page)
+    @stories = Story.active.paginate_by_prompt_id(@prompt.id, :page => page, :order => order, :per_page => per_page)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @prompt }
