@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
-    before_filter :require_user, :only => [:new, :create, :edit, :update]
+    before_filter :require_user, :only => [:index, :new, :create, :edit, :update]
+    before_filter :must_be_admin, :only => [:destroy]
 
   # GET /comments
   # GET /comments.xml
@@ -7,9 +8,27 @@ class CommentsController < ApplicationController
       page = params[:page] || 1
       per_page = 5
       condition = true
-      order = "created_at DESC"
-      @comments = Comment.paginate :all, :page => page, :per_page => per_page, :order => order, :conditions => {:story_id => params[:id]}
-      
+      order = "others_comments.created_at DESC, stories.created_at DESC"
+      @user = current_user
+      if params[:time]
+        case params[:time]
+          when "new"
+            @stories = Story.active.with_unseen_comments_for_user(@user).paginate :page => page, :per_page => per_page, :order => order
+            @title = "Recent comments after your comments"
+          when "on"
+            @stories = Story.active.new_comments_for_user_stories(@user).paginate :page => page, :per_page => per_page, :order => order
+            @title = "Recent comments on your stories"
+          when "allstories"
+             @stories = Story.active.all_comments_for_user_stories(@user).paginate :page => page, :per_page => per_page, :order => order
+             @title = "All comments on your stories"
+          else
+            @stories = Story.active.with_comments_for_user(@user).paginate :page => page, :per_page => per_page, :order => order
+            @title = "All comments"
+          end
+      else 
+         @stories = Story.active.with_comments_for_user(@user).paginate :page => page, :per_page => per_page, :order => order
+         @title = "All comments"
+      end
       respond_to do |format|
         format.html # index.html.erb
         format.xml  { render :xml => @comments }

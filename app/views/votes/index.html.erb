@@ -1,4 +1,5 @@
-<% @user == current_user ? name = "You have" : @user.login + " has"%>
+<% @user == current_user ? name = "You have" : name = @user.login + " has" %>
+	
 <h1><%= name %> <%= @user.votes.count %> favorites</h1>
 
 

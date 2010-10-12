@@ -66,7 +66,9 @@ ActionController::Routing::Routes.draw do |map|
     map.resources :profile, :controller => "users"
     
     map.favorites 'profile/:user/favorites', :controller => "votes", :action => "index"
-  
+    map.users_comments 'account/comments/:time', :controller => "comments", :action => "index"
+    map.users_comments_sans_time 'account/comments', :controller => "comments", :action => "index"
+
      map.resources :stories do |story|
        story.resources :votes
      end

@@ -6,12 +6,16 @@
 <%= render :partial => 'profile' %>
 
 
-<h4>
-	<% if is_user && current_user.id == @user.id && !@user.writers.empty? && request.path.include?("account") %>
-		Stories by Writers You Follow
-	<% else %>
-		Stories by <%= @user.login %>
+<h4><%= @title %></h4>
+	
+	<% unless @profile %>
+		<div class="purple button_container">
+			<%= link_to "Favorites", favorites_url(@user) %>
+		</div>
+		<div class="brown button_container">
+			<%= link_to "Comments", users_comments_url("new") %>
+		</div>
+		
 	<% end %>
-</h4>
-
+	
  <%= render :partial => "layouts/show_stories" %>

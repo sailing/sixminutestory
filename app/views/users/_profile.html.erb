@@ -2,11 +2,21 @@
 	
 	<%= render :partial => "site/profile_block" %>
 	
-<h2>Favorites (<%= @user.votes.count %>)</h2>
-<p>
-	<%= link_to "View favorites", favorites_path(@user) %>
-</p>	
-<h2>Likes (<%= @user.writers.count :conditions => :active %>)</h2>
+<% if is_user %>
+	<h2>Favorites (<%= @user.votes.count %>)</h2>
+	<p>
+		<%= link_to "View favorites", favorites_path(@user) %>
+	</p>
+<% end %>
+
+<% if is_owner_or_admin %>
+	<h2>Comments (<%= @user.comments_count || "0" %>)</h2>
+	<p>
+		<%= link_to "View comments", users_comments_path("new") %>
+	</p>
+<% end %>
+
+<h2>Follows (<%= @user.writers.count :conditions => :active %>)</h2>
 <% if @user.followings.present? %>
 
 <ul>
