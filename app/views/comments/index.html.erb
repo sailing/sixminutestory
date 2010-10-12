@@ -7,7 +7,7 @@
 	<div class="float_left">
 			<h3>On your stories</h3>
 			<div class="purple button_container">
-				<%= link_to "Recent", users_comments_url("on") %>
+				<%= link_to "New", users_comments_url("on") %>
 			</div>
 			<div class="purple button_container">
 				<%= link_to "All", users_comments_url("allstories") %>
@@ -16,7 +16,7 @@
 	<div class="float_right">
 		<h3>On stories you've commented on</h3>
 		<div class="brown button_container">
-			<%= link_to "Recent", users_comments_url("new") %>
+			<%= link_to "New", users_comments_url("new") %>
 		</div>
 		<div class="brown button_container">
 			<%= link_to "All", users_comments_url("all") %>
@@ -28,4 +28,8 @@
 <div class="space"></div>
 
 <h2><%= @title %></h2>
-<%= render :partial => "layouts/show_stories" %>
+<% unless @stories.empty? %>
+	<%= render :partial => "layouts/show_stories" %>
+<% else %>
+	<p>No new comments.</p>
+<%end%>
