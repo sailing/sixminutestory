@@ -32,14 +32,14 @@ class Story < ActiveRecord::Base
 
   named_scope :with_unseen_comments_for_user, lambda { |user| {
        :select => "DISTINCT stories.*", 
-       :joins => "INNER JOIN (comments, comments AS others_comments, users) ON (comments.user_id = users.id AND others_comments.story_id = stories.id AND comments.story_id = stories.id)", 
+       :joins => "INNER JOIN (comments, users, comments AS others_comments) ON (comments.user_id = users.id AND others_comments.story_id = stories.id AND comments.story_id = stories.id)", 
        :conditions => ["users.id = ? AND (others_comments.created_at > users.last_login_at)", user]
       }
   }
   
   named_scope :with_comments_for_user, lambda { |user| {
        :select => "DISTINCT stories.*", 
-       :joins => "INNER JOIN (comments, comments AS others_comments, users) ON (comments.user_id = users.id AND others_comments.story_id = stories.id AND comments.story_id = stories.id)", 
+       :joins => "INNER JOIN (comments, users, comments AS others_comments) ON (comments.user_id = users.id AND others_comments.story_id = stories.id AND comments.story_id = stories.id)", 
        :conditions => ["users.id = ? AND (others_comments.created_at > comments.created_at OR others_comments.created_at > users.last_login_at OR stories.user_id = ?)", user, user]
         
       }
@@ -47,14 +47,14 @@ class Story < ActiveRecord::Base
   
   named_scope :new_comments_for_user_stories, lambda {|user| {
       :select => "DISTINCT stories.*", 
-      :joins => "INNER JOIN (comments AS others_comments, users) ON (others_comments.story_id = stories.id AND stories.user_id = users.id)",
+      :joins => "INNER JOIN (users, comments AS others_comments) ON (others_comments.story_id = stories.id AND stories.user_id = users.id)",
       :conditions => ["users.id = ? AND (others_comments.created_at > users.last_login_at)", user]
     }
   }
   
   named_scope :all_comments_for_user_stories, lambda {|user| {
       :select => "DISTINCT stories.*", 
-      :joins => "INNER JOIN (comments AS others_comments, users) ON (others_comments.story_id = stories.id AND stories.user_id = users.id)",
+      :joins => "INNER JOIN ( users, comments AS others_comments) ON (others_comments.story_id = stories.id AND stories.user_id = users.id)",
       :conditions => ["users.id = ?", user]
     }
   }
