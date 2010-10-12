@@ -2,6 +2,7 @@ class StoriesController < ApplicationController
   before_filter :require_user, :only => [:new, :create, :flag_story]
   before_filter :must_own_story, :only => [:edit, :destroy, :update]
   before_filter :must_be_admin, :only => [:admin, :disabled, :enable_story, :feature_story, :unfeature_story]
+  after_filter :increment_counter, :only => [:show]
 #  before_filter ensure_current_post_url, :only => :show
   
    def index 
@@ -161,14 +162,7 @@ class StoriesController < ApplicationController
            
         # tests to see if a following relationship exists
            following_exists
-          
-        # find previous and next stories
-        
-
-           # increment story counter
-           unless (current_user == @user)
-            Story.increment_counter(:counter, @story)
-           end
+  
 
              respond_to do |format|
                format.html # show.html.erb
@@ -379,6 +373,13 @@ class StoriesController < ApplicationController
     end
   end
   
- 
+ def increment_counter
+  if @story && @user
+    # increment story counter
+     unless (current_user == @user)
+      Story.increment_counter(:counter, @story)
+     end
+  end
+ end
 
 end
