@@ -35,7 +35,7 @@ class StoriesController < ApplicationController
             @paginate = true
         when /^\/genre\/./
             @genre = params[:tag]
-            @stories = Story.tagged_with(@genre, :on => :genres).by_date.paginate :page => page, :per_page => per_page
+            @stories = Story.tagged_with(@genre, :any => true, :on => :genres).by_date.paginate :page => page, :per_page => per_page
             @title = "stories in #{@genre} genre"
             @paginate = true
         #when /^\/account\/commented/
