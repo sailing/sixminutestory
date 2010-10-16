@@ -36,6 +36,7 @@ x enable deleting prompts
 	- most followed authors list
 	- authors w most total favorites (karma)
 	- featured author page
+	- awards
 x change "cheers" to "favorites"
 	- upgrade to thumbs_up?
 	- add voting on prompts (as => "like") 

@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
       page = params[:page] || 1
       per_page = 5
       condition = true
-      order = "others_comments.created_at DESC, stories.created_at DESC"
+      order = "stories.updated_at DESC"
       @user = current_user
       if params[:time]
         case params[:time]
