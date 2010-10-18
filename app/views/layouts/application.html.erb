@@ -1,7 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xml:lang="en" lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>Six Minute Story –
@@ -13,7 +12,11 @@
 	</title>
 	<!-- Javascripts to include -->
 	<%= javascript_include_tag :all, :cache => true %>
-
+	
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	
   	<%= stylesheet_link_tag 'default', :cache => true %>
 	<% if @story.present? %>
 		<!-- tweetmeme meta tags -->
@@ -138,9 +141,14 @@
 
 	</div>	<!-- Close Login Container-->
 	
-
-	
-
+	<aside id="follow_links" class="float_right">
+		<p>
+			<a href="http://www.twitter.com/6minutestory" title="Follow Six Minute Story on Twitter" alt="Follow Six Minute Story on Twitter"><%= image_tag "twitter.png" %></a>
+		</p>
+		<p>		
+				<a href="http://facebook.com/sixminutestory" title="Follow Six Minute Story on Facebook" alt="Follow Six Minute Story on Facebook"><%= image_tag "facebook.png" %></a>
+		</p>
+	</aside>
 
 
 
@@ -148,21 +156,14 @@
 	
 	<span id="logo"><%= link_to (image_tag "logo2.png"), root_path %></span>
 
-	<div id="header_links">
-		<% if !current_user %>
-		  	<%= link_to "Write", write_path %>
-			| <%= link_to "Read", read_path %>
-			| <%= link_to "How's it work?", faq_path %>
-			| <a href="http://twitter.com/6minutestory">Blog</a>
-			
-		<% else %>
+	<nav id="header_links">
+	
 			<%= link_to "Write", write_path %>
 			| <%= link_to "Read", read_path %>
 			| <%= link_to "How's it work?", faq_path %>
-			| <a href="http://twitter.com/6minutestory">Blog</a>
-		<% end %>
+			| <a href="http://blog.sixminutestory.com">Blog</a>
 	
-	</div>  
+	</nav>  
 
 </div>
 
@@ -267,7 +268,7 @@
 	    alignment: 'right',
 	    background_color:'#b86ae1', 
 	    text_color: 'white',
-	    hover_color: '#ff7400',
+	    hover_color: '#8fcfef',
 	    lang: 'en',
 	    showTab: true
 	  };

@@ -2,14 +2,14 @@
 	
 <h1><%= name %> <%= @user.votes.count %> favorites</h1>
 
-
+	<nav>
 			<div class="brown button_container"><a href="?order=popular">Popular</a></div> 
 			<div class="brown button_container"><a href="?order=most">Most</a> </div>
 			<div class="brown button_container"><a href="?order=recent">Recent</a> </div> 
 			<div class="brown button_container"><a href="?order=earliest">Earliest</a> </div>
-
+	</nav>
 			
 
-<%= render :partial => "layouts/show_stories" %>
+<%= render :partial => "stories/story", :collection => @stories %>
 
 <%= render :partial => "users/profile" %>

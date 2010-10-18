@@ -33,7 +33,7 @@ class Story < ActiveRecord::Base
   named_scope :with_unseen_comments_for_user, lambda { |user| {
        :select => "DISTINCT stories.*",
        :joins => "INNER JOIN comments ON comments.story_id = stories.id INNER JOIN comments others_comments ON others_comments.story_id = stories.id INNER JOIN users ON comments.user_id = users.id ", 
-       :conditions => ["users.id = ? AND (others_comments.created_at > users.last_login_at)", user]
+       :conditions => ["users.id = ? AND (others_comments.created_at > comments.created_at AND others_comments.created_at > users.last_login_at)", user]
       }
   }
   

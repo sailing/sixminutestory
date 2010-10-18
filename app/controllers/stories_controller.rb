@@ -17,7 +17,7 @@ class StoriesController < ApplicationController
             @stories = Story.active.popular.paginate :page => page, :per_page => per_page   
             @title = "popular stories"
         #    @popular = true
-        when /^\/commented/
+        when /^\/active/
             @stories = Story.active.commented.paginate :page => page, :per_page => per_page
             @title = "most active stories"
             #@paginate = true

@@ -2,34 +2,41 @@
 	<%= @title %>
 <% end %>
 
-<h1>Comments</h1>
-<div style="width:85%">
-	<div class="float_left">
-			<h3>On your stories</h3>
-			<div class="purple button_container">
-				<%= link_to "New", users_comments_url("on") %>
-			</div>
-			<div class="purple button_container">
-				<%= link_to "All", users_comments_url("allstories") %>
-			</div>
-	</div>
-	<div class="float_right">
-		<h3>On stories you've commented on</h3>
-		<div class="brown button_container">
-			<%= link_to "New", users_comments_url("new") %>
-		</div>
-		<div class="brown button_container">
-			<%= link_to "All", users_comments_url("all") %>
-		</div>
-	</div>
-</div>
 
-<div class="clear space"></div>
-<div class="space"></div>
 
-<h2><%= @title %></h2>
+<h1><%= @title %></h1>
 <% unless @stories.empty? %>
-	<%= render :partial => "layouts/show_stories" %>
+	<%= render :partial => "stories/story", :collection => @stories %>
 <% else %>
 	<p>No new comments.</p>
 <%end%>
+
+<% content_for :sideyard do %>
+	<h1>Comments</h1>
+		<div>
+
+				<h2>On your stories</h2>
+				<nav>
+				<div class="purple button_container">
+					<%= link_to "New", users_comments_url("on") %>
+				</div>
+				<div class="purple button_container">
+					<%= link_to "All", users_comments_url("allstories") %>
+				</div>
+				</nav>
+		</div>
+		<div>
+			<h2>On stories you've <br />commented on</h2>
+			<nav>
+			<div class="green button_container">
+				<%= link_to "New", users_comments_url("new") %>
+			</div>
+			<div class="green button_container">
+				<%= link_to "All", users_comments_url("all") %>
+			</div>
+			</nav>
+		</div>
+	</nav>
+<% end %>
+
+<%= render :partial => "users/profile" %>

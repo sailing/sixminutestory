@@ -46,11 +46,14 @@ class UsersController < ApplicationController
         per_page = 10
         order = "created_at DESC"
     
+        @truncate = true 
+        
         if request.path.include?("profile") or (request.path.include?("profile") and request.format == "rss") 
             @stories = Story.paginate_by_user_id @user.id, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    
             @rss_url = "http://sixminutestory.com/profile/"+params[:id]+".rss"
             @profile = true
             @title = "Stories by " + @user.login
+
         elsif (request.path.include?("account") or (request.path.include?("rss") and request.format == "rss")) and !@user.writers.empty?
             @stories = Story.paginate_by_user_id @user.writers, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}
               #@rss_url = rss_url(@user.login, :format => :rss)

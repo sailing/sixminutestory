@@ -1,0 +1,79 @@
+	<article>
+			
+			<header>
+				<hgroup>
+					<h1>
+						<% if story.title.present? %>
+							<!-- Story title as a link in the listings -->
+							<%= link_to h(story.title), read_story_url(story) %>
+						<% else %>
+							<%= link_to "Untitled Story", read_story_url(story)%>
+						<% end %>
+					</h1>
+					
+						<p>
+							by <%= link_to h(story.user.login), profile_path(story.user) %> –
+							<%=h time_ago_in_words(story.created_at) %> ago
+							<%= link_to "Edit Story Details", edit_story_url(story) if is_owner_or_admin %>
+						</p>
+				</hgroup>
+			</header>
+			
+				<% unless @stories %>
+					<aside>
+						<%= render :partial => 'stories/share_in_story', :locals => {:story => story} %>
+					</aside>
+				<% end %>
+			
+				<% if @stories %>
+					<%= simple_format(sanitize(truncate(h(story.description), :length => 350, :omission => "...&nbsp;&nbsp;&nbsp;[" + link_to("Read&nbsp;more...", read_story_url(story))+ "]" ))) %>
+				<% else %>
+					<%= simple_format(sanitize(h(story.description))) %>
+				<% end %>
+
+			
+
+				<% unless @stories %>
+					<section class="center">		
+						<iframe src="http://www.facebook.com/plugins/like.php?href=<%=h read_story_url(@story) %>&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;font=segoe+ui&amp;colorscheme=light&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:200px; height:65px;" allowTransparency="true"></iframe>
+					</section>
+				<% end %>
+				
+	<footer>
+	
+		<% unless @stories %>
+	<section class="float_left">
+			<% if is_user %>
+				<div id="flag">
+				
+					<!-- This is how people flag stories -->
+		
+					<% form_remote_tag(:url => flag_story_url, :method => "post") do -%>
+
+					<%= hidden_field_tag 'story', story.id %>
+				
+					<div id="flag_button">
+						<%= image_submit_tag 'flag.png', 
+							:name => "flag", 
+							:id => "flag-button",
+							:disabled => false %>
+					</div>
+		  			<% end -%>	
+				</div>
+			<% end -%>
+		</section>
+	<% end -%>
+	
+				
+				<span><%= link_to pluralize(story.comments_count, 'remark'), read_story_url(story, :anchor => "comments") %></span>
+				<span>&nbsp;||&nbsp;</span>
+				<span>
+					<%= pluralize(story.rating, 'favorite', 'favorites') %>
+				</span>
+
+			<% if is_admin %>
+				<br />
+					<%= link_to 'Edit', edit_story_url(story) %>&nbsp;||&nbsp;<%= story.flagged %>&nbsp;flags
+			<% end %>
+	</footer>
+</article>

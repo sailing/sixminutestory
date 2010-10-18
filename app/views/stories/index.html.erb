@@ -18,65 +18,9 @@
 		#rss_feed 
 		%> 
 	<%= render :partial => "layouts/browsing" %> </span>
-<div id="show_stories">
-	<% for story in @stories %>	
 	
-	
-	<div id="indStoryFront" >
-		<div id="title_bar" class="<%= cycle('indStory', 'indStoryAlternate') -%>">
-		
-		
-			<% if story.title.present? %>
-			<span class="title">
-				<!-- Story title as a link in the listings -->
-				<%= link_to h(story.title), read_story_url(story) %>
-			</span>
-			<% else %>
-			<span>
-				<!-- Story title as a link in the listings -->
-				<%= link_to "Untitled Story", read_story_url(story)%>
-			</span>
+		<%= render :partial => 'story', :collection => @stories %>
 
-			<% end %>
-			
-				<span class="author">
-				by <%= link_to h(story.user.login), profile_path(story.user) %>
-				</span>
-				
-				<% if @popular %>
-					<span style="font-size:.8em">
-						:: 
-						<%= 
-							pluralize(story.counter, 'view') 
-						%>
-					</span>
-				<% end %>
-				
-		</div>
-		<div id="storyAndMeta">
-			<div class="story">
-				<% if @truncate %>
-					<%= simple_format(sanitize(truncate(h(story.description), :length => 350, :omission => "...&nbsp;&nbsp;&nbsp;[" + link_to("Read&nbsp;more...", read_story_url(story))+ "]" ))) %>
-				<% else %>
-					<%= simple_format(sanitize(h(story.description))) %>
-				<% end %>
-			</div>
-		
-			<div class="meta">
-				<span><%= link_to pluralize(story.comments_count, 'remark'), read_story_url(story, :anchor => "comments") %></span>
-				<span>&nbsp;||&nbsp;</span>
-				<span>
-					<%= pluralize(story.rating, 'favorite', 'favorites') %>
-				</span>
-			
-			</div>
-			<% if is_admin %>
-				<div class = "meta">
-					<%= link_to 'Edit', edit_story_url(story) %>&nbsp;||&nbsp;<%= story.flagged %>&nbsp;flags	</div>
-			<% end %>
-		</div>
-	</div>
-	<% end %>
 	
 
 	<% if is_admin %> 

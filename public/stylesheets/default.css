@@ -57,6 +57,11 @@ body, p, td, h1, h4 {
 
 }
 
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section { 
+    display:block;
+}
+
 p {
 	padding:2px 2px 10px 10px;
 }
@@ -89,6 +94,10 @@ h1 {
 	-moz-border-radius-bottomright:5px;
 	-webkit-border-bottom-right-radius:5px;
 */	
+}
+
+h1 a {
+	color:inherit !important;
 }
 
 h4 {
@@ -365,44 +374,13 @@ background-color:#a759d0;
 	-webkit-border-radius:10px;
 	padding:2%;
 }
-/* 								*/
-/*		Share links */
-/*								*/
-#share_container {
-	visibility:hidden;
+
+#follow_links {
+	float:left;
 	position:fixed;
-	left:420px;
-	top:0px;
-	z-index:10001;
-	width:325px;
-	-moz-border-radius-bottomleft:5px;  
-	-webkit-border-bottom-left-radius:5px;
-	-moz-border-radius-bottomright:5px;
-	-webkit-border-bottom-right-radius:5px;
-	padding:3px;
-	border:1px solid #444;
-	border-top:0;
-	background-color:#fff;
-}
-
-#share_container table {
-	width:95%;
-	background:#fff;
-	border-collapse:collapse;
-}
-
-
-#share_container tr, #share_container td {
-	background:#fff;
-
-}
-
-#share_container td {
-	width:33%;
-	padding:0px;
-	margin:0;
-	text-align:center;
-}								
+	margin: 1% 0;
+	z-index:1000;
+}							
 								
 /* 							*/
 /*  	Header		*/
@@ -441,9 +419,8 @@ background-color:#a759d0;
 /* Umm... the logo... */
 
 .logo {
-	position:relative;
-	left:45px;
-	margin:25px 0;
+
+	margin:25px 0 0 105px;
 }
 
 .logo img {
@@ -575,8 +552,8 @@ background-color:#a759d0;
 	float:right;
 	background-color:#111;
 	opacity:1;
-	-moz-border-radius:10px;  
-	-webkit-border-radius:10px;
+	-moz-border-radius:15px;  
+	-webkit-border-radius:15px;
 	z-index:1000;
 	
 }
@@ -604,14 +581,18 @@ background-color:#a759d0;
 /*  	sideyard			*/
 /* 							*/
 
+.sideyard_container h1 {
+	color:white;
+	padding-left:10px;
+}
+
 .sideyard_container h2 {
 	font-family:"univers","Helvetica Bold Condensed", helvetica;
 	font-size:1.1em;
-	text-indent:10px;
 	font-weight:600;
 	letter-spacing:.13em;
 	margin-bottom:15px;
-	padding:4px 0px;
+	padding:4px 0 4px 10px;
 	border-bottom:1px dotted #333;
 	color:#fff;
 
@@ -1011,7 +992,7 @@ background-color:#a759d0;
 	-moz-border-radius:10px;  
 	-webkit-border-radius:10px;
 	padding:25px 15px;
-	margin: 0 1% 2% 5%;
+	margin: 0 4% 2% 5%;
 	
 }
 											
@@ -1141,56 +1122,83 @@ background-color:#a759d0;
 	padding:4px;
 }
 
-#storyAndMeta {
-	text-align:center;
+article {
+	
 	color:#333;
+	font-family:georgia, serif;
+	
 	
 	background:#fff;
-	opacity:.9;
+	opacity:1;
 	
 	
-	-moz-border-radius-bottomleft:10px;  
-	-webkit-border-bottom-left-radius:10px;
-	-moz-border-radius-bottomright:10px;
-	-webkit-border-bottom-right-radius:10px;
+	-moz-border-radius:20px;  
+	-webkit-border-radius:20px;
 
-	padding:5px;
 
-}
-
-.story {
-	padding:25px 25px 0;
-}
-
-.story a {
-	font-size:.8em;
-}
-
-.story p {
+	padding:0;
+	margin:0 auto 4%;
+	
 	text-align:justify;
 	line-height:1.9em;
 	font-size:1.2em;
 	letter-spacing:.09em;
 	color:#000;
 	font-family:"ITC Avant Garde Gothic Pro", georgia, serif;
-	
-	/*
-	text-indent:1em;
-	text-align:justify;	
-	color:#000;
-	font-size:1.2em;
-	font-family:"ITC Avant Garde Gothic Pro", georgia, serif;
-	letter-spacing:.08em;
-	line-height:1.6em;
-	margin:0 0 15px;
-	*/
+
 }
 
+article p:first-letter {
+	font-size:1.4em;
+}
 
-.meta {
-  text-align:right;
-	font-size:.75em;
-	padding-right:5px;
+header p:first-letter {
+	font-size:inherit;
+}
+
+article p {
+	text-align:justify;
+	line-height:1.9em;
+	font-size:1.2em;
+	letter-spacing:.09em;
+	color:#000;
+	font-family:"ITC Avant Garde Gothic Pro", georgia, serif;
+
+	padding:2% 7%;
+
+}
+
+header {
+	padding:3% 3% 0;
+	text-align:left;
+}
+
+header h1 {
+	font-size:1.9em;
+}
+
+header p {
+	line-height:1em;
+	text-indent:0;
+	padding:0 1%;
+	font-size:.9em;
+}
+
+footer {
+	  text-align:right;
+		font-size:.75em;
+		padding:0 2% 2%;
+		line-height:1.5em;
+}
+
+footer section {
+	width:35%;
+
+}
+
+nav {
+	margin:2% auto;
+	width:90%;
 }
 
 /* 						*/
@@ -1562,7 +1570,6 @@ background-color:#a759d0;
 
 #flag {
 	width:20%;
-	margin:10px 30px;
 
 }
 
@@ -1726,6 +1733,7 @@ background-color:#a759d0;
 }
 
 .center {
+	text-align:center;
 	width:95%;
 	margin:0px auto;
 }
