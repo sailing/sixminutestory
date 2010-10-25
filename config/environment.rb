@@ -22,20 +22,6 @@ Rails::Initializer.run do |config|
       :lib => 'will_paginate', 
       :source => 'http://gems.github.com'
       
-      
-# Database
-#  config.gem "mysql"
-  
-# Background Mailer
-#  config.gem "adzap-ar_mailer", :lib => 'action_mailer/ar_mailer', :source => 'http://gems.github.com'
-
-# Search        
- # config.gem(
-  #   'thinking-sphinx',
-  #   :lib     => 'thinking_sphinx',
-  #   :version => '1.3.8'
-  # )      
-
 # Friendly ID
   config.gem "friendly_id"
  

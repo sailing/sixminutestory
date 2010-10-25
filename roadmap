@@ -42,16 +42,15 @@ x change "cheers" to "favorites"
 	- add voting on prompts (as => "like") 
 	- and comments (as => "agree")
 - add to users account / profile:
-	- stories you've commented on
+	x stories you've commented on
 	x stories you've favorited
 - new rating system (5 star?)
 - contests?
 - new logo
-
+- allow writers to edit their own stories?
 
 2.4 
 - spellcheck
-
 - integrate flickr api
 
 2.4 

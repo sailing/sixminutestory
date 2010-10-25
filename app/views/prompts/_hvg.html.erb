@@ -1,19 +1,18 @@
 	<tr class="<%= cycle('row_alternate', 'row') -%>">
-	    <td><%=h prompt.hero %></td>
-	    <td><%=h prompt.villain %></td>
-	    <td><%=h prompt.goal %></td>
-		<td><%= link_to (h(prompt.stories_count)), prompt_url(prompt) %></td>
+	    <td><%=h hvg.hero %></td>
+	    <td><%=h hvg.villain %></td>
+	    <td><%=h hvg.goal %></td>
+		<td><%= link_to (h(hvg.stories_count)), prompt_url(hvg) %></td>
 	    <td>
-		<%= link_to 'Use this Prompt',write_to_prompt_path(prompt.id)%>
-		| <%= link_to "details", prompt_url(prompt) -%>
+		<%= link_to 'Use this Prompt',write_to_prompt_path(hvg.id)%>
+		| <%= link_to "details", prompt_url(hvg) -%>
 		
 		<% if is_admin %>
 
 			</td>
 			<td>
 
-			<%=h prompt.use_on %>	
-				<%= link_to 'Edit', edit_prompt_path(prompt) %>
+				<%= link_to 'Edit', edit_prompt_path(hvg) %>
 		<% end %>
 
 		</td>

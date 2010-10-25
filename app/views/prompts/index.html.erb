@@ -5,7 +5,7 @@
 	| <%= link_to "FridayFlash", edit_prompt_path('25') %>
 <% end %>
 <br />
-<%= select_tag_for_filter("prompts", @filters, params) %>
+<%= select_tag_for_filter("past_prompts", @filters, params) %>
 
 <div id="listPrompts">
 <% if @table == "hvg" %>
@@ -26,14 +26,12 @@
 			<% end %>
 
 	</tr>
-	<% @prompts.each do |prompt| %>
-	 	<%= render :partial => 'hvg', :locals => {:prompt => prompt} %>
+	 	<%= render :partial => 'hvg', :collection => @prompts %>
 		
-	<% end %>
 	<tr class="row">
 		<% is_admin ? @colspan = 6 : @colspan = 5 %>
 		<td colspan=<%=@colspan%>>
-			<%= will_paginate @prompts %>
+			<%= will_paginate @prompts, :renderer => StockRenderer  %>
 		</td>
 	</tr>
 	</table>
@@ -67,7 +65,7 @@
 			<% end %>
 			<tr>
 				<td colspan=2>
-					<%= will_paginate @prompts %>
+					<%= will_paginate @prompts, :renderer => StockRenderer  %>
 				</td>
 			</tr>
 		</table>
@@ -79,12 +77,10 @@
 	<% unless @prompts.empty? %>
 	<h2>First lines</h2>
 		<table>
-		<% @prompts.each do |prompt| %>
-			<%= render :partial => 'firstline', :locals => {:prompt => prompt } %>
-		<% end %>
+			<%= render :partial => 'firstline', :collection => @prompts  %>
 		<tr>
 			<td colspan=3>
-				<%= will_paginate @prompts %>
+				<%= will_paginate @prompts, :renderer => StockRenderer  %>
 			</td>
 		</tr>
 		</table>
@@ -97,15 +93,13 @@
 <% unless @firstlines.empty? %>
 <h2>First lines</h2>
 	<table>
-	<% @firstlines.each do |prompt| %>
 		
-		<%= render :partial => 'firstline', :locals => {:prompt => prompt } %>
+		<%= render :partial => 'firstline', :collection => @firstlines %>
 
-	<% end %>
 	<tr>
 		<td colspan=3>
 
-			<%= will_paginate @firstlines, :param_name => :page_firstlines %>
+			<%= will_paginate @firstlines, :param_name => :page_firstlines, :renderer => StockRenderer  %>
 		</td>
 	</tr>
 	</table>
@@ -123,7 +117,7 @@
 			<tr>
 		<% end %>
 	
-			<%= render :partial => 'image', :locals => { :prompt => prompt }  %>
+			<%= render :partial => 'image', :locals => {:prompt => prompt}  %>
 					
 		<% if i == 2 %>
 			</tr>
@@ -138,7 +132,7 @@
 <tr>
 	<td colspan=2>
 		
-		<%= will_paginate @images, :param_name => :page_i %>
+		<%= will_paginate @images, :param_name => :page_i, :renderer => StockRenderer %>
 	</td>
 </tr>
 </table>
@@ -164,16 +158,16 @@
 		<% end %>
 
 </tr>
-<% @hvg.each do |prompt| %>
+
 	
-	<%= render :partial => 'hvg', :locals => {:prompt => prompt} %>
+	<%= render :partial => 'hvg', :collection => @hvg %>
 	
-<% end %>
+
 
 <tr class="row">
 	<% is_admin ? @colspan = 6 : @colspan = 5 %>
 	<td colspan=<%=@colspan%>>
-		<%= will_paginate @hvg %>
+		<%= will_paginate @hvg, :renderer => StockRenderer  %>
 	</td>
 </tr>
 </table>

@@ -47,6 +47,7 @@ class UsersController < ApplicationController
         order = "created_at DESC"
     
         @truncate = true 
+        @paginate = true 
         
         if request.path.include?("profile") or (request.path.include?("profile") and request.format == "rss") 
             @stories = Story.paginate_by_user_id @user.id, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    

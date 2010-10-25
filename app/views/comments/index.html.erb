@@ -7,6 +7,7 @@
 <h1><%= @title %></h1>
 <% unless @stories.empty? %>
 	<%= render :partial => "stories/story", :collection => @stories %>
+	<%= render :partial => "stories/pagination" %>
 <% else %>
 	<p>No new comments.</p>
 <%end%>

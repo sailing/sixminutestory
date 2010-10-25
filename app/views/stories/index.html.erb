@@ -21,21 +21,8 @@
 	
 		<%= render :partial => 'story', :collection => @stories %>
 
-	
+<%= render :partial => 'pagination' %>
 
-	<% if is_admin %> 
-		<% # count of stories %>
-		<%= page_entries_info @stories %>
-		
-	<% end %>
-	
-	<% if @paginate %>
-	
-	<% #pagination %>	
-			
-		<%= will_paginate @stories %>
-			
-	<% end %>
 
 <% else  %>
 <% 

@@ -88,12 +88,11 @@ class PromptsController < ApplicationController
   # GET /prompts/1.xml
   def show
     @prompt = Prompt.find(params[:id])
-    
-    page = page || 1
+    page = params[:page] || 1
     order = "created_at DESC"
     per_page = 10
     @stories = Story.active.paginate_by_prompt_id(@prompt.id, :page => page, :order => order, :per_page => per_page)
-    @truncate = true
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @prompt }
