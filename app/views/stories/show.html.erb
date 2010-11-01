@@ -26,7 +26,7 @@
 			<strong>Six Minute Story</strong> is a growing collection of stories written in six minutes or less. 
 		</p>
 		<p>
-			Together, we're <em>filling the world</em> with ad-libbed eloquence.
+			<%= rpx_popup( :link_text => "Joining", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false ) %> takes less than five seconds.
 		</p>
 	
 	</div>
@@ -48,15 +48,6 @@
 			</div>
 		<% end %>
 		
-		<% if is_user %>
-		<h2>Connect</h2>
-		<!-- List of things to add:  -->
-		
-			<p>
-				<%= link_to "Suggest a Prompt", suggest_a_prompt_url %>
-			</p>
-		<% end %>
-		
 		
 
 	<% end %><!-- end if frontpage conditional -->
@@ -72,19 +63,6 @@
 		<!-- ADMIN SECTION -->
 		
 		<% if is_admin %>
-			<% if @story.active == true %>
-			<div id="unfollowing_button" class="button_container">
-			<%= link_to "Disable", disable_story_url(@story), 
-			:confirm => 'Are you sure you want to disable this story? The story will no longer be visible!', 
-			:method => :delete %>
-			</div>
-			<% elsif @story.active == false %>
-			<div id="following_button" class="button_container">
-			<%= link_to "Enable", enable_story_url(@story), 
-			:confirm => 'Are you sure you want to enable this story? The story will become visible!'
-			%>
-			</div>
-			<% end %>
 
 				<% if @story.featured == true %>
 				<div id="unfollowing_button" class="button_container">
@@ -107,6 +85,15 @@
 		<h2>The prompt for this story</h2>
 			<%= show_prompt %>
 		<div class="clear"></div>
+		
+			<% if is_user %>
+			<h2>Connect</h2>
+			<!-- List of things to add:  -->
+
+				<p>
+					<%= link_to "Suggest a Prompt", suggest_a_prompt_url %>
+				</p>
+			<% end %>
 		
 <% end %>
 
