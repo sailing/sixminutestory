@@ -1,4 +1,5 @@
 page.insert_html :bottom, :comments, :partial => 'comment', :object => @comment
+page.visual_effect :highlight,'comment_'+@comment.id.to_s
 #page.replace_html :comments_count, pluralize(@comment.story.comments.size, 'remark')
 page[:comments_form].reset
 #page.replace_html :notice, flash[:notice]

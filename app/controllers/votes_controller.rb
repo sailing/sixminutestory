@@ -75,14 +75,12 @@ class VotesController < ApplicationController
   # POST /stories/:vote_id/votes.xml
   def create
     @story = Story.find(params[:story_id])
-    div_to_replace = "votes_"+ @story.id.to_s
     
     respond_to do |format|
       if current_user.vote(@story, params[:vote])
         
         if @story.votes_count > 0
             if @story.votes_for > 0
-              #pro = (@story.votes_for.to_f / @story.votes_count.to_f)*100
               @story.rating += 1
               @story.save
             else
@@ -96,6 +94,7 @@ class VotesController < ApplicationController
             page.replace_html div_to_replace, :partial => "votes/story_vote", :vote => @vote 
           end
         }
+        format.js
       else
         format.html { render :action => "new" }
         format.rjs  { render :action => "error" }

@@ -1,13 +1,25 @@
 <% if is_admin %>
 	<%= link_to 'New prompt', suggest_a_prompt_path %>
 	| <%= link_to 'Verify prompts', unverified_prompts_path %>
+	| <%= link_to 'Scheduled prompts', scheduled_prompts_path %>
 	| <%= link_to 'View active prompts', prompts_path %>
 	| <%= link_to "FridayFlash", edit_prompt_path('25') %>
 <% end %>
 <br />
-<%= select_tag_for_filter("past_prompts", @filters, params) %>
-
+<% unless @scheduled %>
+	<% # select tag shows various prompts %>
+	<%= select_tag_for_filter("prompts", @filters, params) %>
+<% end %>
 <div id="listPrompts">
+<% if @scheduled %>
+	<table>
+		<% @prompts.each do |prompt| %>
+		<tr>
+			<td><%= link_to prompt.use_on, prompt_url(prompt) %></td>
+		</tr>
+		<% end %>
+	</table>
+<% else %>
 <% if @table == "hvg" %>
 <% unless @prompts.empty? %>
 <h2>Hero-Villain-Goal</h2>
@@ -175,6 +187,7 @@
 	
 
 <% end %>
+<%end %>
 </div>
 
 <br />

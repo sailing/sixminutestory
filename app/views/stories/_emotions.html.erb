@@ -1,0 +1,30 @@
+
+<article class="comment_container">
+		<h4>What emotion did this story evoke?</h4>
+	<% remote_form_for(@story) do |form| %>
+		<%= form.text_field :emotion_list, :tabindex => "4", :value => "" %><%= form.submit "Submit" %>
+	<% end %>
+	<% unless @story.emotions.empty? %>
+	<footer id="emotions">
+		<% # @emotions = @story.emotion_counts %>
+		<% @story.emotions.each do |emotion| %>
+		 	<% 
+		#	case emotion.count
+		#		when 1
+		#			css_class = "css1"
+		#		when 2
+		#			css_class = "css2"
+		#		when 3
+		#			css_class = "css3"
+		#		when 4
+		#			css_class = "css4"
+		#		when 5
+		#			css_class = "css5"
+		#	end 
+			%>
+    			<%= link_to emotion.name, emotion_url(h(emotion.name)) %>
+		<% end %>
+	</footer>
+	<% end %>
+</article>
+

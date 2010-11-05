@@ -21,7 +21,7 @@ ActionController::Routing::Routes.draw do |map|
     map.write 'write', :controller => "stories", :action => "new"
     map.write_random 'random/write', :controller => "prompts", :action => "random"
     map.write_to_prompt 'write/:prompt', :controller => "stories", :action => "new"
-    map.past_prompts 'archives', :controller => "prompts", :action => "index"
+    map.archives 'archives', :controller => "prompts", :action => "index"
     map.suggest_a_prompt 'prompts/suggest', :controller => "prompts", :action => "new"
     map.thanks 'thanks/:id', :controller => "stories", :action => "thanks_for_writing"
       # reading
@@ -41,12 +41,8 @@ ActionController::Routing::Routes.draw do |map|
   #  map.formatted_profile_personal '/profile/personal/:id.:format', :controller => "users", :action => "show"
     
     #administration
-    map.unverified_prompts "/prompts/unverified", :controller => "prompts", :action => "index" 
-    map.users_admin "admin/users", :controller => "users", :action => "admin"
-    map.stories_admin "admin/stories", :controller => "stories", :action => "admin"
-    map.disabled_stories "admin/stories/disabled", :controller => "stories", :action => "disabled"
-    map.enable_story "admin/stories/enable/:id", :controller => "stories", :action => "enable_story"
-    map.disable_story "admin/stories/disable/:id", :controller => "stories", :action => "disable_story"
+    map.unverified_prompts "/archives/unverified", :controller => "prompts", :action => "index" 
+    map.scheduled_prompts "/archives/scheduled", :controller => "prompts", :action => "index"
     map.feature_story "admin/stories/feature/:id", :controller => "stories", :action => "feature_story"
     map.unfeature_story "admin/stories/unfeature/:id", :controller => "stories", :action => "unfeature_story"
     map.enable_user "admin/users/enable/:id", :controller => "users", :action => "enable_user"
@@ -90,6 +86,7 @@ ActionController::Routing::Routes.draw do |map|
      map.resources :read, :controller => "stories"
      map.browse_by_tags     '/tags',     :controller => "stories",      :action => "tag_cloud"
      map.browse_by_genres     '/genres',     :controller => "stories",      :action => "tag_cloud"
+     map.browse_by_emotions     '/emotions',     :controller => "stories",      :action => "tag_cloud"
      
      
      
@@ -104,9 +101,10 @@ ActionController::Routing::Routes.draw do |map|
        story.formatted_commented     '/active.:format'
        story.top                  '/top'
        story.formatted_top        '/top.:format'
-#       story.newer_comments         '/account/commented'
+#      story.newer_comments         '/account/commented'
        story.tag                  '/tag/:tag', :requirements => { :tag => /.*/ }
        story.genre                '/genre/:tag', :requirements => { :tag => /.*/ }
+       story.emotion              '/emotion/:tag', :requirements => { :tag => /.*/ }
      end
      
     map.with_options :controller => "site" do |site| 

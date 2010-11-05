@@ -106,7 +106,7 @@
 	
 			
 		<%= render :partial => "stories/story", :locals => {:story => @story} -%>
-
+<footer>
 	<div id="show_story">
 	<div id="information_container">
 		<div>
@@ -147,6 +147,22 @@
 
 
 </div>
+
+<% if is_user %>
+<h1>respond</h1>
+
+<% end %>
+
+<div id="respond_emotions">
+	<%= render :partial => 'emotions' %>
+</div>
+<h1>favorited by</h1>
+<article id="favoriters" class="comment_container">
+
+	<% for voter in @story.voters_who_voted %>
+		<%= link_to voter.login, profile_url(voter) %><br />
+	<% end %>
+</article>
 
 
 <div id="comments">
@@ -192,5 +208,5 @@
 	</div>
 
 <% end %> 
-
+</footer>
 

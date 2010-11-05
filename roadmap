@@ -37,24 +37,32 @@ x enable deleting prompts
 	- authors w most total favorites (karma)
 	- featured author page
 	- awards
+		- badges applied both dynamically and statically 
+			- dynamic for top 10 authors / stories
+			- static for featured story, featured author, contest winners, 10, 25, 50, 75, 100 stories
 x change "cheers" to "favorites"
 	- upgrade to thumbs_up?
 	- add voting on prompts (as => "like") 
 	- and comments (as => "agree")
+- let users see who's liked a particular story (flickr style – above comments)
 - add to users account / profile:
 	x stories you've commented on
 	x stories you've favorited
+- upcoming prompts (admin)
 - new rating system (5 star?)
 - emotion tags.
-- contests?
 - new logo
-- update Elevator pitch
-	- "Joining takes less than 5 seconds."
+x update Elevator pitch
+	x "Joining takes less than 5 seconds."
 - allow writers to edit their own stories?
 
-2.4 
+2.4
+- curated collections
+- contests?
+
+2.5 
 - spellcheck
 - integrate flickr api
 
-2.4 
+2.6 
 - music prompts

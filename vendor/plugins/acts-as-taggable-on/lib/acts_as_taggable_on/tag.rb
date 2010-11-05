@@ -38,7 +38,7 @@ module ActsAsTaggableOn
     ### CLASS METHODS:
 
     def self.find_or_create_with_like_by_name(name)
-      named_like(name).first || create(:name => name)
+      find(:first, :conditions => ["name =", name]) || create(:name => name)
     end
 
     def self.find_or_create_all_with_like_by_name(*list)
@@ -59,7 +59,7 @@ module ActsAsTaggableOn
     ### INSTANCE METHODS:
 
     def ==(object)
-      super || (object.is_a?(Tag) && name == object.name)
+      super || (object.is_a?(Tag) && name.downcase == object.name.downcase)
     end
 
     def to_s

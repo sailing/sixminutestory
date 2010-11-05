@@ -125,14 +125,10 @@
 						<td>
 
 							<span class="small_text">
-								<%= link_to "Prompts", prompts_url %>
+								<%= link_to "Prompts", archives_url %>
 							</span>
 						</td>
-					 	<td>
-							<span class="small_text">
-								<%= link_to "Stories", read_url %>
-							</span>
-						</td>
+					 	
 						<td>
 							<span class="small_text">
 								<%= link_to "Users", users_url %>
@@ -146,31 +142,54 @@
 
 	</div>	<!-- Close Login Container-->
 	
-	<aside id="follow_links" class="float_right">
-		<p>
-			<a href="http://www.twitter.com/6minutestory" title="Follow Six Minute Story on Twitter" alt="Follow Six Minute Story on Twitter"><%= image_tag "twitter.png" %></a>
-		</p>
-		<p>		
-				<a href="http://facebook.com/sixminutestory" title="Follow Six Minute Story on Facebook" alt="Follow Six Minute Story on Facebook"><%= image_tag "facebook.png" %></a>
-		</p>
-	</aside>
 
 
+<header>
 
 <div class="logo float_left">
 	
-	<span id="logo"><%= link_to (image_tag "logo2.png"), root_path %></span>
-
-	<nav id="header_links">
-	
-			<%= link_to "Write", write_path %>
-			| <%= link_to "Read", read_path %>
-			| <%= link_to "How's it work?", faq_path %>
-			| <a href="http://blog.sixminutestory.com">Blog</a>
-	
-	</nav>  
+	<span id="logo"><%= link_to (image_tag "logo3.png"), root_path %></span>
 
 </div>
+
+	<nav id="header_links">
+		<table><tr>
+		<% unless is_user %>
+			<td>
+		
+			<%= link_to "Write", write_path %>
+			| <%= link_to "Read", read_path %>
+			| <%= link_to "FAQ", faq_path %>
+			| <a href="http://blog.sixminutestory.com">Blog</a>
+			</td>
+		<% else %>
+			<td>
+			<h2>write</h2>
+			<%= link_to "Current prompt", write_path %><br />
+			<%= link_to "Blank prompt", write_to_prompt_path(25) %><br />
+			<%= link_to "Past prompt", archives_url %>
+		</td>
+		<td>
+			<h2>read</h2>
+				<%= link_to "Featured", featured_path %><br />
+				<%= link_to "Favorited", top_path %><br />
+				<%= link_to "Recent", recent_path %> <br />
+				<%= link_to "Active", commented_path %> <br />
+				<%= link_to "Popular", popular_path %><br />
+				<%= link_to "Random", read_random_url %>
+		</td>
+		<td>
+			<h2>browse</h2>
+				<%= link_to "Adjectives", browse_by_tags_path %><br />
+				<%= link_to "Genres", browse_by_genres_path %><br />
+				<%= link_to "Emotions", browse_by_emotions_path %>
+		<% end %>
+		</tr>
+		</table>
+	</nav>
+
+
+</header>
 
 
 	<div class="clear space">
@@ -238,6 +257,15 @@
 		</div>
 	</div>
 	
+	<aside id="follow_links" class="float_right">
+		<p>
+			<a href="http://www.twitter.com/6minutestory" title="Follow Six Minute Story on Twitter" alt="Follow Six Minute Story on Twitter"><%= image_tag "twitter.png" %></a>
+		</p>
+		<p>		
+				<a href="http://facebook.com/sixminutestory" title="Follow Six Minute Story on Facebook" alt="Follow Six Minute Story on Facebook"><%= image_tag "facebook.png" %></a>
+		</p>
+	</aside>
+	
 		<% if flash[:notice] || flash[:error] %>
 		<!-- Notice appears, then fades out over a few seconds. -->
 		<div id="notice_container">
@@ -261,6 +289,8 @@
 			</script>
 
 	<% end %>
+	
+	
 
 		</div> <!-- End Notice div -->
 	

@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
-  before_filter :require_user, :only => [:new, :create, :flag_story]
-  before_filter :must_own_story, :only => [:edit, :destroy, :update]
+  before_filter :require_user, :only => [:new, :create, :flag_story, :update]
+  before_filter :must_own_story, :only => [:edit, :destroy]
   before_filter :must_be_admin, :only => [:admin, :disabled, :enable_story, :feature_story, :unfeature_story]
   after_filter :increment_counter, :only => [:show]
 #  before_filter ensure_current_post_url, :only => :show
@@ -20,24 +20,24 @@ class StoriesController < ApplicationController
         when /^\/active/
             @stories = Story.active.commented.paginate :page => page, :per_page => per_page
             @title = "most active stories"
-            #@paginate = true
         when /^\/recent/
             @stories = Story.active.recent.paginate :page => page, :per_page => per_page
             @title = "most recent stories"
-            @paginate = true
         when /^\/top/
             @stories = Story.active.top.paginate :page => page, :per_page => per_page   
             @title = "top rated stories"
         when /^\/tag\/./
             @tag = params[:tag]
-            @stories = Story.tagged_with(@tag, :any => true).by_date.paginate :page => page, :per_page => per_page
+            @stories = Story.tagged_with([@tag], :any => true).by_date.paginate :page => page, :per_page => per_page
             @title = "stories tagged with #{@tag}"
-            @paginate = true
         when /^\/genre\/./
             @genre = params[:tag]
-            @stories = Story.tagged_with(@genre, :any => true, :on => :genres).by_date.paginate :page => page, :per_page => per_page
+            @stories = Story.tagged_with("%#{@genre}%", :any => true, :on => :genres).by_date.paginate :page => page, :per_page => per_page
             @title = "stories in #{@genre} genre"
-            @paginate = true
+          when /^\/emotion\/./
+              @emotion = params[:tag].downcase
+              @stories = Story.tagged_with(@emotion, :on => :emotions).by_date.paginate :page => page, :per_page => per_page
+              @title = "these stories evoked #{@emotion}"
         #when /^\/account\/commented/
          #   @stories = Story.updated_after_users_last_comment_in_post(current_user)
           #  @title = "recent comments"
@@ -93,16 +93,32 @@ class StoriesController < ApplicationController
   # PUT /stories/1.xml
   def update
     @story = Story.find(params[:id])
-
+    
+    if request.xhr?
+        # add the given tag to the company
+        @story.emotion_list << params[:story][:emotion_list]
+        @story.save
+          
+          respond_to do |format|
+            format.js { 
+              render :update do |page| 
+                page.replace_html 'respond_emotions', :partial => "emotions", :object => @story
+                page.visual_effect :highlight, 'emotions'
+              end
+            }
+          end
+    else
+    
     respond_to do |format|
       if @story.update_attributes(params[:story])
-        format.html { redirect_to(@story) }
+        format.html { redirect_to read_story_url(@story) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
       end
     end
+  end
   end
   
  # GET /stories/1
@@ -158,7 +174,7 @@ class StoriesController < ApplicationController
            @comment = Comment.new
            @user = @story.user
            @prompt = @story.prompt
-           #Prompt.find_by_id(@story.prompt_id)
+           #@favorites = Vote.for_voteable(@story)
            
         # tests to see if a following relationship exists
            following_exists
@@ -181,6 +197,10 @@ class StoriesController < ApplicationController
           @title = "genres"
           @tags = Story.tag_counts_on(:genres)
           @genres = true
+        elsif request.path.include?("emotions")
+          @title = "emotions"
+          @tags = Story.emotion_counts
+          @emotions = true
         else
           @title = "adjectives"
            @tags = Story.tag_counts_on(:tags)
