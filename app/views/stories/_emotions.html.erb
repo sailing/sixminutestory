@@ -1,11 +1,15 @@
 
 <article class="comment_container">
+	<% if is_user %>
 		<h4>What emotion did this story evoke?</h4>
-	<% remote_form_for(@story) do |form| %>
-		<%= form.text_field :emotion_list, :tabindex => "4", :value => "" %><%= form.submit "Submit" %>
+		<% remote_form_for(@story) do |form| %>
+			<%= form.text_field :emotion_list, :tabindex => "4", :value => "" %><%= form.submit "Submit" %>
+		<% end %>
 	<% end %>
+	
 	<% unless @story.emotions.empty? %>
 	<footer id="emotions">
+		<h4>Emotions this story evoked:</h4>
 		<% # @emotions = @story.emotion_counts %>
 		<% @story.emotions.each do |emotion| %>
 		 	<% 

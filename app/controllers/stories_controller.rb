@@ -32,11 +32,11 @@ class StoriesController < ApplicationController
             @title = "stories tagged with #{@tag}"
         when /^\/genre\/./
             @genre = params[:tag]
-            @stories = Story.tagged_with("%#{@genre}%", :any => true, :on => :genres).by_date.paginate :page => page, :per_page => per_page
+            @stories = Story.tagged_with(@genre, :any => true, :on => :genres).by_date.paginate :page => page, :per_page => per_page
             @title = "stories in #{@genre} genre"
           when /^\/emotion\/./
               @emotion = params[:tag].downcase
-              @stories = Story.tagged_with(@emotion, :on => :emotions).by_date.paginate :page => page, :per_page => per_page
+              @stories = Story.tagged_with([@emotion], :any => true, :on => :emotions).by_date.paginate :page => page, :per_page => per_page
               @title = "these stories evoked #{@emotion}"
         #when /^\/account\/commented/
          #   @stories = Story.updated_after_users_last_comment_in_post(current_user)

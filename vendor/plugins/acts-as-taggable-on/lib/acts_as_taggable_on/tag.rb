@@ -59,7 +59,7 @@ module ActsAsTaggableOn
     ### INSTANCE METHODS:
 
     def ==(object)
-      super || (object.is_a?(Tag) && name.downcase == object.name.downcase)
+      super || (object.is_a?(Tag) && name == object.name)
     end
 
     def to_s

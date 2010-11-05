@@ -22,7 +22,7 @@ class Story < ActiveRecord::Base
   named_scope :featured, :limit => 1, :conditions => ['featured = ? AND created_at > ?', true, 1.month.ago], :order => 'counter ASC'
   
   # Filters
-  named_scope :by_date, :order => "created_at DESC"
+  named_scope :by_date, :order => "stories.created_at DESC"
   
   # Next and Previous links
   named_scope :next, lambda { |p| {:conditions => ["id > ? AND active = ?", p.id, true], :limit => 1, :order => "id"} }

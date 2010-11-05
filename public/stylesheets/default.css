@@ -378,6 +378,7 @@ background-color:#a759d0;
 
 header, header nav {
 	width:95%;
+
 }
 
 
@@ -386,7 +387,7 @@ header nav td{
 	padding-left:50px;
 	text-align:left;
 	width:40%;
-	vertical-align:top;
+	vertical-align:baseline;
 }
 
 #navigation {
