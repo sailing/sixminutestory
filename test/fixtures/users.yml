@@ -7,7 +7,7 @@ one:
   website: MyString
   email_address: MyString
   profile: MyText
-  active: false
+  active: true
   persistence_token: MyString
   login_count: 1
   last_request_at: 2009-03-12 17:58:03

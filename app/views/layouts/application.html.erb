@@ -148,11 +148,15 @@
 
 <div class="logo float_left">
 	
-	<span id="logo"><%= link_to (image_tag "logo3.png"), root_path %></span>
-
-</div>
+	<span id="logo"><%= link_to (image_tag "logo2.png"), root_path %></span>
 
 	<nav id="header_links">
+		<%= link_to "Write", write_path %>
+		| <%= link_to "Read", read_path %>
+		| <%= link_to "FAQ", faq_path %>
+		| <a href="http://blog.sixminutestory.com">Blog</a>
+		
+		<!-- 
 		<table><tr>
 		<% unless is_user %>
 			<td>
@@ -186,7 +190,12 @@
 		<% end %>
 		</tr>
 		</table>
+		
+		-->
 	</nav>
+</div>
+
+	
 
 
 </header>

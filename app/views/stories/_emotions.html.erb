@@ -1,4 +1,4 @@
-
+<% if is_user or @story.emotions.present? %>
 <article class="comment_container">
 	<% if is_user %>
 		<h4>What emotion did this story evoke?</h4>
@@ -31,4 +31,5 @@
 	</footer>
 	<% end %>
 </article>
+<% end %>
 

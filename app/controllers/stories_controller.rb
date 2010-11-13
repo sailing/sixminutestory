@@ -174,7 +174,6 @@ class StoriesController < ApplicationController
            @comment = Comment.new
            @user = @story.user
            @prompt = @story.prompt
-           #@favorites = Vote.for_voteable(@story)
            
         # tests to see if a following relationship exists
            following_exists
