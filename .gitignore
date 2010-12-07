@@ -1,21 +1,4 @@
-.DS_Store
-._*
-config/database.yml
-config/development.sphinx.conf
-.project
-index/*
+.bundle
 db/*.sqlite3
-db/sphinx/*
-db/sphinx
 log/*.log
-log/*.pid
 tmp/**/*
-.picasa.ini
-public/stylesheets/all.css
-public/javascripts/all.js
-config/sphinx.yml
-
-# Other useful tidbits
-doc/api
-doc/app
-

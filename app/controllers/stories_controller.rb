@@ -38,14 +38,10 @@ class StoriesController < ApplicationController
               @emotion = params[:tag].downcase
               @stories = Story.tagged_with([@emotion], :any => true, :on => :emotions).by_date.paginate :page => page, :per_page => per_page
               @title = "these stories evoked #{@emotion}"
-        #when /^\/account\/commented/
-         #   @stories = Story.updated_after_users_last_comment_in_post(current_user)
-          #  @title = "recent comments"
       else
           #return recent
           @stories = Story.active.recent.paginate :page => page, :per_page => per_page
           @title = "most recent stories"
-          @paginate = true
       end
         
       rescue
@@ -72,15 +68,8 @@ class StoriesController < ApplicationController
  
     respond_to do |format|
       if @story.save
-       
-        #followers = Array.new
-        #@story.user.followers.each do |follower|
-        #  followers << follower.email_address
-        #end
-        
-       # Hermes.deliver_new_story_notification(followers, @story, @story.user)
-        
-        format.html { redirect_to thanks_url(@story) }
+                    
+        format.html { redirect_to thanks_story_url(@story) }
         format.xml  { render :xml => @story, :status => :created, :location => @story }
       else
         format.html { render :action => "new" }
@@ -111,7 +100,7 @@ class StoriesController < ApplicationController
     
     respond_to do |format|
       if @story.update_attributes(params[:story])
-        format.html { redirect_to read_story_url(@story) }
+        format.html { redirect_to story_url(@story) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -131,7 +120,7 @@ class StoriesController < ApplicationController
       
           unless request.path.include?("featured")
               if params[:id].present?
-                @story = Story.find(params[:id], :conditions => {:active => true}, :include => :tags)
+                @story = Story.active.find(params[:id])
                 @previous = Story.previous(@story)
                 @next = Story.next(@story)              
               else
@@ -152,8 +141,8 @@ class StoriesController < ApplicationController
               @featured = true
               @previous_featured = Story.previous_featured(@story)
               @next_featured = Story.next_featured(@story)
-            elsif
-              @story = Story.find(params[:id], :conditions => {:active => true, :featured => true}, :include => :tags)
+            else
+              @story = Story.active.featured.find(params[:id])
               @featured = true
               @previous_featured = Story.previous_featured(@story)
               @next_featured = Story.next_featured(@story)
@@ -217,13 +206,13 @@ class StoriesController < ApplicationController
   end
      
      
-  def thanks_for_writing
+  def thanks
       page = page || 1
       order = "created_at DESC"
       per_page = 15
     @story = Story.find(params[:id])
     @prompt = @story.prompt
-    @stories = Story.active.paginate_by_prompt_id(@prompt.id, :page => page, :order => order, :per_page => per_page)
+    @stories = Story.active.where(:prompt_id => @prompt.id).paginate(:page => page, :order => order, :per_page => per_page)
     
   end
   
@@ -232,9 +221,9 @@ class StoriesController < ApplicationController
     begin
       get_random()
     rescue Exception => e
-      redirect_to read_random_url
+      redirect_to random_stories_url
     else
-      redirect_to read_story_url(@story)
+      redirect_to story_url(@story)
       
     end
       
@@ -324,14 +313,14 @@ class StoriesController < ApplicationController
     @story.featured = 1
      respond_to do |format|
        if @story.save
-         Hermes.deliver_featured_story_notification(@story.user, @story) unless (@story.user.send_stories == false or @story.user.email_address.blank?)
+         Hermes.featured_story_notification(@story.user, @story) unless (@story.user.send_stories == false or @story.user.email_address.blank?).deliver
          
          flash[:notice] = 'Story featured.'
-         format.html { redirect_to(read_featured_story_path(@story)) }
+         format.html { redirect_to(featured_path(@story)) }
          format.xml  { head :ok }
        else
          flash[:notice] = 'Story NOT featured.'
-         format.html { redirect_to(read_story_path(@story)) }
+         format.html { redirect_to(story_url(@story)) }
          format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
        end
      end
@@ -344,11 +333,11 @@ class StoriesController < ApplicationController
      respond_to do |format|
        if @story.save
          flash[:notice] = 'Story unfeatured.'
-         format.html { redirect_to(read_story_path(@story)) }
+         format.html { redirect_to(story_url(@story)) }
          format.xml  { head :ok }
        else
          flash[:notice] = 'Story still featured.'
-         format.html { redirect_to(read_story_path(@story)) }
+         format.html { redirect_to(story_url(@story)) }
          format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
        end
      end
@@ -371,7 +360,7 @@ class StoriesController < ApplicationController
          format.xml  { head :ok }         
        else
          flash[:notice] = 'Something went wrong at the story was not flagged. Please contact us directly.'
-         format.html { redirect_to(read_story_url(@story)) }
+         format.html { redirect_to(story_url(@story)) }
          format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
        end
      end

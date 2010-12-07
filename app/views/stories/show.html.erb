@@ -40,7 +40,7 @@
 						</td>
 						<td>
 							<div class="purple button_container">
-								<%= link_to "Join", register_url %>
+								<%= link_to "Join", new_user_url %>
 							</div>
 						</td>
 					</tr>
@@ -177,16 +177,15 @@
 	<div id="comment_form">
 		<h1>remark</h1>
 
-		<% form_remote_for :comment, :url => comments_path, :html => { :id => 'comments_form' } do |f| %>
-  			<%= f.hidden_field :story_id, :value => @story.id %>
+		<%= form_for :comment, :url => comments_path, :remote => true, :html => { :id => 'comments_form' } do |f| %>
   			<%= f.hidden_field :user_id, :value => current_user.id %>
-  			
+  			<%= f.hidden_field :story_id, :value => @story.id %>  			
 			<div class="comment_field_container">
 				
 					<%= f.text_area :comment, :rows => 3, :cols => 55 %>
 
 	    			<div id="comment_submit_container" class="center">
-						<%= image_submit_tag("contribute.png", :name => "contribute", :id => "contribute-button", :disabled => false) %>
+						<%= submit_tag "Contribute", :name => "contribute", :id => "contribute-button", :disabled => false %>
 
 					</div>
 				

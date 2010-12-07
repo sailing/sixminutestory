@@ -8,16 +8,19 @@ config.cache_classes = true
 config.action_controller.consider_all_requests_local = false
 config.action_controller.perform_caching             = true
 config.action_view.cache_template_loading            = true
-config.cache_store = :mem_cache_store, Memcached::Rails.new
-
+#config.cache_store = :mem_cache_store, Memcached::Rails.new
 # See everything in the log (default is :info)
 # config.log_level = :debug
+
+# Heroku requires we serve static assets
+config.serve_static_assets = true
 
 # Use a different logger for distributed setups
 # config.logger = SyslogLogger.new
 
 # Use a different cache store in production
 # config.cache_store = :mem_cache_store
+config.cache_store = :dalli_store, Memcached::Rails.new
 
 # Enable serving of images, stylesheets, and javascripts from an asset server
 # config.action_controller.asset_host = "http://assets.example.com"

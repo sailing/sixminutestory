@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-    before_filter :require_user, :only => [:index, :new, :create, :edit, :update]
-    before_filter :must_be_admin, :only => [:destroy]
+    before_filter :require_user, :only => [:index, :new, :create]
+    before_filter :must_be_admin, :only => [:destroy, :edit, :update]
 
   # GET /comments
   # GET /comments.xml
@@ -54,20 +54,20 @@ class CommentsController < ApplicationController
   # POST /comment.xml
   def create
     @comment = Comment.new(params[:comment])
-    @story = Story.find_by_id(@comment.story.id)
+#    @story = Story.find(params[:story_id])
     
     respond_to do |format|
       if @comment.save
         
-        Hermes.deliver_comment_notification(@story.user, @story, @comment.user, @comment) unless (@story.user.send_comments == false or @story.user.email_address.blank?) 
+        #Hermes.comment_notification(@story.user, @story, @comment.user, @comment) unless (@story.user.send_comments == false or @story.user.email_address.blank?).deliver 
                 
         flash[:notice] = 'Comment contributed!'
-        format.html { redirect_to read_story_path(@comment.story),:anchor => "comments" }
+        format.html { redirect_to story_url(@comment.story),:anchor => "comments" }
         format.xml  { render :xml => @comment, :status => :created, :location => @comment }
         format.js
       else
         flash[:notice] = 'Comment is free, so give thine to me.'
-        format.html { redirect_to read_story_path(@comment.story),:anchor => "comments"}
+        format.html { redirect_to story_url(@comment.story),:anchor => "comments"}
         format.xml  { render :xml => @comment.errors, :status => :unprocessable_entity }
       end
     end
@@ -98,7 +98,7 @@ class CommentsController < ApplicationController
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to(read_story_path(@story)) }
+      format.html { redirect_to(story_url(@story)) }
       format.xml  { head :ok }
     end
   end

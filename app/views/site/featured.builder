@@ -11,7 +11,7 @@ xml.rss :version => "2.0" do
         xml.author story.user.login
         xml.description simple_format(h(story.description))
         xml.pubDate story.created_at.rfc822
-        xml.link read_story_url(story)
+        xml.link story_url(story)
       end
     end
   end

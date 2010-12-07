@@ -21,7 +21,6 @@ class UsersController < ApplicationController
       
         if verify_recaptcha && @user.save
           redirect_to account_url
-          #Hermes.deliver_signup_notification(@user) unless @user.email_address.blank?
         else
           render :action => :new
         end
@@ -50,19 +49,18 @@ class UsersController < ApplicationController
         @paginate = true 
         
         if request.path.include?("profile") or (request.path.include?("profile") and request.format == "rss") 
-            @stories = Story.paginate_by_user_id @user.id, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    
-            @rss_url = "http://sixminutestory.com/profile/"+params[:id]+".rss"
+           @stories = Story.active.where(:user_id => @user.id).paginate(:page => page, :order => order, :per_page => per_page)                  
+           @rss_url = "http://sixminutestory.com/profile/"+params[:id]+".rss"
             @profile = true
             @title = "Stories by " + @user.login
 
         elsif (request.path.include?("account") or (request.path.include?("rss") and request.format == "rss")) and !@user.writers.empty?
-            @stories = Story.paginate_by_user_id @user.writers, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}
+            @stories = Story.active.where(:user_id => @user.writers).paginate(:page => page, :order => order, :per_page => per_page)
               #@rss_url = rss_url(@user.login, :format => :rss)
             @profile = false
             @title = "Stories by users you follow"
         else
-            @stories = Story.paginate_by_user_id @user.id, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    
-                    
+           @stories = Story.active.where(:user_id => @user.id).paginate(:page => page, :order => order, :per_page => per_page)                    
         end
     
       respond_to do |format|
@@ -91,6 +89,19 @@ end
       redirect_to account_url
     else
       render :action => :edit
+    end
+  end
+  
+  # This action has the special purpose of receiving an update of the RPX identity information
+  # for current user - to add RPX authentication to an existing non-RPX account.
+  # RPX only supports :post, so this cannot simply go to update method (:put)
+  def addrpxauth
+    @user = current_user
+    if @user.save
+      flash[:notice] = "Successfully added RPX authentication for this account."
+      render :action => 'edit'
+    else
+      render :action => 'edit'
     end
   end
 
@@ -127,18 +138,7 @@ end
      end
   end
 
-# This action has the special purpose of receiving an update of the RPX identity information
-# for current user - to add RPX authentication to an existing non-RPX account.
-# RPX only supports :post, so this cannot simply go to update method (:put)
-def addrpxauth
-  @user = current_user
-  if @user.save
-    flash[:notice] = "Successfully added RPX authentication for this account."
-    render :action => 'edit'
-  else
-    render :action => 'edit'
-  end
-end
+
 
 
   

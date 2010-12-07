@@ -18,9 +18,10 @@
 
 %>
 <div id="<%= @ballot_element %>">
-	<%= link_to_remote "Favorite", 
+	<%= link_to "Favorite", 
 		:url => user_story_votes_path(@story.user_id, @story, :vote => :true), 
-		:method => :post
+		:method => :post,
+		:remote => true
 	%> 
 </div>
 <% else %>

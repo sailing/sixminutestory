@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   end
   acts_as_tagger
   acts_as_voter
+  has_karma :stories, :as => :user, :weight => 0.5
   
   has_friendly_id :login, :use_slug => true
     
@@ -27,7 +28,6 @@ class User < ActiveRecord::Base
   has_many :followers, :through => :inverse_followings, :source => :user
   
   has_many :stories
-  has_karma :stories
   has_many :comments
 
 

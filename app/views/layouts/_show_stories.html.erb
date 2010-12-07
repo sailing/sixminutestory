@@ -11,12 +11,12 @@
 			<% if story.title.present? %>
 			<span class="title">
 				<!-- Story title as a link in the listings -->
-				<%= link_to h(story.title), read_story_url(story) %>
+				<%= link_to h(story.title), story_url(story) %>
 			</span>
 			<% else %>
 			<span>
 				<!-- Story title as a link in the listings -->
-				<%= link_to "Untitled Story", read_story_url(story)%>
+				<%= link_to "Untitled Story", story_url(story)%>
 			</span>
 
 			<% end %>
@@ -31,12 +31,12 @@
 				<% if @truncation %>
 					<%= simple_format(sanitize(h(story.description))) %>
 				<% else %>
-					<%= simple_format(sanitize(truncate(h(story.description), :length => 300, :omission => " [" + link_to("Read more...", read_story_url(story)) +"] " ))) %>
+					<%= simple_format(sanitize(truncate(h(story.description), :length => 300, :omission => " [" + link_to("Read more...", story_url(story)) +"] " ))) %>
 				<% end %>
 			</div>
 		
 			<div class="meta">
-				<span><%= link_to pluralize(story.comments_count, 'remark'), read_story_url(story, :anchor => "comments") %></span>
+				<span><%= link_to pluralize(story.comments_count, 'remark'), story_url(story, :anchor => "comments") %></span>
 				<span>&nbsp;||&nbsp;</span>
 				<span>
 					<%= pluralize(story.rating, 'favorite', 'favorites') %>

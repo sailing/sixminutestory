@@ -1,6 +1,6 @@
 	<tr>
 				<td>
-					<%= truncate(firstline.refcode,100) %>
+					<%= truncate(firstline.refcode, :length => 100) %>
 				</td>
 				<td><%= link_to (h(firstline.stories_count) + " stories"), prompt_url(firstline) %></td>
 				<td>

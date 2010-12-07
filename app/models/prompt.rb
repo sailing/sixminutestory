@@ -3,18 +3,18 @@ class Prompt < ActiveRecord::Base
   has_many :stories
   has_one :contest
   
-  named_scope :active, :conditions => {:active => true}
-  named_scope :inactive, :conditions => {:active => false}
-  named_scope :recent, lambda { { :conditions => ['created_at > ?', 5.months.ago], :order => 'created_at DESC' } }
-  named_scope :popular, lambda { { :conditions => ['active = ? AND stories_count > ?', true, 0], :limit => 10, :order => 'stories_count DESC, updated_at ASC' } }
-  named_scope :commented, lambda { { :conditions => ['(comments_count >= ?) AND created_at > ?', 2, 6.months.ago], :order => 'comments_count DESC, rating DESC, counter DESC, updated_at ASC' } }
-  named_scope :featured, :limit => 1, :conditions => { :featured => true }, :order => 'updated_at ASC'
-  named_scope :verified, lambda { { :conditions => ['active = ? AND use_on IS NOT ? AND use_on <= ?', true, nil, Date.today] } }
-  named_scope :unverified, lambda { { :conditions => ['active = ? AND (use_on IS ? OR use_on > ?)', true, nil, Date.today] } }
-  named_scope :images, lambda { { :conditions => ['active = ? AND kind = ? ', true, "flickr"]} }
-  named_scope :hvg, lambda { { :conditions => ['active = ? AND kind = ? ', true, "hvg" ]} }
-  named_scope :firstlines, lambda { { :conditions => ['active = ? AND kind = ? ', true, "firstline" ]} }
-  named_scope :threewords, lambda { { :conditions => ['active = ? AND kind = ? ', true, "3ww" ]} }
+  scope :active, :conditions => {:active => true}
+  scope :inactive, :conditions => {:active => false}
+  scope :recent, lambda { { :conditions => ['created_at > ?', 5.months.ago], :order => 'created_at DESC' } }
+  scope :popular, lambda { { :conditions => ['active = ? AND stories_count > ?', true, 0], :limit => 10, :order => 'stories_count DESC, updated_at ASC' } }
+  scope :commented, lambda { { :conditions => ['(comments_count >= ?) AND created_at > ?', 2, 6.months.ago], :order => 'comments_count DESC, rating DESC, counter DESC, updated_at ASC' } }
+  scope :featured, :limit => 1, :conditions => { :featured => true }, :order => 'updated_at ASC'
+  scope :verified, lambda { { :conditions => ['active = ? AND use_on IS NOT ? AND use_on <= ?', true, nil, Date.today] } }
+  scope :unverified, lambda { { :conditions => ['active = ? AND (use_on IS ? OR use_on > ?)', true, nil, Date.today] } }
+  scope :images, lambda { { :conditions => ['active = ? AND kind = ? ', true, "flickr"]} }
+  scope :hvg, lambda { { :conditions => ['active = ? AND kind = ? ', true, "hvg" ]} }
+  scope :firstlines, lambda { { :conditions => ['active = ? AND kind = ? ', true, "firstline" ]} }
+  scope :threewords, lambda { { :conditions => ['active = ? AND kind = ? ', true, "3ww" ]} }
   # Validations
 #  validates_presence_of   :hero, :message => "Need a hero. Sort of Important."
 #  validates_presence_of   :villain, :message => "Who's the villain?"

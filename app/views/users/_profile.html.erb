@@ -3,7 +3,7 @@
 	<%= render :partial => "site/profile_block" %>
 	
 <% if is_user %>
-	<h2>Favorites (<%= @user.votes.count %>)</h2>
+	<h2>Favorites (<%= @user.votes.size %>)</h2>
 	<p>
 		<%= link_to "View favorites", favorites_path(@user) %>
 	</p>
@@ -16,7 +16,7 @@
 	</p>
 <% end %>
 
-<h2>Follows (<%= @user.writers.count :conditions => :active %>)</h2>
+<h2>Follows (<%= @user.writers.size %>)</h2>
 <% if @user.followings.present? %>
 
 <ul>
@@ -38,7 +38,7 @@
 				Not following anyone yet.
 		</span>
 	<% end %>
-<h2>Fans (<%= @user.followers.count :conditions => :active %>)</h2>
+<h2>Fans (<%= @user.followers.size %>)</h2>
 
 	<% if @user.followers.present? %>
 <ul>

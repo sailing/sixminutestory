@@ -12,6 +12,7 @@
 	</title>
 	<!-- Javascripts to include -->
 	<%= javascript_include_tag :all, :cache => true %>
+	<%= csrf_meta_tag %>
 	
 	<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -23,7 +24,7 @@
 	  	<meta name="tweetmeme-title" content="<%= @story.title -%> – Six Minute Story" />  
 	
 		<meta name="title" content="<%= @story.title -%> – Six Minute Story" />
-		<meta name="description" content="<%= truncate(@story.description, 150) -%>" />
+		<meta name="description" content="<%= truncate(@story.description, :length => 150) -%>" />
 		
 		<% if @prompt %>
 			<% if @prompt.refcode.present? %>
@@ -101,11 +102,11 @@
 				</td>
 				
 						<td>
-									<%= image_submit_tag("login_small.png", :name => "login", :id => "login-button", :disabled => false) %>
+									<%= submit_tag "Login",:name => "login", :id => "login-button", :disabled => false %>
 
 						</td>
 						<td>
-								<%= rpx_popup( :link_text => "Use OpenID/Twitter", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false ) %>
+								<%= rpx_popup(:link_text => "Use OpenID/Twitter", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false ) %>
 						</td>
 				</tr>
 			</table>
@@ -118,14 +119,9 @@
 				<table class="logged_in">
 					<tr>
 						<td>
-							<span>
-								<%= link_to "Admin", admin_url %>
-							</span>
-						</td>
-						<td>
 
 							<span class="small_text">
-								<%= link_to "Prompts", archives_url %>
+								<%= link_to "Prompts", prompts_url %>
 							</span>
 						</td>
 					 	
@@ -152,7 +148,7 @@
 
 	<nav id="header_links">
 		<%= link_to "Write", write_path %>
-		| <%= link_to "Read", read_path %>
+		| <%= link_to "Read", stories_path %>
 		| <%= link_to "FAQ", faq_path %>
 		| <a href="http://blog.sixminutestory.com">Blog</a>
 		
@@ -162,7 +158,7 @@
 			<td>
 
 			<%= link_to "Write", write_path %><br />
-			<%= link_to "Read", read_path %><br />
+			<%= link_to "Read", stories_path %><br />
 			<%= link_to "FAQ", faq_path %><br />
 			<a href="http://blog.sixminutestory.com">Blog</a>
 			</td>
@@ -180,7 +176,7 @@
 				<%= link_to "Recent", recent_path %> <br />
 				<%= link_to "Active", commented_path %> <br />
 				<%= link_to "Popular", popular_path %><br />
-				<%= link_to "Random", read_random_url %>
+				<%= link_to "Random", random_stories_url %>
 		</td>
 		<td>
 			<h2>browse</h2>
@@ -210,12 +206,13 @@
 
  		<div class="house_container">
 			
-			<% unless @content_for_sideyard.blank? %>
+			<% if content_for?(:sideyard) %>
 
 					<div class="sideyard_container">
 
 
-					<%= yield(:sideyard) %> 
+					<%= yield(:sideyard) 
+					%> 
 
 
 			

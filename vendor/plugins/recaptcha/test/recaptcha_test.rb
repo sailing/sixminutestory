@@ -1,19 +1,20 @@
 require 'test/unit'
-require 'rubygems'
-require 'builder'
-require File.dirname(__FILE__) + '/../lib/recaptcha'
+require 'cgi'
+require File.dirname(File.expand_path(__FILE__)) + '/../lib/recaptcha'
 
-class ReCaptchaTest < Test::Unit::TestCase
-  include Ambethia::ReCaptcha
-  include Ambethia::ReCaptcha::Helper
-  include Ambethia::ReCaptcha::Controller
+class RecaptchaClientHelperTest < Test::Unit::TestCase
+  include Recaptcha
+  include Recaptcha::ClientHelper
+  include Recaptcha::Verify
 
   attr_accessor :session
 
   def setup
     @session = {}
-    ENV['RECAPTCHA_PUBLIC_KEY']  = '0000000000000000000000000000000000000000'
-    ENV['RECAPTCHA_PRIVATE_KEY'] = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+    Recaptcha.configure do |config|
+      config.public_key = '0000000000000000000000000000000000000000'
+      config.private_key = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+    end
   end
     
   def test_recaptcha_tags
@@ -30,8 +31,8 @@ class ReCaptchaTest < Test::Unit::TestCase
   end
   
   def test_should_raise_exception_without_public_key
-    assert_raise ReCaptchaError do
-      ENV['RECAPTCHA_PUBLIC_KEY'] = nil
+    assert_raise RecaptchaError do
+      Recaptcha.configuration.public_key = nil
       recaptcha_tags
     end
   end

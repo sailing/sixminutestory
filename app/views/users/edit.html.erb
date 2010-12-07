@@ -1,34 +1,32 @@
-	<h1>edit profile
-	</h1>
-<div class="edit_user_form center">
-
 
 <% form_for @user, :url => account_path do |f| %>
 
 <table>
 	<tr>		
 		<td>
+			<h1>edit profile
+		</h1>
 			<h2>Account Settings</h2>
 			<p>
 				<%= f.label :login, "Pseudonym" %><br />
-				<%= f.error_message_on 'login' %><br />
+				<%= @user.errors[:login] %><br />
 				<%= f.text_field :login %>
 			</p>
 			
 			<p>
 			  <%= f.label :email_address %><br />
-				<%= f.error_message_on 'email_address' %><br />
+				<%= @user.errors[:email_address] %><br />
 			  <%= f.text_field :email_address %>
 			</p>
 			
 			<p>
 				<%= f.label :password, f.object.new_record? ? nil : "Change password" %><br />
-				<%= f.error_message_on 'password' %><br />
+				<%= @user.errors[:password] %><br />
 				<%= f.password_field :password %>
 			</p>
 			<p>
 			<%= f.label :password_confirmation %><br />
-			<%= f.error_message_on 'password_confirmation' %><br />
+			<%= @user.errors[:password_confirmation] %><br />
 			<%= f.password_field :password_confirmation %>
 			</p>
 		
@@ -56,7 +54,7 @@
 			
 		
 			<p>
-				<%= image_submit_tag("save.png", :name => "save", :id => "save-button", :disabled => false) %>
+				<%= submit_tag("Save", :name => "save", :id => "save-button", :disabled => false) %>
 			</p>
 		</td>
 		<td>
@@ -73,13 +71,13 @@
 			<h2>Public Profile</h2>
 			<p>
 			  <%= f.label :website %><br />
-				<%= f.error_message_on 'website' %><br />
+				<%= @user.errors[:website] %><br />
 			  <%= f.text_field :website %>
 			</p>
 
 			<p>
 				<%= f.label :profile %><br />
-				<%= f.error_message_on 'profile' %><br />
+				<%= @user.errors[:profile] %><br />
 
 				
 						<%= f.text_area :profile, :rows => 15, :cols => 25 %>
@@ -90,4 +88,3 @@
 </table>
 
 <% end %>
-</div>

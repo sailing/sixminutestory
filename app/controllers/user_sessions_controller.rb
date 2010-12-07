@@ -4,7 +4,7 @@ class UserSessionsController < ApplicationController
   before_filter :require_user, :only => :destroy
 
   def index
-      redirect_to current_user ? account_url : new_user_session_url
+      redirect_to current_user ? account_url : login_url
   end
 
 
@@ -14,6 +14,7 @@ class UserSessionsController < ApplicationController
 
   def create
                 @user_session = UserSession.new(params[:user_session])
+                UserSession.remember_me = true
                 if @user_session.save
                         if @user_session.new_registration?
                                 flash[:notice] = "Welcome! As a new user, please review your registration details before continuing..."
@@ -29,7 +30,7 @@ class UserSessionsController < ApplicationController
                         end
                 else
                         flash[:error] = "Failed to login or register."
-                        redirect_to new_user_session_path
+                        redirect_to login_path
                 end
         end
   

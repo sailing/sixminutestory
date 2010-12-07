@@ -1,21 +1,21 @@
-	<div id="share">
+	<div id="share" class="share">
 		<% story = story || @story %>
 		<script type="text/javascript">
 
 				var addthis_options = 'email, facebook, delicious, buzz, reddit, spurl, stumbleupon, tumblr, twitter, digg, more';
 				//tweetmeme_style='compact'
-		 		tweetmeme_url='<%= read_story_url(story) %>'
+		 		tweetmeme_url='<%= story_url(story) %>'
 				tweetmeme_source='6minutestory'
 				tweetmeme-title='"<%= story.title %>" by <%= story.user.login %>'
 				tweetmeme_service='bit.ly'
 				service_api = 'R_7d9a33865d37be3eda125f7d3c353230'
 		</script>
 		
-			<a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= read_story_url(story) -%>" data-text="Read &quot;<%= story.title %>&quot; by <%= story.user.login %>:" data-count="vertical" data-via="6minutestory" data-related="galensanford:The brain behind the site.">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+			<a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= story_url(story) -%>" data-text="Read &quot;<%= story.title %>&quot; by <%= story.user.login %>:" data-count="vertical" data-via="6minutestory" data-related="galensanford:The brain behind the site.">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 			<br /><br />
-				<script src="http://www.stumbleupon.com/hostedbadge.php?s=5&r=<%=h read_story_url(story) %>"></script>
+				<script src="http://www.stumbleupon.com/hostedbadge.php?s=5&r=<%=h story_url(story) %>"></script>
 					<br /><br />
-		<iframe src="http://www.facebook.com/plugins/like.php?href=<%=h read_story_url(story) %>&amp;layout=box_count&amp;show_faces=false&amp;width=90&amp;action=like&amp;font=segoe+ui&amp;colorscheme=light&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:200px; height:65px;" allowTransparency="true"></iframe>
+		<iframe src="http://www.facebook.com/plugins/like.php?href=<%=h story_url(story) %>&amp;layout=box_count&amp;show_faces=false&amp;width=90&amp;action=like&amp;font=segoe+ui&amp;colorscheme=light&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:200px; height:65px;" allowTransparency="true"></iframe>
 	
 
 				

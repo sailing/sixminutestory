@@ -5,9 +5,9 @@
 					<h1>
 						<% if story.title.present? %>
 							<!-- Story title as a link in the listings -->
-							<%= link_to h(story.title), read_story_url(story) %>
+							<%= link_to h(story.title), story_url(story) %>
 						<% else %>
-							<%= link_to "Untitled Story", read_story_url(story)%>
+							<%= link_to "Untitled Story", story_url(story)%>
 						<% end %>
 					</h1>
 					
@@ -26,7 +26,7 @@
 				<% end %>
 			
 				<% if @stories %>
-					<%= simple_format(sanitize(truncate(h(story.description), :length => 350, :omission => "...&nbsp;&nbsp;&nbsp;[" + link_to("Read&nbsp;more...", read_story_url(story))+ "]" ))) %>
+					<%= simple_format(sanitize(truncate(h(story.description), :length => 350, :omission => "...&nbsp;&nbsp;&nbsp;[" + link_to("Read more...", story_url(story))+ "]" ))) %>
 				<% else %>
 					<%= simple_format(sanitize(h(story.description))) %>
 				<% end %>
@@ -35,7 +35,7 @@
 
 				<% unless @stories %>
 					<section class="center">		
-						<iframe src="http://www.facebook.com/plugins/like.php?href=<%=h read_story_url(@story) %>&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;font=segoe+ui&amp;colorscheme=light&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:200px; height:65px;" allowTransparency="true"></iframe>
+						<iframe src="http://www.facebook.com/plugins/like.php?href=<%=h story_url(@story) %>&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;font=segoe+ui&amp;colorscheme=light&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:200px; height:65px;" allowTransparency="true"></iframe>
 					</section>
 				<% end %>
 				
@@ -48,7 +48,7 @@
 				
 					<!-- This is how people flag stories -->
 		
-					<% form_remote_tag(:url => flag_story_url, :method => "post") do -%>
+					<% form_tag(:url => flag_stories_url, :method => "post", :remote => true) do -%>
 
 					<%= hidden_field_tag 'story', story.id %>
 				
@@ -65,7 +65,7 @@
 	<% end -%>
 	
 				
-				<span><%= link_to pluralize(story.comments_count, 'remark'), read_story_url(story, :anchor => "comments") %></span>
+				<span><%= link_to pluralize(story.comments_count, 'remark'), story_url(story, :anchor => "comments") %></span>
 				<span>&nbsp;||&nbsp;</span>
 				<span>
 					<%= pluralize(story.rating, 'favorite', 'favorites') %>

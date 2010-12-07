@@ -25,7 +25,7 @@ is_admin ? @colspan = 5 : @colspan = 3
 		<!-- number of comments -->
 			<%= image_tag('comment_icon.png')%><br />
 			<%= link_to story.comments_count || '0', 
-				read_story_url(story, :anchor => "comments")
+				story_url(story, :anchor => "comments")
 			%>
 	</td>
 	<td class="story_rating">	
@@ -43,12 +43,12 @@ is_admin ? @colspan = 5 : @colspan = 3
 		<% if story.title.present? %>
 		<span>
 			<!-- Story title as a link in the listings -->
-			<%= link_to h(story.title), read_story_url(story) %> <% if request.path.include?("popular") %> &#8211; Read <%= story.counter %> times <% end %>
+			<%= link_to h(story.title), story_url(story) %> <% if request.path.include?("popular") %> &#8211; Read <%= story.counter %> times <% end %>
 		</span>
 		<% else %>
 		<span>
 			<!-- Story title as a link in the listings -->
-			<%= link_to "Untitled Story", read_story_url(story)%>
+			<%= link_to "Untitled Story", story_url(story)%>
 		</span>
 		
 		<% end %>

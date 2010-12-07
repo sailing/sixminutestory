@@ -43,7 +43,7 @@ module ApplicationHelper
       def show_prompt  
         if @prompt
           unless request.path.include?("write")   
-            write_to_prompt = content_tag(:div, (link_to "Write your own story to this prompt", write_to_prompt_url(@prompt)))
+            write_to_prompt = content_tag(:span, (link_to "Write your own story to this prompt", write_to_prompt_url(@prompt)))
             freeform = "Freeform prompt. Every Friday, writers face a blank page without any prompt. They write whatever they want in six minutes or less."
           else
             freeform = "Write as you please, <br /> in six minutes, <br /> like a breeze."
@@ -55,7 +55,10 @@ module ApplicationHelper
             # flickr img code            
             @content_tags = content_tag(:div, tag("img", { :src => @prompt.refcode }), :class => "prompt")
             	if @prompt.attribution.present? and @prompt.attribution_url.present? and @prompt.kind.present? and @prompt.license.present?
-                  @content_tags << content_tag(:div, content_tag(:span, "image by <a href='#{@prompt.attribution_url}'>#{@prompt.attribution}</a> on #{@prompt.kind}. <br /> Licensed under #{@prompt.license}."), :class => "prompt")
+            	  attribution = "image by <a href='#{@prompt.attribution_url}'>#{@prompt.attribution}</a> on #{@prompt.kind}. <br /> Licensed under #{@prompt.license}."
+            	  b = attribution.html_safe
+            	  
+                  @content_tags << content_tag(:div, content_tag(:span, b))
               end
             
             
@@ -110,12 +113,12 @@ module ApplicationHelper
             
           end
             if @prompt.user_id.present?
+                @content_tags << content_tag(:span, (link_to "Prompt", prompt_url(@prompt)) + " suggested by " + (link_to @prompt.user.login, profile_url(@prompt.user)))
                 @content_tags << tag("br")
-                @content_tags << content_tag(:div, content_tag(:span, "prompt " + " (" + (link_to "details", prompt_url(@prompt)) + ")" + " suggested by " + (link_to @prompt.user.login, profile_url(@prompt.user)) + "<br /> #{write_to_prompt}"), :class => "prompt")
+                @content_tags <<  write_to_prompt
              end
              
-             content_tag(:div, @content_tags, :id => "prompt")
-             
+             content_tag(:div, @content_tags, :id => "prompt", :class => "prompt")
             end
       end
 

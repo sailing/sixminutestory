@@ -3,7 +3,21 @@
 	edit story details
 </h1>
 	<% form_for(@story) do |form| %>
-  		<%= form.error_messages %>
+	
+	<% if @story.errors.any? %>
+		<!-- ERROOOOOOOooooOOORSSSSSSSSSSSSSSSSS -->
+
+	<div id="errorExplanation">
+		<h2>Your story hasn't been saved yet.</h2>
+		<h3>Please check for errors below.</h3>
+
+		  <ul>
+		    <% @story.errors.each do |attribute, msg| %>
+		      <li><%= msg %></li>
+		    <% end %>
+		  </ul>
+	</div>
+	<% end %>
   		
 			<% if is_owner_or_admin %>
 				<% if @story.active == true %>
@@ -25,12 +39,12 @@
 				<% if is_admin %>
 					<p>
 					<h2>Prompt</h2>
-					<%= form.error_message_on 'prompt_id' %><br />
+					<%= @story.errors[:prompt_id] %><br />
 				
 					<%= form.text_field :prompt_id %>
 					</p>
 						<p>
-						<%= image_submit_tag("save.png", :name => "save", :id => "save-button") %>
+						<%= submit_tag("Save", :name => "save", :id => "save-button") %>
 
 						</p>
 				<% end %>
@@ -42,7 +56,7 @@
 					<h2>Story</h2>
 					<span>Story cannot be edited.</span>
 					
-					<%= form.error_message_on 'description' %><br />
+					<%= @story.errors[:description] %><br />
 					
 					<%= form.text_area :description, :disabled => @disabled, :value => @description, :rows => 20, :cols => 45, :tabindex => "1" %>
 			</p>
@@ -65,7 +79,7 @@
 							</tr>
 							<tr>
 								<td colspan=2>
-									&nbsp; <%= form.error_message_on 'title' %>
+									&nbsp; <%= @story.errors[:title] %>
 								</td>
 
 							</tr>
@@ -93,7 +107,7 @@
 
 							<tr>
 								<td colspan=2>
-									&nbsp; 	<%= form.error_message_on 'license' %>
+									&nbsp; 	<%= @story.errors[:lincense] %>
 								</td>
 							</tr>
 							<tr>
@@ -128,7 +142,7 @@
 						</table>
 
 						<p>
-						<%= image_submit_tag("save.png", :name => "save", :id => "save-button") %>
+						<%= submit_tag("Save", :name => "save", :id => "save-button") %>
 
 						</p>
 

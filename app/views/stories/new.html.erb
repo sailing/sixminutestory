@@ -46,20 +46,23 @@
 <div id="new_story_form">
 <% form_for(@story) do |f| %>
 
-	<!-- Include the prompt so we can use it on the next page. Is this really necessary? Isn't it in the scope? -->
+	<!-- Include the prompt so we can use it on the next page. Is this really necessary? -->
 	<%= hidden_field_tag :prompt, @prompt.id %>
 
-<% unless f.error_messages.empty? %>
+<% if @story.errors.any? %>
 	<!-- ERROOOOOOOooooOOORSSSSSSSSSSSSSSSSS -->
-<h1>Errors</h1>
+
 <div id="errorExplanation">
 	<h2>Your story hasn't been saved yet.</h2>
 	<h3>Please check for errors below.</h3>
+
+	  <ul>
+	    <% @story.errors.each do |attribute, msg| %>
+	      <li><%= msg %></li>
+	    <% end %>
+	  </ul>
 </div>
 <% end %>
-
-
-			<%= f.error_message_on 'description' %>
 			
 		
 			<% if @story.description.present? || @editing.present?
@@ -93,19 +96,20 @@
 		<tr>
 			
 			<td>
+				 <% if @story.errors[:title].present? %>
+					<label><%= @story.errors[:title] %></label>
+				<% else %>
 				<label for="story_title">Title</label>
+				
+				<% end %>
+					
 			</td>
 			
 			<td>	
 		  		<%= f.text_field :title, :onFocus => 'clearFieldFirstTime(this);', :tabindex => "2" %>
 			</td>
 		</tr>
-		<tr>
-			<td colspan=2>
-				&nbsp; <%= f.error_message_on 'title' %>
-			</td>
-		
-		</tr>
+
 		<tr>	
 			<td>
 				<label for="story_tags">Adjectives</label><br />
@@ -128,11 +132,6 @@
 	  		</td>
 		</tr>
 		
-		<tr>
-			<td colspan=2>
-				&nbsp; 	<%= f.error_message_on 'license' %>
-			</td>
-		</tr>
 		<tr>
 			<td>
 				<label for="story_license">License</label>
@@ -181,7 +180,7 @@
 			</p>
 			<br />
 				<p>
-				<%= image_submit_tag("save.png", :name => "save", :id => "save-button", :tabindex => "8", :onclick => "document.getElementById('story_description').disabled=false;") %>
+				<%= submit_tag("Save", :name => "save", :id => "save-button", :tabindex => "8", :onclick => "document.getElementById('story_description').disabled=false;") %>
 				 
 				</p>
 

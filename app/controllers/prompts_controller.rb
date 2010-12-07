@@ -31,9 +31,9 @@ class PromptsController < ApplicationController
            @prompts = Prompt.active.paginate(:page => page, :conditions => ["use_on > ?", Time.now], :order => "use_on ASC")
            @scheduled = true
         else
-            @images = Prompt.verified.images.paginate :page => page_i, :per_page => per_page, :order => order
-            @hvg = Prompt.verified.hvg.paginate :page => page, :per_page => per_page, :order => order
-            @firstlines = Prompt.verified.firstlines.paginate :page => page_firstlines, :per_page => per_page, :order => order
+            @images = Prompt.active.verified.images.paginate :page => page_i, :per_page => per_page, :order => order
+            @hvg = Prompt.active.verified.hvg.paginate :page => page, :per_page => per_page, :order => order
+            @firstlines = Prompt.active.verified.firstlines.paginate :page => page_firstlines, :per_page => per_page, :order => order
  #           @threewords = Prompt.verified.threewords.paginate :page => page_threewords, :per_page => per_page, :order => order
         
         end
@@ -94,7 +94,7 @@ class PromptsController < ApplicationController
     page = params[:page] || 1
     order = "created_at DESC"
     per_page = 10
-    @stories = Story.active.paginate_by_prompt_id(@prompt.id, :page => page, :order => order, :per_page => per_page)
+    @stories = Story.active.where(:prompt_id => @prompt.id).paginate(:page => page, :order => order, :per_page => per_page)
 
     respond_to do |format|
       format.html # show.html.erb

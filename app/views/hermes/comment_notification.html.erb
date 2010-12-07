@@ -46,7 +46,7 @@ Hi <%= @recipient.login %>,
 <%= @commenter.login %> commented on your story, "<%= @story.title %>".
 </p>
 <p>
-View it here: <%= link_to read_story_url(@story)+"#comment_"+@comment.id.to_s, read_story_url(@story, :anchor => "comment_"+@comment.id.to_s) %>
+View it here: <%= link_to story_url(@story)+"#comment_"+@comment.id.to_s, story_url(@story, :anchor => "comment_"+@comment.id.to_s) %>
 </p>
 
 

@@ -44,19 +44,20 @@ x change "cheers" to "favorites"
 	- upgrade to thumbs_up?
 	- add voting on prompts (as => "like") 
 	- and comments (as => "agree")
-- let users see who's liked a particular story (flickr style – above comments)
+x let users see who's liked a particular story (flickr style – above comments)
 - add to users account / profile:
 	x stories you've commented on
 	x stories you've favorited
 - upcoming prompts (admin)
 - new rating system (5 star? upvote?)
-- emotion tags.
+x emotion tags.
 - new logo
 x update Elevator pitch
 	x "Joining takes less than 5 seconds."
 - allow writers to edit their own stories?
 
 2.3.1 
+- move flash[notice] to growl position
 - improve validations for titles to ensure no slug failures
 
 2.4

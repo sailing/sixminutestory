@@ -54,7 +54,7 @@ is_admin ? @colspan = 6 : @colspan = 4
 	<td class="story_comments">
 		<!-- number of comments -->
 			<%= link_to story.comment_counter, 
-				read_story_url(story,:anchor => "comments")
+				story_url(story,:anchor => "comments")
 			%>
 	</td>
 	<td class="story_rating">	
@@ -69,12 +69,12 @@ is_admin ? @colspan = 6 : @colspan = 4
 		<% if story.title.present? %>
 		<span>
 			<!-- Story title as a link in the listings -->
-			<%= link_to h(story.title), read_story_url(story) %>
+			<%= link_to h(story.title), story_url(story) %>
 		</span>
 		<% else %>
 		<span>
 			<!-- Story title as a link in the listings -->
-			<%= link_to "Untitled Story", read_story_url(story)%>
+			<%= link_to "Untitled Story", story_url(story)%>
 		</span>
 		
 		<% end %>
@@ -88,7 +88,7 @@ is_admin ? @colspan = 6 : @colspan = 4
 		<div class="description">
 			
 			<span class="linked_images">
-			<%= link_to(image_tag("read_more.png"), read_story_url(story)) %>
+			<%= link_to(image_tag("read_more.png"), story_url(story)) %>
 			</span>
 			
 				<span>
@@ -114,7 +114,7 @@ is_admin ? @colspan = 6 : @colspan = 4
 			:onClick => visual_effect(	:blind_up,'description' + @i.to_s,
 										:duration => 0.3 )%>
 			
-			<%= link_to(image_tag("read_more.png"), read_story_url(story)) %>
+			<%= link_to(image_tag("read_more.png"), story_url(story)) %>
 			
 			</span>
 				<span>

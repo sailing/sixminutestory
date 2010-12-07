@@ -64,7 +64,7 @@
 		</tr>
 	<td colspan=2>
 			
-				<%= image_submit_tag("login.png", 
+				<%= submit_tag("Login", 
 						:name => "login", 
 						:id => "login-button", 
 						:disabled => false) %>	 
@@ -81,7 +81,7 @@
 	<td colspan=2>
 			<h5>
 				Don't have an account? 
-				<%= link_to "Sign up", register_path %>
+				<%= link_to "Sign up", new_user_url %>
 			</h5>
 	</td>
 	</tr>

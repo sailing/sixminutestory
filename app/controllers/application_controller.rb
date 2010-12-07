@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   before_filter :check_for_maintenance 
   before_filter :require_username, :except => [:edit, :update, :create]
 
-  filter_parameter_logging :password, :password_confirmation, :fb_sig_friends
   helper_method :current_user_session, :current_user
   
   helper :all # include all helpers, all the time
@@ -50,7 +49,7 @@ class ApplicationController < ActionController::Base
     def store_location
       session[:return_to] =
       if request.get?
-        request.request_uri
+        request.fullpath
       else
         request.referer
       end
@@ -110,8 +109,8 @@ class ApplicationController < ActionController::Base
      
      
      def check_for_maintenance
-         if File.exist? "#{RAILS_ROOT}/public/maintenance.html"
-           return render( :file =>  "#{RAILS_ROOT}/public/maintenance.html") unless (current_user && current_user.is_admin?)
+         if File.exist? "#{Rails.root}/public/maintenance.html"
+           return render( :file =>  "#{Rails.root}/public/maintenance.html") unless (current_user && current_user.is_admin?)
         end
      end
      

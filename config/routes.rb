@@ -1,163 +1,175 @@
-ActionController::Routing::Routes.draw do |map|
+Sms::Application.routes.draw do
+#  resources :products do
+#    resource :category
 
-  map.resources :followings
+#    member do
+#      post :short
+#    end
 
-#  map.resources :contests
+#    collection do
+#      get :long
+#    end
+#  end
+
+#  match "/posts/github" => redirect("http://github.com/rails.atom")
+
+  
+   resources :followings
+
+#   resources :contests do
+#     resources :stories
+#   end 
+    
 
 
 
   # The priority is based upon order of creation: first created -> highest priority.
-
-  # Sample of regular route:
-  #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
-  # This route can be invoked with purchase_url(:id => product.id)
     
     # site activities
       # writing / prompts
-    map.write 'write', :controller => "stories", :action => "new"
-    map.write_random 'random/write', :controller => "prompts", :action => "random"
-    map.write_to_prompt 'write/:prompt', :controller => "stories", :action => "new"
-    map.archives 'archives', :controller => "prompts", :action => "index"
-    map.suggest_a_prompt 'prompts/suggest', :controller => "prompts", :action => "new"
-    map.thanks 'thanks/:id', :controller => "stories", :action => "thanks_for_writing"
+     match 'write', :to => "stories#new", :as => 'write'
+     match 'write/:prompt', :to => "stories#new", :as => 'write_to_prompt'
+     match 'archives', :to => "prompts#index", :as => 'archives'
+     match 'prompts/suggest', :to => "prompts#new", :as => 'suggest_a_prompt'
+     match 'thanks/:id', :to => "stories#thanks_for_writing", :as => 'thanks_for_writing'
       # reading
-
-    map.read_random 'random', :controller => "stories", :action => "random"
-    map.flag_story 'flag', :controller => "stories", :action => "flag_story", :conditions => { :method => :post }
-    #map.rss 'rss/:id', :controller => "users", :action => "show"
-    
-    #user activities
-    map.login 'login', :controller => "user_sessions", :action => "new"
-    map.logout 'logout', :controller => "user_sessions", :action => "destroy"
-    map.register 'register', :controller => "users", :action => "new"
-     map.addrpxauth "addrpxauth", :controller => "users", :action => "addrpxauth", :method => :post
-    
-  #  map.profile            '/profile/:login', :controller => "users", :action => "show", :requirements => {:login => /.*/}
-  #  map.formatted_profile '/profile/:id.:format', :controller => "users", :action => "show"
-  #  map.formatted_profile_personal '/profile/personal/:id.:format', :controller => "users", :action => "show"
-    
+            
     #administration
-    map.unverified_prompts "/archives/unverified", :controller => "prompts", :action => "index" 
-    map.scheduled_prompts "/archives/scheduled", :controller => "prompts", :action => "index"
-    map.feature_story "admin/stories/feature/:id", :controller => "stories", :action => "feature_story"
-    map.unfeature_story "admin/stories/unfeature/:id", :controller => "stories", :action => "unfeature_story"
-    map.enable_user "admin/users/enable/:id", :controller => "users", :action => "enable_user"
-     map.disable_user "admin/users/disable/:id", :controller => "users", :action => "disable_user"
-    map.contests_admin "admin/contests", :controller => "contests", :action => "admin"
+     match "/archives/unverified", :to => "prompts#index", :as => 'unverified_prompts'
+     match "/archives/scheduled", :to => "prompts#index", :as => 'scheduled_prompts'
+
     
 
 
-    map.resources :users do |user|
-       user.resources :votes
-       user.resources :stories do |story|
-         story.resources :votes
+     resources :users, :path_names => { :new => 'register' } do
+       resources :votes
+       resources :stories do
+         resources :votes
+       end
+       resources :comments
+       resources :prompts
+       resources :followings
+       member do
+        put :enable
+        put :disable
        end
      end
-     
-    map.resource :account, :controller => "users"
-    map.resources :profile, :controller => "users"
-    
-    map.favorites 'profile/:user/favorites', :controller => "votes", :action => "index"
-    map.users_comments 'account/comments/:time', :controller => "comments", :action => "index"
-    map.users_comments_sans_time 'account/comments', :controller => "comments", :action => "index"
+              
+     resource :account, :controller => "users"
+     resources :profile, :controller => "users"
 
-     map.resources :stories do |story|
-       story.resources :votes
+     match 'addrpxauth', :to => "users#addrpxauth", :as => "addrpxauth"
+
+     match 'profile/:user/favorites', :to => "votes#index", :as => 'favorites'
+     match 'account/comments/:time', :to => "comments#index", :as => 'users_comments'
+     match 'account/comments', :to => "comments#index", :as => 'users_comments_sans_time'
+
+      resources :stories do
+           resources :votes
+           resources :comments
+           member do
+              put :feature
+              put :unfeature
+              get :thanks
+           end
+           collection do
+               post :flag
+               get :random
+          end
      end
      
-       map.resources :prompts
+    resources :comments
+     
+     match "/read/:id" => redirect("/stories/%{id}")
+      
+      resources :prompts
         
-     map.resources :comments
-
-     map.resource :user_session
-
-     map.with_options :controller => "stories", :action => "show" do |story|     
- 
-       story.read_story             'read/:id'
-       story.read_featured_story    'featured/:id'
-       story.featured             '/featured'     
-       story.formatted_featured     '/featured.:format'
-     
-     end
-     map.resources :read, :controller => "stories"
-     map.browse_by_tags     '/tags',     :controller => "stories",      :action => "tag_cloud"
-     map.browse_by_genres     '/genres',     :controller => "stories",      :action => "tag_cloud"
-     map.browse_by_emotions     '/emotions',     :controller => "stories",      :action => "tag_cloud"
+        match "login", :to => 'user_sessions#new', :as => :login
+         match "logout", :to => 'user_sessions#destroy', :as => :logout
+      resource :user_session, :path_names => { :new => 'login' }
+      
+      match '/recent', :to => "stories#index", :as => 'recent'
+      match '/popular', :to => "stories#index", :as => 'popular'
+      match '/active', :to => "stories#index", :as => 'commented'
+      match '/top', :to => "stories#index", :as => 'top'
+      
+       match             '/featured', :to => "stories#show", :as => 'featured'  
+       match     '/featured.:format', :to => "stories#show", :as => 'formatted_featured'
      
      
+      match     '/tags', :to => "stories#tag_cloud", :as => 'browse_by_tags'
+      match     '/genres',    :to => "stories#tag_cloud", :as => 'browse_by_genres'
+      match '/emotions',   :to => "stories#tag_cloud", :as => 'browse_by_emotions'
      
-     map.with_options :controller => "stories", :action => "index" do |story|     
-       story.read                 '/recent'
-
-       story.recent               '/recent'          
-       story.formatted_recent     '/recent.:format'
-       story.popular              '/popular'
-       story.formatted_popular     '/popular.:format'
-       story.commented            '/active'
-       story.formatted_commented     '/active.:format'
-       story.top                  '/top'
-       story.formatted_top        '/top.:format'
-#      story.newer_comments         '/account/commented'
-       story.tag                  '/tag/:tag', :requirements => { :tag => /.*/ }
-       story.genre                '/genre/:tag', :requirements => { :tag => /.*/ }
-       story.emotion              '/emotion/:tag', :requirements => { :tag => /.*/ }
-     end
+      match                  '/tag/:tag', :to => "stories#index", :constraints => { :tag => /.*/ }, :as => 'tag'
+      match                 '/genre/:tag', :to => "stories#index", :constraints => { :tag => /.*/ }, :as => 'genre'
+      match               '/emotion/:tag', :to => "stories#index", :constraints => { :tag => /.*/ }, :as => 'emotion'
      
-    map.with_options :controller => "site" do |site| 
-      site.search             '/search',          :action => "search"
-      site.faq                '/faq',             :action => "faq" 
-      site.about              '/about',           :action => "about"
-      site.contact            '/contact',         :action => "contact"
-      site.terms              '/terms',           :action => "terms"
-      site.privacy            '/privacy',         :action => "privacy"
-      site.api                '/api',             :action => "api"
-      site.admin              '/admin',          :action => "admin"
-      site.acknowledgements   '/acknowledgements', :action => "acknowledgements"
-    end
-
-    map.root              :controller => "stories",     :action => "show"
-    map.formatted_root     '/featured.:format', :controller => "stories",  :action => "index"
+#      match search             '/search'          :to => "site#search", :as => 'search' 
+      match '/faq', :to => "site#faq", :as => 'faq'
+#      match about              '/about'           :to => "site#about", :as => ''
+#      match contact            '/contact'         :to => "site#contact", :as => ''
+#      match terms              '/terms'           :to => "site#terms", :as => ''
+#      match privacy            '/privacy'         :to => "site#privacy", :as => 'privacy'
+#      match   '/acknowledgements', :to => "site#acknowledgements", :as => 'acknowledgements'
     
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   map.resources :products
+     root :to => "stories#show"
+    
+     # The priority is based upon order of creation:
+     # first created -> highest priority.
 
+     # Sample of regular route:
+     #   match 'products/:id' => 'catalog#view'
+     # Keep in mind you can assign values other than :controller and :action
 
+     # Sample of named route:
+     #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
+     # This route can be invoked with purchase_url(:id => product.id)
+
+     # Sample resource route (maps HTTP verbs to controller actions automatically):
+     #   resources :products
+
+     # Sample resource route with options:
+     #   resources :products do
+     #     member do
+     #       get 'short'
+     #       post 'toggle'
+     #     end
+     #
+     #     collection do
+     #       get 'sold'
+     #     end
+     #   end
+
+     # Sample resource route with sub-resources:
+     #   resources :products do
+     #     resources :comments, :sales
+     #     resource :seller
+     #   end
+
+     # Sample resource route with more complex sub-resources
+     #   resources :products do
+     #     resources :comments
+     #     resources :sales do
+     #       get 'recent', :on => :collection
+     #     end
+     #   end
+
+     # Sample resource route within a namespace:
+     #   namespace :admin do
+     #     # Directs /admin/products/* to Admin::ProductsController
+     #     # (app/controllers/admin/products_controller.rb)
+     #     resources :products
+     #   end
+
+     # You can have the root of your site routed with "root"
+     # just remember to delete public/index.html.
+     # root :to => "welcome#index"
+
+     # See how all your routes lay out with "rake routes"
+
+     # This is a legacy wild controller route that's not recommended for RESTful applications.
+     # Note: This route will make all actions in every controller accessible via GET requests.
+      #match ':controller(/:action(/:id(.:format)))'
   
-
-  # Sample resource route with options:
-  #   map.resources :products, :member => { :short => :get, :toggle => :post }, :collection => { :sold => :get }
-
-  # Sample resource route with sub-resources:
-  #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-  
-  # Sample resource route with more complex sub-resources
-  #   map.resources :products do |products|
-  #     products.resources :comments
-  #     products.resources :sales, :collection => { :recent => :get }
-  #   end
-
-  # Sample resource route within a namespace:
-  #   map.namespace :admin do |admin|
-  #     # Directs /admin/products/* to Admin::ProductsController (app/controllers/admin/products_controller.rb)
-  #     admin.resources :products
-  #   end
-
-  # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-  # map.root :controller => "welcome"
-
-  # See how all your routes lay out with "rake routes"
-
-  # Install the default routes as the lowest priority.
-  # Note: These default routes make all actions in every controller accessible via GET requests. You should
-  # consider removing the them or commenting them out if you're using named routes and resources.
-  
- 
-  map.catch_all "*", :controller => "stories"
-
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
 end
