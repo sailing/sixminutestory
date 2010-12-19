@@ -1581,17 +1581,16 @@ nav {
 }
 
 .pagination .prev_page, .pagination .next_page, .pagination .current {
-	color:#fff;
+
 }
 
 
 .pagination a {
-	color:#fff;
 	padding:3px;
 }
 
 .pagination a:hover {
-	background:#8fcfef;
+	color:#8fcfef;
 	
 }
 

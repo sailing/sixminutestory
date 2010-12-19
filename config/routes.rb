@@ -72,6 +72,7 @@ Sms::Application.routes.draw do
               put :feature
               put :unfeature
               get :thanks
+              get :featured
            end
            collection do
                post :flag
@@ -94,8 +95,8 @@ Sms::Application.routes.draw do
       match '/active', :to => "stories#index", :as => 'commented'
       match '/top', :to => "stories#index", :as => 'top'
       
-       match             '/featured', :to => "stories#show", :as => 'featured'  
-       match     '/featured.:format', :to => "stories#show", :as => 'formatted_featured'
+      match             '/featured', :to => "stories#show", :as => 'featured'  
+      match     '/featured.:format', :to => "stories#show", :as => 'formatted_featured'
      
      
       match     '/tags', :to => "stories#tag_cloud", :as => 'browse_by_tags'

@@ -7,9 +7,9 @@
 							<td >
 								<div class="green button_container">	
 									<% if(@previous_featured.present?) %>
-									<%= link_to "<< Previous", featured_path(@previous_featured)%>
+									<%= link_to "<< Previous", featured_story_url(@previous_featured)%>
 									<% else %>
-										<span>El Fin</span>
+										<span>The end</span>
 									<% end %>
 								</div>
 							</td>		
@@ -18,9 +18,9 @@
 								<td>
 									<div class="green button_container">	
 									<% if(@next_featured.present?) %>
-										<%= link_to "Next >> ", featured_path(@next_featured)%>
+										<%= link_to "Next >> ", featured_story_url(@next_featured)%>
 									<% else %>
-										<span>El Fin</span>
+										<span>The end</span>
 									<% end %>
 									</div>
 								</td>
@@ -35,7 +35,7 @@
 								<% if(@previous.present?) %>
 								<%= link_to "<< Previous", story_url(@previous)%>
 								<% else %>
-									<span>El Fin</span>
+									<span>Le début</span>
 								<% end %>
 							</div>
 						</td>		
@@ -46,7 +46,7 @@
 								<% if(@next.present?) %>
 									<%= link_to "Next >> ", story_url(@next)%>
 								<% else %>
-									<span>El Fin</span>
+									<span>The end</span>
 								<% end %>
 								</div>
 							</td>

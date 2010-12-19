@@ -8,14 +8,14 @@
 <br />
 <% unless @scheduled %>
 	<% # select tag shows various prompts %>
-	<%= select_tag_for_filter("prompts", @filters, params) %>
+	<%= raw(select_tag_for_filter("prompts", @filters, params)) %>
 <% end %>
 <div id="listPrompts">
 <% if @scheduled %>
 	<table>
 		<% @prompts.each do |prompt| %>
 		<tr>
-			<td><%= link_to prompt.use_on, prompt_url(prompt) %></td>
+			<td><%= prompt.id %></td><td><%= link_to prompt.use_on, prompt_url(prompt) %></td>
 		</tr>
 		<% end %>
 	</table>

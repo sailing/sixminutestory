@@ -14,17 +14,16 @@ class StoriesController < ApplicationController
       begin
       case request.path
         when /^\/popular/
-            @stories = Story.active.popular.paginate :page => page, :per_page => per_page   
+            @stories = Story.popular.paginate :page => page, :per_page => per_page   
             @title = "popular stories"
-        #    @popular = true
         when /^\/active/
-            @stories = Story.active.commented.paginate :page => page, :per_page => per_page
+            @stories = Story.commented.paginate :page => page, :per_page => per_page
             @title = "most active stories"
         when /^\/recent/
-            @stories = Story.active.recent.paginate :page => page, :per_page => per_page
+            @stories = Story.recent(1.month.ago).paginate :page => page, :per_page => per_page
             @title = "most recent stories"
         when /^\/top/
-            @stories = Story.active.top.paginate :page => page, :per_page => per_page   
+            @stories = Story.top.paginate :page => page, :per_page => per_page   
             @title = "top rated stories"
         when /^\/tag\/./
             @tag = params[:tag]
@@ -34,19 +33,19 @@ class StoriesController < ApplicationController
             @genre = params[:tag]
             @stories = Story.tagged_with(@genre, :any => true, :on => :genres).by_date.paginate :page => page, :per_page => per_page
             @title = "stories in #{@genre} genre"
-          when /^\/emotion\/./
+        when /^\/emotion\/./
               @emotion = params[:tag].downcase
               @stories = Story.tagged_with([@emotion], :any => true, :on => :emotions).by_date.paginate :page => page, :per_page => per_page
               @title = "these stories evoked #{@emotion}"
       else
           #return recent
-          @stories = Story.active.recent.paginate :page => page, :per_page => per_page
+          @stories = Story.recent(1.month.ago).paginate :page => page, :per_page => per_page
           @title = "most recent stories"
       end
         
       rescue
            flash[:notice] = "There are no stories. Why not write your own?"
-           redirect_to write_url
+           redirect_to faq_url
       else 
             respond_to do |format|
                format.html # index.html.erb
@@ -121,31 +120,31 @@ class StoriesController < ApplicationController
           unless request.path.include?("featured")
               if params[:id].present?
                 @story = Story.active.find(params[:id])
-                @previous = Story.previous(@story)
-                @next = Story.next(@story)              
+                @previous = Story.previous(@story).first
+                @next = Story.next(@story).first              
               else
                 @frontpage = true
-                if @story = Story.active.featured.first
+                if @story = Story.featured.first
                   @featured = true
-                  @previous_featured = Story.previous_featured(@story)
-                  @next_featured = Story.next_featured(@story)
+                  @previous_featured = Story.previous_featured(@story).first
+                  @next_featured = Story.next_featured(@story).first
                 else
-                  @story = Story.active.top.first
-                  @previous = Story.previous(@story)
-                  @next = Story.next(@story)                              
+                  @story = Story.top.first
+                  @previous = Story.previous(@story).first
+                  @next = Story.next(@story).first                              
                 end
               end
           else
             if params[:id].blank?
-              @story = Story.active.featured.first
+              @story = Story.featured.first
               @featured = true
-              @previous_featured = Story.previous_featured(@story)
-              @next_featured = Story.next_featured(@story)
+              @previous_featured = Story.previous_featured(@story).first
+              @next_featured = Story.next_featured(@story).first
             else
-              @story = Story.active.featured.find(params[:id])
+              @story = Story.featured.find(params[:id])
               @featured = true
-              @previous_featured = Story.previous_featured(@story)
-              @next_featured = Story.next_featured(@story)
+              @previous_featured = Story.previous_featured(@story).first
+              @next_featured = Story.next_featured(@story).first
             end  
           end
        
@@ -177,6 +176,69 @@ class StoriesController < ApplicationController
      
   end
   
+  def featured
+     session[:return_to] = request.url
+
+      e = ActiveRecord::RecordNotFound
+      begin
+
+            unless request.path.include?("featured")
+                if params[:id].present?
+                  @story = Story.active.find(params[:id])
+                  @previous = Story.previous(@story).first
+                  @next = Story.next(@story).first              
+                else
+                  @frontpage = true
+                  if @story = Story.featured.first
+                    @featured = true
+                    @previous_featured = Story.previous_featured(@story).first
+                    @next_featured = Story.next_featured(@story).first
+                  else
+                    @story = Story.top.first
+                    @previous = Story.previous(@story).first
+                    @next = Story.next(@story).first                              
+                  end
+                end
+            else
+              if params[:id].blank?
+                @story = Story.featured.first
+                @featured = true
+                @previous_featured = Story.previous_featured(@story).first
+                @next_featured = Story.next_featured(@story).first
+              else
+                @story = Story.featured.find(params[:id])
+                @featured = true
+                @previous_featured = Story.previous_featured(@story).first
+                @next_featured = Story.next_featured(@story).first
+              end  
+            end
+
+      rescue Exception => e
+        unless request.path.include?("featured")
+          flash[:notice] = 'That story doesn\'t exist.'
+        else
+          flash[:notice] = 'That story isn\'t featured.'
+        end
+        store_location
+        redirect_to recent_url
+
+      else 
+           # Initialize a comment 
+             @comment = Comment.new
+             @user = @story.user
+             @prompt = @story.prompt
+
+          # tests to see if a following relationship exists
+             following_exists
+
+
+               respond_to do |format|
+                 format.html # show.html.erb
+                 format.xml  { render :xml => @story }
+               end
+      end
+    
+  end
   
   def tag_cloud
   e = ActiveRecord::RecordNotFound
