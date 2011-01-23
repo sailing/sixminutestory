@@ -75,36 +75,6 @@
 			</tr>
 			<% end %>
 			
-			<tr>
-							<td>
-								<div class="brown button_container">	
-								
-							
-							<!-- AddThis Button BEGIN -->
-						<script type="text/javascript">
-							var addthis_pub="sixminutestory";
-						</script>
-							<a 
-								href="http://www.addthis.com/bookmark.php?v=20" 
-								onmouseover="return addthis_open(this, '', '[URL]', '[TITLE]')" 
-								onmouseout="addthis_close()" 
-								onclick="return addthis_sendto()">Share</a>
-								
-						<script type="text/javascript" src="http://s7.addthis.com/js/200/addthis_widget.js">
-						</script>
-							<!-- AddThis Button END -->
-								
-								</div>
-							</td>
-							
-								<td id="votes_<%= @story.id %>">
-									<div class="purple button_container">	
-
-									<%= render 	:partial => "votes/story_vote", 
-												:locals => {:story => @story} %>	
-									</div>
-								</td>
-			</tr>
 		</table>
 		</div>
 	</div>

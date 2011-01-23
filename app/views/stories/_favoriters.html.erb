@@ -1,0 +1,6 @@
+<h4>favorited by</h4>
+<% for voter in @story.voters_who_voted %>
+	<% if voter.voted_for?(@story) %>
+		<%= link_to voter.login, profile_url(voter) %><br />
+	<% end %>
+<% end %>

@@ -1106,6 +1106,11 @@ article header p {
 	font-size:.9em;
 }
 
+article hgroup p {
+	line-height:1.5em;
+
+}
+
 article footer {
 	  text-align:right;
 		font-size:.75em;

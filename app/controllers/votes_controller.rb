@@ -77,19 +77,34 @@ class VotesController < ApplicationController
     @story = Story.find(params[:story_id])
     
     respond_to do |format|
-      if current_user.vote_exclusively_for(@story)
-        
-        format.html { 
-          render :update do |page| 
-            page.replace_html "add_favorite", :partial => "votes/story_vote", :vote => @vote 
-          end
-        }
-        format.js
-      else
-        format.html { render :action => "new" }
-        format.js  { render :action => "error" }
-        format.xml  { render :xml => @vote.errors, :status => :unprocessable_entity }
-      end
+      if params[:vote] == "favorite"
+        if current_user.vote_exclusively_for(@story)
+            format.html { 
+              render :update do |page| 
+                page.replace_html "add_favorite", :partial => "votes/story_vote", :vote => @vote 
+              end
+            }
+            format.js
+        else
+            format.html { render :action => "new" }
+            format.js  { render :action => "error" }
+            format.xml  { render :xml => @vote.errors, :status => :unprocessable_entity }
+        end
+    
+      else 
+        if current_user.vote_exclusively_against(@story)
+            format.html { 
+              render :update do |page| 
+                page.replace_html "add_favorite", :partial => "votes/story_vote", :vote => @vote 
+              end
+            }
+            format.js
+        else
+            format.html { render :action => "new" }
+            format.js  { render :action => "error" }
+            format.xml  { render :xml => @vote.errors, :status => :unprocessable_entity }
+        end
+      end  
     end
   end
 
