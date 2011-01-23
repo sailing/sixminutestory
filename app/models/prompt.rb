@@ -41,7 +41,3 @@ class Prompt < ActiveRecord::Base
    
 end
 
-class FavoritePrompt < Prompt
-    #belongs_to :user
-end
-

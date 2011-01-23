@@ -77,27 +77,17 @@ class VotesController < ApplicationController
     @story = Story.find(params[:story_id])
     
     respond_to do |format|
-      if current_user.vote(@story, params[:vote])
-        
-        if @story.votes_count > 0
-            if @story.votes_for > 0
-              @story.rating += 1
-              @story.save
-            else
-                @story.rating -= 1
-                @story.save
-            end
-        end
+      if current_user.vote_exclusively_for(@story)
         
         format.html { 
           render :update do |page| 
-            page.replace_html div_to_replace, :partial => "votes/story_vote", :vote => @vote 
+            page.replace_html "add_favorite", :partial => "votes/story_vote", :vote => @vote 
           end
         }
         format.js
       else
         format.html { render :action => "new" }
-        format.rjs  { render :action => "error" }
+        format.js  { render :action => "error" }
         format.xml  { render :xml => @vote.errors, :status => :unprocessable_entity }
       end
     end

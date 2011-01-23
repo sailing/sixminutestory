@@ -68,7 +68,7 @@
 				<span><%= link_to pluralize(story.comments_count, 'remark'), story_url(story, :anchor => "comments") %></span>
 				<span>&nbsp;||&nbsp;</span>
 				<span>
-					<%= pluralize(story.rating, 'favorite', 'favorites') %>
+					<%= pluralize(story.votes_for, 'favorite', 'favorites') %>
 				</span>
 
 			<% if is_admin %>

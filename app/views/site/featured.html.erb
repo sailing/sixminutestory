@@ -40,7 +40,7 @@
 				<span><%= link_to pluralize(story.comments_count, 'remark'), story_url(story, :anchor => "comments") %></span>
 				<span>&nbsp;||&nbsp;</span>
 				<span>
-					<%= pluralize(story.rating, 'cheer', 'cheers') %>
+					<%= pluralize(story.votes_for, 'cheer', 'cheers') %>
 				</span>
 			
 			</div>

@@ -79,7 +79,7 @@ Sms::Application.routes.draw do
                get :random
           end
      end
-     
+    resources :votes 
     resources :comments
      
      match "/read/:id" => redirect("/stories/%{id}")

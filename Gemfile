@@ -18,7 +18,7 @@ gem 'taps', '>= 0.3.14'
 
 source 'http://gemcutter.org'
 #voting tool 
-gem 'thumbs_up'
+gem 'thumbs_up', '>= 0.3.2'
 
 #adding favorites to replace votes. favorites are polymorphic associations
 gem 'kronn-has_many_polymorphs'
