@@ -21,7 +21,7 @@ source 'http://gemcutter.org'
 gem 'thumbs_up', '>= 0.3.2'
 
 #adding favorites to replace votes. favorites are polymorphic associations
-gem 'kronn-has_many_polymorphs'
+#gem 'kronn-has_many_polymorphs'
 
 #pagination
 gem "will_paginate", "~> 3.0.pre2"
