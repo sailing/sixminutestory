@@ -8,7 +8,9 @@
 <br />
 <% unless @scheduled %>
 	<% # select tag shows various prompts %>
+	<h3>View more: 
 	<%= raw(select_tag_for_filter("prompts", @filters, params)) %>
+	</h3>
 <% end %>
 <div id="listPrompts">
 <% if @scheduled %>
@@ -21,10 +23,15 @@
 	</table>
 <% else %>
 <% if @table == "hvg" %>
-<% unless @prompts.empty? %>
-<h2>Hero-Villain-Goal</h2>
-	<table>
 
+<% unless @prompts.empty? %>
+	<% is_admin ? @colspan = 6 : @colspan = 5 %>
+	<table>
+	<tr>
+		<td colspan=<%=@colspan%>>
+			<h2>Hero / Villain / Goal</h2>
+		</td>
+	</tr>
 
 	  <tr>
 	  		<th>Hero</th>
@@ -41,9 +48,9 @@
 	 	<%= render :partial => 'hvg', :collection => @prompts %>
 		
 	<tr class="row">
-		<% is_admin ? @colspan = 6 : @colspan = 5 %>
+	
 		<td colspan=<%=@colspan%>>
-			<%= will_paginate @prompts, :renderer => StockRenderer  %>
+			<%= will_paginate @prompts  %>
 		</td>
 	</tr>
 	</table>
@@ -54,8 +61,12 @@
 <% elsif @table == "images" %>	
 
 	<% unless @prompts.empty? %>
-	<h2>Images</h2>
 		<table>
+			<tr>
+				<td colspan=2>
+					<h2>Images</h2>
+				</td>
+			</tr>
 			<% i = 0 %>
 			<% @prompts.each do |prompt| %>
 				<% i += 1 %>
@@ -75,7 +86,7 @@
 			
 
 			<% end %>
-			<tr>
+			<tr class="row">
 				<td colspan=2>
 					<%= will_paginate @prompts  %>
 				</td>
@@ -87,10 +98,15 @@
 
 <% elsif @table == "firstlines" %>
 	<% unless @prompts.empty? %>
-	<h2>First lines</h2>
+
 		<table>
+			<tr>
+				<td colspan = 3>
+					<h2>First lines</h2>
+				</td>
+			</tr>
 			<%= render :partial => 'firstline', :collection => @prompts  %>
-		<tr>
+		<tr class="row">
 			<td colspan=3>
 				<%= will_paginate @prompts %>
 			</td>
@@ -118,73 +134,74 @@
 <% end %>
 
 <!-- Images -->
+<% if request.path.include?("unverified")%>
 
-<% unless @images.empty? %>
-<h2>Images</h2>
-	<table>
-<% i = 0 %>
-	<% @images.each do |prompt| %>
-		<% i += 1 %>
-		<% if i == 1 %>
-			<tr>
-		<% end %>
+	<% unless @images.empty? %>
+	<h2>Images</h2>
+		<table>
+	<% i = 0 %>
+		<% @images.each do |prompt| %>
+			<% i += 1 %>
+			<% if i == 1 %>
+				<tr>
+			<% end %>
 	
-			<%= render :partial => 'image', :locals => {:prompt => prompt}  %>
+				<%= render :partial => 'image', :locals => {:prompt => prompt}  %>
 					
-		<% if i == 2 %>
-			</tr>
-			<% i = 0 %>
+			<% if i == 2 %>
+				</tr>
+				<% i = 0 %>
 		
-		<% elsif @images.size == 1 %>
-			</tr>
-		<% end %>
+			<% elsif @images.size == 1 %>
+				</tr>
+			<% end %>
 	
+		<% end %>
+
+	<tr>
+		<td colspan=2>
+		
+			<%= will_paginate @images, :param_name => :page_i %>
+		</td>
+	</tr>
+	</table>
+
 	<% end %>
 
-<tr>
-	<td colspan=2>
-		
-		<%= will_paginate @images, :param_name => :page_i %>
-	</td>
-</tr>
-</table>
 
-<% end %>
+	<!-- hero villain goal -->
+	<% unless @hvg.empty? %>
+	<h2>Hero-Villain-Goal</h2>
+	<table>
 
 
-<!-- hero villain goal -->
-<% unless @hvg.empty? %>
-<h2>Hero-Villain-Goal</h2>
-<table>
+	  <tr>
+	  		<th>Hero</th>
+	    	<th>Villain</th>
+	    	<th>Goal</th>
+			<th>Stories</th>
+			<th>Write</th>
 
+			<% if is_admin %>
+				<th>Use on</th>
+			<% end %>
 
-  <tr>
-  		<th>Hero</th>
-    	<th>Villain</th>
-    	<th>Goal</th>
-		<th>Stories</th>
-		<th>Write</th>
-
-		<% if is_admin %>
-			<th>Use on</th>
-		<% end %>
-
-</tr>
+	</tr>
 
 	
-	<%= render :partial => 'hvg', :collection => @hvg %>
+		<%= render :partial => 'hvg', :collection => @hvg %>
 	
 
 
-<tr>
-	<% is_admin ? @colspan = 6 : @colspan = 5 %>
-	<td colspan=<%=@colspan%>>
-		<%= will_paginate @hvg  %>
-	</td>
-</tr>
-</table>
-<% end %>
-	
+	<tr>
+		<% is_admin ? @colspan = 6 : @colspan = 5 %>
+		<td colspan=<%=@colspan%>>
+			<%= will_paginate @hvg  %>
+		</td>
+	</tr>
+	</table>
+	<% end %>
+<% end %>	
 
 <% end %>
 <%end %>

@@ -18,7 +18,7 @@ class FollowingsController < ApplicationController
   
   def destroy
     @following = current_user.followings.find_by_writer_id(params[:writer_id])
-    # || current_user.followings.find(params[:id])
+
     @user = User.find_by_id(@following.writer_id)
     if @following.destroy
       respond_to do |format|

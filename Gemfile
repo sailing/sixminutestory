@@ -5,7 +5,7 @@ gem 'rails', '3.0.1'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'friendly_id'
+gem 'friendly_id', '~> 3.1'
 
 gem 'authlogic', '= 2.1.6'
 gem 'rpx_now', '= 0.6.23'
@@ -19,6 +19,9 @@ gem 'taps', '>= 0.3.14'
 source 'http://gemcutter.org'
 #voting tool 
 gem 'thumbs_up'
+
+#adding favorites to replace votes. favorites are polymorphic associations
+gem 'kronn-has_many_polymorphs'
 
 #pagination
 gem "will_paginate", "~> 3.0.pre2"

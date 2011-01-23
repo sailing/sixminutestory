@@ -12,7 +12,6 @@ class Story < ActiveRecord::Base
   has_one :contest
   has_many :comments
   
-  
   # Named Scopes
   scope :active, lambda {where("stories.active = ?", true)}
   scope :inactive, lambda {where("stories.active = ?", false)}
@@ -32,7 +31,7 @@ class Story < ActiveRecord::Base
   scope :next, lambda { |p| active.where("id > ?", p.id).limit(1).order("id")}
   scope :previous, lambda { |p| active.where("id < ?", p.id).limit(1).order("id DESC")}
 
-  scope :next_featured, lambda { |p| active.where ("id > ? AND featured = ?", p.id, true).limit(1).order("id")}
+  scope :next_featured, lambda { |p| active.where("id > ? AND featured = ?", p.id, true).limit(1).order("id")}
   scope :previous_featured, lambda { |p| active.where("id < ? AND featured = ?", p.id, true).limit(1).order("id DESC")}
 
   scope :with_unseen_comments_for_user, lambda { |user|
@@ -70,4 +69,8 @@ class Story < ActiveRecord::Base
     validates_presence_of   :license, :message => "What license?"
     validates_presence_of   :prompt_id, :message => "Prompt is necessary."
            
+end
+
+class FavoriteStory < Story
+    #belongs_to :user
 end

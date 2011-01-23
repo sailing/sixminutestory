@@ -160,6 +160,12 @@ class StoriesController < ApplicationController
     else 
          # Initialize a comment 
            @comment = Comment.new
+        # Find the current_user's vote for this story
+      #  if current_user.voted_on?(@story)
+       #   @vote = Vote.for_voter(current_user).for_voteable(@story)
+      #  end
+
+        # Get info for the story
            @user = @story.user
            @prompt = @story.prompt
            

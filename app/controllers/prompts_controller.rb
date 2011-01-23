@@ -22,12 +22,12 @@ class PromptsController < ApplicationController
         
       begin
         case request.path
-          when /^\/archives\/unverified/
+          when /^\/prompts\/unverified/
             @images = Prompt.unverified.images.paginate :page => page_i, :per_page => per_page, :order => order
             @hvg = Prompt.unverified.hvg.paginate :page => page, :per_page => per_page, :order => order
             @firstlines = Prompt.unverified.firstlines.paginate :page => page_firstlines, :per_page => per_page, :order => order
          #   @threewords = Prompt.unverified.threewords.paginate :page => page_threewords, :per_page => per_page, :order => order
-         when /^\/archives\/scheduled/
+         when /^\/prompts\/scheduled/
            @prompts = Prompt.active.paginate(:page => page, :conditions => ["use_on > ?", Time.now], :order => "use_on ASC")
            @scheduled = true
         else
@@ -194,4 +194,8 @@ class PromptsController < ApplicationController
       end
    end
 
+end
+
+class FavoritePromptsController < ApplicationController
+  require_dependency 'prompt'
 end

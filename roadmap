@@ -4,11 +4,11 @@ X make prompts automatically assign flickr "kind" if attribution is listed
 X add attribution on "use other prompts" page
 
 2.1.1 
-? make Pagination keep track of named scope
+x make Pagination keep track of named scope
 x Make facebook sharing include title, etc automatically
 
 2.1.2
-| troubleshoot this readonly record error
+x troubleshoot this readonly record error
 	(it's limited now. mostly fixed...)
 x troubleshoot pagination on archived prompts
 x troubleshoot pagination on unverified archived prompts
@@ -41,20 +41,21 @@ x enable deleting prompts
 			- dynamic for top 10 authors / stories
 			- static for featured story, featured author, contest winners, 10, 25, 50, 75, 100 stories
 x change "cheers" to "favorites"
-	- upgrade to thumbs_up?
+	x upgrade to thumbs_up?
+	- new rating system (5 star? upvote?)
 	- add voting on prompts (as => "like") 
 	- and comments (as => "agree")
 x let users see who's liked a particular story (flickr style – above comments)
 - add to users account / profile:
 	x stories you've commented on
 	x stories you've favorited
-- upcoming prompts (admin)
-- new rating system (5 star? upvote?)
+x upcoming prompts (admin)
 x emotion tags.
 - new logo
 x update Elevator pitch
 	x "Joining takes less than 5 seconds."
 - allow writers to edit their own stories?
+- forum
 
 2.3.1 
 - move flash[notice] to growl position
