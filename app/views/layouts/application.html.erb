@@ -13,12 +13,12 @@
 	<!-- Javascripts to include -->
 	<%= javascript_include_tag :all, :cache => true %>
 	<%= csrf_meta_tag %>
-	
+  	<%= stylesheet_link_tag 'default' %>
+
 	<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 	
-  	<%= stylesheet_link_tag 'default', :cache => true %>
 	<% if @story.present? %>
 		<!-- tweetmeme meta tags -->
 	  	<meta name="tweetmeme-title" content="<%= @story.title -%> – Six Minute Story" />  
