@@ -1,3 +1,4 @@
+Sms::Application.configure do
 # Settings specified here will take precedence over those in config/environment.rb
 
 # The production environment is meant for finished, "live" apps.
@@ -30,3 +31,4 @@ config.cache_store = :dalli_store
 
 # Enable threaded mode
 # config.threadsafe!
+end
