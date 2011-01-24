@@ -7,7 +7,7 @@ gem 'rails', '3.0.1'
 
 gem 'friendly_id', '~> 3.1'
 
-gem 'authlogic', '= 2.1.6'
+gem 'authlogic', '= 2.1.6', :git => 'git://github.com/jjb/authlogic.git'
 gem 'rpx_now', '= 0.6.23'
 gem 'authlogic_rpx', '= 1.2.0'
 

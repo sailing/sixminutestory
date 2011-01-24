@@ -1,7 +1,8 @@
 module StoriesHelper
   
   def approval_rating
-    if @story.votes_count > 0
+    
+    if @story.votes_for > 0
         pluralize(@story.votes_for, 'favorites', 'favorites')
     else
       none = "No favorites"
