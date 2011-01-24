@@ -1,3 +1,12 @@
+<% tag_cloud @emotions, %w(css1 css2 css3 css4) do |emotion, css_class| %>
+	  
+	<%= link_to emotion.name, 
+		{:controller => "stories", :action => "update", :id => @story, :emotion_list => emotion.name}, 
+		:remote => true, 
+		:method => :put, 
+		:class => css_class %>
+<% end %>
+
  or plain old email @ gal<a href="http://mailhide.recaptcha.net/d?k=01NVE5r2FxoXPjX0It0Uxrjg==&amp;c=x9M5O1NrHFEwNqfRggM75oEAY0FEyf3ENUVmk1zK9Hk=" onclick="window.open('http://mailhide.recaptcha.net/d?k=01NVE5r2FxoXPjX0It0Uxrjg==&amp;c=x9M5O1NrHFEwNqfRggM75oEAY0FEyf3ENUVmk1zK9Hk=', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;" title="Reveal this e-mail address">...</a>@sixminutestory.com.
 
 

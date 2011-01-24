@@ -8,27 +8,12 @@
 	<% end %>
 	
 	<% unless @story.emotions.empty? %>
-	<footer id="emotions">
-		<h4>Emotions this story evoked:</h4>
-		<% # @emotions = @story.emotion_counts %>
-		<% @story.emotions.each do |emotion| %>
-		 	<% 
-		#	case emotion.count
-		#		when 1
-		#			css_class = "css1"
-		#		when 2
-		#			css_class = "css2"
-		#		when 3
-		#			css_class = "css3"
-		#		when 4
-		#			css_class = "css4"
-		#		when 5
-		#			css_class = "css5"
-		#	end 
-			%>
-    			<%= link_to emotion.name, emotion_url(h(emotion.name)) %>
-		<% end %>
-	</footer>
+		<footer id="emotions">
+			<h4>Emotions this story evoked:</h4>
+			<% @story.emotions.each do |emotion| %>
+				<%= link_to emotion.name, emotion_path(h(emotion.name))%>
+			<% end %>
+		</footer>
 	<% end %>
 </article>
 <% end %>

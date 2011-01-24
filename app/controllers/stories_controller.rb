@@ -83,9 +83,12 @@ class StoriesController < ApplicationController
     @story = Story.find(params[:id])
     
     if request.xhr?
-        # add the given tag to the company
-        @story.emotion_list << params[:story][:emotion_list]
-        @story.save
+        # add the given tag to the story
+
+          emotion = params[:emotion_list] || params[:story][:emotion_list]
+
+          @story.emotion_list << emotion
+          @story.save
           
           respond_to do |format|
             format.js { 
@@ -168,6 +171,7 @@ class StoriesController < ApplicationController
         # Get info for the story
            @user = @story.user
            @prompt = @story.prompt
+           @emotions = Story.find(@story).tag_counts_on(:emotions)
            
         # tests to see if a following relationship exists
            following_exists

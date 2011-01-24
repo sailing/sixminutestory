@@ -43,8 +43,6 @@ x enable deleting prompts
 x change "cheers" to "favorites"
 	x upgrade to thumbs_up?
 	- new rating system (5 star? upvote?)
-	- add voting on prompts (as => "like") 
-	- and comments (as => "agree")
 x let users see who's liked a particular story (flickr style – above comments)
 x add to users account / profile:
 	x stories you've commented on
@@ -59,6 +57,9 @@ x update Elevator pitch
 - allow to write without signing in
 
 2.3.1 
+- polymorphic voting
+	- add voting on prompts (as => "like") 
+	- and comments (as => "agree")
 - move flash[notice] to growl position
 - improve validations for titles to ensure no slug failures
 
