@@ -1694,13 +1694,13 @@ nav {
 
 /* Tag Cloud on Browse By Tags */
 .tag_cloud_container {
-	width:90%;
+	width:100%;
 	margin:0px auto;
 	padding:15px;
 	text-align:center;
 	line-height:1.5em;
 	
-	background:#000;
+	background:#fff;
 	zoom:1;
 	
 	-moz-border-radius:10px;  
@@ -1708,7 +1708,7 @@ nav {
 	
 }
 
-.css1, .css1:visited { font-size: 0.6em; padding:0 5px; color:#84f3cc; }
-.css2, .css2:visited { font-size: 0.8em; padding:0 10px; color:#d89af1;}
-.css3, .css3:visited { font-size: 1em; padding:0 15px; color:#cffff7;}
-.css4, .css4:visited { font-size: 1.6em; padding:0 20px; color:#aacc31;}
+.css1, .css1:visited { font-size: 0.5em; padding:0 5px; color:#ccc; }
+.css2, .css2:visited { font-size: 0.8em; padding:0 10px; color:#777;}
+.css3, .css3:visited { font-size: 1.2em; padding:0 15px; color:#555;}
+.css4, .css4:visited { font-size: 1.8em; padding:0 20px; color:#222;}
