@@ -1,23 +1,23 @@
 <span id="add_favorite">
-	<%= approval_rating %> /
+	<%= approval_rating %>
 
-<% 
-	# You can't vote if it is your story, 
-	# you are not logged in, 
-	# or you have already voted on this item
+<% if current_user && @story.user_id != current_user.id %>
+	/
+	<% 
+		# You can't vote if it is your story, 
+		# you are not logged in, 
+		# or you have already voted on this item
 	
-	if current_user && @story.user_id != current_user.id &&  
-		current_user.voted_for?(@story)			
-%>
-<%= link_to "Remove from favorites", user_story_votes_path(@story.user, @story, :vote => :false), 
-	:method => :post,
-	:remote => true
-%>
-<% elsif current_user && @story.user_id != current_user.id &&  
-	!current_user.voted_for?(@story)
-%>
-<%= link_to "Add to favorites", user_story_votes_path(@story.user, @story, :vote => "favorite"), 
-	:method => :post,
-	:remote => true
-%>
+  
+		if current_user.voted_for?(@story) %>
+	 		<%= link_to "Remove from favorites", user_story_votes_path(@story.user, @story, :vote => :false), 
+				:method => :post,
+				:remote => true
+			%>
+	<% elsif !current_user.voted_for?(@story) %>
+	 		<%= link_to "Add to favorites", user_story_votes_path(@story.user, @story, :vote => "favorite"), 
+				:method => :post,
+				:remote => true
+			%>
+	<% end %>
 <% end %>
