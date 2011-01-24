@@ -12,6 +12,7 @@ gem 'rpx_now', '= 0.6.23'
 gem 'authlogic_rpx', '= 1.2.0'
 
 #for Heroku
+#dalli is a caching replacement for memcached
 gem 'dalli'
 gem 'taps', '>= 0.3.14'
 
