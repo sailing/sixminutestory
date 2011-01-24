@@ -59,7 +59,7 @@ class Story < ActiveRecord::Base
   scope :all_comments_for_user_stories, lambda {|user| 
       select("DISTINCT stories.*"). 
       joins("INNER JOIN comments others_comments ON others_comments.story_id = stories.id").
-      where("stories.user_id = ?", user)
+      active.where("stories.user_id = ?", user)
     
   }  
   
@@ -69,8 +69,4 @@ class Story < ActiveRecord::Base
     validates_presence_of   :license, :message => "What license?"
     validates_presence_of   :prompt_id, :message => "Prompt is necessary."
            
-end
-
-class FavoriteStory < Story
-    #belongs_to :user
 end

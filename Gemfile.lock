@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/jjb/authlogic.git
+  revision: e5adbafa25c9bb14c0fd6ef80b8a649549c79be1
+  specs:
+    authlogic (2.1.6)
+      activesupport
+
 GEM
   remote: http://rubygems.org/
   remote: http://gemcutter.org/
@@ -31,8 +38,6 @@ GEM
     activesupport (3.0.1)
     arel (1.0.1)
       activesupport (~> 3.0.0)
-    authlogic (2.1.6)
-      activesupport
     authlogic_rpx (1.2.0)
       authlogic (= 2.1.6)
       rpx_now (= 0.6.23)
@@ -45,8 +50,6 @@ GEM
       babosa (~> 0.2.0)
     i18n (0.4.2)
     json_pure (1.4.3)
-    kronn-has_many_polymorphs (3.0.3)
-      activerecord
     mail (2.2.9)
       activesupport (>= 2.3.6)
       i18n (~> 0.4.1)
@@ -99,11 +102,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  authlogic (= 2.1.6)
+  authlogic (= 2.1.6)!
   authlogic_rpx (= 1.2.0)
   dalli
   friendly_id (~> 3.1)
-  kronn-has_many_polymorphs
   rails (= 3.0.1)
   rpx_now (= 0.6.23)
   sqlite3-ruby

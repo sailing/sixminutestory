@@ -18,13 +18,15 @@
 						</p>
 						<p>
 							
-			<% if @story %>				
+			<% unless @stories.present? %>
+							<span id="comments_in_header">
 							<%= link_to_unless_current pluralize(story.comments_count, 'remark'), 
 								{:controller => 'stories', :action => 'show', :id => story, :anchor => 'comments'} do
 									link_to pluralize(story.comments_count, 'remark'), {:anchor => "comments"}
 								end 
 							%>
-							<%= render :partial => "votes/story_vote", :story => story %>
+							</span>
+							<span>|| <%= render :partial => "votes/story_vote", :story => story %></span>
 			<% end %>
 						</p>
 				</hgroup>
@@ -75,11 +77,11 @@
 		</section>
 	<% end -%>
 	
-				
+
 				<span id="comments_in_footer"><%= link_to pluralize(story.comments_count, 'remark'), story_url(story, :anchor => "comments") %></span>
 				<span>&nbsp;||&nbsp;</span>
 				<span id="favorites_in_footer">
-					<%= approval_rating %>
+						<%= pluralize(story.votes_for, 'favorite') %>
 				</span>
 
 			<% if is_admin %>

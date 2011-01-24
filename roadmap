@@ -46,7 +46,7 @@ x change "cheers" to "favorites"
 	- add voting on prompts (as => "like") 
 	- and comments (as => "agree")
 x let users see who's liked a particular story (flickr style – above comments)
-- add to users account / profile:
+x add to users account / profile:
 	x stories you've commented on
 	x stories you've favorited
 x upcoming prompts (admin)
@@ -56,6 +56,7 @@ x update Elevator pitch
 	x "Joining takes less than 5 seconds."
 - allow writers to edit their own stories?
 - forum
+- allow to write without signing in
 
 2.3.1 
 - move flash[notice] to growl position

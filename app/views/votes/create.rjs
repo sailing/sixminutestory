@@ -1,4 +1,5 @@
 page.replace_html 'add_favorite', :partial => "votes/story_vote", :story => @story
 page.visual_effect :highlight,'add_favorite'
 page.replace_html 'favoriters', :partial => "stories/favoriters", :story => @story
+page.visual_effect :highlight,'favoriters'
 page.replace_html 'favorites_in_footer', approval_rating

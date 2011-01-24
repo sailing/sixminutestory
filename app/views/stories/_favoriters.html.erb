@@ -1,6 +1,10 @@
-<h4>favorited by</h4>
+<h4><%= @story.votes_for > 0 ? "favorited by" : "no favorites" -%></h4>
 <% for voter in @story.voters_who_voted %>
 	<% if voter.voted_for?(@story) %>
-		<%= link_to voter.login, profile_url(voter) %><br />
+		<%= link_to voter.login, profile_url(voter) %>&nbsp;
 	<% end %>
 <% end %>
+
+<footer>
+	<%= render :partial => "votes/story_vote", :story => @story %>
+</footer>
