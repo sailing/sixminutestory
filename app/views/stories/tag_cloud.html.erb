@@ -1,10 +1,10 @@
 
-<h1><%=h @title %></h1>
 <%= render :partial => "layouts/browsing" %>
 
 <div class="tag_cloud_container">
 	<% if @tags -%>
 		<div id="TagCloud">
+			<h1><%=h @title %></h1>
 	
 	   		<% tag_cloud @tags, %w(css1 css2 css3 css4 css5 css6) do |tag, css_class| %>
 				<% if @genres %> 
