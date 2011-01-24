@@ -1,10 +1,5 @@
-<% if is_admin %>
-	<%= link_to 'New prompt', suggest_a_prompt_path %>
-	| <%= link_to 'Verify prompts', unverified_prompts_path %>
-	| <%= link_to 'Scheduled prompts', scheduled_prompts_path %>
-	| <%= link_to 'View active prompts', prompts_path %>
-	| <%= link_to "FridayFlash", edit_prompt_path('25') %>
-<% end %>
+<%= render :partial => 'admin' %>
+
 <br />
 <% unless @scheduled %>
 	<% # select tag shows various prompts %>
@@ -12,200 +7,108 @@
 	<%= raw(select_tag_for_filter("prompts", @filters, params)) %>
 	</h3>
 <% end %>
-<div id="listPrompts">
-<% if @scheduled %>
-	<table>
-		<% @prompts.each do |prompt| %>
-		<tr>
-			<td><%= prompt.id %></td><td><%= link_to prompt.use_on, prompt_url(prompt) %></td>
-		</tr>
-		<% end %>
-	</table>
-<% else %>
-<% if @table == "hvg" %>
-
-<% unless @prompts.empty? %>
-	<% is_admin ? @colspan = 6 : @colspan = 5 %>
-	<table>
-	<tr>
-		<td colspan=<%=@colspan%>>
-			<h2>Hero / Villain / Goal</h2>
-		</td>
-	</tr>
-
-	  <tr>
-	  		<th>Hero</th>
-	    	<th>Villain</th>
-	    	<th>Goal</th>
-			<th>Stories</th>
-			<th>Write</th>
-			
-			<% if is_admin %>
-				<th>Use on:</th>
-			<% end %>
-
-	</tr>
-	 	<%= render :partial => 'hvg', :collection => @prompts %>
-		
-	<tr class="row">
+	<div id="listPrompts">
 	
-		<td colspan=<%=@colspan%>>
-			<%= will_paginate @prompts  %>
-		</td>
-	</tr>
-	</table>
-
-	
-<% end %>
-
-<% elsif @table == "images" %>	
-
-	<% unless @prompts.empty? %>
-		<table>
-			<tr>
-				<td colspan=2>
-					<h2>Images</h2>
-				</td>
-			</tr>
-			<% i = 0 %>
-			<% @prompts.each do |prompt| %>
-				<% i += 1 %>
-				<% if i == 1 %>
-					<tr>
-				<% end %>
-
-				<%= render :partial => 'image', :locals => { :prompt => prompt }  %>
-
-				<% if i == 2 %>
-					</tr>
-					<% i = 0 %>
-
-				<% elsif @prompts.size == 1 %>
-					</tr>
-				<% end %>
-			
-
-			<% end %>
-			<tr class="row">
-				<td colspan=2>
-					<%= will_paginate @prompts  %>
-				</td>
-			</tr>
-		</table>
-
-
-	<% end %>
-
-<% elsif @table == "firstlines" %>
-	<% unless @prompts.empty? %>
-
-		<table>
-			<tr>
-				<td colspan = 3>
-					<h2>First lines</h2>
-				</td>
-			</tr>
-			<%= render :partial => 'firstline', :collection => @prompts  %>
-		<tr class="row">
-			<td colspan=3>
-				<%= will_paginate @prompts %>
-			</td>
-		</tr>
-		</table>
-
-	<% end %>
-	
-<% else %>
-
-<!-- firstlines -->
-<% unless @firstlines.empty? %>
-<h2>First lines</h2>
-	<table>
-		
-		<%= render :partial => 'firstline', :collection => @firstlines %>
-
-	<tr>
-		<td colspan=3>
-
-			<%= will_paginate @firstlines, :param_name => :page_firstlines  %>
-		</td>
-	</tr>
-	</table>
-<% end %>
-
-<!-- Images -->
-<% if request.path.include?("unverified")%>
-
-	<% unless @images.empty? %>
-	<h2>Images</h2>
-		<table>
-	<% i = 0 %>
-		<% @images.each do |prompt| %>
-			<% i += 1 %>
-			<% if i == 1 %>
+		<% if @scheduled %>
+			<table>
+				<% @prompts.each do |prompt| %>
 				<tr>
-			<% end %>
-	
-				<%= render :partial => 'image', :locals => {:prompt => prompt}  %>
-					
-			<% if i == 2 %>
+					<td><%= prompt.id %></td><td><%= link_to prompt.use_on, prompt_url(prompt) %></td>
 				</tr>
-				<% i = 0 %>
+				<% end %>
+			</table>
+		<% else %>
+			<% if @table == "hvg" %>
+
+				<% unless @prompts.empty? %>
+					<% is_admin ? @colspan = 6 : @colspan = 5 %>
+					<table>
+						<tr>
+							<td colspan=<%=@colspan%>>
+								<h2>Hero / Villain / Goal</h2>
+							</td>
+						</tr>
+
+					  	<tr>
+					  		<th>Hero</th>
+					    	<th>Villain</th>
+					    	<th>Goal</th>
+							<th>Stories</th>
+							<th>Write</th>
+			
+							<% if is_admin %>
+								<th>Use on:</th>
+							<% end %>
+
+						</tr>
+					 	
+							<%= render :partial => 'hvg', :collection => @prompts %>
 		
-			<% elsif @images.size == 1 %>
-				</tr>
-			<% end %>
+						<tr class="row">
 	
-		<% end %>
-
-	<tr>
-		<td colspan=2>
-		
-			<%= will_paginate @images, :param_name => :page_i %>
-		</td>
-	</tr>
-	</table>
-
-	<% end %>
-
-
-	<!-- hero villain goal -->
-	<% unless @hvg.empty? %>
-	<h2>Hero-Villain-Goal</h2>
-	<table>
-
-
-	  <tr>
-	  		<th>Hero</th>
-	    	<th>Villain</th>
-	    	<th>Goal</th>
-			<th>Stories</th>
-			<th>Write</th>
-
-			<% if is_admin %>
-				<th>Use on</th>
-			<% end %>
-
-	</tr>
+							<td colspan=<%=@colspan%>>
+								<%= will_paginate @prompts  %>
+							</td>
+						</tr>
+					</table>
 
 	
-		<%= render :partial => 'hvg', :collection => @hvg %>
+				<% end %>
+
+			<% elsif @table == "images" %>	
+
+				<% unless @prompts.empty? %>
+					<table>
+						<tr>
+							<td colspan=2>
+								<h2>Images</h2>
+							</td>
+						</tr>
+						<% i = 0 %>
+						<% @prompts.each do |prompt| %>
+							<% i += 1 %>
+							<% if i == 1 %>
+								<tr>
+							<% end %>
+
+							<%= render :partial => 'image', :locals => { :prompt => prompt }  %>
+
+							<% if i == 2 %>
+								</tr>
+								<% i = 0 %>
+
+							<% elsif @prompts.size == 1 %>
+								</tr>
+							<% end %>
+			
+
+						<% end %>
+						<tr class="row">
+							<td colspan=2>
+								<%= will_paginate @prompts  %>
+							</td>
+						</tr>
+					</table>
+				<% end %>
+
+			<% elsif @table == "firstlines" %>
+				<% unless @prompts.empty? %>
+					<table>
+						<tr>
+							<td colspan = 3>
+								<h2>First lines</h2>
+							</td>
+						</tr>
+						<%= render :partial => 'firstline', :collection => @prompts  %>
+						<tr class="row">
+							<td colspan=3>
+								<%= will_paginate @prompts %>
+							</td>
+						</tr>
+					</table>
+				<% end %>
 	
 
-
-	<tr>
-		<% is_admin ? @colspan = 6 : @colspan = 5 %>
-		<td colspan=<%=@colspan%>>
-			<%= will_paginate @hvg  %>
-		</td>
-	</tr>
-	</table>
-	<% end %>
-<% end %>	
-
-<% end %>
-<%end %>
+			<%end %>
+		<% end %>	
 </div>
-
-<br />
-

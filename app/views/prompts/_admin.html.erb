@@ -1,0 +1,7 @@
+<% if is_admin %>
+	<%= link_to 'New prompt', suggest_a_prompt_path %>
+	| <%= link_to 'Verify prompts', unverified_prompts_path %>
+	| <%= link_to 'Scheduled prompts', scheduled_prompts_path %>
+	| <%= link_to 'View active prompts', prompts_path %>
+	| <%= link_to "FridayFlash", edit_prompt_path('25') %>
+<% end %>
