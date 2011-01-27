@@ -2,23 +2,21 @@
 <h1>
 	edit story details
 </h1>
-	<% form_for(@story) do |form| %>
-	
-	<% if @story.errors.any? %>
-		<!-- ERROOOOOOOooooOOORSSSSSSSSSSSSSSSSS -->
+<% if @story.errors.any? %>
+	<!-- ERROOOOOOOooooOOORSSSSSSSSSSSSSSSSS -->
 
-	<div id="errorExplanation">
-		<h2>Your story hasn't been saved yet.</h2>
-		<h3>Please check for errors below.</h3>
+<div id="errorExplanation">
+	<h2>Your story hasn't been saved yet.</h2>
+	<h3>Please check for errors below.</h3>
 
-		  <ul>
-		    <% @story.errors.each do |attribute, msg| %>
-		      <li><%= msg %></li>
-		    <% end %>
-		  </ul>
-	</div>
-	<% end %>
-  		
+	  <ul>
+	    <% @story.errors.each do |attribute, msg| %>
+	      <li><%= msg %></li>
+	    <% end %>
+	  </ul>
+</div>
+<% end %>
+
 			<% if is_owner_or_admin %>
 				<% if @story.active == true %>
 					<div class="brown button_container">
@@ -35,10 +33,15 @@
 				<% end %>
 			<% end %>
 
+<% form_for(@story) do |form| %>
+
+
+
 			<div class="center">
 				<% if is_admin %>
-					<p>
+					
 					<h2>Prompt</h2>
+					<p>
 					<%= @story.errors[:prompt_id] %><br />
 				
 					<%= form.text_field :prompt_id %>
@@ -49,12 +52,12 @@
 						</p>
 				<% end %>
 						
-				
+				<h2>Story</h2>
 					<p>
-					<% is_admin ? @disabled = false : @disabled = true %>
+					<% (is_admin || @story.user.karma > 4) ? @disabled = false : @disabled = true %>
 					
-					<h2>Story</h2>
-					<span>Story cannot be edited.</span>
+					
+					<span>Story cannot be edited unless a writer's karma is five or higher.</span>
 					
 					<%= @story.errors[:description] %><br />
 					

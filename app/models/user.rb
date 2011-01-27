@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   end
   acts_as_tagger
   acts_as_voter
-  has_karma :stories, :as => :user, :weight => 0.5
+  has_karma :stories, :as => :user, :weight => 1
   
   has_friendly_id :login, :use_slug => true,:reserved_words => ["new", "featured"]
     

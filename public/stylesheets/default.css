@@ -545,6 +545,10 @@ header nav td{
 	
 } 
 	
+/* 		Left container 	*/
+#left_container .center	h1, #left_container .center h2, #left_container .center h3 {
+	color:#000;
+}
 
 /* 							*/
 /*  	sideyard			*/
