@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   acts_as_voter
   has_karma :stories, :as => :user, :weight => 0.5
   
-  has_friendly_id :login, :use_slug => true
+  has_friendly_id :login, :use_slug => true,:reserved_words => ["new", "featured"]
     
   has_many :followings
   has_many :writers, :through => :followings

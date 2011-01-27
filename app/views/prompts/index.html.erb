@@ -1,13 +1,13 @@
 <%= render :partial => 'admin' %>
 
 <br />
+<div id="listPrompts">
 <% unless @scheduled %>
 	<% # select tag shows various prompts %>
 	<h3>View more: 
 	<%= raw(select_tag_for_filter("prompts", @filters, params)) %>
 	</h3>
 <% end %>
-	<div id="listPrompts">
 	
 		<% if @scheduled %>
 			<table>
@@ -44,7 +44,7 @@
 					 	
 							<%= render :partial => 'hvg', :collection => @prompts %>
 		
-						<tr class="row">
+						<tr>
 	
 							<td colspan=<%=@colspan%>>
 								<%= will_paginate @prompts  %>
@@ -83,7 +83,7 @@
 			
 
 						<% end %>
-						<tr class="row">
+						<tr>
 							<td colspan=2>
 								<%= will_paginate @prompts  %>
 							</td>
@@ -100,7 +100,7 @@
 							</td>
 						</tr>
 						<%= render :partial => 'firstline', :collection => @prompts  %>
-						<tr class="row">
+						<tr>
 							<td colspan=3>
 								<%= will_paginate @prompts %>
 							</td>

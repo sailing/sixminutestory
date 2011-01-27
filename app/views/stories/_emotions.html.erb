@@ -2,7 +2,7 @@
 <article class="comment_container">
 	<% if is_user %>
 		<h4>What emotion did this story evoke?</h4>
-		<% form_for(@story, :remote => true) do |form| %>
+		<%= form_for(@story, :remote => true) do |form| %>
 			<%= form.text_field :emotion_list, :tabindex => "4", :value => "" %><%= form.submit "Submit" %>
 		<% end %>
 	<% end %>

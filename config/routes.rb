@@ -109,6 +109,7 @@ Sms::Application.routes.draw do
      
 #      match search             '/search'          :to => "site#search", :as => 'search' 
       match '/faq', :to => "site#faq", :as => 'faq'
+      match '/join', :to => "users#new", :as => 'join'
 #      match about              '/about'           :to => "site#about", :as => ''
 #      match contact            '/contact'         :to => "site#contact", :as => ''
 #      match terms              '/terms'           :to => "site#terms", :as => ''

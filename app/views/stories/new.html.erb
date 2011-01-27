@@ -3,8 +3,8 @@
 	<div id="prompt_and_timer" style="display:none;">
 		<div id="prompt_container" class="prompt_container" >
 			<div id="timer_container" class="orange button_container">
-				<span id="timer_element">
-				</span>
+				<div id="timer_element">
+				</div>
 				<!-- the timer is held in the application.js -->
 			</div>
 			<%= show_prompt %>
@@ -42,28 +42,28 @@
 
 
 
+<h1>Write a story</h1>
+<div id="new_story_container" class="new_story_container">
+	<% if @story.errors.any? %>
+		<!-- ERROOOOOOOooooOOORSSSSSSSSSSSSSSSSS -->
 
-<div id="new_story_form">
-<% form_for(@story) do |f| %>
+	<div id="errorExplanation">
+		<h2>Your story hasn't been saved yet.</h2>
+		<h3>Please check for errors below.</h3>
+
+		  <ul>
+		    <% @story.errors.each do |attribute, msg| %>
+		      <li><%= msg %></li>
+		    <% end %>
+		  </ul>
+	</div>
+	<% end %>
+
+
+<%= form_for(@story) do |f| %>
 
 	<!-- Include the prompt so we can use it on the next page. Is this really necessary? -->
 	<%= hidden_field_tag :prompt, @prompt.id %>
-
-<% if @story.errors.any? %>
-	<!-- ERROOOOOOOooooOOORSSSSSSSSSSSSSSSSS -->
-
-<div id="errorExplanation">
-	<h2>Your story hasn't been saved yet.</h2>
-	<h3>Please check for errors below.</h3>
-
-	  <ul>
-	    <% @story.errors.each do |attribute, msg| %>
-	      <li><%= msg %></li>
-	    <% end %>
-	  </ul>
-</div>
-<% end %>
-			
 		
 			<% if @story.description.present? || @editing.present?
 				 @description = @story.description
@@ -85,17 +85,16 @@
 					
 			<%= f.text_area :description, :value => @description, :rows => 12, :cols => 45, :tabindex => "1", :onFocus => "Effect.Appear('prompt_and_timer',{duration:0.1});Effect.Fade('instructions',{duration:0.1});getSetWrite(this);" %>
 </div>
-
-<div class="clear space">
-</div>
+<div class="space"></div>
 
 <h1>Story details</h1>
 
+<div class="new_story_container">
 	<table>
 		
 		<tr>
 			
-			<td>
+			<th>
 				 <% if @story.errors[:title].present? %>
 					<label><%= @story.errors[:title] %></label>
 				<% else %>
@@ -103,7 +102,7 @@
 				
 				<% end %>
 					
-			</td>
+			</th>
 			
 			<td>	
 		  		<%= f.text_field :title, :onFocus => 'clearFieldFirstTime(this);', :tabindex => "2" %>
@@ -111,10 +110,10 @@
 		</tr>
 
 		<tr>	
-			<td>
+			<th>
 				<label for="story_tags">Adjectives</label><br />
 				<span style="font-size:x-small">separate adjectives with commas</span>
-			</td>
+			</th>
 			<td>	
 						
 		 			<%= f.text_field :tag_list, :onFocus => 'clearFieldFirstTime(this);', :tabindex => "3" %>
@@ -122,10 +121,10 @@
 	  		</td>
 		</tr>
 		<tr>	
-			<td>
+			<th>
 				<label for="story_genres">Genres</label><br />
 				<span style="font-size:x-small">separate genres with commas</span>
-			</td>
+			</th>
 			<td>	
 		 			<%= f.text_field :genre_list, :onFocus => 'clearFieldFirstTime(this);', :tabindex => "4" %>
 				
@@ -133,9 +132,9 @@
 		</tr>
 		
 		<tr>
-			<td>
+			<th>
 				<label for="story_license">License</label>
-			</td>
+			</th>
 			<td>
 				
 				<select name="story[license]" id="story_license" onchange="" tabindex="5">
@@ -165,7 +164,7 @@
 	
 	<div class="clear space">
 	</div>
-<h1>Prove you're human</h1>
+<h2>Prove you're human</h2>
 		<div class="center">
 			<p>
 					<% unless @editing.present? %>
@@ -173,14 +172,16 @@
 						 	<span class="formError">Incorrect text entered.</span>
 						<% end %>
 
-						<%= recaptcha_tags :display => {:tabindex => "7"} %>
+						<%= 
+						recaptcha_tags :display => {:tabindex => "7"} 
+						%>
 					<% end %>
 
 				
 			</p>
 			<br />
 				<p>
-				<%= submit_tag("Save", :name => "save", :id => "save-button", :tabindex => "8", :onclick => "document.getElementById('story_description').disabled=false;") %>
+				<%= submit_tag("Publish Your Story", :name => "save", :id => "save-button", :tabindex => "8", :onclick => "document.getElementById('story_description').disabled=false;") %>
 				 
 				</p>
 
