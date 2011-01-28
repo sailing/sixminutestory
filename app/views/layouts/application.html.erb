@@ -19,7 +19,7 @@
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 	
-	<% if @story.present? %>
+	<% if (@story.present? && !@frontpage.present?) %>
 		<!-- tweetmeme meta tags -->
 	  	<meta name="tweetmeme-title" content="<%= @story.title -%> – Six Minute Story" />  
 	
