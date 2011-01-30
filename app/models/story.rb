@@ -15,11 +15,10 @@ class Story < ActiveRecord::Base
   # Named Scopes
   scope :active, lambda {where("stories.active = ?", true)}
   scope :inactive, lambda {where("stories.active = ?", false)}
-  scope :recent, lambda {|ago|
-        active.where('created_at > ?', ago).order('created_at DESC') }
+  scope :recent, lambda {|timeframe|
+        active.where('created_at > ?', timeframe).order('created_at DESC') }
   scope :popular, lambda { recent(1.month.ago).where('(comments_count >= ? or rating >= ?)', 0, 0).order('counter DESC, rating DESC, updated_at ASC') }
   scope :commented, lambda { recent(1.month.ago).where('(comments_count >= ?)', 1).order('comments_count DESC, rating DESC, counter DESC, updated_at ASC') }
-  scope :top, lambda { where('rating > 0').order('rating DESC, counter ASC') }
   scope :featured, lambda {active.by_popularity.where('featured = ?', true)}
   scope :by_popularity, lambda {order('counter ASC')}
   scope :by_date, lambda { order('created_at DESC')}

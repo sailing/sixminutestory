@@ -8,7 +8,7 @@ class StoriesController < ApplicationController
    def index 
        per_page = 10
        page = params[:page] || 1
-      
+       timeframe = params[:timeframe] || Time.now.ago(3600000)
       @truncate = true
       
       begin
@@ -20,10 +20,17 @@ class StoriesController < ApplicationController
             @stories = Story.commented.paginate :page => page, :per_page => per_page
             @title = "most active stories"
         when /^\/recent/
-            @stories = Story.recent(1.month.ago).paginate :page => page, :per_page => per_page
+            @stories = Story.recent(timeframe).paginate :page => page, :per_page => per_page
             @title = "most recent stories"
         when /^\/top/
-            @stories = Story.top.paginate :page => page, :per_page => per_page   
+            @stories = Story.active.tally(
+              {  :at_least => 1,
+                  :at_most => 10000,
+                  :start_at => timeframe,
+                  :end_at => Time.now,
+                  :limit => 10,
+                  :order => "votes.count DESC, story.counter ASC"
+              })   
             @title = "top rated stories"
         when /^\/tag\/./
             @tag = params[:tag]
