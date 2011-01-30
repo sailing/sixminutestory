@@ -6,6 +6,7 @@ class VotesController < ApplicationController
      
   before_filter :require_user, :only => [:index, :new, :edit, :destroy, :create, :update]
   before_filter :must_own_vote,  :only => [:edit, :destroy, :update]
+  after_filter :increment_votes_count, :only => [:create]
   # before_filter :update_rating, :only => [:create,:destroy]
 #  before_filter :not_allowed,    :only => [:edit, :update, :new]
 
@@ -79,6 +80,7 @@ class VotesController < ApplicationController
     respond_to do |format|
       if params[:vote] == "favorite"
         if current_user.vote_exclusively_for(@story)
+          @story.reload
             format.html { 
               render :update do |page| 
                 page.replace_html "add_favorite", :partial => "votes/story_vote", :vote => @vote 
@@ -91,8 +93,9 @@ class VotesController < ApplicationController
             format.xml  { render :xml => @vote.errors, :status => :unprocessable_entity }
         end
     
-      else 
+      elsif params[:vote] == "unfavorite" 
         if current_user.vote_exclusively_against(@story)
+          @story.reload
             format.html { 
               render :update do |page| 
                 page.replace_html "add_favorite", :partial => "votes/story_vote", :vote => @vote 
@@ -104,6 +107,9 @@ class VotesController < ApplicationController
             format.js  { render :action => "error" }
             format.xml  { render :xml => @vote.errors, :status => :unprocessable_entity }
         end
+      else
+        flash[:notice] = "Please don't attempt to adjust favorites manually."
+        redirect_to @story
       end  
     end
   end
@@ -149,6 +155,18 @@ class VotesController < ApplicationController
       end
     end
   end
+
+  def increment_votes_count
+   if @story && params[:vote]
+     # increment votes_count
+      if params[:vote] == "favorite"
+        Story.increment_counter(:votes_count, @story)
+      elsif params[:vote] == "unfavorite"
+        Story.decrement_counter(:votes_count, @story)
+      end
+   end
+  end
+
 
   def update_rating(story)
      if @story.votes_count > 0

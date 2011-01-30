@@ -10,7 +10,7 @@
 	
   
 		if current_user.voted_for?(@story) %>
-	 		<%= link_to "[-] Remove from favorites", user_story_votes_path(@story.user, @story, :vote => :false), 
+	 		<%= link_to "[-] Remove from favorites", user_story_votes_path(@story.user, @story, :vote => "unfavorite"), 
 				:method => :post,
 				:remote => true
 			%>

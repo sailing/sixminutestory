@@ -23,14 +23,7 @@ class StoriesController < ApplicationController
             @stories = Story.recent(timeframe).paginate :page => page, :per_page => per_page
             @title = "most recent stories"
         when /^\/top/
-            @stories = Story.active.tally(
-              {  :at_least => 1,
-                  :at_most => 10000,
-                  :start_at => timeframe,
-                  :end_at => Time.now,
-                  :limit => 10,
-                  :order => "votes.count DESC, story.counter ASC"
-              })   
+            @stories = Story.top(timeframe).paginate :page => page, :per_page => per_page
             @title = "top rated stories"
         when /^\/tag\/./
             @tag = params[:tag]
