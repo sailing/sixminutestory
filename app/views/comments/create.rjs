@@ -6,5 +6,3 @@ page.replace_html 'comments_in_header', link_to(pluralize((@comment.story.commen
 page.visual_effect :highlight,'comment_'+@comment.id.to_s
 
 page[:comments_form].reset
-#page.replace_html :notice, flash[:notice]
-#flash.discard

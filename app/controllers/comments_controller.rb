@@ -61,7 +61,7 @@ class CommentsController < ApplicationController
         
         #Hermes.comment_notification(@story.user, @story, @comment.user, @comment) unless (@story.user.send_comments == false or @story.user.email_address.blank?).deliver 
                 
-        flash[:notice] = 'Comment contributed!'
+
         format.html { redirect_to story_url(@comment.story),:anchor => "comments" }
         format.xml  { render :xml => @comment, :status => :created, :location => @comment }
         format.js
