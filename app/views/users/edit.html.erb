@@ -1,6 +1,6 @@
 
 <% form_for @user, :url => account_path do |f| %>
-
+<div class="new_story_container edit_profile">
 <table>
 	<tr>		
 		<td>
@@ -36,7 +36,7 @@
 						Receive notifications when
 					</h3>
 			  <p>
-				<%= f.check_box :send_comments %>    
+				<%= f.check_box :send_comments %>
 				<%= f.label :send_comments, "someone comments on your story", :class => "notification_option" %>
 			    
 			  </p>
@@ -47,7 +47,7 @@
 			  </p>
 			<p>
 			    <%= f.check_box :send_stories %>
-			    <%= f.label :send_stories, "your story is featured", :class => "notification_option"%>
+			<%= f.label :send_stories, "your story is featured", :class => "notification_option"%>
 			  </p>
 			
 			</div>
@@ -58,16 +58,7 @@
 			</p>
 		</td>
 		<td>
-			<h2>Link Accounts</h2>
-					<p>
-						<%= rpx_popup( 
-							:link_text => "Add OpenID, Facebook, Twitter, etc to your account", 
-							:app_name => "six-minute-story", 
-							:return_url => addrpxauth_url, 
-							:add_rpx => true, 
-							:unobtrusive => false ) %>
-
-					</p>
+			
 			<h2>Public Profile</h2>
 			<p>
 			  <%= f.label :website %><br />
@@ -82,6 +73,19 @@
 				
 						<%= f.text_area :profile, :rows => 15, :cols => 25 %>
 			</p>
+			
+			<h2>Link Accounts</h2>
+			<p>Linking accounts enables you to login using your existing accounts with other services. Further, if you initially signed in using one account (say, Facebook) and you wish to be able to sign in with another (say, Twitter), you can link additional accounts here. 
+				</p>
+					<p>
+						<%= rpx_popup( 
+							:link_text => "Add OpenID, Facebook, Twitter, etc to your account", 
+							:app_name => "six-minute-story", 
+							:return_url => addrpxauth_url, 
+							:add_rpx => true, 
+							:unobtrusive => false ) %>
+
+					</p>
 			
 		</td>
 	</tr>

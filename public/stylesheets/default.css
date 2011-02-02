@@ -27,6 +27,38 @@ Great Green => #5f9f3f
 */
 
 
+/*  Fonts 								*/
+
+@font-face {
+	/* This declaration targets Internet Explorer */
+	font-family: 'nevisBold';
+	src: url('../fonts/nevis-webfont.eot');
+}
+
+@font-face {
+	/* This declaration targets everything else */
+	font-family: 'nevisBold';
+	src: url(//:) format('no404'), url('../fonts/nevis-webfont.woff') format('woff'), url('../fonts/nevis-webfont.ttf') format('truetype'), url('../fonts/nevis-webfont.svg#webfontek601Y1Z') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	/* This declaration targets Internet Explorer */
+	font-family: 'JuraRegular';
+	src: url('../fonts/jura-webfont.eot');
+}
+
+@font-face {
+	/* This declaration targets everything else */
+	font-family: 'JuraRegular';
+	src: url(//:) format('no404'), url('../fonts/jura-webfont.woff') format('woff'), url('../fonts/jura-webfont.ttf') format('truetype'), url('../fonts/jura-webfont.svg#webfonthytcqjBw') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+
 /*												*/
 /* 	Re-styled HTML tags 	*/
 /*												*/
@@ -46,7 +78,7 @@ body {
 }
 
 body, p, td, h1, h4 {
-	font-family: "Futura",Tahoma, verdana, sans-serif;
+	font-family: "JuraRegular",georgia, serif;
   line-height: 1.2em;
 	font-weight:400;
 	font-size:100%;
@@ -76,6 +108,9 @@ pre {
   font-size: 11px;
 }
 
+h1, h2, h3, h4, h5 {
+	font-family:"nevisBold", "Futura", tahoma, helvetica, sans-serif;
+}
 h1 {
 	font-size:2.3em;
 	letter-spacing:.075em;
@@ -85,13 +120,7 @@ h1 {
 	
 	padding: 2px 0;
 	margin:0px 0px 10px 0;	
-	-moz-border-radius:8px;
-	-webkit-border-radius:8px;
-/*	-moz-border-radius-topright:5px;  
-	-webkit-border-top-right-radius:5px;
-	-moz-border-radius-bottomright:5px;
-	-webkit-border-bottom-right-radius:5px;
-*/	
+
 }
 
 h1 a {
@@ -118,7 +147,9 @@ h4 {
 	
 }
 
-a, a:visited, a:active{ color: #a85ac1; text-decoration:none;letter-spacing:.07em;}
+a, a:visited, a:active{ color: #a85ac1; text-decoration:none;letter-spacing:.07em;
+		font-family: "nevisBold", tahoma, sans-serif;
+	}
 a:hover { color: #b86ae1; background-color:transparent;text-decoration:underline; }
 
 h1 a, h1 a:visited, h1 a:active {
@@ -129,6 +160,12 @@ h1 a, h1 a:visited, h1 a:active {
 
 img {
 	border:0px;
+}
+
+input {
+	font-family: "JuraRegular", georgia, serif;
+	font-size:1.2em;
+	
 }
 
 input[type="image"],input[type="submit"],input[type="button"] {
@@ -170,6 +207,9 @@ textarea {
 	background-color:#ddedff;
 	zoom:1;
 	
+	font-family: "JuraRegular",georgia, serif;
+	font-size:1.2em;
+	
 	-moz-border-radius:10px;  
 	-webkit-border-radius:10px;
 	display:inline-block;
@@ -187,8 +227,8 @@ option {
 }
 
 input[type="checkbox"]{
-	height:15px;
-	width:15px;
+	height:10px;
+	width:10px;
 }
 
 
@@ -259,7 +299,7 @@ input[type="checkbox"]{
 
 textarea#story_description {
 	width:95%;
-	font-family:"ITC Avant Garde Gothic Pro", georgia, serif;
+	font-family:"JuraRegular",georgia, serif;
 	font-size:1.4em;
 	line-height:1.6em;
 	letter-spacing:.1em;
@@ -786,6 +826,7 @@ header nav td{
 	font-size:.85em;
 	letter-spacing:.08em;
 	text-decoration:none;
+
 	
 }
 
@@ -832,68 +873,62 @@ div#timer_element {
 
 
 /*				 										*/
-/*  	user and story  forms		*/
+/*  	user forms							*/
 /* 														*/
 
-
-
-
-.form table {
-	width:90%;
-	margin:15px auto 25px;
-	border-collapse:collapse;
-}
-
-.form tr {
-}
-
-.form th, .form th{
-	padding:0 6px;
-	text-align:right;
-	-moz-border-radius-bottomleft:5px;  
-	-webkit-border-bottom-left-radius:5px;
-	-moz-border-radius-topleft:5px;
-	-webkit-border-top-left-radius:5px;
-	background-color:#a85ac1;
-}
-
-.form td, .form td {
-	padding:0;
-	text-align:left;
-}
-
-.form, .edit_user_form {
+.edit_profile {
 	margin:0 auto;
 	padding:0 15px;
-	display:block;
-
-}
-
-.edit_user_form {
-	width:90%;
+	width:100%;
 	border:0;
 }
 
-.form table, .edit_user_form table {
+.edit_profile p {
+	width:100%;
+}
+
+.edit_profile table {
 	border-collapse:collapse;
 	margin:15px auto;
 	width:100%;
 	padding:0px;
 }
 
-.form table label, .edit_user_form table label {
+.edit_profile td {
+	padding:0;
+	width:50%;
+	text-align:left;
+}
+
+
+.edit_profile  table label {
 	font-size:1.2em;
 	letter-spacing:-.02em;
-	font-weight:bold;
+	font-weight:400;
 	color:#000;
 }
 
-.form .notification_option, .edit_user_form .notification_option {
+.edit_profile .notification_option {
+	display:inline;
 	font-size:.9em;
 	color:#522b1d;
 }
 
+.edit_profile input[type="checkbox"]{
+	height:15px;
+	width:15px;
+	display:inline;
+}
 
+.edit_profile h2 {
+	font-weight:500;
+	text-decoration:underline;
+}
+
+.edit_profile h3 {
+	color:#555;
+	font-weight:300;
+}
 
 /* 											*/
 /* Thanks for writing 	*/
@@ -917,7 +952,7 @@ div#timer_element {
 	color:#000;
 	text-align:left;
 	font-size:1.3em;
-	font-family:"ITC Avant Garde Gothic Pro", georgia, serif;
+	font-family:"JuraRegular",georgia, serif;
 	letter-spacing:.08em;
 	line-height:1.5em;
 }
@@ -997,7 +1032,6 @@ div#timer_element {
 article {
 	
 	color:#333;
-	font-family:georgia, serif;
 	
 	
 	background:#fff;
@@ -1015,7 +1049,6 @@ article {
 	font-size:1.2em;
 	letter-spacing:.09em;
 	color:#000;
-	font-family:"ITC Avant Garde Gothic Pro", georgia, serif;
 
 }
 
@@ -1026,10 +1059,15 @@ article p {
 	font-size:1.2em;
 	letter-spacing:.09em;
 	color:#000;
-	font-family:"ITC Avant Garde Gothic Pro", georgia, serif;
+	font-family:"JuraRegular",georgia, serif;
+
 
 	padding:2% 7%;
 
+}
+
+article a {
+			font-family:inherit !important;
 }
 
 article header {
@@ -1037,8 +1075,9 @@ article header {
 	text-align:left;
 }
 
-article header h1 {
-	font-size:1.9em;
+article header h1 a {
+	font-size:.9em;
+	font-family:"nevisBold", tahoma, sans-serif !important;
 }
 
 article header p {
@@ -1094,7 +1133,7 @@ nav {
 
 #listPrompts table, #listPrompts td {
 	color:#555;
-	font-family:tahoma, verdana;
+	font-family:"JuraRegular",tahoma, verdana;
 	font-size:.9em;
 
 
@@ -1244,7 +1283,7 @@ nav {
 	line-height:1.6em;
 	font-weight:normal;
 	color: #000;
-	font-family:"ITC Avant Garde Gothic Pro", georgia, serif;	
+	font-family:"JuraRegular",georgia, serif;	
 }
 
 
@@ -1290,7 +1329,7 @@ nav {
 	font-size:1.2em;
 	letter-spacing:.09em;
 	color:#000;
-	font-family:"ITC Avant Garde Gothic Pro", georgia, serif;
+	font-family:"JuraRegular",georgia, serif;
 
 }
 
