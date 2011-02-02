@@ -47,12 +47,9 @@
 				</table>
 			</div>
 		<% end %>
-		
-		
 
 	<% end %><!-- end if frontpage conditional -->
-	
-<h2>Browse <%= @featured ? "featured" : "stories" %></h2>
+
 	<div id="toolbar">
 		<%= render :partial => "toolbar", :locals => { :story => @story } %>
 	</div>
