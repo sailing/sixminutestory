@@ -1,60 +1,60 @@
 <nav>
 	<ul>
 		<li class="green button_container">
-			<%= link_to "Featured", featured_path %>
+			<%= link_to "Featured", subset_stories_path(:subset => "featured") %>
 		</li>
 	
 		<li class="brown button_container">
-			<%= link_to "Favorited", top_path %>
+			<%= link_to "Favorited", subset_stories_path(:subset => "top") %>
 		</li>
 		<li class="brown button_container">
-			<%= link_to "Recent", recent_path %> 
+			<%= link_to "Recent", subset_stories_path(:subset => "recent") %> 
 		</li>
 		<li class="brown button_container">
-			<%= link_to "Active", commented_path %> 
-		</li>
-
-		<li class="brown button_container">
-			<%= link_to "Popular", popular_path %>
+			<%= link_to "Active", subset_stories_path(:subset => "active") %> 
 		</li>
 
 		<li class="brown button_container">
-			<%= link_to "Adjectives", browse_by_tags_path %>
+			<%= link_to "Popular", subset_stories_path(:subset => "popular") %>
 		</li>
 
 		<li class="brown button_container">
-			<%= link_to "Genres", browse_by_genres_path %>
+			<%= link_to "Adjectives", cloud_stories_path(:subset => "adjectives") %>
+		</li>
+
+		<li class="brown button_container">
+			<%= link_to "Genres", cloud_stories_path(:subset => "genres") %>
 		</li>
 	</ul>
-
+		<% operator = params[:get].present? ? "&" : "?" %>
 	<nav>
 		<ul>
 			<li class="purple button_container">
-				<a href="?">Today</a>
+				<%= link_to "Today", :days => 1, :tag => params[:tag] %>
 			</li>
 			<li class="purple button_container">
-				<a href="?days=7">Past week</a>
+				<%= link_to "Past week", :days => 7, :tag => params[:tag] %>
 			</li>
 
 			<li class="purple button_container">
-				<a href="?months=1">Past month</a>
+				<%= link_to "Past month", :months => 1, :tag => params[:tag] %>
 			</li>
 			
 			<li class="purple button_container">
-				<a href="?months=3">3 months</a>
+				<%= link_to "3 months", :months => 3, :tag => params[:tag] %>
 			</li>
 			
 			
 			<li class="purple button_container">
-				<a href="?months=6">6 months</a>
+				<%= link_to "6 months", :months => 6, :tag => params[:tag] %>
 			</li>
 			
 			<li class="purple button_container">
-				<a href="?months=12">Past year</a>
+				<%= link_to "Past year", :months => 12, :tag => params[:tag] %>
 			</li>
 			
 			<li class="purple button_container">
-				<a href="?months=100">All time</a>
+				<%= link_to "All time", :months => 100, :tag => params[:tag] %>
 			</li>
 		</ul>
 	</nav>

@@ -7,13 +7,8 @@
 			<h1><%=h @title %></h1>
 	
 	   		<% tag_cloud @tags, %w(css1 css2 css3 css4 css5 css6) do |tag, css_class| %>
-				<% if @genres %> 
-	    			<%= link_to tag.name, genre_url(tag.name), :class => css_class %>
-				<% elsif @emotions %>
-					<%= link_to tag.name, emotion_url(tag.name), :class => css_class %>
-				<% else %>
-		    		<%= link_to tag.name, tag_url(tag.name), :class => css_class %>
-		  		<% end%>
+
+	    			<%= link_to tag.name, subset_stories_url(:tag => tag.name, :subset => @subset), :class => css_class %>
 			<% end %>
 	
 	  </div>

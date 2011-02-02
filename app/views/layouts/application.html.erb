@@ -152,42 +152,6 @@
 		| <%= link_to "FAQ", faq_path %>
 		| <a href="http://blog.sixminutestory.com">Blog</a>
 		
-		<!-- 
-		<table><tr>
-		<% unless is_user %>
-			<td>
-
-			<%= link_to "Write", write_path %><br />
-			<%= link_to "Read", stories_path %><br />
-			<%= link_to "FAQ", faq_path %><br />
-			<a href="http://blog.sixminutestory.com">Blog</a>
-			</td>
-		<% else %>
-			<td>
-			<h2>write</h2>
-			<%= link_to "Current prompt", write_path %><br />
-			<%= link_to "Blank prompt", write_to_prompt_path(25) %><br />
-			<%= link_to "Past prompt", prompts_url %>
-		</td>
-		<td>
-			<h2>read</h2>
-				<%= link_to "Featured", featured_path %><br />
-				<%= link_to "Favorited", top_path %><br />
-				<%= link_to "Recent", recent_path %> <br />
-				<%= link_to "Active", commented_path %> <br />
-				<%= link_to "Popular", popular_path %><br />
-				<%= link_to "Random", random_stories_url %>
-		</td>
-		<td>
-			<h2>browse</h2>
-				<%= link_to "Adjectives", browse_by_tags_path %><br />
-				<%= link_to "Genres", browse_by_genres_path %><br />
-				<%= link_to "Emotions", browse_by_emotions_path %>
-		<% end %>
-		</tr>
-		</table>
-		
-		-->
 	</nav>
 </div>
 

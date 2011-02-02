@@ -93,14 +93,14 @@
 
 							<p>	
 								<% @story.genres.each do |genre| -%>
-						   			<%= link_to h(genre.name), genre_url(h(genre.name)) %>
+						   			<%= link_to h(genre.name), subset_stories_url(:tag => genre.name, :subset => "genre") %>
 								<% end -%>
 							</p>
 						<span>tags</span>
 
 							<p>	
 								<% @story.tags.each do |tag| -%>
-						   			<%= link_to h(tag.name), tag_url(h(tag.name)) %>
+						   			<%= link_to h(tag.name), subset_stories_url(:tag => tag.name, :subset => "adjective") %>
 								<% end -%>
 							</p>
 		</div>
@@ -153,10 +153,9 @@
 
 	<div id="comment_form">
 
-		<%= form_for :comment, :url => comments_path, :remote => true, :html => { :id => 'comments_form' } do |f| %>
+		<%= form_for([@story, @comment], :remote => true, :html => { :id => 'comments_form' }) do |f| %>
   			<%= f.hidden_field :user_id, :value => current_user.id %>
-  			<%= f.hidden_field :story_id, :value => @story.id %>  			
-			<div class="comment_field_container">
+ 			<div class="comment_field_container">
 				
 					<%= f.text_area :comment, :rows => 3, :cols => 55 %>
 

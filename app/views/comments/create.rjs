@@ -1,12 +1,10 @@
 page.insert_html :bottom, :comments, :partial => 'comment', :object => @comment
-page.visual_effect :highlight,'comment_'+@comment.id.to_s
-page.select('#comments_count').each do |element|
-    element.replace_html 'comments_count', link_to(pluralize((@comment.story.comments_count + 1), 'remark'),{:controller => 'stories', :action => 'show', :id => @comment.story, :anchor => 'comments'})
-  end
-  
+page.replace_html 'comments_count', link_to(pluralize((@comment.story.comments_count + 1), 'remark'),{:controller => 'stories', :action => 'show', :id => @comment.story, :anchor => 'comments'})  
 page.replace_html 'comments_in_footer', link_to(pluralize((@comment.story.comments_count + 1), 'remark'),{:controller => 'stories', :action => 'show', :id => @comment.story, :anchor => 'comments'})
 page.replace_html 'comments_in_header', link_to(pluralize((@comment.story.comments_count + 1), 'remark'),{:controller => 'stories', :action => 'show', :id => @comment.story, :anchor => 'comments'})
 
+page.visual_effect :highlight,'comment_'+@comment.id.to_s
+
 page[:comments_form].reset
 #page.replace_html :notice, flash[:notice]
-flash.discard
+#flash.discard

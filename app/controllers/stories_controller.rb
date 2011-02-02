@@ -47,17 +47,17 @@ class StoriesController < ApplicationController
           when /featured/
               @stories = Story.recent(timeframe).featured.paginate  :page => page, :per_page => per_page
               @title = "editors' picks"
-          when /^\/tag\/./
-              @tag = params[:tag]
-              @stories = Story.tagged_with([@tag], :any => true).paginate :page => page, :per_page => per_page, :order => order
+          when /adjective/
+              @adjective = params[:tag]
+              @stories = Story.tagged_with([@adjective], :any => true).paginate :page => page, :per_page => per_page, :order => order
               @title = "stories tagged with #{@tag}"
-          when /^\/genre\/./
+          when /genre/
               @genre = params[:tag]
-              @stories = Story.recent(timeframe).tagged_with(@genre, :any => true, :on => :genres).paginate :page => page, :per_page => per_page, :order => order
+              @stories = Story.recent(timeframe).tagged_with([@genre], :any => true, :on => :genres).paginate :page => page, :per_page => per_page, :order => order
               @title = "stories in #{@genre} genre"
-          when /^\/emotion\/./
+          when /emotion/
                 @emotion = params[:tag].downcase
-                @stories = Story.tagged_with([@emotion], :any => true, :on => :emotions).paginate :page => page, :per_page => per_page, :order => order
+                @stories = Story.recent(timeframe).tagged_with([@emotion], :any => true, :on => :emotions).paginate :page => page, :per_page => per_page, :order => order
                 @title = "these stories evoked #{@emotion}"
         
           
@@ -161,11 +161,7 @@ class StoriesController < ApplicationController
     
     else 
          # Initialize a comment 
-           @comment = Comment.new
-        # Find the current_user's vote for this story
-      #  if current_user.voted_on?(@story)
-       #   @vote = Vote.for_voter(current_user).for_voteable(@story)
-      #  end
+        @comment = Comment.new
 
         # Get info for the story
            @user = @story.user
@@ -191,14 +187,16 @@ class StoriesController < ApplicationController
         if request.path.include?("genres")
           @title = "genres"
           @tags = Story.tag_counts_on(:genres)
-          @genres = true
+          @subset = "genre"
         elsif request.path.include?("emotions")
           @title = "emotions"
-          @tags = Story.emotion_counts
+          @tags = Story.tag_counts_on(:emotions)
           @emotions = true
+          @subset = "emotion"
         else
           @title = "adjectives"
            @tags = Story.tag_counts_on(:tags)
+           @subset = "adjective"
         end
       rescue Exception => e
         flash[:notice] = 'No genres have been tagged yet.'

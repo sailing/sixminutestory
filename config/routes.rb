@@ -65,8 +65,8 @@ Sms::Application.routes.draw do
      match 'account/comments/:time', :to => "comments#index", :as => 'users_comments'
      match 'account/comments', :to => "comments#index", :as => 'users_comments_sans_time'
 
-     match '/stories/:subset', :to => "stories#index", :constraints => { :subset => /(featured|recent|popular|active|top)/ }, :as => 'read'
-     match     '/stories/:subset.:format', :to => "stories#index", :as => 'formatted_subset'
+#     match '/stories(/:subset(/:tag))', :to => "stories#index", :constraints => { :subset => /(featured|recent|popular|active|top|genre|tag|emotion)/, :tag => /.*/ }, :as => 'reading'
+     #match     '/stories/:subset.:format', :to => "stories#index", :as => 'formatted_subset'
 
 
       resources :stories do
@@ -80,10 +80,14 @@ Sms::Application.routes.draw do
            collection do
                post :flag
                get :random
+               get '/:subset(/:tag)', :action => 'index', :constraints => { :subset => /(featured|recent|popular|active|top|genre|adjective|emotion)/, :tag => /.*/ }, :as => 'subset'
+               get '/:subset', :action => 'tag_cloud', :constraints => { :subset => /(genres|adjectives|emotions)/ }, :as => 'cloud'
+               
           end
      end
-    resources :votes 
-    resources :comments
+    resources :votes
+    resources :comments 
+
      
      match "/read/:id" => redirect("/stories/%{id}")
      match "/featured/:id" => redirect("/stories/%{id}")
@@ -95,19 +99,19 @@ Sms::Application.routes.draw do
          match "logout", :to => 'user_sessions#destroy', :as => :logout
       resource :user_session, :path_names => { :new => 'login' }
       
-      match '/recent', :to => "stories#index", :as => 'recent'
-      match '/popular', :to => "stories#index", :as => 'popular'
-      match '/active', :to => "stories#index", :as => 'commented'
-      match '/top', :to => "stories#index", :as => 'top'
-      match             '/featured', :to => "stories#index", :as => 'featured'  
+      match '/recent' => redirect("/stories/recent")
+      match '/popular' => redirect("/stories/popular")
+      match '/active' => redirect("/stories/active")
+      match '/top' => redirect("/stories/top")
+      match '/featured'   => redirect("/stories/featured")
      
-      match     '/tags', :to => "stories#tag_cloud", :as => 'browse_by_tags'
-      match     '/genres',    :to => "stories#tag_cloud", :as => 'browse_by_genres'
-      match '/emotions',   :to => "stories#tag_cloud", :as => 'browse_by_emotions'
+      match '/tags'   => redirect("/stories/adjectives")
+      match '/genres'       => redirect("/stories/genres")
+      match '/emotions'   => redirect("/stories/emotions")
      
-      match                  '/tag/:tag', :to => "stories#index", :constraints => { :tag => /.*/ }, :as => 'tag'
-      match                 '/genre/:tag', :to => "stories#index", :constraints => { :tag => /.*/ }, :as => 'genre'
-      match               '/emotion/:tag', :to => "stories#index", :constraints => { :tag => /.*/ }, :as => 'emotion'
+     match                  '/tag/:tag'   => redirect("/stories/adjective/:tag")
+      match                 '/genre/:tag'    => redirect("/stories/genre/:tag")
+      match               '/emotion/:tag'   => redirect("/stories/emotion/:tag")
      
 #      match search             '/search'          :to => "site#search", :as => 'search' 
       match '/faq', :to => "site#faq", :as => 'faq'
