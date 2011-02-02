@@ -31,41 +31,41 @@ class StoriesController < ApplicationController
       @truncate = true
       
       begin
-      case request.path
-        when /^\/popular/
-            @stories = Story.recent(timeframe).popular.paginate :page => page, :per_page => per_page   
-            @title = "popular stories"
-        when /^\/active/
-            @stories = Story.recent(timeframe).commented.paginate :page => page, :per_page => per_page
-            @title = "most active stories"
-        when /^\/recent/
-            @stories = Story.recent(timeframe).paginate :page => page, :per_page => per_page, :order => order          
-            @title = "most recent stories"
-        when /^\/top/
-            @stories = Story.recent(timeframe).top.paginate :page => page, :per_page => per_page
-            @title = "top rated stories"
-        when /^\/featured/
-            @stories = Story.recent(timeframe).featured.paginate  :page => page, :per_page => per_page
-            @title = "editors' picks"
-        when /^\/tag\/./
-            @tag = params[:tag]
-            @stories = Story.tagged_with([@tag], :any => true).paginate :page => page, :per_page => per_page, :order => order
-            @title = "stories tagged with #{@tag}"
-        when /^\/genre\/./
-            @genre = params[:tag]
-            @stories = Story.recent(timeframe).tagged_with(@genre, :any => true, :on => :genres).paginate :page => page, :per_page => per_page, :order => order
-            @title = "stories in #{@genre} genre"
-        when /^\/emotion\/./
-              @emotion = params[:tag].downcase
-              @stories = Story.tagged_with([@emotion], :any => true, :on => :emotions).paginate :page => page, :per_page => per_page, :order => order
-              @title = "these stories evoked #{@emotion}"
+        case params[:subset]
+          when /popular/
+              @stories = Story.recent(timeframe).popular.paginate :page => page, :per_page => per_page   
+              @title = "popular stories"
+          when /active/
+              @stories = Story.recent(timeframe).commented.paginate :page => page, :per_page => per_page
+              @title = "most active stories"
+          when /recent/
+              @stories = Story.recent(timeframe).paginate :page => page, :per_page => per_page, :order => order          
+              @title = "most recent stories"
+          when /top/
+              @stories = Story.recent(timeframe).top.paginate :page => page, :per_page => per_page
+              @title = "top rated stories"
+          when /featured/
+              @stories = Story.recent(timeframe).featured.paginate  :page => page, :per_page => per_page
+              @title = "editors' picks"
+          when /^\/tag\/./
+              @tag = params[:tag]
+              @stories = Story.tagged_with([@tag], :any => true).paginate :page => page, :per_page => per_page, :order => order
+              @title = "stories tagged with #{@tag}"
+          when /^\/genre\/./
+              @genre = params[:tag]
+              @stories = Story.recent(timeframe).tagged_with(@genre, :any => true, :on => :genres).paginate :page => page, :per_page => per_page, :order => order
+              @title = "stories in #{@genre} genre"
+          when /^\/emotion\/./
+                @emotion = params[:tag].downcase
+                @stories = Story.tagged_with([@emotion], :any => true, :on => :emotions).paginate :page => page, :per_page => per_page, :order => order
+                @title = "these stories evoked #{@emotion}"
         
           
-      else
-          #return featured
-          @stories = Story.recent(timeframe).featured.paginate  :page => page, :per_page => per_page
-          @title = "editors' picks"
-      end
+        else
+            #return featured
+            @stories = Story.recent(timeframe).featured.paginate  :page => page, :per_page => per_page
+            @title = "editors' picks"
+        end
         
       rescue
            flash[:notice] = "There are no stories. Why not write your own?"

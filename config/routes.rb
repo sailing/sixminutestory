@@ -65,6 +65,10 @@ Sms::Application.routes.draw do
      match 'account/comments/:time', :to => "comments#index", :as => 'users_comments'
      match 'account/comments', :to => "comments#index", :as => 'users_comments_sans_time'
 
+     match '/stories/:subset', :to => "stories#index", :constraints => { :subset => /(featured|recent|popular|active|top)/ }, :as => 'read'
+     match     '/stories/:subset.:format', :to => "stories#index", :as => 'formatted_subset'
+
+
       resources :stories do
            resources :votes
            resources :comments
@@ -96,11 +100,6 @@ Sms::Application.routes.draw do
       match '/active', :to => "stories#index", :as => 'commented'
       match '/top', :to => "stories#index", :as => 'top'
       match             '/featured', :to => "stories#index", :as => 'featured'  
-#      match '/stories/:subset', :to => "stories#index", :constraints => { :subset => /[featured|recent|popular|active|top]/ }, :as => 'read'
-#      match     '/stories/:subset.:format', :to => "stories#index", :as => 'formatted_subset'
-      
-     
-     
      
       match     '/tags', :to => "stories#tag_cloud", :as => 'browse_by_tags'
       match     '/genres',    :to => "stories#tag_cloud", :as => 'browse_by_genres'
