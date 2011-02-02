@@ -31,9 +31,7 @@ class PromptsController < ApplicationController
            @prompts = Prompt.active.paginate(:page => page, :conditions => ["use_on > ?", Time.now], :order => "use_on ASC")
            @scheduled = true
         else
-            @images = Prompt.active.verified.images.paginate :page => page_i, :per_page => per_page, :order => order
-            @hvg = Prompt.active.verified.hvg.paginate :page => page, :per_page => per_page, :order => order
-            @firstlines = Prompt.active.verified.firstlines.paginate :page => page_firstlines, :per_page => per_page, :order => order
+            @prompts = Prompt.active.verified.firstlines.paginate :page => page_firstlines, :per_page => per_page, :order => order
  #           @threewords = Prompt.verified.threewords.paginate :page => page_threewords, :per_page => per_page, :order => order
         
         end

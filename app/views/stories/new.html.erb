@@ -164,21 +164,6 @@
 	
 	<div class="clear space">
 	</div>
-<h2>Prove you're human</h2>
-		<div class="center">
-			<p>
-					<% unless @editing.present? %>
-						<% if session[:recaptcha_error].present? %>
-						 	<span class="formError">Incorrect text entered.</span>
-						<% end %>
-
-						<%= 
-						recaptcha_tags :display => {:tabindex => "7"} 
-						%>
-					<% end %>
-
-				
-			</p>
 			<br />
 				<p>
 				<%= submit_tag("Publish Your Story", :name => "save", :id => "save-button", :tabindex => "8", :onclick => "document.getElementById('story_description').disabled=false;") %>

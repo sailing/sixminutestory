@@ -108,7 +108,22 @@
 					</table>
 				<% end %>
 	
-
+			<% else %>
+				<% unless @prompts.empty? %>
+			<table>
+				<tr>
+					<td colspan = 3>
+						<h2>First lines</h2>
+					</td>
+				</tr>
+				<%= render :partial => 'firstline', :collection => @prompts  %>
+				<tr>
+					<td colspan=3>
+						<%= will_paginate @prompts %>
+					</td>
+				</tr>
+			</table>
 			<%end %>
+			<% end %>
 		<% end %>	
 </div>
