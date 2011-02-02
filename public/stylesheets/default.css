@@ -3,7 +3,7 @@
 /*				_  _												*/
 /*				  o	* *											*/
 /*				 														*/				
-/*			CSS and the six minute story	*/
+/*			CSS and Six Minute Story			*/
 /*			by Galen Sanford							*/
 /*			galenmail@gmail.com						*/
 /*				 														*/
@@ -951,7 +951,7 @@ div#timer_element {
 /* 		Toolbar					*/
 
 .toolbar_container {
-	width:90%;
+	width:95%;
 	margin:15px auto;
 	background:#222;
 	zoom:1;
@@ -963,7 +963,7 @@ div#timer_element {
 }
 
 #show_story_toolbar table {
-	width:90%;
+	width:100%;
 	margin:0px auto;
 }
 
@@ -1080,7 +1080,7 @@ footer article footer {
 
 nav {
 	margin:2% auto;
-	width:90%;
+	width:100%;
 }
 
 /* 									*/

@@ -5,9 +5,9 @@
 					<h1>
 						<% if story.title.present? %>
 							<!-- Story title as a link in the listings -->
-							<%= link_to h(story.title), story_url(story) %>
+								<%= link_to h(story.title), story_url(story) %>
 						<% else %>
-							<%= link_to "Untitled Story", story_url(story)%>
+								<%= link_to "Untitled Story", story_url(story)%>
 						<% end %>
 					</h1>
 					
@@ -81,7 +81,7 @@
 				<span id="comments_in_footer"><%= link_to pluralize(story.comments_count, 'remark'), story_url(story, :anchor => "comments") %></span>
 				<span>&nbsp;||&nbsp;</span>
 				<span id="favorites_in_footer">
-						<%= pluralize(story.votes_count, 'favorite') %>
+						<%= pluralize(story.votes_for, 'favorite') %>
 				</span>
 
 			<% if is_admin %>

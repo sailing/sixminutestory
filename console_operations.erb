@@ -1,3 +1,11 @@
+# sync comments_count and votes_count to actual votes and comments count
+stories = Story.all
+stories.each do |story|
+	story.votes_count = story.votes_for;
+	story.comments_count = story.comments.count :conditions => {:active = true};
+	story.save!	
+end
+
 # Delete unused tags
 @stories = Story.tagged_with("tags") 
 		for story in @stories do story.tag_list.remove("tags"); story.save end

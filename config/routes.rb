@@ -72,7 +72,6 @@ Sms::Application.routes.draw do
               put :feature
               put :unfeature
               get :thanks
-              get :featured
            end
            collection do
                post :flag
@@ -96,9 +95,11 @@ Sms::Application.routes.draw do
       match '/popular', :to => "stories#index", :as => 'popular'
       match '/active', :to => "stories#index", :as => 'commented'
       match '/top', :to => "stories#index", :as => 'top'
+      match             '/featured', :to => "stories#index", :as => 'featured'  
+#      match '/stories/:subset', :to => "stories#index", :constraints => { :subset => /[featured|recent|popular|active|top]/ }, :as => 'read'
+#      match     '/stories/:subset.:format', :to => "stories#index", :as => 'formatted_subset'
       
-      match             '/featured', :to => "stories#show", :as => 'featured'  
-      match     '/featured.:format', :to => "stories#show", :as => 'formatted_featured'
+     
      
      
       match     '/tags', :to => "stories#tag_cloud", :as => 'browse_by_tags'
@@ -118,7 +119,7 @@ Sms::Application.routes.draw do
 #      match privacy            '/privacy'         :to => "site#privacy", :as => 'privacy'
 #      match   '/acknowledgements', :to => "site#acknowledgements", :as => 'acknowledgements'
     
-     root :to => "stories#show"
+     root :to => "stories#index"
     
      # The priority is based upon order of creation:
      # first created -> highest priority.

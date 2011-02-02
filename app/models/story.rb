@@ -16,12 +16,11 @@ class Story < ActiveRecord::Base
   scope :active, lambda {where("stories.active = ?", true)}
   scope :inactive, lambda {where("stories.active = ?", false)}
   scope :recent, lambda {|timeframe|
-        active.where('created_at > ?', timeframe) }
-  scope :popular, lambda { recent(1.month.ago).where('(comments_count >= ? or votes_count >= ?)', 0, 0).order('counter DESC, votes_count DESC, updated_at ASC') }
-  scope :top, lambda { |timeframe| 
-        recent(timeframe).where('votes_count > ?', 1).order('votes_count DESC')}
-  scope :commented, lambda { recent(1.month.ago).where('(comments_count >= ?)', 1).order('comments_count DESC, votes_count DESC, counter DESC, updated_at ASC') }
-  scope :featured, lambda {active.by_popularity.where('featured = ?', true)}
+        active.where('created_at > ?', timeframe.to_datetime) }
+  scope :popular, lambda { where('(comments_count >= ? or votes_count >= ?)', 0, 0).order('counter DESC, votes_count DESC, updated_at ASC') }
+  scope :top, lambda { where('votes_count > ?', 1).order('votes_count DESC')}
+  scope :commented, lambda { where('(comments_count >= ?)', 1).order('comments_count DESC, votes_count DESC, counter DESC, updated_at ASC') }
+  scope :featured, lambda {where('featured = ?', true)}
   scope :by_popularity, lambda {order('counter ASC')}
   scope :by_date, lambda { order('created_at DESC')}
   

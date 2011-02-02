@@ -2,12 +2,12 @@
 	<div class="toolbar_container">
 		<div id="show_story_toolbar">
 		<table>
-			<% if @featured %>
+			<% if @story.featured %>
 				<tr>
-							<td >
+							<td>
 								<div class="green button_container">	
 									<% if(@previous_featured.present?) %>
-									<%= link_to "<< Previous", featured_story_url(@previous_featured)%>
+									<%= link_to "<< Prev. Featured", story_url(@previous_featured)%>
 									<% else %>
 										<span>The end</span>
 									<% end %>
@@ -18,7 +18,7 @@
 								<td>
 									<div class="green button_container">	
 									<% if(@next_featured.present?) %>
-										<%= link_to "Next >> ", featured_story_url(@next_featured)%>
+										<%= link_to "Next Featured >> ", story_url(@next_featured)%>
 									<% else %>
 										<span>The end</span>
 									<% end %>
@@ -28,7 +28,7 @@
 
 				</tr>
 				
-			<% else %>
+			<% end %>
 			<tr>
 						<td >
 							<div class="green button_container">	
@@ -73,7 +73,6 @@
 						
 						
 			</tr>
-			<% end %>
 			
 		</table>
 		</div>

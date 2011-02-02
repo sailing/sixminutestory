@@ -8,39 +8,63 @@ class StoriesController < ApplicationController
    def index 
        per_page = 10
        page = params[:page] || 1
-       timeframe = params[:timeframe] || Time.now.ago(3600000)
+       
+       
+        if params[:months]
+          months = params[:months].to_i.abs
+          timeframe = Time.now.months_ago(months)
+        elsif params[:days]
+          days = params[:days].to_i.abs
+          days = -days
+          timeframe = Time.now.advance(:days => days)
+        else
+          timeframe = Time.now.months_ago(1)
+        end
+        
+        
+          unless (params[:months] or params[:days])
+            order = "created_at DESC"
+          else
+            order = "created_at ASC"
+          end
+        
       @truncate = true
       
       begin
       case request.path
         when /^\/popular/
-            @stories = Story.popular.paginate :page => page, :per_page => per_page   
+            @stories = Story.recent(timeframe).popular.paginate :page => page, :per_page => per_page   
             @title = "popular stories"
         when /^\/active/
-            @stories = Story.commented.paginate :page => page, :per_page => per_page
+            @stories = Story.recent(timeframe).commented.paginate :page => page, :per_page => per_page
             @title = "most active stories"
         when /^\/recent/
-            @stories = Story.recent(timeframe).paginate :page => page, :per_page => per_page
+            @stories = Story.recent(timeframe).paginate :page => page, :per_page => per_page, :order => order          
             @title = "most recent stories"
         when /^\/top/
-            @stories = Story.top(timeframe).paginate :page => page, :per_page => per_page
+            @stories = Story.recent(timeframe).top.paginate :page => page, :per_page => per_page
             @title = "top rated stories"
+        when /^\/featured/
+            @stories = Story.recent(timeframe).featured.paginate  :page => page, :per_page => per_page
+            @title = "editors' picks"
         when /^\/tag\/./
             @tag = params[:tag]
-            @stories = Story.tagged_with([@tag], :any => true).by_date.paginate :page => page, :per_page => per_page
+            @stories = Story.tagged_with([@tag], :any => true).paginate :page => page, :per_page => per_page, :order => order
             @title = "stories tagged with #{@tag}"
         when /^\/genre\/./
             @genre = params[:tag]
-            @stories = Story.tagged_with(@genre, :any => true, :on => :genres).by_date.paginate :page => page, :per_page => per_page
+            @stories = Story.recent(timeframe).tagged_with(@genre, :any => true, :on => :genres).paginate :page => page, :per_page => per_page, :order => order
             @title = "stories in #{@genre} genre"
         when /^\/emotion\/./
               @emotion = params[:tag].downcase
-              @stories = Story.tagged_with([@emotion], :any => true, :on => :emotions).by_date.paginate :page => page, :per_page => per_page
+              @stories = Story.tagged_with([@emotion], :any => true, :on => :emotions).paginate :page => page, :per_page => per_page, :order => order
               @title = "these stories evoked #{@emotion}"
+        
+          
       else
-          #return recent
-          @stories = Story.recent(1.month.ago).paginate :page => page, :per_page => per_page
-          @title = "most recent stories"
+          #return featured
+          @stories = Story.recent(timeframe).featured.paginate  :page => page, :per_page => per_page
+          @title = "editors' picks"
       end
         
       rescue
@@ -119,37 +143,12 @@ class StoriesController < ApplicationController
 
     e = ActiveRecord::RecordNotFound
     begin
-      
-          unless request.path.include?("featured")
-              if params[:id].present?
                 @story = Story.active.find(params[:id])
                 @previous = Story.previous(@story).first
                 @next = Story.next(@story).first              
-              else
-                @frontpage = true
-                if @story = Story.featured.first
-                  @featured = true
-                  @previous_featured = Story.previous_featured(@story).first
-                  @next_featured = Story.next_featured(@story).first
-                else
-                  @story = Story.top.first
-                  @previous = Story.previous(@story).first
-                  @next = Story.next(@story).first                              
-                end
-              end
-          else
-            if params[:id].blank?
-              @story = Story.featured.first
-              @featured = true
-              @previous_featured = Story.previous_featured(@story).first
-              @next_featured = Story.next_featured(@story).first
-            else
-              @story = Story.featured.find(params[:id])
-              @featured = true
-              @previous_featured = Story.previous_featured(@story).first
-              @next_featured = Story.next_featured(@story).first
-            end  
-          end
+                @previous_featured = Story.previous_featured(@story).first
+                @next_featured = Story.next_featured(@story).first
+                                
        
     rescue Exception => e
       unless request.path.include?("featured")
@@ -184,70 +183,6 @@ class StoriesController < ApplicationController
     end
     
      
-  end
-  
-  def featured
-     session[:return_to] = request.url
-
-      e = ActiveRecord::RecordNotFound
-      begin
-
-            unless request.path.include?("featured")
-                if params[:id].present?
-                  @story = Story.active.find(params[:id])
-                  @previous = Story.previous(@story).first
-                  @next = Story.next(@story).first              
-                else
-                  @frontpage = true
-                  if @story = Story.featured.first
-                    @featured = true
-                    @previous_featured = Story.previous_featured(@story).first
-                    @next_featured = Story.next_featured(@story).first
-                  else
-                    @story = Story.top.first
-                    @previous = Story.previous(@story).first
-                    @next = Story.next(@story).first                              
-                  end
-                end
-            else
-              if params[:id].blank?
-                @story = Story.featured.first
-                @featured = true
-                @previous_featured = Story.previous_featured(@story).first
-                @next_featured = Story.next_featured(@story).first
-              else
-                @story = Story.featured.find(params[:id])
-                @featured = true
-                @previous_featured = Story.previous_featured(@story).first
-                @next_featured = Story.next_featured(@story).first
-              end  
-            end
-
-      rescue Exception => e
-        unless request.path.include?("featured")
-          flash[:notice] = 'That story doesn\'t exist.'
-        else
-          flash[:notice] = 'That story isn\'t featured.'
-        end
-        store_location
-        redirect_to recent_url
-
-      else 
-           # Initialize a comment 
-             @comment = Comment.new
-             @user = @story.user
-             @prompt = @story.prompt
-
-          # tests to see if a following relationship exists
-             following_exists
-
-
-               respond_to do |format|
-                 format.html # show.html.erb
-                 format.xml  { render :xml => @story }
-               end
-      end
-    
   end
   
   def tag_cloud

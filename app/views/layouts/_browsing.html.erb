@@ -1,28 +1,62 @@
 <nav>
-	<div class="green button_container">
-		<%= link_to "Featured", featured_path %>
-	</div>
+	<ul>
+		<li class="green button_container">
+			<%= link_to "Featured", featured_path %>
+		</li>
 	
-	<div class="brown button_container">
-		<%= link_to "Favorited", top_path %>
-	</div>
-	<div class="brown button_container">
-		<%= link_to "Recent", recent_path %> 
-	</div>
-	<div class="brown button_container">
-		<%= link_to "Active", commented_path %> 
-	</div>
+		<li class="brown button_container">
+			<%= link_to "Favorited", top_path %>
+		</li>
+		<li class="brown button_container">
+			<%= link_to "Recent", recent_path %> 
+		</li>
+		<li class="brown button_container">
+			<%= link_to "Active", commented_path %> 
+		</li>
 
-	<div class="brown button_container">
-		<%= link_to "Popular", popular_path %>
-	</div>
+		<li class="brown button_container">
+			<%= link_to "Popular", popular_path %>
+		</li>
 
-	<div class="brown button_container">
-		<%= link_to "Adjectives", browse_by_tags_path %>
-	</div>
+		<li class="brown button_container">
+			<%= link_to "Adjectives", browse_by_tags_path %>
+		</li>
 
-	<div class="brown button_container">
-		<%= link_to "Genres", browse_by_genres_path %>
-	</div>
+		<li class="brown button_container">
+			<%= link_to "Genres", browse_by_genres_path %>
+		</li>
+	</ul>
+
+	<nav>
+		<ul>
+			<li class="purple button_container">
+				<a href="?">Today</a>
+			</li>
+			<li class="purple button_container">
+				<a href="?days=7">Past week</a>
+			</li>
+
+			<li class="purple button_container">
+				<a href="?months=1">Past month</a>
+			</li>
+			
+			<li class="purple button_container">
+				<a href="?months=3">3 months</a>
+			</li>
+			
+			
+			<li class="purple button_container">
+				<a href="?months=6">6 months</a>
+			</li>
+			
+			<li class="purple button_container">
+				<a href="?months=12">Past year</a>
+			</li>
+			
+			<li class="purple button_container">
+				<a href="?months=100">All time</a>
+			</li>
+		</ul>
+	</nav>
 
 </nav>
