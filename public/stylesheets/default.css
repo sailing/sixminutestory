@@ -79,7 +79,7 @@ body {
 }
 
 body, p, td, h1, h4 {
-	font-family: "JuraRegular",georgia, serif;
+	font-family: georgia, serif;
   line-height: 1.2em;
 	font-weight:400;
 	font-size:100%;
@@ -807,9 +807,11 @@ header nav td{
 .button_container {
 	width:100px;
 	height:25px;
-	margin:2px auto;
+	margin:auto auto;
 	text-align:center;
 	display:inline-block;
+	
+	font-family: "nevisBold", "Futura", tahoma, sans-serif;
 	
 	-moz-border-radius:5px;  
 	-webkit-border-radius:5px;	
@@ -820,7 +822,7 @@ header nav td{
 }
 
 
-.button_container a, div#timer_element {
+.button_container a, div#timer_element, .button_container span {
 	
 	color:#fff;
 	font-weight:400;
@@ -839,7 +841,7 @@ header nav td{
 	
 }
 
-div#timer_element {
+div#timer_element, .button_container span {
 	margin:auto auto;
 	line-height:25px;
 	

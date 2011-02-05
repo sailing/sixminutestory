@@ -45,7 +45,7 @@ class StoriesController < ApplicationController
               @stories = Story.recent(timeframe).top.paginate :page => page, :per_page => per_page
               @title = "top rated stories"
           when /featured/
-              @stories = Story.recent(timeframe).featured.paginate  :page => page, :per_page => per_page
+              @stories = Story.recent(timeframe).featured.paginate  :page => page, :per_page => per_page, :order => order 
               @title = "editors' picks"
           when /adjective/
               @adjective = params[:tag]
