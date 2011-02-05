@@ -65,6 +65,7 @@ class StoriesController < ApplicationController
             #return featured
             @stories = Story.recent(timeframe).featured.paginate  :page => page, :per_page => per_page
             @title = "editors' picks"
+            @frontpage = true
         end
         
       rescue

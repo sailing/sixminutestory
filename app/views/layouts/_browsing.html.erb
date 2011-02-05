@@ -26,7 +26,7 @@
 			<%= link_to "Genres", cloud_stories_path(:subset => "genres") %>
 		</li>
 	</ul>
-<% if params[:subset] %>
+<% if params[:subset] or @frontpage %>
 	<nav>
 		<ul>
 			<li class="purple button_container">

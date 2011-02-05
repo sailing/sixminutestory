@@ -148,7 +148,7 @@
 
 	<nav id="header_links">
 		<%= link_to "Write", write_path %>
-		| <%= link_to "Read", stories_path %>
+		| <%= link_to "Read", subset_stories_path(:subset => "recent") %>
 		| <%= link_to "FAQ", faq_path %>
 		| <a href="http://blog.sixminutestory.com">Blog</a>
 		
