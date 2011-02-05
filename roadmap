@@ -32,16 +32,8 @@ x enable deleting prompts
 	- be sure to sync as well
 
 2.3
-- new ways to praise consistent authors
-	- most followed authors list
-	- authors w most total favorites (karma)
-	- featured author page
-	- awards
-		- badges applied both dynamically and statically 
-			- dynamic for top 10 authors / stories
-			- static for featured story, featured author, contest winners, 10, 25, 50, 75, 100 stories
 x change "cheers" to "favorites"
-	x upgrade to thumbs_up?
+	x upgrade to thumbs_up
 	- new rating system (5 star? upvote?)
 x let users see who's liked a particular story (flickr style – above comments)
 x add to users account / profile:
@@ -52,10 +44,8 @@ x emotion tags.
 - new logo
 x update Elevator pitch
 	x "Joining takes less than 5 seconds."
-- DRY featured / read
-- allow writers to edit their own stories?
-- forum
-- fix <br> in freeform prompt
+x DRY featured / read
+x allow writers to edit their own stories?
 
 2.3.1 
 - allow to write without signing in
@@ -63,8 +53,19 @@ x update Elevator pitch
 	- add voting on prompts (as => "like") 
 	- and comments (as => "agree")
 	- and emotions
-- move flash[notice] to growl position
+x move flash[notice] to growl position
 - improve validations for titles to ensure no slug failures
+- new ways to praise consistent authors
+	- most followed authors list
+	- authors w most total favorites (karma)
+	- featured author page
+	- awards
+		- badges applied both dynamically and statically 
+			- dynamic for top 10 authors / stories
+			- static for featured story, featured author, contest winners, 10, 25, 50, 75, 100 stories
+- forum
+- fix <br> in freeform prompt
+
 
 2.4
 - curated collections
