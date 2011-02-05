@@ -105,7 +105,7 @@ class StoriesController < ApplicationController
   # PUT /stories/1.xml
   def update
     @story = Story.find(params[:id])
-    
+
     if request.xhr?
         # add the given tag to the story
 
