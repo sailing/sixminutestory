@@ -11,7 +11,7 @@
 		<footer id="emotions">
 			<h4>Emotions this story evoked:</h4>
 			<% @story.emotions.each do |emotion| %>
-				<%= link_to emotion.name, subset_stories_url(:tag => h(emotion.name), :subset => "emotion")%>
+				<%= link_to emotion.name, subset_stories_url(:tag => h(emotion.name), :subset => "emotion", :months => 100)%>
 			<% end %>
 		</footer>
 	<% end %>

@@ -28,13 +28,17 @@
 <% 
 # else for if !@stories.empty? 
 %>
+
+<span><%= render :partial => "layouts/browsing" %> </span>
+
+
 	<h1>
 		Erm...
 	</h1>
 	
 	<div id="no_stories">
 		<p>
-			No stories await you here. Go <%= link_to "write your own", write_url %>.
+			No stories meet that criteria. <%= link_to "Write your own", write_url %>.
 		</p>
 	</div>	
 <% end %>

@@ -8,7 +8,7 @@
 	
 	   		<% tag_cloud @tags, %w(css1 css2 css3 css4 css5 css6) do |tag, css_class| %>
 
-	    			<%= link_to tag.name, subset_stories_url(:tag => tag.name, :subset => @subset), :class => css_class %>
+	    			<%= link_to tag.name, subset_stories_url(:tag => tag.name, :subset => @subset, :months => 100), :class => css_class %>
 			<% end %>
 	
 	  </div>

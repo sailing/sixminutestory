@@ -93,14 +93,14 @@
 
 							<p>	
 								<% @story.genres.each do |genre| -%>
-						   			<%= link_to h(genre.name), subset_stories_url(:tag => genre.name, :subset => "genre") %>
+						   			<%= link_to h(genre.name), subset_stories_url(:tag => genre.name, :subset => "genre", :months => 100) %>
 								<% end -%>
 							</p>
 						<span>tags</span>
 
 							<p>	
 								<% @story.tags.each do |tag| -%>
-						   			<%= link_to h(tag.name), subset_stories_url(:tag => tag.name, :subset => "adjective") %>
+						   			<%= link_to h(tag.name), subset_stories_url(:tag => tag.name, :subset => "adjective", :months => 100) %>
 								<% end -%>
 							</p>
 		</div>
