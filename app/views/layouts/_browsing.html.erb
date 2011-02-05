@@ -26,7 +26,7 @@
 			<%= link_to "Genres", cloud_stories_path(:subset => "genres") %>
 		</li>
 	</ul>
-		<% operator = params[:get].present? ? "&" : "?" %>
+<% if params[:subset] %>
 	<nav>
 		<ul>
 			<li class="purple button_container">
@@ -58,5 +58,5 @@
 			</li>
 		</ul>
 	</nav>
-
+<% end %>
 </nav>
