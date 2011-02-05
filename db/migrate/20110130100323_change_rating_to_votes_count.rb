@@ -5,7 +5,7 @@ class ChangeRatingToVotesCount < ActiveRecord::Migration
     
     Story.reset_column_information
     Story.find(:all).each do |s|
-      Story.update_counters s.id, :votes_count => s.votes_for
+      Story.update_counters s.id, :votes_count => s.votes_for, :comments_count => s.comments.size
     end
   end
 

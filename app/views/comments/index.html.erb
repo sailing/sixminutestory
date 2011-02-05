@@ -14,7 +14,8 @@
 
 <% content_for :sideyard do %>
 	<h1>Comments</h1>
-		<div>
+		<div class="toolbar_container">
+			<div id="show_story_toolbar">
 
 				<h2>On your stories</h2>
 				<nav>
@@ -25,19 +26,19 @@
 					<%= link_to "All", users_comments_url("allstories") %>
 				</div>
 				</nav>
-		</div>
-		<div>
-			<h2>On stories you've <br />commented on</h2>
-			<nav>
-			<div class="green button_container">
-				<%= link_to "New", users_comments_url("new") %>
 			</div>
-			<div class="green button_container">
-				<%= link_to "All", users_comments_url("all") %>
+			<div>
+				<h2>On stories you've <br />commented on</h2>
+				<nav>
+				<div class="green button_container">
+					<%= link_to "New", users_comments_url("new") %>
+				</div>
+				<div class="green button_container">
+					<%= link_to "All", users_comments_url("all") %>
+				</div>
+				</nav>
 			</div>
-			</nav>
 		</div>
-	</nav>
 <% end %>
 
 <%= render :partial => "users/profile" %>

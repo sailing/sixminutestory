@@ -49,8 +49,8 @@ class StoriesController < ApplicationController
               @title = "editors' picks"
           when /adjective/
               @adjective = params[:tag]
-              @stories = Story.tagged_with([@adjective], :any => true).paginate :page => page, :per_page => per_page, :order => order
-              @title = "stories tagged with #{@tag}"
+              @stories = Story.recent(timeframe).tagged_with([@adjective], :any => true).paginate :page => page, :per_page => per_page, :order => order
+              @title = "stories tagged with #{@adjective}"
           when /genre/
               @genre = params[:tag]
               @stories = Story.recent(timeframe).tagged_with([@genre], :any => true, :on => :genres).paginate :page => page, :per_page => per_page, :order => order

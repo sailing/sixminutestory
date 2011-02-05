@@ -129,7 +129,6 @@ ActiveRecord::Schema.define(:version => 20110130100323) do
     t.string   "cached_slug"
     t.integer  "comments_count"
     t.boolean  "featured",        :default => false
-    t.integer  "favorites_count"
   end
 
   create_table "taggings", :force => true do |t|
@@ -173,7 +172,6 @@ ActiveRecord::Schema.define(:version => 20110130100323) do
     t.integer   "comments_count"
     t.integer   "stories_count"
     t.boolean   "featured",             :default => false
-    t.integer   "favorites_count"
   end
 
   create_table "votes", :force => true do |t|
