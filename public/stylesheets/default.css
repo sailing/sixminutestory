@@ -154,7 +154,7 @@ a:hover { color: #b86ae1; background-color:transparent;text-decoration:underline
 
 h1 a, h1 a:visited, h1 a:active {
 	color: #fff;
-	font-size:1em;
+	font-size:.8em;
 	letter-spacing:.05em;
 }
 
@@ -1078,10 +1078,6 @@ article header {
 	text-align:left;
 }
 
-article header h1 a {
-	font-size:.8em;
-	font-family:"nevisBold", tahoma, sans-serif !important;
-}
 
 article header p {
 	line-height:1em;
