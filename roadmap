@@ -49,6 +49,7 @@ x allow writers to edit their own stories?
 
 2.3.1 
 - turn emails back on
+- add way to delete emotions owned by user
 - allow to write without signing in
 - polymorphic voting
 	- add voting on prompts (as => "like") 

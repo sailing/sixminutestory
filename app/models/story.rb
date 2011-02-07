@@ -10,7 +10,7 @@ class Story < ActiveRecord::Base
   belongs_to :user, :counter_cache => true
   belongs_to :prompt, :counter_cache => true
   has_one :contest
-  has_many :comments
+  has_many :comments, :order => "created_at ASC"
   
   # Named Scopes
   scope :active, lambda {where("stories.active = ?", true)}
@@ -23,6 +23,7 @@ class Story < ActiveRecord::Base
   scope :featured, lambda {where('featured = ?', true)}
   scope :by_popularity, lambda {order('counter ASC')}
   scope :by_date, lambda { order('created_at DESC')}
+
   
   # Filters
   scope :by_date, :order => "stories.created_at DESC"
