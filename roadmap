@@ -48,6 +48,7 @@ x DRY featured / read
 x allow writers to edit their own stories?
 
 2.3.1 
+- turn emails back on
 - allow to write without signing in
 - polymorphic voting
 	- add voting on prompts (as => "like") 

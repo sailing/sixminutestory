@@ -9,47 +9,39 @@ class PromptsController < ApplicationController
   # GET /prompts.xml
   def index
       page = params[:page] || 1
-      page_i = params[:page_i] || 1
-      page_firstlines = params[:page_firstlines] || 1
       per_page = 10
       order = "created_at DESC"
       
       @filters = Prompt::FILTERS
     if params[:show] && params[:show] != "verified" && @filters.collect{|f| f[:scope]}.include?(params[:show])
-          @prompts = Prompt.verified.send(params[:show]).paginate :page => page, :per_page => per_page, :order => order
-          @table = params[:show]
-    else
-        
-      begin
-        case request.path
-          when /^\/prompts\/unverified/
-            @images = Prompt.unverified.images.paginate :page => page_i, :per_page => per_page, :order => order
-            @hvg = Prompt.unverified.hvg.paginate :page => page, :per_page => per_page, :order => order
-            @firstlines = Prompt.unverified.firstlines.paginate :page => page_firstlines, :per_page => per_page, :order => order
-         #   @threewords = Prompt.unverified.threewords.paginate :page => page_threewords, :per_page => per_page, :order => order
-         when /^\/prompts\/scheduled/
-           @prompts = Prompt.active.paginate(:page => page, :conditions => ["use_on > ?", Time.now], :order => "use_on ASC")
-           @scheduled = true
-        else
-            @prompts = Prompt.active.verified.firstlines.paginate :page => page_firstlines, :per_page => per_page, :order => order
- #           @threewords = Prompt.verified.threewords.paginate :page => page_threewords, :per_page => per_page, :order => order
-        
-        end
           
-      rescue
-         flash[:notice] = "There are no stories. Why not write your own?"
-        redirect_to write_url
-      else 
+                @prompts = Prompt.verified.send(params[:show]).paginate :page => page, :per_page => per_page, :order => order
+                @table = params[:show]
+    else
+      case request.path
+        when /^\/prompts\/unverified/
+          if params[:show] && params[:show] != "verified" && @filters.collect{|f| f[:scope]}.include?(params[:show])
+            @prompts = Prompt.unverified.send(params[:show]).paginate :page => page, :per_page => per_page, :order => order
+            @table = params[:show]
+          else
+            @prompts = Prompt.unverified.firstlines.paginate :page => page, :per_page => per_page, :order => order
+            @table = "firstlines"
+          end
+        when /^\/prompts\/scheduled/
+            @prompts = Prompt.active.paginate(:page => page, :conditions => ["use_on > ?", Time.now], :order => "use_on ASC")
+            @scheduled = true              
+      else
+
+            @prompts = Prompt.active.verified.firstlines.paginate :page => page, :per_page => per_page, :order => order
+      end
+    end
+    
         respond_to do |format|
           format.html # index.html.erb
           format.xml  { render :xml => @stories }
           format.rss
         end 
-        #end respond_to
-      end
-      #end begin
-    end
-    #end if params[:show]  
+
   end
     
   def enable_prompt
@@ -134,7 +126,7 @@ class PromptsController < ApplicationController
     respond_to do |format|
       if @prompt.save
         flash[:notice] = 'Thanks! We received your suggestion <br /> and will review it soon.'
-        format.html { redirect_to(new_prompt_url) }
+        format.html { redirect_to(suggest_prompts_url) }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @prompt.errors, :status => :unprocessable_entity }

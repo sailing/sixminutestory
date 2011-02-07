@@ -20,12 +20,11 @@ class StoriesController < ApplicationController
         else
           timeframe = Time.now.months_ago(1)
         end
-        
-        
-          unless (params[:months] or params[:days])
-            order = "created_at DESC"
+
+          if (params[:months] or params[:days])
+              order = "created_at ASC"
           else
-            order = "created_at ASC"
+            order = "created_at DESC"
           end
         
       @truncate = true
@@ -63,7 +62,7 @@ class StoriesController < ApplicationController
           
         else
             #return featured
-            @stories = Story.recent(timeframe).featured.paginate  :page => page, :per_page => per_page
+            @stories = Story.recent(timeframe).featured.paginate  :page => page, :per_page => per_page, :order => order
             @title = "editors' picks"
             @frontpage = true
         end

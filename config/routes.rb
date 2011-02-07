@@ -25,19 +25,21 @@ Sms::Application.routes.draw do
 
   # The priority is based upon order of creation: first created -> highest priority.
  
-
     
     # site activities
       # writing / prompts
      match 'write', :to => "stories#new", :as => 'write'
      match 'write/:prompt', :to => "stories#new", :as => 'write_to_prompt'
   #   match 'archives', :to => "prompts#index", :as => 'archives'
-     match 'prompts/suggest', :to => "prompts#new", :as => 'suggest_a_prompt'
      match 'thanks/:id', :to => "stories#thanks_for_writing", :as => 'thanks_for_writing'
-                  resources :prompts
-    #administration
-     match "/archives/unverified", :to => "prompts#index", :as => 'unverified_prompts'
-     match "/archives/scheduled", :to => "prompts#index", :as => 'scheduled_prompts'
+    
+    
+    resources :prompts do
+      collection do
+        get '/:subset', :action => 'index', :constraints => { :subset => /(unverified|scheduled)/ }, :as => "subset"
+        get '/suggest', :action => 'new', :as => "suggest"
+      end 
+    end
 
     
 
