@@ -54,7 +54,7 @@ class CommentsController < ApplicationController
   # POST /comment.xml
   def create
     @story = Story.find(params[:story_id])
-    @comment = @story.comments.new(params[:comment])
+    @comment = @story.comments.build(params[:comment])
     
     respond_to do |format|
       if @comment.save
