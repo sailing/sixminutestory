@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110130100323) do
+ActiveRecord::Schema.define(:version => 20110208094255) do
 
   create_table "comments", :force => true do |t|
     t.text      "comment"
@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(:version => 20110130100323) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "cached_slug"
-    t.integer  "comments_count"
+    t.integer  "comments_count",  :default => 0
     t.boolean  "featured",        :default => false
   end
 
