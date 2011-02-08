@@ -1062,7 +1062,7 @@ article p {
 	font-size:1.2em;
 	letter-spacing:.09em;
 	color:#000;
-	font-family:"JuraRegular",georgia, serif;
+	font-family:georgia,"JuraRegular", serif;
 
 
 	padding:2% 7%;
