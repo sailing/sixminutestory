@@ -57,25 +57,25 @@ ActiveRecord::Schema.define(:version => 20110208094255) do
   end
 
   create_table "prompts", :force => true do |t|
-    t.string    "hero"
-    t.string    "villain"
-    t.string    "goal"
-    t.date      "use_on"
-    t.integer   "rating",          :default => 0
-    t.integer   "counter",         :default => 0
-    t.integer   "user_id"
-    t.integer   "contest_id",      :default => 0
-    t.boolean   "active",          :default => true
-    t.boolean   "verified",        :default => true
-    t.boolean   "delta",           :default => false
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "stories_count"
-    t.string    "refcode"
-    t.string    "kind"
-    t.string    "attribution"
-    t.string    "attribution_url"
-    t.string    "license"
+    t.string   "hero"
+    t.string   "villain"
+    t.string   "goal"
+    t.date     "use_on"
+    t.integer  "rating",          :default => 0
+    t.integer  "counter",         :default => 0
+    t.integer  "user_id"
+    t.integer  "contest_id",      :default => 0
+    t.boolean  "active",          :default => true
+    t.boolean  "verified",        :default => true
+    t.boolean  "delta",           :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "stories_count",   :default => 0
+    t.string   "refcode"
+    t.string   "kind"
+    t.string   "attribution"
+    t.string   "attribution_url"
+    t.string   "license"
   end
 
   create_table "rpx_identifiers", :force => true do |t|
@@ -148,30 +148,30 @@ ActiveRecord::Schema.define(:version => 20110208094255) do
   end
 
   create_table "users", :force => true do |t|
-    t.string    "login"
-    t.string    "crypted_password"
-    t.string    "password_salt"
-    t.string    "website"
-    t.string    "email_address"
-    t.text      "profile"
-    t.boolean   "active",               :default => true
-    t.integer   "admin_level",          :default => 1
-    t.string    "persistence_token"
-    t.integer   "login_count"
-    t.timestamp "last_request_at"
-    t.timestamp "last_login_at"
-    t.timestamp "current_login_at"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.boolean   "send_comments",        :default => true
-    t.boolean   "send_stories",         :default => true
-    t.boolean   "send_followings",      :default => true
-    t.string    "name"
-    t.integer   "facebook_uid"
-    t.string    "facebook_session_key"
-    t.integer   "comments_count"
-    t.integer   "stories_count"
-    t.boolean   "featured",             :default => false
+    t.string   "login"
+    t.string   "crypted_password"
+    t.string   "password_salt"
+    t.string   "website"
+    t.string   "email_address"
+    t.text     "profile"
+    t.boolean  "active",               :default => true
+    t.integer  "admin_level",          :default => 1
+    t.string   "persistence_token"
+    t.integer  "login_count"
+    t.datetime "last_request_at"
+    t.datetime "last_login_at"
+    t.datetime "current_login_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "send_comments",        :default => true
+    t.boolean  "send_stories",         :default => true
+    t.boolean  "send_followings",      :default => true
+    t.string   "name"
+    t.integer  "facebook_uid"
+    t.string   "facebook_session_key"
+    t.integer  "comments_count",       :default => 0
+    t.integer  "stories_count",        :default => 0
+    t.boolean  "featured",             :default => false
   end
 
   create_table "votes", :force => true do |t|
