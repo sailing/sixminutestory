@@ -4,7 +4,7 @@ class FollowingsController < ApplicationController
     if @following.save
       @user = User.find(params[:writer_id])
       
-      Hermes.following_notification(@user, current_user) unless (@user.send_followings == false or @user.email_address.blank?).deliver
+    #  Hermes.following_notification(@user, current_user) unless (@user.send_followings == false or @user.email_address.blank?).deliver
       
       respond_to do |format|
         format.html { 
