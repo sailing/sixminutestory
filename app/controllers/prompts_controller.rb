@@ -14,8 +14,11 @@ class PromptsController < ApplicationController
       
       @filters = Prompt::FILTERS
     if params[:show] && params[:show] != "verified" && @filters.collect{|f| f[:scope]}.include?(params[:show])
-          
+          if params[:subset] == "unverified"
+                @prompts = Prompt.unverified.send(params[:show]).paginate :page => page, :per_page => per_page, :order => order
+          else
                 @prompts = Prompt.verified.send(params[:show]).paginate :page => page, :per_page => per_page, :order => order
+          end
                 @table = params[:show]
     else
       case request.path
