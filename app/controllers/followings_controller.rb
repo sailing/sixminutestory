@@ -17,12 +17,16 @@ class FollowingsController < ApplicationController
   end
   
   def destroy
-    @following = current_user.followings.find_by_writer_id(params[:writer_id])
-
+    #@following = current_user.followings.find_by_writer_id(params[:writer_id])
+    @following = current_user.followings.find(params[:id])
     @user = User.find_by_id(@following.writer_id)
     if @following.destroy
       respond_to do |format|
-        format.html { 
+        format.html {
+          flash[:notice] = "Unfollowed " + @user.login
+          redirect_to account_url
+        }
+        format.js { 
           render :update do |page|
             page.replace_html 'following_toggle', :partial => 'site/following_toggle', :locals => {:user => @user, :following => nil}
           end

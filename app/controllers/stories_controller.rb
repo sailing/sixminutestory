@@ -146,9 +146,7 @@ class StoriesController < ApplicationController
                 @story = Story.active.find(params[:id])
                 @previous = Story.previous(@story).first
                 @next = Story.next(@story).first              
-                @previous_featured = Story.previous_featured(@story).first
-                @next_featured = Story.next_featured(@story).first
-                                
+                @previous_featured = Story.previous_featured(@story).first                      
        
     rescue Exception => e
       unless request.path.include?("featured")
