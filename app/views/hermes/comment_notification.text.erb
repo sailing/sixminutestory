@@ -1,0 +1,5 @@
+Hi <%= @recipient.login %>,
+
+<%= @commenter.login %> commented on your story, "<%= @story.title %>".
+
+View it here: <%= story_url(@story, :anchor => "comment_"+@comment.id.to_s) %>

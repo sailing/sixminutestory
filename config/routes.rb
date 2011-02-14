@@ -67,16 +67,12 @@ Sms::Application.routes.draw do
      match 'account/comments/:time', :to => "comments#index", :as => 'users_comments'
      match 'account/comments', :to => "comments#index", :as => 'users_comments_sans_time'
 
-#     match '/stories(/:subset(/:tag))', :to => "stories#index", :constraints => { :subset => /(featured|recent|popular|active|top|genre|tag|emotion)/, :tag => /.*/ }, :as => 'reading'
-     #match     '/stories/:subset.:format', :to => "stories#index", :as => 'formatted_subset'
-
-
       resources :stories do
            resources :votes
            resources :comments
            member do
-              put :feature
-              put :unfeature
+             post :feature
+             post :unfeature
               get :thanks
            end
            collection do

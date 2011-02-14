@@ -311,15 +311,15 @@ class StoriesController < ApplicationController
      end
   end
   
-  def feature_story
+  def feature
     @story = Story.find(params[:id])
     @story.featured = 1
      respond_to do |format|
        if @story.save
-  #       Hermes.featured_story_notification(@story.user, @story) unless (@story.user.send_stories == false or @story.user.email_address.blank?).deliver
+         Hermes.featured_story_notification(@story.user, @story).deliver unless (@story.user.send_stories == false or @story.user.email_address.blank?)
          
          flash[:notice] = 'Story featured.'
-         format.html { redirect_to(featured_path(@story)) }
+         format.html { redirect_to(story_url(@story)) }
          format.xml  { head :ok }
        else
          flash[:notice] = 'Story NOT featured.'
@@ -329,7 +329,7 @@ class StoriesController < ApplicationController
      end
   end
   
-  def unfeature_story
+  def unfeature
     @story = Story.find(params[:id])
 
     @story.featured = 0

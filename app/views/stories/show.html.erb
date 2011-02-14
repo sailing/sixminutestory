@@ -65,12 +65,12 @@
 				<% if @story.featured == true %>
 				<div id="unfollowing_button" class="button_container">
 				<%= link_to "Unfeature", unfeature_story_url(@story), 
-				:confirm => 'Are you sure you want to unfeature this story? The story will no longer be featured!' %>
+				:confirm => 'Are you sure you want to unfeature this story? The story will no longer be featured!', :method => :post %>
 				</div>
 				<% elsif @story.featured == false %>
 				<div id="following_button" class="button_container">
 				<%= link_to "Feature", feature_story_url(@story), 
-				:confirm => 'Are you sure you want to feature this story? The story will become featured!'
+				:confirm => 'Are you sure you want to feature this story? The story will become featured!', :method => :post
 				%>
 				</div>
 

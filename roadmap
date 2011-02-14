@@ -47,7 +47,10 @@ x update Elevator pitch
 x DRY featured / read
 x allow writers to edit their own stories?
 
-2.3.1 
+2.3.1
+- Fix exceptions
+
+2.3.2 
 - turn emails back on
 - add way to delete emotions owned by user
 - allow to write without signing in
@@ -70,6 +73,9 @@ x move flash[notice] to growl position
 
 
 2.4
+- newsletters (http://www.campaignmonitor.com/ 
+				and http://www.campaignmonitor.com/blog/post/3054/panic-re-engaging-subscribers/ 
+				and http://emailmarketingvoodoo.com/blog/post/an-intelligent-way-to-clean-your-opt-in-list/)
 - curated collections
 - contests?
 
