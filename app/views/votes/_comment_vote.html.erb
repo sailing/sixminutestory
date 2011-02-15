@@ -1,0 +1,44 @@
+<div id="agree_with_comment_<%= comment.id %>">	
+<% if current_user && comment.user_id != current_user.id %>
+	
+	<% 
+		# You can't vote if it is your @comment, 
+		# you are not logged in, 
+		# or you have already voted on this item
+	
+	#	if current_user.voted_for?(comment) 
+	%>
+	 	<span class="button_container green">
+			<%= link_to "Agree", comment_votes_path(comment, :vote_direction => :up), 
+				:method => :post,
+				:remote => true
+			%>
+		</span>	
+		<span class="button_container orange">
+				<%= link_to "Disagree", comment_votes_path(comment, :vote_direction => :down), 
+					:method => :post,
+					:remote => true
+				%>
+		</span>
+		<% 
+		#elsif !current_user.voted_for?(comment) 
+		%>
+	 		
+		<% 
+		#end 
+		%>
+<% end %>
+
+	<span style="margin-left:15px;">
+		<% if comment.votes.size > 0 %>
+			<%= comment.votes_for > 0 ? comment.votes_for : "0" %> agreed. <%= comment.votes_against > 0 ? comment.votes_against : "0" %> disagreed.
+		<% end %>
+		<% if current_user.voted_on?(comment) %>
+			<% if current_user.voted_for?(comment) %>
+				You agreed with <%= comment.user.login %>'s comment.
+			<% elsif %>
+				You disagreed with <%= comment.user.login %>'s comment.
+			<% end %>
+		<% end %>
+	</span>
+</div>

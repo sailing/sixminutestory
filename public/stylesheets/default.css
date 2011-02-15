@@ -1278,13 +1278,15 @@ nav {
 
 #comments p {
 	margin-left:1%;
+	width:90%;
 	font-size: 1.2em;
 	line-height:1.6em;
 	font-weight:normal;
 	color: #000;
-	font-family:"JuraRegular",georgia, serif;	
+	margin:0 auto;
+	font-family:georgia, serif;	
+	text-align:justify;
 }
-
 
 #comment_form {
 	margin:15px 0px;
