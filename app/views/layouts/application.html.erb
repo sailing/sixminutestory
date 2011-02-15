@@ -4,10 +4,18 @@
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>Six Minute Story –
-	<% if @content_for_pagename.blank? %>
-		 	A Microfiction Experiment
-	<% else %>
+	<% unless @frontpage %>
+		<% if content_for?(:pagename) %>
 			<%= yield(:pagename) %> 		
+		<% else %>
+			<% if @title %>
+				<%= @title %>
+			<% else %>
+			 	A Microfiction Experiment
+			<% end %>
+		<% end %>
+	<% else %>
+		 	A Microfiction Experiment
 	<% end %>
 	</title>
 	<!-- Javascripts to include -->

@@ -33,31 +33,31 @@ class StoriesController < ApplicationController
         case params[:subset]
           when /popular/
               @stories = Story.recent(timeframe).popular.paginate :page => page, :per_page => per_page   
-              @title = "popular stories"
+              @title = "Popular stories"
           when /active/
               @stories = Story.recent(timeframe).commented.paginate :page => page, :per_page => per_page
-              @title = "most active stories"
+              @title = "Active stories"
           when /recent/
               @stories = Story.recent(timeframe).paginate :page => page, :per_page => per_page, :order => order          
-              @title = "most recent stories"
+              @title = "Recent stories"
           when /top/
               @stories = Story.recent(timeframe).top.paginate :page => page, :per_page => per_page
-              @title = "top rated stories"
+              @title = "Top rated stories"
           when /featured/
               @stories = Story.recent(timeframe).featured.paginate  :page => page, :per_page => per_page, :order => order 
-              @title = "editors' picks"
+              @title = "Editors' picks"
           when /adjective/
               @adjective = params[:tag]
               @stories = Story.recent(timeframe).tagged_with([@adjective], :any => true).paginate :page => page, :per_page => per_page, :order => order
-              @title = "stories tagged with #{@adjective}"
+              @title = "Stories tagged with #{@adjective}"
           when /genre/
               @genre = params[:tag]
               @stories = Story.recent(timeframe).tagged_with([@genre], :any => true, :on => :genres).paginate :page => page, :per_page => per_page, :order => order
-              @title = "stories in #{@genre} genre"
+              @title = "Stories in #{@genre} genre"
           when /emotion/
                 @emotion = params[:tag].downcase
                 @stories = Story.recent(timeframe).tagged_with([@emotion], :any => true, :on => :emotions).paginate :page => page, :per_page => per_page, :order => order
-                @title = "these stories evoked #{@emotion}"
+                @title = "These stories evoked #{@emotion}"
         
           
         else

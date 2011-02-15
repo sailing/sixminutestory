@@ -1,3 +1,12 @@
+<% content_for :pagename do %>
+	Prompts
+	<% if params[:show] %>
+		( <%= params[:show] %> )
+	<% else %>
+		( firstlines )
+	<% end %>
+<% end %>
+
 <%= render :partial => 'admin' %>
 
 <br />
