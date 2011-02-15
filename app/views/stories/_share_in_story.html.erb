@@ -1,17 +1,18 @@
 	<div id="share" class="share">
 		<% story = story || @story %>
-		
-			<a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= story_url(story) -%>" data-text="Read &quot;<%= story.title %>&quot; by <%= story.user.login %>:" data-count="vertical" data-via="6minutestory" data-related="galensanford:The brain behind the site.">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+		<ul>		
+			<li>
+				<a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= story_url(story) -%>" data-text="Read &quot;<%= story.title %>&quot; by <%= story.user.login %>:" data-count="vertical" data-via="6minutestory" data-related="galensanford:The brain behind the site.">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+			</li>
+			<li>
+					<script src="http://www.stumbleupon.com/hostedbadge.php?s=5&r=<%= story_url(story) %>"></script>
+			</li>
+			<li>				
+				<iframe src="http://www.facebook.com/plugins/like.php?href=<%= story_url(story) %>&amp;layout=box_count&amp;show_faces=false&amp;width=90&amp;action=like&amp;font=segoe+ui&amp;colorscheme=light&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:65px;" allowTransparency="true"></iframe>
 			
-			<br /><br />
-			
-				<script src="http://www.stumbleupon.com/hostedbadge.php?s=5&r=<%= story_url(story) %>"></script>
-					
-			<br /><br />
-		<iframe src="http://www.facebook.com/plugins/like.php?href=<%= story_url(story) %>&amp;layout=box_count&amp;show_faces=false&amp;width=90&amp;action=like&amp;font=segoe+ui&amp;colorscheme=light&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:200px; height:65px;" allowTransparency="true"></iframe>
-	
-
-			<br /><br />	
+			</li>
+			<li>
+				
 			<script type="text/javascript">
 			reddit_url='<%= story_url(story) -%>'
 			reddit_target='6minutestory'
@@ -20,4 +21,6 @@
 			<script type="text/javascript" src="http://reddit.com/static/button/button2.js">
 				
 			</script>
+			</li>
+		</ul>
 	</div>

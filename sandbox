@@ -1,3 +1,12 @@
+Facebook box:
+<iframe 
+src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fsixminutestory&amp;width=250&amp;connections=8&amp;stream=true&amp;header=false&amp;height=587" 
+scrolling="no" 
+frameborder="0" 
+style="border:none; overflow:hidden; background-color:white; width:250px; height:587px;" 
+allowTransparency="false"></iframe>
+
+=========
 <% tag_cloud @emotions, %w(css1 css2 css3 css4) do |emotion, css_class| %>
 	  
 	<%= link_to emotion.name, 

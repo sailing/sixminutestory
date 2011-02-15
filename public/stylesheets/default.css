@@ -43,22 +43,6 @@ Great Green => #5f9f3f
 	font-style: normal;
 }
 
-@font-face {
-	/* This declaration targets Internet Explorer */
-	font-family: 'JuraRegular';
-	src: url('../fonts/jura-webfont.eot');
-}
-
-@font-face {
-	/* This declaration targets everything else */
-	font-family: 'JuraRegular';
-	src: url(//:) format('no404'), url('../fonts/jura-webfont.woff') format('woff'), url('../fonts/jura-webfont.ttf') format('truetype'), url('../fonts/jura-webfont.svg#webfonthytcqjBw') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-
-
-
 /*												*/
 /* 	Re-styled HTML tags 	*/
 /*												*/
@@ -158,12 +142,16 @@ h1 a, h1 a:visited, h1 a:active {
 	letter-spacing:.05em;
 }
 
+h1 a:hover {
+	text-decoration:none;
+}
+
 img {
 	border:0px;
 }
 
 input {
-	font-family: "JuraRegular", georgia, serif;
+	font-family:  georgia, serif;
 	font-size:1.2em;
 	
 }
@@ -176,7 +164,7 @@ input[type="image"],input[type="submit"],input[type="button"] {
 	background:#444;
 	color:#fff;
 	vertical-align:middle;
-	
+	font-family:"nevisBold",tahoma, sans-serif;
 	border:0px;
 }
 
@@ -207,7 +195,7 @@ textarea {
 	background-color:#ddedff;
 	zoom:1;
 	
-	font-family: "JuraRegular",georgia, serif;
+	font-family: georgia, serif;
 	font-size:1.2em;
 	
 	-moz-border-radius:10px;  
@@ -229,6 +217,24 @@ option {
 input[type="checkbox"]{
 	height:10px;
 	width:10px;
+}
+
+/*	shading */
+.login_container, 
+article, 
+.sideyard_container, 
+#share, 
+.comment_container, 
+.comment_field_container, 
+.new_story_container,
+textarea#story_description {
+	box-shadow: 0 0 2px #ccc;
+	-moz-box-shadow: 0 0 2px #ccc;
+	-webkit-box-shadow: 0 0 3px #eee;
+}	
+
+h1, .button_container {
+	text-shadow:0 1px 1px #aaa;
 }
 
 
@@ -299,7 +305,7 @@ input[type="checkbox"]{
 
 textarea#story_description {
 	width:95%;
-	font-family:"JuraRegular",georgia, serif;
+	font-family:georgia, serif;
 	font-size:1.4em;
 	line-height:1.6em;
 	letter-spacing:.1em;
@@ -585,11 +591,7 @@ header nav td{
 	color:#fff;
 	
 } 
-	
-/* 		Left container 	*/
-#left_container .center	h1, #left_container .center h2, #left_container .center h3 {
-	color:#000;
-}
+
 
 /* 							*/
 /*  	sideyard			*/
@@ -678,17 +680,6 @@ header nav td{
 #facebook_widget {
 	width:80%;
 	margin:0px auto;
-}
-
-.share {
-	display:block;
-	  float:left;
-	  padding:0;
-	  margin:0;
-	  overflow:hidden;
-	line-height:1em;
-	z-index:60000;
-	
 }
 
 /* 		user profile 	*/
@@ -955,25 +946,46 @@ div#timer_element, .button_container span {
 	color:#000;
 	text-align:left;
 	font-size:1.3em;
-	font-family:"JuraRegular",georgia, serif;
+	font-family:georgia, serif;
 	letter-spacing:.08em;
 	line-height:1.5em;
 }
 
 #share {
-	display:block;
-	float:right;
-	width:50px;
-	text-align:left;
+	display:inline-block;
+	width:55%;
+	text-align:center;
 	background:#bfcfdf;
+	border-radius:10px;
 	-moz-border-radius:10px;  
 	-webkit-border-radius:10px;
-	padding:25px 15px;
-	margin: 0 4% 2% 5%;
+	padding:0 1%;
+	margin: 0 auto;
 	z-index: 9999;
 	
 }
-											
+
+#share ul {
+	display:block;
+	list-style-type: none;
+	width:85%;
+	margin:1% auto;
+	padding:0;
+	text-align:center;
+}
+			
+#share li {
+	border-radius:5px;
+	-moz-border-radius:5px 
+	-webkit-border-radius:5px;
+	background-color:white;
+ 	float: left;
+	padding: 2%;
+  margin: 3%;
+	width:15%;
+	height:65px;
+	text-align:center;
+}								
 											
 /* 						*/
 /* 		Show Story		*/
@@ -1062,7 +1074,7 @@ article p {
 	font-size:1.2em;
 	letter-spacing:.09em;
 	color:#000;
-	font-family:georgia,"JuraRegular", serif;
+	font-family:georgia, serif;
 
 
 	padding:2% 7%;
@@ -1132,7 +1144,7 @@ nav {
 
 #listPrompts table, #listPrompts td {
 	color:#555;
-	font-family:"JuraRegular",tahoma, verdana;
+	font-family:tahoma, verdana;
 	font-size:.9em;
 
 
@@ -1282,7 +1294,7 @@ nav {
 	line-height:1.6em;
 	font-weight:normal;
 	color: #000;
-	font-family:"JuraRegular",georgia, serif;	
+	font-family:georgia, serif;	
 }
 
 
@@ -1328,7 +1340,7 @@ nav {
 	font-size:1.2em;
 	letter-spacing:.09em;
 	color:#000;
-	font-family:"JuraRegular",georgia, serif;
+	font-family:georgia, serif;
 
 }
 

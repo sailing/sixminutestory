@@ -34,32 +34,35 @@ x enable deleting prompts
 2.3
 x change "cheers" to "favorites"
 	x upgrade to thumbs_up
-	- new rating system (5 star? upvote?)
+	? new rating system (5 star? upvote?)
 x let users see who's liked a particular story (flickr style – above comments)
 x add to users account / profile:
 	x stories you've commented on
 	x stories you've favorited
 x upcoming prompts (admin)
 x emotion tags.
-- new logo
+? new logo
 x update Elevator pitch
 	x "Joining takes less than 5 seconds."
 x DRY featured / read
 x allow writers to edit their own stories?
 
 2.3.1
-- Fix exceptions
+x Fix exceptions
 
 2.3.2 
-- turn emails back on
-- add way to delete emotions owned by user
+x turn emails back on
 - allow to write without signing in
 - polymorphic voting
 	- add voting on prompts (as => "like") 
 	- and comments (as => "agree")
 	- and emotions
 x move flash[notice] to growl position
-- improve validations for titles to ensure no slug failures
+- improve validations for titles to ensure no slug failures			
+- fix <br> in freeform prompt
+
+
+2.4
 - new ways to praise consistent authors
 	- most followed authors list
 	- authors w most total favorites (karma)
@@ -68,11 +71,8 @@ x move flash[notice] to growl position
 		- badges applied both dynamically and statically 
 			- dynamic for top 10 authors / stories
 			- static for featured story, featured author, contest winners, 10, 25, 50, 75, 100 stories
+			- add way to delete emotions owned by user
 - forum
-- fix <br> in freeform prompt
-
-
-2.4
 - newsletters (http://www.campaignmonitor.com/ 
 				and http://www.campaignmonitor.com/blog/post/3054/panic-re-engaging-subscribers/ 
 				and http://emailmarketingvoodoo.com/blog/post/an-intelligent-way-to-clean-your-opt-in-list/)

@@ -27,16 +27,14 @@
 							%>
 							</span>
 							<span>|| <%= render :partial => "votes/story_vote", :story => story %></span>
+							<span style="margin-left:60px;">
+									<iframe src="http://www.facebook.com/plugins/like.php?href=<%=h story_url(@story) %>&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;font=segoe+ui&amp;colorscheme=light&amp;height=25" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:200px; height:25px;" allowTransparency="true"></iframe>
+							</span>
+							
 			<% end %>
 						</p>
 				</hgroup>
 			</header>
-			
-				<% unless @stories %>
-					<aside>
-						<%= render :partial => 'stories/share_in_story', :locals => {:story => story} %>
-					</aside>
-				<% end %>
 			
 				<% if @stories %>
 					<%= simple_format(sanitize(truncate(h(story.description), :length => 350, :omission => "...&nbsp;&nbsp;&nbsp;[" + link_to("Read more...", story_url(story))+ "]" ))) %>
@@ -44,15 +42,14 @@
 					<%= simple_format(sanitize(h(story.description))) %>
 				<% end %>
 
-			
-
 				<% unless @stories %>
-					<section class="center">		
-						<iframe src="http://www.facebook.com/plugins/like.php?href=<%=h story_url(@story) %>&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;font=segoe+ui&amp;colorscheme=light&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:200px; height:65px;" allowTransparency="true"></iframe>
+					<section class="center">
+						<%= render :partial => 'stories/share_in_story', :locals => {:story => story} %>
 					</section>
 				<% end %>
 				
 	<footer>
+		
 	
 	<% unless @stories %>
 		<section class="float_left">
