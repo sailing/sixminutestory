@@ -15,6 +15,9 @@
 							by <%= link_to h(story.user.login), profile_path(story.user) %> –
 							<%=h time_ago_in_words(story.created_at) %> ago
 							<%= link_to "Edit Story Details", edit_story_url(story) if is_owner_or_admin %>
+							<span style="margin-left:60px;">
+									<iframe src="http://www.facebook.com/plugins/like.php?href=<%=h story_url(@story) %>&amp;layout=standard&amp;show_faces=true&amp;width=300&amp;action=like&amp;font=segoe+ui&amp;colorscheme=light&amp;height=25" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:300px; height:25px;" allowTransparency="true"></iframe>
+							</span>
 						</p>
 						<p>
 							
@@ -27,9 +30,7 @@
 							%>
 							</span>
 							<span>|| <%= render :partial => "votes/story_vote", :story => story %></span>
-							<span style="margin-left:60px;">
-									<iframe src="http://www.facebook.com/plugins/like.php?href=<%=h story_url(@story) %>&amp;layout=standard&amp;show_faces=true&amp;width=300&amp;action=like&amp;font=segoe+ui&amp;colorscheme=light&amp;height=25" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:300px; height:25px;" allowTransparency="true"></iframe>
-							</span>
+							
 							
 			<% end %>
 						</p>
