@@ -1,7 +1,7 @@
-
 <h1>
 	edit story details
 </h1>
+
 <% if @story.errors.any? %>
 	<!-- ERROOOOOOOooooOOORSSSSSSSSSSSSSSSSS -->
 
@@ -37,10 +37,10 @@
 
 
 
-			<div class="center">
+			<div>
 				<% if is_admin %>
 					
-					<h2>Prompt</h2>
+					<h1>Prompt</h1>
 					<p>
 					<%= @story.errors[:prompt_id] %><br />
 				
@@ -52,12 +52,12 @@
 						</p>
 				<% end %>
 						
-				<h2>Story</h2>
+				<h1>Story</h1>
 					<p>
 					<% (is_admin || @story.user.karma > 4) ? @disabled = false : @disabled = true %>
 					
 					
-					<span>Story cannot be edited unless a writer's karma is five or higher.</span>
+					<span>Story cannot be edited unless a writer's reputation is five or higher.</span>
 					
 					<%= @story.errors[:description] %><br />
 					
