@@ -33,12 +33,14 @@
 		<% if comment.votes.size > 0 %>
 			<%= comment.votes_for > 0 ? comment.votes_for : "0" %> agreed. <%= comment.votes_against > 0 ? comment.votes_against : "0" %> disagreed.
 		<% end %>
+		<% if current_user %>
 		<% if current_user.voted_on?(comment) %>
 			<% if current_user.voted_for?(comment) %>
 				You agreed with <%= comment.user.login %>'s comment.
 			<% elsif %>
 				You disagreed with <%= comment.user.login %>'s comment.
 			<% end %>
+		<% end %>
 		<% end %>
 	</span>
 </div>
