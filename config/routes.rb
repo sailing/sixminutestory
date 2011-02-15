@@ -83,9 +83,12 @@ Sms::Application.routes.draw do
                
           end
      end
+     
+    resources :comments do
+      resources :votes
+    end
+    
     resources :votes
-    resources :comments 
-
      
      match "/read/:id" => redirect("/stories/%{id}")
      match "/featured/:id" => redirect("/stories/%{id}")

@@ -75,17 +75,14 @@ class VotesController < ApplicationController
   # POST /stories/:story_id/votes
   # POST /stories/:vote_id/votes.xml
   def create
-    @story = Story.find(params[:story_id])
+    @voteable = find_voteable
     
     respond_to do |format|
-      if params[:vote] == "favorite"
-        if current_user.vote_exclusively_for(@story)
-          @story.reload
-            format.html { 
-              render :update do |page| 
-                page.replace_html "add_favorite", :partial => "votes/story_vote", :vote => @vote 
-              end
-            }
+    if params[:vote_direction]
+
+        if current_user.vote(@voteable, :direction => params[:vote_direction], :exclusive => true)
+          @voteable.reload
+            format.html {redirect_to @voteable}
             format.js
         else
             format.html { render :action => "new" }
@@ -93,20 +90,6 @@ class VotesController < ApplicationController
             format.xml  { render :xml => @vote.errors, :status => :unprocessable_entity }
         end
     
-      elsif params[:vote] == "unfavorite" 
-        if current_user.vote_exclusively_against(@story)
-          @story.reload
-            format.html { 
-              render :update do |page| 
-                page.replace_html "add_favorite", :partial => "votes/story_vote", :vote => @vote 
-              end
-            }
-            format.js
-        else
-            format.html { render :action => "new" }
-            format.js  { render :action => "error" }
-            format.xml  { render :xml => @vote.errors, :status => :unprocessable_entity }
-        end
       else
         flash[:notice] = "Please don't attempt to adjust favorites manually."
         redirect_to @story
@@ -133,8 +116,8 @@ class VotesController < ApplicationController
 
   private
   def find_votes_for_my_scope
-    if params[:quote_id]
-      @votes = Vote.for_voteable(Story.find(params[:quote_id])).descending
+    if params[:story_id]
+      @votes = Vote.for_voteable(Story.find(params[:story_id])).descending
     elsif params[:user_id]
       @votes = Vote.for_voter(User.find(params[:user_id])).descending         
     else  
@@ -166,18 +149,14 @@ class VotesController < ApplicationController
       end
    end
   end
-
-
-  def update_rating(story)
-     if @story.votes_count > 0
-        if @story.votes_for > 0
-          pro = (@story.votes_for.to_f / @story.votes_count.to_f)*100
-          @story.rating = pro.ceil
-          @story.save
-        else
-            @story.rating = 0
-            @story.save
-        end
+  
+  def find_voteable
+    params.each do |name, value|
+      if name =~ /(.+)_id$/
+        return $1.classify.constantize.find(value)
+      end
     end
+    nil
   end
+
 end

@@ -1,5 +1,12 @@
-page.replace_html 'add_favorite', :partial => "votes/story_vote", :story => @story
-page.visual_effect :highlight,'add_favorite'
-page.replace_html 'favoriters', :partial => "stories/favoriters", :story => @story
-page.visual_effect :highlight,'favoriters'
-page.replace_html 'favorites_in_footer', approval_rating
+if @voteable.class.name == "Story"
+  @story = @voteable
+  page.replace_html 'add_favorite', :partial => "votes/story_vote", :story => @story
+  page.visual_effect :highlight,'add_favorite'
+  page.replace_html 'favoriters', :partial => "stories/favoriters", :story => @story
+  page.visual_effect :highlight,'favoriters'
+  page.replace_html 'favorites_in_footer', approval_rating
+
+elsif @voteable.class.name == "Comment"
+  page.replace_html 'agree_with_comment_'+@voteable.id.to_s, :partial => "votes/comment_vote", :object => @voteable, :as => :comment
+  page.visual_effect :highlight,'agree_with_comment_'+@voteable.id.to_s
+end
