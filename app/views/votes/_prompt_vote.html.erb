@@ -24,10 +24,11 @@
 
 	<div>
 		<% if prompt.votes.size > 0 %>
-			<%= prompt.votes_for > 0 ? prompt.votes_for : "0" %> liked. <%= prompt.votes_against > 0 ? prompt.votes_against : "0" %> disliked.
+			<%= prompt.votes_for > 0 ? prompt.votes_for : "0" %> liked. <%= prompt.votes_against > 0 ? prompt.votes_against : "0" %> shrugged.
 		<% end %>
 		<% if current_user %>
 		<% if current_user.voted_on?(prompt) %>
+			<br />
 			<% if current_user.voted_for?(prompt) %>
 				<%= link_to prompt.user.login, profile_url(prompt.user) %>'s prompt gave you glee.
 			<% elsif %>

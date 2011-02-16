@@ -2,7 +2,20 @@
 <h1>Editing prompt</h1>
 
 <% form_for(@prompt) do |f| %>
-  <%= f.error_messages %>
+	<% if @prompt.errors.any? %>
+		<!-- ERROOOOOOOooooOOORSSSSSSSSSSSSSSSSS -->
+
+	<div id="errorExplanation">
+		<h2>Your story hasn't been saved yet.</h2>
+		<h3>Please check for errors below.</h3>
+
+		  <ul>
+		    <% @prompt.errors.each do |attribute, msg| %>
+		      <li><%= msg %></li>
+		    <% end %>
+		  </ul>
+	</div>
+	<% end %>
 
   <p>
     <%= f.label :hero %><br />
