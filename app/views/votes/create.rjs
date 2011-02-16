@@ -9,4 +9,6 @@ if @voteable.class.name == "Story"
 elsif @voteable.class.name == "Comment"
   page.replace_html 'agree_with_comment_'+@voteable.id.to_s, :partial => "votes/comment_vote", :object => @voteable, :as => :comment
   page.visual_effect :highlight,'agree_with_comment_'+@voteable.id.to_s
+elsif @voteable.class.name == "Prompt"
+  page.replace_html 'prompt_vote', :partial => "votes/prompt_vote", :object => @voteable, :as => :prompt
 end

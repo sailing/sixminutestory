@@ -55,7 +55,7 @@ x turn emails back on
 - allow to write without signing in
 - polymorphic voting
 	- add voting on prompts (as => "like") 
-	- and comments (as => "agree")
+	x and comments (as => "agree")
 	- and emotions
 x move flash[notice] to growl position
 - improve validations for titles to ensure no slug failures			

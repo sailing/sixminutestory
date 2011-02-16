@@ -20,6 +20,10 @@
 			<span>
 				Originally displayed on:<br /> <%=h @prompt.use_on.strftime("%B %d, %Y") if @prompt.use_on.present? %>
 			</span>
+	
+		</div>
+		<div class="center">
+			<%= render :partial => "votes/prompt_vote", :object => @prompt, :as => :prompt %>
 		</div>
 	</div>
 

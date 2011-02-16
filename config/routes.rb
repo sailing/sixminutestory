@@ -35,6 +35,7 @@ Sms::Application.routes.draw do
     
     
     resources :prompts do
+      resources :votes
       collection do
         get '/:subset', :action => 'index', :constraints => { :subset => /(unverified|scheduled)/ }, :as => "subset"
         get '/suggest', :action => 'new', :as => "suggest"

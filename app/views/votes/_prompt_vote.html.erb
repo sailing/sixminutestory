@@ -1,0 +1,39 @@
+<div id="prompt_vote">	
+<% if current_user && prompt.user_id != current_user.id %>
+	
+	<% 
+		# You can't vote if it is your prompt, 
+		# you are not logged in, 
+		# or you have already voted on this item
+	
+	%>
+	 	<span class="button_container green">
+			<%= link_to "Like", prompt_votes_path(prompt, :vote_direction => :up), 
+				:method => :post,
+				:remote => true
+			%>
+		</span>	
+		<span class="button_container orange">
+				<%= link_to "Meh", prompt_votes_path(prompt, :vote_direction => :down), 
+					:method => :post,
+					:remote => true
+				%>
+		</span>
+		
+<% end %>
+
+	<div>
+		<% if prompt.votes.size > 0 %>
+			<%= prompt.votes_for > 0 ? prompt.votes_for : "0" %> liked. <%= prompt.votes_against > 0 ? prompt.votes_against : "0" %> disliked.
+		<% end %>
+		<% if current_user %>
+		<% if current_user.voted_on?(prompt) %>
+			<% if current_user.voted_for?(prompt) %>
+				<%= link_to prompt.user.login, profile_url(prompt.user) %>'s prompt gave you glee.
+			<% elsif %>
+				<%= link_to prompt.user.login, profile_url(prompt.user) %>'s prompt didn't thrill you.
+			<% end %>
+		<% end %>
+		<% end %>
+	</div>
+</div>

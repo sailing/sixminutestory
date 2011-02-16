@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   acts_as_voter
   has_karma :stories, :as => :user, :weight => 1
   has_karma :comments, :as => :user, :weight => 1
+  has_karma :prompts, :as => :user, :weight => 1
   
   has_friendly_id :login, :use_slug => true,:reserved_words => ["new", "featured"]
     

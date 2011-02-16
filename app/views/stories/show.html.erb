@@ -61,7 +61,7 @@
 		<!-- ADMIN SECTION -->
 		
 		<% if is_admin %>
-
+			<div class="center">
 				<% if @story.featured == true %>
 				<div id="unfollowing_button" class="button_container">
 				<%= link_to "Unfeature", unfeature_story_url(@story), 
@@ -75,8 +75,9 @@
 				</div>
 
 				<% end %>
-			<div id="following_button" class="brown button_container">
-				<%= link_to "Edit Details", edit_story_url(@story) %>
+				<div id="following_button" class="brown button_container">
+					<%= link_to "Edit Details", edit_story_url(@story) %>
+				</div>
 			</div>
 		<% end %>
 		
@@ -106,6 +107,11 @@
 		
 		<h2>The prompt for this story</h2>
 			<%= show_prompt %>
+			
+		<h2>Vote on this prompt</h2>
+			<div class="center">
+				<%= render :partial => "votes/prompt_vote", :object => @story.prompt, :as => :prompt %>
+			</div>
 		<div class="space"></div>
 		
 			<% if is_user %>
