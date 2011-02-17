@@ -5,50 +5,7 @@
 
 
 <% content_for :sideyard do %>
-	<% if @frontpage %>
-	<% unless is_user %>
-
-	<div id="elevator_pitch">
-		
-		<!-- 
-		<p>
-		Since current language must be <strong>concise, immediate and eloquent</strong>, I created <em>Six Minute Story</em> &mdash; a user-driven, <a href="http://en.wikipedia.org/wiki/Micro_fiction" target="_blank">micro-fiction</a> application &mdash; to provide an arena to practice <em>the art of the ad-lib</em>, the impromptu.
 	
-				<strong>Six Minute Story</strong> is a crowd-driven, 
-				<a href="http://en.wikipedia.org/wiki/Micro_fiction" target="_blank">flash-fiction</a> 
-				<strong>experiment</strong>.
-		</p>
-		<p>
-				The goal is to fill <strong>the cities of the earth</strong> with eloquence. <%= link_to "read more", faq_url %>
-		</p>
-		-->
-		<p>
-			<strong>Six Minute Story</strong> is a growing collection of stories written in six minutes or less. 
-		</p>
-		<p>
-			<%= rpx_popup( :link_text => "Joining", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false ) %> takes less than five seconds.
-		</p>
-	
-	</div>
-			<div id="show_story_toolbar" class="toolbar_container">
-				<table>
-					<tr>
-						<td>
-							<div class="green button_container">
-								<%= link_to "Learn more", faq_url %>
-							</div>
-						</td>
-						<td>
-							<div class="purple button_container">
-								<%= rpx_popup( :link_text => "Join", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false ) %>
-							</div>
-						</td>
-					</tr>
-				</table>
-			</div>
-		<% end %>
-
-	<% end %><!-- end if frontpage conditional -->
 
 	<div id="toolbar">
 		<%= render :partial => "toolbar", :locals => { :story => @story } %>
