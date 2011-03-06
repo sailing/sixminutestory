@@ -93,7 +93,7 @@
 <% end %><!-- end if frontpage conditional -->
 
 <% if !@frontpage or (is_user and @frontpage) %>
-	<h2>Get Involved</h2>
+	<h1>Get Involved</h1>
 		
 		<% if is_user %>
 		<h3>Write</h3>
@@ -108,6 +108,10 @@
 				<li><%= link_to "Comment on a random story", random_stories_url %></li>
 			</ul>
 		<% else %>
+
+		<p style="font-size:.9em;">
+			<%= rpx_popup( :link_text => "Join", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false ) %> or <%= rpx_popup( :link_text => "login", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false ) %> to unlock 6MS (it's free and takes less than 5 seconds).
+		</p>
 		<div id="show_story_toolbar" class="toolbar_container">
 		<table>
 			<tr>
