@@ -956,31 +956,29 @@ div#timer_element, .button_container span {
 	
 }
 
-#thanks a {		
-	color:#a85ac1;
-}
-
-#thanks p {
-	color:#000;
-	text-align:left;
-	font-size:1.3em;
-	font-family:georgia, serif;
-	letter-spacing:.08em;
-	line-height:1.5em;
+#thanks_for_writing h2 {
+	color:#522b1d;
 }
 
 #share {
 	display:inline-block;
-	width:55%;
+	width:45%;
 	text-align:center;
-	background:#bfcfdf;
+/*	background:#bfcfdf;*/
+	background-color:#fff;
 	border-radius:10px;
 	-moz-border-radius:10px;  
 	-webkit-border-radius:10px;
 	padding:0 1%;
 	margin: 0 auto;
 	z-index: 9999;
-	
+}
+
+#share h3 {
+	line-height:1.2em;
+	margin:10px 0 0;
+	padding:0;
+	color:#111;
 }
 
 #share ul {
@@ -998,10 +996,10 @@ div#timer_element, .button_container span {
 	-webkit-border-radius:5px;
 	background-color:white;
  	float: left;
-	padding: 2%;
-  margin: 3%;
-	width:15%;
+	width:65px;
 	height:65px;
+	padding: 5px 3px;
+  margin: 3%;
 	text-align:center;
 }								
 											

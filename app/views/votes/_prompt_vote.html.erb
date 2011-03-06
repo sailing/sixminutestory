@@ -1,4 +1,5 @@
-<div id="prompt_vote">	
+<div id="prompt_vote">
+		
 <% if current_user && prompt.user_id != current_user.id %>
 	
 	<% 
@@ -19,12 +20,13 @@
 					:remote => true
 				%>
 		</span>
-		
+<% elsif current_user && prompt.user_id == current_user.id %>
+		<span>You suggested this prompt.</span>
 <% end %>
 
 	<div>
 		<% if prompt.votes.size > 0 %>
-			<%= prompt.votes_for > 0 ? prompt.votes_for : "0" %> liked. <%= prompt.votes_against > 0 ? prompt.votes_against : "0" %> shrugged.
+			<%= prompt.votes_for > 0 ? prompt.votes_for : "0" %> liked this prompt. <%= prompt.votes_against > 0 ? prompt.votes_against : "0" %> shrugged.
 		<% end %>
 		<% if current_user %>
 		<% if current_user.voted_on?(prompt) %>

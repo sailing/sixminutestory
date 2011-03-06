@@ -5,44 +5,34 @@
 <% content_for :sideyard do %>
 	<h2>More about the Prompt</h2>
 		<%= show_prompt %>
+	<h3>Vote on this prompt</h3>
+		<div class="center">
+			<%= render :partial => "votes/prompt_vote", :object => @prompt, :as => :prompt %>
+		</div>
 <% end %>
 
 
- <h1>Thanks!</h1>
-	<div id="thanks_for_writing">
-
-	
-<%= render :partial => 'share_in_story' %>
-
-	<div id="thanks">
+ 
+	<article id="thanks_for_writing">
+	<h1>Thanks!</h1>
 	<p> 
-		Your story has been posted. 
+		Your story has been posted. <%= link_to "View it here.", story_url(@story) %> 
 	</p>
-	<p>	
-		<%= link_to "View it here.", story_url(@story) %> 
+	
+	<h2>What's next?</h2>
+	<p><strong>There are a few things you can do.</strong></p>
+	<p>First, vote on this prompt, over to the right.</p>
+	<p>Then, scroll down to read some other stories written to this prompt. Remark on the stories, and ask the authors to remark on yours.</p> 
+	<p>Another quick way to get feedback is to share your story and ask people to leave comments.
+	<div class="center"><%= render :partial => 'share_in_story' %></div>
 	</p>
-	<p>
-		Take a moment to share your story now. It’s a tangible contribution to the happiness of your loved ones. 
-	</p>
-	<p>	
-		It’s art. It’s a masterpiece. They’ll adore you for it. 
-	</p>
-	<p>	
-		Yeah, no promises there.
-	</p>	
-	<p>
-		Since we were rushing you, you likely didn’t have much time to contemplate the prompt. So, because you worked so hard, we’re letting you have another look. 
-	</p>
-	<p>	
-		No timers. Stay as long as you like. If you like what you see, share it with your friends.
-	</p>
-	</div>
-	</div>
+	<p>We love hearing from you, so please say "Hi!" to us on <a href="http://twitter.com/6minutestory">Twitter</a> and <a href="http://facebook.com/sixminutestory">Facebook</a>, or leave feedback on our <a href="http://sixminutestory.uservoice.com">feedback forum</a>. Thanks and we look forward to meeting you.</p>
+	</article>
 
 	
 	<div class="clear space"></div>
 	
-	<h4>Other stories for this prompt</h4>
+	<h1>Other stories for this prompt</h1>
 	<%= render :partial => 'stories/story', :collection => @stories %>
 		
 		
