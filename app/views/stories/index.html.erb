@@ -42,9 +42,10 @@
 		</p>
 	</div>	
 <% end %>
+
 <% content_for :sideyard do %>
 <% if @frontpage %>
-<% unless is_user %>
+	<% unless is_user %>
 
 <div id="elevator_pitch">
 	
@@ -86,8 +87,39 @@
 				</tr>
 			</table>
 		</div>
+	
 	<% end %>
 
 <% end %><!-- end if frontpage conditional -->
-	<%= render :partial => "layouts/facebook_box" -%>
+
+<% if !@frontpage or (is_user and @frontpage) %>
+	<h2>Get Involved</h2>
+		
+		<% if is_user %>
+		<h3>Write</h3>
+			<ul>
+				<li><%= link_to "Suggest a prompt", suggest_prompts_url %></li>
+				<li><%= link_to "Choose a prompt to write to", prompts_url %></li>
+				<li><%= link_to "Write to a blank prompt", write_to_prompt_url(25) %></li>
+			</ul>
+		<h3>Make friends</h3>
+			<ul>
+				<li><%= link_to "Comment on a recent story", subset_stories_path(:subset => "recent") %></li>
+				<li><%= link_to "Comment on a random story", random_stories_url %></li>
+			</ul>
+		<% end %>
+		
+		<h3>Say hello</h3>
+			<ul>
+				<li><a href="http://twitter.com/6minutestory">Find us on Twitter</a></li>
+				<li><a href="http://facebook.com/sixminutestory">Or on Facebook</a></li>
+			</ul>
+		<h3>Spread the word</h3>
+			<ul>
+				<li><script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+					<a href="http://twitter.com/share?url=http%3A%2F%2Fsixminutestory.com&amp;via=6minutestory" class="twitter-share-button">Tweet about 6MS</a>
+				</li>
+				<li><iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fsixminutestory.com&amp;layout=standard&amp;show_faces=true&amp;width=350&amp;action=recommend&amp;font=tahoma&amp;colorscheme=dark&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:350px; height:80px;" allowTransparency="true"></iframe></li>
+			</ul>
+<% end %>
 <% end %>

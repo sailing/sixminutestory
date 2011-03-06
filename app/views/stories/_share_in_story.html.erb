@@ -1,5 +1,6 @@
 	<div id="share" class="share">
 		<% story = story || @story %>
+		<h3>Share this story now</h3>
 		<ul>		
 			<li>
 				<a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= story_url(story) -%>" data-text="Read &quot;<%= story.title %>&quot; by <%= story.user.login %>:" data-count="vertical" data-via="6minutestory" data-related="galensanford:The brain behind the site.">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
