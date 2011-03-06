@@ -107,6 +107,23 @@
 				<li><%= link_to "Comment on a recent story", subset_stories_path(:subset => "recent") %></li>
 				<li><%= link_to "Comment on a random story", random_stories_url %></li>
 			</ul>
+		<% else %>
+		<div id="show_story_toolbar" class="toolbar_container">
+		<table>
+			<tr>
+				<td>
+					<div class="green button_container">
+						<%= link_to "Learn more", faq_url %>
+					</div>
+				</td>
+				<td>
+					<div class="purple button_container">
+						<%= rpx_popup( :link_text => "Join / Login", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false ) %>
+					</div>
+				</td>
+			</tr>
+		</table>
+		</div>
 		<% end %>
 		
 		<h3>Say hello</h3>
