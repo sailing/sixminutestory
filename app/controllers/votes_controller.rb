@@ -87,12 +87,11 @@ class VotesController < ApplicationController
         else
             format.html { render :action => "new" }
             format.js  { render :action => "error" }
-            format.xml  { render :xml => @vote.errors, :status => :unprocessable_entity }
         end
     
       else
         flash[:notice] = "Please don't attempt to adjust favorites manually."
-        redirect_to @story
+        redirect_to @voteable
       end  
     end
   end
@@ -140,12 +139,12 @@ class VotesController < ApplicationController
   end
 
   def increment_votes_count
-   if @story && params[:vote]
+   if @voteable && params[:vote_direction]
      # increment votes_count
-      if params[:vote] == "favorite"
-        Story.increment_counter(:votes_count, @story)
-      elsif params[:vote] == "unfavorite"
-        Story.decrement_counter(:votes_count, @story)
+      if params[:vote_direction] == "up"
+        @voteable.class.name.constantize.increment_counter(:votes_count, @voteable)
+      elsif params[:vote_direction] == "down"
+        @voteable.class.name.constantize.decrement_counter(:votes_count, @voteable)
       end
    end
   end
