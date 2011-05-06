@@ -43,6 +43,18 @@ Great Green => #5f9f3f
 	font-style: normal;
 }
 
+@font-face {
+    font-family: 'NeutonRegular';
+    src: url('../fonts/Neuton-webfont.eot');
+    src: url('../fonts/Neuton-webfont.eot?#iefix') format('eot'),
+         url('../fonts/Neuton-webfont.woff') format('woff'),
+         url('../fonts/Neuton-webfont.ttf') format('truetype'),
+         url('../fonts/Neuton-webfont.svg#webfont8fs47wLc') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 /*												*/
 /* 	Re-styled HTML tags 	*/
 /*												*/
@@ -795,21 +807,21 @@ header nav td{
 	margin:0px auto;
 	
 }
-#prompt .labels {
-	margin-left:2%;
+#prompt .labels, #prompt .entries {
+	padding-left:3%;
 	font-size:1em;
-	line-height:21px;
-	font-weight:500;
+	font-family:tahoma, sans-serif;
+	font-weight:600;
+	line-height:1.5em;
 	color:#c97bf2;
+  box-sizing: border-box;
 
 }
 
 #prompt .entries {
-	margin-left:3%;
-	font-size:1em;
+	padding-left:6%;
 	font-weight:normal;
-	letter-spacing:.075em;
-	line-height:2em;
+  font-family:inherit;
 	color:#fff;
 }
 

@@ -1,0 +1,61 @@
+<% if @prompt %>
+  <div id="prompt">
+  <%
+     unless request.path.include?("write")   
+       write_to_prompt = content_tag("span",(link_to "Write your own story to this prompt", write_to_prompt_url(@prompt)))
+       freeform = "Freeform prompt. Every Friday, writers face a blank page without any prompt. They write whatever they want in six minutes or less."
+     else
+       freeform = raw("Write as you please, <br /> in six minutes, <br /> like a breeze.")
+       write_to_prompt = ""
+     end
+     
+     case @prompt.kind
+      when "flickr"
+        if @prompt.refcode.present? %>
+          <img src="<%= @prompt.refcode %>" class = "prompt" />
+       
+            <%  if @prompt.attribution.present? and @prompt.attribution_url.present? and @prompt.kind.present? and @prompt.license.present? %>
+       	          Image by <a href='<%=@prompt.attribution_url%>'><%=@prompt.attribution %></a>. 
+       	          <br /> Licensed under <%= @prompt.license %>."
+            <% end %>
+      <% end %>
+    <%  
+      when "quotation"
+       #text w attributions
+      when "firstline"
+       if @prompt.refcode %>
+          <h2>First line</h2>
+         
+          <div class="firstline">
+            <%= @prompt.refcode %>
+          </div>
+    <% end %>
+    <%     
+             
+     when "3ww"
+       #three word wednesdays??
+       
+     when "hvg"
+       # hero villain goal
+       %>
+       <span class="labels">hero</span>
+        
+         <span class="entries"><%= @prompt.hero %></span>
+
+         <span class="labels">villain</span>
+           <span class="entries"> <%= @prompt.villain %></span>
+         <span class="labels">goal</span>
+           <span class="entries"><%= @prompt.goal %></span>
+       
+     <% else %>
+       <span class="entries"><%= freeform %></span>       
+       
+     <% end %>
+    
+    <% if @prompt.user_id.present? %>
+      
+             <span class="entries"> <%= (link_to "Prompt", prompt_url(@prompt)) + " suggested by " + (link_to @prompt.user.login, profile_url(@prompt.user)) %> <br />
+             <%= write_to_prompt %>
+      <% end %>
+   </div> <!-- closing #prompt -->
+<% end %>

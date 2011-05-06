@@ -4,7 +4,8 @@
 
 <% content_for :sideyard do %>
 	<h2>More about the Prompt</h2>
-		<%= show_prompt %>
+				<%= render :partial => "prompts/show_prompt" %>
+
 	<h3>Vote on this prompt</h3>
 		<div class="center">
 			<%= render :partial => "votes/prompt_vote", :object => @prompt, :as => :prompt %>

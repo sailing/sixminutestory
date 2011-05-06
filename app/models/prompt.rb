@@ -7,8 +7,8 @@ class Prompt < ActiveRecord::Base
   scope :active, where(:active => true)
   scope :inactive, where(:active => false)
   scope :recent, lambda { where('created_at > ?', 5.months.ago).order('created_at DESC') }
+  scope :top, lambda { where('votes_count > ?', 0).order('votes_count DESC')}
   scope :popular, lambda { where('active = ? AND stories_count > ?', true, 0).limit(10).order('stories_count DESC, updated_at ASC') }
-  scope :commented, lambda { where('(comments_count >= ?) AND created_at > ?', 2, 6.months.ago).order('comments_count DESC, rating DESC, counter DESC, updated_at ASC') }
   scope :featured, where(:featured => true).order('updated_at ASC').limit(1)
   scope :verified, lambda { where('active = ? AND use_on IS NOT ? AND use_on <= ?', true, nil, Date.today) }
   scope :unverified, lambda { where('active = ? AND (use_on IS ? OR use_on > ?)', true, nil, Date.today) }

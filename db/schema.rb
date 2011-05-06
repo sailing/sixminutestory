@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110309222408) do
+ActiveRecord::Schema.define(:version => 20110506210557) do
 
   create_table "comments", :force => true do |t|
     t.text      "comment"
@@ -150,30 +150,31 @@ ActiveRecord::Schema.define(:version => 20110309222408) do
   end
 
   create_table "users", :force => true do |t|
-    t.string    "login"
-    t.string    "crypted_password"
-    t.string    "password_salt"
-    t.string    "website"
-    t.string    "email_address"
-    t.text      "profile"
-    t.boolean   "active",               :default => true
-    t.integer   "admin_level",          :default => 1
-    t.string    "persistence_token"
-    t.integer   "login_count"
-    t.timestamp "last_request_at"
-    t.timestamp "last_login_at"
-    t.timestamp "current_login_at"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.boolean   "send_comments",        :default => true
-    t.boolean   "send_stories",         :default => true
-    t.boolean   "send_followings",      :default => true
-    t.string    "name"
-    t.integer   "facebook_uid"
-    t.string    "facebook_session_key"
-    t.integer   "comments_count",       :default => 0
-    t.integer   "stories_count",        :default => 0
-    t.boolean   "featured",             :default => false
+    t.string   "login"
+    t.string   "crypted_password"
+    t.string   "password_salt"
+    t.string   "website"
+    t.string   "email_address"
+    t.text     "profile"
+    t.boolean  "active",               :default => true
+    t.integer  "admin_level",          :default => 1
+    t.string   "persistence_token"
+    t.integer  "login_count"
+    t.datetime "last_request_at"
+    t.datetime "last_login_at"
+    t.datetime "current_login_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "send_comments",        :default => true
+    t.boolean  "send_stories",         :default => true
+    t.boolean  "send_followings",      :default => true
+    t.string   "name"
+    t.integer  "facebook_uid"
+    t.string   "facebook_session_key"
+    t.integer  "comments_count",       :default => 0
+    t.integer  "stories_count",        :default => 0
+    t.boolean  "featured",             :default => false
+    t.float    "karma",                :default => 0.0
   end
 
   create_table "votes", :force => true do |t|

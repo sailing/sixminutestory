@@ -1,7 +1,16 @@
 class SiteController < ApplicationController
    before_filter :must_be_admin, :only => [:admin]
 
-
+	def home
+		@tags = Story.tag_counts_on(:tags, :limit => 50) if current_user
+		@featured = Story.featured.order("updated_at desc").first
+		@top = Story.recent(Time.now.months_ago(3)).top.limit(5)
+		@recent = Story.order("created_at desc").limit(5)
+		@active = Story.recent(Time.now.months_ago(3)).active.limit(5)
+		@authors = User.order("stories_count desc").limit(5)
+		@prompts = Prompt.top.limit(5)
+		
+	end
   
   def browse_by_tags 
     #

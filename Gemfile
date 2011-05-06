@@ -1,4 +1,5 @@
 source 'http://rubygems.org'
+source 'http://gemcutter.org'
 
 gem 'rails', '3.0.1'
 
@@ -14,10 +15,10 @@ gem 'authlogic_rpx', '= 1.2.0'
 #for Heroku
 #dalli is a caching replacement for memcached
 gem 'dalli'
+#taps is for database syncing
 gem 'taps', '>= 0.3.14'
 
 
-source 'http://gemcutter.org'
 #voting tool 
 gem 'thumbs_up', '>= 0.3.2'
 
@@ -27,6 +28,8 @@ gem 'thumbs_up', '>= 0.3.2'
 #pagination
 gem "will_paginate", "~> 3.0.pre2"
 
+#haml
+gem 'haml'
 
 # Use unicorn as the web server
 # gem 'unicorn'

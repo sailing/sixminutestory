@@ -21,12 +21,13 @@ class StoriesController < ApplicationController
           timeframe = Time.now.months_ago(1)
         end
 
-          if (params[:months] or params[:days])
+	
+						if (params[:months] or params[:days])
               order = "created_at ASC"
-          else
-            order = "created_at DESC"
-          end
-        
+          	else
+            	order = "created_at DESC"
+          	end
+	      
       @truncate = true
       
       begin
@@ -185,16 +186,16 @@ class StoriesController < ApplicationController
       begin
         if request.path.include?("genres")
           @title = "genres"
-          @tags = Story.tag_counts_on(:genres)
+          @tags = Story.tag_counts_on(:genres, :limit => 100)
           @subset = "genre"
         elsif request.path.include?("emotions")
           @title = "emotions"
-          @tags = Story.tag_counts_on(:emotions)
+          @tags = Story.tag_counts_on(:emotions, :limit => 100)
           @emotions = true
           @subset = "emotion"
         else
           @title = "adjectives"
-           @tags = Story.tag_counts_on(:tags)
+           @tags = Story.tag_counts_on(:tags, :limit => 100)
            @subset = "adjective"
         end
       rescue Exception => e

@@ -143,8 +143,10 @@ class VotesController < ApplicationController
      # increment votes_count
       if params[:vote_direction] == "up"
         @voteable.class.name.constantize.increment_counter(:votes_count, @voteable)
+				User.increment_counter(:karma,@user) if @user
       elsif params[:vote_direction] == "down"
         @voteable.class.name.constantize.decrement_counter(:votes_count, @voteable)
+				User.decrement_counter(:karma,@user) if @user
       end
    end
   end

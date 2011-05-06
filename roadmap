@@ -53,10 +53,10 @@ x Fix exceptions
 2.3.2 
 x turn emails back on
 - allow to write without signing in
-- polymorphic voting
-	- add voting on prompts (as => "like") 
+x polymorphic voting
+	x add voting on prompts (as => "like") 
 	x and comments (as => "agree")
-	- and emotions
+	x and emotions
 x move flash[notice] to growl position
 - improve validations for titles to ensure no slug failures			
 - fix <br> in freeform prompt
