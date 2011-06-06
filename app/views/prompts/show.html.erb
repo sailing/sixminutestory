@@ -15,7 +15,9 @@
 
 
 	<div id="show_prompt">
+	  <div class="prompt">
 		<%= render :partial => "prompts/show_prompt" %>
+		</div>
 		<div class="prompt">
 			<span>
 				Originally displayed on:<br /> <%=h @prompt.use_on.strftime("%B %d, %Y") if @prompt.use_on.present? %>

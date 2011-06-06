@@ -761,27 +761,34 @@ header nav td{
 
 }
 
+#show_prompt {
+  width:100%;
+	color:#fff;
+}
+
 .prompt {
 
 	text-align:center;
 	margin:0 auto;
 }
 
-.prompt img {
+#prompt img {
 	width:95%;
-
+  margin:0 auto;
 	-moz-border-radius:10px;  
 	-webkit-border-radius:10px;
 	
 }
 
 #prompt {
-	width:100%;
+	width:99%;
 	padding:1% 0;
 	background: #111;
 	-moz-border-radius:10px;  
 	-webkit-border-radius:10px;
-
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
 #prompt p {
@@ -1218,10 +1225,6 @@ nav {
 }
 
 #listPrompts .row td, #listPrompts .row a {
-	color:#fff;
-}
-
-#show_prompt {
 	color:#fff;
 }
 
