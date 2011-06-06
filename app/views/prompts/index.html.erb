@@ -7,13 +7,22 @@
 	<% end %>
 <% end %>
 
-<%= render :partial => 'admin' %>
+<% content_for :sideyard do %>
+  <h2>How this works</h2>
+  <p>Choose a prompt at left to jumpstart your writing.</p> 
+  <p> Or if you're feeling daring, <%= link_to "click to write", write_url %> to the prompt we chose for today.</p>
+  <div class="toolbar_container"> <div class="green button_container"><%= link_to "Write now", write_url %></div></div>
+<% end %>
+
+
 
 <br />
 <div id="listPrompts">
+<h1>Write a story</h1>
+<%= render :partial => 'admin' %>
 <% unless @scheduled %>
 	<% # select tag shows various prompts %>
-	<h3>View more: 
+	<h3>Prompt styles: 
 	<%= raw(select_tag_for_filter("prompts", @filters, params)) %>
 	</h3>
 <% end %>
