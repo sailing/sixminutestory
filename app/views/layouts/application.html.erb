@@ -190,11 +190,12 @@
 
 					<div class="sideyard_container">
 
-
 					<%= yield(:sideyard) 
 					%> 
 
-        <% unless current_page?(root_url) %>
+        <% 
+        #unless current_page?(root_url) 
+        %>
 			    <div class="center">
 			      <script type="text/javascript"><!--
             google_ad_client = "ca-pub-5581944701482930";
@@ -209,7 +210,9 @@
             src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
             </script>
 			    </div>
-        <% end %>
+        <% 
+        #end 
+        %>
 
 					</div> 
 					<!-- close sideyard_container -->
