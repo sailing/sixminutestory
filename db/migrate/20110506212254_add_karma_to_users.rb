@@ -1,4 +1,4 @@
-class AddKarmaToUsers < ActiveRecord::Migration
+class AddReputationToUsers < ActiveRecord::Migration
   def self.up
 		add_column :users, :reputation, :integer, :default => 0
   end
