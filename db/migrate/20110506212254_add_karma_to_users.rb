@@ -1,9 +1,9 @@
 class AddKarmaToUsers < ActiveRecord::Migration
   def self.up
-		add_column :users, :karma, :double, :default => 0
+		add_column :users, :reputation, :integer, :default => 0
   end
 
   def self.down
-		remove_column :users, :karma
+		remove_column :users, :reputation
   end
 end

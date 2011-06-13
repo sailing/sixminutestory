@@ -14,12 +14,14 @@
 				:remote => true
 			%>
 		</span>	
-		<span class="button_container orange">
-				<%= link_to "Disagree", comment_votes_path(comment, :vote_direction => :down), 
-					:method => :post,
-					:remote => true
+<!--		<span class="button_container orange">
+				<%= 
+				  #link_to "Disagree", comment_votes_path(comment, :vote_direction => :down), 
+					#:method => :post,
+					#:remote => true
 				%>
 		</span>
+-->
 		<% 
 		#elsif !current_user.voted_for?(comment) 
 		%>

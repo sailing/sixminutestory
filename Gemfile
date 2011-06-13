@@ -16,7 +16,7 @@ gem 'authlogic_rpx', '= 1.2.0'
 #dalli is a caching replacement for memcached
 gem 'dalli'
 #taps is for database syncing
-gem 'taps', '>= 0.3.14'
+gem 'taps', '>= 0.3.22'
 
 
 #voting tool 

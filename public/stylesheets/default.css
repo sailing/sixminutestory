@@ -26,35 +26,6 @@ Great Green => #5f9f3f
 
 */
 
-
-/*  Fonts 								*/
-
-@font-face {
-	/* This declaration targets Internet Explorer */
-	font-family: 'nevisBold';
-	src: url('../fonts/nevis-webfont.eot');
-}
-
-@font-face {
-	/* This declaration targets everything else */
-	font-family: 'nevisBold';
-	src: url(//:) format('no404'), url('../fonts/nevis-webfont.woff') format('woff'), url('../fonts/nevis-webfont.ttf') format('truetype'), url('../fonts/nevis-webfont.svg#webfontek601Y1Z') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-    font-family: 'NeutonRegular';
-    src: url('../fonts/Neuton-webfont.eot');
-    src: url('../fonts/Neuton-webfont.eot?#iefix') format('eot'),
-         url('../fonts/Neuton-webfont.woff') format('woff'),
-         url('../fonts/Neuton-webfont.ttf') format('truetype'),
-         url('../fonts/Neuton-webfont.svg#webfont8fs47wLc') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
 /*												*/
 /* 	Re-styled HTML tags 	*/
 /*												*/
@@ -69,16 +40,16 @@ body {
 	vertical-align:baseline;
 /*	background: #dfffff url(../images/sublogo_new_cropped.png) bottom right fixed no-repeat;*/ 
 	background: #e9faff;
-
+	font-size:100%;
 	z-index:1;
 
 }
 
 body, p, td, h1, h4 {
-	font-family: georgia, serif;
+	font-family: tahoma, sans-serif;
   line-height: 1.2em;
 	font-weight:400;
-	font-size:100%;
+
 	letter-spacing:.07em;
 	color:#222; 
 
@@ -106,7 +77,7 @@ pre {
 }
 
 h1, h2, h3, h4, h5 {
-	font-family:"nevisBold", "Futura", tahoma, helvetica, sans-serif;
+	font-family:arial black, "Futura", sans-serif;
 }
 h1 {
 	font-size:2.3em;
@@ -605,19 +576,26 @@ header nav td{
 
 
 .sideyard_container {
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+  
 	width:29%;
 	margin:0;
-	padding:10px 0px;
+	padding:10px 10px;
 	float:right;
 	background-color:#111;
 	-moz-border-radius:15px;  
 	-webkit-border-radius:15px;
 	z-index:1000;
+	color:#fff;	
 	
 }
 
 .sideyard_container div, .sideyard_container p, .sideyard_container span, .sideyard_container h5 {
 	color:#fff;
+  font-family:tahoma, arial;
+  font-weight:500;
 	
 } 
 
@@ -703,7 +681,7 @@ header nav td{
 #elevator_pitch p {
 	font-size:1.1em;
 	line-height:1.5em;
-		font-family:"nevisBold",tahoma, sans-serif;
+	font-family:"nevisBold",tahoma, sans-serif;
 
 }
 
@@ -766,14 +744,13 @@ header nav td{
 	color:#fff;
 }
 
-.prompt {
-
+#prompt {
 	text-align:center;
 	margin:0 auto;
 }
 
 #prompt img {
-	width:95%;
+	width:98%;
   margin:0 auto;
 	-moz-border-radius:10px;  
 	-webkit-border-radius:10px;
@@ -807,6 +784,7 @@ header nav td{
 	display:block;
 	-moz-border-radius:5px;  
 	-webkit-border-radius:5px;
+	text-align:center;
 }
 
 #prompt .firstline {
@@ -838,8 +816,7 @@ header nav td{
 	margin:auto auto;
 	text-align:center;
 	display:inline-block;
-	
-	font-family: "nevisBold", "Futura", tahoma, sans-serif;
+	font-size:.9em;
 	
 	-moz-border-radius:5px;  
 	-webkit-border-radius:5px;	
@@ -862,6 +839,10 @@ header nav td{
 }
 
 .button_container a {
+  font-weight:bold;
+	font-family: tahoma, sans-serif;
+	
+  height:25px;
 	line-height:25px;
 	display:block;
 	width:100%;
@@ -1629,7 +1610,7 @@ nav {
 	font-size:.7em;
 }
 
-.center {
+.center, #prompt_vote, #leaderboard_ad {
 	text-align:center;
 	width:95%;
 	margin:0px auto;
@@ -1674,3 +1655,8 @@ nav {
 .css4, .css4:visited { font-size: 1.2em; padding:0 15px; color:#555;}
 .css5, .css5:visited { font-size: 1.5em; padding:0 20px; color:#333;}
 .css6, .css6:visited { font-size: 1.8em; padding:0 20px; color:#111;}
+
+/* Ads */
+#leaderboard_ad {
+  margin-bottom:25px;
+}

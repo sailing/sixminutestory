@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110506210557) do
+ActiveRecord::Schema.define(:version => 20110506212254) do
 
   create_table "comments", :force => true do |t|
     t.text      "comment"
@@ -174,7 +174,7 @@ ActiveRecord::Schema.define(:version => 20110506210557) do
     t.integer  "comments_count",       :default => 0
     t.integer  "stories_count",        :default => 0
     t.boolean  "featured",             :default => false
-    t.float    "karma",                :default => 0.0
+    t.integer  "reputation",           :default => 0
   end
 
   create_table "votes", :force => true do |t|

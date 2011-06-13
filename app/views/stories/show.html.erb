@@ -66,10 +66,8 @@
 					<%= render :partial => "prompts/show_prompt" %>
 
 			
-		<h2>Vote on this prompt</h2>
-			<div class="center">
+
 				<%= render :partial => "votes/prompt_vote", :object => @story.prompt, :as => :prompt %>
-			</div>
 		<div class="space"></div>
 		
 			<% if is_user %>

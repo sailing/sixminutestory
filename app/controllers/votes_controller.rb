@@ -79,7 +79,19 @@ class VotesController < ApplicationController
     
     respond_to do |format|
     if params[:vote_direction]
-
+				if @voteable.voted_by?(current_user)
+					if current_user.voted_for?(@voteable)
+						@decrement_rating = true
+						@times = 2
+					else
+						@times = 2
+						@increment_rating = true
+					end
+				else 
+					@times = 1
+					@decrement_rating = true
+					@increment_rating = true
+				end
         if current_user.vote(@voteable, :direction => params[:vote_direction], :exclusive => true)
           @voteable.reload
             format.html {redirect_to @voteable}
@@ -140,13 +152,27 @@ class VotesController < ApplicationController
 
   def increment_votes_count
    if @voteable && params[:vote_direction]
+			case @voteable.class.name
+				when "Story"
+					@times = 1
+			end
      # increment votes_count
       if params[:vote_direction] == "up"
-        @voteable.class.name.constantize.increment_counter(:votes_count, @voteable)
-				User.increment_counter(:karma,@user) if @user
+				if @increment_rating
+        	@times.times do
+						if @voteable.class.name.constantize.increment_counter(:votes_count, @voteable)
+							User.increment_counter(:reputation,@voteable.user) if @voteable.user
+						end
+					end
+				end
       elsif params[:vote_direction] == "down"
-        @voteable.class.name.constantize.decrement_counter(:votes_count, @voteable)
-				User.decrement_counter(:karma,@user) if @user
+        if @decrement_rating
+					@times.times do
+						if @voteable.class.name.constantize.decrement_counter(:votes_count, @voteable)
+							User.decrement_counter(:reputation,@voteable.user) if @voteable.user
+						end
+					end
+				end
       end
    end
   end

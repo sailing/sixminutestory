@@ -19,7 +19,7 @@
 		%> 
 	<%= render :partial => "layouts/browsing" %> </span>
 	
-		<%= render :partial => 'story', :collection => @stories %>
+		<%= render :partial => "story", :collection => @stories, :spacer_template => "story_ad" %>
 
 <%= render :partial => 'pagination' %>
 

@@ -11,7 +11,7 @@
 					<br />
 			
 					<%= link_to "click to use", write_to_prompt_url(prompt) %>
-	 				| <%= link_to "details", prompt_url(prompt) -%> | <%= link_to (h(prompt.stories_count) + " stories"), prompt_url(prompt) %>
+          | <%= link_to ("read " + pluralize(prompt.stories_count, "story")), prompt_url(prompt) %>
 					
 				
 					<% if is_admin %>

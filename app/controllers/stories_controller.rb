@@ -33,31 +33,31 @@ class StoriesController < ApplicationController
       begin
         case params[:subset]
           when /popular/
-              @stories = Story.recent(timeframe).popular.paginate :page => page, :per_page => per_page   
+              @stories = Story.recent(timeframe).popular.paginate :include => :user, :page => page, :per_page => per_page   
               @title = "Popular stories"
           when /active/
-              @stories = Story.recent(timeframe).commented.paginate :page => page, :per_page => per_page
+              @stories = Story.recent(timeframe).commented.paginate :include => :user, :page => page, :per_page => per_page
               @title = "Active stories"
           when /recent/
-              @stories = Story.recent(timeframe).paginate :page => page, :per_page => per_page, :order => order          
+              @stories = Story.recent(timeframe).paginate :include => :user, :page => page, :per_page => per_page, :order => order          
               @title = "Recent stories"
           when /top/
-              @stories = Story.recent(timeframe).top.paginate :page => page, :per_page => per_page
+              @stories = Story.recent(timeframe).top.paginate :include => :user, :page => page, :per_page => per_page
               @title = "Top rated stories"
           when /featured/
-              @stories = Story.recent(timeframe).featured.paginate  :page => page, :per_page => per_page, :order => order 
+              @stories = Story.recent(timeframe).featured.paginate  :include => :user, :page => page, :per_page => per_page, :order => order 
               @title = "Editors' picks"
           when /adjective/
               @adjective = params[:tag]
-              @stories = Story.recent(timeframe).tagged_with([@adjective], :any => true).paginate :page => page, :per_page => per_page, :order => order
+              @stories = Story.recent(timeframe).tagged_with([@adjective], :any => true).paginate :include => :user, :page => page, :per_page => per_page, :order => order
               @title = "Stories tagged with #{@adjective}"
           when /genre/
               @genre = params[:tag]
-              @stories = Story.recent(timeframe).tagged_with([@genre], :any => true, :on => :genres).paginate :page => page, :per_page => per_page, :order => order
+              @stories = Story.recent(timeframe).tagged_with([@genre], :any => true, :on => :genres).paginate :include => :user, :page => page, :per_page => per_page, :order => order
               @title = "Stories in #{@genre} genre"
           when /emotion/
                 @emotion = params[:tag].downcase
-                @stories = Story.recent(timeframe).tagged_with([@emotion], :any => true, :on => :emotions).paginate :page => page, :per_page => per_page, :order => order
+                @stories = Story.recent(timeframe).tagged_with([@emotion], :any => true, :on => :emotions).paginate :include => :user, :page => page, :per_page => per_page, :order => order
                 @title = "These stories evoked #{@emotion}"
         
           
@@ -146,7 +146,7 @@ class StoriesController < ApplicationController
 
     e = ActiveRecord::RecordNotFound
     begin
-                @story = Story.active.find(params[:id])
+                @story = Story.active.find(params[:id]) 
                 @previous = Story.previous(@story).first
                 @next = Story.next(@story).first              
                 @next_featured = Story.next_featured(@story).first  

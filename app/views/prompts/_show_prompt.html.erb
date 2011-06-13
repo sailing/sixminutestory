@@ -16,7 +16,7 @@
        
             <%  if @prompt.attribution.present? and @prompt.attribution_url.present? and @prompt.kind.present? and @prompt.license.present? %>
        	          <span>Image by <a href='<%=@prompt.attribution_url%>'><%=@prompt.attribution %></a>. 
-       	          <br /> Licensed under <%= @prompt.license %>."</span>
+       	          <br /> Licensed under <%= @prompt.license %>.</span>
             <% end %>
       <% end %>
     <%  
