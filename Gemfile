@@ -18,7 +18,6 @@ gem 'dalli'
 #taps is for database syncing
 gem 'taps', '>= 0.3.22'
 
-
 #voting tool 
 gem 'thumbs_up', '>= 0.3.2'
 
