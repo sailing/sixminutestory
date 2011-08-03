@@ -245,7 +245,23 @@ class StoriesController < ApplicationController
         begin
           unless @prompt = Prompt.find_by_id(params[:prompt], :conditions => ["active = :active AND (use_on <= :today)", {:active => true, :today => Date.today}])
             unless @prompt = Prompt.find(:first, :conditions => {:use_on => Date.today,:active => true})
-              @prompt = Prompt.find(:first,:order => "use_on DESC", :conditions => ["active = :active AND (use_on < :today)", {:active => true, :today => Date.today}])
+              FlickrawOptions = { :lazyload => true, :timeout => 2 }
+							require 'flickraw'
+
+							FlickRaw.api_key="615dc15889c27e7e570b16fb7f7b7431"
+							FlickRaw.shared_secret="4fdb5165d72fdd38"
+
+							@prompt = Prompt.new
+
+							photo = flickr.photos.search(:license => "4,5,6,7", :sort => "interestingness-desc", :safe_search => 1, :content_type => 1, :extras => "url_m, owner_name, license", :per_page => 1)
+							@prompt.refcode = photo.extras.url_m
+							@prompt.attribution = photo.extras.owner_name
+							@prompt.license = photo.extras.license
+							@prompt.attribution_url = FlickRaw.url_photopage(photo)
+							
+							
+							
+							#@prompt = Prompt.find(:first,:order => "use_on DESC", :conditions => ["active = :active AND (use_on < :today)", {:active => true, :today => Date.today}])
              end
           end
         rescue Exception => e

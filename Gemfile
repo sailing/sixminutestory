@@ -30,6 +30,10 @@ gem "will_paginate", "~> 3.0.pre2"
 #haml
 gem 'haml'
 
+#flickr api for prompts
+gem 'flickraw'
+
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
