@@ -245,8 +245,7 @@ class StoriesController < ApplicationController
         begin
           unless @prompt = Prompt.find_by_id(params[:prompt], :conditions => ["active = :active AND (use_on <= :today)", {:active => true, :today => Date.today}])
             unless @prompt = Prompt.find(:first, :conditions => {:use_on => Date.today,:active => true})
-              FlickrawOptions = { :lazyload => true, :timeout => 2 }
-							require 'flickraw'
+#              FlickRawOptions = { :lazyload => true, :timeout => 2 }
 
 							FlickRaw.api_key="615dc15889c27e7e570b16fb7f7b7431"
 							FlickRaw.shared_secret="4fdb5165d72fdd38"
@@ -259,14 +258,16 @@ class StoriesController < ApplicationController
 							@prompt.license = photo.extras.license
 							@prompt.attribution_url = FlickRaw.url_photopage(photo)
 							
+							@prompt.save
 							
+							@prompt = Prompt.find(@prompt)
 							
 							#@prompt = Prompt.find(:first,:order => "use_on DESC", :conditions => ["active = :active AND (use_on < :today)", {:active => true, :today => Date.today}])
-             end
+            end
           end
         rescue Exception => e
           flash[:notice] = 'That prompt doesn\'t exist. Try this one instead.'
-          redirect_to write_url
+          redirect_to faq_url
         else
           respond_to do |format|
             format.html # new.html.erb
