@@ -243,7 +243,7 @@ class StoriesController < ApplicationController
     e = ActiveRecord::RecordNotFound
     
         begin
-          unless @prompt = Prompt.find_by_id(params[:prompt], :conditions => ["active = :active AND (use_on <= :today)", {:active => true, :today => Date.today}])
+          unless params[:prompt].present? && @prompt = Prompt.find_by_id(params[:prompt], :conditions => ["active = :active AND (use_on <= :today)", {:active => true, :today => Date.today}])
             unless @prompt = Prompt.find(:first, :conditions => {:use_on => Date.today,:active => true})
 #              FlickRawOptions = { :lazyload => true, :timeout => 2 }
 
@@ -252,22 +252,29 @@ class StoriesController < ApplicationController
 
 							@prompt = Prompt.new
 
-							photo = flickr.photos.search(:license => "4,5,6,7", :sort => "interestingness-desc", :safe_search => 1, :content_type => 1, :extras => "url_m, owner_name, license", :per_page => 1)
-							@prompt.refcode = photo.extras.url_m
-							@prompt.attribution = photo.extras.owner_name
-							@prompt.license = photo.extras.license
-							@prompt.attribution_url = FlickRaw.url_photopage(photo)
+							if photo = flickr.photos.search(:license => "4,5,6,7", :sort => "interestingness-desc", :safe_search => 1, :content_type => 1, :extras => "url_m, owner_name, license", :per_page => 1) 
+								i = 0
+								until (photo.present? && Prompt.find_by_refcode(photo[0].url_m).blank?) do
+									photo = flickr.photos.search(:license => "4,5,6,7", :sort => "interestingness-desc", :safe_search => 1, :content_type => 1, :extras => "url_m, owner_name, license", :per_page => 1, :page => i, :max_upload_date => DateTime.now.yesterday)
+									i += 1
+								end
 							
-							@prompt.save
-							
-							@prompt = Prompt.find(@prompt)
+								@prompt.refcode = photo[0].url_m
+								@prompt.attribution = photo[0].ownername
+								@prompt.license = photo[0].license
+								@prompt.attribution_url = FlickRaw.url_photopage(photo[0])
+								@prompt.use_on = Date.today
+								@prompt.kind = "flickr"
+								@prompt.save
+							end
+							#@prompt = Prompt.find(@prompt)
 							
 							#@prompt = Prompt.find(:first,:order => "use_on DESC", :conditions => ["active = :active AND (use_on < :today)", {:active => true, :today => Date.today}])
             end
           end
         rescue Exception => e
           flash[:notice] = 'That prompt doesn\'t exist. Try this one instead.'
-          redirect_to faq_url
+          redirect_to write_to_prompt_url(25)
         else
           respond_to do |format|
             format.html # new.html.erb

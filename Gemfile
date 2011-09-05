@@ -33,6 +33,8 @@ gem 'haml'
 #flickr api for prompts
 gem 'flickraw'
 
+gem 'json'
+
 
 # Use unicorn as the web server
 # gem 'unicorn'
