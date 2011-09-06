@@ -78,7 +78,6 @@ ActiveRecord::Schema.define(:version => 20110906045047) do
     t.string   "attribution_url"
     t.string   "license"
     t.integer  "votes_count",       :default => 0
-    t.string   "licence_image_url"
     t.string   "license_url"
     t.string   "license_en"
     t.string   "license_image_url"
