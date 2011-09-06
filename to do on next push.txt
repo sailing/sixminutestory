@@ -1,0 +1,6 @@
+xMigrate db to add reputation
+xRun: 
+xusers = User.all
+xusers.each do |u| u.reputation = u.karma;u.save; end
+
+Migrate db to add license info

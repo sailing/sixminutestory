@@ -17,7 +17,7 @@
     <%= f.text_field :goal %>
   </p>
  <p>
-    <%= image_submit_tag("contribute.png", :name => "contribute", :id => "contribute-button", :disabled => false) %>
+    <%= submit_tag("Contribute", :name => "prompt[hvg]", :id => "contribute-button", :disabled => false) %>
   </p>
 
 <h4>Images</h4>
@@ -27,7 +27,7 @@
     <%= f.text_field :attribution_url %>
   </p>
  <p>
-    <%= image_submit_tag("contribute.png", :name => "contribute", :id => "contribute-button", :disabled => false) %>
+    <%= submit_tag("Contribute", :name => "prompt[flickr]", :id => "contribute-button", :disabled => false) %>
   </p>
 
 <h4>First line</h4>
@@ -41,6 +41,6 @@
   </p>
 
  <p>
-    <%= image_submit_tag("contribute.png", :name => "contribute", :id => "contribute-button", :disabled => false) %>
+    <%= submit_tag("Contribute", :name => "prompt[startline]", :id => "contribute-button", :disabled => false) %>
   </p>
 <% end %>

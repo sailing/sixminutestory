@@ -255,7 +255,7 @@ class StoriesController < ApplicationController
 							if photo = flickr.photos.search(:license => "4,5,6,7", :sort => "interestingness-desc", :safe_search => 1, :content_type => 1, :extras => "url_m, owner_name, license", :per_page => 1) 
 								i = 0
 								until (photo.present? && Prompt.find_by_refcode(photo[0].url_m).blank?) do
-									photo = flickr.photos.search(:license => "4,5,6,7", :sort => "interestingness-desc", :safe_search => 1, :content_type => 1, :extras => "url_m, owner_name, license", :per_page => 1, :page => i, :max_upload_date => DateTime.now.yesterday)
+									photo = flickr.photos.search(:license => "4,5,6,7", :sort => "interestingness-desc", :safe_search => 1, :content_type => 1, :extras => "url_m, owner_name, license", :per_page => 1, :page => i, :max_upload_date => DateTime.now.prev_month, :min_upload_date => DateTime.now.prev_month.prev_month)
 									i += 1
 								end
 							

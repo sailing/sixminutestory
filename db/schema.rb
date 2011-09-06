@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110613085127) do
+ActiveRecord::Schema.define(:version => 20110906045047) do
 
   create_table "comments", :force => true do |t|
     t.text      "comment"
@@ -58,26 +58,30 @@ ActiveRecord::Schema.define(:version => 20110613085127) do
   end
 
   create_table "prompts", :force => true do |t|
-    t.string    "hero"
-    t.string    "villain"
-    t.string    "goal"
-    t.date      "use_on"
-    t.integer   "rating",          :default => 0
-    t.integer   "counter",         :default => 0
-    t.integer   "user_id"
-    t.integer   "contest_id",      :default => 0
-    t.boolean   "active",          :default => true
-    t.boolean   "verified",        :default => true
-    t.boolean   "delta",           :default => false
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "stories_count",   :default => 0
-    t.string    "refcode"
-    t.string    "kind"
-    t.string    "attribution"
-    t.string    "attribution_url"
-    t.string    "license"
-    t.integer   "votes_count",     :default => 0
+    t.string   "hero"
+    t.string   "villain"
+    t.string   "goal"
+    t.date     "use_on"
+    t.integer  "rating",            :default => 0
+    t.integer  "counter",           :default => 0
+    t.integer  "user_id"
+    t.integer  "contest_id",        :default => 0
+    t.boolean  "active",            :default => true
+    t.boolean  "verified",          :default => true
+    t.boolean  "delta",             :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "stories_count",     :default => 0
+    t.string   "refcode"
+    t.string   "kind"
+    t.string   "attribution"
+    t.string   "attribution_url"
+    t.string   "license"
+    t.integer  "votes_count",       :default => 0
+    t.string   "licence_image_url"
+    t.string   "license_url"
+    t.string   "license_en"
+    t.string   "license_image_url"
   end
 
   create_table "rpx_identifiers", :force => true do |t|

@@ -117,18 +117,20 @@ class PromptsController < ApplicationController
     @prompt = Prompt.new(params[:prompt])
     @prompt.user_id = current_user.id
       
-      if @prompt.attribution_url.present? and @prompt.refcode.blank?
+      if params[:prompt][:flickr]
         @prompt.kind = "flickr" 
-      elsif @prompt.refcode.present?
+      elsif params[:prompt][:startline]
         @prompt.kind = "firstline" 
       # 3ww??
-      else
+    	elsif params[:prompt][:hvg]
         @prompt.kind = "hvg"
-      end
+      else
+				@prompt.kind = nil
+			end
       
     respond_to do |format|
       if @prompt.save
-        flash[:notice] = 'Thanks! We received your suggestion <br /> and will review it soon.'
+        flash[:notice] = 'Thanks! We received your suggestion and will review it soon.'
         format.html { redirect_to(suggest_prompts_url) }
       else
         format.html { render :action => "new" }
