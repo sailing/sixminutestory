@@ -113,7 +113,8 @@ class ApplicationController < ActionController::Base
            return render( :file =>  "#{Rails.root}/public/maintenance.html") unless (current_user && current_user.is_admin?)
         end
      end
-     
+
+		
      def rand_with_range(values = nil)
          if values.respond_to? :sort_by
            values.sort_by { rand }.first

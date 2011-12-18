@@ -10,12 +10,21 @@
 <% content_for :sideyard do %>
   <h2>How to Write a Story</h2>
   <p>Choose a prompt at left to jumpstart your writing.</p> 
-  <p> Or if you're feeling daring, <%= link_to "click to write", write_url %> to the prompt we chose for today.</p>
+  <p> Or if you're feeling daring, <%= link_to "click to write", write_url %> to the prompt we chose for today, or to a <%= link_to "random prompt", random_prompt_url %>.</p>
   <% unless current_user %>
     <p>Since you're not logged in yet, you'll be asked to login on the next page.
     </p>
   <% end %>
-  <div class="toolbar_container"> <div class="green button_container"><%= link_to "Write now", write_url %></div></div>
+  <div class="toolbar_container">
+    <div id="show_story_toolbar">
+      <table>
+        <tr>
+          <td><div class="green button_container"><%= link_to "Write now", write_url %></div></td>
+          <td><div class="green button_container"><%= link_to "Random prompt", random_prompt_url %></div></td>
+        </tr>
+      </table>
+    </div>
+  </div>
 <% end %>
 
 

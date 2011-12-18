@@ -44,4 +44,4 @@ module Sms
 end
 
 RPX_API_KEY = 'c37c053204545279866b1c267510c078a3c7ef6c'
-
+FlickRawOptions = { :lazyload => true, :timeout => 2 }

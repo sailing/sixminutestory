@@ -28,10 +28,11 @@ Sms::Application.routes.draw do
     
     # site activities
       # writing / prompts
-     match 'write', :to => "stories#new", :as => 'write'
-     match 'write/:prompt', :to => "stories#new", :as => 'write_to_prompt'
+    match 'write', :to => "stories#new", :as => 'write'
+		match '/write/random', :to => "prompts#random", :as => 'random_prompt'
+    match 'write/:prompt', :to => "stories#new", :as => 'write_to_prompt'
   #   match 'archives', :to => "prompts#index", :as => 'archives'
-     match 'thanks/:id', :to => "stories#thanks_for_writing", :as => 'thanks_for_writing'
+    match 'thanks/:id', :to => "stories#thanks_for_writing", :as => 'thanks_for_writing'
     
     
     resources :prompts do
@@ -118,6 +119,7 @@ Sms::Application.routes.draw do
 #      match search             '/search'          :to => "site#search", :as => 'search' 
       match '/faq', :to => "site#faq", :as => 'faq'
       match '/join', :to => "users#new", :as => 'join'
+
 #      match about              '/about'           :to => "site#about", :as => ''
 #      match contact            '/contact'         :to => "site#contact", :as => ''
 #      match terms              '/terms'           :to => "site#terms", :as => ''

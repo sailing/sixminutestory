@@ -41,6 +41,12 @@ class Prompt < ActiveRecord::Base
 #   {:scope => "high_rated",  :label => "High-Rated"},
 #   {:scope => "low_rated",   :label => "Low-Rated"}
    
+
+	def self.random
+	  ids = connection.select_all("SELECT id FROM prompts")
+	  find(ids[rand(ids.length)]["id"].to_i) unless ids.blank?
+	end
+
 	def license_in_human_terms(prompt)
 		if prompt.license.present? && prompt.license_url.blank?
 			case prompt.license
