@@ -18,12 +18,16 @@
 			<%= link_to "Popular", subset_stories_path(:subset => "popular") %>
 		</li>
 
-		<li class="brown button_container">
-			<%= link_to "Adjectives", cloud_stories_path(:subset => "adjectives") %>
+		<li class="green button_container">
+			<%= link_to "Random Story", random_stories_url %>
 		</li>
 
-		<li class="brown button_container">
-			<%= link_to "Genres", cloud_stories_path(:subset => "genres") %>
+		<li class="green button_container">
+		  <% if current_user %>
+			  <%= link_to "Random Prompt", random_prompt_url %>
+			<% else %>
+			<%= link_to "Write now!", prompts_url %>
+			<% end %>
 		</li>
 	</ul>
 <% if params[:subset] or @frontpage %>

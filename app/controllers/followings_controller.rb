@@ -2,6 +2,7 @@ class FollowingsController < ApplicationController
   def create
     @following = current_user.followings.build(:writer_id => params[:writer_id])
     if @following.save
+	
       @user = User.find(params[:writer_id])
       
     Hermes.following_notification(@user, current_user).deliver unless (@user.send_followings == false or @user.email_address.blank?)
