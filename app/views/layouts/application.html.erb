@@ -69,7 +69,14 @@
 	<link rel="alternate" href="<%= @rss_url.present? ? @rss_url : 'http://feeds.feedburner.com/sixminutestory/recent' %>" type="application/rss+xml" media="screen" title="RSS" charset="utf-8">
 </head>
 <body>
-
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=176390707863";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
 	<div class="login_container">
 			<% if current_user %>
 				<table class="logged_in">
@@ -260,15 +267,17 @@
 	</div>
 	
 	<aside id="follow_links" class="float_right">
+		  <h3>Follow <br /> 6MS</h3>
+      <div class="fb-like" data-href="http://facebook.com/sixminutestory" data-send="false" data-layout="box_count" data-width="40" data-show-faces="false" data-colorscheme="dark" data-font="segoe ui"></div>
+			
 		<p>
-			<a href="http://www.twitter.com/6minutestory" title="Follow Six Minute Story on Twitter" alt="Follow Six Minute Story on Twitter"><%= image_tag "icons/twitter.png" %></a>
-		</p>
-		<p>		
-				<a href="http://facebook.com/sixminutestory" title="Follow Six Minute Story on Facebook" alt="Follow Six Minute Story on Facebook"><%= image_tag "icons/facebook.png" %></a>
+		  <a href="https://twitter.com/6minutestory" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @6minutestory</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
 		</p>
 		<p>
-			<a href="http://blog.sixminutestory.com" title="Follow Six Minute Story on Tumblr" alt="Follow Six Minute Story on Tumblr"><%= image_tag "icons/tumblr.png" %></a>
-		  
+		  <a href="http://www.tumblr.com/follow/sixminutestory" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:61px; height:20px; background:url('http://platform.tumblr.com/v1/share_2T.png') top left no-repeat transparent;">Share on Tumblr</a>
+			
 		</p>
 	</aside>
 	

@@ -86,12 +86,12 @@
 						<%= pluralize(story.votes_for, 'favorite') %>
 				</span>
 
-			<% if is_admin %>
+			
 			<span>&nbsp;||&nbsp;</span>
 			<span id="counter_in_footer">
 				<%= pluralize(story.counter, 'view') %>
 			</span>
-			
+			<% if is_admin %>
 				<br />
 					<%= link_to 'Edit', edit_story_url(story) %>&nbsp;||&nbsp;<%= story.flagged %>&nbsp;flags
 			<% end %>

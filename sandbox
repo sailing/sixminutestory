@@ -1,3 +1,13 @@
+			<a href="http://www.twitter.com/6minutestory" title="Follow Six Minute Story on Twitter" alt="Follow Six Minute Story on Twitter"><%= image_tag "icons/twitter.png" %></a>
+
+
+
+<a href="http://facebook.com/sixminutestory" title="Follow Six Minute Story on Facebook" alt="Follow Six Minute Story on Facebook"><%= image_tag "icons/facebook.png" %></a>
+<a href="http://blog.sixminutestory.com" title="Follow Six Minute Story on Tumblr" alt="Follow Six Minute Story on Tumblr"><%= image_tag "icons/tumblr.png" %></a>
+
+
+
+
 <div id="leaderboard_ad" class="center">
   <script type="text/javascript"><!--
   google_ad_client = "ca-pub-5581944701482930";
@@ -12,6 +22,9 @@
   src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
   </script>
 </div>
+
+
+
 
 
 
