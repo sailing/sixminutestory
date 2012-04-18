@@ -32,9 +32,9 @@
 		<% if current_user.voted_on?(prompt) %>
 			<br />
 			<% if current_user.voted_for?(prompt) %>
-				<%= link_to prompt.user.login, profile_url(prompt.user) %>'s prompt gave you glee.
+				This prompt gave you glee.
 			<% elsif %>
-				<%= link_to prompt.user.login, profile_url(prompt.user) %>'s prompt didn't thrill you.
+				This prompt didn't thrill you.
 			<% end %>
 		<% end %>
 		<% end %>
