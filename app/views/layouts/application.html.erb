@@ -67,6 +67,25 @@
 
 
 	<link rel="alternate" href="<%= @rss_url.present? ? @rss_url : 'http://feeds.feedburner.com/sixminutestory/recent' %>" type="application/rss+xml" media="screen" title="RSS" charset="utf-8">
+	
+	<!-- Google analytics code snippet -->
+	<script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-9195656-3']);
+    _gaq.push(['_setDomainName', 'sixminutestory.com']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
+  
+	
+	<!-- end Google analytics code snippet -->
 </head>
 <body>
   <div id="fb-root"></div>
@@ -334,19 +353,7 @@
 	<!-- End UserVoice -->
 	
 	
-	<!-- Google analytics code snippet -->
-	<script type="text/javascript">
-	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-	</script>
-	<script type="text/javascript">
-	try {
-	var pageTracker = _gat._getTracker("UA-9195656-3");
-	pageTracker._trackPageview();
-	} catch(err) {}
-	</script>
 	
-	<!-- end Google analytics code snippet -->
 	
 	
 </body>
