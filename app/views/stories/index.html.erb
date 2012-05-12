@@ -65,7 +65,7 @@
 		<strong>Six Minute Story</strong> is a growing collection of stories written in six minutes or less. 
 	</p>
 	<p>
-		<%= rpx_popup( :link_text => "Joining", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false ) %> takes less than five seconds.
+		<%= raw(rpx_popup( :link_text => "Joining", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false )) %> takes less than five seconds.
 	</p>
 
 </div>
@@ -81,7 +81,7 @@
 					</td>
 					<td>
 						<div class="purple button_container">
-							<%= rpx_popup( :link_text => "Join", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false ) %>
+							<%= raw(rpx_popup( :link_text => "Join", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false )) %>
 						</div>
 					</td>
 				</tr>
@@ -111,7 +111,7 @@
 		<% else %>
 
 		<p style="font-size:.9em;">
-			<%= rpx_popup( :link_text => "Join", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false ) %> or <%= rpx_popup( :link_text => "login", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false ) %> to unlock 6MS (it's free and takes less than 5 seconds).
+			<%= raw(rpx_popup( :link_text => "Join", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false )) %> or <%= raw(rpx_popup( :link_text => "login", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false )) %> to unlock 6MS (it's free and takes less than 5 seconds).
 		</p>
 		<div id="show_story_toolbar" class="toolbar_container">
 		<table>
@@ -123,7 +123,7 @@
 				</td>
 				<td>
 					<div class="purple button_container">
-						<%= rpx_popup( :link_text => "Join / Login", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false ) %>
+						<%= raw(rpx_popup( :link_text => "Join / Login", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false )) %>
 					</div>
 				</td>
 			</tr>

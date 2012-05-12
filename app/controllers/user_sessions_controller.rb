@@ -14,7 +14,8 @@ class UserSessionsController < ApplicationController
 
   def create
                 @user_session = UserSession.new(params[:user_session])
-                UserSession.remember_me = true
+								debugger
+                @user_session.remember_me = true
                 if @user_session.save
                         if @user_session.new_registration?
                                 flash[:notice] = "Welcome! As a new user, please review your registration details before continuing..."

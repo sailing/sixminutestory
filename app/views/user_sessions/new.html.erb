@@ -4,15 +4,15 @@
 	<div id="login">
 		<h1>Login</h1>
 		
-		<%= rpx_embed( 
+		<%= raw(rpx_embed( 
 			:link_text => "Register/Sign in with RPX..", 
 			:app_name => "six-minute-story", 
-			:return_url => user_session_url) %>
+			:return_url => user_session_url)) %>
 	</div>
 </div>
 <% content_for :sideyard do %>
 <div id="user_form">
-<% form_for @user_session, :url => user_session_path do |f| %>
+<%= form_for @user_session, :url => user_session_path do |f| %>
 
 
 	<% if @user_session.errors.present? %>
