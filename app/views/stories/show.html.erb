@@ -95,9 +95,11 @@
 
 <% end %>
 
-<div id="respond_emotions">
-	<%= render :partial => 'emotions' %>
-</div>
+<!-- <div id="respond_emotions">
+  <%= 
+  #render :partial => 'emotions' 
+  %>
+</div> -->
 
 <article id="favoriters" class="comment_container">
 	<%= render :partial => 'favoriters' %>
@@ -114,7 +116,7 @@
 
 	<div id="comment_form">
 
-		<%= form_for([@story, @comment], :remote => true, :html => { :id => 'comments_form' }) do |f| %>
+		<%= form_for([@story, @comment], :html => { :id => 'comments_form' }) do |f| %>
   			<%= f.hidden_field :user_id, :value => current_user.id %>
  			<div class="comment_field_container">
 				

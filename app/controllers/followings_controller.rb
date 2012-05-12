@@ -9,9 +9,12 @@ class FollowingsController < ApplicationController
       
       respond_to do |format|
         format.html { 
-          render :update do |page| 
-            page.replace_html 'following_toggle', :partial => 'site/following_toggle', :locals => {:user => @user, :following => @following}
-          end
+					flash[:notice] = "Followed " + @user.login
+          redirect_to profile_url(@user)
+
+				}
+				format.js {
+         	# $("#following_toggle").html(render :partial => 'site/following_toggle', :locals => {:user => @user, :following => @following})
         }
       end
     end
@@ -25,12 +28,10 @@ class FollowingsController < ApplicationController
       respond_to do |format|
         format.html {
           flash[:notice] = "Unfollowed " + @user.login
-          redirect_to account_url
+          redirect_to profile_url(@user)
         }
         format.js { 
-          render :update do |page|
-            page.replace_html 'following_toggle', :partial => 'site/following_toggle', :locals => {:user => @user, :following => nil}
-          end
+					# $("#following_toggle").html(render :partial => 'site/following_toggle', :locals => {:user => @user, :following => nil})
         }
       end
     end

@@ -16,7 +16,7 @@ class Story < ActiveRecord::Base
   scope :active, lambda {where("stories.active = ?", true)}
   scope :inactive, lambda {where("stories.active = ?", false)}
   scope :recent, lambda {|timeframe|
-        active.where('created_at > ?', timeframe.to_datetime) }
+        active.where('stories.created_at > ?', timeframe.to_datetime) }
   scope :popular, lambda { where('(comments_count >= ? or votes_count >= ?)', 0, 0).order('counter DESC, votes_count DESC, updated_at ASC') }
   scope :top, lambda { where('votes_count > ?', 0).order('votes_count DESC')}
   scope :commented, lambda { where('(comments_count >= ?)', 0).order('comments_count DESC, votes_count DESC, counter DESC, updated_at ASC') }

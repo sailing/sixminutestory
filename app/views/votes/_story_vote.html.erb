@@ -12,13 +12,15 @@
   
 		if current_user.voted_for?(@story) %>
 	 		<%= link_to "[-] Remove from favorites", story_votes_path(@story, :vote_direction => :down), 
-				:method => :post,
-				:remote => true
+				:method => :post
+				#,
+				#:remote => true
 			%>
 	<% elsif !current_user.voted_for?(@story) %>
 	 		<%= link_to "[+] Add to favorites", story_votes_path(@story, :vote_direction => :up), 
-				:method => :post,
-				:remote => true
+				:method => :post
+        # ,
+				#:remote => true
 			%>
 	<% end %>
 <% end %>

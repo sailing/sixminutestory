@@ -53,7 +53,7 @@ class StoriesController < ApplicationController
               @title = "Stories tagged with #{@adjective}"
           when /genre/
               @genre = params[:tag]
-              @stories = Story.recent(timeframe).tagged_with([@genre], :any => true, :on => :genres).paginate :include => :user, :page => page, :per_page => per_page, :order => order
+              @stories = Story.includes(:user).recent(timeframe).tagged_with([@genre], :any => true, :on => :genres).paginate :page => page, :per_page => per_page, :order => order
               @title = "Stories in #{@genre} genre"
           when /emotion/
                 @emotion = params[:tag].downcase
@@ -118,12 +118,16 @@ class StoriesController < ApplicationController
           @story.save
           
           respond_to do |format|
-            format.js { 
-              render :update do |page| 
-                page.replace_html 'respond_emotions', :partial => "emotions", :object => @story
-                page.visual_effect :highlight, 'emotions'
-              end
-            }
+						format.html {
+							flash[:notice] = "Emotion added"
+							redirect_to story_url(@story, :anchor => "respond_emotions")
+						}
+            # format.js { 
+            #               render :update do |page| 
+            #                 page.replace_html 'respond_emotions', :partial => "emotions", :object => @story
+            #                 page.visual_effect :highlight, 'emotions'
+            #               end
+            #             }
           end
     else
     
@@ -379,11 +383,12 @@ class StoriesController < ApplicationController
     @story.flagged += 1
     
      respond_to do |format|
-       if @story.save!
+       if @story.save
          format.html { 
-           render :update do |page| 
-              page.replace_html :flag_button, "Flagged. Thanks."
-            end
+						redirect_to story_url(@story)
+           # render :update do |page| 
+           #    page.replace_html :flag_button, "Flagged. Thanks."
+           #  end
             }
          format.xml  { head :ok }         
        else

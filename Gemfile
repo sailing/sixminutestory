@@ -43,14 +43,28 @@ gem 'flickraw'
 #for reading flickr responses
 gem 'json'
 
+# jQuery is the default JavaScript library in Rails 3.1
+gem 'jquery-rails'
+
 # To use debugger
-gem 'ruby-debug'
+gem 'ruby-debug19'
+
+# tagging
+  gem 'acts-as-taggable-on'
+
+# recaptcha
+  gem 'recaptcha'
+
+# Replacing auto_link
+gem 'rinku', '~> 1.5.0', :require => 'rails_rinku'
 
 # Bundle the extra gems:
 # gem 'bj'
 # gem 'nokogiri'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
+
+
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators

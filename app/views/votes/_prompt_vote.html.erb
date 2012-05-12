@@ -10,14 +10,16 @@
 	%>
 	 	<span class="button_container green">
 			<%= link_to "Like", prompt_votes_path(prompt, :vote_direction => :up), 
-				:method => :post,
-				:remote => true
+				:method => :post
+				#,
+				#:remote => true
 			%>
 		</span>	
 		<span class="button_container orange">
 				<%= link_to "Meh", prompt_votes_path(prompt, :vote_direction => :down), 
-					:method => :post,
-					:remote => true
+					:method => :post
+					#,
+					#:remote => true
 				%>
 		</span>
 <% elsif current_user && prompt.user_id == current_user.id %>

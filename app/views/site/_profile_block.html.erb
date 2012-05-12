@@ -56,7 +56,18 @@
 			</th>
 			<td>
 				<span>
-					<%= link_to h(@user.stories.count :conditions => {:active => true}), profile_path(@user) %> (<%= link_to "view more", profile_path(@user)%>)
+					<%= link_to @user.stories.where(:active => true).count, profile_path(@user) %> (<%= link_to "view more", profile_path(@user)%>)
+				</span>
+			</td>
+		</tr>
+		<tr>
+		
+			<th>
+	  		website
+			</th>
+			<td>
+				<span>
+					<%= link_to "Visit website", @user.website, :title => @user.website, :rel => 'nofollow' %>
 				</span>
 			</td>
 		</tr>
@@ -65,7 +76,7 @@
 			profile
 			</th>
 			<td>
-				<%= auto_link(simple_format(h(@user.profile))) %>
+				<%= auto_link(simple_format(@user.profile)) %>
 				
 			</td>
 		</tr>

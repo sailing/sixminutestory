@@ -19,9 +19,11 @@
 	<% end %>
 	</title>
 	<!-- Javascripts to include -->
-	<%= javascript_include_tag :all, :cache => true %>
+	<%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag "application" %>
+  
 	<%= csrf_meta_tag %>
-  	<%= stylesheet_link_tag 'default' %>
+
 
 	<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -305,7 +307,6 @@
 
 		<div class="sideyardfg">
 			<div id="notice">
-				<%= image_tag "close.png", :onClick => visual_effect(:fade,"notice_container",:duration => 0.2) %>
 
 				<br />
 				<%= flash[:notice]  -%>

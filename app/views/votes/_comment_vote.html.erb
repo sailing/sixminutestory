@@ -10,8 +10,9 @@
 	%>
 	 	<span class="button_container green">
 			<%= link_to "Agree", comment_votes_path(comment, :vote_direction => :up), 
-				:method => :post,
-				:remote => true
+				:method => :post
+				#,
+				#:remote => true
 			%>
 		</span>	
 <!--		<span class="button_container orange">
