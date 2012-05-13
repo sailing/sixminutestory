@@ -46,9 +46,6 @@ gem 'json'
 # jQuery is the default JavaScript library in Rails 3.1
 gem 'jquery-rails'
 
-# To use debugger
-gem 'ruby-debug19'
-
 # tagging
   gem 'acts-as-taggable-on'
 
@@ -71,5 +68,8 @@ gem 'rinku', '~> 1.5.0', :require => 'rails_rinku'
 # and rake tasks are available in development mode:
 group :development, :test do
 gem 'sqlite3-ruby', :require => 'sqlite3'
+# To use debugger
+gem 'ruby-debug19'
+
 #   gem 'webrat'
 end
