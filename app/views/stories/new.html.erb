@@ -37,7 +37,6 @@
 	</p>
 </div>
 <% end %>
-<%= javascript_include_tag "prototype", "effects" %>
 
 
 
@@ -67,8 +66,7 @@
 	<!-- Include the prompt so we can use it on the next page. Is this really necessary? -->
 	<%= hidden_field_tag :prompt, @prompt.id %>
 		
-			<% if @story.description.present? || @editing.present?
-				 @description = @story.description
+			<% if @editing.present?
 				 @disabled = true
 			%>	
 				<script type="text/javascript">
@@ -80,12 +78,14 @@
 			<% 
 				else
 					@disabled = false
-					@description = "when you click here \nthe prompt will appear to the right \nand the timer will start"
 			
 				end
 			%>
 					
-			<%= f.text_area :description, :value => @description, :rows => 12, :cols => 45, :tabindex => "1", :onFocus => "Effect.Appear('prompt_and_timer',{duration:0.1});Effect.Fade('instructions',{duration:0.1});getSetWrite(this);" %>
+			<%= f.text_area :description, :rows => 12, :cols => 45, :tabindex => "1", 
+			:placeholder => "Type here to begin writing."
+			# :onFocus => "Effect.Appear('prompt_and_timer',{duration:0.1});Effect.Fade('instructions',{duration:0.1});getSetWrite(this);" 
+			%>
 </div>
 <div class="space"></div>
 
@@ -107,7 +107,7 @@
 			</th>
 			
 			<td>	
-		  		<%= f.text_field :title, :onFocus => 'clearFieldFirstTime(this);', :tabindex => "2" %>
+		  		<%= f.text_field :title, :tabindex => "2" %>
 			</td>
 		</tr>
 
@@ -118,7 +118,7 @@
 			</th>
 			<td>	
 						
-		 			<%= f.text_field :tag_list, :onFocus => 'clearFieldFirstTime(this);', :tabindex => "3" %>
+		 			<%= f.text_field :tag_list, :tabindex => "3" %>
 				
 	  		</td>
 		</tr>
@@ -128,7 +128,7 @@
 				<span style="font-size:x-small">separate genres with commas</span>
 			</th>
 			<td>	
-		 			<%= f.text_field :genre_list, :onFocus => 'clearFieldFirstTime(this);', :tabindex => "4" %>
+		 			<%= f.text_field :genre_list, :tabindex => "4" %>
 				
 	  		</td>
 		</tr>
@@ -168,7 +168,7 @@
 	</div>
 			<br />
 				<p>
-				<%= submit_tag("Publish Your Story", :name => "save", :id => "save-button", :tabindex => "8", :onclick => "document.getElementById('story_description').disabled=false;") %>
+				<%= submit_tag("Publish Your Story", :name => "save", :id => "save-button", :class => "btn primary", :tabindex => "8", :onclick => "document.getElementById('story_description').disabled=false;") %>
 				 
 				</p>
 
