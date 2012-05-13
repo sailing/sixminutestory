@@ -1,3 +1,4 @@
+# encoding: utf-8
 namespace :db do
   namespace :sessions do
     desc "Clears stale (e.g. quarter-day old) sessions"
