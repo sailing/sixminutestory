@@ -1,6 +1,7 @@
 source :rubygems
 source :gemcutter
 
+ruby '1.9.3'
 gem 'rails', '3.1.3'
 
 # Bundle edge Rails instead:
@@ -70,12 +71,12 @@ gem 'rinku', '~> 1.5.0', :require => 'rails_rinku'
 group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'
   # To use debugger
-  gem 'ruby-debug19'
+  # gem 'ruby-debug-base19x'
 
 end
 
 group :production do
-  gem 'therubyracer-heroku', '0.8.1.pre3'
+
   gem 'pg'
   gem 'thin'
   gem 'newrelic_rpm'
