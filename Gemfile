@@ -66,10 +66,14 @@ gem 'rinku', '~> 1.5.0', :require => 'rails_rinku'
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
-group :development, :test do
-gem 'sqlite3-ruby', :require => 'sqlite3'
-# To use debugger
-gem 'ruby-debug19'
 
-#   gem 'webrat'
+group :development, :test do
+  gem 'sqlite3-ruby', :require => 'sqlite3'
+  # To use debugger
+  gem 'ruby-debug19'
+
+end
+
+group :production do
+  gem 'therubyracer-heroku', '0.8.1.pre3'
 end
