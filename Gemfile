@@ -1,16 +1,15 @@
 source :rubygems
 source :gemcutter
 
-ruby '1.9.3'
-gem 'rails', '3.1.3'
+gem 'rails', '3.2.5'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :assets do
-  gem 'sass-rails',   "~> 3.1.5"
-  gem 'coffee-rails', "~> 3.1.1"
-  gem 'uglifier',     ">= 1.0.3"
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
   gem 'twitter-bootstrap-rails', :git => 'https://github.com/seyhunak/twitter-bootstrap-rails.git'
   gem 'less'
 end
@@ -20,10 +19,12 @@ gem 'authlogic', '>= 3.1'
 gem 'rpx_now'
 gem 'authlogic_rpx', :git => 'git://github.com/sailing/authlogic_rpx.git'
 
-#caching
-#for Heroku
-#dalli is a caching replacement for memcached
+# caching
+# for Heroku
+# dalli is a caching replacement for memcached
 gem 'dalli'
+# asset_sync moves files to s3, where they're served by cloudfront
+gem "asset_sync"
 
 # taps is for database syncing on heroku
 gem 'taps', '>= 0.3.22'
