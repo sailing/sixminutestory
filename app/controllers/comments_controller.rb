@@ -64,7 +64,6 @@ class CommentsController < ApplicationController
 				flash[:notice] = "Thank you for your comment!"
         format.html { redirect_to story_url(@comment.story, :anchor => "comments") }
         format.xml  { render :xml => @comment, :status => :created, :location => @comment }
-        format.js
       else
         flash[:notice] = 'Comment is free, so give thine to me.'
         format.html { redirect_to story_url(@comment.story),:anchor => "comments"}

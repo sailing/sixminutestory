@@ -84,22 +84,71 @@ class StoriesController < ApplicationController
  
    end
   
+  # GET /stories/new
+  # GET /stories/new.xml
+  def new
+    @story = Story.new
+    
+    begin
+      unless params[:prompt].present? && @prompt = Prompt.find_by_id(params[:prompt], :conditions => ["active = :active AND (use_on <= :today)", {:active => true, :today => Date.today}])
+        unless @prompt = Prompt.find(:first, :conditions => {:use_on => Date.today,:active => true})
+          FlickRaw.api_key="615dc15889c27e7e570b16fb7f7b7431"
+          FlickRaw.shared_secret="4fdb5165d72fdd38"
+       
+          @prompt = Prompt.new
+
+          if photo = flickr.photos.search(:license => "4,5,7", :sort => "interestingness-desc", :safe_search => 1, :content_type => 1, :extras => "url_m, owner_name, license", :per_page => 1, :group_id => "11252682@N00",:text => "-landscape -cityscape -sunset person") 
+            i = 0
+            until (photo.present? && Prompt.find_by_refcode(photo[0].url_m).blank?) do
+              photo = flickr.photos.search(:license => "4,5,7", :sort => "interestingness-desc", :safe_search => 1, :content_type => 1, :extras => "url_m, owner_name, license", :per_page => 1, :group_id => "11252682@N00",:text => "-landscape -cityscape -sunset person", :page => i, :max_upload_date => DateTime.now.prev_month, :min_upload_date => DateTime.now.prev_month.prev_month)
+              i += 1
+            end
+          
+            @prompt.refcode = photo[0].url_m
+            @prompt.attribution = photo[0].ownername
+            @prompt.license = photo[0].license
+            @prompt.attribution_url = FlickRaw.url_photopage(photo[0])
+            @prompt.use_on = Date.today
+            @prompt.kind = "flickr"
+            @prompt.save
+          end
+          #@prompt = Prompt.find(@prompt)
+          
+          #@prompt = Prompt.find(:first,:order => "use_on DESC", :conditions => ["active = :active AND (use_on < :today)", {:active => true, :today => Date.today}])
+        end
+      end
+    rescue => e
+      @prompt = Prompt.random
+
+    end
+    
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @story }
+    end      
+    
+  end
+
+  # GET /stories/1/edit
+  def edit
+    @story = Story.find(params[:id])
+    @editing = true
+  end
+
   # POST /stories
   # POST /stories.xml
   def create
-    @story = Story.new(params[:story])
-    @story.user_id = @current_user.id
-    @story.prompt_id = params[:prompt]
-    @prompt = Prompt.find_by_id(@story.prompt_id)
+    @story = current_user.stories.build(params[:story])
+    @story.prompt = Prompt.find(params[:story][:prompt_id])
  
     respond_to do |format|
       if @story.save
-                    
         format.html { redirect_to thanks_story_url(@story) }
-        format.xml  { render :xml => @story, :status => :created, :location => @story }
+        format.json { render json: @story, status: :created,location: @story}
       else
+        @prompt = @story.prompt
         format.html { render :action => "new" }
-        format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
+        format.json { render json: @story.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -240,51 +289,7 @@ class StoriesController < ApplicationController
       
   end
 
-  # GET /stories/new
-  # GET /stories/new.xml
-  def new
-    @story = Story.new
-    e = ActiveRecord::RecordNotFound
-    
-        begin
-          unless params[:prompt].present? && @prompt = Prompt.find_by_id(params[:prompt], :conditions => ["active = :active AND (use_on <= :today)", {:active => true, :today => Date.today}])
-						unless @prompt = Prompt.find(:first, :conditions => {:use_on => Date.today,:active => true})
- 							FlickRaw.api_key="615dc15889c27e7e570b16fb7f7b7431"
- 							FlickRaw.shared_secret="4fdb5165d72fdd38"
-           
- 							@prompt = Prompt.new
- 
- 							if photo = flickr.photos.search(:license => "4,5,7", :sort => "interestingness-desc", :safe_search => 1, :content_type => 1, :extras => "url_m, owner_name, license", :per_page => 1, :group_id => "11252682@N00",:text => "-landscape -cityscape -sunset person") 
- 								i = 0
- 								until (photo.present? && Prompt.find_by_refcode(photo[0].url_m).blank?) do
- 									photo = flickr.photos.search(:license => "4,5,7", :sort => "interestingness-desc", :safe_search => 1, :content_type => 1, :extras => "url_m, owner_name, license", :per_page => 1, :group_id => "11252682@N00",:text => "-landscape -cityscape -sunset person", :page => i, :max_upload_date => DateTime.now.prev_month, :min_upload_date => DateTime.now.prev_month.prev_month)
- 									i += 1
- 								end
- 							
- 								@prompt.refcode = photo[0].url_m
- 								@prompt.attribution = photo[0].ownername
- 								@prompt.license = photo[0].license
- 								@prompt.attribution_url = FlickRaw.url_photopage(photo[0])
- 								@prompt.use_on = Date.today
- 								@prompt.kind = "flickr"
- 								@prompt.save
- 							end
- 							#@prompt = Prompt.find(@prompt)
- 							
- 							#@prompt = Prompt.find(:first,:order => "use_on DESC", :conditions => ["active = :active AND (use_on < :today)", {:active => true, :today => Date.today}])
-            end
-          end
-        rescue Exception => e
-          @prompt = Prompt.random
-        else
-          respond_to do |format|
-            format.html # new.html.erb
-            format.xml  { render :xml => @story }
-          end
-        end
-      
-    
-  end
+  
 
 
   def disabled
@@ -301,11 +306,6 @@ class StoriesController < ApplicationController
   end
 
 
-  # GET /stories/1/edit
-  def edit
-    @story = Story.find(params[:id])
-
-  end
 
   def enable_story
     @story = Story.find(params[:id])

@@ -1,7 +1,13 @@
 source :rubygems
 source :gemcutter
 
+# ruby '1.9.2'
+# Stack
 gem 'rails', '3.2.5'
+gem 'thin'
+
+# Analytics
+gem 'newrelic_rpm'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -10,9 +16,15 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
-  gem 'twitter-bootstrap-rails', :git => 'https://github.com/seyhunak/twitter-bootstrap-rails.git'
-  gem 'less'
+  gem 'less-rails-fontawesome'
 end
+
+# Layout and scripting
+gem 'twitter-bootstrap-rails'
+gem 'jquery-rails'
+gem 'haml-rails'
+gem 'less-rails'
+gem 'rinku', :require => 'rails_rinku' # replacing auto_linking in rails 3.2
 
 # user authing
 gem 'authlogic', '>= 3.1'
@@ -26,9 +38,6 @@ gem 'dalli'
 # asset_sync moves files to s3, where they're served by cloudfront
 gem "asset_sync"
 
-# taps is for database syncing on heroku
-gem 'taps', '>= 0.3.22'
-
 #voting tool 
 gem 'thumbs_up', '>= 0.3.2'
 
@@ -36,10 +45,7 @@ gem 'thumbs_up', '>= 0.3.2'
 gem 'friendly_id', '~> 3.1'
 
 #pagination
-gem "will_paginate", "~> 3.0.pre2"
-
-#haml
-gem 'haml', '3.1.2'
+gem "will_paginate", "~> 3.0"
 
 #flickr api for prompts
 gem 'flickraw'
@@ -47,40 +53,26 @@ gem 'flickraw'
 #for reading flickr responses
 gem 'json'
 
-# jQuery is the default JavaScript library in Rails 3.1
-gem 'jquery-rails'
-
 # tagging
   gem 'acts-as-taggable-on'
 
 # recaptcha
-  gem 'recaptcha'
-
-# Replacing auto_link
-gem 'rinku', '~> 1.5.0', :require => 'rails_rinku'
-
-# Bundle the extra gems:
-# gem 'bj'
-# gem 'nokogiri'
-# gem 'sqlite3-ruby', :require => 'sqlite3'
-# gem 'aws-s3', :require => 'aws/s3'
+gem 'recaptcha'
 
 
-
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
 
 group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'
   # To use debugger
-  # gem 'ruby-debug-base19x'
+  gem "debugger"
+
+  # taps is for database syncing on heroku
+  gem 'taps', '>= 0.3.22'
 
 end
 
 group :production do
 
   gem 'pg'
-  gem 'thin'
-  gem 'newrelic_rpm'
+  
 end

@@ -1,0 +1,96 @@
+- content_for :sideyard do
+  #prompt_and_timer.hide
+    #prompt_container.prompt_container
+      #timer_container.orange.button_container
+        #timer_element
+          6:10
+        / the timer is held in the timer.js
+      = render :partial => "prompts/show_prompt"
+  / Prompt and Timer container
+  #instructions
+    %h2
+      Options
+    %p= link_to "Write using another prompt", prompts_url
+    %p= link_to "Write to a blank (freeform) prompt", write_to_prompt_url(25)
+    %p
+      = link_to "Write to a random prompt", random_prompt_url
+      = link_to "start timer", "#", id: "start_timer"
+    %h2
+      Instructions
+    %ol
+      %li
+        When you click in the writing box, you get a
+        %em prompt
+      %li
+        Then you have
+        %strong six minutes
+        to write a
+        %em story
+      %li Go!
+    %p
+      When the timer stops,
+      %em you won't be able to type anymore
+      so use the last seconds
+      %strong wisely
+    %p
+      %em Before submitting
+      choose a
+      %strong title
+      relevant
+      %strong tags
+      and a
+      %strong license
+      for your story.
+%h1 Write a story
+#new_story_container.new_story_container
+  - if @story.errors.any?
+    / ERROOOOOOOooooOOORSSSSSSSSSSSSSSSSS
+    #errorExplanation
+      %h2 Your story hasn't been saved yet.
+      %h3 Please check for errors below.
+      %ul
+        - @story.errors.each do |attribute, msg|
+          %li= msg
+  = form_for @story do |f|
+    / Include the prompt so we can use it on the next page. Is this really necessary?
+    = f.hidden_field :prompt_id, value: @prompt.id
+
+    = f.text_area :description, :rows => 12, :cols => 45, :placeholder => "Type here to begin writing."
+    %div
+      %a#done_writing.btn.btn-large{:href => "#"} I'm done writing
+    #story-saved.modal.hide.fade
+      .modal-header
+        %h3 Well done!
+        %h4 Complete these details to publish your story:
+      .modal-body
+        %table
+          %tr
+            %th
+              - if @story.errors[:title].present?
+                %label= @story.errors[:title]
+              - else
+                = f.label :title
+            %td
+              = f.text_field :title
+          %tr
+            %th
+              = f.label :tag_list, "Adjectives"
+              %br
+              %span{:style => "font-size:x-small"} separate adjectives with commas
+            %td
+              = f.text_field :tag_list
+          %tr
+            %th
+              = f.label :genre_list, "Genres"
+              %br
+              %span{:style => "font-size:x-small"} separate genres with commas
+            %td
+              = f.text_field :genre_list
+          %tr
+            %th
+              = f.label :license
+            %td
+              = f.select :license, options_for_select(["Creative Commons Attribution 3.0","Creative Commons Attribution-NoDerivs 3.0", "Creative Commons Attribution-NonCommerical-NoDerivs 3.0", "Creative Commons AttributionNonCommerical 3.0","Creative Commons Attribution-NonCommerical-ShareAlike 3.0", "Creative Commons Attribution-ShareAlike 3.0","Public Domain"])#, :name => "story[license]"
+      .modal-footer
+        = link_to "Delete my story",random_prompt_url, confirm: "Are you sure you want to abandon this story?", :class =>"btn btn-danger"
+        = f.submit "Publish your story", :class => "btn btn-success btn-large "

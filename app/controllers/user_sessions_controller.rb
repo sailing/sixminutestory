@@ -14,7 +14,6 @@ class UserSessionsController < ApplicationController
 
   def create
                 @user_session = UserSession.new(params[:user_session])
-								debugger
                 @user_session.remember_me = true
                 if @user_session.save
                         if @user_session.new_registration?

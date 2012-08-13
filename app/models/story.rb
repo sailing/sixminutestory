@@ -1,4 +1,7 @@
 class Story < ActiveRecord::Base
+
+  attr_accessible :title, :description, :tags, :genres, :emotions, :license, :prompt_id
+
   #acts_as_taggable  
   acts_as_taggable_on :tags
   acts_as_taggable_on :genres
