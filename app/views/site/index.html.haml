@@ -1,0 +1,9 @@
+.jumbotron.masthead
+	.container
+		%h1 Six Minute Story
+		%p A Cure for Writer's Block.
+		%p= link_to "Write a story", write_url, class: "btn btn-primary btn-large"
+		%ul.masthead-links
+			%li= link_to "Featured stories", subset_stories_path(:subset => "featured")
+			%li= link_to "Browse prompts", prompts_url
+			%li Forum coming soon.

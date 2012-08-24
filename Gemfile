@@ -17,10 +17,12 @@ group :assets do
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'less-rails-fontawesome'
+
+  gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 end
 
 # Layout and scripting
-gem 'twitter-bootstrap-rails'
+
 gem 'jquery-rails'
 gem 'haml-rails'
 gem 'less-rails'

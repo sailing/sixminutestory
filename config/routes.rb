@@ -126,7 +126,7 @@ Sms::Application.routes.draw do
 #      match privacy            '/privacy'         :to => "site#privacy", :as => 'privacy'
 #      match   '/acknowledgements', :to => "site#acknowledgements", :as => 'acknowledgements'
     
-     root :to => "stories#index"
+     root :to => "site#index"
     
      # The priority is based upon order of creation:
      # first created -> highest priority.
