@@ -1,6 +1,9 @@
 class SiteController < ApplicationController
    before_filter :must_be_admin, :only => [:admin]
 
+   def index
+      
+   end
 	def home
 		@tags = Story.tag_counts_on(:tags, :limit => 50) if current_user
 		@featured = Story.featured.order("updated_at desc").first
