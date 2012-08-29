@@ -2,6 +2,8 @@ jQuery(function(){
     var storyTimer = window.SixMinute.StoryTimer.init();
 })
 
+$('#stories_nav').scrollspy(offset:40);
+
 // Namespacing
 window.SixMinute = {}
 window.SixMinute.StoryTimer = {
@@ -33,6 +35,7 @@ window.SixMinute.StoryTimer = {
                    self.tickTock();
                },
                1000)
+ 		$("#done_writing").show();
  	},
     stopTimer:function(){
         console.log("STOP TIMER!");

@@ -7,3 +7,8 @@
 //= require bootstrap
 //= require_self
 //= require_tree .
+
+$("a[rel=popover]").popover()
+$(".tooltip").tooltip()
+$("rel=tooltip").tooltip()
+$("a[rel='tooltip nofollow']").tooltip()

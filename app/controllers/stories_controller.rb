@@ -69,11 +69,11 @@ class StoriesController < ApplicationController
               @title = "Recent stories"            
 							@frontpage = true
         end
-        
       rescue
            flash[:notice] = "There are no stories. Why not write your own?"
            redirect_to faq_url
       else 
+          @titles = @stories.map(&:title)
             respond_to do |format|
                format.html # index.html.erb
                format.xml  { render :xml => @stories }

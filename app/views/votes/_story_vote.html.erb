@@ -11,14 +11,14 @@
 	
   
 		if current_user.voted_for?(@story) %>
-	 		<%= link_to "[-] Remove from favorites", story_votes_path(@story, :vote_direction => :down), 
+	 		<%= link_to "<i class='icon-star icon-large'></i>".html_safe, story_votes_path(@story, :vote_direction => :down), 
 				:method => :post
 				#,
 				#:remote => true
 			%>
 	<% elsif !current_user.voted_for?(@story) %>
-	 		<%= link_to "[+] Add to favorites", story_votes_path(@story, :vote_direction => :up), 
-				:method => :post
+	 		<%= link_to "<i class='icon-star-empty icon-large'></i>".html_safe, story_votes_path(@story, :vote_direction => :up), 
+				:method => :post, rel: "tooltip", title: "Add to favorites"
         # ,
 				#:remote => true
 			%>

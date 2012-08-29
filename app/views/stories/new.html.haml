@@ -13,10 +13,11 @@
       = form_for @story do |f|
         / Include the prompt so we can use it on the next page. Is this really necessary?
         = f.hidden_field :prompt_id, value: @prompt.id
-
-        = f.text_area :description, :rows => 12, :cols => 45, :placeholder => "Type here to begin writing."
+        .row
+          .span8
+            = f.text_area :description, :rows => 15, :placeholder => "Type here to begin writing.", :style => "width:100%;"
         %div
-          %a#done_writing.btn.btn-large{:href => "#"} I'm done writing
+          %a#done_writing.hide.btn.btn-large{:href => "#"} I'm done writing
         #story-saved.modal.hide.fade
           .modal-header
             %h3 Well done!
@@ -69,7 +70,6 @@
       %p= link_to "Write to a blank (freeform) prompt", write_to_prompt_url(25)
       %p
         = link_to "Write to a random prompt", random_prompt_url
-        = link_to "start timer", "#", id: "start_timer"
       %h2
         Instructions
       %ol

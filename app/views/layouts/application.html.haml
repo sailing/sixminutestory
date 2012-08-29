@@ -17,7 +17,7 @@
     %link(href="images/favicon.ico" rel="shortcut icon")
 
 
-  %body
+  %body(data-spy="scroll")
     .navbar.navbar-fixed-top
       .navbar-inner
         .container
@@ -28,7 +28,22 @@
           =link_to "Six Minute Story", root_url, class: "brand"
           .container.nav-collapse
             %ul.nav
-              %li= link_to "Read", stories_path
+              %li.dropdown
+                = link_to "Read <b class='caret'></b>".html_safe, "#", class: "dropdown-toggle", :"data-toggle" => "dropdown"
+                %ul.dropdown-menu
+                  %li
+                    = link_to "Featured", subset_stories_path(:subset => "featured")
+                  %li
+                    = link_to "Favorited", subset_stories_path(:subset => "top")
+                  %li
+                    = link_to "Recent", subset_stories_path(:subset => "recent")
+                  %li
+                    = link_to "Active", subset_stories_path(:subset => "active")
+                  %li
+                    = link_to "Popular", subset_stories_path(:subset => "popular")
+                  %li
+                    = link_to "Random Story", random_stories_url
+
               %li= link_to "Write", write_path
               %li= link_to "FAQ", faq_path
               %li= link_to "Blog", "http://blog.sixminutestory.com"

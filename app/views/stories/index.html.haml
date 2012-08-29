@@ -3,22 +3,30 @@
   - @rss_url = "http://feeds.feedburner.com/sixminutestory/recent.rss"
 - else
   - @rss_url = "http://feeds.feedburner.com/sixminutestory" + request.path + ".rss"
+.row
+  .span12
+    %h1= @title
+    = render :partial => "layouts/browsing"
+.row
+  - if @stories.any?
+    .span8
+      = render @stories, :spacer_template => "story_ad"
+      = render :partial => 'pagination'
+    #stories_nav.span4.bs-docs-sidebar
+      %ul.nav.nav-list.bs-docs-sidenav.affix-bottom
+        - @titles.each do |t|
+          %li= link_to t, "#"+t.downcase.parameterize
 
-- if @stories.any?
-  %h1= @title
-  %span
-    = render :partial => "layouts/browsing"
-  = render @stories, :spacer_template => "story_ad"
-  = render :partial => 'pagination'
-- else
-  %span
-    = render :partial => "layouts/browsing"
-  %h1
-    Erm...
-  #no_stories
-    %p
-      No stories meet that criteria.
-      = link_to "Write your own", write_url
+
+
+  - else
+    %h1
+      Erm...
+    #no_stories
+      %p
+        No stories meet that criteria.
+        = link_to "Write your own", write_url
+
 
 / - content_for :sideyard do
 /   - if @frontpage
