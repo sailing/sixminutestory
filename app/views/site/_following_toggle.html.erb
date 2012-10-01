@@ -1,9 +1,9 @@
 <div id="following_toggle">
 
-		<% unless is_following?(@user) %>
+		<% unless is_following?(@story.user) %>
 			<div id="following_button" class="button_container">
 				<%= link_to "Follow", 
-					followings_url(:writer_id => @user.id),
+					followings_url(:writer_id => @story.user.id),
 					:method => :post
 					#,
 					#:remote => true
@@ -13,7 +13,7 @@
 				<div id="unfollowing_button" class="button_container">
 					<%= 
 					link_to "Unfollow", 	
-						Following.where(:user_id => current_user, :writer_id => @user).first,
+						Following.where(:user_id => current_user, :writer_id => @story.user).first,
 						:method => :delete
             # ,
 						#:remote => true

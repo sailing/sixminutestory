@@ -1,26 +1,22 @@
 <span id="add_favorite">
 
-	<%= approval_rating %>
-
 <% if current_user && @story.user_id != current_user.id %>
-	
 	<% 
 		# You can't vote if it is your @story, 
 		# you are not logged in, 
 		# or you have already voted on this item
-	
   
 		if current_user.voted_for?(@story) %>
 	 		<%= link_to "<i class='icon-star icon-large'></i>".html_safe, story_votes_path(@story, :vote_direction => :down), 
-				:method => :post
-				#,
-				#:remote => true
+				:method => :post, rel: "tooltip", title: "Remove from favorites",
+				:remote => true
 			%>
 	<% elsif !current_user.voted_for?(@story) %>
 	 		<%= link_to "<i class='icon-star-empty icon-large'></i>".html_safe, story_votes_path(@story, :vote_direction => :up), 
-				:method => :post, rel: "tooltip", title: "Add to favorites"
-        # ,
-				#:remote => true
+				:method => :post, rel: "tooltip", title: "Add to favorites", 
+				:remote => true
 			%>
 	<% end %>
 <% end %>
+<%= approval_rating(@story) %>
+</span>

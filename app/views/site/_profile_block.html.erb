@@ -1,14 +1,14 @@
 <h2>
-		<%=h @user.login %>
+		<%=h @story.user.login %>
 	
 </h2>
 
-	<% if is_user && current_user.id == @user.id %>
+	<% if is_user && current_user.id == @story.user.id %>
 		<span class="small_text">
 			<%= link_to "manage profile", edit_account_path %>
 		</span>
-	<% elsif is_user && current_user.id != @user.id %>
-		<%= render :partial => 'site/following_toggle', :locals => {:user => @user} %>
+	<% elsif is_user && current_user.id != @story.user.id %>
+		<%= render :partial => 'site/following_toggle', :locals => {:user => @story.user} %>
 	
 	<% end %>
 
@@ -21,8 +21,8 @@
 			</th>
 			<td>
 				<span>
-					 <%	if @user.email_address.present? %> 
-						<%=h @user.email_address %>
+					 <%	if @story.user.email_address.present? %> 
+						<%=h @story.user.email_address %>
 					<% end %>
 					
 				</span>
@@ -35,7 +35,7 @@
 			</th>
 			<td>
 				<span>
-					<%= time_ago_in_words(@user.created_at) %> ago
+					<%= time_ago_in_words(@story.user.created_at) %> ago
 				</span>
 			</td>
 		</tr>
@@ -45,7 +45,7 @@
 			</th>
 			<td>
 				<span>
-					<%= @user.karma %>
+					<%= @story.user.karma %>
 				</span>
 			</td>
 		</tr>
@@ -56,7 +56,7 @@
 			</th>
 			<td>
 				<span>
-					<%= link_to @user.stories.where(:active => true).count, profile_path(@user) %> (<%= link_to "view more", profile_path(@user)%>)
+					<%= link_to @story.user.stories.where(:active => true).count, profile_path(@story.user) %> (<%= link_to "view more", profile_path(@story.user)%>)
 				</span>
 			</td>
 		</tr>
@@ -67,7 +67,7 @@
 			</th>
 			<td>
 				<span>
-					<%= link_to "Visit website", @user.website, :title => @user.website, :rel => 'nofollow' %>
+					<%= link_to "Visit website", @story.user.website, :title => @story.user.website, :rel => 'nofollow' %>
 				</span>
 			</td>
 		</tr>
@@ -76,7 +76,7 @@
 			profile
 			</th>
 			<td>
-				<%= auto_link(simple_format(@user.profile)) %>
+				<%= auto_link(simple_format(@story.user.profile)) %>
 				
 			</td>
 		</tr>

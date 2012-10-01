@@ -1,0 +1,59 @@
+- content_for :pagename do
+  = h(@story.title)
+
+
+.row
+  / ADMIN SECTION
+  - if is_admin
+    .span2.offset4
+      - if @story.featured == true
+        #unfollowing_button
+          = link_to "Unfeature", unfeature_story_url(@story), class: "btn btn-danger",
+            :confirm => 'Are you sure you want to unfeature this story? The story will no longer be featured!', :method => :post
+      - elsif @story.featured == false
+        #following_button.button_container
+          = link_to "Feature", feature_story_url(@story), class: "btn btn-warning",
+            :confirm => 'Are you sure you want to feature this story? The story will become featured!', :method => :post 
+    .span2
+      = link_to "Edit Details", edit_story_url(@story), class: "btn btn"
+.row
+  .span12
+    = render :partial => "layouts/browsing"
+.row
+  .span1
+    = link_to "<i class='icon-caret-left icon-large'></i>".html_safe, story_url(@previous), class: "btn btn-large"
+  .span10
+    = render :partial => "stories/story", :locals => {:story => @story}
+  .span1
+    = link_to "<i class='icon-caret-right icon-large'></i>".html_safe, story_url(@next), class: "btn btn-large"
+.row
+  .span12
+    .row
+      .span6
+        = render :partial => "site/profile_block"
+        %h1 Story information
+        #information_container
+          %span license
+          %p
+            = h @story.license
+          %span genres
+          %p
+            - @story.genres.each do |genre|
+              = link_to h(genre.name), subset_stories_url(:tag => genre.name, :subset => "genre", :months => 100)
+          %span tags
+          %p
+            - @story.tags.each do |tag|
+              = link_to h(tag.name), subset_stories_url(:tag => tag.name, :subset => "adjective", :months => 100)
+        %h2 The prompt for this story
+        = render :partial => "prompts/show_prompt"
+        = render :partial => "votes/prompt_vote", :object => @story.prompt, :as => :prompt
+        .space
+        - if is_user
+          %h2 Connect
+          / List of things to add:
+          %p
+            = link_to "Suggest a Prompt", suggest_prompts_url
+      .span6
+        %article#favoriters
+          = render :partial => "favoriters"
+        = render :partial => "comment_section"

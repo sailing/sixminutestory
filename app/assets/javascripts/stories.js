@@ -1,8 +1,10 @@
+$('#stories_nav').scrollspy({
+	offset: 40
+});
+
 jQuery(function(){
     var storyTimer = window.SixMinute.StoryTimer.init();
 })
-
-$('#stories_nav').scrollspy(offset:40);
 
 // Namespacing
 window.SixMinute = {}
@@ -74,3 +76,4 @@ window.SixMinute.StoryTimer = {
     }
 
 }
+

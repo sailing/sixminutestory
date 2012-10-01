@@ -13,7 +13,7 @@
     %p
       - unless @stories
         %span#comments_in_header
-          = link_to_unless_current pluralize(story.comments_count, 'remark'),                     
+          = link_to_unless_current raw(story.comments_count.to_s + " <i class='icon-comment'></i>"),                     
             {:controller => 'stories', :action => 'show', :id => story, :anchor => 'comments'} do 
             link_to pluralize(story.comments_count, 'remark'), {:anchor => "comments"}            
             end                                                                                   
@@ -50,6 +50,9 @@
         = link_to "<i class='icon-flag'></i>".html_safe, flag_stories_url(story: story.id), :method => "post", rel: "tooltip", title: "Flag this as hateful"
       
   - if is_admin
-    %br
-    = link_to 'Edit', edit_story_url(story)
-    \&nbsp;||&nbsp;#{story.flagged}&nbsp;flags
+    &nbsp;||&nbsp;
+    = link_to '<i class="icon-edit"></i>'.html_safe, edit_story_url(story)
+    &nbsp;|&nbsp;
+    = story.flagged
+    %i.icon-flag
+

@@ -94,10 +94,10 @@ class VotesController < ApplicationController
 				end
         if current_user.vote(@voteable, :direction => params[:vote_direction], :exclusive => true)
           @voteable.reload
-            format.html {redirect_to @voteable}
-            format.js
+          format.html {redirect_to @voteable}
+          format.js
         else
-            format.html { render :action => "new" }
+            format.html { redirect_to @voteable, notice: "Favorite not saved." }
             format.js  { render :action => "error" }
         end
     

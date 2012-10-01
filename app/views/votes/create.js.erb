@@ -1,0 +1,10 @@
+<%- if @voteable.class.name == "Story" %>
+	<%- @story = @voteable %>
+	$("#add_favorite").html("<%= escape_javascript(render partial: 'votes/story_vote') %>")
+  	$("#favoriters").html("<%= escape_javascript(render partial: 'stories/favoriters') %>")
+  	$("#favorites_in_footer").html("<%= approval_rating(@voteable) %>")
+<%- elsif @voteable.class.name == "Comment" %>
+	$("#agree_with_comment_<%= @voteable.id.to_s %>").html("<%= escape_javascript(render partial: 'votes/comment_vote', object: @voteable, as: :comment) %>")
+<%- elsif @voteable.class.name == "Prompt" %>
+	$("#prompt_vote").html("<%= escape_javascript(render partial: 'votes/prompt_vote', object: @voteable, as: :prompt) %>")
+<%- end %>

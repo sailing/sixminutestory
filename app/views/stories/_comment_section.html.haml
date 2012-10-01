@@ -1,0 +1,18 @@
+#comments
+  %h1 Discuss
+  - if current_user
+    #comment_form
+      = form_for([@story, Comment.new], :html => { :id => 'comments_form' }) do |f|
+        = f.hidden_field :user_id, :value => current_user.id
+        = f.text_area :comment, :rows => 3, :cols => 55
+        #comment_submit_container
+          = submit_tag "Contribute", :name => "contribute", :id => "contribute-button", :disabled => false
+  - else
+    #signin_or_register
+      = rpx_popup(:link_text => "Login", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false )
+      or
+      = rpx_popup(:link_text => "Join", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false )
+      to remark.
+  - if @story.comments.present?
+    = render :partial => "comments/comment", :collection => @story.comments
+
