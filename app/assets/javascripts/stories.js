@@ -4,7 +4,41 @@ $('#stories_nav').scrollspy({
 
 jQuery(function(){
     var storyTimer = window.SixMinute.StoryTimer.init();
-})
+
+	$(document).unbind('keydown').bind('keydown', function (event) {
+	    var doPrevent = false;
+	    if (event.keyCode === 8) {
+	        var d = event.srcElement || event.target;
+	        if ((d.tagName.toUpperCase() === 'INPUT' && (d.type.toUpperCase() === 'TEXT' || d.type.toUpperCase() === 'PASSWORD')) 
+	             || d.tagName.toUpperCase() === 'TEXTAREA') {
+	            doPrevent = d.readOnly || d.disabled;
+	        }
+	        else {
+	            doPrevent = true;
+	        }
+	    }
+
+	    if (doPrevent) {
+	        event.preventDefault();
+	    }
+	});
+
+	$("#new_story").submit(function (){
+		$("#story_description").removeAttr("disabled");
+	});
+
+	
+	$('input[type="text"]').keyup(function(){
+		var value = $("#story_title").val();
+	    if ( value.length > 0 && value != "Title" ) {
+	    	$('input[type="submit"]').removeAttr('disabled');
+	    } else {
+	    	$('input[type="submit"]').attr('disabled','disabled');	
+	    }
+	 });
+});
+
+
 
 // Namespacing
 window.SixMinute = {}
@@ -12,6 +46,7 @@ window.SixMinute.StoryTimer = {
     el:$("#timer_element")[0],
     init:function(){
 		var self = this; // had to do this or startTimer was undefined
+		$('input[type="submit"]').attr('disabled','disabled');
  	 	$("#story_description").focus(function(){
  	 		$("#prompt_and_timer").removeClass('hide');
  	 		$("#instructions").hide();
@@ -24,6 +59,7 @@ window.SixMinute.StoryTimer = {
         return this;
     },
     milliseconds: 370000,
+ 	// milliseconds: 4000,
     intervalId: null,
  	startTimer:function(){
 	    var self = this;
@@ -48,6 +84,7 @@ window.SixMinute.StoryTimer = {
  		$("#story-saved").bind('shown', function () {
   			$("#story_title").focus();
 		});
+		$("#story_description").attr("disabled", "disabled");
  	
     },
     updateTimerText:function(ms){

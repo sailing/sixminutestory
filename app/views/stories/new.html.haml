@@ -3,7 +3,6 @@
   .span8
     #new_story_container.new_story_container
       - if @story.errors.any?
-        / ERROOOOOOOooooOOORSSSSSSSSSSSSSSSSS
         #errorExplanation
           %h2 Your story hasn't been saved yet.
           %h3 Please check for errors below.
@@ -52,7 +51,7 @@
                 %td
                   = f.select :license, options_for_select(["Creative Commons Attribution 3.0","Creative Commons Attribution-NoDerivs 3.0", "Creative Commons Attribution-NonCommerical-NoDerivs 3.0", "Creative Commons AttributionNonCommerical 3.0","Creative Commons Attribution-NonCommerical-ShareAlike 3.0", "Creative Commons Attribution-ShareAlike 3.0","Public Domain"])#, :name => "story[license]"
           .modal-footer
-            = link_to "Delete my story",random_prompt_url, confirm: "Are you sure you want to abandon this story?", :class =>"btn btn-danger"
+            = link_to "Eh, toss this story",random_prompt_url, confirm: "Are you sure you want to abandon this story?", :class =>"btn btn-danger"
             = f.submit "Publish your story", :class => "btn btn-success btn-large "
   .span4
     #prompt_and_timer.hide
