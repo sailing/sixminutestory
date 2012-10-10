@@ -1,5 +1,5 @@
 #comments
-  %h1 Discuss
+  %h3 Discuss
   - if current_user
     #comment_form
       = form_for([@story, Comment.new], :html => { :id => 'comments_form' }) do |f|

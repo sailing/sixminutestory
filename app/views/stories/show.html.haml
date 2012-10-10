@@ -5,17 +5,17 @@
 .row
   / ADMIN SECTION
   - if is_admin
-    .span2.offset4
+    .span4.offset2
       - if @story.featured == true
         #unfollowing_button
-          = link_to "Unfeature", unfeature_story_url(@story), class: "btn btn-danger",
+          = link_to "Unfeature", unfeature_story_url(@story), class: "btn span3 btn-danger btn-superlarge",
             :confirm => 'Are you sure you want to unfeature this story? The story will no longer be featured!', :method => :post
       - elsif @story.featured == false
         #following_button.button_container
-          = link_to "Feature", feature_story_url(@story), class: "btn btn-warning",
+          = link_to "Feature", feature_story_url(@story), class: "btn span3 btn-warning btn-superlarge",
             :confirm => 'Are you sure you want to feature this story? The story will become featured!', :method => :post 
-    .span2
-      = link_to "Edit Details", edit_story_url(@story), class: "btn btn"
+    .span4
+      = link_to "Edit Details", edit_story_url(@story), class: "btn span3 btn-success btn-superlarge"
 .row
   .span12
     = render :partial => "layouts/browsing"
@@ -26,34 +26,32 @@
     = render :partial => "stories/story", :locals => {:story => @story}
   .span1
     = link_to "<i class='icon-caret-right icon-large'></i>".html_safe, story_url(@next), class: "btn btn-large"
-.row
-  .span12
-    .row
-      .span6
-        = render :partial => "site/profile_block"
-        %h1 Story information
-        #information_container
-          %span license
-          %p
-            = h @story.license
-          %span genres
-          %p
-            - @story.genres.each do |genre|
-              = link_to h(genre.name), subset_stories_url(:tag => genre.name, :subset => "genre", :months => 100)
-          %span tags
-          %p
-            - @story.tags.each do |tag|
-              = link_to h(tag.name), subset_stories_url(:tag => tag.name, :subset => "adjective", :months => 100)
-        %h2 The prompt for this story
-        = render :partial => "prompts/show_prompt"
-        = render :partial => "votes/prompt_vote", :object => @story.prompt, :as => :prompt
-        .space
-        - if is_user
-          %h2 Connect
-          / List of things to add:
-          %p
-            = link_to "Suggest a Prompt", suggest_prompts_url
-      .span6
-        %article#favoriters
-          = render :partial => "favoriters"
-        = render :partial => "comment_section"
+#post_story.row
+  .span5.offset1
+    %h3 Story information
+    
+    %span license
+    %p
+      = h @story.license
+    %span genres
+    %p
+      - @story.genres.each do |genre|
+        = link_to h(genre.name), subset_stories_url(:tag => genre.name, :subset => "genre", :months => 100)
+    %span tags
+    %p
+      - @story.tags.each do |tag|
+        = link_to h(tag.name), subset_stories_url(:tag => tag.name, :subset => "adjective", :months => 100)
+    #favoriters
+      = render :partial => "favoriters"
+
+    .well
+      = render :partial => "site/profile_block"
+
+    #prompt.hide
+      %h3 The prompt for this story
+      = render :partial => "prompts/show_prompt"
+      = render :partial => "votes/prompt_vote", :object => @story.prompt, :as => :prompt
+      .space
+
+  .span5
+    = render :partial => "comment_section"

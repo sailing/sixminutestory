@@ -44,21 +44,31 @@
                   %li
                     = link_to "Random Story", random_stories_url
 
-              %li= link_to "Write", write_path
+              %li= link_to "Write", prompts_path
               %li= link_to "FAQ", faq_path
               %li= link_to "Blog", "http://blog.sixminutestory.com"
 
     - if request.path == "/"
-      .content
-        = yield
-    - else
-      .container
-        .content
+      #wrap
+        #main.content
           = yield
+    - else
+      #wrap
+        #main.container
+          .content
+            = yield
+              
+    %footer
+      .row
+        .span7
+          .row
+            .span1
+              %i.icon-cloud.icon-superlarge.pull-left 
+            .span5
+              %strong Six Minute Story is a cure for writer's block.
+              We're a growing community writing stories in six minutes or less. Join us as we fill the world with ad-libbed eloquence.
+        .span5
             
-    
-      %footer
-        %p &copy; Company 2012
     /
       Javascripts
       \==================================================
