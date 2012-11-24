@@ -16,7 +16,7 @@
             :confirm => 'Are you sure you want to feature this story? The story will become featured!', :method => :post 
     .span4
       = link_to "Edit Details", edit_story_url(@story), class: "btn span3 btn-success btn-superlarge"
-.row
+.row-fluid
   .span12
     = render :partial => "layouts/browsing"
 .row
@@ -26,7 +26,10 @@
     = render :partial => "stories/story", :locals => {:story => @story}
   .span1
     = link_to "<i class='icon-caret-right icon-large'></i>".html_safe, story_url(@next), class: "btn btn-large"
-#post_story.row
+#post_story.row-fluid
+  .span5.offset1
+    = render :partial => "comment_section"
+
   .span5.offset1
     %h3 Story information
     
@@ -37,10 +40,11 @@
     %p
       - @story.genres.each do |genre|
         = link_to h(genre.name), subset_stories_url(:tag => genre.name, :subset => "genre", :months => 100)
-    %span tags
     %p
-      - @story.tags.each do |tag|
-        = link_to h(tag.name), subset_stories_url(:tag => tag.name, :subset => "adjective", :months => 100)
+      %i.icon-tags
+      %span
+        - @story.tags.each do |tag|
+          = link_to h(tag.name), subset_stories_url(:tag => tag.name, :subset => "adjective", :months => 100)
     #favoriters
       = render :partial => "favoriters"
 
@@ -53,5 +57,4 @@
       = render :partial => "votes/prompt_vote", :object => @story.prompt, :as => :prompt
       .space
 
-  .span5
-    = render :partial => "comment_section"
+  
