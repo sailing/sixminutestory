@@ -1,0 +1,34 @@
+.span4
+  = render partial: "site/profile_block"
+  - if is_user
+    %h3
+      Favorites (#{@user.votes.size})
+    %p
+      = link_to "View favorites", favorites_path(@user)
+  - if is_owner_or_admin
+    %h3
+      Comments (#{@user.comments_count || "0"})
+    %p
+      = link_to "View comments", users_comments_path("new")
+  %h3
+    Follows (#{@user.writers.size})
+  - if @user.followings.present?
+    %ul
+      - for following in @user.followings
+        %li
+          = link_to h(following.writer.login), profile_path(following.writer)
+          = link_to_if @user == current_user, "[unfollow]", following, {:method => :delete, :style => "color:white;"} do
+            \&nbsp;
+  - else
+    %span
+      Not following anyone yet.
+  %h3
+    Fans (#{@user.followers.size})
+  - if @user.followers.present?
+    %ul
+      - for follower in @user.followers
+        %li
+          = link_to h(follower.login), profile_path(follower)
+  - else
+    %span
+      No fans as of yet.

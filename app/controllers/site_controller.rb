@@ -36,8 +36,8 @@ class SiteController < ApplicationController
      page = params[:page] || 1
      per_page = 7
      order = "created_at DESC"
-     @stories = Story.paginate_by_user_id @user.id, :page => page, :order => order, :per_page => per_page, :conditions => {:active => true}    
-
+     @stories = @user.stories.active.page(page).per(per_page).order(order)
+     @story = @stories.first if @stories.any?
          @i = 0
    end
    

@@ -31,7 +31,7 @@
 		%span
 			= link_to @story.user.stories.where(active: true).count, profile_path(@story.user)
 			(
-			= link_to "view more", profile_path(@story.user)
+			= link_to "view stories", profile_path(@story.user)
 			)
 	- if @story.user.website.present?
 		%p
