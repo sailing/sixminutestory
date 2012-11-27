@@ -9,7 +9,8 @@ class UsersController < ApplicationController
            per_page = 20
            order = params[:order] || "created_at DESC" 
 
-          @users = User.paginate :page => page, :order => order, :per_page => per_page
+          @users = User.page(page).per(per_page).order(order)
+
         end
     
   def new
@@ -49,18 +50,29 @@ class UsersController < ApplicationController
         @paginate = true 
         
         if request.path.include?("profile") or (request.path.include?("profile") and request.format == "rss") 
-           @stories = Story.active.where(:user_id => @user.id).paginate :include => :user, :page => page, :order => order, :per_page => per_page                  
+           @stories = @user.stories.active.page(page).per(per_page).order(order)
+           @story = @stories.first if @stories.any?
+           unless @story
+              @story = @user.stories.build
+            end
+
            @rss_url = "http://sixminutestory.com/profile/"+params[:id]+".rss"
             @profile = true
             @title = "Stories by " + @user.login
 
+
         elsif (request.path.include?("account") or (request.path.include?("rss") and request.format == "rss")) and !@user.writers.empty?
-            @stories = Story.active.where(:user_id => @user.writers).paginate(:include => :user, :page => page, :order => order, :per_page => per_page)
+            @stories = Story.active.where(:user_id => @user.writers).page(page).per(per_page).order(order)
               #@rss_url = rss_url(@user.login, :format => :rss)
             @profile = false
             @title = "Stories by users you follow"
         else
-           @stories = Story.active.where(:user_id => @user.id).paginate(:include => :user, :page => page, :order => order, :per_page => per_page)                    
+           @stories = @user.stories.active.page(page).per(per_page).order(order)
+           @story = @stories.first if @stories.any?
+           unless @story
+              @story = @user.stories.build
+            end
+           
         end
     
       respond_to do |format|

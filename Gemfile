@@ -47,7 +47,8 @@ gem 'thumbs_up', '>= 0.3.2'
 gem 'friendly_id', '~> 3.1'
 
 #pagination
-gem "will_paginate", "~> 3.0"
+# gem "will_paginate", "~> 3.0"
+gem 'kaminari'
 
 #flickr api for prompts
 gem 'flickraw'

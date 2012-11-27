@@ -33,39 +33,39 @@ class StoriesController < ApplicationController
       begin
         case params[:subset]
           when /popular/
-              @stories = Story.recent(timeframe).popular.paginate :include => :user, :page => page, :per_page => per_page   
+              @stories = Story.includes(:user).recent(timeframe).popular.page(page).per(per_page)
               @title = "Popular stories"
           when /active/
-              @stories = Story.recent(timeframe).commented.paginate :include => :user, :page => page, :per_page => per_page
+              @stories = Story.recent(timeframe).commented.page(page).per(per_page)
               @title = "Active stories"
           when /recent/
-              @stories = Story.recent(timeframe).paginate :include => :user, :page => page, :per_page => per_page, :order => order          
+              @stories = Story.recent(timeframe).page(page).per(per_page)
               @title = "Recent stories"
           when /top/
-              @stories = Story.recent(timeframe).top.paginate :include => :user, :page => page, :per_page => per_page
+              @stories = Story.recent(timeframe).top.page(page).per(per_page)
               @title = "Top rated stories"
           when /featured/
-              @stories = Story.recent(timeframe).featured.paginate  :include => :user, :page => page, :per_page => per_page, :order => order 
+              @stories = Story.recent(timeframe).featured.page(page).per(per_page)
               @title = "Editors' picks"
           when /adjective/
               @adjective = params[:tag]
-              @stories = Story.recent(timeframe).tagged_with([@adjective], :any => true).paginate :include => :user, :page => page, :per_page => per_page, :order => order
+              @stories = Story.recent(timeframe).tagged_with([@adjective], :any => true).page(page).per(per_page)
               @title = "Stories tagged with #{@adjective}"
           when /genre/
               @genre = params[:tag]
-              @stories = Story.includes(:user).recent(timeframe).tagged_with([@genre], :any => true, :on => :genres).paginate :page => page, :per_page => per_page, :order => order
+              @stories = Story.includes(:user).recent(timeframe).tagged_with([@genre], :any => true, :on => :genres).page(page).per(per_page)
               @title = "Stories in #{@genre} genre"
           when /emotion/
                 @emotion = params[:tag].downcase
-                @stories = Story.recent(timeframe).tagged_with([@emotion], :any => true, :on => :emotions).paginate :include => :user, :page => page, :per_page => per_page, :order => order
+                @stories = Story.recent(timeframe).tagged_with([@emotion], :any => true, :on => :emotions).page(page).per(per_page)
                 @title = "These stories evoked #{@emotion}"
         
           
         else
             #return featured
-            #@stories = Story.recent(timeframe).featured.paginate  :page => page, :per_page => per_page, :order => order
+            #@stories = Story.recent(timeframe).featured.page(page).per(per_page)
             #@title = "editors' picks"
-						 @stories = Story.recent(timeframe).paginate :page => page, :per_page => per_page, :order => order          
+						 @stories = Story.recent(timeframe).page(page).per(per_page)
               @title = "Recent stories"            
 							@frontpage = true
         end
@@ -265,7 +265,7 @@ class StoriesController < ApplicationController
       per_page = 15
     @story = Story.find(params[:id])
     @prompt = @story.prompt
-    @stories = Story.active.where(:prompt_id => @prompt.id).paginate(:page => page, :order => order, :per_page => per_page)
+    @stories = Story.active.where(:prompt_id => @prompt.id).page(page).per(per_page).order(order)
     
   end
   
@@ -290,7 +290,7 @@ class StoriesController < ApplicationController
       per_page = 15
       order = "updated_at DESC"
 
-      @stories = Story.paginate :page => page, :order => order, :per_page => per_page, :conditions => {:active => false}
+      @stories = Story.page(page).per(per_page).order(order)
 
     respond_to do |format|
       format.html # index.html.erb

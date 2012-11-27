@@ -1,0 +1,16 @@
+- content_for :pagename do
+	= "Profile for " + h(@user.login)
+
+%h1= @title
+.row-fluid
+	.span8
+		%nav
+			- unless @profile
+				.purple.button_container
+					= link_to "Favorites", favorites_url(@user)
+				.brown.button_container
+					= link_to "Comments", users_comments_url("new")
+
+		= render :partial => "stories/story", :collection => @stories
+		= render :partial => "stories/pagination"
+	= render :partial => 'profile'
