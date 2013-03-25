@@ -4,9 +4,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require router
 //= require bootstrap
 //= require_self
 //= require_tree .
+//= require stories_index
+//= require stories_new
 
 $("a[rel=popover]").popover()
 $(".tooltip").tooltip()
