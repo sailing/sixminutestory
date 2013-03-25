@@ -2,22 +2,21 @@
 
 		<% unless is_following?(@story.user) %>
 			<div id="following_button" class="button_container">
-				<%= link_to "Follow", 
-					followings_url(:writer_id => @story.user.id),
-					:method => :post
+				<%= button_to "Follow",
+					followings_url(:writer_id => @story.user.id), class: "btn btn-success"
 					#,
 					#:remote => true
 				%>
 			</div>
 			<% else %>
 				<div id="unfollowing_button" class="button_container">
-					<%= 
-					link_to "Unfollow", 	
+					<%=
+					button_to "Unfollow",
 						Following.where(:user_id => current_user, :writer_id => @story.user).first,
-						:method => :delete
+						:method => :delete, class: "btn btn-warning"
             # ,
 						#:remote => true
 					%>
 				</div>
 			<% end %>
-</div>	
+</div>

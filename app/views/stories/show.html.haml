@@ -1,50 +1,58 @@
 - content_for :pagename do
   = h(@story.title)
 
+- if is_admin
+  .row-fluid.spacer
+    / ADMIN SECTION
 
-.row
-  / ADMIN SECTION
-  - if is_admin
     .span4.offset2
       - if @story.featured == true
         #unfollowing_button
-          = link_to "Unfeature", unfeature_story_url(@story), class: "btn span3 btn-danger btn-superlarge",
+          = link_to "Unfeature", unfeature_story_url(@story), class: "btn span12 btn-danger btn-superlarge",
             :confirm => 'Are you sure you want to unfeature this story? The story will no longer be featured!', :method => :post
       - elsif @story.featured == false
         #following_button.button_container
-          = link_to "Feature", feature_story_url(@story), class: "btn span3 btn-warning btn-superlarge",
-            :confirm => 'Are you sure you want to feature this story? The story will become featured!', :method => :post 
+          = link_to "Feature", feature_story_url(@story), class: "btn span12 btn-warning btn-superlarge",
+            :confirm => 'Are you sure you want to feature this story? The story will become featured!', :method => :post
     .span4
-      = link_to "Edit Details", edit_story_url(@story), class: "btn span3 btn-success btn-superlarge"
+      = link_to "Edit Details", edit_story_url(@story), class: "btn span12 btn-success btn-superlarge"
 .row-fluid
-  .span12
-    = render :partial => "layouts/browsing"
-.row
   .span1
-    = link_to "<i class='icon-caret-left icon-large'></i>".html_safe, story_url(@previous), class: "btn btn-large"
+    .row-fluid
+      = link_to story_url(@previous), class: "span12 btn btn-large increment-story increment-story-left" do
+        %i.icon-caret-left.icon-large
+    .row-fluid
+      = link_to random_stories_url, class: "span12 btn btn-large increment-story increment-story-random" do
+        %i.icon-random.icon-large
+
   .span10
     = render :partial => "stories/story", :locals => {:story => @story}
-  .span1
-    = link_to "<i class='icon-caret-right icon-large'></i>".html_safe, story_url(@next), class: "btn btn-large"
+
+  = link_to story_url(@next), class: "span1 btn btn-large increment-story" do
+    %i.icon-caret-right.icon-large
+
 #post_story.row-fluid
   .span5.offset1
+    %h3 Comments
     = render :partial => "comment_section"
 
-  .span5.offset1
+  .span5
     %h3 Story information
-    
+
     %span license
     %p
-      = h @story.license
-    %span genres
-    %p
-      - @story.genres.each do |genre|
-        = link_to h(genre.name), subset_stories_url(:tag => genre.name, :subset => "genre", :months => 100)
-    %p
-      %i.icon-tags
-      %span
-        - @story.tags.each do |tag|
-          = link_to h(tag.name), subset_stories_url(:tag => tag.name, :subset => "adjective", :months => 100)
+      = @story.license
+    - if @story.genres.any?
+      %span genres
+      %p
+        - @story.genres.each do |genre|
+          = link_to h(genre.name), subset_stories_url(:tag => genre.name, :subset => "genre", :months => 100)
+    - if @story.tags.any?
+      %p
+        %i.icon-tags
+        %span
+          - @story.tags.each do |tag|
+            = link_to h(tag.name), subset_stories_url(:tag => tag.name, :subset => "adjective", :months => 100)
     #favoriters
       = render :partial => "favoriters"
 
@@ -57,4 +65,3 @@
       = render :partial => "votes/prompt_vote", :object => @story.prompt, :as => :prompt
       .space
 
-  

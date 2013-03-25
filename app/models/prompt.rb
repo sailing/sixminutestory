@@ -31,16 +31,16 @@ class Prompt < ActiveRecord::Base
 
   ]
 
-#  {:scope => "popular", :label => "Popular"} 
+#  {:scope => "popular", :label => "Popular"}
 # {:scope => "threewords", :label => "#3WW"}
 
 #  {:scope => "active",      :label => "Active"},
-#   {:scope => "inactive",    :label => "Inactive"}, 
+#   {:scope => "inactive",    :label => "Inactive"},
 #   {:scope => "visible",     :label => "Visible"},
 #   {:scope => "invisible",   :label => "Not Visible"},
 #   {:scope => "high_rated",  :label => "High-Rated"},
 #   {:scope => "low_rated",   :label => "Low-Rated"}
-   
+
 
 	def self.random
 	  ids = connection.select_all("SELECT id FROM prompts WHERE prompts.use_on IS NOT NULL")
@@ -58,15 +58,15 @@ class Prompt < ActiveRecord::Base
 					prompt.license_en = "Attribution-NonCommercial License"
 					prompt.license_image_url = "http://i.creativecommons.org/l/by-nc/3.0/88x31.png"
 					prompt.license_url = "http://creativecommons.org/licenses/by-nc/2.0/"
-				when "3", "cc-by-nc-nd" 
+				when "3", "cc-by-nc-nd"
 					prompt.license_en = "Attribution-NonCommercial-NoDerivs License"
 					prompt.license_image_url = "http://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png"
 					prompt.license_url = "http://creativecommons.org/licenses/by-nc-nd/2.0/"
-				when "4", "cc-by" 
+				when "4", "cc-by"
 					prompt.license_en = "Attribution License"
-					prompt.license_url = "http://creativecommons.org/licenses/by/2.0/"				
+					prompt.license_url = "http://creativecommons.org/licenses/by/2.0/"
 					prompt.license_image_url = "http://i.creativecommons.org/l/by/3.0/88x31.png"
-				when "5", "cc-by-sa" 
+				when "5", "cc-by-sa"
 					prompt.license_en = "Attribution-ShareAlike License"
 					prompt.license_image_url = "http://i.creativecommons.org/l/by-sa/3.0/88x31.png"
 					prompt.license_url = "http://creativecommons.org/licenses/by-sa/2.0/"
