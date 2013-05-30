@@ -8,7 +8,8 @@
 
 // Colors
 // http://www.colourlovers.com/pattern/2948460/Ema_for_Hana
-@adieu: #B3D8CF; // => 179,216,207 // adieu... 
+
+@adieu: #B3D8CF; // => 179,216,207 // adieu...
 @zenGarden: #D0CBA9; // => 208,203,169 // Zen Garden
 @autumnLeaves: #411208; // => 65,18,8 // Autumn Leaves
 @zen: #DBC674; // => 219,198,116 // Zen
@@ -19,6 +20,18 @@
 @beachStorm: #E0E4CC; // 224,228,204
 @giantGoldfish: #F38630; // 243,134,48
 @unrealFoodPills: #FA6900; //250,105,0
+
+// http://www.colourlovers.com/palette/15/tech_light
+@limey: rgb(209,231,81);
+@electricBlue: rgb(77,188,233);
+@blube: rgb(38,173,228);
+// white
+// black
+
+@LINKCOLOR: @blube;
+@PRIMARYBUTTON: @limey;
+@HEADER: @electricBlue;
+@BACKGROUND: @HEADER;
 
 // Grays
 // -------------------------
@@ -45,13 +58,13 @@
 
 // Scaffolding
 // -------------------------
-@bodyBackground:        @kimono;
-@textColor:             @grayDark;
+@bodyBackground:        @BACKGROUND;
+@textColor:             @black;
 
 
 // Links
 // -------------------------
-@linkColor:             @kimono;
+@linkColor:             @LINKCOLOR;
 @linkColorHover:        darken(@linkColor, 15%);
 
 
@@ -83,8 +96,8 @@
 @btnBackgroundHighlight:            darken(@white, 10%);
 @btnBorder:                         #bbb;
 
-@btnPrimaryBackground:              @linkColor;
-@btnPrimaryBackgroundHighlight: darken(@kimono, 10%);
+@btnPrimaryBackground:              @PRIMARYBUTTON;
+@btnPrimaryBackgroundHighlight: darken(@btnPrimaryBackground, 10%);
 
 @btnInfoBackground:                 #5bc0de;
 @btnInfoBackgroundHighlight:        #2f96b4;
