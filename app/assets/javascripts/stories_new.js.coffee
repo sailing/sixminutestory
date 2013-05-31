@@ -1,5 +1,5 @@
 @JSRouter.Register "stories.new", ->
-
+	wideArea()
 
 	window.SixMinute = {}
 	window.SixMinute.StoryTimer =

@@ -14,7 +14,7 @@
         = f.hidden_field :prompt_id, value: @prompt.id
         .row
           .span8
-            = f.text_area :description, :rows => 15, :placeholder => "Type here to begin writing.", :style => "width:100%;"
+            = f.text_area :description, :rows => 15, :placeholder => "Type here to begin writing.", :style => "width:100%;", :'data-widearea' => "enable"
         %div
           %a#done_writing.hide.btn.btn-large{:href => "#"} I'm done writing
         #story-saved.modal.hide.fade

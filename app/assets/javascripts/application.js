@@ -10,6 +10,7 @@
 //= require_tree .
 //= require stories_index
 //= require stories_new
+//= require widearea
 
 $("a[rel=popover]").popover()
 $(".tooltip").tooltip()
