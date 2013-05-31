@@ -4,9 +4,9 @@
 		%p A Cure for Writer's Block.
 		%ul.masthead-links
 			%li= link_to "Write a story", prompts_url, class: "btn btn-primary btn-large"
-			%li= link_to "Read a story", subset_stories_path(:subset => "recent"), class: "btn btn-primary btn-large"
+			%li= link_to "Read a story", story_path(@story_to_read), class: "btn btn-primary btn-large"
 		%br
 		%ul.masthead-links
 			%li= link_to "Featured stories", subset_stories_path(:subset => "featured")
-			%li= link_to "Browse prompts", prompts_url
+			%li= link_to "Popular stories", subset_stories_path(:subset => "popular")
 			%li Forum coming soon.

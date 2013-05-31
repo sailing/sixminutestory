@@ -51,7 +51,7 @@
               %li= link_to "Blog", "http://blog.sixminutestory.com"
 
     - if request.path == "/"
-      #wrap
+      #wrap.blue_this
         #main.content
           = yield
     - else
@@ -65,7 +65,7 @@
           .row
             .span1
               %i.icon-cloud.icon-superlarge.pull-left
-            .span5
+            #elevator_pitch.span5
               %strong Six Minute Story is a cure for writer's block.
               We're a growing community writing stories in six minutes or less. Join us as we fill the world with ad-libbed eloquence.
         .span5
