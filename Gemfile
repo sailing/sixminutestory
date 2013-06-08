@@ -3,7 +3,7 @@ source :gemcutter
 
 # ruby '1.9.2'
 # Stack
-gem 'rails', '3.2.5'
+gem 'rails', '3.2.13'
 gem 'thin'
 
 # Analytics
@@ -40,7 +40,7 @@ gem 'dalli'
 # asset_sync moves files to s3, where they're served by cloudfront
 gem "asset_sync"
 
-#voting tool 
+#voting tool
 gem 'thumbs_up', '>= 0.3.2'
 
 #permalinks are handled by friendly_id
@@ -67,7 +67,6 @@ gem 'recaptcha'
 group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'
   # To use debugger
-  gem "debugger"
 
   # taps is for database syncing on heroku
   gem 'taps', '>= 0.3.22'
@@ -77,5 +76,5 @@ end
 group :production do
 
   gem 'pg'
-  
+
 end
