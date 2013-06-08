@@ -11,6 +11,7 @@
 //= require stories_index
 //= require stories_new
 //= require widearea
+//= require theme
 
 $("a[rel=popover]").popover()
 $(".tooltip").tooltip()
