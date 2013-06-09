@@ -1,4 +1,4 @@
-<h4><%= @story.votes_for > 0 ? "favorited by" : "no favorites" -%></h4>
+<h4><%= @story.votes_for > 0 ? "Favorited by" : "No favorites" -%></h4>
 <% for voter in @story.voters_who_voted %>
 	<% if voter.voted_for?(@story) %>
 		<%= link_to voter.login, profile_url(voter) %><%= ", " unless @story.voters_who_voted.last == voter %>

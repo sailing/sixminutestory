@@ -12,8 +12,12 @@
         or
         = rpx_popup(:link_text => "Join", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false )
         to remark.
+
+
+
 - if @story.comments.present?
-  .row-fluid.content
+  %hr
+  .row-fluid
     .span12
       = render :partial => "comments/comment", :collection => @story.comments
 

@@ -1,21 +1,11 @@
 - content_for :pagename do
   = h(@story.title)
 
-- if is_admin
-  .row-fluid.spacer
-    / ADMIN SECTION
-
-    .span4.offset2
-      - if @story.featured == true
-        #unfollowing_button
-          = link_to "Unfeature", unfeature_story_url(@story), class: "btn span12 btn-danger btn-superlarge",
-            :confirm => 'Are you sure you want to unfeature this story? The story will no longer be featured!', :method => :post
-      - elsif @story.featured == false
-        #following_button.button_container
-          = link_to "Feature", feature_story_url(@story), class: "btn span12 btn-warning btn-superlarge",
-            :confirm => 'Are you sure you want to feature this story? The story will become featured!', :method => :post
-    .span4
-      = link_to "Edit Details", edit_story_url(@story), class: "btn span12 btn-success btn-superlarge"
+.row-fluid.title
+  .span7
+    %h2.story-title= (@story.title.present? ? @story.title : "Untitled Story")
+  .span5
+    %hr
 .row-fluid
   .span1
     .row-fluid
@@ -36,7 +26,7 @@
     %h3 Comments
     = render :partial => "comment_section"
 
-  .span6
+  .span5.offset1
     .well
       = render :partial => "site/profile_block"
     #favoriters
@@ -59,6 +49,21 @@
           - @story.tags.each do |tag|
             = link_to h(tag.name), subset_stories_url(:tag => tag.name, :subset => "adjective", :months => 100)
 
+    - if is_admin
+      .row-fluid.spacer
+        / ADMIN SECTION
+
+        .span4.offset2
+          - if @story.featured == true
+            #unfollowing_button
+              = link_to "Unfeature", unfeature_story_url(@story), class: "btn span12 btn-danger btn-superlarge",
+                :confirm => 'Are you sure you want to unfeature this story? The story will no longer be featured!', :method => :post
+          - elsif @story.featured == false
+            #following_button.button_container
+              = link_to "Feature", feature_story_url(@story), class: "btn span12 btn-warning btn-superlarge",
+                :confirm => 'Are you sure you want to feature this story? The story will become featured!', :method => :post
+        .span4
+          = link_to "Edit Details", edit_story_url(@story), class: "btn span12 btn-success btn-superlarge"
 
 
 

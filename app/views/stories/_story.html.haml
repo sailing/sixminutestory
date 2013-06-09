@@ -1,37 +1,40 @@
 .story
-  %h3= link_to (story.title.present? ? story.title : "Untitled Story"), story_url(story)
-  %p
-    by
-    = link_to(story.user.login, profile_path(story.user))
-    = time_ago_in_words(story.created_at) + " ago"
-    / - unless @stories
-    / %div{:style => "width:40%;float:right;"}
-    / %iframe{:allowtransparency => "true", :frameborder => "0", :scrolling => "no", :src => "http://www.facebook.com/plugins/like.php?href=#{h story_url(@story)}&amp;layout=standard&amp;show_faces=true&amp;width=300&amp;action=like&amp;font=segoe+ui&amp;colorscheme=light&amp;height=25", :style => "border:none; overflow:hidden; width:300px; height:25px;"}
-  .story_footer
-    %span.comments_in_footer
-      / = link_to pluralize(story.comments_count, 'remark'), story_url(story, :anchor => "comments")
-      = link_to raw(story.comments_count.to_s + " <i class='icon-comment'></i>"), story_url(story, :anchor => "comments"), rel: "tooltip", title: "#{story.comments_count.to_s} comments"
-    %span &nbsp;|&nbsp;
-    %span.favorites_in_footer
-      #{render :partial => "votes/story_vote", :story => story}
-    %span &nbsp;|&nbsp;
-    %span.counter_in_footer
-      / = pluralize(story.counter, 'view')
-      = story.counter
-      %i.icon-user
-    - unless @stories
-      - if is_user
-        %span &nbsp;|&nbsp;
-        %span.flag
-          / This is how people flag stories
-          = link_to "<i class='icon-flag'></i>".html_safe, flag_stories_url(story: story.id), :method => "post", rel: "tooltip", title: "Flag this as hateful"
+  - if @stories
+    %h3= link_to (story.title.present? ? story.title : "Untitled Story"), story_url(story)
+  .row-fluid
+    .span6
+      %h5
+        by
+        = link_to(story.user.login, profile_path(story.user))
+        = time_ago_in_words(story.created_at) + " ago"
 
-        - if is_admin
-          &nbsp;||&nbsp;
-          = link_to '<i class="icon-edit"></i>'.html_safe, edit_story_url(story)
-          &nbsp;|&nbsp;
-          = story.flagged
-          %i.icon-flag
+    .span6.story_footer
+      %span.comments_in_footer
+        / = link_to pluralize(story.comments_count, 'remark'), story_url(story, :anchor => "comments")
+        = link_to raw(story.comments_count.to_s + " <i class='icon-comment'></i>"), story_url(story, :anchor => "comments"), rel: "tooltip", title: "#{story.comments_count.to_s} comments"
+
+      - if @story
+        %span &nbsp;|&nbsp;
+        %span.favorites_in_footer
+          #{render :partial => "votes/story_vote", :story => story}
+      %span &nbsp;|&nbsp;
+      %span.counter_in_footer
+        / = pluralize(story.counter, 'view')
+        = story.counter
+        %i.icon-user
+      - unless @stories
+        - if is_user
+          %span &nbsp;|&nbsp;
+          %span.flag
+            / This is how people flag stories
+            = link_to "<i class='icon-flag'></i>".html_safe, flag_stories_url(story: story.id), :method => "post", rel: "tooltip", title: "Flag this as hateful"
+
+          - if is_admin
+            &nbsp;||&nbsp;
+            = link_to '<i class="icon-edit"></i>'.html_safe, edit_story_url(story)
+            &nbsp;|&nbsp;
+            = story.flagged
+            %i.icon-flag
 
   - if @stories
     = simple_format(sanitize(truncate(h(story.description), :length => 500, separator: ' ',:omission => "...&nbsp;&nbsp;&nbsp;" + link_to("Read more <i class='icon-circle-arrow-right'></i>".html_safe, story_url(story), class: "btn btn-success btn-mini") )))
