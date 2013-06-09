@@ -7,15 +7,15 @@
         %hgroup
           %h1 Six Minute Story
           %h3 A Cure for Writer's Block&#153;
-        %button.btn-inverse{"data-section" => "2"}
+        = link_to root_url(anchor: "section2"), class: "btn-inverse", :"data-section" => "2" do
           Learn
           %span More
           %i.icon-circle-arrow-down
-        %button.btn-inverse{"data-section" => "2"}
+        = link_to write_path, class: "btn-inverse" do
           Write
           %span Now
           %i.icon-pencil
-        %button.btn-inverse{"data-section" => "2"}
+        = link_to @story_to_read, class: "btn-inverse" do
           Read
           %span a Story
           %i.icon-book
@@ -35,30 +35,33 @@
 
     .row-fluid.desc
       .span8
-        %p I am a freelance web developer and web designer living in London, UK. I started freelancing in 2009 and have worked for a wide range of personal clients and agencies.
-        %p I offer a complete web solution to my clients. I can guide you through the early stages of project planning and research, help you with information architecture and user experience, design your website, and finally build the site for you.
+        %p Writing a story in six minutes – with a ticking timer and a surprise prompt – is an adrenaline rush.
 
+        %p It will invigorate your mind for the entire day, helping you create more (and more and more) original art.
+
+        %p Which is, as Kurt Vonnegut said, "a way to make your soul grow."
 
     .row-fluid.content.hidden-tablet
       .span12.expand
-        %h4 Life Stats
+        %h4 Community Stats
         .row-fluid
           .span4
             / CHART N 1
             :javascript
               $(document).ready(function( $ ) {
                 // Triggering only when it is inside viewport
-                $('.knob-4').waypoint(function(){
+
+                $('#active_writers_this_week').waypoint(function(){
                   // Triggering now
-                      $('.knob-4').knob();
+                      $('#active_writers_this_week').knob();
                       // Animating the value
-                      if($('.knob-4').val() == 0) {
-                      $({value: 0}).animate({value: $('.knob-4').attr("rel")}, {
+                      if($('#active_writers_this_week').val() == 0) {
+                      $({value: 0}).animate({value: $('#active_writers_this_week').attr("rel")}, {
                           duration: 5000,
                           easing:'swing',
                           step: function()
                             {
-                                $('.knob-4').val(Math.ceil(this.value)).trigger('change');
+                                $('#active_writers_this_week').val(Math.ceil(this.value)).trigger('change');
                             }
                         })
                     }
@@ -72,9 +75,9 @@
                     );
               });
             .skill
-              %input.knob-4{"data-anglearc" => "180", "data-angleoffset" => "-90", "data-fgcolor" => "#f1c40f", "data-height" => "122.5", "data-inputcolor" => "#333", "data-max" => "10", "data-readonly" => "true", "data-width" => "245", :readonly => "readonly", :rel => "4", :value => "0"}
-              %h4.visible-phone 4
-              %h6 cups of cofee per week
+              %input#active_writers_this_week.knob{"data-anglearc" => "180", "data-angleoffset" => "-90", "data-fgcolor" => "#f1c40f", "data-height" => "122.5", "data-inputcolor" => "#333", "data-max" => "#{@active_writers_this_week*1.5}", "data-readonly" => "true", "data-width" => "245", :readonly => "readonly", :rel => "#{@active_writers_this_week}", :value => "0"}
+              %h4.visible-phone= @active_writers_this_week
+              %h6 active writers this week
             / END CHART N 1
 
           .span4
@@ -82,17 +85,17 @@
             :javascript
               $(document).ready(function( $ ) {
                 // Triggering only when it is inside viewport
-                $('.knob-65').waypoint(function(){
+                $('#knob-65').waypoint(function(){
                   // Triggering now
-                      $('.knob-65').knob();
+                      $('#knob-65').knob();
                       // Animating the value
-                      if($('.knob-65').val() == 0) {
-                      $({value: 0}).animate({value: $('.knob-65').attr("rel")}, {
+                      if($('#knob-65').val() == 0) {
+                      $({value: 0}).animate({value: $('#knob-65').attr("rel")}, {
                           duration: 5000,
                           easing:'swing',
                           step: function()
                             {
-                                $('.knob-65').val(Math.ceil(this.value)).trigger('change');
+                                $('#knob-65').val(Math.ceil(this.value)).trigger('change');
                             }
                         })
                     }
@@ -106,9 +109,9 @@
                     );
               });
             .skill
-              %input.knob-65{"data-anglearc" => "180", "data-angleoffset" => "-90", "data-fgcolor" => "#f68e51", "data-height" => "122.5", "data-inputcolor" => "#333", "data-max" => "100", "data-readonly" => "true", "data-width" => "245", :readonly => "readonly", :rel => "65", :value => "0"}
-              %h4.visible-phone 65
-              %h6 miles run this week
+              %input#knob-65.knob{"data-anglearc" => "180", "data-angleoffset" => "-90", "data-fgcolor" => "#f68e51", "data-height" => "122.5", "data-inputcolor" => "#333", "data-max" => "#{@new_stories_this_week*1.9}", "data-readonly" => "true", "data-width" => "245", :readonly => "readonly", :rel => "#{@new_stories_this_week}", :value => "0"}
+              %h4.visible-phone= @new_stories_this_week
+              %h6 new stories this week
             / END CHART N 2
 
           .span4
@@ -116,17 +119,17 @@
             :javascript
               $(document).ready(function( $ ) {
                 // Triggering only when it is inside viewport
-                $('.knob-85').waypoint(function(){
+                $('#knob-85').waypoint(function(){
                   // Triggering now
-                      $('.knob-85').knob();
+                      $('#knob-85').knob();
                       // Animating the value
-                      if($('.knob-85').val() == 0) {
-                      $({value: 0}).animate({value: $('.knob-85').attr("rel")}, {
+                      if($('#knob-85').val() == 0) {
+                      $({value: 0}).animate({value: $('#knob-85').attr("rel")}, {
                           duration: 5000,
                           easing:'swing',
                           step: function()
                             {
-                                $('.knob-85').val(Math.ceil(this.value)).trigger('change');
+                                $('#knob-85').val(Math.ceil(this.value)).trigger('change');
                             }
                         })
                     }
@@ -140,9 +143,9 @@
                     );
               });
             .skill
-              %input.knob-85{"data-anglearc" => "180", "data-angleoffset" => "-90", "data-fgcolor" => "#2c3e50", "data-height" => "122.5", "data-inputcolor" => "#333", "data-max" => "100", "data-readonly" => "true", "data-width" => "245", :readonly => "readonly", :rel => "85", :value => "0"}
-              %h4.visible-phone 85
-              %h6 new clients this year
+              %input#knob-85.knob{"data-anglearc" => "180", "data-angleoffset" => "-90", "data-fgcolor" => "#4dbce9", "data-height" => "122.5", "data-inputcolor" => "#333", "data-max" => "#{@comments_this_week*1.3}", "data-readonly" => "true", "data-width" => "245", :readonly => "readonly", :rel => "#{@comments_this_week}", :value => "0"}
+              %h4.visible-phone= @comments_this_week
+              %h6 comments this week
 
 
 
@@ -150,29 +153,40 @@
   .container-fluid
     .row-fluid.title
       .span4
-        %h2 Projects
+        %h2 Write
 
       .span8.hidden-phone.alt
-        %hr/
+        %hr
 
     .row-fluid.desc
       .span8
-        %p I have a network of developers and designers that I sometimes work with. If your web project is large enough, I can put together a team of expert developers and designers, to tackle the big stuff.
+        %p
+          %strong We use a few kinds of prompts to cure writer's block.
+        %p
+          Images, start lines, and something of our own concoction: a Hero, a Villain, and a Goal. Use these to jumpstart your imagination, and feel free to follow the inspiration wherever you want.
 
+        = link_to random_prompt_path do
+          .btn-inverse
+            Random Prompt
+            %i.icon-random
 
-    .row-fluid.content.slide
-      .span4
-        %img{:alt => "Project 01", :src => "img/project01.png"}
-        %h6.hidden-phone - VISIT THE PROJECT PAGE
+        = link_to write_to_prompt_path(25) do
+          .btn-inverse
+            Blank Prompt
+            %i.icon-check-empty
 
-      .span4
-        %img{:alt => "Project 02", :src => "img/project02.png"}
-        %h6.hidden-phone - VISIT THE PROJECT PAGE
+    .content
+      %h4 Recent image prompts:
+      .row-fluid.slide
 
-      .span4
-        %img{:alt => "Project 03", :src => "img/project03.png"}
-        %h6.hidden-phone - VISIT THE PROJECT PAGE
+        - @three_image_prompts.each do |p|
+          .span4
+            = link_to write_to_prompt_path(p) do
+              = image_tag(p.refcode, {style: "height: 200px"})
 
+              .btn-inverse
+                Write now
+                %i.icon-circle-arrow-right
 
 
 
@@ -180,113 +194,46 @@
   .container-fluid
     .row-fluid.title
       .span4
-        %h2 Social
+        %h2 Read
 
       .span8.hidden-phone
-        %hr/
-
-
-    .row-fluid.desc
-      .span8
-        %p Blogging is such an opportunity. I am sad to see people abandoning the chance to express, to connect, to build relationships. For me, the love of blogging (and what it means to me) is why I have been in the game so long. It is how I have met most of my current friends. It is how I have stayed sane when I was an employee, and how I center myself today as a creator.
+        %hr
 
 
     .row-fluid.content
       .span4
         %ul.article-tags
-          %li.current{"data-blog" => "blog"}
+          %li.current{"data-blog" => "featured"}
             %i.icon-circle-arrow-right>
-            Blog
-          %li{"data-blog" => "dribbble"}
+            Featured
+          %li{"data-blog" => "recent"}
             %i.icon-circle-arrow-right>
-            Dribbble Shots
-          %li{"data-blog" => "instagram"}
+            New
+          %li{"data-blog" => "popular"}
             %i.icon-circle-arrow-right>
-            Instagram Photos
-          %li{"data-blog" => "github"}
+            Popular
+          %li{"data-blog" => "active"}
             %i.icon-circle-arrow-right>
-            GitHub Projects
+            Active
 
-      .span8.slide.current{"data-blog" => "blog"}
-        .row-fluid
-          .span6.expand
-            %h4 Blog Post 1
-            %p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-            .pull-right.read-more
-              %a{:href => "#", :rel => "external"}
-                Read More
-                %i.icon-double-angle-right
-
-          .span6.visible-desktop
-            %h4 Blog Post 2
-            %p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-            .pull-right.read-more
-              %a{:href => "#", :rel => "external"}
-                Read More
-                %i.icon-double-angle-right
+      .span8.slide.current{"data-blog" => "featured"}
+        = render partial: 'site/stories_table', locals: {stories: @featured_stories, stories_type: "Featured"}
 
 
 
-      .span8.slide{"data-blog" => "dribbble"}
-        .row-fluid
-          .span6.expand
-            %h4 Shot 01
-            %p{:style => "text-align:center"}
-              %img{:alt => "", :src => "img/d01.png"}
-            .pull-right.read-more
-              %a{:href => "#", :rel => "external"}
-                Read More
-                %i.icon-double-angle-right
-
-          .span6.visible-desktop
-            %h4 Shot 02
-            %p{:style => "text-align:center"}
-              %img{:alt => "", :src => "img/d02.png"}
-            .pull-right.read-more
-              %a{:href => "#", :rel => "external"}
-                Read More
-                %i.icon-double-angle-right
+      .span8.slide{"data-blog" => "recent"}
+        = render partial: 'site/stories_table', locals: {stories: @recent_stories, stories_type: "Recent"}
 
 
 
-      .span8.slide{"data-blog" => "instagram"}
-        .row-fluid
-          .span6.expand
-            %h4 Marcel Newman
-            %p{:style => "text-align:center"}
-              %img{:alt => "", :src => "img/i01.jpg"}
-            .pull-right.read-more
-              Read More
-              %i.icon-double-angle-right
 
-          .span6.visible-desktop
-            %h4 Brutus The Boss
-            %p{:style => "text-align:center"}
-              %img{:alt => "", :src => "img/i02.jpg"}
-            .pull-right.read-more
-              %a{:href => "#", :rel => "external"}
-                Read More
-                %i.icon-double-angle-right
+      .span8.slide{"data-blog" => "popular"}
+        = render partial: 'site/stories_table', locals: {stories: @popular_stories, stories_type: "Popular"}
 
 
 
-      .span8.slide{"data-blog" => "github"}
-        .row-fluid
-          .span6.expand
-            %h4 Responsive Menu
-            %p Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            .pull-right.read-more
-              %a{:href => "#", :rel => "external"}
-                Read More
-                %i.icon-double-angle-right
-
-          .span6.visible-desktop
-            %h4 Bootstrap JQuery
-            %p Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            .pull-right.read-more
-              %a{:href => "#", :rel => "external"}
-                Read More
-                %i.icon-double-angle-right
+      .span8.slide{"data-blog" => "active"}
+        = render partial: 'site/stories_table', locals: {stories: @active_stories, stories_type: "Active"}
 
 
 
@@ -300,81 +247,17 @@
         %h2 Contact
 
       .span8.hidden-phone.alt
-        %hr/
+        %hr
 
 
     .row-fluid.content
       .span4
-        %h4.intro Drop me a Line!
-        %p Enough about me, let s hear about you. I am currently available for projects starting in July 2013.
-        .row-fluid.alt
-          %h5 Email:
-          %span hello@yourdomain.com
+        %h4 We like you. Say "Hi."
 
-        .row-fluid.alt
-          %h5 Phone:
-          %span (+34) 123-4567
-
-        .row-fluid.alt
-          %h5 Twitter:
-          %span
-            %a{:href => "http://www.twitter.com/basicoh_", :rel => "external"} @Basicoh_
-
-
-      .span8
-        .row-fluid
-          .span12
-
-
-        %form{:action => "#", :method => "POST"}
-          .row-fluid
-            .span6
-              .control-group
-                %label.control-label{:for => "name"} Name:
-                .controls
-                  %input#name.span12{:name => "contact_name", :type => "text"}
-
-
-
-            .span6
-              .control-group
-                %label.control-label{:for => "email"} Email:
-                .controls
-                  %input#email.span12{:name => "contact_email", :type => "email"}
-
-
-
-
-          .row-fluid
-            .span6
-              .control-group
-                %label.control-label{:for => "phone"} Phone Number:
-                .controls
-                  %input#phone.span12{:name => "contact_phone", :type => "tel"}
-
-
-
-            .span6
-              .control-group
-                %label.control-label{:for => "website"} Your Website:
-                .controls
-                  %input#website.span12{:name => "contact_website", :type => "url"}
-
-
-
-
-          .row-fluid
-            .span12
-              .control-group
-                %label.control-label{:for => "message"} Your Message:
-                .controls
-                  %textarea#message.span12{:name => "contact_message", :rows => "4", :type => "text"}
-
-
-
-
-          %input{:name => "save", :type => "hidden", :value => "contact"}
-          %button.btn-inverse.pull-right{:type => "submit"}
-            Send
-            %span Message
-            %i.icon-circle-arrow-right
+      .span4.text-center
+        %a(href="http://twitter.com/6minutestory")
+          %i.icon-twitter
+      .span4.text-center
+        %a(href="http://facebook.com/sixminutestory")
+          %i.icon-facebook
+    .row-fluid.content

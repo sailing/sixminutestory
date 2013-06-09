@@ -23,7 +23,7 @@ html {
 }
 
 body {
-	background: #ecf0f1;
+	background: @white;
     color: #2d2d2d;
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 15px; font-size: 1.5rem;
@@ -43,12 +43,12 @@ p {
 }
 
 a {
-	color: #F1F1F1;
+	color: @accentblue;
 	text-decoration: none;
 }
 
 a:hover {
-	color: #fff;
+	color: darken(@accentblue, 20%);
 	text-decoration: none;
 }
 
@@ -65,7 +65,7 @@ a:hover {
 }
 
 #sidebar {
-	background-color: @electricBlue;
+	background-color: @blue;
     height: 120%;
     padding: 0;
     position: fixed;
@@ -87,7 +87,7 @@ a:hover {
 }
 
 #nav ul li {
-	color: #F1F1F1;
+	color: @offwhite;
 	cursor: pointer;
     display: inline-block;
     line-height: 22px;
@@ -230,7 +230,7 @@ a:hover {
 }
 
 .section .title .alt hr {
-	border-color: #F1F1F1;
+	border-color: @offwhite;
 }
 
 .section .desc {
@@ -248,7 +248,7 @@ a:hover {
 }
 
 .control-group .controls input, .control-group .controls textarea {
-	background: #F1F1F1;
+	background: @white;
 	border-radius: 0px;
 	min-height: 36px;
 }
@@ -263,14 +263,14 @@ a:hover {
 }
 
 .btn-default {
-	background: none #F1F1F1;
+	background: none @offwhite;
     color: #151515;
     margin-top: 75px;
 }
 
 .btn-inverse {
-	background: none rgb(77,188,233);
-    color: #F1F1F1;
+	background: none @accentblue;
+    color: @white;
     margin-top: 25px;
 }
 
@@ -333,7 +333,7 @@ a:hover {
 /* Section 1 */
 
 #section1 {
-	background:#7f8c8d;
+	background: @white;
 	-webkit-background-size: 100% auto;
 	-moz-background-size: 100% auto;
 	-o-background-size: 100% auto;
@@ -350,7 +350,7 @@ a:hover {
 }
 
 #section1 .intro h1 {
-	color: #F1F1F1;
+	color: @red;
     font-size: 85px; font-size: 8.5rem;
     font-weight: 500;
     letter-spacing: -2px;
@@ -359,7 +359,7 @@ a:hover {
 }
 
 #section1 .intro h3 {
-	color: #F1F1F1;
+	color: @black;
     font-size: 26px; font-size: 2.6rem;
     font-weight: 100;
     line-height: 28px;
@@ -393,8 +393,8 @@ a:hover {
 /* Section 3 */
 
 #section3 {
-	background-image:url(../img/project-bg.jpg);
-	color: #F1F1F1;
+	// background-image:url(../img/project-bg.jpg);
+	color: @black;
 }
 
 #section3 h2 {
@@ -404,8 +404,8 @@ a:hover {
 
 #section3 .content img {
 	max-width: 96%;
-	padding: 2%;
-	background-color: #F1F1F1;
+	padding: 0;
+	background-color: @white;
 }
 
 
@@ -418,7 +418,7 @@ a:hover {
 }
 
 #section4 .read-more a, #section4 .read-more a:hover {
-	color: #151515;
+	color: #fff;
 }
 
 #section4 .content .span4, #section4 .content .span6 {
@@ -476,13 +476,32 @@ a:hover {
 /* Section 5 */
 
 #section5 {
-	background:rgba(77,188,233,0.7);
-	color: #F1F1F1;
+	background:@red;
+	color: @offwhite;
 	padding-bottom: 0px;
+
+	a {
+		color: @black;
+		i {
+			color: @white;
+			font-size:4em;
+		}
+		&:hover {
+			i {
+				color: @black;
+			}
+		}
+	}
+
+
+
+	.btn-inverse {
+		background: @black;
+	}
 }
 
 #section5 h4.intro {
-	border-bottom: 1px solid #F1F1F1;
+	border-bottom: 1px solid @white;
     height: 35px;
     margin-bottom: 18px;
 }

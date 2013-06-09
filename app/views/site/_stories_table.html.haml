@@ -1,0 +1,19 @@
+.row-fluid
+  .span12.expand
+    %h5= stories_type + " Stories"
+    %table.table.front-page-stories
+      %tbody
+        - stories.each do |s|
+          %tr
+            %td= link_to s.title, s
+            %td
+              - if stories_type == 'Active'
+                = s.comments_count
+                %i.icon-comment
+              - else
+                = s.votes_for
+                %i.icon-star
+    = link_to subset_stories_path(:subset => stories_type.downcase), class: "btn-inverse pull-right" do
+      Read More
+      %i.icon-circle-arrow-right
+
