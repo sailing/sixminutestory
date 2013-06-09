@@ -1,25 +1,26 @@
 // Place all the styles related to the stories controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "variables";
 
 .story {
-	padding:25px;
+	margin-top:25px;
+	margin-bottom:55px;
+
 	h2 {
-		padding-top:40px;
-		text-align:left;
-		font-size:1.9em;
-		margin:5px 0;
+		font-size: 2em;
 	}
-	// background: rgb(240, 240, 240, 0.0);
-	// border: 2px #999 solid;
-	// border-radius: 9px;
+
+	.btn {
+			color: #fff;
+		}
 }
 
 .increment-story {
 	min-height:600px;
 	height:600px;
 	line-height: 600px;
-	font-size: 4em;
+	font-size: 3em;
 	color: rgb(200,200,200,0.5);
 }
 
@@ -37,11 +38,11 @@
 	min-height: 200px;
 	height:200px;
 	line-height: 200px;
-	font-size: 3em;
+	font-size: 1.5em;
 }
 
 .story_footer {
-	width:50%;
+	margin-bottom: 15px;
 	span {
 		padding:0;
 	}
@@ -54,18 +55,30 @@
 }
 
 #share {
-	width:50%;
-	text-align: center;
-	margin:0 auto;
-	clear: both;
 	ul {
 		margin:0 auto;
 		list-style: none;
-		width:50%;
+		width:100%;
 		li {
+			text-align: center;
 			float:left;
 			padding:12px;
 		}
 	}
 
+}
+
+.comment {
+	margin: 10px 0 20px;
+	h5 {
+		margin-bottom:5px !important;
+	}
+}
+
+.agree-with-comment {
+	margin-top:50px;
+}
+
+.remove {
+	color: #ccc;
 }

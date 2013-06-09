@@ -31,12 +31,17 @@
   = link_to story_url(@next), class: "span1 btn btn-large increment-story" do
     %i.icon-caret-right.icon-large
 
-#post_story.row-fluid
-  .span5.offset1
+#post_story.row-fluid.content
+  .span6
     %h3 Comments
     = render :partial => "comment_section"
 
-  .span5
+  .span6
+    .well
+      = render :partial => "site/profile_block"
+    #favoriters
+      = render :partial => "favoriters"
+
     %h3 Story information
 
     %span license
@@ -53,11 +58,9 @@
         %span
           - @story.tags.each do |tag|
             = link_to h(tag.name), subset_stories_url(:tag => tag.name, :subset => "adjective", :months => 100)
-    #favoriters
-      = render :partial => "favoriters"
 
-    .well
-      = render :partial => "site/profile_block"
+
+
 
     #prompt.hide
       %h3 The prompt for this story

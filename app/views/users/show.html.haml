@@ -1,16 +1,55 @@
 - content_for :pagename do
-	= "Profile for " + h(@user.login)
+  = "Profile for " + h(@user.login)
 
-%h1= @title
 .row-fluid
-	.span8
-		%nav
-			- unless @profile
-				.purple.button_container
-					= link_to "Favorites", favorites_url(@user)
-				.brown.button_container
-					= link_to "Comments", users_comments_url("new")
+  .span12
+    = render :partial => 'profile'
 
-		= render :partial => "stories/story", :collection => @stories
-		= render :partial => "stories/pagination"
-	= render :partial => 'profile'
+.row-fluid.title.content
+  .span3
+    %h2 Stories
+  .span9
+    %hr
+
+.row-fluid
+  .span8
+    = render @stories
+    = render :partial => "stories/pagination"
+  .span4
+    - if is_user
+      %h3
+        Favorites (#{@user.votes.size})
+      / %p
+      /   = link_to "View favorites", favorites_path(@user)
+    - if is_owner_or_admin
+      %h3
+        Comments (#{@user.comments_count || "0"})
+      / %p
+      /   = link_to "View comments", users_comments_path(@user, "new")
+    %h3
+      Follows (#{@user.writers.size})
+    - if @user.followings.present?
+      %span
+        %strong First Five
+      %ul
+        - for following in @user.followings.limit(5)
+          %li
+            = link_to h(following.writer.login), profile_path(following.writer)
+            = link_to_if @user == current_user, "[unfollow]", following, {:method => :delete, :style => "color:white;"} do
+              \&nbsp;
+    - else
+      %span
+        Not following anyone yet.
+    %h3
+      Fans (#{@user.followers.size})
+    - if @user.followers.present?
+      %span
+        %strong Latest Five
+      %ul
+        - for follower in @user.followers.order('created_at DESC').limit(5)
+          %li
+            = link_to h(follower.login), profile_path(follower)
+    - else
+      %span
+        No fans as of yet.
+

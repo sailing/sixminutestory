@@ -12,12 +12,6 @@
     .span8
       = render @stories #, :spacer_template => "story_ad"
       = render :partial => 'pagination'
-    #stories_nav.span4.bs-docs-sidebar
-      %ul.nav.nav-list.bs-docs-sidenav.affix-bottom
-        - @titles.each do |t|
-          %li= link_to t, "#"+t.downcase.parameterize
-
-
 
   - else
     .span12
@@ -36,7 +30,7 @@
 /         /
 /           <p>
 /           Since current language must be <strong>concise, immediate and eloquent</strong>, I created <em>Six Minute Story</em> &amp;mdash; a user-driven, <a href="http://en.wikipedia.org/wiki/Micro_fiction" target="_blank">micro-fiction</a> application &amp;mdash; to provide an arena to practice <em>the art of the ad-lib</em>, the impromptu.
-          
+
 /           <strong>Six Minute Story</strong> is a crowd-driven,
 /           <a href="http://en.wikipedia.org/wiki/Micro_fiction" target="_blank">flash-fiction</a>
 /           <strong>experiment</strong>.

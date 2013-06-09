@@ -3,16 +3,17 @@
     - if current_user
       #comment_form
         = form_for([@story, Comment.new], :html => { :id => 'comments_form' }) do |f|
-          = f.hidden_field :user_id, :value => current_user.id
           = f.text_area :comment, class: "span12", rows: 5
-          #comment_submit_container
-            = submit_tag "Contribute", :name => "contribute", :id => "contribute-button", :disabled => false
+          #comment_submit_container.pull-right
+            = submit_tag "Contribute", :name => "contribute", :id => "contribute-button", :disabled => false, class: "btn"
     - else
       #signin_or_register
         = rpx_popup(:link_text => "Login", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false )
         or
         = rpx_popup(:link_text => "Join", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false )
         to remark.
-    - if @story.comments.present?
+- if @story.comments.present?
+  .row-fluid.content
+    .span12
       = render :partial => "comments/comment", :collection => @story.comments
 

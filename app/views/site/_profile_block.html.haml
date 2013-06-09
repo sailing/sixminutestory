@@ -12,27 +12,24 @@
 			%span
 				= @story.user.try(:email_address)
 	%p
-		%i.icon-calendar
+		%i.icon-calendar{title: 'Joined'}
 		%span
 			= time_ago_in_words(@story.user.created_at)
 			ago
 	- if @story.user.followers.any?
 		%p
-			%i.icon-group
+			%i.icon-group{title: 'Followers'}
 			%span
 				= @story.user.followers.count
 
 	%p
-		%i.icon-thumbs-up
+		%i.icon-thumbs-up{title: 'Reputation'}
 		%span
 			= @story.user.karma
 	%p
-		%i.icon-edit
+		%i.icon-pencil{title: 'Read Stories'}
 		%span
 			= link_to @story.user.stories.where(active: true).count, profile_path(@story.user)
-			(
-			= link_to "view stories", profile_path(@story.user)
-			)
 	- if @story.user.website.present?
 		%p
 			%i.icon-globe

@@ -50,4 +50,10 @@
                 %span Contact
 
       #container
-        = yield
+        - if params[:controller] == 'site' and params[:action] == 'index'
+          = yield
+        - else
+          %section.section
+            .container-fluid
+              = yield
+

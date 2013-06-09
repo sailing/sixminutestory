@@ -1,34 +1,59 @@
-.span4
-  = render partial: "site/profile_block"
-  - if is_user
-    %h3
-      Favorites (#{@user.votes.size})
+.row-fluid.title
+  .span5
+    %h2= @story.user.login
+  .span7.hidden-phone
+    %hr
+
+
+.row-fluid.title
+
+  .span6.information
+    - if is_admin
+      %p
+        %i.icon-envelope
+        %span
+          = @story.user.try(:email_address)
     %p
-      = link_to "View favorites", favorites_path(@user)
-  - if is_owner_or_admin
-    %h3
-      Comments (#{@user.comments_count || "0"})
+      %i.icon-calendar{title: 'Joined'}
+      %span
+        Joined
+        = time_ago_in_words(@story.user.created_at)
+        ago
+    - if @story.user.followers.any?
+      %p
+        %i.icon-group{title: 'Followers'}
+        %span
+          = @story.user.followers.count
+          followers
+
     %p
-      = link_to "View comments", users_comments_path("new")
-  %h3
-    Follows (#{@user.writers.size})
-  - if @user.followings.present?
-    %ul
-      - for following in @user.followings
-        %li
-          = link_to h(following.writer.login), profile_path(following.writer)
-          = link_to_if @user == current_user, "[unfollow]", following, {:method => :delete, :style => "color:white;"} do
-            \&nbsp;
-  - else
-    %span
-      Not following anyone yet.
-  %h3
-    Fans (#{@user.followers.size})
-  - if @user.followers.present?
-    %ul
-      - for follower in @user.followers
-        %li
-          = link_to h(follower.login), profile_path(follower)
-  - else
-    %span
-      No fans as of yet.
+      %i.icon-thumbs-up{title: 'Reputation'}
+      %span
+        = @story.user.karma
+        reputation
+    %p
+      %i.icon-pencil{title: 'Read Stories'}
+      %span
+        = link_to profile_path(@story.user) do
+          = @story.user.stories.where(active: true).count.to_s
+          stories
+    - if @story.user.website.present?
+      %p
+        %i.icon-globe
+        %span
+          = link_to "Visit website", @story.user.website, :title => @story.user.website, :rel => 'nofollow'
+    - if is_user && (current_user.id == @story.user.id)
+      %small
+        = link_to edit_account_path, class: "btn btn-primary" do
+          %i.icon-edit
+          Manage Profile
+    - elsif is_user && current_user.id != @story.user.id
+      = render :partial => 'site/following_toggle', :locals => {:user => @story.user}
+  .span6
+    - if @story.user.profile.present?
+      .profile
+        %h3
+          about
+        %p
+          = auto_link(simple_format(@story.user.profile))
+

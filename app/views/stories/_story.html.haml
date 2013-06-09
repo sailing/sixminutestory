@@ -1,41 +1,19 @@
 .story
-  %h2(id = "#{story.title.downcase.parameterize if story.title.present?}")
-    = link_to (story.title.present? ? story.title : "Untitled Story"), story_url(story)
+  %h3= link_to (story.title.present? ? story.title : "Untitled Story"), story_url(story)
   %p
     by
     = link_to(story.user.login, profile_path(story.user))
     = time_ago_in_words(story.created_at) + " ago"
-    = link_to "Edit Story Details", edit_story_url(story) if is_owner_or_admin
     / - unless @stories
     / %div{:style => "width:40%;float:right;"}
     / %iframe{:allowtransparency => "true", :frameborder => "0", :scrolling => "no", :src => "http://www.facebook.com/plugins/like.php?href=#{h story_url(@story)}&amp;layout=standard&amp;show_faces=true&amp;width=300&amp;action=like&amp;font=segoe+ui&amp;colorscheme=light&amp;height=25", :style => "border:none; overflow:hidden; width:300px; height:25px;"}
-  %p
-    - unless @stories
-      %span#comments_in_header
-        = link_to_unless_current raw(story.comments_count.to_s + " <i class='icon-comment'></i>"),
-          {:controller => 'stories', :action => 'show', :id => story, :anchor => 'comments'} do
-          link_to pluralize(story.comments_count, 'remark'), {:anchor => "comments"}
-          end
-      %span
-        || #{render :partial => "votes/story_vote", :story => story}
-
-  - if @stories
-    = simple_format(sanitize(truncate(h(story.description), :length => 370, separator: ' ',:omission => "...&nbsp;&nbsp;&nbsp;" + link_to("Read more &rarr;".html_safe, story_url(story), class: "btn btn-success btn-mini") )))
-  - else
-    = simple_format(sanitize(h(story.description)))
-
-  - unless @stories
-    = render :partial => 'stories/share_in_story', :locals => {:story => story}
-
-  %footer.story_footer
+  .story_footer
     %span.comments_in_footer
       / = link_to pluralize(story.comments_count, 'remark'), story_url(story, :anchor => "comments")
       = link_to raw(story.comments_count.to_s + " <i class='icon-comment'></i>"), story_url(story, :anchor => "comments"), rel: "tooltip", title: "#{story.comments_count.to_s} comments"
     %span &nbsp;|&nbsp;
     %span.favorites_in_footer
-      / = pluralize(story.votes_for, 'favorite')
-      = story.votes_for
-      %i.icon-star-empty
+      #{render :partial => "votes/story_vote", :story => story}
     %span &nbsp;|&nbsp;
     %span.counter_in_footer
       / = pluralize(story.counter, 'view')
@@ -48,10 +26,20 @@
           / This is how people flag stories
           = link_to "<i class='icon-flag'></i>".html_safe, flag_stories_url(story: story.id), :method => "post", rel: "tooltip", title: "Flag this as hateful"
 
-    - if is_admin
-      &nbsp;||&nbsp;
-      = link_to '<i class="icon-edit"></i>'.html_safe, edit_story_url(story)
-      &nbsp;|&nbsp;
-      = story.flagged
-      %i.icon-flag
+        - if is_admin
+          &nbsp;||&nbsp;
+          = link_to '<i class="icon-edit"></i>'.html_safe, edit_story_url(story)
+          &nbsp;|&nbsp;
+          = story.flagged
+          %i.icon-flag
 
+  - if @stories
+    = simple_format(sanitize(truncate(h(story.description), :length => 500, separator: ' ',:omission => "...&nbsp;&nbsp;&nbsp;" + link_to("Read more <i class='icon-circle-arrow-right'></i>".html_safe, story_url(story), class: "btn btn-success btn-mini") )))
+  - else
+    = simple_format(sanitize(h(story.description)))
+
+
+  .row-fluid
+    .span6
+      - unless @stories
+        = render :partial => 'stories/share_in_story', :locals => {:story => story}
