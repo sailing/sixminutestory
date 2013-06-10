@@ -18,7 +18,7 @@ group :assets do
   gem 'font-awesome-rails'
   gem 'less-rails'
   gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-
+  gem 'therubyracer'
   # asset_sync moves files to s3, where they're served by cloudfront
   gem "asset_sync"
 
