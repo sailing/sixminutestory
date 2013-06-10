@@ -36,20 +36,20 @@ class StoriesController < ApplicationController
               @stories = Story.includes(:user).recent(timeframe).popular.page(page).per(per_page)
               @title = "Popular stories"
           when /active/
-              @stories = Story.recent(timeframe).commented.page(page).per(per_page)
+              @stories = Story.includes(:user).recent(timeframe).commented.page(page).per(per_page)
               @title = "Active stories"
           when /recent/
-              @stories = Story.recent(timeframe).page(page).per(per_page)
+              @stories = Story.includes(:user).recent(timeframe).page(page).per(per_page)
               @title = "Recent stories"
           when /top/
-              @stories = Story.recent(timeframe).top.page(page).per(per_page)
+              @stories = Story.includes(:user).recent(timeframe).top.page(page).per(per_page)
               @title = "Top rated stories"
           when /featured/
-              @stories = Story.recent(timeframe).featured.page(page).per(per_page)
+              @stories = Story.includes(:user).recent(timeframe).featured.page(page).per(per_page)
               @title = "Editors' picks"
           when /adjective/
               @adjective = params[:tag]
-              @stories = Story.recent(timeframe).tagged_with([@adjective], :any => true).page(page).per(per_page)
+              @stories = Story.includes(:user).recent(timeframe).tagged_with([@adjective], :any => true).page(page).per(per_page)
               @title = "Stories tagged with #{@adjective}"
           when /genre/
               @genre = params[:tag]
@@ -57,7 +57,7 @@ class StoriesController < ApplicationController
               @title = "Stories in #{@genre} genre"
           when /emotion/
                 @emotion = params[:tag].downcase
-                @stories = Story.recent(timeframe).tagged_with([@emotion], :any => true, :on => :emotions).page(page).per(per_page)
+                @stories = Story.includes(:user).recent(timeframe).tagged_with([@emotion], :any => true, :on => :emotions).page(page).per(per_page)
                 @title = "These stories evoked #{@emotion}"
 
 
@@ -65,7 +65,7 @@ class StoriesController < ApplicationController
             #return featured
             #@stories = Story.recent(timeframe).featured.page(page).per(per_page)
             #@title = "editors' picks"
-						 @stories = Story.recent(timeframe).page(page).per(per_page)
+						 @stories = Story.includes(:user).recent(timeframe).page(page).per(per_page)
               @title = "Recent stories"
 							@frontpage = true
         end
@@ -199,7 +199,7 @@ class StoriesController < ApplicationController
 
     e = ActiveRecord::RecordNotFound
     begin
-                @story = Story.includes(:user, :comments, :prompt, :tags, :votes).active.find(params[:id])
+                @story = Story.includes(:user, :prompt, :tags, :votes, comments: [:user, :votes]).active.find(params[:id])
                 @previous = Story.previous(@story).first
                 @next = Story.next(@story).first
                 if @story.featured

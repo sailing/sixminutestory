@@ -1,6 +1,8 @@
 class SiteController < ApplicationController
    before_filter :must_be_admin, :only => [:admin]
 
+   caches_action :index, expires_in: 1.day, layout: false
+
    def index
       @story_to_read = Story.featured.order("created_at DESC").first
       @active_writers_this_week = User.where("last_request_at > ?", 1.week.ago).size
