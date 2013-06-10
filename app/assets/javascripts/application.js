@@ -8,8 +8,8 @@
 //= require bootstrap
 //= require_self
 //= require_tree .
-//= require widearea
-//= require theme
+//= require ../../../vendor/assets/widearea
+//= require ../../../vendor/assets/theme
 //= require stories_index
 //= require stories_new
 
