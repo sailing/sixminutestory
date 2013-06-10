@@ -19,6 +19,12 @@ group :assets do
   gem 'font-awesome-rails'
   gem 'less-rails'
   gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+
+  # asset_sync moves files to s3, where they're served by cloudfront
+  gem "asset_sync"
+
+  # superspeeds asset precompilation
+  gem 'turbo-sprockets-rails3'
 end
 
 # Layout and scripting
@@ -37,8 +43,7 @@ gem 'authlogic_rpx', :git => 'git://github.com/sailing/authlogic_rpx.git'
 # for Heroku
 # dalli is a caching replacement for memcached
 gem 'dalli'
-# asset_sync moves files to s3, where they're served by cloudfront
-gem "asset_sync"
+
 
 #voting tool
 gem 'thumbs_up', '>= 0.3.2'
