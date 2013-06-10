@@ -72,6 +72,9 @@ group :development, :test do
   # taps is for database syncing on heroku
   gem 'taps', '>= 0.3.22'
 
+  gem 'bullet'
+  gem 'rack-mini-profiler'
+
 end
 
 group :production do
