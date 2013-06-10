@@ -15,7 +15,7 @@
   .span8
     = render @stories
     = render :partial => "stories/pagination"
-  .span4
+  .span4.well
     - if is_user
       %h3
         Favorites (#{@user.votes.size})
@@ -35,7 +35,7 @@
         - for following in @user.followings.limit(5)
           %li
             = link_to h(following.writer.login), profile_path(following.writer)
-            = link_to_if @user == current_user, "[unfollow]", following, {:method => :delete, :style => "color:white;"} do
+            = link_to_if @user == current_user, "<i class='icon-remove'></i>".html_safe, following, {:method => :delete, class: 'remove'} do
               \&nbsp;
     - else
       %span

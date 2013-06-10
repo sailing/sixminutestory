@@ -1,12 +1,12 @@
 - content_for :pagename do
-  = h(@story.title)
+  = @story.title
 
 .row-fluid.title
   .span7
     %h2.story-title= (@story.title.present? ? @story.title : "Untitled Story")
   .span5
     %hr
-.row-fluid
+.row-fluid.story-container
   .span1
     .row-fluid
       = link_to story_url(@previous), class: "span12 btn btn-large increment-story increment-story-left" do
@@ -29,23 +29,22 @@
   .span5.offset1
     .well
       = render :partial => "site/profile_block"
-    #favoriters
+    #favoriters.well
       = render :partial => "favoriters"
+    .well
+      %h3 Story information
 
-    %h3 Story information
-
-    %span license
-    %p
-      = @story.license
-    - if @story.genres.any?
-      %span genres
+      %h6 license
       %p
-        - @story.genres.each do |genre|
-          = link_to h(genre.name), subset_stories_url(:tag => genre.name, :subset => "genre", :months => 100)
-    - if @story.tags.any?
-      %p
-        %i.icon-tags
-        %span
+        = @story.license
+      - if @story.genres.any?
+        %h6 genres
+        %p
+          - @story.genres.each do |genre|
+            = link_to h(genre.name), subset_stories_url(:tag => genre.name, :subset => "genre", :months => 100)
+      - if @story.tags.any?
+        %h6 tags
+        %p
           - @story.tags.each do |tag|
             = link_to h(tag.name), subset_stories_url(:tag => tag.name, :subset => "adjective", :months => 100)
 
@@ -60,10 +59,10 @@
                 :confirm => 'Are you sure you want to unfeature this story? The story will no longer be featured!', :method => :post
           - elsif @story.featured == false
             #following_button.button_container
-              = link_to "Feature", feature_story_url(@story), class: "btn span12 btn-warning btn-superlarge",
+              = link_to "Feature", feature_story_url(@story), class: "btn span12 btn-primary btn-superlarge",
                 :confirm => 'Are you sure you want to feature this story? The story will become featured!', :method => :post
         .span4
-          = link_to "Edit Details", edit_story_url(@story), class: "btn span12 btn-success btn-superlarge"
+          = link_to "Edit Details", edit_story_url(@story), class: "btn span12 btn-superlarge"
 
 
 

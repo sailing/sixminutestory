@@ -26,7 +26,7 @@
 				console.log "Tick Tock"
 				self.tickTock()
 			, 1000)
-			$("#done_writing").show()
+
 
 		stopTimer: ->
 			console.log "STOP TIMER!"
@@ -73,9 +73,18 @@
 
 	$("input[type=\"text\"]").keyup ->
 		value = $("#story_title").val()
-		if value.length > 0 and value isnt "Title"
+		story_value = $("#story_description").val()
+
+		if value.length > 0 and value isnt "Title" and story_value.length > 0 && story_value isnt "Type here to begin writing."
 			$("input[type=\"submit\"]").removeAttr "disabled"
 		else
 			$("input[type=\"submit\"]").attr "disabled", "disabled"
 
+	$("#story_description").keyup ->
+		story_value = $("#story_description").val()
+
+		if story_value.length > 0 && story_value isnt "Type here to begin writing."
+			$("#done_writing").show()
+		else
+			$("#done_writing").hide()
 

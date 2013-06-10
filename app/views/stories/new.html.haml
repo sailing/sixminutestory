@@ -1,6 +1,47 @@
-%h1 Write a story
-.row
-  .span8
+.row-fluid.title
+  .span6
+    %h2 Write a story
+  .span6
+    %hr
+
+#prompt_and_timer.hide.row-fluid.content
+  .span6
+    #prompt_container.prompt_container
+      = render :partial => "prompts/show_prompt"
+  .span6.well
+    #timer_container
+      #timer_element
+        6:10
+        / the timer is held in the timer.js
+
+#instructions.row-fluid.content
+  .span6
+    %h3 Instructions
+    %ol
+      %li
+        When you click in the writing box, you get a prompt.
+      %li
+        Then you have
+        %strong six minutes
+        to write a story.
+      %li Go!
+  .span6.well
+    %h4 Note:
+    %p
+      When the timer stops,
+      %em you won't be able to type anymore
+      so use the last seconds
+      %strong wisely.
+    %p
+      %em Before submitting
+      choose a
+      %strong title
+      and categorize and
+      %strong license
+      your story.
+
+.row-fluid.content
+  .span12
     #new_story_container.new_story_container
       - if @story.errors.any?
         #errorExplanation
@@ -12,11 +53,12 @@
       = form_for @story do |f|
         / Include the prompt so we can use it on the next page. Is this really necessary?
         = f.hidden_field :prompt_id, value: @prompt.id
-        .row
-          .span8
+        .row-fluid
+          .span12
             = f.text_area :description, :rows => 15, :placeholder => "Type here to begin writing.", :style => "width:100%;", :'data-widearea' => "enable"
         %div
-          %a#done_writing.hide.btn.btn-large{:href => "#"} I'm done writing
+          %a#done_writing.hide.pull-right.btn.btn-large{:href => "#"} I'm done writing
+
         #story-saved.modal.hide.fade
           .modal-header
             %h3 Well done!
@@ -53,44 +95,3 @@
           .modal-footer
             = link_to "Eh, toss this story",random_prompt_url, confirm: "Are you sure you want to abandon this story?", :class =>"btn btn-danger"
             = f.submit "Publish your story", :class => "btn btn-success btn-large "
-  .span4
-    #prompt_and_timer.hide
-      #prompt_container.prompt_container
-        #timer_container.orange.button_container
-          #timer_element
-            6:10
-          / the timer is held in the timer.js
-        = render :partial => "prompts/show_prompt"
-    / Prompt and Timer container
-    #instructions
-      %h2
-        Options
-      %p= link_to "Write to a blank (freeform) prompt", write_to_prompt_url(25)
-      %p
-        = link_to "Write to a random prompt", random_prompt_url
-      %h2
-        Instructions
-      %ol
-        %li
-          When you click in the writing box, you get a
-          %em prompt
-        %li
-          Then you have
-          %strong six minutes
-          to write a
-          %em story
-        %li Go!
-      %p
-        When the timer stops,
-        %em you won't be able to type anymore
-        so use the last seconds
-        %strong wisely
-      %p
-        %em Before submitting
-        choose a
-        %strong title
-        relevant
-        %strong tags
-        and a
-        %strong license
-        for your story.

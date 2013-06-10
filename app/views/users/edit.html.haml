@@ -1,0 +1,73 @@
+= form_for @user, :url => account_path, html: {class: "form-horizontal"} do |f|
+  .row-fluid.title
+    .span6
+      %h2 Edit Profile
+    .span6
+      %hr
+  .row-fluid.content
+    .span6
+      .row-fluid
+        .span12.well
+          %h5 Account Settings
+          .control-group
+            = f.label :login, "Pseudonym", class: "control-label"
+            .controls
+              = f.text_field :login
+          .control-group
+            = f.label :email_address, class: "control-label"
+            .controls
+              = f.text_field :email_address
+          .control-group
+            = f.label :password, f.object.new_record? ? nil : "Change password", class: "control-label"
+            .controls
+              = f.password_field :password
+          .control-group
+            = f.label :password_confirmation, class: "control-label"
+            .controls
+              = f.password_field :password_confirmation
+      .row-fluid
+        .span12.well
+          %h5 Email Preferences
+          %h6
+            Receive notifications when
+          .control-group
+            = f.label :send_comments, "someone comments on your story", :class => "notification_option", class: "control-label"
+            .controls
+              = f.check_box :send_comments
+
+          .control-group
+            = f.label :send_followings, "someone starts following you", :class => "notification_option", class: "control-label"
+            .controls
+              = f.check_box :send_followings
+          .control-group
+            = f.label :send_stories, "your story is featured", :class => "notification_option", class: "control-label"
+            .controls
+              = f.check_box :send_stories
+
+    .span6
+      .row-fluid
+        .span12.well
+          %h5 Public Profile
+          .control-group
+            = f.label :website, class: "control-label"
+            .controls
+              = f.text_field :website
+          .control-group
+            = f.label :profile, class: "control-label"
+            .controls
+              = f.text_area :profile, :rows => 10
+      .row-fluid
+        .span12.well
+          %h5 Link Accounts
+          .control-group
+            Linking accounts enables you to login using your existing accounts with other services. Further, if you initially signed in using one account (say, Facebook) and you wish to be able to sign in with another (say, Twitter), you can link additional accounts here.
+          .control-group
+            = rpx_popup(                                                          |
+              :link_text => "Add OpenID, Facebook, Twitter, etc to your account", |
+              :app_name => "six-minute-story",                                    |
+              :return_url => addrpxauth_url,                                      |
+              :add_rpx => true,                                                   |
+              :unobtrusive => false )                                             |
+  .row-fluid
+    .span12
+      = f.submit "Save", class: "btn btn-large btn-primary span2"

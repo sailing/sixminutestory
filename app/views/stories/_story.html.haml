@@ -8,12 +8,12 @@
         = link_to(story.user.login, profile_path(story.user))
         = time_ago_in_words(story.created_at) + " ago"
 
-    .span6.story_footer
+    .span6.story-footer
       %span.comments_in_footer
         / = link_to pluralize(story.comments_count, 'remark'), story_url(story, :anchor => "comments")
         = link_to raw(story.comments_count.to_s + " <i class='icon-comment'></i>"), story_url(story, :anchor => "comments"), rel: "tooltip", title: "#{story.comments_count.to_s} comments"
 
-      - if @story
+      - unless @stories
         %span &nbsp;|&nbsp;
         %span.favorites_in_footer
           #{render :partial => "votes/story_vote", :story => story}
@@ -39,10 +39,11 @@
   - if @stories
     = simple_format(sanitize(truncate(h(story.description), :length => 500, separator: ' ',:omission => "...&nbsp;&nbsp;&nbsp;" + link_to("Read more <i class='icon-circle-arrow-right'></i>".html_safe, story_url(story), class: "btn btn-success btn-mini") )))
   - else
-    = simple_format(sanitize(h(story.description)))
+    .row-fluid.story-itself
+      .span10.offset1
+        = simple_format(sanitize(h(story.description)))
 
-
-  .row-fluid
-    .span6
-      - unless @stories
+  - unless @stories
+    .row-fluid.content
+      .span6.offset3.text-center
         = render :partial => 'stories/share_in_story', :locals => {:story => story}

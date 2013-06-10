@@ -3,6 +3,26 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "variables";
 
+// Timer
+#timer_element {
+	@height: 140px;
+	line-height: @height;
+	max-height: @height;
+	height: @height;
+	text-align:center;
+
+	font-size:3em;
+	font-weight: 600;
+
+}
+
+
+// Stories
+
+.story-container {
+	margin-top:15px;
+}
+
 .story {
 	margin-top:25px;
 	margin-bottom:55px;
@@ -41,7 +61,7 @@
 	font-size: 1.5em;
 }
 
-.story_footer {
+.story-footer {
 	margin-bottom: 15px;
 	span {
 		padding:0;
@@ -56,6 +76,22 @@
 	position: fixed;
 	bottom:1%;
 	right:0;
+}
+
+#story_description {
+	padding-right: 0;
+}
+
+.story-itself {
+	margin-top:25px;
+
+	font-family: 'Open Sans';
+	font-size: 1em;
+	line-height: 1.8em;
+
+	p {
+		margin-bottom: 15px;
+	}
 }
 
 #share {
@@ -79,6 +115,10 @@
 	}
 }
 
+.border-right {
+	border-right: 1px solid #777;
+}
+
 .agree-with-comment {
 	margin-top:50px;
 }
@@ -86,3 +126,10 @@
 .remove {
 	color: #ccc;
 }
+
+
+.post-writing-actions {
+	height:200px;
+	min-height: 200px;
+}
+

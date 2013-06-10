@@ -1,6 +1,6 @@
 .row-fluid.title
   .span5
-    %h2= @story.user.login
+    %h2= @user.login
   .span7.hidden-phone
     %hr
 
@@ -12,48 +12,48 @@
       %p
         %i.icon-envelope
         %span
-          = @story.user.try(:email_address)
+          = @user.try(:email_address)
     %p
       %i.icon-calendar{title: 'Joined'}
       %span
         Joined
-        = time_ago_in_words(@story.user.created_at)
+        = time_ago_in_words(@user.created_at)
         ago
-    - if @story.user.followers.any?
+    - if @user.followers.any?
       %p
         %i.icon-group{title: 'Followers'}
         %span
-          = @story.user.followers.count
+          = @user.followers.count
           followers
 
     %p
       %i.icon-thumbs-up{title: 'Reputation'}
       %span
-        = @story.user.karma
+        = @user.karma
         reputation
     %p
       %i.icon-pencil{title: 'Read Stories'}
       %span
-        = link_to profile_path(@story.user) do
-          = @story.user.stories.where(active: true).count.to_s
+        = link_to profile_path(@user) do
+          = @user.stories.where(active: true).count.to_s
           stories
-    - if @story.user.website.present?
+    - if @user.website.present?
       %p
         %i.icon-globe
         %span
-          = link_to "Visit website", @story.user.website, :title => @story.user.website, :rel => 'nofollow'
-    - if is_user && (current_user.id == @story.user.id)
+          = link_to "Visit website", @user.website, :title => @user.website, :rel => 'nofollow'
+    - if is_user && (current_user.id == @user.id)
       %small
         = link_to edit_account_path, class: "btn btn-primary" do
           %i.icon-edit
           Manage Profile
-    - elsif is_user && current_user.id != @story.user.id
-      = render :partial => 'site/following_toggle', :locals => {:user => @story.user}
+    - elsif is_user && current_user.id != @user.id
+      = render :partial => 'site/following_toggle', :locals => {:user => @user}
   .span6
-    - if @story.user.profile.present?
+    - if @user.profile.present?
       .profile
         %h3
           about
         %p
-          = auto_link(simple_format(@story.user.profile))
+          = auto_link(simple_format(@user.profile))
 
