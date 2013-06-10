@@ -1,7 +1,7 @@
 /*
  *= require_self
  *= require_tree .
- *= require ../../../vendor/assets/widearea
- *= require ../../../vendor/assets/theme
+ *= require widearea
+ *= require theme
  *= require font-awesome
 */
