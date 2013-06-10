@@ -31,3 +31,46 @@ h1,h2,h3,h4,h5,h6 {
 	}
 }
 
+#login_container {
+	position: fixed;
+	top:0;
+	right:0;
+	width: 60px;
+	height: 25px;
+
+	text-align: center;
+
+	border-bottom-left-radius: 10px;
+	background-color: @red;
+
+	font-weight: 500;
+
+	&:hover {
+		background-color: lighten(@red, 2%);
+	}
+
+	a {
+		display: block;
+		width: 100%;
+		height: 100%;
+		color: @white;
+	}
+
+	ul {
+		li {
+			text-align: left;
+		}
+		a {
+			color: @black;
+		}
+	}
+
+	.dropdown-menu {
+		form {
+			padding: 10px;
+		}
+	}
+
+
+}
+

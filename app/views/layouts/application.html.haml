@@ -55,5 +55,7 @@
         - else
           %section.section
             .container-fluid
+              = render partial: "layouts/flashes"
               = yield
+      = render partial: 'layouts/login'
 

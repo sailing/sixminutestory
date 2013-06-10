@@ -3,25 +3,25 @@ class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => [:edit, :update]
   before_filter :must_be_admin, :only => [:index, :enable_user, :disable_user]
-    
+
     def index
           page = params[:page] || 1
            per_page = 20
-           order = params[:order] || "created_at DESC" 
+           order = params[:order] || "created_at DESC"
 
           @users = User.page(page).per(per_page).order(order)
 
         end
-    
+
   def new
     @user = User.new
   end
 
   def create
     @user = User.new(params[:user])
-      
-        if verify_recaptcha && @user.save
-          redirect_to account_url
+
+        if @user.save
+          redirect_back_or_default account_url
         else
           render :action => :new
         end
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
  end
 
   def show
-    
+
      e = ActiveRecord::RecordNotFound
       begin
        #@user = User.find_by_login(params[:login]) || User.find(params[:id]) || current_user
@@ -39,17 +39,17 @@ class UsersController < ApplicationController
         flash[:notice] = 'That user doesn\'t exist.'
         redirect_to root_url
       else
-        
+
     if @user.present?
-    
+
         page = params[:page] || 1
         per_page = 10
         order = "created_at DESC"
-    
-        @truncate = true 
-        @paginate = true 
-        
-        if request.path.include?("profile") or (request.path.include?("profile") and request.format == "rss") 
+
+        @truncate = true
+        @paginate = true
+
+        if request.path.include?("profile") or (request.path.include?("profile") and request.format == "rss")
            @stories = @user.stories.active.page(page).per(per_page).order(order)
            @story = @stories.first if @stories.any?
            unless @story
@@ -72,9 +72,9 @@ class UsersController < ApplicationController
            unless @story
               @story = @user.stories.build
             end
-           
+
         end
-    
+
       respond_to do |format|
         format.html # show.html.erb
         format.xml  { render :xml => @stories }
@@ -86,12 +86,12 @@ class UsersController < ApplicationController
     end
     end
 end
-  
+
 
   def edit
     @user = current_user
     @user.valid?
-    
+
   end
 
   def update
@@ -103,7 +103,7 @@ end
       render :action => :edit
     end
   end
-  
+
   # This action has the special purpose of receiving an update of the RPX identity information
   # for current user - to add RPX authentication to an existing non-RPX account.
   # RPX only supports :post, so this cannot simply go to update method (:put)
@@ -132,7 +132,7 @@ end
        end
      end
   end
-  
+
   def disable_user
     @user = User.find(params[:id])
 
@@ -153,5 +153,5 @@ end
 
 
 
-  
+
 end

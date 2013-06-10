@@ -12,6 +12,10 @@ class Story < ActiveRecord::Base
 
   has_friendly_id :title, :use_slug => true, :reserved_words => ["recent", "featured", "active", "popular", "top", "genres","emotions","tags"]
 
+  def should_generate_new_friendly_id?
+    new_record?
+  end
+
   belongs_to :user, :counter_cache => true
   belongs_to :prompt, :counter_cache => true
   has_one :contest

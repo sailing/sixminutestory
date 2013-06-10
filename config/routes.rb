@@ -75,10 +75,11 @@ Sms::Application.routes.draw do
            member do
              post :feature
              post :unfeature
+             post :flag
               get :thanks
            end
            collection do
-               post :flag
+
                get :random
                get '/:subset(/:tag)', :action => 'index', :constraints => { :subset => /(featured|recent|popular|active|top|genre|adjective|emotion)/, :tag => /.*/ }, :as => 'subset'
                get '/:subset', :action => 'tag_cloud', :constraints => { :subset => /(genres|adjectives|emotions)/ }, :as => 'cloud'

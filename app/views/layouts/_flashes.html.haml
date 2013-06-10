@@ -1,0 +1,27 @@
+- if flash[:notice] || flash[:alert] || flash[:error] || flash[:update_password]
+  %div
+    - if flash[:error] && flash[:error].present?
+      %div.alert.alert-block.alert-error
+        %a.close(data-dismiss="alert") ×
+        %h3.alert-heading Hello, what's this?!
+        = flash[:error].each do |name, msg|
+          = Array(msg).uniq.each do |key, message|
+            = message
+      - flash[:error] = nil
+
+    - if flash[:notice] && flash[:notice].present?
+      %div.alert.alert-block.alert-success
+        %a.close(data-dismiss="alert") ×
+        %h3.alert-heading
+          Just letting you know:
+          = flash[:notice]
+
+      - flash[:notice] = nil
+
+    - if flash[:alert] && flash[:alert].present?
+      %div.alert.alert-block
+        %a.close(data-dismiss="alert") ×
+        %h3.alert-heading
+          Heads up:
+          = flash[:alert]
+      - flash[:alert] = nil

@@ -27,7 +27,8 @@
           %span &nbsp;|&nbsp;
           %span.flag
             / This is how people flag stories
-            = link_to "<i class='icon-flag'></i>".html_safe, flag_stories_url(story: story.id), :method => "post", rel: "tooltip", title: "Flag this as hateful"
+            = link_to flag_story_url(story.id), :method => "post", rel: "tooltip", title: "Flag this as hateful" do
+              %i.icon-flag
 
           - if is_admin
             &nbsp;||&nbsp;
