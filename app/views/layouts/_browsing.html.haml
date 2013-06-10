@@ -16,7 +16,7 @@
       - if current_user
         = link_to "Random Prompt", random_prompt_url
       - else
-        = link_to "Write now!", prompts_url
+        = link_to "Write now!", write_url
   - if params[:subset] or @frontpage
     %nav
       %ul.nav.nav-pills
