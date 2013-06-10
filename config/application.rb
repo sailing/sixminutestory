@@ -32,9 +32,9 @@ module Sms
 
     # JavaScript files you want as :defaults (application.js is always included).
     # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
-    
+
     config.secret_token = '96d6d882db970977968b6f3a7e4b4470f283562c97dcbcc098b1691883a6514b01915724d5b9884220d991f2496ee05e8f868e0ba1c769ef18628884cdd86516'
-    
+
         # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
@@ -62,12 +62,13 @@ module Sms
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    config.assets.paths << Rails.root.join('vendor', 'assets')
 
     # Default to haml
     config.generators do |g|
       g.template_engine :haml
     end
-  
+
     RPX_API_KEY = 'c37c053204545279866b1c267510c078a3c7ef6c'
     FlickRawOptions = { :lazyload => true, :timeout => 2 }
 

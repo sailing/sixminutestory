@@ -1,0 +1,36 @@
+%nav.center
+  %ul.nav.nav-pills
+    %li
+      = link_to "Featured", subset_stories_path(:subset => "featured")
+    %li
+      = link_to "Favorited", subset_stories_path(:subset => "top")
+    %li
+      = link_to "Recent", subset_stories_path(:subset => "recent")
+    %li
+      = link_to "Active", subset_stories_path(:subset => "active")
+    %li
+      = link_to "Popular", subset_stories_path(:subset => "popular")
+    %li
+      = link_to "Random Story", random_stories_url
+    %li
+      - if current_user
+        = link_to "Random Prompt", random_prompt_url
+      - else
+        = link_to "Write now!", prompts_url
+  - if params[:subset] or @frontpage
+    %nav
+      %ul.nav.nav-pills
+        %li
+          = link_to "Today", :days => 1, :tag => params[:tag]
+        %li
+          = link_to "Past week", :days => 7, :tag => params[:tag]
+        %li
+          = link_to "Past month", :months => 1, :tag => params[:tag]
+        %li
+          = link_to "3 months", :months => 3, :tag => params[:tag]
+        %li
+          = link_to "6 months", :months => 6, :tag => params[:tag]
+        %li
+          = link_to "Past year", :months => 12, :tag => params[:tag]
+        %li
+          = link_to "All time", :months => 100, :tag => params[:tag]

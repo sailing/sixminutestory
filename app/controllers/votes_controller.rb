@@ -39,7 +39,7 @@ class VotesController < ApplicationController
     
     
 #    @stories = Story.find_by_sql(["select stories.* from stories, votes where votes.voter_id = ? AND stories.id = votes.voteable_id", @user]).paginate :per_page => 3, :page => page
-  @stories = Story.find(:all, :include => :votes, :conditions => ["votes.voter_id = ? AND stories.id = votes.voteable_id", @user], :order => order).paginate :per_page => per_page, :page => page
+  @stories = Story.find(:all, :include => :votes, :conditions => ["votes.voter_id = ? AND stories.id = votes.voteable_id", @user], :order => order).page(page).per(per_page).order(order)
  #   @stories = Story.favorites
   #  @stories.paginate :per_page => 3, :page => page
     respond_to do |format|
@@ -94,10 +94,10 @@ class VotesController < ApplicationController
 				end
         if current_user.vote(@voteable, :direction => params[:vote_direction], :exclusive => true)
           @voteable.reload
-            format.html {redirect_to @voteable}
-            format.js
+          format.html {redirect_to @voteable}
+          format.js
         else
-            format.html { render :action => "new" }
+            format.html { redirect_to @voteable, notice: "Favorite not saved." }
             format.js  { render :action => "error" }
         end
     

@@ -16,14 +16,16 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
-  gem 'less-rails-fontawesome'
+  gem 'font-awesome-rails'
+  gem 'less-rails'
+  gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 end
 
 # Layout and scripting
-gem 'twitter-bootstrap-rails'
+
 gem 'jquery-rails'
 gem 'haml-rails'
-gem 'less-rails'
+
 gem 'rinku', :require => 'rails_rinku' # replacing auto_linking in rails 3.2
 
 # user authing
@@ -45,7 +47,8 @@ gem 'thumbs_up', '>= 0.3.2'
 gem 'friendly_id', '~> 3.1'
 
 #pagination
-gem "will_paginate", "~> 3.0"
+# gem "will_paginate", "~> 3.0"
+gem 'kaminari'
 
 #flickr api for prompts
 gem 'flickraw'
@@ -63,6 +66,7 @@ gem 'recaptcha'
 
 group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'
+  gem "therubyracer"
   # To use debugger
 
   # taps is for database syncing on heroku

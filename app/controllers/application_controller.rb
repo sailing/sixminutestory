@@ -152,9 +152,9 @@ class ApplicationController < ActionController::Base
         
         # This tests to see if the current user is 
         # following the writer whose story or profile they're viewing.
-        def following_exists
+        def following_exists(user_id)
           if current_user
-            unless @following = current_user.followings.find_by_writer_id(@user.id)
+            unless @following = current_user.followings.find_by_writer_id(user_id)
               @following = nil
             end
           end

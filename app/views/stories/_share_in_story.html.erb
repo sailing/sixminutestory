@@ -1,29 +1,30 @@
-	<div id="share" class="share">
-		<% story = story || @story %>
-		<h3>Share this story now</h3>
-		<ul>		
+<div id="share" class="row-fluid">
+	<% story = story || @story %>
+	<div class="span10 offset1 text-center">
+		<ul>
 			<li>
 				<a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= story_url(story) -%>" data-text="Read &quot;<%= story.title %>&quot; by <%= story.user.login %>:" data-count="vertical" data-via="6minutestory" data-related="galensanford:The brain behind the site.">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 			</li>
 			<li>
 					<script src="http://www.stumbleupon.com/hostedbadge.php?s=5&r=<%= story_url(story) %>"></script>
 			</li>
-			<li>				
-				<iframe src="http://www.facebook.com/plugins/like.php?href=<%= story_url(story) %>&amp;layout=box_count&amp;show_faces=false&amp;width=90&amp;action=like&amp;font=segoe+ui&amp;colorscheme=light&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:65px;" allowTransparency="true"></iframe>
-			
+			<li>
+				<iframe src="http://www.facebook.com/plugins/like.php?href=<%= story_url(story) %>&amp;layout=box_count&amp;show_faces=false&amp;width=50&amp;action=like&amp;font=segoe+ui&amp;colorscheme=light&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:50px; height:65px;" allowTransparency="true"></iframe>
+
 			</li>
 			<!--
 			<li>
-				
+
 			<script type="text/javascript">
 			reddit_url='<%= story_url(story) -%>'
 			reddit_target='6minutestory'
 			reddit_title='<%= story.title -%>'
 			</script>
 			<script type="text/javascript" src="http://reddit.com/static/button/button2.js">
-				
+
 			</script>
 			</li>
 			-->
 		</ul>
 	</div>
+</div>

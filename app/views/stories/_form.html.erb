@@ -1,14 +1,14 @@
 
 	<% if is_admin %>
 		<% if @story.active == true %>
-		<%= link_to image_tag('disable.png'), disable_story_url(@story), 
-		:confirm => 'Are you sure you want to disable this story? The story will no longer be visible!', 
+		<%= link_to image_tag('disable.png'), disable_story_url(@story),
+		:confirm => 'Are you sure you want to disable this story? The story will no longer be visible!',
 		:method => :delete %>
 		<% elsif @story.active == false %>
-		<%= link_to image_tag('enable.png'), enable_story_url(@story), 
+		<%= link_to image_tag('enable.png'), enable_story_url(@story),
 		:confirm => 'Are you sure you want to enable this story? The story will become visible!'
 		%>
-		
+
 		<% end %>
 	<% end %>
 
@@ -16,10 +16,10 @@
 
 			<%= form.error_message_on 'description' %><br />
 			<% is_admin ? @disabled = false : @disabled = true %>
-			
-  			<%= form.text_area :description, :disabled => @disabled, :value => @description, :rows => 20, :cols => 45, :tabindex => "1" %>
-	
-	
+
+  			<%= form.text_area :description, :disabled => @disabled, :value => @description, :rows => 20, :cols => 45, :tabindex => "1", :'data-widearea' => "enable" %>
+
+
 	<div class="clear space">
 	</div>
 			<h1>Details, details, details</h1>
@@ -32,7 +32,7 @@
 							<label for="story_title">Title</label>
 						</td>
 
-						<td>	
+						<td>
 					  		<%= form.text_field :title, :tabindex => "2" %>
 						</td>
 					</tr>
@@ -42,23 +42,23 @@
 						</td>
 
 					</tr>
-					<tr>	
+					<tr>
 						<td>
 							<label for="story_tags">Adjectives</label><br />
 							<span style="font-size:x-small">separate adjectives with commas</span>
 						</td>
-						<td>	
+						<td>
 
 					 			<%= form.text_field :tag_list, :tabindex => "3" %>
 
 				  		</td>
 					</tr>
-					<tr>	
+					<tr>
 						<td>
 							<label for="story_genres">Genres</label><br />
 							<span style="font-size:x-small">separate genres with commas</span>
 						</td>
-						<td>	
+						<td>
 					 			<%= form.text_field :genre_list, :tabindex => "4" %>
 
 				  		</td>
@@ -99,10 +99,10 @@
 						</td>
 					</tr>
 				</table>
-				
+
 				<p>
 				<%= image_submit_tag("save.png", :name => "save", :id => "save-button") %>
-			
+
 				</p>
-	
+
 </div>
