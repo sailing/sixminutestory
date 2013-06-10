@@ -9,12 +9,12 @@ class CommentsController < ApplicationController
       per_page = 5
       condition = true
       order = "stories.updated_at DESC"
-      @user = User.find_by_login(params[:user])
+      @user = current_user
 
         if params[:time]
           case params[:time]
             when "new"
-              @stories = Story.with_unseen_comments_for_user(@user.id).paginate :page => page, :per_page => per_page, :order => order
+              @stories = Story.with_unseen_comments_for_user(@user).paginate :page => page, :per_page => per_page, :order => order
               @title = "New comments after your comments"
             when "on"
               @stories = Story.new_comments_for_user_stories(@user).paginate :page => page, :per_page => per_page, :order => order

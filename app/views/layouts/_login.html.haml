@@ -8,10 +8,10 @@
         = link_to account_path do
           %i.icon-picture{title: "Profile"}
           Profile
-      %li
-        = link_to users_comments_url(current_user, "new") do
-          %i.icon-envelope{title: "Inbox"}
-          Inbox
+      / %li
+      /   = link_to users_comments_url(current_user, "new") do
+      /     %i.icon-envelope{title: "Inbox"}
+      /     Inbox
       %li
         = link_to edit_account_path do
           %i.icon-cog{title: "Settings"}
