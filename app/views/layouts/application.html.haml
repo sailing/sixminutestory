@@ -58,3 +58,4 @@
               = render partial: "layouts/flashes"
               = yield
         = render partial: 'layouts/login'
+    = render partial: 'layouts/analytics' if Rails.env.production?
