@@ -31,8 +31,6 @@ class Story < ActiveRecord::Base
   scope :commented, lambda { where('(comments_count >= ?)', 0).order('comments_count DESC, votes_count DESC, counter DESC, updated_at ASC') }
   scope :featured, lambda {where('featured = ?', true)}
   scope :by_popularity, lambda {order('counter ASC')}
-  scope :by_date, lambda { order('created_at DESC')}
-
 
   # Filters
   scope :by_date, :order => "stories.created_at DESC"

@@ -1,6 +1,6 @@
 # app/controllers/user_sessions_controller.rb
 class UserSessionsController < ApplicationController
-  before_filter :require_no_user, :only => [:new, :create]
+  before_filter :require_no_user, :only => [:new]
   before_filter :require_user, :only => :destroy
 
   def index
@@ -33,7 +33,7 @@ class UserSessionsController < ApplicationController
                         redirect_to login_path
                 end
         end
-  
+
 
         def destroy
                     @user_session = current_user_session
@@ -41,5 +41,5 @@ class UserSessionsController < ApplicationController
                     #flash[:notice] = "Successfully signed out."
                     redirect_to root_url
             end
-  
+
 end
