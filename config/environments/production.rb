@@ -14,7 +14,7 @@ config.perform_caching             = true
 # config.log_level = :debug
 
 # Heroku requires we serve static assets
-config.serve_static_assets = true
+config.serve_static_assets = false
 
 # Use a different logger for distributed setups
 # config.logger = SyslogLogger.new
@@ -42,19 +42,25 @@ config.active_support.deprecation = :notify
 
 # Compress JavaScripts and CSS
 config.assets.compress = true
- 
+
 # Don't fallback to assets pipeline if a precompiled asset is missed
-config.assets.compile = false
- 
+# config.assets.compile = false
+
 # Generate digests for assets URLs
 config.assets.digest = true
- 
+
+# Use S3 for hosting
+config.action_controller.asset_host = "//sixminutestory.s3.amazonaws.com"
+
+# Store assets in a subdirectory
+config.assets.prefix = "/production/assets"
+
 # Defaults to Rails.root.join("public/assets")
 # config.assets.manifest = YOUR_PATH
- 
+
 # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
 # config.assets.precompile += %w( search.js )
- 
+
 # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
 # config.force_ssl = true
 

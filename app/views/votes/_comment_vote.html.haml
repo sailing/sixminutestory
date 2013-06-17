@@ -1,0 +1,25 @@
+%div{:id => "agree_with_comment_#{comment.id}"}
+  .row-fluid
+    .span12
+      - if current_user && comment.user_id != current_user.id
+        - unless current_user.voted_for?(comment)
+          = link_to comment_votes_path(comment, :vote_direction => :up), :method => :post, :remote => true do
+            %i.icon-thumbs-up
+        - else
+          %i.icon-thumbs-up(style="color:green;")
+      - else
+        %i.icon-thumbs-up(style="color:green;")
+
+      = comment.votes_for > 0 ? comment.votes_for.to_s : ""
+  .row-fluid
+    .span12
+      - if current_user && comment.user_id != current_user.id
+        - unless current_user.voted_against?(comment)
+          = link_to comment_votes_path(comment, :vote_direction => :down), :method => :post, :remote => true do
+            %i.icon-thumbs-down
+        - else
+          %i.icon-thumbs-down(style="color:green;")
+
+      - else
+        %i.icon-thumbs-down(style="color:green;")
+      = comment.votes_against > 0 ? comment.votes_against.to_s : ""

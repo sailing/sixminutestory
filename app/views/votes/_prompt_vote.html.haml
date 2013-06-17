@@ -1,0 +1,29 @@
+#prompt_vote
+  - if current_user && prompt.user_id != current_user.id
+    .row-fluid
+      .span5.text-center
+        - unless current_user.voted_for?(prompt)
+          = link_to prompt_votes_path(prompt, :vote_direction => :up), class: "btn btn-large", method: :post, remote: true do
+            %i.icon-smile
+            Like
+        - else
+          .btn.btn-large.disabled
+            %i.icon-smile
+            Like
+        %br
+        %strong= prompt.votes_for
+        %i.icon-smile
+      .span5.text-center
+        - unless current_user.voted_against?(prompt)
+          = link_to prompt_votes_path(prompt, :vote_direction => :down), class: "btn btn-large", method: :post, remote: true do
+            %i.icon-meh
+            Meh
+        - else
+          .btn.btn-large.disabled
+            %i.icon-meh
+            Meh
+        %br
+        %strong= prompt.votes_against
+        %i.icon-meh
+  - elsif current_user && prompt.user_id == current_user.id
+    %span You suggested this prompt.

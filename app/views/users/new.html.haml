@@ -1,0 +1,43 @@
+.row-fluid.title
+  .span3
+    %h2 Join
+  .span9
+    %hr
+.row-fluid
+  .span6
+    = rpx_embed(:link_text => "Register/Sign in with RPX...", :app_name => "six-minute-story", :return_url => user_session_url)
+  .span6.well
+    %h5 Or create a traditional account
+    - if @user && @user.errors.any?
+      #errorExplanation
+        %h2 Sorry, there was an issue.
+        %h3 Please check for errors below.
+        %ul
+          - @user.errors.each do |attribute, msg|
+            %li
+              = attribute
+              = msg
+
+    = form_for :user, url: account_url, html: {class: "form-horizontal"} do |f|
+
+
+      .control-group
+        = f.label :login, "Username", class: "control-label"
+        .controls
+          = f.text_field :login
+      .control-group
+        = f.label :email_address, class: "control-label"
+        .controls
+          = f.text_field :email_address
+      .control-group
+        = f.label :password, class: "control-label"
+        .controls
+          = f.password_field :password
+      .control-group
+        = f.label :password_confirmation, class: "control-label"
+        .controls
+          = f.password_field :password_confirmation
+      .control-group
+        .controls
+          = f.submit "Submit", class: "btn btn-success"
+

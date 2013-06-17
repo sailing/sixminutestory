@@ -10,30 +10,31 @@ class CommentsController < ApplicationController
       condition = true
       order = "stories.updated_at DESC"
       @user = current_user
-      if params[:time]
-        case params[:time]
-          when "new"
-            @stories = Story.with_unseen_comments_for_user(@user).paginate :page => page, :per_page => per_page, :order => order
-            @title = "New comments after your comments"
-          when "on"
-            @stories = Story.new_comments_for_user_stories(@user).paginate :page => page, :per_page => per_page, :order => order
-            @title = "New comments on your stories"
-          when "allstories"
-             @stories = Story.all_comments_for_user_stories(@user).paginate :page => page, :per_page => per_page, :order => order
-             @title = "All comments on your stories"
-          else
-            @stories = Story.with_comments_for_user(@user).paginate :page => page, :per_page => per_page, :order => order
-            @title = "All comments after your comments"
-          end
-      else 
-         @stories = Story.with_comments_for_user(@user).paginate :page => page, :per_page => per_page, :order => order
-         @title = "All comments"
-      end
+
+        if params[:time]
+          case params[:time]
+            when "new"
+              @stories = Story.with_unseen_comments_for_user(@user).paginate :page => page, :per_page => per_page, :order => order
+              @title = "New comments after your comments"
+            when "on"
+              @stories = Story.new_comments_for_user_stories(@user).paginate :page => page, :per_page => per_page, :order => order
+              @title = "New comments on your stories"
+            when "allstories"
+               @stories = Story.all_comments_for_user_stories(@user).paginate :page => page, :per_page => per_page, :order => order
+               @title = "All comments on your stories"
+            else
+              @stories = Story.with_comments_for_user(@user).paginate :page => page, :per_page => per_page, :order => order
+              @title = "All comments after your comments"
+            end
+        else
+           @stories = Story.with_comments_for_user(@user).paginate :page => page, :per_page => per_page, :order => order
+           @title = "All comments"
+        end
       respond_to do |format|
         format.html # index.html.erb
         format.xml  { render :xml => @comments }
       end
-      
+
   end
 
   # GET /comment/1
@@ -55,16 +56,16 @@ class CommentsController < ApplicationController
   def create
     @story = Story.find(params[:story_id])
     @comment = @story.comments.build(params[:comment])
-    
+    @comment.user = current_user
+
     respond_to do |format|
       if @comment.save
-        
-        Hermes.comment_notification(@story.user, @story, @comment.user, @comment).deliver unless (@story.user.send_comments == false or @story.user.email_address.blank?) 
-                
+
+        Hermes.comment_notification(@story.user, @story, @comment.user, @comment).deliver unless (@story.user.send_comments == false or @story.user.email_address.blank?)
+
 				flash[:notice] = "Thank you for your comment!"
         format.html { redirect_to story_url(@comment.story, :anchor => "comments") }
         format.xml  { render :xml => @comment, :status => :created, :location => @comment }
-        format.js
       else
         flash[:notice] = 'Comment is free, so give thine to me.'
         format.html { redirect_to story_url(@comment.story),:anchor => "comments"}
@@ -102,5 +103,5 @@ class CommentsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
+
 end

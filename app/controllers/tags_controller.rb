@@ -6,7 +6,7 @@ class TagsController < ApplicationController
       order = "@relevance DESC"
       @tag = params[:tag]
 
-      @stories = Story.tagged_with(@tag).paginate(:page => page, :limit => per_page, :order => order)
+      @stories = Story.tagged_with(@tag).page(page).per(per_page).order(order)
 
   end
 end

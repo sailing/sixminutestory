@@ -1,0 +1,261 @@
+%section#section1.section{"data-section" => "1"}
+  .container-fluid
+    .row-fluid
+      .span12.intro
+        %hgroup
+          %h1 Six Minute Story
+          %h3 A Cure for Writer's Block&#153;
+        = link_to root_url(anchor: "section2"), class: "btn-inverse", :"data-section" => "2" do
+          Learn
+          %span More
+          %i.icon-circle-arrow-down
+        = link_to write_path, class: "btn-inverse" do
+          Write
+          %span Now
+          %i.icon-pencil
+        = link_to @story_to_read, class: "btn-inverse" do
+          Read
+          %span a Story
+          %i.icon-book
+
+
+
+
+%section#section2.section{"data-section" => "2"}
+  .container-fluid
+    .row-fluid.title
+      .span3
+        %h2 About
+
+      .span9.hidden-phone
+        %hr
+
+
+    .row-fluid.desc
+      .span8
+        %p Writing a story in six minutes – with a ticking timer and a surprise prompt – is an adrenaline rush.
+
+        %p It will invigorate your mind for the entire day, helping you create more (and more and more) original art.
+
+        %p Which is, as Kurt Vonnegut said, "a way to make your soul grow."
+
+    .row-fluid.content.hidden-tablet
+      .span12.expand
+        %h4 Community Stats
+        .row-fluid
+          .span4
+            / CHART N 1
+            :javascript
+              $(document).ready(function( $ ) {
+                // Triggering only when it is inside viewport
+
+                $('#active_writers_this_week').waypoint(function(){
+                  // Triggering now
+                      $('#active_writers_this_week').knob();
+                      // Animating the value
+                      if($('#active_writers_this_week').val() == 0) {
+                      $({value: 0}).animate({value: $('#active_writers_this_week').attr("rel")}, {
+                          duration: 5000,
+                          easing:'swing',
+                          step: function()
+                            {
+                                $('#active_writers_this_week').val(Math.ceil(this.value)).trigger('change');
+                            }
+                        })
+                    }
+                        }
+                      ,{
+                        triggerOnce: true,
+                        offset: function(){
+                          return $(window).height() - $(this).outerHeight();
+                        }
+                      }
+                    );
+              });
+            .skill
+              %input#active_writers_this_week.knob{"data-anglearc" => "180", "data-angleoffset" => "-90", "data-fgcolor" => "#f1c40f", "data-height" => "122.5", "data-inputcolor" => "#333", "data-max" => "#{@active_writers_this_week*1.5}", "data-readonly" => "true", "data-width" => "245", :readonly => "readonly", :rel => "#{@active_writers_this_week}", :value => "0"}
+              %h4.visible-phone= @active_writers_this_week
+              %h6 active writers this week
+            / END CHART N 1
+
+          .span4
+            / CHART N 2
+            :javascript
+              $(document).ready(function( $ ) {
+                // Triggering only when it is inside viewport
+                $('#knob-65').waypoint(function(){
+                  // Triggering now
+                      $('#knob-65').knob();
+                      // Animating the value
+                      if($('#knob-65').val() == 0) {
+                      $({value: 0}).animate({value: $('#knob-65').attr("rel")}, {
+                          duration: 5000,
+                          easing:'swing',
+                          step: function()
+                            {
+                                $('#knob-65').val(Math.ceil(this.value)).trigger('change');
+                            }
+                        })
+                    }
+                        }
+                      ,{
+                        triggerOnce: true,
+                        offset: function(){
+                          return $(window).height() - $(this).outerHeight();
+                        }
+                      }
+                    );
+              });
+            .skill
+              %input#knob-65.knob{"data-anglearc" => "180", "data-angleoffset" => "-90", "data-fgcolor" => "#f68e51", "data-height" => "122.5", "data-inputcolor" => "#333", "data-max" => "#{@new_stories_this_week*1.9}", "data-readonly" => "true", "data-width" => "245", :readonly => "readonly", :rel => "#{@new_stories_this_week}", :value => "0"}
+              %h4.visible-phone= @new_stories_this_week
+              %h6 new stories this week
+            / END CHART N 2
+
+          .span4
+            / CHART N 3
+            :javascript
+              $(document).ready(function( $ ) {
+                // Triggering only when it is inside viewport
+                $('#knob-85').waypoint(function(){
+                  // Triggering now
+                      $('#knob-85').knob();
+                      // Animating the value
+                      if($('#knob-85').val() == 0) {
+                      $({value: 0}).animate({value: $('#knob-85').attr("rel")}, {
+                          duration: 5000,
+                          easing:'swing',
+                          step: function()
+                            {
+                                $('#knob-85').val(Math.ceil(this.value)).trigger('change');
+                            }
+                        })
+                    }
+                        }
+                      ,{
+                        triggerOnce: true,
+                        offset: function(){
+                          return $(window).height() - $(this).outerHeight();
+                        }
+                      }
+                    );
+              });
+            .skill
+              %input#knob-85.knob{"data-anglearc" => "180", "data-angleoffset" => "-90", "data-fgcolor" => "#4dbce9", "data-height" => "122.5", "data-inputcolor" => "#333", "data-max" => "#{@comments_this_week*1.3}", "data-readonly" => "true", "data-width" => "245", :readonly => "readonly", :rel => "#{@comments_this_week}", :value => "0"}
+              %h4.visible-phone= @comments_this_week
+              %h6 comments this week
+
+
+
+%section#section3.section{"data-section" => "3"}
+  .container-fluid
+    .row-fluid.title
+      .span4
+        %h2 Write
+
+      .span8.hidden-phone.alt
+        %hr
+
+    .row-fluid.desc
+      .span8
+        %p
+          %strong We use a few kinds of prompts to cure writer's block.
+        %p
+          Images, start lines, and something of our own concoction: a Hero, a Villain, and a Goal. Use these to jumpstart your imagination, and feel free to follow the inspiration wherever you want.
+
+        = link_to random_prompt_path do
+          .btn-inverse
+            Random Prompt
+            %i.icon-random
+
+        = link_to write_to_prompt_path(25) do
+          .btn-inverse
+            Blank Prompt
+            %i.icon-check-empty
+
+    .content
+      %h4 Recent image prompts:
+      .row-fluid.slide
+
+        - @three_image_prompts.each do |p|
+          .span4
+            = link_to write_to_prompt_path(p) do
+              = image_tag(p.refcode, {style: "height: 200px"})
+
+              .btn-inverse
+                Write now
+                %i.icon-circle-arrow-right
+
+
+
+%section#section4.section{"data-section" => "4"}
+  .container-fluid
+    .row-fluid.title
+      .span4
+        %h2 Read
+
+      .span8.hidden-phone
+        %hr
+
+
+    .row-fluid.content
+      .span4
+        %ul.article-tags
+          %li.current{"data-blog" => "featured"}
+            %i.icon-circle-arrow-right>
+            Featured
+          %li{"data-blog" => "recent"}
+            %i.icon-circle-arrow-right>
+            New
+          %li{"data-blog" => "popular"}
+            %i.icon-circle-arrow-right>
+            Popular
+          %li{"data-blog" => "active"}
+            %i.icon-circle-arrow-right>
+            Active
+
+      .span8.slide.current{"data-blog" => "featured"}
+        = render partial: 'site/stories_table', locals: {stories: @featured_stories, stories_type: "Featured"}
+
+
+
+      .span8.slide{"data-blog" => "recent"}
+        = render partial: 'site/stories_table', locals: {stories: @recent_stories, stories_type: "Recent"}
+
+
+
+
+      .span8.slide{"data-blog" => "popular"}
+        = render partial: 'site/stories_table', locals: {stories: @popular_stories, stories_type: "Popular"}
+
+
+
+      .span8.slide{"data-blog" => "active"}
+        = render partial: 'site/stories_table', locals: {stories: @active_stories, stories_type: "Active"}
+
+
+
+
+
+
+%section#section5.section{"data-section" => "5"}
+  .container-fluid
+    .row-fluid.title
+      .span4
+        %h2 Contact
+
+      .span8.hidden-phone.alt
+        %hr
+
+
+    .row-fluid.content
+      .span4
+        %h4 We like you. Say "Hi."
+
+      .span4.text-center
+        %a(href="http://twitter.com/6minutestory")
+          %i.icon-twitter
+      .span4.text-center
+        %a(href="http://facebook.com/sixminutestory")
+          %i.icon-facebook
+    .row-fluid.content

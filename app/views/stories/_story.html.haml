@@ -1,0 +1,50 @@
+.story
+  - if @stories
+    %h3= link_to (story.title.present? ? story.title : "Untitled Story"), story_url(story)
+  .row-fluid
+    .span6
+      %h5
+        by
+        = link_to(story.user.login, profile_path(story.user))
+        = time_ago_in_words(story.created_at) + " ago"
+
+    .span6.story-footer
+      %span.comments_in_footer
+        / = link_to pluralize(story.comments_count, 'remark'), story_url(story, :anchor => "comments")
+        = link_to raw(story.comments_count.to_s + " <i class='icon-comment'></i>"), story_url(story, :anchor => "comments"), rel: "tooltip", title: "#{story.comments_count.to_s} comments"
+
+      - unless @stories
+        %span &nbsp;|&nbsp;
+        %span.favorites_in_footer
+          #{render :partial => "votes/story_vote", :story => story}
+      %span &nbsp;|&nbsp;
+      %span.counter_in_footer
+        / = pluralize(story.counter, 'view')
+        = story.counter
+        %i.icon-user
+      - unless @stories
+        - if is_user
+          %span &nbsp;|&nbsp;
+          %span.flag
+            / This is how people flag stories
+            = link_to flag_story_url(story.id), :method => "post", rel: "tooltip", title: "Flag this as hateful" do
+              %i.icon-flag
+
+          - if is_admin
+            &nbsp;||&nbsp;
+            = link_to '<i class="icon-edit"></i>'.html_safe, edit_story_url(story)
+            &nbsp;|&nbsp;
+            = story.flagged
+            %i.icon-flag
+
+  - if @stories
+    = simple_format(sanitize(truncate(h(story.description), :length => 500, separator: ' ',:omission => "...&nbsp;&nbsp;&nbsp;" + link_to("Read more <i class='icon-circle-arrow-right'></i>".html_safe, story_url(story), class: "btn btn-success btn-mini") )))
+  - else
+    .row-fluid.story-itself
+      .span10.offset1
+        = simple_format(sanitize(h(story.description)))
+
+  - unless @stories
+    .row-fluid.content
+      .span6.offset3.text-center
+        = render :partial => 'stories/share_in_story', :locals => {:story => story}

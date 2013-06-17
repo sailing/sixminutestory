@@ -5,36 +5,36 @@
 
 		<% if is_admin %>
 			<th>status</th>
-		
+
 		<% end %>
 					<th><a href="?order=login">username</a></th>
 					<th><a href="?order=email_address">email</a></th>
 					<th><a href="?order=stories_count DESC">stories</a></th>
-					<th>followers</th>	
+					<th>followers</th>
 	</tr>
 <% for user in @users %>
 
 <tr class="<%= cycle('row_alternate', 'row') -%>">
 	<% if is_admin %>
-	
+
 		<td>
 		<span>
-		
+
 				<% if user.active? %>
 					<%= link_to "Suspend", disable_user_url(user) %>
 				<% else %>
-					<%= link_to "Activate", enable_user_url(user) %>	 
-					
+					<%= link_to "Activate", enable_user_url(user) %>
+
 				<% end %>
 		</span>
 		</td>
-		
+
 	<% end %>
 		<td id="show_shares" class="title">
 
 		<span>
-			<%= link_to h(user.login), user %> 
-	
+			<%= link_to h(user.login), user %>
+
 		</span>
 	</td>
 	<td>
@@ -60,13 +60,13 @@
 <tr id="pagination">
 	<td colspan=4>
 		<% # Users count
-		 %>	
+		 %>
 		<% if is_admin %>
-			<%= 
-			 page_entries_info @users 
+			<%=
+			 page_entries_info @users
 			%>
 		<% end %>
-			<%= will_paginate @users %>
+			<%= paginate @users %>
 	</td>
 </tr>
 <% end %>

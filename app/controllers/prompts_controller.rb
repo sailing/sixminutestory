@@ -15,19 +15,19 @@ class PromptsController < ApplicationController
       @filters = Prompt::FILTERS
     if params[:show] && params[:show] != "verified" && @filters.collect{|f| f[:scope]}.include?(params[:show])
           if params[:subset] == "unverified"
-                @prompts = Prompt.unverified.send(params[:show]).paginate :page => page, :per_page => per_page, :order => order
+                @prompts = Prompt.unverified.send(params[:show]).page(page).per(per_page).order(order)
           else
-                @prompts = Prompt.verified.send(params[:show]).paginate :page => page, :per_page => per_page, :order => order
+                @prompts = Prompt.verified.send(params[:show]).page(page).per(per_page).order(order)
           end
                 @table = params[:show]
     else
       case request.path
         when /^\/prompts\/unverified/
           if params[:show] && params[:show] != "verified" && @filters.collect{|f| f[:scope]}.include?(params[:show])
-            @prompts = Prompt.unverified.send(params[:show]).paginate :page => page, :per_page => per_page, :order => order
+            @prompts = Prompt.unverified.send(params[:show]).page(page).per(per_page).order(order)
             @table = params[:show]
           else
-            @prompts = Prompt.unverified.firstlines.paginate :page => page, :per_page => per_page, :order => order
+            @prompts = Prompt.unverified.firstlines.page(page).per(per_page).order(order)
             @table = "firstlines"
           end
         when /^\/prompts\/scheduled/
@@ -35,7 +35,7 @@ class PromptsController < ApplicationController
             @scheduled = true              
       else
 
-            @prompts = Prompt.active.verified.firstlines.paginate :page => page, :per_page => per_page, :order => order
+            @prompts = Prompt.active.verified.firstlines.page(page).per(per_page).order(order)
       end
     end
     

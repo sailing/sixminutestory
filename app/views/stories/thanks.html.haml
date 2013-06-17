@@ -1,0 +1,48 @@
+- content_for :pagename do
+  – #{h(@story.title)}
+- content_for :sideyard do
+  %h2 More about the Prompt
+  = render :partial => "prompts/show_prompt"
+  %h3 Vote on this prompt
+  .center
+    = render :partial => "votes/prompt_vote", :object => @prompt, :as => :prompt
+.row-fluid.title
+  .span4
+    %h2 Thanks!
+  .span8
+    %hr
+.row-fluid
+  .span12
+    %h3
+      Your story has been posted.
+      = link_to story_url(@story) do
+        View it Now
+        %i.icon-circle-arrow-right
+.row-fluid
+  .span12
+    %h5 There are a few things you can do now.
+
+.row-fluid
+  .span4.well.post-writing-actions
+    %h5 Rate this prompt
+    = render partial: "votes/prompt_vote", :object => @story.prompt, :as => :prompt
+  .span4.well.post-writing-actions
+    %h5 See stories for this prompt
+    .row-fluid
+      .span12.text-center
+        %a.btn.btn-primary.btn-large(href="#more_stories")
+          %i.icon-circle-arrow-down
+          Read more stories
+
+  .span4.well.post-writing-actions.text-center
+    %h5 Share to get feedback
+    = render :partial => 'share_in_story'
+
+.row-fluid.title
+  .span6
+    %h2 More stories
+  .span6
+    %hr
+.row-fluid#more_stories
+  .span8
+    = render :partial => 'stories/story', :collection => @stories

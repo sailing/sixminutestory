@@ -4,7 +4,7 @@ require 'rails/all'
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(:default, :assets, Rails.env) if defined?(Bundler)
+Bundler.require *Rails.groups(:assets) if defined?(Bundler)
 
 module Sms
   class Application < Rails::Application
@@ -24,7 +24,7 @@ module Sms
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
-    # config.time_zone = 'Central Time (US & Canada)'
+    config.time_zone = 'Eastern Time (US & Canada)'
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
@@ -32,19 +32,46 @@ module Sms
 
     # JavaScript files you want as :defaults (application.js is always included).
     # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
-    
+
     config.secret_token = '96d6d882db970977968b6f3a7e4b4470f283562c97dcbcc098b1691883a6514b01915724d5b9884220d991f2496ee05e8f868e0ba1c769ef18628884cdd86516'
-    
-    # Configure the default encoding used in templates for Ruby 1.9.    
+
+        # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
 
-		config.assets.enabled = true
-		config.assets.version = '1.0'
+    # Enable escaping HTML in JSON.
+    config.active_support.escape_html_entities_in_json = true
+
+    # Use SQL instead of Active Record's schema dumper when creating the database.
+    # This is necessary if your schema can't be completely dumped by the schema dumper,
+    # like if you have constraints or database-specific column types
+    # config.active_record.schema_format = :sql
+
+    # Enforce whitelist mode for mass assignment.
+    # This will create an empty whitelist of attributes available for mass-assignment for all models
+    # in your app. As such, your models will need to explicitly whitelist or blacklist accessible
+    # parameters by using an attr_accessible or attr_protected declaration.
+    config.active_record.whitelist_attributes = true
+
+    # Enable the asset pipeline
+    config.assets.enabled = true
+    # Don't initialize on precompile, or Devise will cause failure.
+    config.assets.initialize_on_precompile = false
+
+    # Version of your assets, change this if you want to expire all your assets
+    config.assets.version = '1.0'
+    config.assets.paths << Rails.root.join('vendor', 'app', 'assets')
+
+    # Default to haml
+    config.generators do |g|
+      g.template_engine :haml
+    end
+
+    RPX_API_KEY = 'c37c053204545279866b1c267510c078a3c7ef6c'
+    FlickRawOptions = { :lazyload => true, :timeout => 2 }
+
   end
 end
 
-RPX_API_KEY = 'c37c053204545279866b1c267510c078a3c7ef6c'
-FlickRawOptions = { :lazyload => true, :timeout => 2 }
