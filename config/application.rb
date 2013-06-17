@@ -73,5 +73,6 @@ module Sms
     FlickRawOptions = { :lazyload => true, :timeout => 2 }
 
   end
+
 end
 
