@@ -50,7 +50,8 @@ config.assets.compress = true
 config.assets.digest = true
 
 # Use S3 for hosting
-config.action_controller.asset_host = "//sixminutestory.s3.amazonaws.com"
+# config.action_controller.asset_host = "//sixminutestory.s3.amazonaws.com"
+config.action_controller.asset_host = ENV['asset_host'] if ENV['asset_host']
 
 # Store assets in a subdirectory
 config.assets.prefix = "/production/assets"
