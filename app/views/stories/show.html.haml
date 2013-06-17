@@ -18,8 +18,9 @@
   .span10
     = render :partial => "stories/story", :locals => {:story => @story}
 
-  = link_to story_url(@next), class: "span1 btn btn-large increment-story" do
-    %i.icon-caret-right.icon-large
+  - if @next
+    = link_to story_url(@next), class: "span1 btn btn-large increment-story" do
+      %i.icon-caret-right.icon-large
 
 #post_story.row-fluid.content
   .span6
