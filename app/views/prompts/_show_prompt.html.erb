@@ -42,23 +42,24 @@
 			when "hvg"
 				# hero villain goal
 		%>
-				<table class="table">
-					<tr>
-						<th>hero</th>
-						<td><%= @prompt.hero %></td>
-					</tr>
-					<tr>
-						<th>villain</th>
-						<td><%= @prompt.villain %></td>
-					</tr>
-					<tr>
-						<th>goal</th>
-						<td><%= @prompt.goal %></td>
-					</tr>
-				</table>
+			<h3>Prompt <small>(write a story including these elements)</h3>
+			<table class="table">
+				<tr>
+					<th>hero</th>
+					<td><%= @prompt.hero %></td>
+				</tr>
+				<tr>
+					<th>villain</th>
+					<td><%= @prompt.villain %></td>
+				</tr>
+				<tr>
+					<th>goal</th>
+					<td><%= @prompt.goal %></td>
+				</tr>
+			</table>
 
 		<% else %>
-			<h3>Blank Prompt</h3>
+			<h3>Blank Prompt</small></h3>
 			<span class="entries"><%= freeform %></span>
 
 		 <% end %>
