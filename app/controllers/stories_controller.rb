@@ -22,11 +22,11 @@ class StoriesController < ApplicationController
         end
 
 
-						if (params[:months] or params[:days])
-              order = "created_at ASC"
-          	else
+						# if (params[:months] or params[:days])
+           #    order = "created_at DESC"
+          	# else
             	order = "created_at DESC"
-          	end
+          	# end
 
       @truncate = true
 
