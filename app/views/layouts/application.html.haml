@@ -1,5 +1,5 @@
 !!!
-%html.expanded
+%html
   %head
     %title= content_for?(:title) ? yield(:title) : "Six Minute Story"
     = csrf_meta_tags
@@ -15,6 +15,7 @@
     %meta{:content => "", :name => "author"}
     %meta{:charset => "utf-8"}
     %meta{:content => "width=device-width, initial-scale=1.0, maximum-scale=1.0", :name => "viewport"}
+    = render partial: "layouts/heap"
 
   %body{data: {action: action_name, controller: controller_name}}
     #wrapper
