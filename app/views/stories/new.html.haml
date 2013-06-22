@@ -40,17 +40,18 @@
       %strong license
       your story.
 
-.row-fluid.content
-  .span12
-    #new_story_container.new_story_container
-      - if @story.errors.any?
-        #errorExplanation
-          %h2 Your story hasn't been saved yet.
-          %h3 Please check for errors below.
-          %ul
-            - @story.errors.each do |attribute, msg|
-              %li= msg
-      = form_for @story do |f|
+= form_for @story do |f|
+  .row-fluid.content
+    .span12
+      #new_story_container.new_story_container
+        - if @story.errors.any?
+          #errorExplanation
+            %h2 Your story hasn't been saved yet.
+            %h3 Please check for errors below.
+            %ul
+              - @story.errors.each do |attribute, msg|
+                %li= msg
+
         / Include the prompt so we can use it on the next page. Is this really necessary?
         = f.hidden_field :prompt_id, value: @prompt.id
         .row-fluid
@@ -59,39 +60,39 @@
         %div
           %a#done_writing.hide.pull-right.btn.btn-large{:href => "#"} I'm done writing
 
-        #story-saved.modal.hide.fade
-          .modal-header
-            %h3 Well done!
-            %h4 Complete these details to publish your story:
-          .modal-body
-            %table
-              %tr
-                %th
-                  - if @story.errors[:title].present?
-                    %label= @story.errors[:title]
-                  - else
-                    = f.label :title
-                %td
-                  = f.text_field :title
-              %tr
-                %th
-                  = f.label :tag_list, "Adjectives"
-                  %br
-                  %span{:style => "font-size:x-small"} separate adjectives with commas
-                %td
-                  = f.text_field :tag_list
-              %tr
-                %th
-                  = f.label :genre_list, "Genres"
-                  %br
-                  %span{:style => "font-size:x-small"} separate genres with commas
-                %td
-                  = f.text_field :genre_list
-              %tr
-                %th
-                  = f.label :license
-                %td
-                  = f.select :license, options_for_select(Story::CC_OPTIONS)#, :name => "story[license]"
-          .modal-footer
-            = link_to "Eh, toss this story",random_prompt_url, confirm: "Are you sure you want to abandon this story?", :class =>"btn btn-danger"
-            = f.submit "Publish your story", :class => "btn btn-success btn-large "
+  #story-saved.modal.hide.fade(data-backdrop="false")
+    .modal-header
+      %h3 Well done!
+      %h4 Complete these details to publish your story:
+    .modal-body
+      %table
+        %tr
+          %th
+            - if @story.errors[:title].present?
+              %label= @story.errors[:title]
+            - else
+              = f.label :title
+          %td
+            = f.text_field :title
+        %tr
+          %th
+            = f.label :tag_list, "Adjectives"
+            %br
+            %span{:style => "font-size:x-small"} separate adjectives with commas
+          %td
+            = f.text_field :tag_list
+        %tr
+          %th
+            = f.label :genre_list, "Genres"
+            %br
+            %span{:style => "font-size:x-small"} separate genres with commas
+          %td
+            = f.text_field :genre_list
+        %tr
+          %th
+            = f.label :license
+          %td
+            = f.select :license, options_for_select(Story::CC_OPTIONS)#, :name => "story[license]"
+    .modal-footer
+      = link_to "Eh, toss this story",random_prompt_url, confirm: "Are you sure you want to abandon this story?", :class =>"btn btn-danger"
+      = f.submit "Publish your story", :class => "btn btn-success btn-large "
