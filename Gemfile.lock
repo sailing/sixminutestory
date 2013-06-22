@@ -85,8 +85,6 @@ GEM
       net-ssh (>= 2.1.3)
       nokogiri (~> 1.5.0)
       ruby-hmac
-    font-awesome-rails (3.1.1.3)
-      railties (>= 3.2, < 5.0)
     formatador (0.2.4)
     friendly_id (3.3.3.0)
       babosa (~> 0.3.0)
@@ -216,7 +214,6 @@ DEPENDENCIES
   coffee-rails
   dalli
   flickraw
-  font-awesome-rails
   friendly_id (~> 3.1)
   haml-rails
   jquery-rails
