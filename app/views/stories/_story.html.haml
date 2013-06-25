@@ -27,7 +27,7 @@
           %span &nbsp;|&nbsp;
           %span.flag
             / This is how people flag stories
-            = link_to flag_story_url(story.id), :method => "post", rel: "tooltip", title: "Flag this as hateful" do
+            = link_to flag_story_url(@story.id), :method => "post", rel: "tooltip", title: "Flag this as hateful" do
               %i.icon-flag
 
           - if is_owner_or_admin
@@ -37,7 +37,7 @@
               Edit
           - if is_admin
             &nbsp;|&nbsp;
-            = story.flagged
+            = @story.flagged
             %i.icon-flag
 
 
