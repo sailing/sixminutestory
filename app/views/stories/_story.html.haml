@@ -38,11 +38,11 @@
             %i.icon-flag
 
   - if @stories
-    = simple_format(sanitize(truncate(h(story.description), :length => 500, separator: ' ',:omission => "...&nbsp;&nbsp;&nbsp;" + link_to("Read more <i class='icon-circle-arrow-right'></i>".html_safe, story_url(story), class: "btn btn-success btn-mini") )))
+    = simple_format(sanitize(truncate(story.description, :length => 500, separator: ' ',:omission => "...&nbsp;&nbsp;&nbsp;" + link_to("Read more <i class='icon-circle-arrow-right'></i>".html_safe, story_url(story), class: "btn btn-success btn-mini") )))
   - else
     .row-fluid.story-itself
       .span10.offset1
-        = simple_format(sanitize(h(story.description)))
+        = simple_format(sanitize(story.description))
 
   - unless @stories
     .row-fluid.content

@@ -1,0 +1,108 @@
+.row-fluid.title
+  .span5
+    %h2
+      Edit Story
+
+  .span7
+    %hr
+
+.content
+  - if @story.errors.any?
+    .row-fluid
+      .span12
+        #errorExplanation
+          %strong Your story hasn't been saved yet.
+          %em Please check for errors below.
+          %ul
+            - @story.errors.each do |attribute, msg|
+              %li= msg
+
+
+
+  = form_for @story, html: {class: "form-horizontal"} do |form|
+    - if is_admin
+      .row-fluid
+        .span12
+          .control-group
+            %label.control-label Prompt
+            .controls
+              = form.text_field :prompt_id
+              = submit_tag "Save", :name => "save", :id => "save-button", class: "btn btn-primary"
+    .row-fluid
+      .span12
+        %h3 Story
+
+    .row-fluid
+      .span12
+        .control-group
+          .controls
+            .alert.alert-info
+              %small
+                Story cannot be edited unless a writer's reputation is five or higher.
+            - if current_user.can_edit?
+              = form.text_area :description, :disabled => @disabled, :value => @description, :rows => 20, :tabindex => "1", class: 'span12'
+            - else
+              .span12= simple_format(sanitize(@story.description))
+
+    .row-fluid
+      .span12
+        %h4 Story details
+
+    .row-fluid
+      .span12
+        .control-group
+          %label.control-label Title
+          .controls
+            = form.text_field :title, :tabindex => "2", class: 'span6'
+
+    .row-fluid
+      .span12
+        .control-group
+          %label.control-label
+            Adjectives
+            %span{:style => "font-size:x-small"} separate adjectives with commas
+          .controls
+            = form.text_field :tag_list, :tabindex => "3", class: 'span6'
+
+    .row-fluid
+      .span12
+        .control-group
+          %label.control-label
+            Genres
+            %span{:style => "font-size:x-small"} separate genres with commas
+
+          .controls
+            = form.text_field :genre_list, :tabindex => "4", class: 'span6'
+
+    .row-fluid
+      .span12
+        .control-group
+          %label.control-label License
+          .controls
+            %select#story_license{:name => "story[license]", :onchange => "", :tabindex => "5",class: 'span6'}
+              %option{:value => "Creative Commons Attribution 3.0"}
+                Creative Commons Attribution 3.0
+              %option{:value => "Creative Commons Attribution-NoDerivs 3.0"}
+                Creative Commons Attribution-NoDerivs 3.0
+              %option{:value => "Creative Commons Attribution-NonCommerical-NoDerivs 3.0"}
+                Creative Commons Attribution-NonCommercial-NoDerivs 3.0
+              %option{:value => "Creative Commons AttributionNonCommerical 3.0"}
+                Creative Commons Attribution-NonCommercial 3.0
+              %option{:value => "Creative Commons Attribution-NonCommerical-ShareAlike 3.0"}
+                Creative Commons Attribution-NonCommercial-ShareAlike 3.0
+              %option{:selected => "selected", :value => "Creative Commons Attribution-ShareAlike 3.0"}
+                Creative Commons Attribution-ShareAlike 3.0
+              %option{:value => "Public Domain"} Public Domain
+    .row-fluid
+      .span12
+        .control-group
+          .controls
+            .span4
+              = submit_tag "Save", :name => "save", :id => "save-button", class: 'btn btn-primary btn-block'
+
+            - if is_owner_or_admin
+              .span4.offset2
+                - if @story.active == true
+                  = link_to "Destroy Story", @story, confirm: 'Are you sure you want to destroy this story? It will disappear!', method: :delete, class: 'btn btn-danger'
+                - elsif @story.active == false
+                  = link_to "Enable", enable_story_url(@story), :confirm => 'Are you sure you want to enable this story? The story will become visible!', class: 'btn btn-warning'
