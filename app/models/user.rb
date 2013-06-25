@@ -42,9 +42,11 @@ class User < ActiveRecord::Base
   end
 
   def is_admin?
-    if self.admin_level > 1
-     return true
-    end
+    admin_level > 1
+  end
+
+  def can_edit?
+    is_admin? || reputation >= 5
   end
 
 end
