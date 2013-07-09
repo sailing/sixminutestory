@@ -405,9 +405,9 @@ class StoriesController < ApplicationController
   end
 
  def increment_counter
-  if @story && @user
+  if @story && @story.user
     # increment story counter
-     unless (current_user == @user)
+     unless (current_user == @story.user)
       Story.increment_counter(:counter, @story)
      end
   end
