@@ -39,7 +39,7 @@ class StoriesController < ApplicationController
               @stories = Story.includes(:user).recent(timeframe).commented.page(page).per(per_page)
               @title = "Active stories"
           when /recent/
-              @stories = Story.includes(:user).recent(timeframe).page(page).per(per_page)
+              @stories = Story.includes(:user).recent(timeframe).order(order).page(page).per(per_page)
               @title = "Recent stories"
           when /top/
               @stories = Story.includes(:user).recent(timeframe).top.page(page).per(per_page)
