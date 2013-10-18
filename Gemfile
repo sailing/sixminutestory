@@ -40,6 +40,7 @@ gem 'authlogic_rpx', :git => 'git://github.com/sailing/authlogic_rpx.git'
 # caching
 # for Heroku
 # dalli is a caching replacement for memcached
+gem 'memcachier'
 gem 'dalli'
 
 

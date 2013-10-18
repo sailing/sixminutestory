@@ -115,6 +115,7 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    memcachier (0.0.2)
     mime-types (1.23)
     multi_json (1.7.7)
     net-scp (1.1.1)
@@ -220,6 +221,7 @@ DEPENDENCIES
   json
   kaminari
   less-rails
+  memcachier
   newrelic_rpm
   pg
   rails (= 3.2.13)
