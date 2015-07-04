@@ -239,6 +239,3 @@ DEPENDENCIES
   turbo-sprockets-rails3
   twitter-bootstrap-rails!
   uglifier
-
-BUNDLED WITH
-   1.10.5
