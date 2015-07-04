@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-# ruby '1.9.2'
+ruby '2.2.2'
 # Stack
 gem 'rails', '3.2.13'
-gem 'thin'
+gem 'puma'
 
 # Analytics
 gem 'newrelic_rpm'
@@ -58,7 +58,7 @@ gem 'kaminari'
 gem 'flickraw'
 
 #for reading flickr responses
-gem 'json'
+gem 'json', '>= 1.8.2'
 
 # tagging
   gem 'acts-as-taggable-on'
@@ -69,10 +69,8 @@ gem 'recaptcha'
 
 
 group :development, :test do
-  gem 'sqlite3-ruby', :require => 'sqlite3'
-  gem "therubyracer"
-  # To use debugger
-
+  gem 'sqlite3', ">= 1.3.10"
+  gem 'pry'
   # taps is for database syncing on heroku
   gem 'taps', '>= 0.3.22'
 
