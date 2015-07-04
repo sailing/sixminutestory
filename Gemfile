@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.2.2'
 # Stack
-gem 'rails', '3.2.13'
+gem 'rails', '3.2.18'
 gem 'puma'
 
 # Analytics
