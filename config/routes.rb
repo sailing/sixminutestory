@@ -46,46 +46,45 @@ Sms::Application.routes.draw do
 
 
 
-     resources :users, :path_names => { :new => 'register' } do
-       resources :votes
-       resources :stories do
-         resources :votes
-       end
-       resources :comments
-       resources :prompts
-       resources :followings
-       member do
+    resources :users, :path_names => { :new => 'register' } do
+    resources :votes
+    resources :stories do
+      resources :votes
+    end
+    resources :comments
+    resources :prompts
+    resources :followings
+      member do
         put :enable
         put :disable
-       end
-     end
+      end
+    end
 
-     resource :account, :controller => "users"
-     resources :profile, :controller => "users"
+    resource :account, :controller => "users"
+    resources :profile, :controller => "users"
 
-     match 'addrpxauth', :to => "users#addrpxauth", :as => "addrpxauth"
+    match 'addrpxauth', :to => "users#addrpxauth", :as => "addrpxauth"
 
-     match 'profile/:user/favorites', :to => "votes#index", :as => 'favorites'
-     match 'profile/:user/comments/:time', :to => "comments#index", :as => 'users_comments'
-     match 'profile/:user/comments', :to => "comments#index", :as => 'users_comments_sans_time'
+    match 'profile/:user/favorites', :to => "votes#index", :as => 'favorites'
+    match 'profile/:user/comments/:time', :to => "comments#index", :as => 'users_comments'
+    match 'profile/:user/comments', :to => "comments#index", :as => 'users_comments_sans_time'
 
-      resources :stories do
-           resources :votes
-           resources :comments
-           member do
-             post :feature
-             post :unfeature
-             post :flag
-              get :thanks
-           end
-           collection do
-
-               get :random
-               get '/:subset(/:tag)', :action => 'index', :constraints => { :subset => /(featured|recent|popular|active|top|genre|adjective|emotion)/, :tag => /.*/ }, :as => 'subset'
-               get '/:subset', :action => 'tag_cloud', :constraints => { :subset => /(genres|adjectives|emotions)/ }, :as => 'cloud'
-
-          end
-     end
+    resources :stories do
+      resources :votes
+      resources :comments
+      member do
+        post :feature
+        post :unfeature
+        post :flag
+        get :thanks
+      end
+      
+      collection do
+        get :random
+        get '/:subset(/:tag)', :action => 'index', :constraints => { :subset => /(featured|recent|popular|active|top|genre|adjective|emotion)/, :tag => /.*/ }, :as => 'subset'
+        get '/:subset', :action => 'tag_cloud', :constraints => { :subset => /(genres|adjectives|emotions)/ }, :as => 'cloud'
+      end
+    end
 
     resources :comments do
       resources :votes
@@ -93,41 +92,40 @@ Sms::Application.routes.draw do
 
     resources :votes
 
-     match "/read/:id" => redirect("/stories/%{id}")
-     match "/featured/:id" => redirect("/stories/%{id}")
-     match "/archives" => redirect("/prompts")
+    match "/read/:id" => redirect("/stories/%{id}")
+    match "/featured/:id" => redirect("/stories/%{id}")
+    match "/archives" => redirect("/prompts")
 
+    match "login", :to => 'user_sessions#new', :as => :login
+    match "logout", :to => 'user_sessions#destroy', :as => :logout
+    resource :user_session, :path_names => { :new => 'login' }
 
+    match '/recent' => redirect("/stories/recent")
+    match '/popular' => redirect("/stories/popular")
+    match '/active' => redirect("/stories/active")
+    match '/top' => redirect("/stories/top")
+    match '/featured'   => redirect("/stories/featured")
 
-        match "login", :to => 'user_sessions#new', :as => :login
-         match "logout", :to => 'user_sessions#destroy', :as => :logout
-      resource :user_session, :path_names => { :new => 'login' }
+    match '/tags'   => redirect("/stories/adjectives")
+    match '/genres'       => redirect("/stories/genres")
+    match '/emotions'   => redirect("/stories/emotions")
 
-      match '/recent' => redirect("/stories/recent")
-      match '/popular' => redirect("/stories/popular")
-      match '/active' => redirect("/stories/active")
-      match '/top' => redirect("/stories/top")
-      match '/featured'   => redirect("/stories/featured")
-
-      match '/tags'   => redirect("/stories/adjectives")
-      match '/genres'       => redirect("/stories/genres")
-      match '/emotions'   => redirect("/stories/emotions")
-
-     match                  '/tag/:tag'   => redirect("/stories/adjective/:tag")
-      match                 '/genre/:tag'    => redirect("/stories/genre/:tag")
-      match               '/emotion/:tag'   => redirect("/stories/emotion/:tag")
+    match                  '/tag/:tag'   => redirect("/stories/adjective/:tag")
+    match                 '/genre/:tag'    => redirect("/stories/genre/:tag")
+    match               '/emotion/:tag'   => redirect("/stories/emotion/:tag")
 
 #      match search             '/search'          :to => "site#search", :as => 'search'
-      match '/faq', :to => "site#faq", :as => 'faq'
-      match '/join', :to => "users#new", :as => 'join'
+  match '/faq', :to => "site#faq", :as => 'faq'
+  match '/join', :to => "users#new", :as => 'join'
 
 #      match about              '/about'           :to => "site#about", :as => ''
 #      match contact            '/contact'         :to => "site#contact", :as => ''
 #      match terms              '/terms'           :to => "site#terms", :as => ''
 #      match privacy            '/privacy'         :to => "site#privacy", :as => 'privacy'
 #      match   '/acknowledgements', :to => "site#acknowledgements", :as => 'acknowledgements'
-
-     root :to => redirect("/stories/recent")
+  
+  match "/home", :to => "site#index", :as => "site"
+  root :to => redirect("/stories/recent")
 
 
 end

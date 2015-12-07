@@ -27,26 +27,26 @@
 
         %nav#nav.navigation{:role => "navigation"}
           %ul.unstyled
-            = link_to root_url(anchor: "section1") do
-              %li.active{"data-section" => "1"}
-                %i.icon-home
-                %span Home
-            = link_to root_url(anchor: "section2") do
-              %li{"data-section" => "2"}
-                %i.icon-coffee
-                %span About
-            = link_to root_url(anchor: "section3") do
+            = link_to site_url(anchor: "section3") do
               %li{"data-section" => "3"}
                 %i.icon-pencil
                 %span Write
-            = link_to root_url(anchor: "section4") do
+            = link_to site_url(anchor: "section4") do
               %li{"data-section" => "4"}
                 %i.icon-book
                 %span Read
-            = link_to root_url(anchor: "section5") do
+            = link_to site_url(anchor: "section2") do
+              %li{"data-section" => "2"}
+                %i.icon-coffee
+                %span About
+            = link_to site_url(anchor: "section5") do
               %li.last{"data-section" => "5"}
                 %i.icon-envelope
                 %span Contact
+            = link_to site_url(anchor: "section1") do
+              %li.active{"data-section" => "1"}
+                %i.icon-home
+                %span Home
 
       #container
         - if params[:controller] == 'site' and params[:action] == 'index'
