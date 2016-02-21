@@ -1,9 +1,13 @@
 source 'https://rubygems.org'
 
-ruby '1.9.3'
+ruby '2.2.3'
+
 # Stack
-gem 'rails', '3.2.18'
+gem 'rails', '3.2.22'
 gem 'puma'
+
+# Persistence
+gem 'pg'
 
 # Analytics
 gem 'newrelic_rpm'
@@ -19,7 +23,7 @@ group :assets do
   gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
   gem 'therubyracer'
   # asset_sync moves files to s3, where they're served by cloudfront
-  gem "asset_sync"
+  # gem "asset_sync"
 
   # superspeeds asset precompilation
   gem 'turbo-sprockets-rails3'
@@ -69,18 +73,5 @@ gem 'recaptcha'
 
 
 group :development, :test do
-  gem 'sqlite3', ">= 1.3.10"
   gem 'pry'
-  # taps is for database syncing on heroku
-  gem 'taps', '>= 0.3.22'
-
-  # gem 'bullet'
-  # gem 'rack-mini-profiler'
-
-end
-
-group :production do
-
-  gem 'pg'
-
 end
