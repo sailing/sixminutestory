@@ -1,0 +1,89 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @story.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @story.description %>
+</p>
+
+<p>
+  <strong>License:</strong>
+  <%= @story.license %>
+</p>
+
+<p>
+  <strong>Votes count:</strong>
+  <%= @story.votes_count %>
+</p>
+
+<p>
+  <strong>Comment counter:</strong>
+  <%= @story.comment_counter %>
+</p>
+
+<p>
+  <strong>Flagged:</strong>
+  <%= @story.flagged %>
+</p>
+
+<p>
+  <strong>Counter:</strong>
+  <%= @story.counter %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @story.user_id %>
+</p>
+
+<p>
+  <strong>Prompt:</strong>
+  <%= @story.prompt_id %>
+</p>
+
+<p>
+  <strong>Contest:</strong>
+  <%= @story.contest_id %>
+</p>
+
+<p>
+  <strong>Delta:</strong>
+  <%= @story.delta %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @story.active %>
+</p>
+
+<p>
+  <strong>Created at:</strong>
+  <%= @story.created_at %>
+</p>
+
+<p>
+  <strong>Updated at:</strong>
+  <%= @story.updated_at %>
+</p>
+
+<p>
+  <strong>Cached slug:</strong>
+  <%= @story.cached_slug %>
+</p>
+
+<p>
+  <strong>Comments count:</strong>
+  <%= @story.comments_count %>
+</p>
+
+<p>
+  <strong>Featured:</strong>
+  <%= @story.featured %>
+</p>
+
+<%= link_to 'Edit', edit_story_path(@story) %> |
+<%= link_to 'Back', stories_path %>
