@@ -1,0 +1,119 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Hero:</strong>
+  <%= @prompt.hero %>
+</p>
+
+<p>
+  <strong>Villain:</strong>
+  <%= @prompt.villain %>
+</p>
+
+<p>
+  <strong>Goal:</strong>
+  <%= @prompt.goal %>
+</p>
+
+<p>
+  <strong>Use on:</strong>
+  <%= @prompt.use_on %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @prompt.rating %>
+</p>
+
+<p>
+  <strong>Counter:</strong>
+  <%= @prompt.counter %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @prompt.user_id %>
+</p>
+
+<p>
+  <strong>Contest:</strong>
+  <%= @prompt.contest_id %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @prompt.active %>
+</p>
+
+<p>
+  <strong>Verified:</strong>
+  <%= @prompt.verified %>
+</p>
+
+<p>
+  <strong>Delta:</strong>
+  <%= @prompt.delta %>
+</p>
+
+<p>
+  <strong>Created at:</strong>
+  <%= @prompt.created_at %>
+</p>
+
+<p>
+  <strong>Updated at:</strong>
+  <%= @prompt.updated_at %>
+</p>
+
+<p>
+  <strong>Stories count:</strong>
+  <%= @prompt.stories_count %>
+</p>
+
+<p>
+  <strong>Refcode:</strong>
+  <%= @prompt.refcode %>
+</p>
+
+<p>
+  <strong>Kind:</strong>
+  <%= @prompt.kind %>
+</p>
+
+<p>
+  <strong>Attribution:</strong>
+  <%= @prompt.attribution %>
+</p>
+
+<p>
+  <strong>Attribution url:</strong>
+  <%= @prompt.attribution_url %>
+</p>
+
+<p>
+  <strong>License:</strong>
+  <%= @prompt.license %>
+</p>
+
+<p>
+  <strong>Votes count:</strong>
+  <%= @prompt.votes_count %>
+</p>
+
+<p>
+  <strong>License url:</strong>
+  <%= @prompt.license_url %>
+</p>
+
+<p>
+  <strong>License en:</strong>
+  <%= @prompt.license_en %>
+</p>
+
+<p>
+  <strong>License image url:</strong>
+  <%= @prompt.license_image_url %>
+</p>
+
+<%= link_to 'Edit', edit_prompt_path(@prompt) %> |
+<%= link_to 'Back', prompts_path %>

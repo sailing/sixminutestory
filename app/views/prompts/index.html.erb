@@ -1,0 +1,71 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Prompts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Hero</th>
+      <th>Villain</th>
+      <th>Goal</th>
+      <th>Use on</th>
+      <th>Rating</th>
+      <th>Counter</th>
+      <th>User</th>
+      <th>Contest</th>
+      <th>Active</th>
+      <th>Verified</th>
+      <th>Delta</th>
+      <th>Created at</th>
+      <th>Updated at</th>
+      <th>Stories count</th>
+      <th>Refcode</th>
+      <th>Kind</th>
+      <th>Attribution</th>
+      <th>Attribution url</th>
+      <th>License</th>
+      <th>Votes count</th>
+      <th>License url</th>
+      <th>License en</th>
+      <th>License image url</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @prompts.each do |prompt| %>
+      <tr>
+        <td><%= prompt.hero %></td>
+        <td><%= prompt.villain %></td>
+        <td><%= prompt.goal %></td>
+        <td><%= prompt.use_on %></td>
+        <td><%= prompt.rating %></td>
+        <td><%= prompt.counter %></td>
+        <td><%= prompt.user_id %></td>
+        <td><%= prompt.contest_id %></td>
+        <td><%= prompt.active %></td>
+        <td><%= prompt.verified %></td>
+        <td><%= prompt.delta %></td>
+        <td><%= prompt.created_at %></td>
+        <td><%= prompt.updated_at %></td>
+        <td><%= prompt.stories_count %></td>
+        <td><%= prompt.refcode %></td>
+        <td><%= prompt.kind %></td>
+        <td><%= prompt.attribution %></td>
+        <td><%= prompt.attribution_url %></td>
+        <td><%= prompt.license %></td>
+        <td><%= prompt.votes_count %></td>
+        <td><%= prompt.license_url %></td>
+        <td><%= prompt.license_en %></td>
+        <td><%= prompt.license_image_url %></td>
+        <td><%= link_to 'Show', prompt %></td>
+        <td><%= link_to 'Edit', edit_prompt_path(prompt) %></td>
+        <td><%= link_to 'Destroy', prompt, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Prompt', new_prompt_path %>
