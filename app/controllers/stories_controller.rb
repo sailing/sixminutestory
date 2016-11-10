@@ -23,6 +23,11 @@ class StoriesController < ApplicationController
   def create
     @story = Story.new(story_params)
 
+    # establish that this is a legit prompt by loading it
+    @prompt = Prompt.find(params[:prompt_id])
+    
+    @story.prompt = @prompt
+    
     if @story.save
       redirect_to @story, notice: 'Story was successfully created.'
     else
