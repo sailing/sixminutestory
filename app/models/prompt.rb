@@ -1,5 +1,5 @@
 class Prompt < ApplicationRecord
-	has_many :stories, counter_cache: true
+	has_many :stories
 
   def self.random
     Prompt.first
