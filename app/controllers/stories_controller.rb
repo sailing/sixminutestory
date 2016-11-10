@@ -25,7 +25,12 @@ class StoriesController < ApplicationController
 
     # establish that this is a legit prompt by loading it
     @prompt = Prompt.find(params[:prompt_id])
-    
+
+    if params[:parent_story_id]
+      @parent_story = Story.find(params[:parent_story_id])
+      @story.parent = @parent_story if @parent_story
+    end
+
     @story.prompt = @prompt
     
     if @story.save
