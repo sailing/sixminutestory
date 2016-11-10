@@ -24,15 +24,11 @@ class StoriesController < ApplicationController
   def create
     @story = Story.new(story_params)
 
-    # establish that this is a legit prompt by loading it
-    @prompt = Prompt.find(params[:prompt_id])
+    # if params[:story][:parent_story_id]
+    #   @parent_story = Story.find(params[:story][:parent_story_id])
+    #   @story.parent = @parent_story if @parent_story
+    # end
 
-    if params[:parent_story_id]
-      @parent_story = Story.find(params[:parent_story_id])
-      @story.parent = @parent_story if @parent_story
-    end
-
-    @story.prompt = @prompt
     
     if @story.save
       redirect_to @story, notice: 'Story was successfully created.'
@@ -68,6 +64,6 @@ class StoriesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def story_params
-      params.require(:story).permit(:title, :description, :license)
+      params.require(:story).permit(:title, :description, :license, :prompt_id)
     end
 end
