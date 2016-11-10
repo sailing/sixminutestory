@@ -53,6 +53,6 @@ class PromptsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def prompt_params
-      params.require(:prompt).permit(:hero, :villain, :goal, :use_on, :rating, :counter, :user_id, :contest_id, :active, :verified, :delta, :created_at, :updated_at, :stories_count, :refcode, :kind, :attribution, :attribution_url, :license, :votes_count, :license_url, :license_en, :license_image_url)
+      params.require(:prompt).permit(:hero, :villain, :goal, :use_on, :active, :verified, :refcode, :kind, :attribution, :attribution_url, :license, :license_url, :license_en, :license_image_url)
     end
 end

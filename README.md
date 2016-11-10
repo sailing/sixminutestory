@@ -1,10 +1,10 @@
 # Sixminutestory
 
 ## TODO
-- [ ] narrow story form
-- [ ] narrow prompt params
+- [x] narrow prompt params
 - [ ] narrow prompt form
 - [ ] narrow prompt list
+- [ ] narrow story form
 - [ ] narrow story list
 - [ ] new route /write
 	- [ ] optional parent_story id
@@ -12,8 +12,6 @@
 - [ ] story to_param
 - [ ] on new story, random prompt if no prompt_id (in controller)
 - [ ] on new story, pass prompt_id in hidden field
-
-
 - [ ] on new story, pass parent_story_id in hidden field
 
 
