@@ -5,7 +5,8 @@
 - [x] narrow prompt form
 - [x] narrow prompt list
 - [x] narrow story form
-- [ ] narrow story list
+- [x] narrow story list
+
 - [ ] add pagination to both lists
 - [ ] new route /write
 	- [ ] optional parent_story id
