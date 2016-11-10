@@ -7,21 +7,6 @@
     <tr>
       <th>Title</th>
       <th>Description</th>
-      <th>License</th>
-      <th>Votes count</th>
-      <th>Comment counter</th>
-      <th>Flagged</th>
-      <th>Counter</th>
-      <th>User</th>
-      <th>Prompt</th>
-      <th>Contest</th>
-      <th>Delta</th>
-      <th>Active</th>
-      <th>Created at</th>
-      <th>Updated at</th>
-      <th>Cached slug</th>
-      <th>Comments count</th>
-      <th>Featured</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -31,21 +16,6 @@
       <tr>
         <td><%= story.title %></td>
         <td><%= story.description %></td>
-        <td><%= story.license %></td>
-        <td><%= story.votes_count %></td>
-        <td><%= story.comment_counter %></td>
-        <td><%= story.flagged %></td>
-        <td><%= story.counter %></td>
-        <td><%= story.user_id %></td>
-        <td><%= story.prompt_id %></td>
-        <td><%= story.contest_id %></td>
-        <td><%= story.delta %></td>
-        <td><%= story.active %></td>
-        <td><%= story.created_at %></td>
-        <td><%= story.updated_at %></td>
-        <td><%= story.cached_slug %></td>
-        <td><%= story.comments_count %></td>
-        <td><%= story.featured %></td>
         <td><%= link_to 'Show', story %></td>
         <td><%= link_to 'Edit', edit_story_path(story) %></td>
         <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>

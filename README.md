@@ -3,9 +3,10 @@
 ## TODO
 - [x] narrow prompt params
 - [x] narrow prompt form
-- [ ] narrow prompt list
+- [x] narrow prompt list
 - [x] narrow story form
 - [ ] narrow story list
+- [ ] add pagination to both lists
 - [ ] new route /write
 	- [ ] optional parent_story id
 	- [ ] optional prompt id
