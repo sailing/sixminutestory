@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 20161110004610) do
     t.string   "license_url"
     t.string   "license_en"
     t.string   "license_image_url"
-    t.text     "start_line"
+    t.text     "firstline"
   end
 
   create_table "rpx_identifiers", force: :cascade do |t|
