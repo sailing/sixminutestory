@@ -22,7 +22,9 @@ class PromptsController < ApplicationController
   # POST /prompts
   def create
     @prompt = Prompt.new(prompt_params)
-
+    @prompt.kind = "firstline"
+    @prompt.verified = true
+    
     if @prompt.save
       redirect_to @prompt, notice: 'Prompt was successfully created.'
     else
