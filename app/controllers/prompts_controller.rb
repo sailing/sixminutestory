@@ -24,6 +24,7 @@ class PromptsController < ApplicationController
     @prompt = Prompt.new(prompt_params)
     @prompt.kind = "firstline"
     @prompt.verified = true
+    @prompt.use_on = DateTime.tomorrow
     
     if @prompt.save
       redirect_to @prompt, notice: 'Prompt was successfully created.'
