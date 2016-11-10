@@ -1,5 +1,22 @@
 # Sixminutestory
 
+## TODO
+- [ ] narrow story form
+- [ ] narrow prompt params
+- [ ] narrow prompt form
+- [ ] narrow prompt list
+- [ ] narrow story list
+- [ ] new route /write
+	- [ ] optional parent_story id
+	- [ ] optional prompt id
+- [ ] story to_param
+- [ ] on new story, random prompt if no prompt_id (in controller)
+- [ ] on new story, pass prompt_id in hidden field
+
+
+- [ ] on new story, pass parent_story_id in hidden field
+
+
 ## Getting Started
 
 After you have cloned this repo, run this setup script to set up your machine
