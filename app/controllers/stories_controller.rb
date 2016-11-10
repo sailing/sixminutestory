@@ -63,7 +63,7 @@ class StoriesController < ApplicationController
     end
 
     def set_prompt
-      @prompt = Prompt.find(params[:prompt_id]) || Prompt.random
+      @prompt = Prompt.find(params[:prompt_id]) rescue Prompt.random
     end
 
     # Only allow a trusted parameter "white list" through.
