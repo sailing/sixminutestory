@@ -13,7 +13,7 @@
 - [ ] on new story, random prompt if no prompt_id (in controller)
 - [ ] on new story, pass prompt_id in hidden field
 - [ ] on new story, pass parent_story_id in hidden field
-- [ ] migrate all first line prompt :refcode to :start_line
+- [ ] migrate all "firstline" prompt :refcode to :start_line
 
 __User and Auth__
 - [ ] create users
