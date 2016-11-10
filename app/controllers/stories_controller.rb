@@ -13,6 +13,7 @@ class StoriesController < ApplicationController
   # GET /stories/new
   def new
     @story = Story.new
+    @prompt = set_prompt
   end
 
   # GET /stories/1/edit
@@ -59,6 +60,10 @@ class StoriesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_story
       @story = Story.find(params[:id])
+    end
+
+    def set_prompt
+      @prompt = Prompt.find(params[:prompt_id]) || Prompt.random
     end
 
     # Only allow a trusted parameter "white list" through.
