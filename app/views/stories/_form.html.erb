@@ -5,7 +5,7 @@
     <%= f.input :title %>
     <%= f.input :description %>
     <%= f.input :license %>
-    <%= f.input :prompt_id, type: :hidden %>
+    <%= f.hidden_field :prompt_id, value: @prompt.id %>
   </div>
 
   <div class="form-actions">
