@@ -1,4 +1,6 @@
 class Prompt < ApplicationRecord
+	has_many :stories, counter_cache: true
+
   def self.random
     Prompt.first
     # write a sql query to get a random prompt that's been verified
