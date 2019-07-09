@@ -35,9 +35,11 @@ gem 'haml-rails'
 gem 'rinku', :require => 'rails_rinku' # replacing auto_linking in rails 3.2
 
 # user authing
-gem 'authlogic', '>= 3.1'
-gem 'rpx_now'
-gem 'authlogic_rpx', :git => 'git://github.com/sailing/authlogic_rpx.git'
+gem 'devise'
+gem 'devise-encryptable'
+
+# gem 'rpx_now'
+# gem 'authlogic_rpx', :git => 'git://github.com/sailing/authlogic_rpx.git'
 
 # caching
 # for Heroku

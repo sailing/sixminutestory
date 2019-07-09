@@ -1,4 +1,5 @@
 Sms::Application.routes.draw do
+  devise_for :users
 #  resources :products do
 #    resource :category
 

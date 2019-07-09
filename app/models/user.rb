@@ -1,21 +1,25 @@
 class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable, :confirmable
 
-  acts_as_authentic do |c|
-    c.maintain_sessions = true
-    c.perishable_token_valid_for = 24.hours
-    c.logged_in_timeout = 30.minutes
+  # acts_as_authentic do |c|
+  #   c.maintain_sessions = true
+  #   c.perishable_token_valid_for = 24.hours
+  #   c.logged_in_timeout = 30.minutes
 
-  # validations
-    c.merge_validates_length_of_password_field_options :allow_blank => true
+  # # validations
+  #   c.merge_validates_length_of_password_field_options :allow_blank => true
 
-  # enable Authlogic_RPX account merging (false by default, if this statement is not present)
-    c.account_merge_enabled true
+  # # enable Authlogic_RPX account merging (false by default, if this statement is not present)
+  #   c.account_merge_enabled true
 
-  # set Authlogic_RPX account mapping mode
-    c.account_mapping_mode :internal
+  # # set Authlogic_RPX account mapping mode
+  #   c.account_mapping_mode :internal
 
 
-  end
+  # end
 
   # attr_accessible :login, :email_address, :password, :password_confirmation, :profile, :website, :send_comments, :send_stories, :send_followings
 

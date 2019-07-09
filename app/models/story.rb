@@ -18,7 +18,7 @@ class Story < ActiveRecord::Base
   belongs_to :user, :counter_cache => true
   belongs_to :prompt, :counter_cache => true
   has_one :contest
-  has_many :comments, :order => "created_at ASC"
+  has_many :comments
 
   # Named Scopes
   scope :active, lambda {where("stories.active = ?", true)}
@@ -32,7 +32,7 @@ class Story < ActiveRecord::Base
   scope :by_popularity, lambda {order('counter ASC')}
 
   # Filters
-  scope :by_date, :order => "stories.created_at DESC"
+  scope :by_date, -> {order("stories.created_at DESC")}
 
   # Next and Previous links
   scope :next, lambda { |p| active.where("id > ?", p.id).limit(1).order("id")}
