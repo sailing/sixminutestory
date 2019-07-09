@@ -66,9 +66,9 @@ Sms::Application.routes.draw do
 
     get 'addrpxauth', :to => "users#addrpxauth", :as => "addrpxauth"
 
-    get 'profile/:user/favorites', :to => "votes#index", :as => 'favorites'
-    get 'profile/:user/comments/:time', :to => "comments#index", :as => 'users_comments'
-    get 'profile/:user/comments', :to => "comments#index", :as => 'users_comments_sans_time'
+    get 'profile/:id/favorites', :to => "votes#index", :as => 'favorites'
+    get 'profile/:id/comments/:time', :to => "comments#index", :as => 'users_comments'
+    get 'profile/:id/comments', :to => "comments#index", :as => 'users_comments_sans_time'
 
     resources :stories do
       resources :votes

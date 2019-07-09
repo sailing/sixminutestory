@@ -29,8 +29,11 @@ class User < ActiveRecord::Base
   has_karma :comments, :as => :user, :weight => 1
   has_karma :prompts, :as => :user, :weight => 1
 
-  extend FriendlyId
-  friendly_id :login, use: :slugged, :reserved_words => ["recent", "new", "featured", "active", "popular", "top"]
+  # extend FriendlyId
+  # friendly_id :login, use: :slugged, :reserved_words => ["recent", "new", "featured", "active", "popular", "top"]
+  def to_param
+    "#{id}-#{login.parameterize}"
+  end
 
   has_many :followings
   has_many :writers, :through => :followings

@@ -28,17 +28,15 @@ class UsersController < ApplicationController
 
   def show
 
-     e = ActiveRecord::RecordNotFound
-      begin
-       #@user = User.find_by_login(params[:login]) || User.find(params[:id]) || current_user
-      @user = User.find params[:id] || current_user
+    begin
+     #@user = User.find_by_login(params[:login]) || User.find(params[:id]) || current_user
+    @user = User.find params[:id] || current_user
 
-      rescue Exception => e
-        flash[:notice] = 'That user doesn\'t exist.'
-        redirect_to root_url
-      else
-
-    if @user.present?
+    rescue Exception => e
+      flash[:notice] = 'That user doesn\'t exist.'
+      redirect_to root_url
+    else
+      if @user.present?
 
         page = params[:page] || 1
         per_page = 10
@@ -60,30 +58,34 @@ class UsersController < ApplicationController
 
 
         elsif (request.path.include?("account") or (request.path.include?("rss") and request.format == "rss")) and !@user.writers.empty?
-            @stories = Story.active.where(:user_id => @user.writers).page(page).per(per_page).order(order)
-              #@rss_url = rss_url(@user.login, :format => :rss)
-            @profile = false
-            @title = "Stories by users you follow"
+          @stories = Story.active.where(:user_id => @user.writers).page(page).per(per_page).order(order)
+            #@rss_url = rss_url(@user.login, :format => :rss)
+          @profile = false
+          @title = "Stories by users you follow"
         else
-           @stories = @user.stories.active.page(page).per(per_page).order(order)
-           @story = @stories.first if @stories.any?
-           unless @story
-              @story = @user.stories.build
-            end
+          @stories = @user.stories.active.page(page).per(per_page).order(order)
+          @story = @stories.first if @stories.any?
+          unless @story
+            @story = @user.stories.build
+          end
 
         end
 
-      respond_to do |format|
-        format.html # show.html.erb
-        format.xml  { render :xml => @stories }
-        format.rss
-      end
-    else
+        respond_to do |format|
+          format.html # show.html.erb
+          format.xml  { render :xml => @stories }
+          format.rss
+        end
+      else
+        slug = request.path.humanize
+        @user = User.where("login ILIKE ?", "%#{slug.gsub(/[0-9]/,'').strip}%").first
+        redirect_to(@user, status: :moved_permanently) if @user
+
         flash[:notice] = 'That user doesn\'t exist.'
         redirect_to root_url
+      end
     end
-    end
-end
+  end
 
 
   def edit

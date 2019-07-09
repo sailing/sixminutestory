@@ -8,8 +8,12 @@ class Story < ActiveRecord::Base
   acts_as_taggable_on :emotions
   acts_as_voteable
 
-  extend FriendlyId
-  friendly_id :title, use: :slugged, :reserved_words => ["recent", "featured", "active", "popular", "top", "genres","emotions","tags"]
+  # extend FriendlyId
+  # friendly_id :title, use: :slugged, :reserved_words => ["recent", "featured", "active", "popular", "top", "genres","emotions","tags"]
+
+  def to_param
+    "#{id}-#{title.parameterize}"
+  end
 
   def should_generate_new_friendly_id?
     new_record?
