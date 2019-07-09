@@ -197,33 +197,36 @@ class StoriesController < ApplicationController
   def show
     session[:return_to] = request.url
 
-    e = ActiveRecord::RecordNotFound
     begin
-                @story = Story.includes(:user, :prompt, :tags, :votes, comments: [:user, :votes]).active.find(params[:id])
-                @previous = Story.previous(@story).first
-                @next = Story.next(@story).first
-                if @story.featured
-                  @next_featured = Story.next_featured(@story).first
-                  @previous_featured = Story.previous_featured(@story).first
-                end
+      @story = Story.includes(:user, :prompt, :tags, :votes, comments: [:user, :votes]).active.find(params[:id])
+      @previous = Story.previous(@story).first
+      @next = Story.next(@story).first
+      if @story.featured
+        @next_featured = Story.next_featured(@story).first
+        @previous_featured = Story.previous_featured(@story).first
+      end
 
-    rescue Exception => e
+    rescue => e
       unless request.path.include?("featured")
+        title = request.path.humanize
+        @story = Story.where("title ILIKE ?", "%#{title.gsub(/[0-9]/,'').strip}%").first
+        redirect_to(@story, status: :moved_permanently) if @story
+
         flash[:notice] = "That story doesn't exist."
       else
         flash[:notice] = "That story isn't featured."
       end
+
       store_location
       redirect_to recent_url
-
     else
-        # tests to see if a following relationship exists
-          following_exists(@story.user.id)
+      # tests to see if a following relationship exists
+      following_exists(@story.user.id)
 
-       respond_to do |format|
-         format.html # show.html.erb
-         format.xml  { render :xml => @story }
-       end
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @story }
+      end
     end
 
 

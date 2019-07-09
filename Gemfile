@@ -70,4 +70,5 @@ gem 'json', '>= 1.8.2'
 
 group :development, :test do
   gem 'pry'
+  gem 'rb-readline'
 end

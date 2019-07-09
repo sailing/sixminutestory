@@ -39,8 +39,11 @@ class User < ActiveRecord::Base
 
   has_many :stories
   has_many :comments
+  has_many :prompts
 
-
+  def will_save_change_to_email?
+    false
+  end
 
   def self.find_by_login_or_email(login)
     User.find_by_login(login) || User.find_by_email_address(login)
@@ -52,6 +55,31 @@ class User < ActiveRecord::Base
 
   def can_edit?
     is_admin? || reputation >= 5
+  end
+
+  def self.dedupe
+    u = User.select(:email_address).group(:email_address).having("count(*) > 1")
+    a = u.map(&:email_address)
+    a.each do |ea| 
+      u = User.where(email_address: ea).order("reputation DESC")
+      keep = u.first
+      u = u.where.not(id: keep.id)
+
+      u.each do |user| 
+        kr = keep.reputation || 0
+        ur = user.reputation || 0
+        new_reputation = kr + ur
+        user.stories.update_all(user_id: keep.id)
+        user.comments.update_all(user_id: keep.id)
+        user.prompts.update_all(user_id: keep.id)
+        user.followings.update_all(user_id: keep.id)
+        user.inverse_followings.update_all(writer_id: keep.id)
+        user.votes.update_all(voter_id: keep.id)
+        keep.update_attributes reputation: new_reputation
+      end
+
+      u.destroy
+    end
   end
 
 end
