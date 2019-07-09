@@ -1,0 +1,20 @@
+As a user Reading a story on sms, I want to see a button that says "Continue story"
+
+As a user Clicking "Continue Story", I want to be taken to the Write page, so I can write a continuation to the story I was reading
+
+As a User writing a continuation, I want to see the story I'm continuing in full above the writing box
+
+As a User writing a continuation, I do not want to see a prompt when I click to start writing
+
+As a User submitting a continuation, I want to see my submitted story, so I know I submitted it
+
+As a User viewing a story, I want to see previous stories above it, scrolling up to the root, so I can see the whole story
+
+As a User viewing a story, I want to see a button "Jump to Beginning"
+
+As a User viewing a story and clicking "Jump to beginning", I want to see the first story in the thread, so I can start from the beginning
+
+As a User starting from the beginning and scrolling, I want to see the next story, so I can continue the story
+
+As a User viewing a story, I want to see continuations in a list below the story, so I can choose which branch to continue on
+
