@@ -55,8 +55,7 @@ class CommentsController < ApplicationController
   # POST /comment.xml
   def create
     @story = Story.find(params[:story_id])
-    @comment = @story.comments.new
-    @comment.comment = params[:comment][:comment]
+    @comment = @story.comments.build(comment_params)
     @comment.user = current_user
 
     respond_to do |format|
@@ -107,6 +106,6 @@ class CommentsController < ApplicationController
 
   private
     def comment_params
-      params.require(:comment).permit(:story_id)
+      params.require(:comment).permit(:comment, :story_id)
     end
 end
