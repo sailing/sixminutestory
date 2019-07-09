@@ -21,18 +21,7 @@
           %i.icon-signout{title: "Logout"}
           Logout
     - else
-      = form_for @user_session, :as => :user_session, :url => user_session_path, html: {class: "form-horizontal"} do |f|
-
-        %p
-          = f.text_field :login, placeholder: "Username"
-        %p
-          = f.password_field :password, placeholder: "Password"
-        %p
-          = f.submit "Login", class: "btn btn-block"
-        %p
-          = rpx_popup(:link_text => "Use OpenID/Twitter", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false)
-        %span
-          = link_to "Join now!", new_user_url
+      
     - if is_admin
       %li
         %hr

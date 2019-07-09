@@ -1,5 +1,8 @@
 Sms::Application.routes.draw do
-  devise_for :users
+  devise_for :users do 
+    get 'login', to: 'devise/sessions#new'
+    get 'logout', to: 'devise/sessions#destroy'
+  end
 #  resources :products do
 #    resource :category
 
@@ -64,8 +67,6 @@ Sms::Application.routes.draw do
     resource :account, :controller => "users"
     resources :profile, :controller => "users"
 
-    get 'addrpxauth', :to => "users#addrpxauth", :as => "addrpxauth"
-
     get 'profile/:id/favorites', :to => "votes#index", :as => 'favorites'
     get 'profile/:id/comments/:time', :to => "comments#index", :as => 'users_comments'
     get 'profile/:id/comments', :to => "comments#index", :as => 'users_comments_sans_time'
@@ -96,10 +97,6 @@ Sms::Application.routes.draw do
     get "/read/:id" => redirect("/stories/%{id}")
     get "/featured/:id" => redirect("/stories/%{id}")
     get "/archives" => redirect("/prompts")
-
-    get "login", :to => 'user_sessions#new', :as => :login
-    delete "logout", :to => 'user_sessions#destroy', :as => :logout
-    resource :user_session, :path_names => { :new => 'login' }
 
     get '/recent' => redirect("/stories/recent")
     get '/popular' => redirect("/stories/popular")

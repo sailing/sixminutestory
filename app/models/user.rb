@@ -81,7 +81,7 @@ class User < ActiveRecord::Base
         # keep.update_attributes reputation: new_reputation
       end
 
-      u.destroy
+      u.destroy_all
     end
   end
 

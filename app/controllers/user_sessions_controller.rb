@@ -4,7 +4,7 @@ class UserSessionsController < ApplicationController
   before_action :require_user, :only => :destroy
 
   def index
-      redirect_to current_user ? account_url : login_url
+      redirect_to current_user ? account_url : new_user_session_url
   end
 
 
@@ -30,7 +30,7 @@ class UserSessionsController < ApplicationController
                         end
                 else
                         flash[:error] = "Failed to login or register."
-                        redirect_to login_path
+                        redirect_to new_user_session_path
                 end
         end
 
