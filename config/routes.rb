@@ -28,11 +28,11 @@ Sms::Application.routes.draw do
 
     # site activities
       # writing / prompts
-    match 'write', :to => "stories#new", :as => 'write'
-		match '/write/random', :to => "prompts#random", :as => 'random_prompt'
-    match 'write/:prompt', :to => "stories#new", :as => 'write_to_prompt'
+    get 'write', :to => "stories#new", :as => 'write'
+		get '/write/random', :to => "prompts#random", :as => 'random_prompt'
+    get 'write/:prompt', :to => "stories#new", :as => 'write_to_prompt'
   #   match 'archives', :to => "prompts#index", :as => 'archives'
-    match 'thanks/:id', :to => "stories#thanks_for_writing", :as => 'thanks_for_writing'
+    get 'thanks/:id', :to => "stories#thanks_for_writing", :as => 'thanks_for_writing'
 
 
     resources :prompts do
@@ -63,11 +63,11 @@ Sms::Application.routes.draw do
     resource :account, :controller => "users"
     resources :profile, :controller => "users"
 
-    match 'addrpxauth', :to => "users#addrpxauth", :as => "addrpxauth"
+    get 'addrpxauth', :to => "users#addrpxauth", :as => "addrpxauth"
 
-    match 'profile/:user/favorites', :to => "votes#index", :as => 'favorites'
-    match 'profile/:user/comments/:time', :to => "comments#index", :as => 'users_comments'
-    match 'profile/:user/comments', :to => "comments#index", :as => 'users_comments_sans_time'
+    get 'profile/:user/favorites', :to => "votes#index", :as => 'favorites'
+    get 'profile/:user/comments/:time', :to => "comments#index", :as => 'users_comments'
+    get 'profile/:user/comments', :to => "comments#index", :as => 'users_comments_sans_time'
 
     resources :stories do
       resources :votes
@@ -92,31 +92,31 @@ Sms::Application.routes.draw do
 
     resources :votes
 
-    match "/read/:id" => redirect("/stories/%{id}")
-    match "/featured/:id" => redirect("/stories/%{id}")
-    match "/archives" => redirect("/prompts")
+    get "/read/:id" => redirect("/stories/%{id}")
+    get "/featured/:id" => redirect("/stories/%{id}")
+    get "/archives" => redirect("/prompts")
 
-    match "login", :to => 'user_sessions#new', :as => :login
-    match "logout", :to => 'user_sessions#destroy', :as => :logout
+    get "login", :to => 'user_sessions#new', :as => :login
+    delete "logout", :to => 'user_sessions#destroy', :as => :logout
     resource :user_session, :path_names => { :new => 'login' }
 
-    match '/recent' => redirect("/stories/recent")
-    match '/popular' => redirect("/stories/popular")
-    match '/active' => redirect("/stories/active")
-    match '/top' => redirect("/stories/top")
-    match '/featured'   => redirect("/stories/featured")
+    get '/recent' => redirect("/stories/recent")
+    get '/popular' => redirect("/stories/popular")
+    get '/active' => redirect("/stories/active")
+    get '/top' => redirect("/stories/top")
+    get '/featured'   => redirect("/stories/featured")
 
-    match '/tags'   => redirect("/stories/adjectives")
-    match '/genres'       => redirect("/stories/genres")
-    match '/emotions'   => redirect("/stories/emotions")
+    get '/tags'   => redirect("/stories/adjectives")
+    get '/genres'       => redirect("/stories/genres")
+    get '/emotions'   => redirect("/stories/emotions")
 
-    match                  '/tag/:tag'   => redirect("/stories/adjective/:tag")
-    match                 '/genre/:tag'    => redirect("/stories/genre/:tag")
-    match               '/emotion/:tag'   => redirect("/stories/emotion/:tag")
+    get                  '/tag/:tag'   => redirect("/stories/adjective/:tag")
+    get                 '/genre/:tag'    => redirect("/stories/genre/:tag")
+    get               '/emotion/:tag'   => redirect("/stories/emotion/:tag")
 
 #      match search             '/search'          :to => "site#search", :as => 'search'
-  match '/faq', :to => "site#faq", :as => 'faq'
-  match '/join', :to => "users#new", :as => 'join'
+  get '/faq', :to => "site#faq", :as => 'faq'
+  get '/join', :to => "users#new", :as => 'join'
 
 #      match about              '/about'           :to => "site#about", :as => ''
 #      match contact            '/contact'         :to => "site#contact", :as => ''
@@ -124,7 +124,7 @@ Sms::Application.routes.draw do
 #      match privacy            '/privacy'         :to => "site#privacy", :as => 'privacy'
 #      match   '/acknowledgements', :to => "site#acknowledgements", :as => 'acknowledgements'
   
-  match "/home", :to => "site#index", :as => "site"
+  get "/home", :to => "site#index", :as => "site"
   root :to => redirect("/stories/recent")
 
 
