@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-ruby '2.2.3'
+ruby '2.5.3'
 
 # Stack
-gem 'rails', '3.2.22'
+gem 'rails', '~> 5.2.3'
 gem 'puma'
 
 # Persistence
@@ -19,14 +19,12 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
-  gem 'less-rails'
-  gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-  gem 'therubyracer'
+  gem 'bootstrap', '~> 4.3.1'
   # asset_sync moves files to s3, where they're served by cloudfront
   # gem "asset_sync"
 
   # superspeeds asset precompilation
-  gem 'turbo-sprockets-rails3'
+  gem 'sprockets-rails'
 end
 
 # Layout and scripting
