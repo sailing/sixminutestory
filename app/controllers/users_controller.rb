@@ -17,14 +17,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = User.new(user_params)
 
-        if @user.save
-          redirect_back_or_default account_url
-        else
-          render :action => :new
-        end
-
+    if @user.save
+      redirect_back_or_default account_url
+    else
+      render :action => :new
+    end
  end
 
   def show
@@ -95,7 +94,7 @@ end
 
   def update
     @user = current_user # makes our views "cleaner" and more consistent
-    if @user.update_attributes(params[:user])
+    if @user.update_attributes(user_params)
       flash[:notice] = 'Profile updated!'
       redirect_to account_url
     else
@@ -150,7 +149,10 @@ end
   end
 
 
-
+  private
+    def user_params
+      params.require(:login, :email_address).permit(:password, :password_confirmation, :profile, :website, :send_comments, :send_stories, :send_followings)
+    end
 
 
 end

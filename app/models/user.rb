@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
 
   end
 
-  attr_accessible :login, :email_address, :password, :password_confirmation, :profile, :website, :send_comments, :send_stories, :send_followings
+  # attr_accessible :login, :email_address, :password, :password_confirmation, :profile, :website, :send_comments, :send_stories, :send_followings
 
   acts_as_tagger
   acts_as_voter

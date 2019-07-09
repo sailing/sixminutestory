@@ -1,5 +1,4 @@
-class VotesController < ApplicationController
- 
+class VotesController < ApplicationController 
    
   # First, figure out our nested scope. User or Story? Important for presenting lists
   before_filter :find_votes_for_my_scope, :only => [:index]
@@ -78,7 +77,7 @@ class VotesController < ApplicationController
     @voteable = find_voteable
     
     respond_to do |format|
-    if params[:vote_direction]
+      if params[:vote_direction]
 				if @voteable.voted_by?(current_user)
 					if current_user.voted_for?(@voteable)
 						@decrement_rating = true
@@ -92,6 +91,7 @@ class VotesController < ApplicationController
 					@decrement_rating = true
 					@increment_rating = true
 				end
+        
         if current_user.vote(@voteable, :direction => params[:vote_direction], :exclusive => true)
           @voteable.reload
           format.html {redirect_to @voteable}
@@ -108,10 +108,6 @@ class VotesController < ApplicationController
     end
   end
 
-  # PUT /users/:id/votes/1
-  # PUT /users/:id/votes/1.xml
-  def update
-  end
   
   # DELETE /users/:id/votes/1
   # DELETE /users/:id/votes/1.xml

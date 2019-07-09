@@ -138,7 +138,7 @@ class StoriesController < ApplicationController
   # POST /stories
   # POST /stories.xml
   def create
-    @story = current_user.stories.build(params[:story])
+    @story = current_user.stories.build(story_params)
     @story.prompt = Prompt.find(params[:story][:prompt_id])
 
     respond_to do |format|
@@ -286,11 +286,11 @@ class StoriesController < ApplicationController
 
 
   def disabled
-      page = params[:page] || 1
-      per_page = 15
-      order = "updated_at DESC"
+    page = params[:page] || 1
+    per_page = 15
+    order = "updated_at DESC"
 
-      @stories = Story.page(page).per(per_page).order(order)
+    @stories = Story.page(page).per(per_page).order(order)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -392,6 +392,10 @@ class StoriesController < ApplicationController
 
 
   private
+
+  def story_params
+    params.require(:title, :description).permit(:tags, :genres, :emotions, :license, :prompt_id)
+  end
 
   def ensure_current_post_url
       redirect_to @story, :status => :moved_permanently unless @story.friendly_id_status.best?

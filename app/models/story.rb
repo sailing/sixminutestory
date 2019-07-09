@@ -1,7 +1,5 @@
 class Story < ActiveRecord::Base
 
-  attr_accessible :title, :description, :tags, :genres, :emotions, :license, :prompt_id
-
   CC_OPTIONS = ["Creative Commons Attribution 3.0","Creative Commons Attribution-NoDerivs 3.0", "Creative Commons Attribution-NonCommerical-NoDerivs 3.0", "Creative Commons AttributionNonCommerical 3.0","Creative Commons Attribution-NonCommerical-ShareAlike 3.0", "Creative Commons Attribution-ShareAlike 3.0","Public Domain"]
 
   #acts_as_taggable

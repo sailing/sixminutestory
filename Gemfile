@@ -44,13 +44,13 @@ gem 'authlogic_rpx', :git => 'git://github.com/sailing/authlogic_rpx.git'
 # dalli is a caching replacement for memcached
 gem 'memcachier'
 gem 'dalli'
-
+gem 'activerecord-session_store'
 
 #voting tool
 gem 'thumbs_up', '>= 0.3.2'
 
 #permalinks are handled by friendly_id
-gem 'friendly_id', '~> 3.1'
+gem 'friendly_id', '~> 5.2.4'
 
 #pagination
 # gem "will_paginate", "~> 3.0"
@@ -64,10 +64,6 @@ gem 'json', '>= 1.8.2'
 
 # tagging
   gem 'acts-as-taggable-on'
-
-# recaptcha
-gem 'recaptcha'
-
 
 
 group :development, :test do
