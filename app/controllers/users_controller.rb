@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_filter :require_no_user, :only => [:new, :create]
-  before_filter :require_user, :only => [:edit, :update]
-  before_filter :must_be_admin, :only => [:index, :enable_user, :disable_user]
+  before_action :require_no_user, :only => [:new, :create]
+  before_action :require_user, :only => [:edit, :update]
+  before_action :must_be_admin, :only => [:index, :enable_user, :disable_user]
 
     def index
           page = params[:page] || 1

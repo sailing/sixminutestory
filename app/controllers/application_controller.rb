@@ -2,8 +2,8 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  before_filter :check_for_maintenance 
-  before_filter :require_username, :except => [:edit, :update, :create]
+  before_action :check_for_maintenance 
+  before_action :require_username, :except => [:edit, :update, :create]
 
   helper_method :current_user_session, :current_user
   

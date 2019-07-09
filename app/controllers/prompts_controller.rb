@@ -1,6 +1,6 @@
 class PromptsController < ApplicationController
-  before_filter :require_user, :only => [:new,:create] 
-  before_filter :must_be_admin, :only => [:enable_prompt, :disable_prompt, :verified, :edit, :update,:admin,:destroy]
+  before_action :require_user, :only => [:new,:create] 
+  before_action :must_be_admin, :only => [:enable_prompt, :disable_prompt, :verified, :edit, :update,:admin,:destroy]
  
   # GET /prompts
   # GET /prompts.xml

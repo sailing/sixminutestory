@@ -1,13 +1,13 @@
 class VotesController < ApplicationController 
    
   # First, figure out our nested scope. User or Story? Important for presenting lists
-  before_filter :find_votes_for_my_scope, :only => [:index]
+  before_action :find_votes_for_my_scope, :only => [:index]
      
-  before_filter :require_user, :only => [:index, :new, :edit, :destroy, :create, :update]
-  before_filter :must_own_vote,  :only => [:edit, :destroy, :update]
-  after_filter :increment_votes_count, :only => [:create]
-  # before_filter :update_rating, :only => [:create,:destroy]
-#  before_filter :not_allowed,    :only => [:edit, :update, :new]
+  before_action :require_user, :only => [:index, :new, :edit, :destroy, :create, :update]
+  before_action :must_own_vote,  :only => [:edit, :destroy, :update]
+  after_action :increment_votes_count, :only => [:create]
+  # before_action :update_rating, :only => [:create,:destroy]
+#  before_action :not_allowed,    :only => [:edit, :update, :new]
 
   # GET /users/:user_id/stories/
   # GET /users/:user_id/stories.xml

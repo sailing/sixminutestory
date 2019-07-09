@@ -1,9 +1,9 @@
 class StoriesController < ApplicationController
-  before_filter :require_user, :only => [:new, :create, :flag_story, :update]
-  before_filter :must_own_story, :only => [:edit, :destroy]
-  before_filter :must_be_admin, :only => [:admin, :disabled, :enable_story, :feature_story, :unfeature_story]
-  after_filter :increment_counter, :only => [:show]
-#  before_filter ensure_current_post_url, :only => :show
+  before_action :require_user, :only => [:new, :create, :flag_story, :update]
+  before_action :must_own_story, :only => [:edit, :destroy]
+  before_action :must_be_admin, :only => [:admin, :disabled, :enable_story, :feature_story, :unfeature_story]
+  after_action :increment_counter, :only => [:show]
+#  before_action ensure_current_post_url, :only => :show
 
    def index
        per_page = 10

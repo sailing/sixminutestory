@@ -1,5 +1,5 @@
 class SiteController < ApplicationController
-   before_filter :must_be_admin, :only => [:admin]
+   before_action :must_be_admin, :only => [:admin]
 
    caches_action :index, expires_in: 1.day, layout: false
 
