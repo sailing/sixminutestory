@@ -52,7 +52,7 @@ gem 'activerecord-session_store'
 gem 'thumbs_up', '>= 0.3.2'
 
 #permalinks are handled by friendly_id
-gem 'friendly_id', '~> 5.2.4'
+# gem 'friendly_id', '~> 5.2.4'
 
 #pagination
 # gem "will_paginate", "~> 3.0"

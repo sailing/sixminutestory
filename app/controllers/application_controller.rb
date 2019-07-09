@@ -4,8 +4,6 @@
 class ApplicationController < ActionController::Base
   before_action :check_for_maintenance 
   before_action :require_username, :except => [:edit, :update, :create]
-
-  helper_method :current_user_session, :current_user
   
   helper :all # include all helpers, all the time
   
@@ -18,17 +16,7 @@ class ApplicationController < ActionController::Base
   # from your application log (in this case, all fields with names like "password"). 
   # filter_parameter_logging :password
 
-    private
-    def current_user_session
-      return @current_user_session if defined?(@current_user_session)
-      @current_user_session = UserSession.find
-    end
-
-    def current_user
-       return @current_user if defined?(@current_user)
-       @current_user = current_user_session && current_user_session.record
-    end
-  
+  private
     def require_user
       unless current_user
         store_location

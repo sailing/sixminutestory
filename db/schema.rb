@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2019_07_09_033413) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "comments", force: :cascade do |t|
+  create_table "comments", id: :serial, force: :cascade do |t|
     t.text "comment"
     t.integer "user_id"
     t.integer "story_id"
@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 2019_07_09_033413) do
     t.integer "votes_count", default: 0
   end
 
-  create_table "contests", force: :cascade do |t|
-    t.string "title"
+  create_table "contests", id: :serial, force: :cascade do |t|
+    t.string "title", limit: 255
     t.text "description"
     t.datetime "start"
     t.datetime "end"
@@ -37,25 +37,25 @@ ActiveRecord::Schema.define(version: 2019_07_09_033413) do
     t.datetime "updated_at"
   end
 
-  create_table "emails", force: :cascade do |t|
-    t.string "from"
-    t.string "to"
+  create_table "emails", id: :serial, force: :cascade do |t|
+    t.string "from", limit: 255
+    t.string "to", limit: 255
     t.integer "last_send_attempt", default: 0
     t.text "mail"
     t.datetime "created_on"
   end
 
-  create_table "followings", force: :cascade do |t|
+  create_table "followings", id: :serial, force: :cascade do |t|
     t.integer "user_id"
     t.integer "writer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "prompts", force: :cascade do |t|
-    t.string "hero"
-    t.string "villain"
-    t.string "goal"
+  create_table "prompts", id: :serial, force: :cascade do |t|
+    t.string "hero", limit: 255
+    t.string "villain", limit: 255
+    t.string "goal", limit: 255
     t.date "use_on"
     t.integer "rating", default: 0
     t.integer "counter", default: 0
@@ -67,20 +67,20 @@ ActiveRecord::Schema.define(version: 2019_07_09_033413) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "stories_count", default: 0
-    t.string "refcode"
-    t.string "kind"
-    t.string "attribution"
-    t.string "attribution_url"
-    t.string "license"
+    t.string "refcode", limit: 255
+    t.string "kind", limit: 255
+    t.string "attribution", limit: 255
+    t.string "attribution_url", limit: 255
+    t.string "license", limit: 255
     t.integer "votes_count", default: 0
-    t.string "license_url"
-    t.string "license_en"
-    t.string "license_image_url"
+    t.string "license_url", limit: 255
+    t.string "license_en", limit: 255
+    t.string "license_image_url", limit: 255
   end
 
-  create_table "rpx_identifiers", force: :cascade do |t|
-    t.string "identifier", null: false
-    t.string "provider_name"
+  create_table "rpx_identifiers", id: :serial, force: :cascade do |t|
+    t.string "identifier", limit: 255, null: false
+    t.string "provider_name", limit: 255
     t.integer "user_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -88,8 +88,8 @@ ActiveRecord::Schema.define(version: 2019_07_09_033413) do
     t.index ["user_id"], name: "index_rpx_identifiers_on_user_id"
   end
 
-  create_table "sessions", force: :cascade do |t|
-    t.string "session_id", null: false
+  create_table "sessions", id: :serial, force: :cascade do |t|
+    t.string "session_id", limit: 255, null: false
     t.text "data"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -97,8 +97,8 @@ ActiveRecord::Schema.define(version: 2019_07_09_033413) do
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
 
-  create_table "slugs", force: :cascade do |t|
-    t.string "name"
+  create_table "slugs", id: :serial, force: :cascade do |t|
+    t.string "name", limit: 255
     t.integer "sluggable_id"
     t.integer "sequence", default: 1, null: false
     t.string "sluggable_type", limit: 40
@@ -108,10 +108,10 @@ ActiveRecord::Schema.define(version: 2019_07_09_033413) do
     t.index ["sluggable_id"], name: "index_slugs_on_sluggable_id"
   end
 
-  create_table "stories", force: :cascade do |t|
-    t.string "title"
+  create_table "stories", id: :serial, force: :cascade do |t|
+    t.string "title", limit: 255
     t.text "description"
-    t.string "license"
+    t.string "license", limit: 255
     t.integer "votes_count", default: 0
     t.integer "comment_counter", default: 0
     t.integer "flagged", default: 0
@@ -123,32 +123,32 @@ ActiveRecord::Schema.define(version: 2019_07_09_033413) do
     t.boolean "active", default: true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "cached_slug"
+    t.string "cached_slug", limit: 255
     t.integer "comments_count", default: 0
     t.boolean "featured", default: false
   end
 
-  create_table "taggings", force: :cascade do |t|
+  create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
     t.integer "taggable_id"
     t.integer "tagger_id"
-    t.string "tagger_type"
-    t.string "taggable_type"
-    t.string "context"
+    t.string "tagger_type", limit: 255
+    t.string "taggable_type", limit: 255
+    t.string "context", limit: 255
     t.datetime "created_at"
     t.index ["tag_id"], name: "index_taggings_on_tag_id"
   end
 
-  create_table "tags", force: :cascade do |t|
-    t.string "name"
+  create_table "tags", id: :serial, force: :cascade do |t|
+    t.string "name", limit: 255
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "login"
-    t.string "encrypted_password"
-    t.string "password_salt"
-    t.string "website"
-    t.string "email_address"
+  create_table "users", id: :serial, force: :cascade do |t|
+    t.string "login", limit: 255
+    t.string "encrypted_password", limit: 255
+    t.string "password_salt", limit: 255
+    t.string "website", limit: 255
+    t.string "email", limit: 255
     t.text "profile"
     t.boolean "active", default: true
     t.integer "admin_level", default: 1
@@ -160,14 +160,13 @@ ActiveRecord::Schema.define(version: 2019_07_09_033413) do
     t.boolean "send_comments", default: true
     t.boolean "send_stories", default: true
     t.boolean "send_followings", default: true
-    t.string "name"
-    t.integer "facebook_uid"
-    t.string "facebook_session_key"
+    t.string "name", limit: 255
+    t.bigint "facebook_uid"
+    t.string "facebook_session_key", limit: 255
     t.integer "comments_count", default: 0
     t.integer "stories_count", default: 0
     t.boolean "featured", default: false
     t.integer "reputation", default: 0
-    t.string "email", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -175,16 +174,15 @@ ActiveRecord::Schema.define(version: 2019_07_09_033413) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "votes", force: :cascade do |t|
+  create_table "votes", id: :serial, force: :cascade do |t|
     t.boolean "vote", default: false
     t.integer "voteable_id", null: false
-    t.string "voteable_type", null: false
+    t.string "voteable_type", limit: 255, null: false
     t.integer "voter_id"
-    t.string "voter_type"
+    t.string "voter_type", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["voteable_id", "voteable_type"], name: "fk_voteables"

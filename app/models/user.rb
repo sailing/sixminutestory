@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
 
   # end
 
-  # attr_accessible :login, :email_address, :password, :password_confirmation, :profile, :website, :send_comments, :send_stories, :send_followings
+  # attr_accessible :login, :email, :password, :password_confirmation, :profile, :website, :send_comments, :send_stories, :send_followings
 
   acts_as_tagger
   acts_as_voter
@@ -44,12 +44,12 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :prompts
 
-  def will_save_change_to_email?
-    false
+  def email_address
+    email
   end
 
   def self.find_by_login_or_email(login)
-    User.find_by_login(login) || User.find_by_email_address(login)
+    User.find_by_login(login) || User.find_by_email(login)
   end
 
   def is_admin?
@@ -61,10 +61,11 @@ class User < ActiveRecord::Base
   end
 
   def self.dedupe
-    u = User.select(:email_address).group(:email_address).having("count(*) > 1")
-    a = u.map(&:email_address)
-    a.each do |ea| 
-      u = User.where(email_address: ea).order("reputation DESC")
+    u = User.select(:email).group(:email).having("count(*) > 1")
+    a = u.collect(&:email).compact
+    a.each do |ea|
+      puts "Email is: #{ea}"
+      u = User.where(email: ea).order("reputation DESC")
       keep = u.first
       u = u.where.not(id: keep.id)
 
@@ -77,8 +78,7 @@ class User < ActiveRecord::Base
         user.prompts.update_all(user_id: keep.id)
         user.followings.update_all(user_id: keep.id)
         user.inverse_followings.update_all(writer_id: keep.id)
-        user.votes.update_all(voter_id: keep.id)
-        keep.update_attributes reputation: new_reputation
+        # keep.update_attributes reputation: new_reputation
       end
 
       u.destroy
