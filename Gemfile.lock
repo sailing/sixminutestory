@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/thomaspark/bootswatch.git
+  revision: cb63df86f2d54fb88bc99988f6de5fb316b719a3
+  specs:
+    bootswatch (4.3.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -235,6 +241,7 @@ DEPENDENCIES
   activerecord-session_store
   acts-as-taggable-on
   bootstrap (~> 4.3.1)
+  bootswatch!
   coffee-rails
   dalli
   devise

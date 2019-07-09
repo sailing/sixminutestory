@@ -16,6 +16,7 @@ gem 'newrelic_rpm'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :assets do
+  gem "bootswatch", github: "thomaspark/bootswatch"
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
