@@ -30,7 +30,8 @@ class UsersController < ApplicationController
 
     begin
      #@user = User.find_by_login(params[:login]) || User.find(params[:id]) || current_user
-    @user = User.find params[:id] || current_user
+
+    @user = params[:id] ? User.find(params[:id]) : current_user
 
     rescue Exception => e
       flash[:notice] = 'That user doesn\'t exist.'
