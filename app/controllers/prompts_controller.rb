@@ -189,6 +189,11 @@ class PromptsController < ApplicationController
       end
    end
 
+   private
+    def prompt_params
+      params.require(:prompt).permit(:hero,:villain,:goal,:refcode,:kind)
+    end
+
 end
 
 class FavoritePromptsController < ApplicationController
