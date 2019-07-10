@@ -20,7 +20,7 @@
 
     <%= render partial: "layouts/heap" %>
   </head>
-  <body>
+  <body data-controller="<%= params[:controller] %>" data-action="<%= params[:action] %>">
     <nav class="nav navbar navbar-expand-md navbar-dark bg-primary" role="navigation">
       <a class="navbar-brand h1" href="#">Six Minute Story</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
