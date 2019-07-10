@@ -8,7 +8,7 @@
 			self = this # had to do this or startTimer was undefined
 			$("input[type=\"submit\"]").attr "disabled", "disabled"
 			$("#story_description").focus ->
-				$("#prompt_and_timer").removeClass "hide"
+				$("#prompt_and_timer").removeClass "d-none"
 				$("#instructions").hide()
 				self.startTimer()
 
