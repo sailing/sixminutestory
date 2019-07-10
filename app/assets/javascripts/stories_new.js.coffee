@@ -84,7 +84,7 @@
 		story_value = $("#story_description").val()
 
 		if story_value.length > 0 && story_value isnt "Type here to begin writing."
-			$("#done_writing").show()
+			$("#done_writing").removeClass "d-none"
 		else
-			$("#done_writing").hide()
+			$("#done_writing").addClass "d-none"
 
