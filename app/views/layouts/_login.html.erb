@@ -1,0 +1,41 @@
+<div class="dropdown align-content-end" id="login_container">
+  <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+    <i class="icon-user"></i>
+  </a>
+  <div class="dropdown-menu dropdown-menu-right" role = "menu" aria-labelledby = "dLabel">
+    <% if current_user %>
+      <div class="dropdown-item">
+        <%= link_to account_path do %>
+          <i class="icon-picture" title="Profile"></i>
+          Profile
+        <% end %>
+      </div>
+      <!-- %li -->
+      <!--   = link_to users_comments_url(current_user, "new") do -->
+      <!--     %i.icon-envelope{title: "Inbox"} -->
+      <!--     Inbox -->
+      <div class="dropdown-item">
+        <%= link_to edit_account_path do %>
+          <i class="icon-cog" title="Settings"></i>
+          Settings
+        <% end %>
+      </div>
+      <div class="dropdown-item">
+        <%= link_to destroy_user_session_path do %>
+          <i class="icon-signout" title="Logout"></i>
+          Logout
+        <% end %>
+      </div>
+    <% else %>
+    <% end %>
+    <% if is_admin %>
+      <div class="dropdown-item">
+        <div class="dropdown-divider"></div>
+      </div>
+      <div class="dropdown-item">
+        <%= link_to "Users", users_url %>
+      </div>
+    <% end %>
+  </div>
+  <!-- Close Login Container -->
+</div>
