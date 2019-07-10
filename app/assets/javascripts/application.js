@@ -6,8 +6,10 @@
 //= require bootstrap-sprockets
 //= require_self
 //= require_tree .
+
 //= require_tree ./widearea
 //= require_tree ./theme
+
 //= require stories_index
 //= require stories_new
 
