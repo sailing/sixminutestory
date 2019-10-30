@@ -60,39 +60,44 @@
         %div
           %a#done_writing.d-none.btn.btn-large.btn-warning{:href => "#"} I'm done writing
 
-  #story-saved.modal.hide.fade(data-backdrop="false")
-    .modal-header
-      %h3 Well done!
-      %h4 Complete these details to publish your story:
-    .modal-body
-      %table
-        %tr
-          %th
-            - if @story.errors[:title].present?
-              %label= @story.errors[:title]
-            - else
-              = f.label :title
-          %td
-            = f.text_field :title
-        %tr
-          %th
-            = f.label :tag_list, "Adjectives"
-            %br
-            %span{:style => "font-size:x-small"} separate adjectives with commas
-          %td
-            = f.text_field :tag_list
-        %tr
-          %th
-            = f.label :genre_list, "Genres"
-            %br
-            %span{:style => "font-size:x-small"} separate genres with commas
-          %td
-            = f.text_field :genre_list
-        %tr
-          %th
-            = f.label :license
-          %td
-            = f.select :license, options_for_select(Story::CC_OPTIONS)#, :name => "story[license]"
-    .modal-footer
-      = link_to "Eh, toss this story",random_prompt_url, confirm: "Are you sure you want to abandon this story?", :class =>"btn btn-danger"
-      = f.submit "Publish your story", :class => "btn btn-success btn-large "
+  #story-saved.modal.hide.fade(data-backdrop="static" data-keyboard="false")
+    .modal-dialog.modal-lg.modal-dialog-centered
+      .modal-content
+        .modal-header
+          %h3 Well done!
+          %h4.mt-1 Complete these details to publish your story
+        .modal-body.bg-light
+          .form
+            .form-group.row
+              - if @story.errors[:title].present?
+                %label
+                  = @story.errors[:title]
+              - else
+                = f.label :title, :class => "col-form-label col-md-3" do
+                  Title
+                  %br
+                  %span{:style => "font-size:x-small"} &nbsp;
+              .col-md-9
+                = f.text_field :title, class: "form-control rounded"
+            .form-group.row
+              = f.label :tag_list, :class => "col-form-label col-md-3" do
+                Adjectives
+                %br
+                %span{:style => "font-size:x-small"} separate adjectives with commas
+              .col-md-9
+                = f.text_field :tag_list, class: "form-control rounded"
+            .form-group.row
+              = f.label :genre_list, :class => "col-form-label col-md-3" do
+                Genres
+                %br
+                %span{:style => "font-size:x-small"} separate genres with commas
+              .col-md-9
+                = f.text_field :genre_list, class: "form-control rounded"
+            .form-group.row
+              = f.label :license, :class => "col-form-label col-md-3"
+              .col-md-9
+                = f.select :license, options_for_select(Story::CC_OPTIONS), {}, {:class => "form-control custom-select rounded"}
+                  
+        .modal-footer
+          = link_to "Eh, toss this story",random_prompt_url, confirm: "Are you sure you want to abandon this story?", :class => "btn btn-danger"
+          = f.submit "Publish your story", :class => "btn btn-success btn-large"

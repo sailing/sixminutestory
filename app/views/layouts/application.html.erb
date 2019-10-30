@@ -47,16 +47,11 @@
             <i class="icon-envelope"></i>
             <span>Contact</span>
           <% end %>
-
-          <%= link_to site_url(anchor: "section1"), class: "nav-item nav-link" do %>
-            <i class="icon-home"></i>
-            <span>Home</span>
-          <% end %>
         </div>
       </div>
       <%= render partial: 'layouts/login' %>
     </nav>
-    <div class="container-fluid">
+    <div class="container-fluid my-4">
       <% if params[:controller] == 'site' and params[:action] == 'index' %>
         <%= yield %>
       <% else %>
