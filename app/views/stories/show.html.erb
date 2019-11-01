@@ -1,6 +1,24 @@
 <% content_for :pagename do %>
   <%= @story.title %>
 <% end %>
+
+<%- if is_admin %>
+  <div class="row">
+    <%- if @story.featured == true %>
+      <div id="unfollowing_button" class="button_container">
+        <%= button_to "Unfeature", unfeature_story_url(@story), class: "btn btn-danger btn-sm mr-3 mb-3", form_class: "d-inline-block", 
+              :confirm => 'Are you sure you want to unfeature this story? The story will no longer be featured!', :method => :post %>
+      </div>
+    <%- elsif @story.featured == false %>
+      <div id="following_button" class="button_container">
+        <%= button_to "Feature", feature_story_url(@story), class: "btn btn-primary btn-sm mr-3 mb-3", form_class: "d-inline-block", 
+              :confirm => 'Are you sure you want to feature this story? The story will become featured!', :method => :post %>
+      </div>
+    <%- end %>
+    <%= link_to "Edit Details", edit_story_url(@story), class: "btn btn-warning btn-sm mb-3" %>
+  </div>
+<% end %>
+
 <div class="row">
   <div class="col-1">
     <div class="row">
@@ -70,26 +88,4 @@
       </div>
     </div>
   </div>
-  
 </div>
-
-<%- if is_admin %>
-  <div class="row spacer">
-    <div class="col-4 offset2">
-      <%- if @story.featured == true %>
-        <div id="unfollowing_button">
-          <%= button_to "Unfeature", unfeature_story_url(@story), class: "btn col-12 btn-danger btn-superlarge",
-                :confirm => 'Are you sure you want to unfeature this story? The story will no longer be featured!', :method => :post %>
-        </div>
-      <%- elsif @story.featured == false %>
-        <div id="following_button" class="button_container">
-          <%= button_to "Feature", feature_story_url(@story), class: "btn col-12 btn-primary btn-superlarge",
-                :confirm => 'Are you sure you want to feature this story? The story will become featured!', :method => :post %>
-        </div>
-        <div class="col-4">
-          <%= link_to "Edit Details", edit_story_url(@story), class: "btn col-12 btn-superlarge" %>
-        </div>
-      <%- end %>
-    </div>
-  </div>
-<% end %>
