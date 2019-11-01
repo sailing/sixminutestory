@@ -24,41 +24,53 @@
   <% end %>
 </div>
 <div class="row m-2 mt-5 d-flex justify-content-between">
-  <div class="flex-fill card m-2">
-    <h3 class="card-header bg-info text-white">Comments</h3>
-    <%= render :partial => "comment_section" %>
-  </div>
-  <div class="flex-fill card">
-    <div class="card border-0">
-      <%= render :partial => "site/profile_block" %>
+  <div class="flex-fill col-12 col-md-6">
+    <div class="card">
+      <h3 class="card-header bg-info text-white">Comments</h3>
+      <%= render :partial => "comment_section" %>
     </div>
-    <div class="well" id="favoriters">
+  </div>
+  <div class="flex-fill col-12 col-md-6">
+    <%= render :partial => "site/profile_block" %>
+    <div class="card mb-3" id="favoriters">
       <%= render :partial => "favoriters" %>
     </div>
-    <div class="well">
-      <h3>Story information   </h3>
-      <h6>license</h6>
-      <p>
-        <%= @story.license %>
-      </p>
-      <% if @story.genres.any? %>
-        <h6>genres</h6>
+    <div class="card mb-3">
+      <h3 class="card-header">Story information   </h3>
+      <div class="card-content p-3">
+        <h6>License</h6>
         <p>
-          <% @story.genres.each do |genre| %>
-            <%= link_to h(genre.name), subset_stories_url(:tag => genre.name, :subset => "genre", :months => 100) %>
-          <% end %>
+          <%= @story.license %>
         </p>
-      <% end %>
-      <% if @story.tags.any? %>
-        <h6>tags</h6>
-        <p>
-          <% @story.tags.each do |tag| %>
-            <%= link_to h(tag.name), subset_stories_url(:tag => tag.name, :subset => "adjective", :months => 100) %>
-          <% end %>
-        </p>
-      <% end %>
+        <% if @story.genres.any? %>
+          <h6>genres</h6>
+          <p>
+            <% @story.genres.each do |genre| %>
+              <%= link_to h(genre.name), subset_stories_url(:tag => genre.name, :subset => "genre", :months => 100) %>
+            <% end %>
+          </p>
+        <% end %>
+        <% if @story.tags.any? %>
+          <h6>tags</h6>
+          <p>
+            <% @story.tags.each do |tag| %>
+              <%= link_to h(tag.name), subset_stories_url(:tag => tag.name, :subset => "adjective", :months => 100) %>
+            <% end %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+    <div class="card" id="prompt">
+      <h3 class="card-header">The prompt for this story</h3>
+      <div class="card-content p-3">
+        <%= render :partial => "prompts/show_prompt" %>
+      </div>
+      <div class="card-footer">
+        <%= render :partial => "votes/prompt_vote", :object => @story.prompt, :as => :prompt %>
+      </div>
     </div>
   </div>
+  
 </div>
 
 <%- if is_admin %>
@@ -81,10 +93,3 @@
     </div>
   </div>
 <% end %>
-
-<div id="prompt">
-  <h3>The prompt for this story</h3>
-  <%= render :partial => "prompts/show_prompt" %>
-  <%= render :partial => "votes/prompt_vote", :object => @story.prompt, :as => :prompt %>
-  <div class="space"></div>
-</div>

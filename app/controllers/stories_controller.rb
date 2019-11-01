@@ -199,6 +199,7 @@ class StoriesController < ApplicationController
 
     begin
       @story = Story.includes(:user, :prompt, :tags, :votes, comments: [:user, :votes]).active.find(params[:id])
+      @prompt = @story.prompt
       @previous = Story.previous(@story).first
       @next = Story.next(@story).first
       if @story.featured
