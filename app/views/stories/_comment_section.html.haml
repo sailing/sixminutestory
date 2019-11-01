@@ -1,11 +1,11 @@
 #comments.row-fluid
-  .span12
+  .col-12
     - if current_user
-      #comment_form
+      #comment_form.form
         = form_for([@story, Comment.new], :html => { :id => 'comments_form' }) do |f|
-          = f.text_area :comment, class: "span12", rows: 5
+          = f.text_area :comment, class: "col-12 form-control my-3", rows: 5
           #comment_submit_container.pull-right
-            = submit_tag "Contribute", :name => "contribute", :id => "contribute-button", :disabled => false, class: "btn"
+            = submit_tag "Contribute", :name => "contribute", :id => "contribute-button", :disabled => false, class: "btn btn-primary"
     - else
       #signin_or_register
         = rpx_popup(:link_text => "Login", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false )
@@ -18,6 +18,6 @@
 - if @story.comments.present?
   %hr
   .row-fluid
-    .span12
+    .col-12
       = render :partial => "comments/comment", :collection => @story.comments
 

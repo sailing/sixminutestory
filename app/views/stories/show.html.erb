@@ -1,45 +1,35 @@
 <% content_for :pagename do %>
   <%= @story.title %>
 <% end %>
-<div class="row-fluid title">
-  <div class="span7">
-    <h2 class="story-title">
-      <%= (@story.title.present? ? @story.title : "Untitled Story") %>
-    </h2>
-  </div>
-  <div class="span5">
-    <hr/>
-  </div>
-</div>
-<div class="row-fluid story-container">
-  <div class="span1">
-    <div class="row-fluid">
-      <%= link_to story_url(@previous), class: "span12 btn btn-large increment-story increment-story-left" do %>
+<div class="row">
+  <div class="col-1">
+    <div class="row">
+      <%= link_to story_url(@previous), class: "col-12 btn btn-large border increment-story increment-story-left" do %>
         <i class="icon-caret-left icon-large"></i>
       <% end %>
     </div>
-    <div class="row-fluid">
-      <%= link_to random_stories_url, class: "span12 btn btn-large increment-story increment-story-random" do %>
+    <div class="row">
+      <%= link_to random_stories_url, class: "col-12 border border-top-0 btn btn-large increment-story increment-story-random" do %>
         <i class="icon-random icon-large"></i>
       <% end %>
     </div>
   </div>
-  <div class="span10">
+  <div class="col-10">
     <%= render :partial => "stories/story", :locals => {:story => @story} %>
   </div>
   <% if @next %>
-    <%= link_to story_url(@next), class: "span1 btn btn-large increment-story" do %>
+    <%= link_to story_url(@next), class: "col-1 btn btn-large border increment-story" do %>
       <i class="icon-caret-right icon-large"></i>
     <% end %>
   <% end %>
 </div>
-<div class="row-fluid content" id="post_story">
-  <div class="span6">
-    <h3>Comments</h3>
+<div class="row m-2 mt-5 d-flex justify-content-between">
+  <div class="flex-fill card m-2">
+    <h3 class="card-header bg-info text-white">Comments</h3>
     <%= render :partial => "comment_section" %>
   </div>
-  <div class="span5 offset1">
-    <div class="well">
+  <div class="flex-fill card">
+    <div class="card border-0">
       <%= render :partial => "site/profile_block" %>
     </div>
     <div class="well" id="favoriters">
@@ -72,20 +62,20 @@
 </div>
 
 <%- if is_admin %>
-  <div class="row-fluid spacer">
-    <div class="span4 offset2">
+  <div class="row spacer">
+    <div class="col-4 offset2">
       <%- if @story.featured == true %>
         <div id="unfollowing_button">
-          <%= button_to "Unfeature", unfeature_story_url(@story), class: "btn span12 btn-danger btn-superlarge",
+          <%= button_to "Unfeature", unfeature_story_url(@story), class: "btn col-12 btn-danger btn-superlarge",
                 :confirm => 'Are you sure you want to unfeature this story? The story will no longer be featured!', :method => :post %>
         </div>
       <%- elsif @story.featured == false %>
         <div id="following_button" class="button_container">
-          <%= button_to "Feature", feature_story_url(@story), class: "btn span12 btn-primary btn-superlarge",
+          <%= button_to "Feature", feature_story_url(@story), class: "btn col-12 btn-primary btn-superlarge",
                 :confirm => 'Are you sure you want to feature this story? The story will become featured!', :method => :post %>
         </div>
-        <div class="span4">
-          <%= link_to "Edit Details", edit_story_url(@story), class: "btn span12 btn-superlarge" %>
+        <div class="col-4">
+          <%= link_to "Edit Details", edit_story_url(@story), class: "btn col-12 btn-superlarge" %>
         </div>
       <%- end %>
     </div>

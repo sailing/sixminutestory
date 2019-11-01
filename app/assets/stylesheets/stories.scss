@@ -1,14 +1,14 @@
 // Place all the styles related to the stories controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-@import "variables";
+// @import "variables";
 
 // Timer
 #timer_element {
-	@height: 140px;
-	line-height: @height;
-	max-height: @height;
-	height: @height;
+	$height: 140px;
+	line-height: $height;
+	max-height: $height;
+	height: $height;
 	text-align:center;
 
 	font-size:3em;
@@ -41,7 +41,7 @@
 	height:600px;
 	line-height: 600px;
 	font-size: 3em;
-	color: rgb(200,200,200,0.5);
+	color: rgba(200,200,200,0.5);
 }
 
 .increment-story-left {
@@ -71,7 +71,7 @@
 		height:100px;
 		line-height: 100px;
 		font-size: 3em;
-		color: rgb(200,200,200,0.5);
+		color: rgba(200,200,200,0.5);
 	}
 
 	.increment-story-left {

@@ -1,12 +1,11 @@
-.story{class: ("card m-3 mt-5" if @stories)}
-  - if @stories
-    .card-header.bg-light
-      %h2.mt-1.h3
-        = link_to story.safe_title, story_url(story), class: "text-info"
-        %small.text-muted
-          by
-          = link_to story.user.login, profile_path(story.user), class: "text-secondary"
-          = time_ago_in_words(story.created_at) + " ago"
+.story.card.mt-0{class: ("m-3 mt-5" if @stories)}
+  .card-header.bg-light
+    %h2.mt-1.h3
+      = link_to story.safe_title, story_url(story), class: "text-info"
+      %small.text-muted
+        by
+        = link_to story.user.login, profile_path(story.user), class: "text-secondary"
+        = time_ago_in_words(story.created_at) + " ago"
 
   .card-content.p-3
     - if @stories
@@ -17,7 +16,7 @@
         .span10.offset1
           = simple_format(sanitize(story.description))
 
-  %div{class: ("card-footer" if @stories)}
+  %div{class: ("card-footer")}
     %span.comments_in_footer
       / = link_to pluralize(story.comments_count, 'remark'), story_url(story, :anchor => "comments")
       = link_to raw(story.comments_count.to_s + " <i class='icon-comment'></i>"), story_url(story, :anchor => "comments"), class: "text-dark", rel: "tooltip", title: "#{story.comments_count.to_s} comments"
@@ -49,10 +48,7 @@
           = @story.flagged
           %i.icon-flag
 
-
-  
-
-  - unless @stories
-    .row-fluid.content
-      .span6.offset3.text-center
-        = render :partial => 'stories/share_in_story', :locals => {:story => story}
+- unless @stories
+  .row
+    .col-6.offset-3.text-center.card.border-primary.p-3
+      = render :partial => 'stories/share_in_story', :locals => {:story => story}
