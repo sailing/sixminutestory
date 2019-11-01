@@ -7,15 +7,19 @@
 		# or you have already voted on this item
   
 		if current_user.voted_for?(@story) %>
-	 		<%= link_to "<i class='icon-star icon-large'></i>".html_safe, story_votes_path(@story, :vote_direction => :down), 
-				:method => :post, rel: "tooltip", title: "Remove from favorites",
-				:remote => true
+	 		<%= button_to story_votes_path(@story, :vote_direction => :down), 
+				:method => :post, form_class: "d-inline-block", class: "btn btn-sm mr-2 btn-dark", rel: "tooltip", title: "Remove from favorites",
+				:remote => true do
 			%>
+				<i class='icon-star-empty icon-large'></i>
+			<%- end %>
 	<% elsif !current_user.voted_for?(@story) %>
-	 		<%= link_to "<i class='icon-star-empty icon-large'></i>".html_safe, story_votes_path(@story, :vote_direction => :up), 
-				:method => :post, rel: "tooltip", title: "Add to favorites", 
-				:remote => true
+	 		<%= button_to story_votes_path(@story, :vote_direction => :up), 
+				:method => :post, form_class: "d-inline-block", class: "btn btn-sm mr-2 btn-warning", rel: "tooltip", title: "Add to favorites", 
+				:remote => true do
 			%>
+				<i class='icon-star icon-large'></i>
+			<%- end %>
 	<% end %>
 <% end %>
 <%= approval_rating(@story) %>
