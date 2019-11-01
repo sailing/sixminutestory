@@ -4,7 +4,7 @@
       #comment_form.form
         = form_for([@story, Comment.new], :html => { :id => 'comments_form' }) do |f|
           = f.text_area :comment, class: "col-12 form-control my-3", rows: 5
-          #comment_submit_container.pull-right
+          #comment_submit_container.pull-right.mb-3
             = submit_tag "Contribute", :name => "contribute", :id => "contribute-button", :disabled => false, class: "btn btn-primary"
     - else
       #signin_or_register

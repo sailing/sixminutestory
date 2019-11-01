@@ -29,11 +29,10 @@
 				when "quotation"
 				 #text w attributions
 				when "firstline" %>
-					<h3>Prompt</h3>
 					<% if @prompt.refcode %>
-						<div class="firstline">
-							<%= @prompt.refcode %>
-						</div>
+						<blockquote class="firstline">
+							<em><%= @prompt.refcode %></em>
+						</blockquote>
 					<% end %>
 			<%
 
