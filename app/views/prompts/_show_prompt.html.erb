@@ -3,12 +3,10 @@
 		<%
 			unless request.path.include?("write")
 				show_attribution = true
-				write_to_prompt = content_tag("span",(link_to "Write your own story to this prompt", write_to_prompt_url(@prompt)))
 				freeform = "Freeform prompt. Every Friday, writers face a blank page without any prompt. They write whatever they want in six minutes or less."
 			else
 				show_attribution = false
 				freeform = raw("This prompt left blank in honor of Twitter hashtag #fridayflash. <br />Tell your story.")
-				write_to_prompt = ""
 			end
 
 			case @prompt.kind
@@ -62,13 +60,17 @@
 			<h3>Blank Prompt</small></h3>
 			<span class="entries"><%= freeform %></span>
 
-		 <% end %>
-		 <% if show_attribution %>
+		<% end %>
+ 		<% if show_attribution %>
 			<% if @prompt.user_id.present? %>
-
-							 <span> <%= (link_to "Prompt", prompt_url(@prompt)) + " suggested by " + (link_to @prompt.user.login, profile_url(@prompt.user)) %> <br />
-							 <%= write_to_prompt %>
-				<% end %>
-			<% end -%>
+				<span> <%= (link_to "Prompt", prompt_url(@prompt)) + " suggested by " + (link_to @prompt.user.login, profile_url(@prompt.user)) %> <br />
+			<% end %>
+		<% end -%>
+		<% unless request.path.include?("write") %>
+			<%= link_to write_to_prompt_url(@prompt), class: "btn btn-primary mt-3" do %>
+				<i class="icon-pencil mr-2"></i> Write your own story to this prompt
+				
+			<%- end %>
+		<% end %>
 	</div> <!-- closing #prompt -->
 <% end %>
