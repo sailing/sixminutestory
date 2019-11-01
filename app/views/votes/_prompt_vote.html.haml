@@ -3,7 +3,7 @@
     .row
       .col-6.text-center
         - unless current_user.voted_for?(prompt)
-          = link_to prompt_votes_path(prompt, :vote_direction => :up), class: "btn btn-success btn-large", method: :post, remote: true do
+          = button_to prompt_votes_path(prompt, :vote_direction => :up), class: "btn btn-success btn-large", method: :post, remote: true do
             %i.icon-smile
             Like
         - else
@@ -15,7 +15,7 @@
         %i.icon-smile
       .col-6.text-center
         - unless current_user.voted_against?(prompt)
-          = link_to prompt_votes_path(prompt, :vote_direction => :down), class: "btn btn-danger btn-large", method: :post, remote: true do
+          = button_to prompt_votes_path(prompt, :vote_direction => :down), class: "btn btn-danger btn-large", method: :post, remote: true do
             %i.icon-meh
             Meh
         - else

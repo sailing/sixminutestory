@@ -31,7 +31,7 @@ class PromptsController < ApplicationController
             @table = "firstlines"
           end
         when /^\/prompts\/scheduled/
-            @prompts = Prompt.active.paginate(:page => page, :conditions => ["use_on > ?", Time.now], :order => "use_on ASC")
+            @prompts = Prompt.active.usable.order("use_on ASC").page(page)
             @scheduled = true              
       else
 
@@ -87,7 +87,7 @@ class PromptsController < ApplicationController
     page = params[:page] || 1
     order = "created_at DESC"
     per_page = 10
-    @stories = Story.active.where(:prompt_id => @prompt.id).paginate(:page => page, :order => order, :per_page => per_page)
+    @stories = Story.active.where(:prompt_id => @prompt.id).order(order).page(page).per(per_page)
 
     respond_to do |format|
       format.html # show.html.erb

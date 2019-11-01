@@ -8,6 +8,7 @@ class Prompt < ActiveRecord::Base
 
   scope :active, -> {where(:active => true)}
   scope :inactive, -> {where(:active => false)}
+  scope :usable, -> { active.where("use_on > ?", Time.now)}
   scope :recent, lambda { where('created_at > ?', 5.months.ago).order('created_at DESC') }
   scope :top, lambda { where('votes_count > ?', 0).order('votes_count DESC')}
   scope :popular, lambda { where('active = ? AND stories_count > ?', true, 0).limit(10).order('stories_count DESC, updated_at ASC') }
