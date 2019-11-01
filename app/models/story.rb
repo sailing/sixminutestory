@@ -84,4 +84,8 @@ class Story < ActiveRecord::Base
       # method to get image url for display on story
     end
 
+  def safe_title
+    title.present? ? title : "Untitled Story"
+  end
+
 end
