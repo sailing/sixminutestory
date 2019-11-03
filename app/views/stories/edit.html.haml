@@ -1,85 +1,59 @@
-.row-fluid.title
-  .span5
-    %h2
-      Edit Story
+= form_for @story, html: {class: "form-horizontal"} do |form|
+  .row.mb-3
+    .col-md-4
+      %h2
+        Edit Story
+        = submit_tag "Save", :name => "save", :id => "save-button", class: 'btn btn-primary'
 
-  .span7
-    %hr
-
-.content
-  - if @story.errors.any?
-    .row-fluid
-      .span12
-        #errorExplanation
-          %strong Your story hasn't been saved yet.
-          %em Please check for errors below.
-          %ul
-            - @story.errors.each do |attribute, msg|
-              %li= msg
+        - if is_owner_or_admin
+          - if @story.active == true
+            = link_to "Destroy Story", @story, confirm: 'Are you sure you want to destroy this story? It will disappear!', method: :delete, class: 'btn btn-danger'
+          - elsif @story.active == false
+            = link_to "Enable", enable_story_url(@story), :confirm => 'Are you sure you want to enable this story? The story will become visible!', class: 'btn btn-warning'
+    .col-md-8
+      %hr
 
 
+  .row
+    .col-md-6
+      .card.mb-3
+        %h3.card-header Story
 
-  = form_for @story, html: {class: "form-horizontal"} do |form|
-    - if is_admin
-      .row-fluid
-        .span12
-          .control-group
-            %label.control-label Prompt
-            .controls
-              = form.text_field :prompt_id
-              = submit_tag "Save", :name => "save", :id => "save-button", class: "btn btn-primary"
-    .row-fluid
-      .span12
-        %h3 Story
-
-    .row-fluid
-      .span12
-        .control-group
-          .controls
+        .card-body
+          - unless current_user.can_edit?
             .alert.alert-info
               %small
                 Story cannot be edited unless a writer's reputation is five or higher.
+          .form-group
             - if current_user.can_edit?
-              = form.text_area :description, :disabled => @disabled, :value => @description, :rows => 20, :tabindex => "1", class: 'span12'
+              = form.text_area :description, :disabled => @disabled, :value => @story.description, :rows => 20, :tabindex => "1", class: 'col-md-12 form-control'
             - else
-              .span12= simple_format(sanitize(@story.description))
+              = simple_format(sanitize(@story.description))
+    .col-md-6
+      .card.mb3
+        %h4.card-header
+          Story details
 
-    .row-fluid
-      .span12
-        %h4 Story details
+        .card-body
+          .form-group
+            %label.form-label Title
+            = form.text_field :title, :tabindex => "2", class: 'col-md-6 form-control'
 
-    .row-fluid
-      .span12
-        .control-group
-          %label.control-label Title
-          .controls
-            = form.text_field :title, :tabindex => "2", class: 'span6'
+          .form-group
+            %label.form-label
+              Adjectives
+              %span{:style => "font-size:x-small"} separate adjectives with commas
+            = form.text_field :tag_list, :tabindex => "3", class: 'col-md-6 form-control'
 
-    .row-fluid
-      .span12
-        .control-group
-          %label.control-label
-            Adjectives
-            %span{:style => "font-size:x-small"} separate adjectives with commas
-          .controls
-            = form.text_field :tag_list, :tabindex => "3", class: 'span6'
+          .form-group
+            %label.form-label
+              Genres
+              %span{:style => "font-size:x-small"} separate genres with commas
+              = form.text_field :genre_list, :tabindex => "4", class: 'col-md-6 form-control'
 
-    .row-fluid
-      .span12
-        .control-group
-          %label.control-label
-            Genres
-            %span{:style => "font-size:x-small"} separate genres with commas
-
-          .controls
-            = form.text_field :genre_list, :tabindex => "4", class: 'span6'
-
-    .row-fluid
-      .span12
-        .control-group
-          %label.control-label License
-          .controls
-            %select#story_license{:name => "story[license]", :onchange => "", :tabindex => "5",class: 'span6'}
+          .form-group
+            %label.form-label License
+            %select#story_license{:name => "story[license]", :onchange => "", :tabindex => "5",class: 'col-md-6 form-control'}
               %option{:value => "Creative Commons Attribution 3.0"}
                 Creative Commons Attribution 3.0
               %option{:value => "Creative Commons Attribution-NoDerivs 3.0"}
@@ -93,16 +67,15 @@
               %option{:selected => "selected", :value => "Creative Commons Attribution-ShareAlike 3.0"}
                 Creative Commons Attribution-ShareAlike 3.0
               %option{:value => "Public Domain"} Public Domain
-    .row-fluid
-      .span12
-        .control-group
-          .controls
-            .span4
-              = submit_tag "Save", :name => "save", :id => "save-button", class: 'btn btn-primary btn-block'
 
-            - if is_owner_or_admin
-              .span4.offset2
-                - if @story.active == true
-                  = link_to "Destroy Story", @story, confirm: 'Are you sure you want to destroy this story? It will disappear!', method: :delete, class: 'btn btn-danger'
-                - elsif @story.active == false
-                  = link_to "Enable", enable_story_url(@story), :confirm => 'Are you sure you want to enable this story? The story will become visible!', class: 'btn btn-warning'
+  - if is_admin
+    .row.mb-3
+      .col-md-12
+        .card
+          .card-header
+            %label.form-label Prompt
+          .card-body 
+            .input-group  
+              = form.text_field :prompt_id, class: "form-control col-md-6"
+              = submit_tag "Save", :name => "save", :id => "save-button", class: "btn btn-danger form-control col-md-2"
+      

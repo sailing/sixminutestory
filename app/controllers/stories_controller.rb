@@ -182,9 +182,11 @@ class StoriesController < ApplicationController
 
     respond_to do |format|
       if @story.update_attributes(story_params)
+        flash[:notice] = 'Story updated!'
         format.html { redirect_to story_url(@story) }
         format.xml  { head :ok }
       else
+        flash[:error] = @story.errors
         format.html { render :action => "edit" }
         format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
       end
