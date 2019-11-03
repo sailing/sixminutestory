@@ -14,14 +14,18 @@
           .card.mb-3
             %h5.card-header Account Settings
             .card-body
-              = f.label :login, "Pseudonym", class: "form-label"
-              = f.text_field :login, class: "form-control"
-              = f.label :email_address, class: "form-label"
-              = f.text_field :email_address, class: "form-control"
-              = f.label :password, f.object.new_record? ? nil : "Change password", class: "form-label"
-              = f.password_field :password, class: "form-control"
-              = f.label :password_confirmation, class: "form-label"
-              = f.password_field :password_confirmation, class: "form-control"
+              .form-group
+                = f.label :login, "Pseudonym", class: "form-label"
+                = f.text_field :login, class: "form-control"
+              .form-group
+                = f.label :email_address, class: "form-label"
+                = f.text_field :email_address, class: "form-control"
+              .form-group
+                = f.label :password, f.object.new_record? ? nil : "Change password", class: "form-label"
+                = f.password_field :password, class: "form-control"
+              .form-group
+                = f.label :password_confirmation, class: "form-label"
+                = f.password_field :password_confirmation, class: "form-control"
       .row
         .col-md-12
           .card
@@ -29,23 +33,25 @@
             
             .card-body
               %h6 Receive notifications when
-              = f.label :send_comments, "someone comments on your story", :class => "notification_option", class: "form-label"
-              = f.check_box :send_comments, class: "form-control"
-
-              
-              = f.label :send_followings, "someone starts following you", :class => "notification_option", class: "form-label"
-              = f.check_box :send_followings, class: "form-control"
-              
-              = f.label :send_stories, "your story is featured", :class => "notification_option", class: "form-label"
-              = f.check_box :send_stories, class: "form-control"
+              .input-group 
+                / .custom-control.custom-switch
+                = f.label :send_comments, "someone comments on your story", :class => "notification_option", class: "form-label"
+                = f.check_box :send_comments, class: "form-control"
+              .input-group            
+                = f.label :send_followings, "someone starts following you", :class => "notification_option", class: "form-label"
+                = f.check_box :send_followings, class: "form-control"
+              .input-group  
+                = f.label :send_stories, "your story is featured", :class => "notification_option", class: "form-label"
+                = f.check_box :send_stories, class: "form-control"
     .col-md-6
       .row
         .col-md-12
           .card
             %h5.card-header Public Profile
             .card-body
-              = f.label :website, class: "form-label"
-              = f.text_field :website, class: "form-control"
-              
-              = f.label :profile, class: "form-label"
-              = f.text_area :profile, class: "form-control" 
+              .form-group
+                = f.label :website, class: "form-label"
+                = f.text_field :website, class: "form-control"
+              .form-group
+                = f.label :profile, class: "form-label"
+                = f.text_area :profile, class: "form-control" 
