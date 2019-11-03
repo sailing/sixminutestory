@@ -145,11 +145,12 @@ class PromptsController < ApplicationController
     @prompt = Prompt.find(params[:id])
     
     respond_to do |format|
-      if @prompt.save && @prompt.update_attributes(params[:prompt])
+      if @prompt.update_attributes(prompt_params)
         flash[:notice] = 'Prompt was successfully updated.'
         format.html { redirect_to(@prompt) }
         format.xml  { head :ok }
       else
+        flash[:warning] = 'Prompt failed to update.'
         format.html { render :action => "edit" }
         format.xml  { render :xml => @prompt.errors, :status => :unprocessable_entity }
       end

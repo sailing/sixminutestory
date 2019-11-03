@@ -181,7 +181,7 @@ class StoriesController < ApplicationController
     else
 
     respond_to do |format|
-      if @story.update_attributes(params[:story])
+      if @story.update_attributes(story_params)
         format.html { redirect_to story_url(@story) }
         format.xml  { head :ok }
       else

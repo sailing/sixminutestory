@@ -87,10 +87,15 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user # makes our views "cleaner" and more consistent
-    if @user.update_attributes(user_params)
+
+    useful_params = user_params
+    useful_params = user_params.except(:password, :password_confirmation) if params[:password].blank?
+    
+    if @user.update_attributes(useful_params)
       flash[:notice] = 'Profile updated!'
       redirect_to account_url
     else
+      flash[:error] = @user.errors
       render :action => :edit
     end
   end
@@ -144,7 +149,7 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:login, :email).permit(:password, :password_confirmation, :profile, :website, :send_comments, :send_stories, :send_followings)
+      params.require(:user).permit(:email, :login, :password, :password_confirmation, :profile, :website, :send_comments, :send_stories, :send_followings)
     end
 
 

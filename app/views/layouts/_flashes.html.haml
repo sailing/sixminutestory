@@ -1,25 +1,24 @@
 - if flash[:notice] || flash[:alert] || flash[:error] || flash[:update_password]
-  %div
+  %div.m-3
     - if flash[:error] && flash[:error].present?
-      %div.alert.alert-block.alert-error
+      %div.alert.alert-danger.col-8.offset-2
         %a.close(data-dismiss="alert") ×
         %h3.alert-heading Hello, what's this?!
-        = flash[:error].each do |name, msg|
-          = Array(msg).uniq.each do |key, message|
-            = message
+        - flash[:error].each do |name, msg|
+          - Array(msg).uniq.each do |key, message|
+            = "#{name.capitalize} #{key.to_s}"
       - flash[:error] = nil
 
     - if flash[:notice] && flash[:notice].present?
-      %div.alert.alert-block.alert-success
+      %div.alert.alert-secondary.col-8.offset-2
         %a.close(data-dismiss="alert") ×
         %h3.alert-heading
-          Just letting you know:
           = flash[:notice]
 
       - flash[:notice] = nil
 
     - if flash[:alert] && flash[:alert].present?
-      %div.alert.alert-block
+      %div.alert.alert-warning.col-8.offset-2
         %a.close(data-dismiss="alert") ×
         %h3.alert-heading
           Heads up:

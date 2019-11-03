@@ -18,8 +18,8 @@
                 = f.label :login, "Pseudonym", class: "form-label"
                 = f.text_field :login, class: "form-control"
               .form-group
-                = f.label :email_address, class: "form-label"
-                = f.text_field :email_address, class: "form-control"
+                = f.label :email, class: "form-label"
+                = f.text_field :email, class: "form-control"
               .form-group
                 = f.label :password, f.object.new_record? ? nil : "Change password", class: "form-label"
                 = f.password_field :password, class: "form-control"
