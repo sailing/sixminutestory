@@ -3,14 +3,13 @@ class UsersController < ApplicationController
   before_action :require_user, :only => [:edit, :update]
   before_action :must_be_admin, :only => [:index, :enable_user, :disable_user]
 
-    def index
-          page = params[:page] || 1
-           per_page = 20
-           order = params[:order] || "created_at DESC"
+  def index
+    page = params[:page] || 1
+    per_page = 20
+    order = params[:order] || "created_at DESC"
 
-          @users = User.page(page).per(per_page).order(order)
-
-        end
+    @users = User.page(page).per(per_page).order(order)
+  end
 
   def new
     @user = User.new
@@ -24,7 +23,7 @@ class UsersController < ApplicationController
     else
       render :action => :new
     end
- end
+  end
 
   def show
 
@@ -48,10 +47,6 @@ class UsersController < ApplicationController
 
         if request.path.include?("profile") or (request.path.include?("profile") and request.format == "rss")
            @stories = @user.stories.active.page(page).per(per_page).order(order)
-           @story = @stories.first if @stories.any?
-           unless @story
-              @story = @user.stories.build
-            end
 
            @rss_url = "http://sixminutestory.com/profile/"+params[:id]+".rss"
             @profile = true
@@ -65,11 +60,6 @@ class UsersController < ApplicationController
           @title = "Stories by users you follow"
         else
           @stories = @user.stories.active.page(page).per(per_page).order(order)
-          @story = @stories.first if @stories.any?
-          unless @story
-            @story = @user.stories.build
-          end
-
         end
 
         respond_to do |format|

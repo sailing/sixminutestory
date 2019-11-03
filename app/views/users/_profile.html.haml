@@ -1,44 +1,40 @@
-.row-fluid.title
-  .span5
+.row
+  .col-md-5
     %h2= @user.login
-  .span7.hidden-phone
-    %hr
 
-
-.row-fluid.title
-
-  .span6.information
+.row
+  .col-md-6
     - if is_admin
-      %p
+      %div
         %i.icon-envelope
         %span
           = @user.try(:email_address)
-    %p
+    %div
       %i.icon-calendar{title: 'Joined'}
       %span
         Joined
         = time_ago_in_words(@user.created_at)
         ago
     - if @user.followers.any?
-      %p
+      %div
         %i.icon-group{title: 'Followers'}
         %span
           = @user.followers.count
           followers
 
-    %p
+    %div
       %i.icon-thumbs-up{title: 'Reputation'}
       %span
         = @user.karma
         reputation
-    %p
+    %div
       %i.icon-pencil{title: 'Read Stories'}
       %span
         = link_to profile_path(@user) do
           = @user.stories.where(active: true).count.to_s
           stories
     - if @user.website.present?
-      %p
+      %div
         %i.icon-globe
         %span
           = link_to "Visit website", @user.website, :title => @user.website, :rel => 'nofollow'
@@ -49,11 +45,11 @@
           Manage Profile
     - elsif is_user && current_user.id != @user.id
       = render :partial => 'site/following_toggle', :locals => {:user => @user}
-  .span6
+  .col-md-6
     - if @user.profile.present?
       .profile
         %h3
           about
-        %p
+        %div
           = auto_link(simple_format(@user.profile))
 
