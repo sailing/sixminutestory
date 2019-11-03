@@ -13,4 +13,4 @@
 <%= render :partial => "stories/story", :collection => @stories %>
 <%= render :partial => "stories/pagination" %>
 
-<%= render :partial => "users/profile" %>
+<%= render :partial => "site/profile_block", locals: {user: @user} %>

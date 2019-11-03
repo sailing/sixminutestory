@@ -22,12 +22,12 @@
           Favorites (#{@user.votes.size})
         .card-body
           = link_to "View favorites", favorites_path(@user)
-    .card.mb-3
-      - if is_owner_or_admin
-        %h3.card-header
-          Comments (#{@user.comments_count || "0"})
-        .card-body
-          = link_to "View comments", users_comments_path(@user, "new")
+    / .card.mb-3
+    /   - if is_owner_or_admin
+    /     %h3.card-header
+    /       Comments (#{@user.comments_count || "0"})
+    /     .card-body
+    /       = link_to "View comments", users_comments_path(@user, "new")
     .card.mb-3
       %h3.card-header
         Follows (#{@user.writers.size})
