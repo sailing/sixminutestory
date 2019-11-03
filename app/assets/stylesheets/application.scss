@@ -26,3 +26,15 @@
 .nav-link {
   color: #fff !important;
 }
+
+.pagination {
+  ul {
+    list-style: none;
+    .btn {
+      min-width: 4vw;
+    }
+    li {
+      display: inline-block;
+    }
+  }
+}
