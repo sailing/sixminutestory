@@ -38,7 +38,7 @@ class VotesController < ApplicationController
     
     
     #  @stories = Story.find_by_sql(["select stories.* from stories, votes where votes.voter_id = ? AND stories.id = votes.voteable_id", @user]).paginate :per_page => 3, :page => page
-    @stories = Story.find(:all, :include => :votes, :conditions => ["votes.voter_id = ? AND stories.id = votes.voteable_id", @user], :order => order).page(page).per(per_page).order(order)
+    @stories = Story.includes(:votes).where("votes.voter_id = ?", @user.id).where("stories.id = votes.voteable_id").page(page).per(per_page).order(order)
     #  @stories = Story.favorites
     #  @stories.paginate :per_page => 3, :page => page
     

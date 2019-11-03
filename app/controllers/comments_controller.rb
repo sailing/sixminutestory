@@ -14,20 +14,20 @@ class CommentsController < ApplicationController
         if params[:time]
           case params[:time]
             when "new"
-              @stories = Story.with_unseen_comments_for_user(@user).paginate :page => page, :per_page => per_page, :order => order
+              @stories = Story.with_unseen_comments_for_user(@user).page(page).per(per_page).order(order)
               @title = "New comments after your comments"
             when "on"
-              @stories = Story.new_comments_for_user_stories(@user).paginate :page => page, :per_page => per_page, :order => order
+              @stories = Story.new_comments_for_user_stories(@user).page(page).per(per_page).order(order)
               @title = "New comments on your stories"
             when "allstories"
-               @stories = Story.all_comments_for_user_stories(@user).paginate :page => page, :per_page => per_page, :order => order
+               @stories = Story.all_comments_for_user_stories(@user).page(page).per(per_page).order(order)
                @title = "All comments on your stories"
             else
-              @stories = Story.with_comments_for_user(@user).paginate :page => page, :per_page => per_page, :order => order
+              @stories = Story.with_comments_for_user(@user).page(page).per(per_page).order(order)
               @title = "All comments after your comments"
             end
         else
-           @stories = Story.with_comments_for_user(@user).paginate :page => page, :per_page => per_page, :order => order
+           @stories = Story.with_comments_for_user(@user).page(page).per(per_page).order(order)
            @title = "All comments"
         end
       respond_to do |format|
