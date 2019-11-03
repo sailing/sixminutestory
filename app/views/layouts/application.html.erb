@@ -51,14 +51,29 @@
       </div>
       <%= render partial: 'layouts/login' %>
     </nav>
-    <div class="container-fluid my-4">
+    <div class="container-fluid mb-4 px-0">
       <% if params[:controller] == 'site' and params[:action] == 'index' %>
         <%= yield %>
       <% else %>
         <section class="section">
           <div class="container-fluid">
             <%= render partial: "layouts/flashes" %>
-            <%= yield %>
+            <% if content_for?(:sideyard) %>
+              <div class="row">
+                <div class="col-md-9 mt-4 px-4">
+                  <%= yield %>
+                </div>
+                <div class="col-md-3 border-left d-flex flex-column flex-fill flex-grow bg-light pt-4" style="min-height: 100vh;">
+                  <%= yield :sideyard %>
+                </div>
+              </div>
+            <% else %>
+              <div class="row">
+                <div class="col-md-12 mt-4 px-4">
+                  <%= yield %>
+                </div>
+              </div>
+            <% end %>
           </div>
         </section>
       <% end %>
