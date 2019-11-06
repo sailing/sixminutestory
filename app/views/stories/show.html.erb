@@ -2,6 +2,35 @@
   <%= @story.title %>
 <% end %>
 
+<% content_for :head do %>
+  <meta name="title" content="<%= @story.title %>">
+  <meta name="description" content="<%= @story.truncated_description %>">
+  <meta name="keywords" content="<%= @story.joined_tags %>">
+  <meta name="author" content="<%= @story.user.login %>">
+
+  <!--  Essential META Tags -->
+
+  <meta property="og:title" content="<%= @story.title %>">
+  <meta property="og:description" content="<%= @story.truncated_description %>">
+  <%- if @story.prompt.kind == 'image' %>
+    <meta property="og:image" content="<%= @story.prompt.refcode %>">
+  <%- end %>
+  <meta property="og:url" content="<%= url_for(@story) %>">
+  <meta name="twitter:card" content="summary_large_image">
+
+
+  <!--  Non-Essential, But Recommended -->
+
+  <meta property="og:site_name" content="Six Minute Story">
+  <meta name="twitter:image:alt" content="">
+
+
+  <!--  Non-Essential, But Required for Analytics -->
+
+  <!-- <meta property="fb:app_id" content="your_app_id" /> -->
+  <meta name="twitter:site" content="@6minutestory">
+<% end %>
+
 <%- if is_admin %>
   <div class="row">
     <%- if @story.featured == true %>
@@ -89,3 +118,5 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5dc2df8a1573800012d15b41&product=inline-share-buttons" async="async"></script>

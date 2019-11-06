@@ -17,7 +17,7 @@
     
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <%= yield(:head) if content_for?(:head) %>
     <%= render partial: "layouts/heap" %>
   </head>
   <body data-controller="<%= params[:controller] %>" data-action="<%= params[:action] %>">

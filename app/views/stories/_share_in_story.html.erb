@@ -1,28 +1,5 @@
 <div id="share">
-	<% story = story || @story %>
-	<div class="row offset-md-1 text-center">
-		<div class="col">
-			<a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= story_url(story) -%>" data-text="Read &quot;<%= story.title %>&quot; by <%= story.user.login %>:" data-count="vertical" data-via="6minutestory" data-related="galensanford:The brain behind the site.">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-		</div>
-		<div class="col">
-				<script src="http://www.stumbleupon.com/hostedbadge.php?s=5&r=<%= story_url(story) %>"></script>
-		</div>
-		<div class="col">
-			<iframe src="http://www.facebook.com/plugins/like.php?href=<%= story_url(story) %>&amp;layout=box_count&amp;show_faces=false&amp;width=50&amp;action=like&amp;font=segoe+ui&amp;colorscheme=light&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:50px; height:65px;" allowTransparency="true"></iframe>
-
-		</div>
-		<!--
-		<li>
-
-		<script type="text/javascript">
-		reddit_url='<%= story_url(story) -%>'
-		reddit_target='6minutestory'
-		reddit_title='<%= story.title -%>'
-		</script>
-		<script type="text/javascript" src="http://reddit.com/static/button/button2.js">
-
-		</script>
-		</li>
-		-->
+	<div class="text-center">
+		<div class="sharethis-inline-share-buttons"></div>
 	</div>
 </div>

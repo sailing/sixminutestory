@@ -92,4 +92,8 @@ class Story < ActiveRecord::Base
     description.truncate_words(100)
   end
 
+  def joined_tags
+    tags.join(", ")
+  end
+
 end
