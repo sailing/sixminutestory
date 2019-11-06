@@ -42,87 +42,28 @@
 		<% end %>
 	</table>
 <% else %>
-	<% if @table == "hvg" %>
-		<% unless @prompts.empty? %>
+	<% unless @prompts.empty? %>
+		<% if @table == "hvg" %>
 			<h2>Hero / Villain / Goal</h2>
 			<div class="row">
 				<div class="col-sm-12 d-flex align-items-left justify-content-between my-3" style="overflow: scroll;">
 					<%= render :partial => 'hvg', :collection => @prompts %>
 				</div>
 			</div>
-			<div class="row justify-content-center">
-				<%= paginate @prompts  %>
+
+		<% elsif @table == "images" %>	
+			<h2>Images</h2>
+			<div class="col-sm-12 d-flex align-items-left justify-content-between my-3" style="overflow: scroll;">
+				<%= render :partial => 'image', collection: @prompts  %>
+			</div>
+		<% else @table == "firstlines" %>
+			<h2>First lines</h2>
+			<div class="col-sm-12 d-flex align-items-left justify-content-between my-3" style="overflow: scroll;">
+				<%= render :partial => 'firstline', :collection => @prompts  %>
 			</div>
 		<% end %>
-
-	<% elsif @table == "images" %>	
-
-		<% unless @prompts.empty? %>
-			<table>
-				<tr>
-					<td colspan=2>
-						<h2>Images</h2>
-					</td>
-				</tr>
-				<% i = 0 %>
-				<% @prompts.each do |prompt| %>
-					<% i += 1 %>
-					<% if i == 1 %>
-						<tr>
-					<% end %>
-
-					<%= render :partial => 'image', :locals => { :prompt => prompt }  %>
-
-					<% if i == 2 %>
-						</tr>
-						<% i = 0 %>
-
-					<% elsif @prompts.size == 1 %>
-						</tr>
-					<% end %>
-	
-
-				<% end %>
-				<tr>
-					<td colspan=2>
-						<%= paginate @prompts  %>
-					</td>
-				</tr>
-			</table>
-		<% end %>
-
-	<% elsif @table == "firstlines" %>
-		<% unless @prompts.empty? %>
-			<table>
-				<tr>
-					<td colspan = 3>
-						<h2>First lines</h2>
-					</td>
-				</tr>
-				<%= render :partial => 'firstline', :collection => @prompts  %>
-				<tr>
-					<td colspan=3>
-						<%= paginate @prompts %>
-					</td>
-				</tr>
-			</table>
-		<% end %>
-
-	<% else %>
-		<% unless @prompts.empty? %>
-	<table>
-		<tr>
-			<td colspan = 3>
-				<h2>First lines</h2>
-			</td>
-		</tr>
-		<%= render :partial => 'firstline', :collection => @prompts  %>
-		<tr>
-			<td colspan=3>
-				<%= paginate @prompts %>
-			</td>
-		</tr>
-	</table>
-	<%end %>
+		<div class="row justify-content-center">
+			<%= paginate @prompts  %>
+		</div>
 	<% end %>
 <% end %>	

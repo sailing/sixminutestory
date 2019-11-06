@@ -2,11 +2,11 @@
 	<div class="card-body">
 		<div class="collection">
 			<dt>Hero</dt>
-	    <dd><%=h hvg.hero %></dd>
+	    <dd><%= hvg.hero %></dd>
 	    <dt>Villain</dt>
-	    <dd><%=h hvg.villain %></dd>
+	    <dd><%= hvg.villain %></dd>
 	    <dt>Goal</dt>
-	    <dd><%=h hvg.goal %></dd>
+	    <dd><%= hvg.goal %></dd>
 		</div>
 	</div>
 	<div class="card-footer justify-content-center d-flex bg-white border-top-0">
@@ -19,6 +19,5 @@
 				<%= link_to 'Edit', edit_prompt_path(hvg), class: "btn btn-secondary" %>
 			<% end %>
 		</div>
-
   </div>
 </div>
