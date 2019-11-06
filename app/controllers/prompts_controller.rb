@@ -114,7 +114,7 @@ class PromptsController < ApplicationController
   # POST /prompts
   # POST /prompts.xml
   def create
-    @prompt = Prompt.new(params[:prompt])
+    @prompt = Prompt.new(prompt_params)
     @prompt.user_id = current_user.id
       
       if params[:prompt][:flickr]

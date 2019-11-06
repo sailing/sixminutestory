@@ -11,14 +11,14 @@ class Prompt < ActiveRecord::Base
   scope :usable, -> { active.where("use_on > ?", Time.now)}
   scope :recent, lambda { where('created_at > ?', 5.months.ago).order('created_at DESC') }
   scope :top, lambda { where('votes_count > ?', 0).order('votes_count DESC')}
-  scope :popular, lambda { where('active = ? AND stories_count > ?', true, 0).limit(10).order('stories_count DESC, updated_at ASC') }
+  scope :popular, lambda { active.where('stories_count > ?', 0).limit(10).order('stories_count DESC, updated_at ASC') }
   scope :featured, -> {where(:featured => true).order('updated_at ASC').limit(1)}
-  scope :verified, lambda { where('active = ? AND use_on IS NOT ? AND use_on <= ?', true, nil, Date.today) }
-  scope :unverified, lambda { where('active = ? AND (use_on IS ? OR use_on > ?)', true, nil, Date.today) }
-  scope :images, lambda { where('active = ? AND kind = ? ', true, "flickr") }
-  scope :hvg, lambda { where('active = ? AND kind = ? ', true, "hvg" ) }
-  scope :firstlines, lambda { where('active = ? AND kind = ? ', true, "firstline" ) }
-  scope :threewords, lambda { where('active = ? AND kind = ? ', true, "3ww" ) }
+  scope :verified, lambda { active.where('use_on IS NOT ? AND use_on <= ?', nil, Date.today) }
+  scope :unverified, lambda { active.where('(use_on IS ? OR use_on > ?)', nil, Date.today) }
+  scope :images, lambda { active.where('kind = ? ', "flickr") }
+  scope :hvg, lambda { active.where('kind = ? ', "hvg" ) }
+  scope :firstlines, lambda { active.where('kind = ? ', "firstline" ) }
+  scope :threewords, lambda { active.where('kind = ? ', "3ww" ) }
   # Validations
 #  validates_presence_of   :hero, :message => "Need a hero. Sort of Important."
 #  validates_presence_of   :villain, :message => "Who's the villain?"

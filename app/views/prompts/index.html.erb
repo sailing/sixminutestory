@@ -1,0 +1,128 @@
+<% content_for :pagename do %>
+	Prompts
+	<% if params[:show] %>
+		( <%= params[:show] %> )
+	<% else %>
+		( firstlines )
+	<% end %>
+<% end %>
+
+<% content_for :sideyard do %>
+  <h2>How to Write a Story</h2>
+  <p>Choose a prompt at left to jumpstart your writing.</p> 
+  <p> Or if you're feeling daring, <%= link_to "click to write", write_url %> to the prompt we chose for today, or to a <%= link_to "random prompt", random_prompt_url %>.</p>
+  <% unless current_user %>
+    <p>Since you're not logged in yet, you'll be asked to login on the next page.
+    </p>
+  <% end %>
+  <div class="toolbar_container">
+    <div class="btn-group">
+      <%= link_to "Write now", write_url, class: "btn btn-primary" %>
+      <%= link_to "Random prompt", random_prompt_url, class: "btn btn-warning" %>
+    </div>
+  </div>
+<% end %>
+
+<h1>Write a story</h1>
+<%= render :partial => 'admin' %>
+<% unless @scheduled %>
+	<% # select tag shows various prompts %>
+	<div class="my-3">
+		<span class="display-6">Prompt styles:</span>
+		<%= raw(select_tag_for_filter("prompts", @filters, params)) %>
+	</div>
+<% end %>
+	
+<% if @scheduled %>
+	<table>
+		<% @prompts.each do |prompt| %>
+		<tr>
+			<td><%= prompt.id %></td><td><%= link_to prompt.use_on, prompt_url(prompt) %></td>
+		</tr>
+		<% end %>
+	</table>
+<% else %>
+	<% if @table == "hvg" %>
+		<% unless @prompts.empty? %>
+			<h2>Hero / Villain / Goal</h2>
+			<div class="row">
+				<div class="col-sm-12 d-flex align-items-left justify-content-between my-3" style="overflow: scroll;">
+					<%= render :partial => 'hvg', :collection => @prompts %>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<%= paginate @prompts  %>
+			</div>
+		<% end %>
+
+	<% elsif @table == "images" %>	
+
+		<% unless @prompts.empty? %>
+			<table>
+				<tr>
+					<td colspan=2>
+						<h2>Images</h2>
+					</td>
+				</tr>
+				<% i = 0 %>
+				<% @prompts.each do |prompt| %>
+					<% i += 1 %>
+					<% if i == 1 %>
+						<tr>
+					<% end %>
+
+					<%= render :partial => 'image', :locals => { :prompt => prompt }  %>
+
+					<% if i == 2 %>
+						</tr>
+						<% i = 0 %>
+
+					<% elsif @prompts.size == 1 %>
+						</tr>
+					<% end %>
+	
+
+				<% end %>
+				<tr>
+					<td colspan=2>
+						<%= paginate @prompts  %>
+					</td>
+				</tr>
+			</table>
+		<% end %>
+
+	<% elsif @table == "firstlines" %>
+		<% unless @prompts.empty? %>
+			<table>
+				<tr>
+					<td colspan = 3>
+						<h2>First lines</h2>
+					</td>
+				</tr>
+				<%= render :partial => 'firstline', :collection => @prompts  %>
+				<tr>
+					<td colspan=3>
+						<%= paginate @prompts %>
+					</td>
+				</tr>
+			</table>
+		<% end %>
+
+	<% else %>
+		<% unless @prompts.empty? %>
+	<table>
+		<tr>
+			<td colspan = 3>
+				<h2>First lines</h2>
+			</td>
+		</tr>
+		<%= render :partial => 'firstline', :collection => @prompts  %>
+		<tr>
+			<td colspan=3>
+				<%= paginate @prompts %>
+			</td>
+		</tr>
+	</table>
+	<%end %>
+	<% end %>
+<% end %>	

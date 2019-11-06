@@ -4,14 +4,14 @@
 
 <% content_for :sideyard do %>
 
-<% if is_admin %>
-<div class="prompt">
-	<span>
-		<%= link_to 'Edit', edit_prompt_path(@prompt) %> |
-		<%= link_to 'Back', prompts_path %>
-	</span>
-</div>
-<% end %>
+	<% if is_admin %>
+	<div class="prompt">
+		<span>
+			<%= link_to 'Edit', edit_prompt_path(@prompt) %> |
+			<%= link_to 'Back', prompts_path %>
+		</span>
+	</div>
+	<% end %>
 
 
 	<div id="show_prompt">

@@ -1,18 +1,24 @@
-	<tr class="<%= cycle('row_alternate', 'row') -%>">
-	    <td><%=h hvg.hero %></td>
-	    <td><%=h hvg.villain %></td>
-	    <td><%=h hvg.goal %></td>
-		<td><%= link_to (h(hvg.stories_count)), prompt_url(hvg) %></td>
-	    <td>
-		<%= link_to 'Use this Prompt',write_to_prompt_path(hvg.id)%>
+<div class="card col-md-4 mr-3 p-0">
+	<div class="card-body">
+		<div class="collection">
+			<dt>Hero</dt>
+	    <dd><%=h hvg.hero %></dd>
+	    <dt>Villain</dt>
+	    <dd><%=h hvg.villain %></dd>
+	    <dt>Goal</dt>
+	    <dd><%=h hvg.goal %></dd>
+		</div>
+	</div>
+	<div class="card-footer justify-content-center d-flex bg-white border-top-0">
+		<div class="btn-group">
+			<%= link_to 'Write', write_to_prompt_path(hvg.id), class: "btn btn-primary" %>
+			
+			<%= link_to "Read #{hvg.stories_count} stories", prompt_url(hvg), class: "btn btn-warning" %>
 		
-		<% if is_admin %>
+			<% if is_admin %>
+				<%= link_to 'Edit', edit_prompt_path(hvg), class: "btn btn-secondary" %>
+			<% end %>
+		</div>
 
-			</td>
-			<td>
-
-				<%= link_to 'Edit', edit_prompt_path(hvg) %>
-		<% end %>
-
-		</td>
-	  </tr>
+  </div>
+</div>
