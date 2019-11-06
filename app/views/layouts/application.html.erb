@@ -51,7 +51,7 @@
       </div>
       <%= render partial: 'layouts/login' %>
     </nav>
-    <div class="container-fluid mb-4 px-0">
+    <div class="container-fluid p-0">
       <% if params[:controller] == 'site' and params[:action] == 'index' %>
         <%= yield %>
       <% else %>
