@@ -23,10 +23,6 @@ Sms::Application.routes.draw do
 #   resources :contests do
 #     resources :stories
 #   end
-
-
-
-
   # The priority is based upon order of creation: first created -> highest priority.
 
 
