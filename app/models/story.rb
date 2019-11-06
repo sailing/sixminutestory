@@ -88,4 +88,8 @@ class Story < ActiveRecord::Base
     title.present? ? title : "Untitled Story"
   end
 
+  def truncated_description
+    description.truncate_words(100)
+  end
+
 end
