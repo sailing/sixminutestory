@@ -10,8 +10,8 @@
 			end
 
 			case @prompt.kind
-				when "flickr"
-					if @prompt.refcode.present? %>
+				when "flickr" %>
+					<% if @prompt.refcode.present? %>
 						<img src="<%= @prompt.refcode %>" class="prompt rounded"  />
 							<% if show_attribution %>
 								<%  if @prompt.attribution.present? and @prompt.attribution_url.present? and @prompt.kind.present? and @prompt.license.present? %>
@@ -22,39 +22,31 @@
 								<% end %>
 							<% end -%>
 				<% end %>
-			<%
-				when "quotation"
-				 #text w attributions
-				when "firstline" %>
+			<% when "quotation" %>
+			<% #text w attributions %>
+			<% when "firstline" %>
 					<% if @prompt.refcode %>
 						<blockquote class="firstline">
 							<em><%= @prompt.refcode %></em>
 						</blockquote>
 					<% end %>
-			<%
-
-			when "3ww"
-				#three word wednesdays??
-
-			when "hvg"
-				# hero villain goal
-		%>
-			<h3>Prompt <small>(write a story including these elements)</h3>
-			<table class="table">
-				<tr>
-					<th>hero</th>
-					<td><%= @prompt.hero %></td>
-				</tr>
-				<tr>
-					<th>villain</th>
-					<td><%= @prompt.villain %></td>
-				</tr>
-				<tr>
-					<th>goal</th>
-					<td><%= @prompt.goal %></td>
-				</tr>
-			</table>
-
+			<% when "3ww" #three word wednesdays?? %>
+			<% when "hvg" # hero villain goal %>
+				<h3>Prompt <small>(write a story including these elements)</h3>
+				<table class="table">
+					<tr>
+						<th>hero</th>
+						<td><%= @prompt.hero %></td>
+					</tr>
+					<tr>
+						<th>villain</th>
+						<td><%= @prompt.villain %></td>
+					</tr>
+					<tr>
+						<th>goal</th>
+						<td><%= @prompt.goal %></td>
+					</tr>
+				</table>
 		<% else %>
 			<h3>Blank Prompt</small></h3>
 			<span class="entries"><%= freeform %></span>
