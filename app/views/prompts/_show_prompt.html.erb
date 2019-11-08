@@ -17,8 +17,7 @@
 								<%  if @prompt.attribution.present? and @prompt.attribution_url.present? and @prompt.kind.present? and @prompt.license.present? %>
 										<div class="mt-2">
 											Image by <a href='<%=@prompt.attribution_url%>'><%=@prompt.attribution %></a>:
-											<% @prompt.license_in_human_terms(@prompt) unless @prompt.license_url.present? %>
-											<%= link_to (@prompt.license_image_url ? image_tag(@prompt.license_image_url, :width => "88", :height=>"31", :style=>"width:88px;height:31px;vertical-align:middle;") : @prompt.license_en), @prompt.license_url %>
+											
 										</div>
 								<% end %>
 							<% end -%>

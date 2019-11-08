@@ -11,15 +11,15 @@ class SiteController < ApplicationController
 
       # @three_image_prompts = Prompt.where(kind: "flickr").where("refcode IS NOT NULL AND refcode != ''").where("stories_count > 1").order("created_at DESC").limit(3)
 
-      @image_prompt = Prompt.images.first.id
-      @hvg_prompt = Prompt.hvg.first.id
-      @firstline_prompt = Prompt.firstlines.first.id
+      @image_prompt = Prompt.images.last.id
+      @hvg_prompt = Prompt.hvg.last.id
+      @firstline_prompt = Prompt.firstlines.last.id
       @prompts = Prompt.where(id: [@image_prompt, @hvg_prompt, @firstline_prompt])
       
-      @featured_stories = Story.featured.order("updated_at desc").limit(5)
+      @featured_stories = Story.featured.order("updated_at desc").first(7)
       @stories = @featured_stories
-      @story = @featured_stories.first
-      @story_to_read = @featured_stories.second
+      @story = @featured_stories.pop
+      @story_to_read = @featured_stories.pop
       @recent_stories = Story.order("created_at desc").limit(5)
       @popular_stories = Story.recent(Time.now.months_ago(1)).top.limit(5)
       @active_stories = Story.recent(Time.now.months_ago(1)).commented.limit(5)

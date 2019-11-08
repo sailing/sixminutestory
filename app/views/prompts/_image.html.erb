@@ -5,7 +5,16 @@
 		<% if image.attribution.present? and image.attribution_url.present? and image.kind.present? and image.license.present? %>
 			<div>
 				by <%= link_to image.attribution, image.attribution_url %> 
-				on <%= image.kind %>. Licensed under <%= image.license %>.
+				on <%= image.kind %>. 
+				<br />
+				Licensed under: <%= link_to image.license_url do 
+													if image.license_image_url 
+														image_tag(image.license_image_url, :width => "88", :height=>"31", :style=>"width:88px;height:31px;vertical-align:middle;") 
+													else
+														image.license_en
+													end
+												end
+											%>.
 			</div>
 		<% end %>
 		<br />
