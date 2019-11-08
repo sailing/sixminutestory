@@ -37,16 +37,6 @@
             <i class="icon-book"></i>
             <span>Read</span>
           <% end %>
-
-          <%= link_to site_url(anchor: "section2"), class: "nav-item nav-link" do %>
-            <i class="icon-coffee"></i>
-            <span>About</span>
-          <% end %>
-
-          <%= link_to site_url(anchor: "section5"), class: "nav-item nav-link" do %>
-            <i class="icon-envelope"></i>
-            <span>Contact</span>
-          <% end %>
         </div>
       </div>
       <%= render partial: 'layouts/login' %>
@@ -78,6 +68,7 @@
         </section>
       <% end %>
     </div>
+  <%= render "layouts/footer" %>
   </body>
   <%= render partial: 'layouts/analytics' if Rails.env.production? %>
 </html>

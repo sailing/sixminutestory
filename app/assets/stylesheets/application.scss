@@ -57,6 +57,10 @@ input::placeholder {
   color: #bbb !important;
 }
 
+.bg-dark {
+  background-color: #444 !important;
+}
+
 @include media-breakpoint-down(sm) {
   .recent-prompts .card:not(:last-child) {
     margin-right: 0 !important;

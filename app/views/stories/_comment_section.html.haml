@@ -5,7 +5,7 @@
         = form_for([@story, Comment.new], :html => { :id => 'comments_form' }) do |f|
           = f.text_area :comment, class: "col-12 form-control my-3", rows: 5
           #comment_submit_container.pull-right.mb-3
-            = submit_tag "Contribute", :name => "contribute", :id => "contribute-button", :disabled => false, class: "btn btn-primary"
+            = submit_tag "Contribute", :name => "contribute", :id => "contribute-button", :disabled => false, class: "btn btn-success"
     - else
       #signin_or_register
         = rpx_popup(:link_text => "Login", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false )
