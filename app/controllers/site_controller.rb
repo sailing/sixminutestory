@@ -4,14 +4,16 @@ class SiteController < ApplicationController
    # caches_action :index, expires_in: 1.day, layout: false
 
    def index
-      @story_to_read = Story.featured.order("created_at DESC").first
+      
       @active_writers_this_week = User.where("last_sign_in_at > ?", 1.week.ago).size
       @new_stories_this_week = Story.where("created_at > ?", 1.week.ago).size
       @comments_this_week = Comment.where("created_at > ?", 1.week.ago).size
 
       @three_image_prompts = Prompt.where(kind: "flickr").where("refcode IS NOT NULL AND refcode != ''").where("stories_count > 1").order("created_at DESC").limit(3)
-
       @featured_stories = Story.featured.order("updated_at desc").limit(5)
+      @stories = @featured_stories
+      @story = @featured_stories.first
+      @story_to_read = @featured_stories.second
       @recent_stories = Story.order("created_at desc").limit(5)
       @popular_stories = Story.recent(Time.now.months_ago(1)).top.limit(5)
       @active_stories = Story.recent(Time.now.months_ago(1)).commented.limit(5)

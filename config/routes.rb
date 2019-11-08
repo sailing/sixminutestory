@@ -121,7 +121,7 @@ Sms::Application.routes.draw do
 #      match   '/acknowledgements', :to => "site#acknowledgements", :as => 'acknowledgements'
   
   get "/home", :to => "site#index", :as => "site"
-  root :to => redirect("/stories/recent")
+  root :to => "site#index"
 
 
 end

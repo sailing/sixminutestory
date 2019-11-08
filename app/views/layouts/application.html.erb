@@ -22,7 +22,7 @@
   </head>
   <body data-controller="<%= params[:controller] %>" data-action="<%= params[:action] %>">
     <nav class="nav navbar navbar-expand-md navbar-dark bg-primary" role="navigation">
-      <a class="navbar-brand h1" href="#">Six Minute Story</a>
+      <%= link_to "Six Minute Story", root_url, class: "navbar-brand h1" %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

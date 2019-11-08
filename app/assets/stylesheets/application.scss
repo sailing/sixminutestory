@@ -39,6 +39,16 @@
   }
 }
 
+.btn {
+  i[class^="icon-"]:last-child {
+    @extend .ml-2;
+  }
+
+  i[class^="icon-"]:not(:last-child) {
+    @extend .mr-2;
+  }
+}
+
 input::placeholder {
   color: #bbb !important;
 }
