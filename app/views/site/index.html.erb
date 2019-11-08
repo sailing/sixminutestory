@@ -1,8 +1,8 @@
-<section class="container-fluid jumbotron" id="section1">
+<section class="container-fluid p-5" id="section1">
   <div class="row">
     <div class="col-md-6 my-3">
       <hgroup class="mb-3">
-        <h2>A Cure for Writer's Block&#153;</h2>
+        <h1>A Cure for Writer's Block&#153;</h1>
       </hgroup>
       <div class="my-3">
         <%= link_to write_path, class: "btn btn-success" do %>
@@ -30,189 +30,35 @@
     </div>
   </div>
 </section>
-<section class="section" id="section2">
+<section class="section bg-light mb-5 p-5" id="section3">
   <div class="container-fluid">
-    
-    <div class="row content hidden-tablet">
-      <div class="col-md-12 expand">
-        <h4>Community Stats</h4>
-        <div class="row">
-          <div class="col-md-4">
-            <!-- CHART N 1
-            -->
-            <script>
-              
-              $(document).ready(function( $ ) {
-                // Triggering only when it is inside viewport
-
-                $('#active_writers_this_week').waypoint(function(){
-                  // Triggering now
-                      $('#active_writers_this_week').knob();
-                      // Animating the value
-                      if($('#active_writers_this_week').val() == 0) {
-                      $({value: 0}).animate({value: $('#active_writers_this_week').attr("rel")}, {
-                          duration: 5000,
-                          easing:'swing',
-                          step: function()
-                            {
-                                $('#active_writers_this_week').val(Math.ceil(this.value)).trigger('change');
-                            }
-                        })
-                    }
-                        }
-                      ,{
-                        triggerOnce: true,
-                        offset: function(){
-                          return $(window).height() - $(this).outerHeight();
-                        }
-                      }
-                    );
-              });
-
-            </script>
-            <div class="skill">
-              <input class="knob" data-anglearc="180" data-angleoffset="-90" data-fgcolor="#f1c40f" data-height="122.5" data-inputcolor="#333" data-max="<%= @active_writers_this_week*1.5 %>" data-readonly="true" data-width="245" id="active_writers_this_week" readonly="readonly" rel="<%= @active_writers_this_week %>" value="0"></input>
-              <h4 class="visible-phone">
-                <%= @active_writers_this_week %>
-              </h4>
-              <h6>active writers this week</h6>
-            </div>
-            <!-- END CHART N 1
-            -->
-          </div>
-          <div class="col-md-4">
-            <!-- CHART N 2
-            -->
-            <script>
-              
-              $(document).ready(function( $ ) {
-                // Triggering only when it is inside viewport
-                $('#knob-65').waypoint(function(){
-                  // Triggering now
-                      $('#knob-65').knob();
-                      // Animating the value
-                      if($('#knob-65').val() == 0) {
-                      $({value: 0}).animate({value: $('#knob-65').attr("rel")}, {
-                          duration: 5000,
-                          easing:'swing',
-                          step: function()
-                            {
-                                $('#knob-65').val(Math.ceil(this.value)).trigger('change');
-                            }
-                        })
-                    }
-                        }
-                      ,{
-                        triggerOnce: true,
-                        offset: function(){
-                          return $(window).height() - $(this).outerHeight();
-                        }
-                      }
-                    );
-              });
-
-            </script>
-            <div class="skill">
-              <input class="knob" data-anglearc="180" data-angleoffset="-90" data-fgcolor="#f68e51" data-height="122.5" data-inputcolor="#333" data-max="<%= @new_stories_this_week*1.9 %>" data-readonly="true" data-width="245" id="knob-65" readonly="readonly" rel="<%= @new_stories_this_week %>" value="0"></input>
-              <h4 class="visible-phone">
-                <%= @new_stories_this_week %>
-              </h4>
-              <h6>new stories this week</h6>
-            </div>
-            <!-- END CHART N 2
-            -->
-          </div>
-          <div class="col-md-4">
-            <!-- CHART N 3
-            -->
-            <script>
-              
-              $(document).ready(function( $ ) {
-                // Triggering only when it is inside viewport
-                $('#knob-85').waypoint(function(){
-                  // Triggering now
-                      $('#knob-85').knob();
-                      // Animating the value
-                      if($('#knob-85').val() == 0) {
-                      $({value: 0}).animate({value: $('#knob-85').attr("rel")}, {
-                          duration: 5000,
-                          easing:'swing',
-                          step: function()
-                            {
-                                $('#knob-85').val(Math.ceil(this.value)).trigger('change');
-                            }
-                        })
-                    }
-                        }
-                      ,{
-                        triggerOnce: true,
-                        offset: function(){
-                          return $(window).height() - $(this).outerHeight();
-                        }
-                      }
-                    );
-              });
-
-            </script>
-            <div class="skill">
-              <input class="knob" data-anglearc="180" data-angleoffset="-90" data-fgcolor="#4dbce9" data-height="122.5" data-inputcolor="#333" data-max="<%= @comments_this_week*1.3 %>" data-readonly="true" data-width="245" id="knob-85" readonly="readonly" rel="<%= @comments_this_week %>" value="0"></input>
-              <h4 class="visible-phone">
-                <%= @comments_this_week %>
-              </h4>
-              <h6>comments this week</h6>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="section" id="section3">
-  <div class="container-fluid">
-    <div class="row title">
-      <div class="col-md-4">
-        <h2>Write</h2>
-      </div>
-      <div class="col-md-8 hidden-phone alt">
-        <hr/>
-      </div>
-    </div>
-    <div class="row desc">
+    <div class="row my-3">
       <div class="col-md-8">
-        <p>
-          <strong>We use a few kinds of prompts to cure writer's block.</strong>
-        </p>
-        <p>
+        <h2>We use a few kinds of prompts to cure writer's block.</h2>
+        <p class="lead">
           Images, start lines, and something of our own concoction: a Hero, a Villain, and a Goal. Use these to jumpstart your imagination, and feel free to follow the inspiration wherever you want.
         </p>
-        <%= link_to random_prompt_path do %>
-          <div class="btn-inverse">
-            Random Prompt
-            <i class="icon-random"></i>
-          </div>
+      </div>
+      <div class="col-md-4 d-flex flex-column justify-content-around">
+        <%= link_to random_prompt_path, class: "mb-3 mb-md-0 btn btn-warning" do %>
+          Random Prompt
+          <i class="icon-random"></i>
         <% end %>
-        <%= link_to write_to_prompt_path(25) do %>
-          <div class="btn-inverse">
-            Blank Prompt
-            <i class="icon-check-empty"></i>
-          </div>
+        <%= link_to write_to_prompt_path(25), class: "btn btn-success" do %>
+          Blank Prompt
+          <i class="icon-lightbulb"></i>
         <% end %>
       </div>
     </div>
-    <div class="content">
-      <h4>Recent image prompts:</h4>
-      <div class="row slide">
-        <% @three_image_prompts.each do |p| %>
-          <div class="col-md-4">
-            <%= link_to write_to_prompt_path(p) do %>
-              <%= image_tag(p.refcode, {style: "height: 200px"}) %>
-              <div class="btn-inverse">
-                Write now
-                <i class="icon-circle-arrow-right"></i>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
+    <div class="border-top py-4 px-2 mt-4">
+      <h3>Recent prompts:</h3>
+      <div class="row">
+        <div class="recent-prompts col-12 d-flex flex-sm-column flex-md-row justify-content-md-around justify-content-sm-between align-content-between my-3 flex-wrap flex-md-nowrap flex-fill">
+          <%- @prompts.each do |p| %>
+            <% kind = (p.kind == "flickr" ? "image" : p.kind) %>
+            <%= render partial: "prompts/#{kind}", locals: {"#{kind}".to_sym => p } %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
@@ -221,44 +67,15 @@
   <div class="container-fluid">
     <div class="row title">
       <div class="col-md-4">
-        <h2>Read</h2>
+        <h2>Read More Stories</h2>
       </div>
       <div class="col-md-8 hidden-phone">
         <hr/>
       </div>
     </div>
     <div class="row content">
-      <div class="col-md-4">
-        <ul class="article-tags">
-          <li class="current" data-blog="featured">
-            <i class="icon-circle-arrow-right">></i>
-            Featured
-          </li>
-          <li data-blog="recent">
-            <i class="icon-circle-arrow-right">></i>
-            New
-          </li>
-          <li data-blog="popular">
-            <i class="icon-circle-arrow-right">></i>
-            Popular
-          </li>
-          <li data-blog="active">
-            <i class="icon-circle-arrow-right">></i>
-            Active
-          </li>
-        </ul>
-      </div>
-      <div class="col-md-8 slide current" data-blog="featured">
-        <%= render partial: 'site/stories_table', locals: {stories: @featured_stories, stories_type: "Featured"} %>
-      </div>
-      <div class="col-md-8 slide" data-blog="recent">
-        <%= render partial: 'site/stories_table', locals: {stories: @recent_stories, stories_type: "Recent"} %>
-      </div>
-      <div class="col-md-8 slide" data-blog="popular">
-        <%= render partial: 'site/stories_table', locals: {stories: @popular_stories, stories_type: "Popular"} %>
-      </div>
-      <div class="col-md-8 slide" data-blog="active">
-        <%= render partial: 'site/stories_table', locals: {stories: @active_stories, stories_type: "Active"} %>
+      <div class="col-md-12 slide current" data-blog="featured">
+        <%= render @featured_stories %>
       </div>
     </div>
   </div>

@@ -9,7 +9,13 @@ class SiteController < ApplicationController
       @new_stories_this_week = Story.where("created_at > ?", 1.week.ago).size
       @comments_this_week = Comment.where("created_at > ?", 1.week.ago).size
 
-      @three_image_prompts = Prompt.where(kind: "flickr").where("refcode IS NOT NULL AND refcode != ''").where("stories_count > 1").order("created_at DESC").limit(3)
+      # @three_image_prompts = Prompt.where(kind: "flickr").where("refcode IS NOT NULL AND refcode != ''").where("stories_count > 1").order("created_at DESC").limit(3)
+
+      @image_prompt = Prompt.images.first.id
+      @hvg_prompt = Prompt.hvg.first.id
+      @firstline_prompt = Prompt.firstlines.first.id
+      @prompts = Prompt.where(id: [@image_prompt, @hvg_prompt, @firstline_prompt])
+      
       @featured_stories = Story.featured.order("updated_at desc").limit(5)
       @stories = @featured_stories
       @story = @featured_stories.first

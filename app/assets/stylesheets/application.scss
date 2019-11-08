@@ -49,11 +49,19 @@
   }
 }
 
+.recent-prompts .card:not(:last-child) {
+  @extend .mr-3;
+}
+
 input::placeholder {
   color: #bbb !important;
 }
 
 @include media-breakpoint-down(sm) {
+  .recent-prompts .card:not(:last-child) {
+    margin-right: 0 !important;
+  }
+
   .stories-list {
     .btn-group {
       .btn:not(:first-child), .btn:not(:last-child) {
