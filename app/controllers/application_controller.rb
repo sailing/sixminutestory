@@ -86,67 +86,33 @@ class ApplicationController < ActionController::Base
        end
      end
      
-     def require_username 
+    def require_username 
        if current_user
          unless current_user.login.present?
             flash[:notice] = "Please choose a username to represent you on Six Minute Story."
             redirect_to edit_account_url
          end
        end
-     end
+    end
      
      
-     def check_for_maintenance
-         if File.exist? "#{Rails.root}/public/maintenance.html"
-           return render( :file =>  "#{Rails.root}/public/maintenance.html") unless (current_user && current_user.is_admin?)
-        end
-     end
+   def check_for_maintenance
+       if File.exist? "#{Rails.root}/public/maintenance.html"
+         return render( :file =>  "#{Rails.root}/public/maintenance.html") unless (current_user && current_user.is_admin?)
+      end
+   end
 
-		
-     def rand_with_range(values = nil)
-         if values.respond_to? :sort_by
-           values.sort_by { rand }.first
-         else
-           rand(values)
-         end
-       end
 
-       def get_random()
-          model = params[:controller].singularize.classify.constantize
-          name = params[:controller].singularize
-          
-          if (name == "prompt")
-            @count = model.count :conditions => ["use_on <= :today", {:today => Date.today} ]
-            # choose a record to select
-              @get_this = rand_with_range(1..@count)
-
-            # try to get it
-              instance_variable_set("@#{name}", model.find(@get_this, :conditions => ["active = :active AND (use_on <= :today)", {:active => true, :today => Date.today} ]))
-            
-          
-          else            
-            # count model to get a set to choose among
-            @count = model.count
-            
-            # choose a record to select
-              @get_this = rand_with_range(1..@count)
-
-            # try to get it
-              instance_variable_set("@#{name}", model.find(@get_this, :conditions => {:active => true}))
-            
-          end
-            
-        end # end get_random
         
-        # This tests to see if the current user is 
-        # following the writer whose story or profile they're viewing.
-        def following_exists(user_id)
-          if current_user
-            unless @following = current_user.followings.find_by_writer_id(user_id)
-              @following = nil
-            end
-          end
-        end      
+    # This tests to see if the current user is 
+    # following the writer whose story or profile they're viewing.
+    def following_exists(user_id)
+      if current_user
+        unless @following = current_user.followings.find_by_writer_id(user_id)
+          @following = nil
+        end
+      end
+    end      
         
  #       def rescue_action_in_public(exception)
 #          case exception

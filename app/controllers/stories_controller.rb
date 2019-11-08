@@ -5,84 +5,84 @@ class StoriesController < ApplicationController
   after_action :increment_counter, :only => [:show]
 #  before_action ensure_current_post_url, :only => :show
 
-   def index
-       per_page = 10
-       page = params[:page] || 1
+def index
+ per_page = 10
+ page = params[:page] || 1
 
 
-        if params[:months]
-          months = params[:months].to_i.abs
-          timeframe = Time.now.months_ago(months)
-        elsif params[:days]
-          days = params[:days].to_i.abs
-          days = -days
-          timeframe = Time.now.advance(:days => days)
-        else
-          timeframe = Time.now.months_ago(1)
-        end
+ if params[:months]
+  months = params[:months].to_i.abs
+  timeframe = Time.now.months_ago(months)
+elsif params[:days]
+  days = params[:days].to_i.abs
+  days = -days
+  timeframe = Time.now.advance(:days => days)
+else
+  timeframe = Time.now.months_ago(1)
+end
 
 
 						# if (params[:months] or params[:days])
            #    order = "created_at DESC"
           	# else
-            	order = "created_at DESC"
+           order = "created_at DESC"
           	# end
 
-      @truncate = true
+            @truncate = true
 
-      begin
-        case params[:subset]
-          when /popular/
-              @stories = Story.includes(:user).recent(timeframe).popular.page(page).per(per_page)
-              @title = "Popular stories"
-          when /active/
-              @stories = Story.includes(:user).recent(timeframe).commented.page(page).per(per_page)
-              @title = "Active stories"
-          when /recent/
-              @stories = Story.includes(:user).recent(timeframe).order(order).page(page).per(per_page)
-              @title = "Recent stories"
-          when /top/
-              @stories = Story.includes(:user).recent(timeframe).top.page(page).per(per_page)
-              @title = "Top rated stories"
-          when /featured/
-              @stories = Story.includes(:user).recent(timeframe).featured.page(page).per(per_page)
-              @title = "Editors' picks"
-          when /adjective/
-              @adjective = params[:tag]
-              @stories = Story.includes(:user).recent(timeframe).tagged_with([@adjective], :any => true).page(page).per(per_page)
-              @title = "Stories tagged with #{@adjective}"
-          when /genre/
-              @genre = params[:tag]
-              @stories = Story.includes(:user).recent(timeframe).tagged_with([@genre], :any => true, :on => :genres).page(page).per(per_page)
-              @title = "Stories in #{@genre} genre"
-          when /emotion/
+            begin
+              case params[:subset]
+              when /popular/
+                @stories = Story.includes(:user).recent(timeframe).popular.page(page).per(per_page)
+                @title = "Popular stories"
+              when /active/
+                @stories = Story.includes(:user).recent(timeframe).commented.page(page).per(per_page)
+                @title = "Active stories"
+              when /recent/
+                @stories = Story.includes(:user).recent(timeframe).order(order).page(page).per(per_page)
+                @title = "Recent stories"
+              when /top/
+                @stories = Story.includes(:user).recent(timeframe).top.page(page).per(per_page)
+                @title = "Top rated stories"
+              when /featured/
+                @stories = Story.includes(:user).recent(timeframe).featured.page(page).per(per_page)
+                @title = "Editors' picks"
+              when /adjective/
+                @adjective = params[:tag]
+                @stories = Story.includes(:user).recent(timeframe).tagged_with([@adjective], :any => true).page(page).per(per_page)
+                @title = "Stories tagged with #{@adjective}"
+              when /genre/
+                @genre = params[:tag]
+                @stories = Story.includes(:user).recent(timeframe).tagged_with([@genre], :any => true, :on => :genres).page(page).per(per_page)
+                @title = "Stories in #{@genre} genre"
+              when /emotion/
                 @emotion = params[:tag].downcase
                 @stories = Story.includes(:user).recent(timeframe).tagged_with([@emotion], :any => true, :on => :emotions).page(page).per(per_page)
                 @title = "These stories evoked #{@emotion}"
 
 
-        else
+              else
             #return featured
             #@stories = Story.recent(timeframe).featured.page(page).per(per_page)
             #@title = "editors' picks"
-						 @stories = Story.includes(:user).recent(timeframe).page(page).per(per_page)
-              @title = "Recent stories"
-							@frontpage = true
-        end
-      rescue
-           flash[:notice] = "There are no stories. Why not write your own?"
-           redirect_to faq_url
-      else
-          @titles = @stories.map(&:title)
-            respond_to do |format|
+            @stories = Story.includes(:user).recent(timeframe).page(page).per(per_page)
+            @title = "Recent stories"
+            @frontpage = true
+          end
+        rescue
+         flash[:notice] = "There are no stories. Why not write your own?"
+         redirect_to faq_url
+       else
+        @titles = @stories.map(&:title)
+        respond_to do |format|
                format.html # index.html.erb
                format.xml  { render :xml => @stories }
                format.rss
              end
-      end
+           end
 
 
-   end
+         end
 
   # GET /stories/new
   # GET /stories/new.xml
@@ -119,7 +119,6 @@ class StoriesController < ApplicationController
       end
     rescue => e
       @prompt = Prompt.random
-
     end
 
     respond_to do |format|
@@ -161,16 +160,16 @@ class StoriesController < ApplicationController
     if request.xhr?
         # add the given tag to the story
 
-          emotion = params[:emotion_list] || params[:story][:emotion_list]
+        emotion = params[:emotion_list] || params[:story][:emotion_list]
 
-          @story.emotion_list << emotion
-          @story.save
+        @story.emotion_list << emotion
+        @story.save
 
-          respond_to do |format|
-						format.html {
-							flash[:notice] = "Emotion added"
-							redirect_to story_url(@story, :anchor => "respond_emotions")
-						}
+        respond_to do |format|
+          format.html {
+           flash[:notice] = "Emotion added"
+           redirect_to story_url(@story, :anchor => "respond_emotions")
+         }
             # format.js {
             #               render :update do |page|
             #                 page.replace_html 'respond_emotions', :partial => "emotions", :object => @story
@@ -178,21 +177,21 @@ class StoriesController < ApplicationController
             #               end
             #             }
           end
-    else
+        else
 
-    respond_to do |format|
-      if @story.update_attributes(story_params)
-        flash[:notice] = 'Story updated!'
-        format.html { redirect_to story_url(@story) }
-        format.xml  { head :ok }
-      else
-        flash[:error] = @story.errors
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
+          respond_to do |format|
+            if @story.update_attributes(story_params)
+              flash[:notice] = 'Story updated!'
+              format.html { redirect_to story_url(@story) }
+              format.xml  { head :ok }
+            else
+              flash[:error] = @story.errors
+              format.html { render :action => "edit" }
+              format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
+            end
+          end
+        end
       end
-    end
-  end
-  end
 
  # GET /stories/1
   # GET /stories/1.xml
@@ -236,60 +235,46 @@ class StoriesController < ApplicationController
   end
 
   def tag_cloud
-  e = ActiveRecord::RecordNotFound
-      begin
-        if request.path.include?("genres")
-          @title = "genres"
-          @tags = Story.tag_counts_on(:genres, :limit => 100)
-          @subset = "genre"
-        elsif request.path.include?("emotions")
-          @title = "emotions"
-          @tags = Story.tag_counts_on(:emotions, :limit => 100)
-          @emotions = true
-          @subset = "emotion"
-        else
-          @title = "adjectives"
-           @tags = Story.tag_counts_on(:tags, :limit => 100)
-           @subset = "adjective"
-        end
-      rescue Exception => e
-        flash[:notice] = 'No genres have been tagged yet.'
-        store_location
-        redirect_to recent_url
+    e = ActiveRecord::RecordNotFound
+    if request.path.include?("genres")
+      @title = "genres"
+      @tags = Story.tag_counts_on(:genres, :limit => 100)
+      @subset = "genre"
+    elsif request.path.include?("emotions")
+      @title = "emotions"
+      @tags = Story.tag_counts_on(:emotions, :limit => 100)
+      @emotions = true
+      @subset = "emotion"
+    else
+      @title = "adjectives"
+      @tags = Story.tag_counts_on(:tags, :limit => 100)
+      @subset = "adjective"
+    end
+  rescue Exception => e
+    flash[:notice] = 'No genres have been tagged yet.'
+    store_location
+    redirect_to recent_url
 
-      else
-        respond_to do |format|
-           format.html # tag_cloud.html.erb
-         end
-      end
+  else
+    respond_to do |format|
+         format.html # tag_cloud.html.erb
+    end
   end
 
 
   def thanks
-      page = page || 1
-      order = "created_at DESC"
-      per_page = 15
+    page = page || 1
+    order = "created_at DESC"
+    per_page = 15
     @story = Story.find(params[:id])
     @prompt = @story.prompt
     @stories = Story.active.where(:prompt_id => @prompt.id).page(page).per(per_page).order(order)
-
   end
 
   def random
-    e = ActiveRecord::RecordNotFound
-    begin
-      get_random()
-    rescue Exception => e
-      redirect_to random_stories_url
-    else
-      redirect_to story_url(@story)
-
-    end
-
+    @story = Story.random
+    redirect_to @story
   end
-
-
-
 
   def disabled
     page = params[:page] || 1
@@ -309,69 +294,69 @@ class StoriesController < ApplicationController
   def enable_story
     @story = Story.find(params[:id])
     @story.active = 1
-     respond_to do |format|
-       if @story.save
-         flash[:notice] = 'Story enabled.'
-         format.html { redirect_to(stories_path) }
-         format.xml  { head :ok }
-       else
-         flash[:notice] = 'Story NOT enabled.'
-         format.html { redirect_to(stories_path) }
-         format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
-       end
-     end
+    respond_to do |format|
+      if @story.save
+        flash[:notice] = 'Story enabled.'
+        format.html { redirect_to(stories_path) }
+        format.xml  { head :ok }
+      else
+        flash[:notice] = 'Story NOT enabled.'
+        format.html { redirect_to(stories_path) }
+        format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
     @story = Story.find(params[:id])
 
     @story.active = 0
-     respond_to do |format|
-       if @story.save
-         flash[:notice] = 'Story disabled.'
-         format.html { redirect_to(stories_path) }
-         format.xml  { head :ok }
-       else
-         flash[:notice] = 'Story NOT disabled.'
-         format.html { redirect_to(stories_path) }
-         format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
-       end
-     end
+    respond_to do |format|
+      if @story.save
+        flash[:notice] = 'Story disabled.'
+        format.html { redirect_to(stories_path) }
+        format.xml  { head :ok }
+      else
+        flash[:notice] = 'Story NOT disabled.'
+        format.html { redirect_to(stories_path) }
+        format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
+      end
+    end
   end
 
   def feature
     @story = Story.find(params[:id])
     @story.featured = 1
-     respond_to do |format|
-       if @story.save
-         Hermes.featured_story_notification(@story.user, @story).deliver unless (@story.user.send_stories == false or @story.user.email_address.blank?)
+    respond_to do |format|
+      if @story.save
+        Hermes.featured_story_notification(@story.user, @story).deliver unless (@story.user.send_stories == false or @story.user.email_address.blank?)
 
-         flash[:notice] = 'Story featured.'
-         format.html { redirect_to(story_url(@story)) }
-         format.xml  { head :ok }
-       else
-         flash[:notice] = 'Story NOT featured.'
-         format.html { redirect_to(story_url(@story)) }
-         format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
-       end
-     end
+        flash[:notice] = 'Story featured.'
+        format.html { redirect_to(story_url(@story)) }
+        format.xml  { head :ok }
+      else
+        flash[:notice] = 'Story NOT featured.'
+        format.html { redirect_to(story_url(@story)) }
+        format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
+      end
+    end
   end
 
   def unfeature
     @story = Story.find(params[:id])
 
     @story.featured = 0
-     respond_to do |format|
-       if @story.save
-         flash[:notice] = 'Story unfeatured.'
-         format.html { redirect_to(story_url(@story)) }
-         format.xml  { head :ok }
-       else
-         flash[:notice] = 'Story still featured.'
-         format.html { redirect_to(story_url(@story)) }
-         format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
-       end
-     end
+    respond_to do |format|
+      if @story.save
+        flash[:notice] = 'Story unfeatured.'
+        format.html { redirect_to(story_url(@story)) }
+        format.xml  { head :ok }
+      else
+        flash[:notice] = 'Story still featured.'
+        format.html { redirect_to(story_url(@story)) }
+        format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
+      end
+    end
   end
 
 
@@ -381,46 +366,44 @@ class StoriesController < ApplicationController
     @story = Story.find(params[:id])
     @story.flagged += 1
 
-     respond_to do |format|
-       if @story.save
-         format.html {
-						redirect_to story_url(@story), notice: "Flagged story. Thank you."
-          }
-         format.xml  { head :ok }
-       else
-         flash[:notice] = 'Something went wrong at the story was not flagged. Please contact us directly.'
-         format.html { redirect_to(story_url(@story)) }
-         format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
-       end
-     end
-
+    respond_to do |format|
+      if @story.save
+        format.html {
+          redirect_to story_url(@story), notice: "Flagged story. Thank you."
+        }
+        format.xml  { head :ok }
+      else
+        flash[:notice] = 'Something went wrong at the story was not flagged. Please contact us directly.'
+        format.html { redirect_to(story_url(@story)) }
+        format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
+      end
+    end
   end
 
 
   private
 
-  def story_params
-    params.require(:story).permit(:title, :description, :tags, :genres, :emotions, :license, :prompt_id)
-  end
-
-  def ensure_current_post_url
-      redirect_to @story, :status => :moved_permanently unless @story.friendly_id_status.best?
-  end
-
-  def get_description
-    if(request.xhr?)
-      description = find.first()
-      render :text => description
+    def story_params
+      params.require(:story).permit(:title, :description, :tags, :genres, :emotions, :license, :prompt_id)
     end
-  end
 
- def increment_counter
-  if @story && @story.user
-    # increment story counter
-     unless (current_user == @story.user)
-      Story.increment_counter(:counter, @story)
-     end
-  end
- end
+    def ensure_current_post_url
+      redirect_to @story, :status => :moved_permanently unless @story.friendly_id_status.best?
+    end
 
+    def get_description
+      if(request.xhr?)
+        description = find.first()
+        render :text => description
+      end
+    end
+
+    def increment_counter
+      if @story && @story.user
+        # increment story counter
+        unless (current_user == @story.user)
+          Story.increment_counter(:counter, @story)
+        end
+      end
+    end
 end

@@ -44,8 +44,7 @@ class Prompt < ActiveRecord::Base
 
 
 	def self.random
-	  ids = connection.select_all("SELECT id FROM prompts WHERE prompts.use_on IS NOT NULL")
-	  find(ids[rand(ids.length)]["id"].to_i) unless ids.blank?
+	  active.where(id: Prompt.active.pluck(:id).sample).first
 	end
 
 	def license_in_human_terms(prompt)

@@ -162,16 +162,8 @@ class PromptsController < ApplicationController
 
 
   def random
-    e = ActiveRecord::RecordNotFound
-    begin
-      @prompt = Prompt.random
-    rescue Exception => e
-      redirect_to random_prompt_url
-    else
-      redirect_to write_to_prompt_url(@prompt)
-      
-    end
-      
+    @prompt = Prompt.random
+    redirect_to write_to_prompt_url(@prompt)
   end
 
   def destroy

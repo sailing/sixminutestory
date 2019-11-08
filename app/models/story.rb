@@ -26,6 +26,7 @@ class Story < ActiveRecord::Base
 
   # Named Scopes
   scope :active, lambda {where("stories.active = ?", true)}
+  scope :usable, -> { active }
   scope :inactive, lambda {where("stories.active = ?", false)}
   scope :recent, lambda {|timeframe|
         active.where('stories.created_at > ?', timeframe.to_datetime) }
@@ -74,15 +75,15 @@ class Story < ActiveRecord::Base
 
   }
 
-    # Validation
-    validates_presence_of   :title, :message => "Without a title, your story is invisible!"
-    validates_presence_of   :description, :message => "Perhaps you should write a story."
-    validates_presence_of   :license, :message => "What license?"
-    validates_presence_of   :prompt_id, :message => "Prompt is necessary."
+  # Validation
+  validates_presence_of   :title, :message => "Without a title, your story is invisible!"
+  validates_presence_of   :description, :message => "Perhaps you should write a story."
+  validates_presence_of   :license, :message => "What license?"
+  validates_presence_of   :prompt_id, :message => "Prompt is necessary."
 
-    def cc_licence_image_url
-      # method to get image url for display on story
-    end
+  def cc_licence_image_url
+    # method to get image url for display on story
+  end
 
   def safe_title
     title.present? ? title : "Untitled Story"
@@ -94,6 +95,10 @@ class Story < ActiveRecord::Base
 
   def joined_tags
     tags.join(", ")
+  end
+
+  def self.random
+    active.where(id: Story.active.pluck(:id).sample).first
   end
 
 end
