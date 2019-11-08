@@ -45,23 +45,23 @@
 	<% unless @prompts.empty? %>
 		<% if @table == "hvg" %>
 			<h2>Hero / Villain / Goal</h2>
-			<div class="row">
-				<div class="col-sm-12 d-flex align-items-left justify-content-between my-3" style="overflow: scroll;">
-					<%= render :partial => 'hvg', :collection => @prompts %>
-				</div>
+    <% elsif @table == "images" %>
+      <h2>Images</h2>
+    <% else %>
+      <h2>First lines</h2>
+    <% end %>
+      
+		<div class="row">
+			<div class="recent-prompts col-12 d-flex flex-sm-column flex-md-row justify-content-md-between justify-content-sm-between align-content-between my-3 flex-wrap flex-md-nowrap flex-fill" style="overflow: scroll;">
+				<% if @table == "hvg" %>
+          <%= render :partial => 'hvg', :collection => @prompts %>
+        <% elsif @table == "images" %>
+          <%= render :partial => 'image', collection: @prompts  %>
+        <% else %>
+          <%= render :partial => 'firstline', :collection => @prompts  %>
+        <% end %>
 			</div>
-
-		<% elsif @table == "images" %>	
-			<h2>Images</h2>
-			<div class="col-sm-12 d-flex align-items-left justify-content-between my-3" style="overflow: scroll;">
-				<%= render :partial => 'image', collection: @prompts  %>
-			</div>
-		<% else @table == "firstlines" %>
-			<h2>First lines</h2>
-			<div class="col-sm-12 d-flex align-items-left justify-content-between my-3" style="overflow: scroll;">
-				<%= render :partial => 'firstline', :collection => @prompts  %>
-			</div>
-		<% end %>
+		</div>
 		<div class="row justify-content-center">
 			<%= paginate @prompts  %>
 		</div>
