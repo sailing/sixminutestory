@@ -5,11 +5,11 @@
         <h1>A Cure for Writer's Block&#153;</h1>
       </hgroup>
       <div class="my-4">
-        <%= link_to write_path, class: "btn btn-success" do %>
+        <%= link_to write_path, class: "btn btn-success btn-lg" do %>
           <span>Write Now</span>
           <i class="icon-pencil"></i>
         <% end %>
-        <%= link_to @story_to_read, class: "btn btn-warning" do %>
+        <%= link_to @story_to_read, class: "btn btn-danger btn-lg" do %>
           <span>Read a Story</span>
           <i class="icon-book"></i>
         <% end %>
@@ -33,18 +33,18 @@
 <section class="section bg-light mb-3 p-5" id="section3">
   <div class="container-fluid">
     <div class="row my-3">
-      <div class="col-md-8">
+      <div class="col-md-7">
         <h2>We use a few kinds of prompts to cure writer's block.</h2>
         <p class="lead">
           Images, start lines, and something of our own concoction: a Hero, a Villain, and a Goal. Use these to jumpstart your imagination, and feel free to follow the inspiration wherever you want.
         </p>
       </div>
-      <div class="col-md-4 d-flex flex-column justify-content-around">
-        <%= link_to random_prompt_path, class: "mb-3 mb-md-0 btn btn-warning" do %>
+      <div class="col-md-4 offset-md-1 d-flex flex-column justify-content-around">
+        <%= link_to random_prompt_path, class: "mb-3 mb-md-0 btn btn-danger btn-lg" do %>
           <span>Random Prompt</span>
           <i class="icon-random"></i>
         <% end %>
-        <%= link_to write_to_prompt_path(25), class: "btn btn-success" do %>
+        <%= link_to write_to_prompt_path(25), class: "btn btn-success btn-lg" do %>
           <span>Blank Prompt</span>
           <i class="icon-lightbulb"></i>
         <% end %>
