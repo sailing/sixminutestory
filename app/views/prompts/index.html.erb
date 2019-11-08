@@ -22,48 +22,52 @@
     </div>
   </div>
 <% end %>
-
-<h1>Write a story</h1>
-<%= render :partial => 'admin' %>
-<% unless @scheduled %>
-	<% # select tag shows various prompts %>
-	<div class="my-3">
-		<span class="display-6">Prompt styles:</span>
-		<%= raw(select_tag_for_filter("prompts", @filters, params)) %>
-	</div>
-<% end %>
-	
-<% if @scheduled %>
-	<table>
-		<% @prompts.each do |prompt| %>
-		<tr>
-			<td><%= prompt.id %></td><td><%= link_to prompt.use_on, prompt_url(prompt) %></td>
-		</tr>
-		<% end %>
-	</table>
-<% else %>
-	<% unless @prompts.empty? %>
-		<% if @table == "hvg" %>
-			<h2>Hero / Villain / Goal</h2>
-    <% elsif @table == "images" %>
-      <h2>Images</h2>
-    <% else %>
-      <h2>First lines</h2>
-    <% end %>
-      
-		<div class="row">
-			<div class="recent-prompts col-12 d-flex flex-sm-column flex-md-row justify-content-md-between justify-content-sm-between align-content-between my-3 flex-wrap flex-md-nowrap flex-fill" style="overflow: scroll;">
-				<% if @table == "hvg" %>
-          <%= render :partial => 'hvg', :collection => @prompts %>
-        <% elsif @table == "images" %>
-          <%= render :partial => 'image', collection: @prompts  %>
-        <% else %>
-          <%= render :partial => 'firstline', :collection => @prompts  %>
+<section class="px-3">
+  <h2 class="h1">Write a story</h2>
+  <%= render :partial => 'admin' %>
+  <% unless @scheduled %>
+  	<% # select tag shows various prompts %>
+  	<div class="my-4">
+      <div class="btn-group">
+        <%- @filters.each do |f| %>
+          <%= link_to f[:label], prompts_path(show: f[:scope]), class: "btn btn-#{f[:color]}" %>
         <% end %>
-			</div>
-		</div>
-		<div class="row justify-content-center">
-			<%= paginate @prompts  %>
-		</div>
-	<% end %>
-<% end %>	
+      </div>
+  	</div>
+  <% end %>
+  	
+  <% if @scheduled %>
+  	<table>
+  		<% @prompts.each do |prompt| %>
+  		<tr>
+  			<td><%= prompt.id %></td><td><%= link_to prompt.use_on, prompt_url(prompt) %></td>
+  		</tr>
+  		<% end %>
+  	</table>
+  <% else %>
+  	<% unless @prompts.empty? %>
+  		<% if @table == "hvg" %>
+  			<h3>Hero / Villain / Goal</h3>
+      <% elsif @table == "images" %>
+        <h3>Images</h3>
+      <% else %>
+        <h3>First lines</h3>
+      <% end %>
+        
+  		<div class="row">
+  			<div class="recent-prompts col-12 d-flex flex-sm-column flex-md-row justify-content-md-between justify-content-sm-between align-content-between my-3 flex-wrap flex-md-nowrap flex-fill" style="overflow: scroll;">
+  				<% if @table == "hvg" %>
+            <%= render :partial => 'hvg', :collection => @prompts %>
+          <% elsif @table == "images" %>
+            <%= render :partial => 'image', collection: @prompts  %>
+          <% else %>
+            <%= render :partial => 'firstline', :collection => @prompts  %>
+          <% end %>
+  			</div>
+  		</div>
+  		<div class="row justify-content-center">
+  			<%= paginate @prompts  %>
+  		</div>
+  	<% end %>
+  <% end %>	
+</section>

@@ -51,7 +51,10 @@
       </div>
     </div>
     <div class="border-top py-4 px-2 mt-4">
-      <h3>Recent prompts:</h3>
+      <h3>
+        Recent prompts
+        <%= link_to "See All Prompts", prompts_path, class: "btn btn-info ml-5" %>
+      </h3>
       <div class="row">
         <div class="recent-prompts col-12 d-flex flex-sm-column flex-md-row justify-content-md-around justify-content-sm-between align-content-between my-3 flex-wrap flex-md-nowrap flex-fill">
           <%- @prompts.each do |p| %>

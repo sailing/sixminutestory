@@ -26,9 +26,9 @@ class Prompt < ActiveRecord::Base
   validates_uniqueness_of :use_on, :allow_blank => true
 
   FILTERS = [
-    {:scope => "firstlines", :label => "First lines"},
-    {:scope => "images",    :label => "Images"},
-    {:scope => "hvg",       :label => "Hero Villain Goal"}
+    {:scope => "firstlines", :label => "First lines", color: "success"},
+    {:scope => "images",    :label => "Images", color: "dark"},
+    {:scope => "hvg",       :label => "Hero Villain Goal", color: "danger"}
 
   ]
 
