@@ -1,37 +1,15 @@
 Sms::Application.routes.draw do
-  devise_for :users do 
-    get 'login', to: 'devise/sessions#new'
-    get 'logout', to: 'devise/sessions#destroy'
-  end
-#  resources :products do
-#    resource :category
-
-#    member do
-#      post :short
-#    end
-
-#    collection do
-#      get :long
-#    end
-#  end
-
-#  match "/posts/github" => redirect("http://github.com/rails.atom")
-
-
-   resources :followings
-
-#   resources :contests do
-#     resources :stories
-#   end
   # The priority is based upon order of creation: first created -> highest priority.
-
+  
+  devise_for :users
+  
+  resources :followings
 
     # site activities
-      # writing / prompts
+    # writing / prompts
     get 'write', :to => "stories#new", :as => 'write'
 		get '/write/random', :to => "prompts#random", :as => 'random_prompt'
     get 'write/:prompt', :to => "stories#new", :as => 'write_to_prompt'
-  #   match 'archives', :to => "prompts#index", :as => 'archives'
     get 'thanks/:id', :to => "stories#thanks_for_writing", :as => 'thanks_for_writing'
 
 
