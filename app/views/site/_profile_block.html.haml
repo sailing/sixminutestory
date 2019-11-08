@@ -5,6 +5,7 @@
       (joined
       = time_ago_in_words(user.created_at)
       ago)
+    %br  
     - if is_user && (current_user.id == user.id)
       %small
         = link_to edit_account_path, class: "btn btn-dark btn-sm" do
@@ -16,7 +17,7 @@
       %small
         = link_to user.website, :title => user.website, :rel => 'nofollow', class: "btn btn-info btn-sm" do
           %i.icon-globe
-          Visit Website
+          %span Visit Website
 
   .card-content
     - if user.profile.present?

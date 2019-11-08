@@ -10,7 +10,9 @@
   .card-content.p-3
     - if @stories
       = simple_format(sanitize(story.truncated_description))
-      = link_to("Read more <i class='icon-circle-arrow-right'></i>".html_safe, story_url(story), class: "btn btn-success btn-mini")
+      = link_to story_url(story), class: "btn btn-success btn-mini" do
+        %span Read more 
+        %i.icon-circle-arrow-right
     - else
       .row-fluid.story-itself
         .span10.offset1
