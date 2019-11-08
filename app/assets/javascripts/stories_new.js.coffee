@@ -9,7 +9,7 @@
 			$("input[type=\"submit\"]").attr "disabled", "disabled"
 			$("#story_description").focus ->
 				$("#prompt_and_timer").removeClass "d-none"
-				$("#instructions").hide()
+				$("#instructions").addClass "d-none"
 				self.startTimer()
 
 			$("#done_writing").click ->
