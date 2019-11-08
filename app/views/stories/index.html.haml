@@ -3,18 +3,17 @@
   - @rss_url = "http://feeds.feedburner.com/sixminutestory/recent.rss"
 - else
   - @rss_url = "http://feeds.feedburner.com/sixminutestory" + request.path + ".rss"
-.row-fluid
-  .span12
+.row
+  .col-md-12
     %h1= @title
     = render :partial => "layouts/browsing"
-.row-fluid
-  - if @stories.any?
-    .span8
+.row
+  .col-md-12
+    - if @stories.any?
       = render @stories #, :spacer_template => "story_ad"
       = render :partial => 'pagination'
 
-  - else
-    .span12
+    - else
       %h1
         Erm...
       #no_stories

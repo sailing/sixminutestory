@@ -42,3 +42,18 @@
 input::placeholder {
   color: #bbb !important;
 }
+
+@include media-breakpoint-down(sm) {
+  .stories-list {
+    .btn-group {
+      .btn:not(:first-child), .btn:not(:last-child) {
+        margin: 1px 1px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px; 
+        border-top-left-radius: 5px; 
+        border-top-right-radius: 5px; 
+      }
+      
+    }
+  }
+}
