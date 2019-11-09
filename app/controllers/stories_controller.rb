@@ -88,13 +88,8 @@ end
   # GET /stories/new.xml
   def new
     @story = Story.new
-
-    begin
-      @prompt = Prompt.active.where(id: params[:prompt]).first if params[:prompt].present?
-    rescue => e
-    ensure
-      @prompt = Prompt.random
-    end
+    @prompt = Prompt.active.where(id: params[:prompt]).first if params[:prompt].present?
+    @prompt ||= Prompt.random
 
     respond_to do |format|
       format.html # new.html.erb
