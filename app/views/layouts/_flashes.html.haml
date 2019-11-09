@@ -1,7 +1,7 @@
 - if flash[:notice] || flash[:alert] || flash[:error] || flash[:update_password]
   %div.mt-3
     - if flash[:error] && flash[:error].present?
-      .alert.alert-danger.col-8.offset-2.mb-0.shadow.border-danger.fade.show
+      .alert.alert-danger.col-8.offset-2.mb-0.shadow.border-danger.shadow-sm.fade.show
         %a.close(data-dismiss="alert") ×
         %h3.alert-heading Hello, what's this?!
         - flash[:error].each do |name, msg|
@@ -11,7 +11,7 @@
       - flash[:error] = nil
 
     - if flash[:notice] && flash[:notice].present?
-      .alert.alert-info.col-8.offset-2.mb-0.shadow.border-info.fade.show
+      .alert.alert-info.col-8.offset-2.mb-0.shadow.border-info.shadow-sm.fade.show
         %a.close(data-dismiss="alert") ×
         %h3.alert-heading
           Just letting you know
@@ -21,7 +21,7 @@
       - flash[:notice] = nil
 
     - if flash[:alert] && flash[:alert].present?
-      .alert.alert-info.col-8.offset-2.mb-0.shadow.border-warning.fade.show
+      .alert.alert-warning.col-8.offset-2.mb-0.shadow.border-warning.shadow-sm.fade.show
         %a.close(data-dismiss="alert") ×
         %h3.alert-heading
           Heads up:

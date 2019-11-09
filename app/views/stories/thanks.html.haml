@@ -1,11 +1,14 @@
 - content_for :pagename do
   – #{h(@story.title)}
 - content_for :sideyard do
-  %h2 More about the Prompt
-  = render :partial => "prompts/show_prompt"
-  %h3 Vote on this prompt
-  .center
-    = render :partial => "votes/prompt_vote", :object => @prompt, :as => :prompt
+  %h2.text-center About the Prompt
+  .card
+    .card-body.text-center
+      = render :partial => "prompts/show_prompt"
+      .mt-4
+        %h3.text-center Vote on this prompt
+        .text-center
+          = render :partial => "votes/prompt_vote", :object => @prompt, :as => :prompt
 .jumbotron.py-4
   .row.title
     .col-md-12
@@ -13,36 +16,18 @@
         Thanks!
         Your story has been posted.
         = link_to story_url(@story), class: "btn btn-primary btn-large" do
-          View it Now
+          %span View it Now
           %i.icon-circle-arrow-right
         
-  .row.mt-4
-    .col-md-12
-      %h5 There are a few things you can do now.
-
+  
   .row-fluid.d-flex.justify-content-between.flex-wrap
-    .flex-fill.card.border-primary.m-1
+    .flex-fill.card.shadow-sm.m-1
       .card-header 
         %h5.my-1 Share to get feedback
-      .card-content.p-3
+      .card-body.p-3
         = render :partial => 'share_in_story'
-    .flex-fill.card.border-info.m-1
-      .card-header 
-        %h5.my-1 Rate this prompt
-      .card-content.p-3
-        = render partial: "votes/prompt_vote", :object => @story.prompt, :as => :prompt
-    / .flex-fill.card.border-success.m-1
-    /   .card-header 
-    /     %h5.my-1 See stories for this prompt
-    /   .card-content.p-3
-    /     %a.btn.btn-primary.btn-large(href="#more_stories")
-    /       %i.icon-circle-arrow-down
-    /       Read more stories
-
-    
-
 .row
-  .col-md-6.border-bottom
+  .col-md-6.my-3
     %h2 More stories from this prompt 
 .row
   .col-md-12

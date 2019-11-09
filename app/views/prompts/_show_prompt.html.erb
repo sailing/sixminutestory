@@ -62,12 +62,12 @@
 			</div>
 		<% end -%>
 		<% unless request.path.include?("write") %>
-			<div class="buttons mt-3 text-center">
-				<%= link_to write_to_prompt_url(@prompt), class: "btn btn-primary" do %>
+			<div class="buttons mt-3 text-center d-flex flex-fill flex-wrap">
+				<%= link_to write_to_prompt_url(@prompt), class: "btn btn-primary w-100 mb-sm-3" do %>
 					<i class="icon-pencil mr-2"></i> Write your own story to this prompt
 					
 				<%- end %>
-				<%= link_to prompt_url(@prompt), class: "btn btn-warning" do %>
+				<%= link_to prompt_url(@prompt), class: "btn btn-warning w-100" do %>
 					<i class="icon-book mr-2"></i>
 					Read <%= @prompt.stories_count %> stories
 				<% end %>
