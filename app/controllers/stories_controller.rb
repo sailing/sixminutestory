@@ -1,5 +1,5 @@
 class StoriesController < ApplicationController
-  before_action :require_user, :only => [:new, :create, :flag_story, :update]
+  before_action :authenticate_user!, :only => [:new, :create, :flag_story, :update]
   before_action :must_own_story, :only => [:edit, :destroy]
   before_action :must_be_admin, :only => [:admin, :disabled, :enable_story, :feature_story, :unfeature_story]
   after_action :increment_counter, :only => [:show]

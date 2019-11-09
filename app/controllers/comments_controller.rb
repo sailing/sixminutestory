@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-    before_action :require_user, :only => [:index, :new, :create]
-    before_action :must_be_admin, :only => [:destroy, :edit, :update]
+  before_action :authenticate_user!, :only => [:index, :new, :create]
+  before_action :must_be_admin, :only => [:destroy, :edit, :update]
 
   # GET /comments
   # GET /comments.xml

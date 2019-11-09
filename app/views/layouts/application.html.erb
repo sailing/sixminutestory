@@ -47,16 +47,16 @@
           <%= render partial: "layouts/flashes" %>
           <% if content_for?(:sideyard) %>
             <div class="row">
-              <div class="col-md-9 mt-4 px-4">
+              <div class="col-md-9 mt-4 pl-4 px-0">
                 <%= yield %>
               </div>
-              <div class="col-md-3 border-left d-flex flex-column flex-fill flex-grow bg-light pt-4" style="min-height: 100vh;">
+              <div class="col-md-3 border-left d-flex flex-column flex-fill flex-grow bg-light pt-4 shadow-sm" style="min-height: 100vh;">
                 <%= yield :sideyard %>
               </div>
             </div>
           <% else %>
             <div class="row">
-              <div class="col-md-12 mt-4 px-0">
+              <div class="col-md-12 mt-4 px-4">
                 <%= yield %>
               </div>
             </div>

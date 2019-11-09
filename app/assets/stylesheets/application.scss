@@ -58,6 +58,11 @@
   @extend .mr-3;
 }
 
+.home-write {
+  width: 101vw;
+  margin-left: -2vw;
+}
+
 input::placeholder {
   color: #bbb !important;
 }

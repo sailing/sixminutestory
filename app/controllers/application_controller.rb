@@ -2,6 +2,11 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
+  before_action :store_user_location!, if: :storable_location?
+  # The callback which stores the current location must be added before you authenticate the user 
+  # as `authenticate_user!` (or whatever your resource is) will halt the filter chain and redirect 
+  # before the location can be stored.
+
   before_action :check_for_maintenance 
   before_action :require_username, :except => [:edit, :update, :create]
   
@@ -34,43 +39,48 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    def store_location
-      session[:return_to] =
-      if request.get?
-        request.fullpath
-      else
-        request.referer
+    private
+      # Its important that the location is NOT stored if:
+      # - The request method is not GET (non idempotent)
+      # - The request is handled by a Devise controller such as Devise::SessionsController as that could cause an 
+      #    infinite redirect loop.
+      # - The request is an Ajax request as this can lead to very unexpected behaviour.
+      def storable_location?
+        request.get? && is_navigational_format? && !devise_controller? && !request.xhr? 
       end
-    end
 
-    def redirect_back_or_default(default)
-      redirect_to(session[:return_to] || default)
-      session[:return_to] = nil
-    end
+      def store_user_location!
+        # :user is the scope we are authenticating
+        store_location_for(:user, request.fullpath)
+      end
+
+      def after_sign_in_path_for(resource_or_scope)
+        stored_location_for(resource_or_scope) || super
+      end
     
          # Check to see if user is an admin
-    def must_be_admin
-      (current_user && @current_user.admin_level > 1) || ownership_violation
-      return false
-     end
+      def must_be_admin
+        (current_user && @current_user.admin_level > 1) || ownership_violation
+        return false
+      end
     
-    def must_own_user
+      def must_own_user
         if current_user
           @user ||= User.find(params[:id])
           @user == @current_user || @current_user.admin_level > 1 || ownership_violation
           return false
         end
-    end
+      end
     
-    def must_own_story
-      if current_user
-       @story ||= Story.find(params[:id])
-        unless @story.user == current_user or current_user.admin_level > 1
-          ownership_violation
-        end
-        return false
-      end 
-     end
+      def must_own_story
+        if current_user
+         @story ||= Story.find(params[:id])
+          unless @story.user == current_user or current_user.admin_level > 1
+            ownership_violation
+          end
+          return false
+        end 
+      end
 
      def ownership_violation
        respond_to do |format|
@@ -87,21 +97,20 @@ class ApplicationController < ActionController::Base
      end
      
     def require_username 
-       if current_user
-         unless current_user.login.present?
-            flash[:notice] = "Please choose a username to represent you on Six Minute Story."
-            redirect_to edit_account_url
-         end
-       end
+      if current_user
+        unless current_user.login.present?
+          flash[:notice] = "Please choose a username to represent you on Six Minute Story."
+          redirect_to edit_account_url
+        end
+      end
     end
      
      
-   def check_for_maintenance
-       if File.exist? "#{Rails.root}/public/maintenance.html"
+    def check_for_maintenance
+      if File.exist? "#{Rails.root}/public/maintenance.html"
          return render( :file =>  "#{Rails.root}/public/maintenance.html") unless (current_user && current_user.is_admin?)
       end
-   end
-
+    end
 
         
     # This tests to see if the current user is 
