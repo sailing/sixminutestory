@@ -7,12 +7,11 @@
           #comment_submit_container.pull-right.mb-3
             = submit_tag "Contribute", :name => "contribute", :id => "contribute-button", :disabled => false, class: "btn btn-success"
     - else
-      #signin_or_register
-        = rpx_popup(:link_text => "Login", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false )
-        or
-        = rpx_popup(:link_text => "Join", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false )
-        to remark.
-
+      #signin_or_register.p-3
+        %p
+          Want to comment? Login or Join
+        = link_to "Login", new_session_path(User), class: 'btn btn-primary'
+        = link_to "Sign up", new_registration_path(User), class: 'btn btn-dark'
 
 
 - if @story.comments.present?
