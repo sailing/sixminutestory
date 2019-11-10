@@ -35,7 +35,7 @@
 			</td>
 
 			<td>
-				<%= link_to h(user.stories_count ? user.stories_count : "0"), profile_path(user) %>
+				<%= link_to user.stories_count.to_s, profile_path(user) %>
 			</td>
 			<td>
 				<%= user.followers.size {where(:active => true)} %>

@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   # attr_accessible :login, :email, :password, :password_confirmation, :profile, :website, :send_comments, :send_stories, :send_followings
 
+  before_create :ensure_login, if: Proc.new {|u| u.login.blank? }
+
   acts_as_tagger
   acts_as_voter
   has_karma :stories, :as => :user, :weight => 1
@@ -15,7 +17,7 @@ class User < ActiveRecord::Base
   # extend FriendlyId
   # friendly_id :login, use: :slugged, :reserved_words => ["recent", "new", "featured", "active", "popular", "top"]
   def to_param
-    "#{id}-#{login.parameterize}"
+    "#{id}-#{login.parameterize}" rescue id
   end
 
   has_many :followings
@@ -41,6 +43,10 @@ class User < ActiveRecord::Base
 
   def can_edit?
     is_admin? || reputation >= 5
+  end
+
+  def ensure_login
+    self.login = email.split("@").first
   end
 
   def self.dedupe
