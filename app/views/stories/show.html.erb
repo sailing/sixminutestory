@@ -93,7 +93,7 @@
           <h6>genres</h6>
           <p>
             <% @story.genres.each do |genre| %>
-              <%= link_to h(genre.name), subset_stories_url(:tag => genre.name, :subset => "genre", :months => 100) %>
+              <%= link_to h(genre.name), subset_stories_url(:tag => genre.name, :subset => "genre", :months => 1200) %>
             <% end %>
           </p>
         <% end %>
@@ -101,7 +101,7 @@
           <h6>tags</h6>
           <p>
             <% @story.tags.each do |tag| %>
-              <%= link_to h(tag.name), subset_stories_url(:tag => tag.name, :subset => "adjective", :months => 100) %>
+              <%= link_to h(tag.name), subset_stories_url(:tag => tag.name, :subset => "adjective", :months => 1200) %>
             <% end %>
           </p>
         <% end %>

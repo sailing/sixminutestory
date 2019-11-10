@@ -24,7 +24,7 @@ class VotesController < ApplicationController
         when /^popular/
           order = "counter DESC"
         when /^most/
-          order = "rating DESC"
+          order = "votes_count DESC"
         when /^recent/
           order = "votes.created_at DESC"
         when /^earliest/
@@ -38,7 +38,7 @@ class VotesController < ApplicationController
     
     
     #  @stories = Story.find_by_sql(["select stories.* from stories, votes where votes.voter_id = ? AND stories.id = votes.voteable_id", @user]).paginate :per_page => 3, :page => page
-    @stories = Story.includes(:votes).where("votes.voter_id = ?", @user.id).where("stories.id = votes.voteable_id").page(page).per(per_page).order(order)
+    @stories = Story.includes(:votes).joins(:votes).having("votes.voter_id = ?", @user.id).having("stories.id = votes.voteable_id").group("stories.id, votes.id").page(page).per(per_page).order(order)
     #  @stories = Story.favorites
     #  @stories.paginate :per_page => 3, :page => page
     
