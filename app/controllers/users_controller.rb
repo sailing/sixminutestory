@@ -6,7 +6,19 @@ class UsersController < ApplicationController
   def index
     page = params[:page] || 1
     per_page = 20
-    order = params[:order] || "created_at DESC"
+
+    order = case params[:order]
+      when "created_at"
+        "created_at DESC"
+      when "stories_count"
+        "coalesce(stories_count, 0) DESC"
+      when "email"
+        "coalesce (email, '') DESC"
+      when "login"
+        "coalesce (login, '') DESC"
+      else
+        "created_at DESC"
+      end
 
     @users = User.page(page).per(per_page).order(order)
   end
