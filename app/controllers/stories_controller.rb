@@ -3,86 +3,75 @@ class StoriesController < ApplicationController
   before_action :must_own_story, :only => [:edit, :destroy]
   before_action :must_be_admin, :only => [:admin, :disabled, :enable_story, :feature_story, :unfeature_story]
   after_action :increment_counter, :only => [:show]
-#  before_action ensure_current_post_url, :only => :show
 
-def index
- per_page = 10
- page = params[:page] || 1
-
-
- if params[:months]
-  months = params[:months].to_i.abs
-  timeframe = Time.now.months_ago(months)
-elsif params[:days]
-  days = params[:days].to_i.abs
-  days = -days
-  timeframe = Time.now.advance(:days => days)
-else
-  timeframe = Time.now.months_ago(1)
-end
+  def index
+    per_page = 10
+    page = params[:page] || 1
 
 
-						# if (params[:months] or params[:days])
-           #    order = "created_at DESC"
-          	# else
-           order = "created_at DESC"
-          	# end
-
-            @truncate = true
-
-            begin
-              case params[:subset]
-              when /popular/
-                @stories = Story.includes(:user).recent(timeframe).popular.page(page).per(per_page)
-                @title = "Popular stories"
-              when /active/
-                @stories = Story.includes(:user).recent(timeframe).commented.page(page).per(per_page)
-                @title = "Active stories"
-              when /recent/
-                @stories = Story.includes(:user).recent(timeframe).order(order).page(page).per(per_page)
-                @title = "Recent stories"
-              when /top/
-                @stories = Story.includes(:user).recent(timeframe).top.page(page).per(per_page)
-                @title = "Top rated stories"
-              when /featured/
-                @stories = Story.includes(:user).recent(timeframe).featured.page(page).per(per_page)
-                @title = "Editors' picks"
-              when /adjective/
-                @adjective = params[:tag]
-                @stories = Story.includes(:user).recent(timeframe).tagged_with([@adjective], :any => true).page(page).per(per_page)
-                @title = "Stories tagged with #{@adjective}"
-              when /genre/
-                @genre = params[:tag]
-                @stories = Story.includes(:user).recent(timeframe).tagged_with([@genre], :any => true, :on => :genres).page(page).per(per_page)
-                @title = "Stories in #{@genre} genre"
-              when /emotion/
-                @emotion = params[:tag].downcase
-                @stories = Story.includes(:user).recent(timeframe).tagged_with([@emotion], :any => true, :on => :emotions).page(page).per(per_page)
-                @title = "These stories evoked #{@emotion}"
+    if params[:months]
+      months = params[:months].to_i.abs
+      timeframe = Time.now.months_ago(months)
+    elsif params[:days]
+      days = params[:days].to_i.abs
+      days = -days
+      timeframe = Time.now.advance(:days => days)
+    else
+      timeframe = Time.now.months_ago(1)
+    end
 
 
-              else
-            #return featured
-            #@stories = Story.recent(timeframe).featured.page(page).per(per_page)
-            #@title = "editors' picks"
-            @stories = Story.includes(:user).recent(timeframe).page(page).per(per_page)
-            @title = "Recent stories"
-            @frontpage = true
-          end
-        rescue
-         flash[:notice] = "There are no stories. Why not write your own?"
-         redirect_to faq_url
-       else
+    order = "created_at DESC"
+
+    @truncate = true
+
+    begin
+      case params[:subset]
+      when /popular/
+        @stories = Story.includes(:user).recent(timeframe).popular.page(page).per(per_page)
+        @title = "Popular stories"
+      when /active/
+        @stories = Story.includes(:user).recent(timeframe).commented.page(page).per(per_page)
+        @title = "Active stories"
+      when /recent/
+        @stories = Story.includes(:user).recent(timeframe).order(order).page(page).per(per_page)
+        @title = "Recent stories"
+      when /top/
+        @stories = Story.includes(:user).recent(timeframe).top.page(page).per(per_page)
+        @title = "Top rated stories"
+      when /featured/
+        @stories = Story.includes(:user).recent(timeframe).featured.page(page).per(per_page)
+        @title = "Editors' picks"
+      when /adjective/
+        @adjective = params[:tag]
+        @stories = Story.includes(:user).recent(timeframe).tagged_with([@adjective], :any => true).page(page).per(per_page)
+        @title = "Stories tagged with #{@adjective}"
+      when /genre/
+        @genre = params[:tag]
+        @stories = Story.includes(:user).recent(timeframe).tagged_with([@genre], :any => true, :on => :genres).page(page).per(per_page)
+        @title = "Stories in #{@genre} genre"
+      when /emotion/
+        @emotion = params[:tag].downcase
+        @stories = Story.includes(:user).recent(timeframe).tagged_with([@emotion], :any => true, :on => :emotions).page(page).per(per_page)
+        @title = "These stories evoked #{@emotion}"
+      else
+        @stories = Story.includes(:user).recent(timeframe).page(page).per(per_page)
+        @title = "Recent stories"
+        @frontpage = true
+
+      end
+      rescue
+        flash[:notice] = "There are no stories. Why not write your own?"
+        redirect_to faq_url
+      else
         @titles = @stories.map(&:title)
         respond_to do |format|
-               format.html # index.html.erb
-               format.xml  { render :xml => @stories }
-               format.rss
-             end
-           end
-
-
-         end
+        format.html # index.html.erb
+        format.xml  { render :xml => @stories }
+        format.rss
+      end
+    end
+  end
 
   # GET /stories/new
   # GET /stories/new.xml
@@ -95,7 +84,6 @@ end
       format.html # new.html.erb
       format.xml  { render :xml => @story }
     end
-
   end
 
   # GET /stories/1/edit
@@ -109,6 +97,7 @@ end
   def create
     @story = current_user.stories.build(story_params)
     @story.prompt = Prompt.find(params[:story][:prompt_id])
+    @story.parent = Story.find(params[:story][:parent_id]) if params[:story][:parent_id].present?
 
     respond_to do |format|
       if @story.save
@@ -127,41 +116,18 @@ end
   def update
     @story = Story.find(params[:id])
 
-    if request.xhr?
-        # add the given tag to the story
-
-        emotion = params[:emotion_list] || params[:story][:emotion_list]
-
-        @story.emotion_list << emotion
-        @story.save
-
-        respond_to do |format|
-          format.html {
-           flash[:notice] = "Emotion added"
-           redirect_to story_url(@story, :anchor => "respond_emotions")
-         }
-            # format.js {
-            #               render :update do |page|
-            #                 page.replace_html 'respond_emotions', :partial => "emotions", :object => @story
-            #                 page.visual_effect :highlight, 'emotions'
-            #               end
-            #             }
-          end
-        else
-
-          respond_to do |format|
-            if @story.update_attributes(story_params)
-              flash[:notice] = 'Story updated!'
-              format.html { redirect_to story_url(@story) }
-              format.xml  { head :ok }
-            else
-              flash[:error] = @story.errors
-              format.html { render :action => "edit" }
-              format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
-            end
-          end
-        end
+    respond_to do |format|
+      if @story.update_attributes(story_params)
+        flash[:notice] = 'Story updated!'
+        format.html { redirect_to story_url(@story) }
+        format.xml  { head :ok }
+      else
+        flash[:error] = @story.errors
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
       end
+    end
+  end
 
  # GET /stories/1
   # GET /stories/1.xml
