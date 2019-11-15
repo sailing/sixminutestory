@@ -8,6 +8,9 @@ class Story < ActiveRecord::Base
   acts_as_taggable_on :emotions
   acts_as_voteable
 
+  # gives us story threads
+  has_ancestry, orphan_strategy: :restrict, cache_depth: true
+
   # extend FriendlyId
   # friendly_id :title, use: :slugged, :reserved_words => ["recent", "featured", "active", "popular", "top", "genres","emotions","tags"]
 
