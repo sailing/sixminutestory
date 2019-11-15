@@ -1,6 +1,10 @@
 .row.title
   .col-md-12
     %h1 Write a story
+- if @parent.present?
+  .row.m-3
+    .col-md-12
+      = render :partial => "stories/story", :locals => {:story => @parent}
 .row.m-3
   .col-md-6.p-3
     = form_for @story do |f|
@@ -17,6 +21,7 @@
 
             / Include the prompt so we can use it on the next page. Is this really necessary?
             = f.hidden_field :prompt_id, value: @prompt.id
+            = f.hidden_field :parent_id, value: @parent.id if @parent.present?
             .row
               .col-md-12
                 = f.text_area :description, :rows => 15, :placeholder => "Type here to begin writing.", :style => "width:100%;", :'data-widearea' => "enable", class: "form-control"

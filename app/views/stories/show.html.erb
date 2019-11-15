@@ -63,6 +63,14 @@
   </div>
   <div class="col-10">
     <%= render :partial => "stories/story", :locals => {:story => @story} %>
+    <div class="d-flex flex-column align-items-center justify-content-center">
+      <div class="col-6 mb-4 text-center">
+        <%= link_to "Write the next chapter of this Story", write_to_prompt_url(@prompt, parent_id: @story.id), class: "btn btn-danger btn-lg shadow-sm" %>
+      </div>
+      <div class="col-6 text-center card border-primary p-3">
+        <%= render :partial => 'stories/share_in_story', :locals => {:story => @story} %>
+      </div>
+    </div>
   </div>
   <% if @next %>
     <%= link_to story_url(@next), class: "col-1 btn btn-large border increment-story" do %>

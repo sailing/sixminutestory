@@ -77,6 +77,8 @@ class StoriesController < ApplicationController
   # GET /stories/new.xml
   def new
     @story = Story.new
+    @parent = Story.where(id: params[:parent_id]).first if params[:parent_id].present?
+    
     @prompt = Prompt.active.where(id: params[:prompt]).first if params[:prompt].present?
     @prompt ||= Prompt.random
 
@@ -136,6 +138,7 @@ class StoriesController < ApplicationController
 
     begin
       @story = Story.includes(:user, :prompt, :tags, :votes, comments: [:user, :votes]).active.find(params[:id])
+      @children = @story.children.limit(3)
       @prompt = @story.prompt
       @previous = Story.previous(@story).first
       @next = Story.next(@story).first
@@ -320,7 +323,7 @@ class StoriesController < ApplicationController
   private
 
     def story_params
-      params.require(:story).permit(:title, :description, :tags, :genres, :emotions, :license, :prompt_id)
+      params.require(:story).permit(:title, :description, :tags, :genres, :emotions, :license, :prompt_id, :parent_id)
     end
 
     def ensure_current_post_url

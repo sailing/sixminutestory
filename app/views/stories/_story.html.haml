@@ -1,4 +1,4 @@
-.story.card.shadow-sm.mt-0{class: ("mx-3 mb-3 mt-0" if @stories)}
+.story.card.shadow-sm.mt-0{class: ("mx-3 mb-3 mt-0" if @stories), class: ("mb-1" if @parent && !@stories)}
   .card-header.bg-light
     %h2.mt-1.h3
       = link_to story.safe_title, story_url(story), class: "text-info"
@@ -17,40 +17,35 @@
       .row-fluid.story-itself
         .span10.offset1
           = simple_format(sanitize(story.description))
+  - unless @parent
+    %div{class: ("card-footer")}
+      %span.comments_in_footer
+        / = link_to pluralize(story.comments_count, 'remark'), story_url(story, :anchor => "comments")
+        = link_to raw(story.comments_count.to_s + " <i class='icon-comment'></i>"), story_url(story, :anchor => "comments"), class: "text-dark", rel: "tooltip", title: "#{story.comments_count.to_s} comments"
 
-  %div{class: ("card-footer")}
-    %span.comments_in_footer
-      / = link_to pluralize(story.comments_count, 'remark'), story_url(story, :anchor => "comments")
-      = link_to raw(story.comments_count.to_s + " <i class='icon-comment'></i>"), story_url(story, :anchor => "comments"), class: "text-dark", rel: "tooltip", title: "#{story.comments_count.to_s} comments"
-
-    - unless @stories
-      %span &nbsp;|&nbsp;
-      %span.favorites_in_footer
-        #{render :partial => "votes/story_vote", :story => story}
-    %span &nbsp;|&nbsp;
-    %span.counter_in_footer
-      / = pluralize(story.counter, 'view')
-      = story.counter
-      %i.icon-user
-    - unless @stories
-      - if is_user
+      - unless @stories || @parent
         %span &nbsp;|&nbsp;
-        %span.flag
-          / This is how people flag stories
-          = link_to flag_story_url(@story.id), :method => "post", rel: "tooltip", title: "Flag this as hateful" do
+        %span.favorites_in_footer
+          #{render :partial => "votes/story_vote", :story => story}
+      %span &nbsp;|&nbsp;
+      %span.counter_in_footer
+        / = pluralize(story.counter, 'view')
+        = story.counter
+        %i.icon-user
+      - unless @stories
+        - if is_user
+          %span &nbsp;|&nbsp;
+          %span.flag
+            / This is how people flag stories
+            = link_to flag_story_url(story.id), :method => "post", rel: "tooltip", title: "Flag this as hateful" do
+              %i.icon-flag
+
+          - if is_owner_or_admin
+            &nbsp;||&nbsp;
+            = link_to edit_story_path(@story) do
+              %i.icon-edit
+              Edit
+          - if is_admin
+            &nbsp;|&nbsp;
+            = @story.flagged
             %i.icon-flag
-
-        - if is_owner_or_admin
-          &nbsp;||&nbsp;
-          = link_to edit_story_path(@story) do
-            %i.icon-edit
-            Edit
-        - if is_admin
-          &nbsp;|&nbsp;
-          = @story.flagged
-          %i.icon-flag
-
-- unless @stories
-  .row
-    .col-6.offset-3.text-center.card.border-primary.p-3
-      = render :partial => 'stories/share_in_story', :locals => {:story => story}
