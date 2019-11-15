@@ -49,6 +49,10 @@ gem 'memcachier'
 gem 'dalli'
 gem 'activerecord-session_store'
 
+
+# ancestry
+gem 'ancestry'
+
 #voting tool
 gem 'thumbs_up', '>= 0.3.2'
 

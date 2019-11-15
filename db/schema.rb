@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_09_033413) do
+ActiveRecord::Schema.define(version: 2019_11_15_153324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,6 +126,9 @@ ActiveRecord::Schema.define(version: 2019_07_09_033413) do
     t.string "cached_slug", limit: 255
     t.integer "comments_count", default: 0
     t.boolean "featured", default: false
+    t.string "ancestry"
+    t.integer "ancestry_depth", default: 0
+    t.index ["ancestry"], name: "index_stories_on_ancestry"
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|

@@ -56,6 +56,8 @@ GEM
       tzinfo (~> 1.1)
     acts-as-taggable-on (6.0.0)
       activerecord (~> 5.0)
+    ancestry (3.0.7)
+      activerecord (>= 3.2.0)
     arel (9.0.0)
     autoprefixer-rails (9.6.1)
       execjs
@@ -240,6 +242,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-session_store
   acts-as-taggable-on
+  ancestry
   bootstrap (~> 4.3.1)
   bootswatch!
   coffee-rails
