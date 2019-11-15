@@ -62,13 +62,25 @@
     </div>
   </div>
   <div class="col-10">
-    <%= render :partial => "stories/story", :locals => {:story => @story} %>
-    <div class="d-flex flex-column align-items-center justify-content-center">
-      <div class="col-6 mb-4 text-center">
-        <%= link_to "Write the next chapter of this Story", write_to_prompt_url(@prompt, parent_id: @story.id), class: "btn btn-danger btn-lg shadow-sm" %>
-      </div>
-      <div class="col-6 text-center card border-primary p-3">
-        <%= render :partial => 'stories/share_in_story', :locals => {:story => @story} %>
+    <%= render :partial => "stories/story", :locals => {:story => @story, :full_size => true } %>
+    <div class="d-flex flex-column">
+      <% if @children.any? %>
+        <h3 class="text-left h1 mb-0">
+          Branches
+          <%= link_to "Write the next chapter of this Story", write_to_prompt_url(@prompt, parent_id: @story.id), class: "btn btn-danger shadow-sm ml-4" %>
+        </h3>
+        <div class="recent-prompts w-100 d-flex flex-sm-column flex-md-row justify-content-md-between justify-content-sm-between align-content-between my-3 flex-wrap flex-md-nowrap flex-fill" style="overflow: scroll;">
+          <%= render :partial => "stories/story", collection: @children %>
+        </div>
+      <% else %>
+        <div class="col-12 d-flex justify-content-center mb-3">
+          <%= link_to "Write the next chapter of this Story", write_to_prompt_url(@prompt, parent_id: @story.id), class: "btn btn-danger shadow-sm ml-md-4" %>
+        </div>
+      <% end %>
+      <div class="col-12 d-flex justify-content-center mb-3">
+        <div class="col-6 text-center card border-primary p-3">
+          <%= render :partial => 'stories/share_in_story', :locals => {:story => @story} %>
+        </div>
       </div>
     </div>
   </div>
