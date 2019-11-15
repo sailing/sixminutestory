@@ -63,7 +63,7 @@
 		<% end -%>
 		<% unless request.path.include?("write") %>
 			<div class="buttons mt-3 text-center d-flex flex-fill flex-wrap">
-				<%= link_to write_to_prompt_url(@prompt), class: "btn btn-primary w-100 mb-sm-3" do %>
+				<%= link_to write_to_prompt_url(@prompt), class: "btn btn-primary w-100 mb-2" do %>
 					<i class="icon-pencil mr-2"></i> Write your own story to this prompt
 					
 				<%- end %>
