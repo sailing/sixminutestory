@@ -21,7 +21,6 @@ class Story < ActiveRecord::Base
 
   belongs_to :user, :counter_cache => true
   belongs_to :prompt, :counter_cache => true
-  has_one :contest
   has_many :comments
 
   # Named Scopes
@@ -31,20 +30,20 @@ class Story < ActiveRecord::Base
   scope :recent, lambda {|timeframe|
         active.where('stories.created_at > ?', timeframe.to_datetime) }
   scope :popular, lambda { where('(comments_count >= ? or votes_count >= ?)', 0, 0).order('counter DESC, votes_count DESC, updated_at ASC') }
+  scope :featured, lambda {where('featured = ?', true)}
+
+  # Sorting
   scope :top, lambda { where('votes_count > ?', 0).order('votes_count DESC')}
   scope :commented, lambda { where('(comments_count >= ?)', 0).order('comments_count DESC, votes_count DESC, counter DESC, updated_at ASC') }
-  scope :featured, lambda {where('featured = ?', true)}
   scope :by_popularity, lambda {order('counter ASC')}
-
-  # Filters
   scope :by_date, -> {order("stories.created_at DESC")}
 
   # Next and Previous links
-  scope :next, lambda { |p| active.where("id > ?", p.id).limit(1).order("id")}
-  scope :previous, lambda { |p| active.where("id < ?", p.id).limit(1).order("id DESC")}
+  scope :next, lambda { |p| active.where("id > ?", p.id).order("id").limit(1)}
+  scope :previous, lambda { |p| active.where("id < ?", p.id).order("id DESC").limit(1)}
 
-  scope :next_featured, lambda { |p| active.where("id > ? AND featured = ?", p.id, true).limit(1).order("id")}
-  scope :previous_featured, lambda { |p| active.where("id < ? AND featured = ?", p.id, true).limit(1).order("id DESC")}
+  scope :next_featured, lambda { |p| active.where("id > ? AND featured = ?", p.id, true).order("id").limit(1)}
+  scope :previous_featured, lambda { |p| active.where("id < ? AND featured = ?", p.id, true).order("id DESC").limit(1)}
 
   scope :with_unseen_comments_for_user, lambda { |user|
        select("DISTINCT stories.*").
