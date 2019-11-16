@@ -31,8 +31,8 @@
   <meta name="twitter:site" content="@6minutestory">
 <% end %>
 
-<%- if is_admin %>
-  <div class="row">
+<%- if false %>
+  <div class="d-flex">
     <%- if @story.featured == true %>
       <div id="unfollowing_button" class="button_container">
         <%= button_to "Unfeature", unfeature_story_url(@story), class: "btn btn-danger btn-sm mr-3 mb-3", form_class: "d-inline-block", 

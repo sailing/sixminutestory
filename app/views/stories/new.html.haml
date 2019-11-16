@@ -4,7 +4,7 @@
 - if @parent.present?
   .row.m-3
     .col-md-12
-      = render :partial => "stories/story", :locals => {:story => @parent}
+      = render :partial => "stories/story", :locals => {:story => @parent, truncate: false}
 .row.m-3
   .col-md-6.p-3
     = form_for @story do |f|
@@ -80,33 +80,34 @@
       #prompt_container.prompt_container.card-body.text-center
         = render :partial => "prompts/show_prompt"
       
-  #instructions.col-md-6.card.p-0.mt-3
-    %h3.card-header.bg-dark.text-white Instructions
-    .card-body
+  #instructions.col-md-6
+    .card.p-0
+      %h3.card-header.bg-dark.text-white Instructions
+      .card-body
+        .row
+          .col-md-12
+            %ol
+              %li
+                When you click in the writing box, you get a prompt.
+              %li
+                Then you have
+                %strong six minutes
+                to write a story.
+              %li Go!
       .row
         .col-md-12
-          %ol
-            %li
-              When you click in the writing box, you get a prompt.
-            %li
-              Then you have
-              %strong six minutes
-              to write a story.
-            %li Go!
-    .row
-      .col-md-12
-        .card-footer
-          %h4 Note:
-          %p
-            When the timer stops,
-            %em you won't be able to type anymore
-            so use the last seconds
-            %strong wisely.
-          %p
-            %em Before submitting
-            choose a
-            %strong title
-            and categorize and
-            %strong license
-            your story.
+          .card-footer
+            %h4 Note:
+            %p
+              When the timer stops,
+              %em you won't be able to type anymore
+              so use the last seconds
+              %strong wisely.
+            %p
+              %em Before submitting
+              choose a
+              %strong title
+              and categorize and
+              %strong license
+              your story.
 
