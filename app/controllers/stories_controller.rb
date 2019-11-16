@@ -170,8 +170,19 @@ class StoriesController < ApplicationController
         format.xml  { render :xml => @story }
       end
     end
+  end
 
+  def thread
+    @story = Story.find(params[:id])
+    limit = params[:page] || 10 
+    from_depth = params[:page].present? ? (params[:page].to_i * limit) : 0
+    to_depth = from_depth + limit
+      
+    @stories = @story.path.from_depth(from_depth).to_depth(to_depth)
 
+    respond_to do |format|
+      format.html # show.html.erb
+    end
   end
 
   def tag_cloud

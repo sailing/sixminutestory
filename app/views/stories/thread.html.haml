@@ -1,0 +1,16 @@
+.row
+  .col-md-12
+    %h1= @story.title
+.row
+  .col-md-12
+    - if @stories.any?
+      = render partial: "stories/story", collection: @stories, locals: {truncate: false}
+      / = render :partial => 'pagination'
+
+    - else
+      %h1
+        Erm...
+      #no_stories
+        %p
+          No stories meet that criteria.
+          = link_to "Write your own", write_url

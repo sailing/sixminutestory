@@ -12,6 +12,9 @@ Sms::Application.routes.draw do
     get 'write/:prompt', :to => "stories#new", :as => 'write_to_prompt'
     get 'thanks/:id', :to => "stories#thanks_for_writing", :as => 'thanks_for_writing'
 
+    # threaded stories
+    get '/thread/:id', to: "stories#thread", as: 'thread'
+
 
     resources :prompts do
       resources :votes
