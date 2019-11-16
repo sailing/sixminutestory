@@ -44,11 +44,20 @@
               :confirm => 'Are you sure you want to feature this story? The story will become featured!', :method => :post %>
       </div>
     <%- end %>
-    <%= link_to "Edit Details", edit_story_url(@story), class: "btn btn-warning btn-sm mb-3" %>
+    <%= link_to "Edit", edit_story_url(@story), class: "btn btn-warning btn-sm mb-3" %>
   </div>
 <% end %>
-
-<div class="row">
+<%- if @parent %>
+  <div class="row d-flex justify-content-center align-items-top mb-4">
+    <%= link_to story_url(@parent), class: "btn btn-info btn-large col-4 shadow"  do %>
+      Read Up <i class="icon-circle-arrow-up"></i>
+    <% end %>
+    <div class="col-md-10 parent-fade">
+      <%= render :partial => "stories/story", :locals => {story: @parent, read_more: false } %>
+    </div>
+  </div>
+<% end %>
+<div class="row <%= "parent-spacer" if @parent %>">
   <div class="col-1">
     <div class="row">
       <%= link_to story_url(@previous), class: "col-12 btn btn-large border increment-story increment-story-left" do %>
@@ -62,15 +71,15 @@
     </div>
   </div>
   <div class="col-10">
-    <%= render :partial => "stories/story", :locals => {:story => @story, :full_size => true } %>
-    <div class="d-flex flex-column">
+    <%= render :partial => "stories/story", :locals => {:story => @story, truncate: false } %>
+    <div class="d-flex flex-column mt-4">
       <% if @children.any? %>
         <h3 class="text-left h1 mb-0">
           Branches
           <%= link_to "Add a Branch to this Story", write_to_prompt_url(@prompt, parent_id: @story.id), class: "btn btn-danger shadow-sm ml-md-4" %>
         </h3>
         <div class="recent-prompts w-100 d-flex flex-sm-column flex-md-row justify-content-md-between justify-content-sm-between align-content-between my-3 flex-wrap flex-md-nowrap flex-fill" style="overflow: scroll;">
-          <%= render :partial => "stories/story", collection: @children %>
+          <%= render :partial => "stories/story", collection: @children, locals: {full_size: false} %>
         </div>
       <% else %>
         <div class="col-12 d-flex justify-content-center mb-3">

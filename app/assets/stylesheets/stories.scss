@@ -24,8 +24,6 @@
 }
 
 .story {
-	margin-top:25px;
-	margin-bottom:55px;
 
 	h2 {
 		font-size: 2em;
@@ -123,6 +121,47 @@
 
 	p {
 		margin-bottom: 15px;
+	}
+}
+
+
+.parent-fade {
+	position: relative;
+	z-index: -1;
+	margin-top: -200px;
+	max-height:425px;
+}
+
+.parent-fade::after {
+  display: block;
+  position: relative;
+  background-image: linear-gradient(to bottom, white 0%, transparent 85%, transparent 100%);
+  margin-top: -425px;
+  height: 425px;
+  width: 100%;
+  content: '';
+}
+
+@media (max-width: 575px) {
+	.parent-fade {
+		position: relative;
+		z-index: -1;
+		margin-top: -350px;
+		max-height: 350px;
+	}
+
+	.parent-fade::after {
+	  display: block;
+	  position: relative;
+	  background-image: linear-gradient(to bottom, white 0%, transparent 95%, transparent 100%);
+	  margin-top: -350px;
+	  height: 350px;
+	  width: 100%;
+	  content: '';
+	}
+
+	.parent-spacer {
+		margin-top: 150px;
 	}
 }
 

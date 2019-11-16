@@ -138,6 +138,7 @@ class StoriesController < ApplicationController
 
     begin
       @story = Story.includes(:user, :prompt, :tags, :votes, comments: [:user, :votes]).active.find(params[:id])
+      @parent = @story.parent
       @children = @story.children.limit(10).order("created_at DESC")
       @prompt = @story.prompt
       @previous = Story.previous(@story).first
