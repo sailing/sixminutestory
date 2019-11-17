@@ -22,6 +22,7 @@ config.serve_static_assets = false
 # Use a different cache store in production
 # config.cache_store = :mem_cache_store
 config.cache_store = :dalli_store
+config.eager_load = true
 
 
 # Enable serving of images, stylesheets, and javascripts from an asset server
