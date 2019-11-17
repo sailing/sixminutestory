@@ -1,11 +1,11 @@
-.row.m-3.title
+.row.mx-4.title
   .col-md-12
     %h1 Write a story
 - if @parent.present?
-  .row.m-3
+  .row.mx-4
     .col-md-12
       = render :partial => "stories/story", :locals => {:story => @parent, truncate: false}
-.row.m-3
+.row.mx-4
   .col-md-6.p-3
     = form_for @story do |f|
       .row
