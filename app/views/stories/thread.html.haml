@@ -6,7 +6,6 @@
       - if @more_stories
         .d-flex.justify-content-center.w-100
           = link_to "Load More", thread_url(@story, page: @page + 1), remote: true, id: "load_more_in_thread", class: "btn btn-dark m-3 col-12 col-md-3"
-      / = render :partial => 'pagination'
 
     - else
       %h1
