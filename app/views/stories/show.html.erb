@@ -32,7 +32,7 @@
 <% end %>
 
 <%- if is_admin %>
-  <div class="d-flex">
+  <div class="d-flex mx-5">
     <%- if @story.featured == true %>
       <div id="unfollowing_button" class="button_container">
         <%= button_to "Unfeature", unfeature_story_url(@story), class: "btn btn-danger btn-sm mr-3 mb-3", form_class: "d-inline-block", 
@@ -48,7 +48,7 @@
   </div>
 <% end %>
 <%- if @parent %>
-  <div class="row d-flex justify-content-center align-items-top mb-4">
+  <div class="row d-flex justify-content-center align-items-top mb-4 mx-4">
     <%= link_to story_url(@parent), class: "btn btn-info btn-large col-4 shadow"  do %>
       Read Up <i class="icon-circle-arrow-up"></i>
     <% end %>
@@ -57,7 +57,7 @@
     </div>
   </div>
 <% end %>
-<div class="row <%= "parent-spacer" if @parent %>">
+<div class="row <%= "parent-spacer" if @parent %> mx-4">
   <div class="col-1">
     <div class="row">
       <%= link_to story_url(@previous), class: "col-12 btn btn-large border increment-story increment-story-left" do %>
@@ -79,18 +79,18 @@
     <% end %>
   <% end %>
 </div>
-<div class="d-flex flex-column mt-4 col-md-11 offset-md-1">
+<div class="d-flex flex-column mt-4 col-md-12">
   <% if @children.any? %>
-    <h3 class="text-left h1 mb-0">
+    <h3 class="text-left h1 mb-0 offset-md-1 pl-4">
       Branches
       <%= link_to "Add a Branch to this Story", write_to_prompt_url(@prompt, parent_id: @story.id), class: "btn btn-danger shadow-sm ml-md-4" %>
     </h3>
-    <div id="children" class="recent-prompts w-100 d-flex flex-sm-column flex-md-row justify-content-md-between justify-content-sm-between align-content-between my-3 flex-wrap flex-md-nowrap flex-fill" style="overflow: scroll;">
+    <div id="children" class="px-md-5 px-4 recent-prompts w-100 d-flex flex-sm-column flex-md-row justify-content-md-between justify-content-sm-between align-content-between my-3 flex-wrap flex-md-nowrap flex-fill" style="overflow: scroll;">
       <%= render :partial => "stories/story", collection: @children, locals: {full_size: false} %>
     </div>
-    <%= link_to children_url(@story, page: (@page || 1) + 1), remote: true, id: "load_more_children", class: "btn btn-dark col-md-2 offset-md-10" do %> 
-      Load More
-    <% end %>
+    <div class="d-flex w-100 justify-content-md-end pr-md-4 px-4">
+      <%= link_to "Load More", children_url(@story, page: (@page || 1) + 1), remote: true, id: "load_more_children", class: "btn btn-dark align-self-right col-sm-12 col-md-1" %>
+    </div>
   <% else %>
     <div class="col-12 d-flex justify-content-center mb-3">
       <%= link_to "Add a Branch to this Story", write_to_prompt_url(@prompt, parent_id: @story.id), class: "btn btn-danger shadow-sm ml-md-4" %>
@@ -107,7 +107,7 @@
     </div>
   </div>
 </div>
-<div class="row m-2 mt-5 d-flex justify-content-between mb-4">
+<div class="row m-4 d-flex justify-content-between">
   <div class="flex-fill col-12 col-md-6">
     <div class="card mb-3">
       <h3 class="card-header bg-danger text-white">Comments</h3>

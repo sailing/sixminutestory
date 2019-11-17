@@ -161,6 +161,12 @@
 	}
 }
 
+@media (min-width: 875px) {
+	#children {
+		padding-left: 150px !important;
+	}
+}
+
 .comment {
 	margin: 10px 0 20px;
 	h5 {

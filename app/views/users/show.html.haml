@@ -1,17 +1,17 @@
 - content_for :pagename do
   = "Profile for #{@user.login}"
 
-.row
+.row.m-3
   .col-md-12
     = render :partial => 'site/profile_block', locals: { user: @user}
 
-.row.mb-3.mt-4
+.row.m-3.mt-4
   .col-md-3
     %h2 Stories
   .col-md-9
     %hr
 
-.row
+.row.m-3
   .col-md-8
     = render @stories
     = render :partial => "stories/pagination"
