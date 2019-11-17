@@ -1,16 +1,21 @@
-.row.mx-4
-  .col-md-12
-    - if @stories.any?
-      #stories
-        = render partial: "stories/story", collection: @stories, locals: {truncate: false}
-      - if @more_stories
-        .d-flex.justify-content-center.w-100
-          = link_to "Load More", thread_url(@story, page: @page + 1), remote: true, id: "load_more_in_thread", class: "btn btn-dark m-3 col-12 col-md-3"
+.container
+  %row
+    .col-md-12.mb-4
+      %h2 Thread
+      .lead This is a thread of stories. Each story was written in continuation of the previous story, to make a (hopefully) cohesive narrative.
+  .row
+    .col-md-12
+      - if @stories.any?
+        #stories
+          = render partial: "stories/story", collection: @stories, locals: {truncate: false}
+        - if @more_stories
+          .d-flex.justify-content-center.w-100
+            = link_to "Load More", thread_url(@story, page: @page + 1), remote: true, id: "load_more_in_thread", class: "btn btn-dark m-3 col-12 col-md-3"
 
-    - else
-      %h1
-        Erm...
-      #no_stories
-        %p
-          No stories meet that criteria.
-          = link_to "Write your own", write_url
+      - else
+        %h1
+          Erm...
+        #no_stories
+          %p
+            No stories meet that criteria.
+            = link_to "Write your own", write_url
