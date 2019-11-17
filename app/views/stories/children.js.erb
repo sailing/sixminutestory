@@ -1,5 +1,8 @@
 $("<%= escape_javascript(render partial: 'stories/story', collection: @children, locals: {full_size: false}) %>").appendTo("#children");
 
+var new_story = document.getElementById("story_<%= @children.first.id %>");
+new_story.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+
 var href = $("#load_more_children").attr('href');
 var url = new URL(href);
 var query_string = url.search;

@@ -1,7 +1,7 @@
 - full_size = true unless full_size == false
 - truncate = true unless truncate == false
 - read_more = true unless read_more == false
-.story.card.shadow-sm.mt-0{class: (if @stories; "mx-3 mb-3 mt-0"; elsif @children && !full_size; "col-md-4 p-0 mb-3 mb-md-0 shadow-sm"; end)}
+.story.card.shadow-sm.mt-0{class: (if @stories; "mx-3 mb-3 mt-0"; elsif @children && !full_size; "col-md-4 p-0 mb-3 mb-md-0 shadow-sm"; end), id: "story_#{story.id}"}
   .card-header.bg-light
     %h2.mt-1{class: (full_size ? "h3" : "h6")}
       = link_to story.safe_title, story_url(story), class: "text-info"

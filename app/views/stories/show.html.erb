@@ -91,12 +91,17 @@
     <div id="children" class="px-md-5 px-4 recent-prompts w-100 d-flex flex-sm-column flex-md-row justify-content-md-between justify-content-sm-between align-content-between my-3 flex-wrap flex-md-nowrap flex-fill" style="overflow: scroll;">
       <%= render :partial => "stories/story", collection: @children, locals: {full_size: false} %>
     </div>
-    <div class="d-flex w-100 justify-content-md-end pr-md-4 px-4">
-      <%= link_to "Load More", children_url(@story, page: (@page || 1) + 1), remote: true, id: "load_more_children", class: "btn btn-dark align-self-right col-sm-12 col-md-1" %>
-    </div>
+    <%- if @more_children %>
+      <div class="d-flex w-100 justify-content-md-end pr-md-4 px-4">
+        <%= link_to "Load More", children_url(@story, page: (@page || 1) + 1), remote: true, id: "load_more_children", class: "btn btn-dark align-self-right col-sm-12 col-md-1" %>
+      </div>
+    <% end %>
   <% else %>
     <div class="col-12 d-flex justify-content-center mb-3">
       <%= link_to "Add a Branch to this Story", write_to_prompt_url(@prompt, parent_id: @story.id), class: "btn btn-danger shadow-sm ml-md-4" %>
+      <% if @parent %>
+        <%= link_to "Read this Thread", thread_url(@story), class: "btn btn-warning shadow-sm ml-md-4" %>
+      <% end %>
     </div>
   <% end %>
 </div>
