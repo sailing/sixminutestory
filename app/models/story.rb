@@ -2,10 +2,8 @@ class Story < ActiveRecord::Base
 
   CC_OPTIONS = ["Creative Commons Attribution 3.0","Creative Commons Attribution-NoDerivs 3.0", "Creative Commons Attribution-NonCommerical-NoDerivs 3.0", "Creative Commons AttributionNonCommerical 3.0","Creative Commons Attribution-NonCommerical-ShareAlike 3.0", "Creative Commons Attribution-ShareAlike 3.0","Public Domain"]
 
-  #acts_as_taggable
-  acts_as_taggable_on :tags
-  acts_as_taggable_on :genres
-  acts_as_taggable_on :emotions
+  acts_as_taggable_on :tags, :genres, :emotions
+  # add .includes(:taggings) to eager load these
   acts_as_voteable
 
   # gives us story threads
@@ -27,7 +25,7 @@ class Story < ActiveRecord::Base
   has_many :comments
 
   # Named Scopes
-  scope :active, lambda {where("stories.active = ?", true)}
+  scope :active, lambda {includes(:taggings).where("stories.active = ?", true)}
   scope :usable, -> { active }
   scope :inactive, lambda {where("stories.active = ?", false)}
   scope :recent, lambda {|timeframe|

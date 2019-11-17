@@ -138,8 +138,8 @@ class StoriesController < ApplicationController
 
     begin
       @story = Story.includes(:user, :prompt, :tags, :votes, comments: [:user, :votes]).active.find(params[:id])
-      @parent = @story.parent
-      @children = @story.children.limit(10).order("created_at DESC")
+      @parent = @story.parent if @story.parent.try(:active?)
+      @children = @story.children.active.limit(10).order("created_at DESC")
       @prompt = @story.prompt
       @previous = Story.previous(@story).first
       @next = Story.next(@story).first
@@ -149,6 +149,7 @@ class StoriesController < ApplicationController
       end
 
     rescue => e
+      raise e
       unless request.path.include?("featured")
         title = request.path.humanize
         @story = Story.where("title ILIKE ?", "%#{title.gsub(/[0-9]/,'').strip}%").first
@@ -159,7 +160,6 @@ class StoriesController < ApplicationController
         flash[:notice] = "That story isn't featured."
       end
 
-      store_location
       redirect_to recent_url
     else
       # tests to see if a following relationship exists
@@ -172,16 +172,30 @@ class StoriesController < ApplicationController
     end
   end
 
+  def children
+    @story = Story.find(params[:id])
+    @limit = params[:limit] ? params[:limit].to_i : 10
+    @page = params[:page] ? params[:page].to_i : 1
+      
+    @children = @story.children.active.order("created_at DESC").page(@page).per(@limit)
+    respond_to do |format|
+      format.html { render 'index' }
+      format.js
+    end
+  end
+
   def thread
     @story = Story.find(params[:id])
-    limit = params[:page] || 10 
-    from_depth = params[:page].present? ? (params[:page].to_i * limit) : 0
-    to_depth = from_depth + limit
+    @limit = params[:limit] ? params[:limit].to_i : 10
+    @page = params[:page] ? params[:page].to_i : 1
+    @from_depth = @page == 1 ? 0 : ((@page - 1) * @limit)
+    @to_depth = @from_depth - 1 + @limit
       
-    @stories = @story.path.from_depth(from_depth).to_depth(to_depth)
+    @stories = @story.path.active.from_depth(@from_depth).to_depth(@to_depth)
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html 
+      format.js
     end
   end
 

@@ -14,6 +14,7 @@ Sms::Application.routes.draw do
 
     # threaded stories
     get '/thread/:id', to: "stories#thread", as: 'thread'
+    get '/children/:id', to: "stories#children", as: 'children'
 
 
     resources :prompts do

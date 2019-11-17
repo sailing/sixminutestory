@@ -2,6 +2,7 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 //= require jquery3
+//= require rails-ujs
 //= require popper
 //= require bootstrap-sprockets
 //= require_self
