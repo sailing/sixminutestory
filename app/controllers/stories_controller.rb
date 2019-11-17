@@ -105,6 +105,8 @@ class StoriesController < ApplicationController
 
     respond_to do |format|
       if @story.save
+        Hermes.branched_story_notification(@story).deliver if @story.parent.present?
+        
         format.html { redirect_to thanks_story_url(@story) }
         format.json { render json: @story, status: :created,location: @story}
       else

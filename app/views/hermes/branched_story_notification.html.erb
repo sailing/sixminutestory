@@ -1,0 +1,6 @@
+<p>
+  Someone wrote a new story, branched off your story <%= link_to @story.parent.title, story_url(@story.parent) %>.
+</p>
+<p>
+  View it here: <%= link_to story_url(@story), story_url(@story) %>
+</p>

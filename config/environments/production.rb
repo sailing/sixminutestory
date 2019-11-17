@@ -29,7 +29,7 @@ config.cache_store = :dalli_store
 
 # Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
- config.action_mailer.default_url_options = { host: 'sixminutestory.com' }
+ config.action_mailer.default_url_options = {host: "sixminutestory.com", protocol: 'https'}
 
 # Enable threaded mode
 # config.threadsafe!
@@ -64,6 +64,6 @@ config.assets.prefix = "/production/assets"
 # config.assets.precompile += %w( search.js )
 
 # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-# config.force_ssl = true
+config.force_ssl = true
 
 end
