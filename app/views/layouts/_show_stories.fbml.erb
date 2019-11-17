@@ -44,7 +44,7 @@ is_admin ? @colspan = 5 : @colspan = 3
 		<!-- number of comments -->
 			<%= image_tag('comment_icon.png')%><br />
 			<%= link_to story.comment_counter, 
-				story_url(story,:anchor => "comments")
+				story_url(story,:anchor => "comments_section")
 			%>
 	</td>
 	<td class="story_rating">	

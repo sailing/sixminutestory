@@ -1,4 +1,4 @@
-#comments_section.row-fluid
+.row-fluid
   .col-12
     - if current_user
       .form
@@ -12,11 +12,7 @@
           Want to comment? Login or Join
         = link_to "Login", new_session_path(User), class: 'btn btn-primary'
         = link_to "Sign up", new_registration_path(User), class: 'btn btn-dark'
-
-
-- if @story.comments.present?
-  %hr
-  .row-fluid
-    #comments.col-12
-      = render partial: "comments/comment", collection: @story.comments
+.row-fluid
+  #comments.col-12
+    = render partial: "comments/comment", collection: @story.comments
 

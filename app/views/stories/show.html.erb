@@ -32,7 +32,7 @@
 <% end %>
 
 <%- if is_admin %>
-  <div class="d-flex mx-5">
+  <div class="d-flex mx-4">
     <%- if @story.featured == true %>
       <div id="unfollowing_button" class="button_container">
         <%= button_to "Unfeature", unfeature_story_url(@story), class: "btn btn-danger btn-sm mr-3 mb-3", form_class: "d-inline-block", 
@@ -107,7 +107,7 @@
     </div>
   </div>
 </div>
-<div class="row m-4 d-flex justify-content-between">
+<div class="row m-4 d-flex justify-content-between" id="comments_section">
   <div class="flex-fill col-12 col-md-6">
     <div class="card mb-3">
       <h3 class="card-header bg-danger text-white">Comments</h3>

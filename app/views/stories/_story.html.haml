@@ -26,7 +26,7 @@
     %div{class: ("card-footer")}
       %span.comments_in_footer
         / = link_to pluralize(story.comments_count, 'remark'), story_url(story, :anchor => "comments")
-        = link_to raw(story.comments_count.to_s + " <i class='icon-comment'></i>"), story_url(story, :anchor => "comments"), class: "text-dark", rel: "tooltip", title: "#{story.comments_count.to_s} comments"
+        = link_to raw(story.comments_count.to_s + " <i class='icon-comment'></i>"), story_url(story, :anchor => "comments_section"), class: "text-dark", rel: "tooltip", title: "#{story.comments_count.to_s} comments"
 
       - unless @stories || @parent
         %span &nbsp;|&nbsp;
