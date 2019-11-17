@@ -31,7 +31,7 @@
       - unless @stories || @parent
         %span &nbsp;|&nbsp;
         %span.favorites_in_footer
-          #{render :partial => "votes/story_vote", :story => story}
+          = render partial: "votes/story_vote", locals: {story: story }
       %span &nbsp;|&nbsp;
       %span.counter_in_footer
         / = pluralize(story.counter, 'view')
