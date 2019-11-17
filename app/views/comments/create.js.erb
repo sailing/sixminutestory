@@ -1,0 +1,7 @@
+<%- if @comment %>
+	$("<%= escape_javascript(render @comment)%>").appendTo("#comments");
+  var new_comment = document.getElementById("comment_<%= @comment.id %>");
+  new_comment.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+
+  $("#comments_form").trigger("reset");
+<% end %>

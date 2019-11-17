@@ -1,11 +1,11 @@
-#comments.row-fluid
+#comments_section.row-fluid
   .col-12
     - if current_user
-      #comment_form.form
-        = form_for([@story, Comment.new], :html => { :id => 'comments_form' }) do |f|
+      .form
+        = form_for([@story, Comment.new], html: { id: 'comments_form' }, remote: true) do |f|
           = f.text_area :comment, class: "col-12 form-control my-3", rows: 5
           #comment_submit_container.pull-right.mb-3
-            = submit_tag "Contribute", :name => "contribute", :id => "contribute-button", :disabled => false, class: "btn btn-success"
+            = submit_tag "Contribute", name: "contribute", id: "contribute-button", disabled: false, class: "btn btn-success"
     - else
       #signin_or_register.p-3
         %p
@@ -17,6 +17,6 @@
 - if @story.comments.present?
   %hr
   .row-fluid
-    .col-12
-      = render :partial => "comments/comment", :collection => @story.comments
+    #comments.col-12
+      = render partial: "comments/comment", collection: @story.comments
 
