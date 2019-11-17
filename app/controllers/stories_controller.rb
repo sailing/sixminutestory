@@ -100,6 +100,7 @@ class StoriesController < ApplicationController
     @story = current_user.stories.build(story_params)
     @story.prompt = Prompt.find(params[:story][:prompt_id])
     @story.parent = Story.find(params[:story][:parent_id]) if params[:story][:parent_id].present?
+    
 
     respond_to do |format|
       if @story.save
@@ -351,7 +352,7 @@ class StoriesController < ApplicationController
   private
 
     def story_params
-      params.require(:story).permit(:title, :description, :tags, :genres, :emotions, :license, :prompt_id, :parent_id)
+      params.require(:story).permit(:title, :description, :license, :prompt_id, :parent_id)
     end
 
     def ensure_current_post_url
