@@ -31,7 +31,7 @@
   <meta name="twitter:site" content="@6minutestory">
 <% end %>
 
-<%- if false %>
+<%- if is_admin %>
   <div class="d-flex">
     <%- if @story.featured == true %>
       <div id="unfollowing_button" class="button_container">
@@ -72,38 +72,40 @@
   </div>
   <div class="col-10">
     <%= render :partial => "stories/story", :locals => {:story => @story, truncate: false } %>
-    <div class="d-flex flex-column mt-4">
-      <% if @children.any? %>
-        <h3 class="text-left h1 mb-0">
-          Branches
-          <%= link_to "Add a Branch to this Story", write_to_prompt_url(@prompt, parent_id: @story.id), class: "btn btn-danger shadow-sm ml-md-4" %>
-        </h3>
-        <div id="children" class="recent-prompts w-100 d-flex flex-sm-column flex-md-row justify-content-md-between justify-content-sm-between align-content-between my-3 flex-wrap flex-md-nowrap flex-fill" style="overflow: scroll;">
-          <%= render :partial => "stories/story", collection: @children, locals: {full_size: false} %>
-        </div>
-        <%= link_to children_url(@story, page: (@page || 1) + 1), remote: true, id: "load_more_children", class: "btn btn-primary" do %> 
-          <i class="icon-circle-arrow-right"></i>
-        <% end %>
-      <% else %>
-        <div class="col-12 d-flex justify-content-center mb-3">
-          <%= link_to "Add a Branch to this Story", write_to_prompt_url(@prompt, parent_id: @story.id), class: "btn btn-danger shadow-sm ml-md-4" %>
-        </div>
-      <% end %>
-      <% if @parent %>
-        <div class="col-12 d-flex justify-content-center mb-3"><%= link_to "Read this thread", thread_url(@story), class: "btn btn-warning shadow-sm ml-md-4" %></div>
-      <% end %>
-      <div class="col-12 d-flex justify-content-center mb-3">
-        <div class="col-6 text-center card border-primary p-3">
-          <%= render :partial => 'stories/share_in_story', :locals => {:story => @story} %>
-        </div>
-      </div>
-    </div>
   </div>
   <% if @next %>
     <%= link_to story_url(@next), class: "col-1 btn btn-large border increment-story" do %>
       <i class="icon-caret-right icon-large"></i>
     <% end %>
   <% end %>
+</div>
+<div class="d-flex flex-column mt-4 col-md-11 offset-md-1">
+  <% if @children.any? %>
+    <h3 class="text-left h1 mb-0">
+      Branches
+      <%= link_to "Add a Branch to this Story", write_to_prompt_url(@prompt, parent_id: @story.id), class: "btn btn-danger shadow-sm ml-md-4" %>
+    </h3>
+    <div id="children" class="recent-prompts w-100 d-flex flex-sm-column flex-md-row justify-content-md-between justify-content-sm-between align-content-between my-3 flex-wrap flex-md-nowrap flex-fill" style="overflow: scroll;">
+      <%= render :partial => "stories/story", collection: @children, locals: {full_size: false} %>
+    </div>
+    <%= link_to children_url(@story, page: (@page || 1) + 1), remote: true, id: "load_more_children", class: "btn btn-dark col-md-2 offset-md-10" do %> 
+      Load More
+    <% end %>
+  <% else %>
+    <div class="col-12 d-flex justify-content-center mb-3">
+      <%= link_to "Add a Branch to this Story", write_to_prompt_url(@prompt, parent_id: @story.id), class: "btn btn-danger shadow-sm ml-md-4" %>
+    </div>
+  <% end %>
+  <% if @parent %>
+    <div class="col-12 d-flex justify-content-center mb-3"><%= link_to "Read this thread", thread_url(@story), class: "btn btn-warning shadow-sm ml-md-4" %></div>
+  <% end %>
+</div>
+<div class="d-flex flex-column mt-4">
+  <div class="col-12 d-flex justify-content-center mb-3">
+    <div class="col-6 text-center card border-primary p-3">
+      <%= render :partial => 'stories/share_in_story', :locals => {:story => @story} %>
+    </div>
+  </div>
 </div>
 <div class="row m-2 mt-5 d-flex justify-content-between mb-4">
   <div class="flex-fill col-12 col-md-6">
