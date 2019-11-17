@@ -103,6 +103,7 @@ GEM
       haml (>= 4.0.6, < 6.0)
       html2haml (>= 1.0.1)
       railties (>= 5.1)
+    honeybadger (4.5.2)
     html2haml (2.2.0)
       erubis (~> 2.7.0)
       haml (>= 4.0, < 6)
@@ -253,6 +254,7 @@ DEPENDENCIES
   devise-encryptable
   flickraw
   haml-rails
+  honeybadger (~> 4.0)
   jquery-rails
   json (>= 1.8.2)
   kaminari

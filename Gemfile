@@ -10,6 +10,7 @@ gem 'puma'
 gem 'pg'
 
 # Analytics
+gem 'honeybadger', '~> 4.0'
 gem 'newrelic_rpm'
 
 # Bundle edge Rails instead:
