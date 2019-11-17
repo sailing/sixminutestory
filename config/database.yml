@@ -4,6 +4,7 @@ development:
   database: sm6_development
   host: localhost
   port: 5432
+  pool: <%= ENV["DB_POOL"] || ENV['RAILS_MAX_THREADS'] || 5 %>
 
 test:
   adapter: postgresql
@@ -12,3 +13,8 @@ test:
   host: localhost
   port: 5432
   min_messages: error
+  pool: <%= ENV["DB_POOL"] || ENV['RAILS_MAX_THREADS'] || 5 %>
+
+production:
+  url:  <%= ENV["DATABASE_URL"] %>
+  pool: <%= ENV["DB_POOL"] || ENV['RAILS_MAX_THREADS'] || 5 %>
