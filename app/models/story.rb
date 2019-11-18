@@ -38,6 +38,7 @@ class Story < ActiveRecord::Base
   scope :commented, lambda { where('(comments_count >= ?)', 0).order('comments_count DESC, votes_count DESC, counter DESC, updated_at ASC') }
   scope :by_popularity, lambda {order('counter ASC')}
   scope :by_date, -> {order("stories.created_at DESC")}
+  scope :by_votes, -> {order("stories.votes_count DESC")}
 
   # Next and Previous links
   scope :next, lambda { |p| active.where("id > ?", p.id).order("id").limit(1)}

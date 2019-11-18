@@ -143,7 +143,7 @@ class StoriesController < ApplicationController
     begin
       @story = Story.includes(:user, :prompt, :tags, :votes, comments: [:user, :votes]).active.find(params[:id])
       @parent = @story.parent if @story.parent.try(:active?)
-      @children = @story.children.active.top.limit(10)
+      @children = @story.children.active.by_votes.limit(10)
       @more_children = @children.size < @story.children.size
       @prompt = @story.prompt
       @previous = Story.previous(@story).first
@@ -182,10 +182,8 @@ class StoriesController < ApplicationController
     @limit = params[:limit] ? params[:limit].to_i : 10
     @page = params[:page] ? params[:page].to_i : 1
       
-    @children = @story.children.active.top.page(@page).per(@limit)
-
+    @children = @story.children.active.by_votes.page(@page).per(@limit)
     respond_to do |format|
-      format.html { render 'index' }
       format.js
     end
   end
