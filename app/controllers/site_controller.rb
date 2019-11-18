@@ -58,7 +58,7 @@ class SiteController < ApplicationController
      per_page = 7
      order = "created_at DESC"
      @stories = @user.stories.active.page(page).per(per_page).order(order)
-     @story = @stories.first if @stories.any?
+     @story = @stories.first if @stories.present?
          @i = 0
    end
 

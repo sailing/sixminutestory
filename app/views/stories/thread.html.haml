@@ -5,7 +5,7 @@
       .lead This is a thread of stories. Each story was written in continuation of the previous story, to make a (hopefully) cohesive narrative.
   .row
     .col-md-12
-      - if @stories.any?
+      - if @stories.present? && @stories.any?
         #stories
           = render partial: "stories/story", collection: @stories, locals: {truncate: false}
         - if @more_stories
