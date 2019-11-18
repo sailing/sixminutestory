@@ -88,7 +88,7 @@
         <%= link_to "Read this Thread", thread_url(@story), class: "btn btn-warning shadow-sm ml-md-4" %>
       <% end %>
     </h3>
-    <div id="children" class="px-md-5 px-4 recent-prompts w-100 d-flex flex-sm-column flex-md-row justify-content-md-between justify-content-sm-between align-content-between my-3 flex-wrap flex-md-nowrap flex-fill" style="overflow: scroll;">
+    <div id="children" class="children-fade px-md-5 px-4 recent-prompts w-100 d-flex flex-sm-column flex-md-row justify-content-md-between justify-content-sm-between align-content-between my-3 flex-wrap flex-md-nowrap flex-fill" style="overflow: scroll;">
       <%= render :partial => "stories/story", collection: @children, locals: {full_size: false} %>
     </div>
     <%- if @more_children %>

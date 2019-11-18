@@ -25,9 +25,6 @@
   <body data-controller="<%= params[:controller] %>" data-action="<%= params[:action] %>">
     <nav class="nav navbar navbar-expand-md navbar-dark bg-primary" role="navigation">
       <%= link_to "Six Minute Story", root_url, class: "navbar-brand h1" %>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <div class="navbar-nav align-content-start">
           <%= link_to site_url(anchor: "section3"), class: "nav-item nav-link btn" do %>
@@ -41,9 +38,12 @@
           <% end %>
         </div>
       </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
       <%= render partial: 'layouts/login' %>
     </nav>
-    <div class="container-fluid p-0">
+    <div class="container-fluid">
       <section class="section">
         <%= render partial: "layouts/flashes" %>
         <% if content_for?(:sideyard) %>

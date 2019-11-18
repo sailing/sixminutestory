@@ -120,7 +120,6 @@
 	}
 }
 
-
 .parent-fade {
 	position: relative;
 	z-index: -1;
@@ -137,6 +136,7 @@
   width: 100%;
   content: '';
 }
+
 
 @media (max-width: 575px) {
 	.parent-fade {
@@ -163,6 +163,8 @@
 
 @media (min-width: 875px) {
 	#children {
+		margin-left: -15px;
+    width: 100vw !important;
 		padding-left: 150px !important;
 	}
 }
