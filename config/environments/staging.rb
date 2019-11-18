@@ -31,7 +31,7 @@ Sms::Application.configure do
   config.action_controller.asset_host = ENV['asset_host'] if ENV['asset_host']
 
   # Store assets in a subdirectory
-  config.assets.prefix = "/staging/assets"
+  config.assets.prefix = "/production/assets"
 
 
 
