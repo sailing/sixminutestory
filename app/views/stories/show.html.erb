@@ -60,12 +60,14 @@
 <div class="row <%= "parent-spacer" if @parent %> mx-4">
   <div class="col-1">
     <div class="row">
-      <%= link_to story_url(@previous), class: "col-12 btn btn-large border increment-story increment-story-left" do %>
-        <i class="icon-caret-left icon-large"></i>
+      <% if @previous %>
+        <%= link_to story_url(@previous), class: "col-12 btn btn-large border increment-story increment-story-left" do %>
+          <i class="icon-caret-left icon-large"></i>
+        <% end %>
       <% end %>
     </div>
     <div class="row">
-      <%= link_to random_stories_url, class: "col-12 border border-top-0 btn btn-large increment-story increment-story-random" do %>
+      <%= link_to random_stories_url, class: "col-12 btn btn-large increment-story increment-story-random border #{@previous ? 'border-top-0' : 'rounded' }" do %>
         <i class="icon-random icon-large"></i>
       <% end %>
     </div>
