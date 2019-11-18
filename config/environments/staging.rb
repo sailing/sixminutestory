@@ -6,7 +6,7 @@ Sms::Application.configure do
   config.cache_classes = true
 
   # Full error reports are disabled and caching is turned on
-  config.consider_all_requests_local = true
+  config.consider_all_requests_local = false
   config.perform_caching             = true
   #config.action_view.cache_template_loading            = true
   #config.cache_store = :mem_cache_store, Memcached::Rails.new
@@ -14,7 +14,7 @@ Sms::Application.configure do
   config.log_level = :debug
 
   # Heroku requires we serve static assets
-  config.serve_static_assets = false
+  config.serve_static_assets = true
 
   # Use a different logger for distributed setups
   # config.logger = SyslogLogger.new
@@ -23,19 +23,6 @@ Sms::Application.configure do
   # config.cache_store = :mem_cache_store
   config.cache_store = :dalli_store
   config.eager_load = true
-
-
-  # Enable serving of images, stylesheets, and javascripts from an asset server
-  # Use S3 for hosting
-  # config.action_controller.asset_host = "//sixminutestory.s3.amazonaws.com"
-  config.action_controller.asset_host = ENV['asset_host'] if ENV['asset_host']
-
-  # Store assets in a subdirectory
-  config.assets.prefix = "/production/assets"
-
-
-
-
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
@@ -59,6 +46,14 @@ Sms::Application.configure do
 
   # Generate digests for assets URLs
   config.assets.digest = true
+  
+  # Enable serving of images, stylesheets, and javascripts from an asset server
+  # Use S3 for hosting
+  # config.action_controller.asset_host = "//sixminutestory.s3.amazonaws.com"
+  config.action_controller.asset_host = ENV['asset_host'] if ENV['asset_host']
+
+  # Store assets in a subdirectory
+  config.assets.prefix = "/production/assets"
 
 
   # Defaults to Rails.root.join("public/assets")
