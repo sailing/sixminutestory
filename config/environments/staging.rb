@@ -50,10 +50,10 @@ Sms::Application.configure do
   # Enable serving of images, stylesheets, and javascripts from an asset server
   # Use S3 for hosting
   # config.action_controller.asset_host = "//sixminutestory.s3.amazonaws.com"
-  config.action_controller.asset_host = ENV['asset_host'] if ENV['asset_host']
+  # config.action_controller.asset_host = ENV['asset_host'] if ENV['asset_host']
 
   # Store assets in a subdirectory
-  config.assets.prefix = "/production/assets"
+  # config.assets.prefix = "/production/assets"
 
 
   # Defaults to Rails.root.join("public/assets")
