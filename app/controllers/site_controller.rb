@@ -5,7 +5,7 @@ class SiteController < ApplicationController
 
    def index
       
-      @active_writers_this_week = User.where("last_sign_in_at > ?", 1.week.ago).size
+      @active_writers_this_week = User.where("updated_at > ?", 1.week.ago).size
       @new_stories_this_week = Story.where("created_at > ?", 1.week.ago).size
       @comments_this_week = Comment.where("created_at > ?", 1.week.ago).size
 
