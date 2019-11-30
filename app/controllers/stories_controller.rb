@@ -299,7 +299,7 @@ class StoriesController < ApplicationController
     @story.featured = 1
     respond_to do |format|
       if @story.save
-        Hermes.featured_story_notification(@story.user, @story).deliver unless (@story.user.send_stories == false or @story.user.email_address.blank?)
+        Hermes.featured_story_notification(@story).deliver unless (@story.user.send_stories == false or @story.user.email_address.blank?)
 
         flash[:notice] = 'Story featured.'
         format.html { redirect_to(story_url(@story)) }

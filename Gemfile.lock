@@ -93,6 +93,9 @@ GEM
     execjs (2.7.0)
     factory_bot (5.1.1)
       activesupport (>= 4.2.0)
+    factory_bot_rails (5.1.1)
+      factory_bot (~> 5.1.0)
+      railties (>= 4.2.0)
     ffi (1.11.1)
     flickraw (0.9.10)
     globalid (0.4.2)
@@ -276,7 +279,7 @@ DEPENDENCIES
   dalli
   devise
   devise-encryptable
-  factory_bot
+  factory_bot_rails
   flickraw
   haml-rails
   honeybadger (~> 4.0)
