@@ -25,7 +25,7 @@
 
  
 <tr>
-<td style="background-color:#FFFFFF;border-top:0px solid #333333;border-bottom:10px solid #FFFFFF;"><center><a href="http://sixminutestory.com"><IMG id=editableImg1 SRC="http://sixminutestory.com/images/logo2.png" BORDER="0" title="Six Minute Story"  alt="Six Minute Story" align="center"></a></center></td>
+<td style="background-color:#FFFFFF;border-top:0px solid #333333;border-bottom:10px solid #FFFFFF;"><center><a href="https://sixminutestory.com?user_email=<%= @recipient.email %>&user_token=<%= @recipient.authentication_token %>"><IMG id=editableImg1 SRC="http://sixminutestory.com/images/logo2.png" BORDER="0" title="Six Minute Story"  alt="Six Minute Story" align="center"></a></center></td>
 </tr>
 
 
@@ -46,7 +46,7 @@ Hi <%= @recipient.login %>,
 <%= @commenter.login %> commented on your story, "<%= @story.title %>".
 </p>
 <p>
-View it here: <%= link_to story_url(@story)+"#comment_"+@comment.id.to_s, story_url(@story, :anchor => "comment_"+@comment.id.to_s) %>
+<%= link_to "Read the comment here", story_url(@story, :anchor => "comment_#{@comment.id}", user_email: @recipient.email, user_token: @recipient.authentication_token) %>
 </p>
 
 
@@ -60,11 +60,11 @@ View it here: <%= link_to story_url(@story)+"#comment_"+@comment.id.to_s, story_
 <span style="font-size:10px;color:#996600;line-height:100%;font-family:verdana;">
 You received this email as per your preferences on Six Minute Story. <br />
 <br />
-<a href="http://sixminutestory.com/account/edit">Update your preferences</a>
+<a href="https://sixminutestory.com/account/edit?user_email=<%= @recipient.email %>&user_token=<%= @recipient.authentication_token %>">Update your preferences</a>
 <br />
 <br />
 Find us on twitter:<br />
-<a href="http://twitter.com/6minutestory">@6minutestory</a><br />
+<a href="https://twitter.com/6minutestory">@6minutestory</a><br />
 <br />
   
 

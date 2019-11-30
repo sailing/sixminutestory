@@ -1,6 +1,6 @@
 <p>
-  Someone wrote a new story, branched off your story <%= link_to @story.parent.title, story_url(@story.parent) %>.
+  Someone wrote a new story, branched off your story <%= link_to @parent.title, story_url(@parent, user_email: @recipient.email, user_token: @recipient.authentication_token) %>.
 </p>
 <p>
-  View it here: <%= link_to story_url(@story), story_url(@story, user_email: @writer.email, user_token: @writer.authentication_token) %>
+  View it here: <%= link_to @story.title, story_url(@story, user_email: @recipient.email, user_token: @recipient.authentication_token) %>
 </p>

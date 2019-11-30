@@ -10,31 +10,33 @@ class Hermes < ActionMailer::Base
     @commenter = commenter
     @comment = comment
 
-    mail(:to => writer.email_address, :subject => "Six Minute Story – #{@commenter.login} commented on your story (#{@story.title})")
+    mail(:to => @recipient.email, :subject => "Six Minute Story – #{@commenter.login} commented on your story (#{@story.title})")
   end
 
   def branched_story_notification(story)
     @story = story
     @writer = @story.user
+    @parent = @story.parent
+    @recipient = @parent.user
 
-    mail(:to => @writer.email_address, :subject => "Six Minute Story – someone branched your story (#{@story.parent.title})")
+    mail(:to => @recipient.email, :subject => "Six Minute Story – #{@writer.login rescue 'Someone'} branched your story (#{@parent.title})")
   end
 
   def signup_notification(writer)
     @recipient = writer
-    mail(:to => writer.email_address, :subject => "Six Minute Story – Welcome!")
+    mail(:to => @recipient.email, :subject => "Six Minute Story – Welcome!")
   end
 
   def following_notification(writer, follower)
     @recipient = writer
     @follower = follower
-    mail(:to => writer.email_address, :subject => "Six Minute Story – #{@follower.login} is now following you!")
+    mail(:to => @recipient.email, :subject => "Six Minute Story – #{@follower.login} is now following you!")
   end
    
   def featured_story_notification(writer, story)
-    @writer = writer
+    @recipient = writer
     @story = story
-     mail(:to => writer.email_address, :subject => "Six Minute Story – Your story #{@story.title} has been featured!")
+    mail(:to => @recipient.email, :subject => "Six Minute Story – Your story #{@story.title} has been featured!")
   end
    
 end

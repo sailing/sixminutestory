@@ -25,7 +25,7 @@
 
  
 <tr>
-<td style="background-color:#FFFFFF;border-top:0px solid #333333;border-bottom:10px solid #FFFFFF;"><center><a href="http://sixminutestory.com"><IMG id=editableImg1 SRC="http://sixminutestory.com/images/logo2.png" BORDER="0" title="Six Minute Story"  alt="Six Minute Story" align="center"></a></center></td>
+<td style="background-color:#FFFFFF;border-top:0px solid #333333;border-bottom:10px solid #FFFFFF;"><center><a href="https://sixminutestory.com?user_email=<%= @recipient.email %>&user_token=<%= @recipient.authentication_token %>"><IMG id=editableImg1 SRC="http://sixminutestory.com/images/logo2.png" BORDER="0" title="Six Minute Story"  alt="Six Minute Story" align="center"></a></center></td>
 </tr>
 
 
@@ -37,19 +37,19 @@
 <td bgcolor="#FFFFFF" valign="top" style="font-size:12px;color:#000000;line-height:150%;font-family:trebuchet ms;">
 
 <p>
-<span style="font-size:20px;font-weight:bold;color:#CC6600;font-family:arial;line-height:110%;">Your story has been featured!</span><br>
-
-<p>
-Hi <%= @writer.login %>,
+  <span style="font-size:20px;font-weight:bold;color:#CC6600;font-family:arial;line-height:110%;">Your story has been featured!</span><br>
 </p>
 <p>
-Your story, "<%= @story.title %>", has been featured on Six Minute Story. It will appear among a select few stories on the front page of Six Minute Story.
+  Hi <%= @recipient.login %>,
+</p>
+<p>
+  Your story, "<%= @story.title %>", has been featured on Six Minute Story. It will appear among a select few stories on the front page of Six Minute Story.
 </p>
 <p>
 	Congratulations!
 </p>
 <p>
-View your story here: <%= link_to featured_url(@story), featured_url(@story) %>
+  <%= link_to "View your story here", featured_url(@story, user_email: @recipient.email, user_token: @recipient.authentication_token) %>
 </p>
 
 
@@ -63,7 +63,7 @@ View your story here: <%= link_to featured_url(@story), featured_url(@story) %>
 <span style="font-size:10px;color:#996600;line-height:100%;font-family:verdana;">
 You received this email as per your preferences on Six Minute Story. <br />
 <br />
-<a href="http://sixminutestory.com/account/edit">Update your preferences</a>
+<a href="https://sixminutestory.com/account/edit?user_email=<%= @recipient.email %>&user_token=<%= @recipient.authentication_token %>">Update your preferences</a>
 <br />
 <br />
 Find us on twitter:<br />

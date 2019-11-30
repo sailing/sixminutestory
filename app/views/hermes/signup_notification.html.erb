@@ -2,10 +2,10 @@
 Hi <%= @recipient.login %>,
 </p>
 <p>
-Welcome to Six Minute Story. You can jump right in and start <%= link_to "writing", write_url %> now!
+Welcome to Six Minute Story. You can jump right in and start <%= link_to "writing", write_url(user_email: @recipient.email, user_token: @recipient.authentication_token) %> now!
 </p>
 <p>
-<%= link_to "View your profile", profile_url(@recipient.id) %>.
+<%= link_to "View your profile", profile_url(@recipient.id, user_email: @recipient.email, user_token: @recipient.authentication_token) %>.
 </p>
 <p>	
 Cheers!
