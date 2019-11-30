@@ -15,9 +15,9 @@ class Hermes < ActionMailer::Base
 
   def branched_story_notification(story)
     @story = story
-    writer = @story.user
+    @writer = @story.user
 
-    mail(:to => writer.email_address, :subject => "Six Minute Story – someone branched your story (#{@story.parent.title})")
+    mail(:to => @writer.email_address, :subject => "Six Minute Story – someone branched your story (#{@story.parent.title})")
   end
 
   def signup_notification(writer)
