@@ -76,4 +76,6 @@ group :development, :test do
   gem 'byebug'
   gem 'pry'
   gem 'rb-readline'
+  gem 'rspec-rails'
+  gem 'factory_bot'
 end
