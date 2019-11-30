@@ -15,6 +15,10 @@ RSpec.describe Hermes, type: :mailer do
     it "renders the body" do
       expect(mail.body.encoded).to match("branched off your story")
     end
+
+    it "renders the body in html" do
+      expect(mail.html).to match("branched off your story")
+    end
   end
 
   context "when a comment is made" do
@@ -31,6 +35,10 @@ RSpec.describe Hermes, type: :mailer do
     it "renders the body" do
       expect(mail.body.encoded).to match("commented on your story")
     end
+
+    it "renders the body in html" do
+      expect(mail.html).to match("commented on your story")
+    end
   end
 
   context "when a user signs up" do
@@ -45,6 +53,10 @@ RSpec.describe Hermes, type: :mailer do
 
     it "renders the body" do
       expect(mail.body.encoded).to match("Welcome to Six Minute Story")
+    end
+
+    it "renders the body in html" do
+      expect(mail.html).to match("Welcome to Six Minute Story")
     end
   end
 
@@ -62,6 +74,10 @@ RSpec.describe Hermes, type: :mailer do
     it "renders the body" do
       expect(mail.body.encoded).to match("is now following your stories")
     end
+
+    it "renders the body in html" do
+      expect(mail.html).to match("is now following your stories")
+    end
   end
 
   context "when a story gets featured" do
@@ -76,6 +92,10 @@ RSpec.describe Hermes, type: :mailer do
 
     it "renders the body" do
       expect(mail.body.encoded).to match("has been featured")
+    end
+
+    it "renders the body in html" do
+      expect(mail.html).to match("has been featured")
     end
   end
 end
