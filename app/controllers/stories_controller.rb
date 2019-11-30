@@ -1,8 +1,9 @@
 class StoriesController < ApplicationController
-  before_action :authenticate_user!, :only => [:new, :create, :flag_story, :update]
-  before_action :must_own_story, :only => [:edit, :destroy]
-  before_action :must_be_admin, :only => [:admin, :disabled, :enable_story, :feature_story, :unfeature_story]
-  after_action :increment_counter, :only => [:show]
+  # before_action :authenticate_user_from_token!, only: [:new, :create, :flag_story, :update, :thanks]
+  before_action :authenticate_user!, only: [:new, :create, :flag_story, :update, :thanks]
+  before_action :must_own_story, only: [:edit, :destroy]
+  before_action :must_be_admin, only: [:admin, :disabled, :enable_story, :feature_story, :unfeature_story]
+  after_action :increment_counter, only: [:show]
 
   def index
     per_page = 10

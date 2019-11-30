@@ -7,9 +7,13 @@ class ApplicationController < ActionController::Base
   # as `authenticate_user!` (or whatever your resource is) will halt the filter chain and redirect 
   # before the location can be stored.
 
+  acts_as_token_authentication_handler_for User
+  skip_before_action :authenticate_user_from_token!
+  before_action :authenticate_user_from_token!, if: :login_params_present?
+
   before_action :check_for_maintenance 
   before_action :require_username, :except => [:edit, :update, :create]
-  
+
   helper :all # include all helpers, all the time
   
   # See ActionController::RequestForgeryProtection for details
@@ -22,6 +26,10 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
 
   private
+    def login_params_present?
+      params[:user_email].present? && params[:user_token].present?
+    end
+
     def require_user
       unless current_user
         store_location
@@ -96,7 +104,7 @@ class ApplicationController < ActionController::Base
        end
      end
      
-    def require_username 
+    def require_username
       if current_user
         unless current_user.login.present?
           flash[:notice] = "Please choose a username to represent you on Six Minute Story."

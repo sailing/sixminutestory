@@ -1,4 +1,5 @@
 class PromptsController < ApplicationController
+  before_action :authenticate_user_from_token!, :only => [:new, :create] 
   before_action :authenticate_user!, :only => [:new, :create] 
   before_action :must_be_admin, :only => [:enable_prompt, :disable_prompt, :verified, :edit, :update,:admin,:destroy]
  

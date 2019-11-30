@@ -39,9 +39,7 @@ gem 'rinku', :require => 'rails_rinku' # replacing auto_linking in rails 3.2
 # user authing
 gem 'devise'
 gem 'devise-encryptable'
-
-# gem 'rpx_now'
-# gem 'authlogic_rpx', :git => 'git://github.com/sailing/authlogic_rpx.git'
+gem 'simple_token_authentication', '~> 1.0'
 
 # caching
 # for Heroku

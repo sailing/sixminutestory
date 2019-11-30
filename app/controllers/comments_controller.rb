@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user_from_token!, :only => [:index, :new, :create]
   before_action :authenticate_user!, :only => [:index, :new, :create]
   before_action :must_be_admin, :only => [:destroy, :edit, :update]
 

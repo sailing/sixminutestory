@@ -1,4 +1,7 @@
 class FollowingsController < ApplicationController
+  before_action :authenticate_user_from_token!, :only => [:create, :destroy]
+  before_action :authenticate_user!, :only => [:create, :destroy]
+
   def create
     @following = current_user.followings.build(:writer_id => params[:writer_id])
     if @following.save

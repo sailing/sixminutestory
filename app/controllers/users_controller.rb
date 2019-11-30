@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_no_user, :only => [:new, :create]
+  before_action :authenticate_user_from_token!, :only => [:edit, :update]
   before_action :authenticate_user!, :only => [:edit, :update]
   before_action :must_be_admin, :only => [:index, :enable_user, :disable_user]
 
