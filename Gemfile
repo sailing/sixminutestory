@@ -71,6 +71,9 @@ gem 'json', '>= 1.8.2'
 # tagging
   gem 'acts-as-taggable-on'
 
+group :test do
+  gem 'email_spec'
+end
 
 group :development, :test do
   gem 'byebug'
