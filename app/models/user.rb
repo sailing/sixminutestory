@@ -31,6 +31,9 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :prompts
 
+  validates_uniqueness_of :login, case_sensitive: false
+  validates_presence_of :login, unless: :new_record? 
+
   def email_address
     email
   end
