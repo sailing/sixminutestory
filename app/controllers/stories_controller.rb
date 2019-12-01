@@ -142,7 +142,8 @@ class StoriesController < ApplicationController
     session[:return_to] = request.url
 
     begin
-      @story = Story.includes(:user, :prompt, :tags, :votes, comments: [:user, :votes]).active.find(params[:id])
+      @story = Story.active.where(id: params[:id]).or(Story.active.where(cached_slug: params[:id])).includes(:user, :prompt, :tags, :votes, comments: [:user, votes: [:voter]]).first
+
       @parent = @story.parent if @story.parent.try(:active?)
       @children = @story.children.active.by_votes.limit(10)
       @more_children = @children.size < @story.children.size
