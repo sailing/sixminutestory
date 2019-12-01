@@ -41,9 +41,7 @@ class UsersController < ApplicationController
   def show
 
     begin
-     #@user = User.find_by_login(params[:login]) || User.find(params[:id]) || current_user
-
-    @user = params[:id] ? User.find(params[:id]) : current_user
+    @user = params[:id] ? User.where(id: params[:id]).or(User.where("login ilike ?", params[:id])).first : current_user
 
     rescue Exception => e
       flash[:notice] = 'That user doesn\'t exist.'
