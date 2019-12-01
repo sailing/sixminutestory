@@ -38,5 +38,14 @@ class Hermes < ActionMailer::Base
     @recipient = @story.user
     mail(:to => @recipient.email, :subject => "Six Minute Story – Your story #{@story.title} has been featured!")
   end
-   
+
+  def tenth_anniversary_email(recipient)
+    @recipient = recipient
+    mail(:to => @recipient.email, :subject => "Six Minute Story – Ten Years In, We're back!")
+  end
+
+  def branched_stories_launch(recipient)
+    @recipient = recipient
+    mail(:to => @recipient.email, :subject => "Six Minute Story – Limited Launch – Branched Stories")
+  end
 end

@@ -81,4 +81,5 @@ group :development, :test do
   gem 'rb-readline'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem "bullet"
 end

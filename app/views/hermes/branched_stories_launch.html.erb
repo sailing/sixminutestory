@@ -1,0 +1,9 @@
+<p>
+  <span style="font-size:20px;font-weight:bold;color:#CC6600;font-family:arial;line-height:110%;">There's a new branch on your story!</span><br>
+</p>
+<p>
+  Someone wrote a new story, branched off your story <%= link_to @parent.title, story_url(@parent, user_email: @recipient.email, user_token: @recipient.authentication_token) %>.
+</p>
+<p>
+  View it here: <%= link_to @story.title, story_url(@story, user_email: @recipient.email, user_token: @recipient.authentication_token) %>
+</p>
