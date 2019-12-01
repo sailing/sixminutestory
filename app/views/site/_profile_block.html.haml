@@ -36,8 +36,8 @@
     .col-4.flex-fill
       %i.icon-thumbs-up{title: 'Reputation'}
       %span
-        = user.karma
+        = user.reputation
     .col-4.flex-fill
       %i.icon-pencil{title: 'Read Stories'}
       %span
-        = link_to user.stories.where(active: true).count, profile_path(user)
+        = link_to user.stories_count, profile_path(user)
