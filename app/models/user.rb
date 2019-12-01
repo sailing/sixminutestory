@@ -52,15 +52,15 @@ class User < ActiveRecord::Base
   end
 
   def self.dedupe
-    u = User.select(:email).group(:email).having("count(*) > 1")
-    a = u.collect(&:email).compact
+    duped_users = User.select(:email).group(:email).having("count(*) > 1")
+    a = duped_users.collect(&:email).compact
     a.each do |ea|
       puts "Email is: #{ea}"
-      u = User.where(email: ea).order("reputation DESC")
-      keep = u.first
-      u = u.where.not(id: keep.id)
+      dupes_for_user = User.where(email: ea).order("reputation DESC")
+      keep = dupes_for_user.first
+      users_to_be_combined = dupes_for_user.where.not(id: keep.id)
 
-      u.each do |user| 
+      users_to_be_combined.each do |user| 
         kr = keep.reputation || 0
         ur = user.reputation || 0
         new_reputation = kr + ur
@@ -69,10 +69,10 @@ class User < ActiveRecord::Base
         user.prompts.update_all(user_id: keep.id)
         user.followings.update_all(user_id: keep.id)
         user.inverse_followings.update_all(writer_id: keep.id)
-        # keep.update_attributes reputation: new_reputation
+        keep.update_attribute :reputation, new_reputation
       end
 
-      u.destroy_all
+      users_to_be_combined.destroy_all
     end
   end
 
