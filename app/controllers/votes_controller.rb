@@ -101,7 +101,6 @@ class VotesController < ApplicationController
             format.html { redirect_to @voteable, notice: "Favorite not saved." }
             format.js  { render :action => "error" }
         end
-    
       else
         flash[:notice] = "Please don't attempt to adjust favorites manually."
         redirect_to @voteable
@@ -148,30 +147,28 @@ class VotesController < ApplicationController
   end
 
   def increment_votes_count
-   if @voteable && params[:vote_direction]
-			case @voteable.class.name
-				when "Story"
-					@times = 1
-			end
-     # increment votes_count
+    if @voteable && params[:vote_direction]
+      case @voteable.class.name
+        when "Story"
+          @times = 1
+      end
+      # increment votes_count
       if params[:vote_direction] == "up"
 				if @increment_rating
-        	@times.times do
-						if @voteable.class.name.constantize.increment_counter(:votes_count, @voteable)
-							User.increment_counter(:reputation,@voteable.user) if @voteable.user
-						end
-					end
+					@voteable.increment(:votes_count, @times)
+          @voteable.save
+					@voteable.user.increment(:reputation, @times) if @voteable.user
+          @voteable.user.save
 				end
       elsif params[:vote_direction] == "down"
         if @decrement_rating
-					@times.times do
-						if @voteable.class.name.constantize.decrement_counter(:votes_count, @voteable)
-							User.decrement_counter(:reputation,@voteable.user) if @voteable.user
-						end
-					end
+					@voteable.decrement(:votes_count, @times)
+          @voteable.save
+					@voteable.user.decrement(:reputation, @times) if @voteable.user
+          @voteable.user.save
 				end
       end
-   end
+    end
   end
   
   def find_voteable
