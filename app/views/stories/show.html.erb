@@ -15,7 +15,7 @@
   <%- if @story.prompt.kind == 'image' %>
     <meta property="og:image" content="<%= @story.prompt.refcode %>">
   <%- end %>
-  <meta property="og:url" content="<%= url_for(@story) %>">
+  <meta property="og:url" content="<%= story_url(@story) %>">
   <meta name="twitter:card" content="summary_large_image">
 
 
