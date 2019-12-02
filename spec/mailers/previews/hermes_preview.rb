@@ -19,4 +19,8 @@ class HermesPreview < ActionMailer::Preview
   def featured_story_notification
     Hermes.featured_story_notification(Story.first)
   end
+
+  def tenth_anniversary_email
+    Hermes.tenth_anniversary_email(User.first, Story.featured.first, Story.featured.last)
+  end
 end

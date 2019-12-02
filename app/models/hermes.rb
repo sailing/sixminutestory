@@ -39,13 +39,13 @@ class Hermes < ActionMailer::Base
     mail(:to => @recipient.email, :subject => "Six Minute Story – Your story #{@story.title} has been featured!")
   end
 
-  def tenth_anniversary_email(recipient)
+  def tenth_anniversary_email(recipient, serialized_story = nil, branchable_story = nil)
     @recipient = recipient
-    mail(:to => @recipient.email, :subject => "Six Minute Story – Ten Years In, We're back!")
-  end
 
-  def branched_stories_launch(recipient)
-    @recipient = recipient
-    mail(:to => @recipient.email, :subject => "Six Minute Story – Limited Launch – Branched Stories")
+    @serialized_story = serialized_story || Story.find(3480) # DrMikeReddy's serialized story
+    @serialized_story_2 = serialized_story || Story.find(1306) # TimSevenhuysen's serialized story
+    @branchable_story = branchable_story || Story.find(3315) # TonyNoland's great option|| 2675-corner-john || 2648-the-newcomers
+
+    mail(:to => @recipient.email, :subject => "Six Minute Story – Ten Years In, We're back!")
   end
 end
