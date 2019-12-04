@@ -8,7 +8,6 @@
       %small.text-muted
         by
         = link_to story.user.login, profile_path(story.user), class: "text-secondary"
-        = time_ago_in_words(story.created_at) + " ago"
 
   .card-body.p-3
     - if truncate
@@ -37,6 +36,9 @@
         / = pluralize(story.counter, 'view')
         = story.counter
         %i.icon-user
+      %span &nbsp;|&nbsp;
+      %span
+        = time_ago_in_words(story.created_at) + " ago"
       - unless @stories || @children
         - if is_user
           %span &nbsp;|&nbsp;
