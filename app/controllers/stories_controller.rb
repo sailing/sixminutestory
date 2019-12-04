@@ -106,7 +106,7 @@ class StoriesController < ApplicationController
 
     respond_to do |format|
       if @story.save
-        Hermes.branched_story_notification(@story).deliver if @story.parent.present?
+        Hermes.branched_story_notification(@story).deliver if @story.parent.present? && @story.parent.user.comment_notifications_on?
         
         format.html { redirect_to thanks_story_url(@story) }
         format.json { render json: @story, status: :created,location: @story}
@@ -281,7 +281,7 @@ class StoriesController < ApplicationController
   def destroy
     @story = Story.find(params[:id])
 
-    @story.active = 0
+    @story.active = false
     respond_to do |format|
       if @story.save
         flash[:notice] = 'Story disabled.'
@@ -297,10 +297,10 @@ class StoriesController < ApplicationController
 
   def feature
     @story = Story.find(params[:id])
-    @story.featured = 1
+    @story.featured = true
     respond_to do |format|
       if @story.save
-        Hermes.featured_story_notification(@story).deliver unless (@story.user.send_stories == false or @story.user.email_address.blank?)
+        Hermes.featured_story_notification(@story).deliver if @story.user.featured_story_notifications_on?
 
         flash[:notice] = 'Story featured.'
         format.html { redirect_to(story_url(@story)) }
@@ -316,7 +316,7 @@ class StoriesController < ApplicationController
   def unfeature
     @story = Story.find(params[:id])
 
-    @story.featured = 0
+    @story.featured = false
     respond_to do |format|
       if @story.save
         flash[:notice] = 'Story unfeatured.'

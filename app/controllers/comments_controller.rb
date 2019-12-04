@@ -62,7 +62,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
 
-        Hermes.comment_notification(@comment).deliver unless (@story.user.send_comments == false or @story.user.email_address.blank?)
+        Hermes.comment_notification(@comment).deliver if @story.user.comment_notifications_on?
 
         format.html { redirect_to story_url(@comment.story, :anchor => "comments") }
         format.js

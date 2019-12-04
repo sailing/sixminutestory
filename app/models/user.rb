@@ -38,6 +38,22 @@ class User < ActiveRecord::Base
     email
   end
 
+  def can_receive_emails?
+    email.present?  
+  end
+
+  def comment_notifications_on?
+    send_comments? && can_receive_emails?
+  end
+
+  def featured_story_notifications_on?
+    send_stories? && can_receive_emails?
+  end
+
+  def following_notifications_on?
+    send_followings? && can_receive_emails?
+  end
+
   def self.find_by_login_or_email(login)
     User.find_by_login(login) || User.find_by_email(login)
   end
