@@ -1,10 +1,10 @@
 .col-md-8.offset-md-2.stories-list
   %nav.my-2.justify-content-center.nav.nav-justified.nav-pills.flex-column.flex-sm-row.btn-group
-    = link_to "Featured", subset_stories_path(subset: "featured"), class: "nav-link nav-item flex-sm-fill text-sm-center btn btn-danger"
-    = link_to "Favorited", subset_stories_path(subset: "top"), class: "nav-link nav-item flex-sm-fill text-sm-center btn btn-primary"
-    = link_to "Recent", subset_stories_path(subset: "recent"), class: "nav-link nav-item flex-sm-fill text-sm-center btn btn-primary"
-    = link_to "Active", subset_stories_path(subset: "active"), class: "nav-link nav-item flex-sm-fill text-sm-center btn btn-primary"
-    = link_to "Popular", subset_stories_path(subset: "popular"), class: "nav-link nav-item flex-sm-fill text-sm-center btn btn-primary"
+    = link_to "Featured", subset_stories_path(days: params[:days], months: params[:months], subset: "featured"), class: "nav-link nav-item flex-sm-fill text-sm-center btn btn-danger"
+    = link_to "Favorited", subset_stories_path(days: params[:days], months: params[:months], subset: "top"), class: "nav-link nav-item flex-sm-fill text-sm-center btn btn-primary"
+    = link_to "Recent", subset_stories_path(days: params[:days], months: params[:months], subset: "recent"), class: "nav-link nav-item flex-sm-fill text-sm-center btn btn-primary"
+    = link_to "Active", subset_stories_path(days: params[:days], months: params[:months], subset: "active"), class: "nav-link nav-item flex-sm-fill text-sm-center btn btn-primary"
+    = link_to "Popular", subset_stories_path(days: params[:days], months: params[:months], subset: "popular"), class: "nav-link nav-item flex-sm-fill text-sm-center btn btn-primary"
     = link_to "Random Story", random_stories_url, class: "nav-link nav-item flex-sm-fill text-sm-center btn btn-secondary"
     - if current_user
       = link_to "Write to Random Prompt", random_prompt_url, class: "nav-link nav-item flex-sm-fill text-sm-center btn btn-warning"
