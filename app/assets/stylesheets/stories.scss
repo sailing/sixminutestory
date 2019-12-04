@@ -24,7 +24,16 @@
 }
 
 .story {
-
+	p {
+		font-family: 'Lora', "Georgia", serif;
+		font-weight: 300;
+		font-size: 1em;
+		line-height: 1.8em;
+	}
+	h2 {
+		font-family: 'Montserrat', "Arial", sans-serif;
+		font-weight: 600;
+	}
 	.btn {
 			color: #fff;
 		}
@@ -109,15 +118,6 @@
 }
 
 .story-itself {
-	margin-top:25px;
-
-	font-family: 'Open Sans';
-	font-size: 1em;
-	line-height: 1.8em;
-
-	p {
-		margin-bottom: 15px;
-	}
 }
 
 .parent-fade {

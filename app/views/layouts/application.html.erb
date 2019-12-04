@@ -5,7 +5,6 @@
       <%= content_for?(:title) ? yield(:title) : "Six Minute Story" %>
     </title>
     <%= csrf_meta_tags %>
-    <!-- <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/minty/bootstrap.min.css" integrity="sha384-9NlqO4dP5KfioUGS568UFwM3lbWf3Uj3Qb7FBHuIuhLoDp3ZgAqPE1/MYLEBPZYM" rel="stylesheet"></link> -->
     <%= stylesheet_link_tag "application", :media => "all" %>
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements
     -->
@@ -20,7 +19,7 @@
     <%= yield(:head) if content_for?(:head) %>
     <%= render partial: "layouts/heap" %>
     <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5dc2df8a1573800012d15b41&product=inline-share-buttons" async="async"></script>
-
+    <link href="https://fonts.googleapis.com/css?family=Literata|Lora|Montserrat:400,600&display=swap" rel="stylesheet">
   </head>
   <body data-controller="<%= params[:controller] %>" data-action="<%= params[:action] %>">
     <nav class="nav navbar navbar-expand-md navbar-dark bg-primary" role="navigation">
