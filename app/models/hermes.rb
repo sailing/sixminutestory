@@ -80,8 +80,9 @@ class Hermes < ActionMailer::Base
     @recipient = recipient
 
     @serialized_story = serialized_story || Story.find(3480) # DrMikeReddy's serialized story
-    @serialized_story_2 = serialized_story || Story.find(1306) # TimSevenhuysen's serialized story
+    @serialized_story_2 = Story.find(1306) # TimSevenhuysen's serialized story
     @branchable_story = branchable_story || Story.find(3315) # TonyNoland's great option|| 2675-corner-john || 2648-the-newcomers
+    @branchable_story_2 = Story.find(1085) # Amazing story start by yangjanice
 
     # Set tags in mailgun
     headers["X-Mailgun-Tag"] = "Tenth Anniversary Email"
