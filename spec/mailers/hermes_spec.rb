@@ -19,6 +19,14 @@ RSpec.describe Hermes, type: :mailer do
     it "renders the body in html" do
       expect(mail.html).to match("branched off your story")
     end
+
+    it "has mailgun header" do
+      expect(mail).to have_header("X-Mailgun-Tag", "Branched Story")
+    end
+
+    it "has mailgun variables header" do
+      expect(mail.header["X-Mailgun-Variables"]).to be
+    end
   end
 
   context "when a comment is made" do
@@ -38,6 +46,14 @@ RSpec.describe Hermes, type: :mailer do
 
     it "renders the body in html" do
       expect(mail.html).to match("commented on your story")
+    end
+
+    it "has mailgun header" do
+      expect(mail).to have_header("X-Mailgun-Tag", "New Comment")
+    end
+
+    it "has mailgun variables header" do
+      expect(mail.header["X-Mailgun-Variables"]).to be
     end
   end
 
@@ -78,6 +94,14 @@ RSpec.describe Hermes, type: :mailer do
     it "renders the body in html" do
       expect(mail.html).to match("is now following your stories")
     end
+
+    it "has mailgun header" do
+      expect(mail).to have_header("X-Mailgun-Tag", "New Follower")
+    end
+
+    it "has mailgun variables header" do
+      expect(mail.header["X-Mailgun-Variables"]).to be
+    end
   end
 
   context "when a story gets featured" do
@@ -96,6 +120,14 @@ RSpec.describe Hermes, type: :mailer do
 
     it "renders the body in html" do
       expect(mail.html).to match("has been featured")
+    end
+
+    it "has mailgun header" do
+      expect(mail).to have_header("X-Mailgun-Tag", "Featured Story")
+    end
+
+    it "has mailgun variables header" do
+      expect(mail.header["X-Mailgun-Variables"]).to be
     end
   end
 end

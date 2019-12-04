@@ -34,6 +34,10 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :login, case_sensitive: false
   validates_presence_of :login, unless: :new_record? 
 
+  def to_s
+    login
+  end
+
   def email_address
     email
   end
