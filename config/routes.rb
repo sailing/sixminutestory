@@ -54,6 +54,7 @@ Sms::Application.routes.draw do
     member do
       post :feature
       post :unfeature
+      post :enable
       post :flag
       get :thanks
     end

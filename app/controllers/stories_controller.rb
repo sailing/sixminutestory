@@ -2,7 +2,7 @@ class StoriesController < ApplicationController
   # before_action :authenticate_user_from_token!, only: [:new, :create, :flag_story, :update, :thanks]
   before_action :authenticate_user!, only: [:new, :create, :flag_story, :update, :thanks]
   before_action :must_own_story, only: [:edit, :destroy]
-  before_action :must_be_admin, only: [:admin, :disabled, :enable_story, :feature_story, :unfeature_story]
+  before_action :must_be_admin, only: [:admin, :disabled, :enable, :feature_story, :unfeature_story]
   after_action :increment_counter, only: [:show]
 
   def index
@@ -141,41 +141,40 @@ class StoriesController < ApplicationController
   def show
     session[:return_to] = request.url
 
-    begin
-      @story = Story.active.where(id: params[:id]).or(Story.active.where(cached_slug: params[:id])).includes(:user, :prompt, :tags, :votes, comments: [:user, votes: [:voter]]).first
+    @story = Story.active.where(id: params[:id]).or(Story.active.where(cached_slug: params[:id])).includes(:user, :prompt, :tags, :votes, comments: [:user, votes: [:voter]]).first
+    
+    raise ActiveRecord::RecordNotFound unless @story.present?
 
-      @parent = @story.parent if @story.parent.try(:active?)
-      @children = @story.children.active.by_votes.limit(10)
-      @more_children = @children.size < @story.children.size
-      @prompt = @story.prompt
-      @previous = Story.previous(@story).first
-      @next = Story.next(@story).first
-      if @story.featured
-        @next_featured = Story.next_featured(@story).first
-        @previous_featured = Story.previous_featured(@story).first
-      end
+    @parent = @story.parent if @story.parent.try(:active?)
+    @children = @story.children.active.by_votes.limit(10)
+    @more_children = @children.size < @story.children.size
+    @prompt = @story.prompt
+    @previous = Story.previous(@story).first
+    @next = Story.next(@story).first
+    if @story.featured
+      @next_featured = Story.next_featured(@story).first
+      @previous_featured = Story.previous_featured(@story).first
+    end
 
-    rescue => e
-      raise e
-      unless request.path.include?("featured")
-        title = request.path.humanize
-        @story = Story.where("title ILIKE ?", "%#{title.gsub(/[0-9]/,'').strip}%").first
-        redirect_to(@story, status: :moved_permanently) if @story
+  rescue => e
+    unless request.path.include?("featured")
+      title = request.path.humanize
+      @story = Story.where("title ILIKE ?", "%#{title.gsub(/[0-9]/,'').strip}%").first
+      redirect_to(@story, status: :moved_permanently) if @story
 
-        flash[:notice] = "That story doesn't exist."
-      else
-        flash[:notice] = "That story isn't featured."
-      end
-
-      redirect_to recent_url
+      flash[:notice] = "That story doesn't exist."
     else
-      # tests to see if a following relationship exists
-      following_exists(@story.user.id)
+      flash[:notice] = "That story isn't featured."
+    end
 
-      respond_to do |format|
-        format.html # show.html.erb
-        format.xml  { render :xml => @story }
-      end
+    redirect_to recent_url
+  else
+    # tests to see if a following relationship exists
+    following_exists(@story.user.id)
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @story }
     end
   end
 
@@ -262,17 +261,17 @@ class StoriesController < ApplicationController
 
 
 
-  def enable_story
+  def enable
     @story = Story.find(params[:id])
-    @story.active = 1
+    @story.active = true
     respond_to do |format|
       if @story.save
         flash[:notice] = 'Story enabled.'
-        format.html { redirect_to(stories_path) }
+        format.html { redirect_to(edit_story_path(@story)) }
         format.xml  { head :ok }
       else
         flash[:notice] = 'Story NOT enabled.'
-        format.html { redirect_to(stories_path) }
+        format.html { redirect_to(edit_story_path(@story)) }
         format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
       end
     end
@@ -285,11 +284,11 @@ class StoriesController < ApplicationController
     respond_to do |format|
       if @story.save
         flash[:notice] = 'Story disabled.'
-        format.html { redirect_to(stories_path) }
+        format.html { redirect_to(edit_story_path(@story)) }
         format.xml  { head :ok }
       else
         flash[:notice] = 'Story NOT disabled.'
-        format.html { redirect_to(stories_path) }
+        format.html { redirect_to(edit_story_path(@story)) }
         format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
       end
     end

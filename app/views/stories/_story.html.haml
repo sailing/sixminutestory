@@ -47,12 +47,12 @@
             = link_to flag_story_url(story.id), :method => "post", rel: "tooltip", title: "Flag this as hateful" do
               %i.icon-flag
 
-          - if is_owner_or_admin
-            &nbsp;||&nbsp;
-            = link_to edit_story_path(@story) do
-              %i.icon-edit
-              Edit
-          - if is_admin
-            &nbsp;|&nbsp;
-            = @story.flagged
-            %i.icon-flag
+      - if current_user.try(:can_edit_story?, story)
+        &nbsp;||&nbsp;
+        = link_to edit_story_path(story) do
+          %i.icon-edit
+          Edit
+      - if is_admin
+        &nbsp;|&nbsp;
+        = story.flagged
+        %i.icon-flag

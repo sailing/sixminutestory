@@ -70,6 +70,10 @@ class User < ActiveRecord::Base
     is_admin? || reputation >= 5
   end
 
+  def can_edit_story?(story)
+    self.can_edit? && self == story.user
+  end
+
   def ensure_login
     self.login = email.split("@").first
   end
