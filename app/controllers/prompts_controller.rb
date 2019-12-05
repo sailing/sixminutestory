@@ -1,6 +1,7 @@
 class PromptsController < ApplicationController
-  before_filter :require_user, :only => [:new,:create] 
-  before_filter :must_be_admin, :only => [:enable_prompt, :disable_prompt, :verified, :edit, :update,:admin,:destroy]
+  before_action :authenticate_user_from_token!, :only => [:new, :create] 
+  before_action :authenticate_user!, :only => [:new, :create] 
+  before_action :must_be_admin, :only => [:enable_prompt, :disable_prompt, :verified, :edit, :update,:admin,:destroy]
  
   # GET /prompts
   # GET /prompts.xml
@@ -31,7 +32,7 @@ class PromptsController < ApplicationController
             @table = "firstlines"
           end
         when /^\/prompts\/scheduled/
-            @prompts = Prompt.active.paginate(:page => page, :conditions => ["use_on > ?", Time.now], :order => "use_on ASC")
+            @prompts = Prompt.active.usable.order("use_on ASC").page(page)
             @scheduled = true              
       else
 
@@ -87,7 +88,7 @@ class PromptsController < ApplicationController
     page = params[:page] || 1
     order = "created_at DESC"
     per_page = 10
-    @stories = Story.active.where(:prompt_id => @prompt.id).paginate(:page => page, :order => order, :per_page => per_page)
+    @stories = Story.active.where(:prompt_id => @prompt.id).order(order).page(page).per(per_page)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -114,7 +115,7 @@ class PromptsController < ApplicationController
   # POST /prompts
   # POST /prompts.xml
   def create
-    @prompt = Prompt.new(params[:prompt])
+    @prompt = Prompt.new(prompt_params)
     @prompt.user_id = current_user.id
       
       if params[:prompt][:flickr]
@@ -145,11 +146,12 @@ class PromptsController < ApplicationController
     @prompt = Prompt.find(params[:id])
     
     respond_to do |format|
-      if @prompt.save && @prompt.update_attributes(params[:prompt])
+      if @prompt.update_attributes(prompt_params)
         flash[:notice] = 'Prompt was successfully updated.'
         format.html { redirect_to(@prompt) }
         format.xml  { head :ok }
       else
+        flash[:warning] = 'Prompt failed to update.'
         format.html { render :action => "edit" }
         format.xml  { render :xml => @prompt.errors, :status => :unprocessable_entity }
       end
@@ -161,16 +163,8 @@ class PromptsController < ApplicationController
 
 
   def random
-    e = ActiveRecord::RecordNotFound
-    begin
-      @prompt = Prompt.random
-    rescue Exception => e
-      redirect_to random_prompt_url
-    else
-      redirect_to write_to_prompt_url(@prompt)
-      
-    end
-      
+    @prompt = Prompt.random
+    redirect_to write_to_prompt_url(@prompt)
   end
 
   def destroy
@@ -188,6 +182,11 @@ class PromptsController < ApplicationController
         end
       end
    end
+
+   private
+    def prompt_params
+      params.require(:prompt).permit(:hero,:villain,:goal,:refcode,:kind)
+    end
 
 end
 

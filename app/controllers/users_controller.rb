@@ -1,45 +1,53 @@
 class UsersController < ApplicationController
-  before_filter :require_no_user, :only => [:new, :create]
-  before_filter :require_user, :only => [:edit, :update]
-  before_filter :must_be_admin, :only => [:index, :enable_user, :disable_user]
+  before_action :require_no_user, :only => [:new, :create]
+  before_action :authenticate_user_from_token!, :only => [:edit, :update]
+  before_action :authenticate_user!, :only => [:edit, :update]
+  before_action :must_be_admin, :only => [:index, :enable_user, :disable_user]
 
-    def index
-          page = params[:page] || 1
-           per_page = 20
-           order = params[:order] || "created_at DESC"
+  def index
+    page = params[:page] || 1
+    per_page = 20
 
-          @users = User.page(page).per(per_page).order(order)
+    order = case params[:order]
+      when "created_at"
+        "created_at DESC"
+      when "stories_count"
+        "coalesce(stories_count, 0) DESC"
+      when "email"
+        "coalesce (email, '') DESC"
+      when "login"
+        "coalesce (login, '') DESC"
+      else
+        "created_at DESC"
+      end
 
-        end
+    @users = User.page(page).per(per_page).order(order)
+  end
 
   def new
     @user = User.new
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = User.new(user_params)
 
-        if @user.save
-          redirect_back_or_default account_url
-        else
-          render :action => :new
-        end
-
- end
+    if @user.save
+      redirect_back_or_default account_url
+    else
+      render :action => :new
+    end
+  end
 
   def show
 
-     e = ActiveRecord::RecordNotFound
-      begin
-       #@user = User.find_by_login(params[:login]) || User.find(params[:id]) || current_user
-      @user = User.find params[:id] || current_user
+    begin
+    @user = params[:id] ? User.where(id: params[:id]).or(User.where("login ilike ?", params[:id])).first : current_user
 
-      rescue Exception => e
-        flash[:notice] = 'That user doesn\'t exist.'
-        redirect_to root_url
-      else
-
-    if @user.present?
+    rescue Exception => e
+      flash[:notice] = 'That user doesn\'t exist.'
+      redirect_to root_url
+    else
+      if @user.present?
 
         page = params[:page] || 1
         per_page = 10
@@ -50,10 +58,6 @@ class UsersController < ApplicationController
 
         if request.path.include?("profile") or (request.path.include?("profile") and request.format == "rss")
            @stories = @user.stories.active.page(page).per(per_page).order(order)
-           @story = @stories.first if @stories.any?
-           unless @story
-              @story = @user.stories.build
-            end
 
            @rss_url = "http://sixminutestory.com/profile/"+params[:id]+".rss"
             @profile = true
@@ -61,30 +65,29 @@ class UsersController < ApplicationController
 
 
         elsif (request.path.include?("account") or (request.path.include?("rss") and request.format == "rss")) and !@user.writers.empty?
-            @stories = Story.active.where(:user_id => @user.writers).page(page).per(per_page).order(order)
-              #@rss_url = rss_url(@user.login, :format => :rss)
-            @profile = false
-            @title = "Stories by users you follow"
+          @stories = Story.active.where(:user_id => @user.writers).page(page).per(per_page).order(order)
+            #@rss_url = rss_url(@user.login, :format => :rss)
+          @profile = false
+          @title = "Stories by users you follow"
         else
-           @stories = @user.stories.active.page(page).per(per_page).order(order)
-           @story = @stories.first if @stories.any?
-           unless @story
-              @story = @user.stories.build
-            end
-
+          @stories = @user.stories.active.page(page).per(per_page).order(order)
         end
 
-      respond_to do |format|
-        format.html # show.html.erb
-        format.xml  { render :xml => @stories }
-        format.rss
-      end
-    else
+        respond_to do |format|
+          format.html # show.html.erb
+          format.xml  { render :xml => @stories }
+          format.rss
+        end
+      else
+        slug = request.path.humanize
+        @user = User.where("login ILIKE ?", "%#{slug.gsub(/[0-9]/,'').strip}%").first
+        redirect_to(@user, status: :moved_permanently) if @user
+
         flash[:notice] = 'That user doesn\'t exist.'
         redirect_to root_url
+      end
     end
-    end
-end
+  end
 
 
   def edit
@@ -95,10 +98,15 @@ end
 
   def update
     @user = current_user # makes our views "cleaner" and more consistent
-    if @user.update_attributes(params[:user])
+
+    useful_params = user_params
+    useful_params = user_params.except(:password, :password_confirmation) if params[:password].blank?
+    
+    if @user.update_attributes(useful_params)
       flash[:notice] = 'Profile updated!'
       redirect_to account_url
     else
+      flash[:error] = @user.errors
       render :action => :edit
     end
   end
@@ -150,7 +158,10 @@ end
   end
 
 
-
+  private
+    def user_params
+      params.require(:user).permit(:email, :login, :password, :password_confirmation, :profile, :website, :send_comments, :send_stories, :send_followings)
+    end
 
 
 end

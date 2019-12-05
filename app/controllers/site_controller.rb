@@ -1,20 +1,27 @@
 class SiteController < ApplicationController
-   before_filter :must_be_admin, :only => [:admin]
+   before_action :must_be_admin, :only => [:admin]
 
-   caches_action :index, expires_in: 1.day, layout: false
+   # caches_action :index, expires_in: 1.day, layout: false
 
    def index
-      @story_to_read = Story.featured.order("created_at DESC").first
-      @active_writers_this_week = User.where("last_request_at > ?", 1.week.ago).size
-      @new_stories_this_week = Story.where("created_at > ?", 1.week.ago).size
-      @comments_this_week = Comment.where("created_at > ?", 1.week.ago).size
+    @active_writers_this_week = User.where("updated_at > ?", 1.week.ago).size
+    @new_stories_this_week = Story.where("created_at > ?", 1.week.ago).size
+    @comments_this_week = Comment.where("created_at > ?", 1.week.ago).size
 
-      @three_image_prompts = Prompt.where(kind: "flickr").where("refcode IS NOT NULL AND refcode != ''").where("stories_count > 1").order("created_at DESC").limit(3)
+    # @three_image_prompts = Prompt.where(kind: "flickr").where("refcode IS NOT NULL AND refcode != ''").where("stories_count > 1").order("created_at DESC").limit(3)
 
-      @featured_stories = Story.featured.order("updated_at desc").limit(5)
-      @recent_stories = Story.order("created_at desc").limit(5)
-      @popular_stories = Story.recent(Time.now.months_ago(1)).top.limit(5)
-      @active_stories = Story.recent(Time.now.months_ago(1)).commented.limit(5)
+    @image_prompt = Prompt.images.last.id
+    @hvg_prompt = Prompt.hvg.last.id
+    @firstline_prompt = Prompt.firstlines.last.id
+    @prompts = Prompt.where(id: [@image_prompt, @hvg_prompt, @firstline_prompt])
+    
+    @featured_stories = Story.featured.order("updated_at desc").first(7)
+    @stories = @featured_stories
+    @story = @featured_stories.pop
+    @story_to_read = @featured_stories.pop
+    @recent_stories = Story.order("created_at desc").limit(5)
+    @popular_stories = Story.recent(Time.now.months_ago(1)).top.limit(5)
+    @active_stories = Story.recent(Time.now.months_ago(1)).commented.limit(5)
    end
 
 	def home
@@ -50,7 +57,7 @@ class SiteController < ApplicationController
      per_page = 7
      order = "created_at DESC"
      @stories = @user.stories.active.page(page).per(per_page).order(order)
-     @story = @stories.first if @stories.any?
+     @story = @stories.first if @stories.present?
          @i = 0
    end
 

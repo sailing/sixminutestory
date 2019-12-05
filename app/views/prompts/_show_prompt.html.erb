@@ -1,74 +1,77 @@
 <% if @prompt %>
-	<div id="prompt">
-	<%
-		unless request.path.include?("write")
-			show_attribution = true
-			write_to_prompt = content_tag("span",(link_to "Write your own story to this prompt", write_to_prompt_url(@prompt)))
-			freeform = "Freeform prompt. Every Friday, writers face a blank page without any prompt. They write whatever they want in six minutes or less."
-		else
-			show_attribution = false
-			freeform = raw("This prompt left blank in honor of Twitter hashtag #fridayflash. <br />Tell your story.")
-			write_to_prompt = ""
-		end
-
-		case @prompt.kind
-			when "flickr"
-				if @prompt.refcode.present? %>
-					<img src="<%= @prompt.refcode %>" class="prompt"  />
-						<% if show_attribution %>
-							<%  if @prompt.attribution.present? and @prompt.attribution_url.present? and @prompt.kind.present? and @prompt.license.present? %>
-										<span>Image by <a href='<%=@prompt.attribution_url%>'><%=@prompt.attribution %></a>:
-										<% @prompt.license_in_human_terms(@prompt) unless @prompt.license_url.present? %>
-										<%= link_to (@prompt.license_image_url ? image_tag(@prompt.license_image_url, :width => "88", :height=>"31", :style=>"width:88px;height:31px;vertical-align:middle;") : @prompt.license_en), @prompt.license_url %>
-										</span>
-							<% end %>
-						<% end -%>
-			<% end %>
+	<div class="prompt d-flex justify-content-center flex-column">
 		<%
-			when "quotation"
-			 #text w attributions
-			when "firstline" %>
-				<h3>Prompt</h3>
-				<% if @prompt.refcode %>
-					<div class="firstline">
-						<%= @prompt.refcode %>
-					</div>
+			unless request.path.include?("write")
+				show_attribution = true
+				freeform = "Freeform prompt. Every Friday, writers face a blank page without any prompt. They write whatever they want in six minutes or less."
+			else
+				show_attribution = false
+				freeform = raw("This prompt left blank in honor of Twitter hashtag #fridayflash. <br />Tell your story.")
+			end
+
+			case @prompt.kind
+				when "flickr" %>
+					<% if @prompt.refcode.present? %>
+						<img src="<%= @prompt.refcode %>" class="prompt rounded"  />
+							<% if show_attribution %>
+								<%  if @prompt.attribution.present? and @prompt.attribution_url.present? and @prompt.kind.present? and @prompt.license.present? %>
+										<div class="mt-2">
+											Image by <a href='<%=@prompt.attribution_url%>'><%=@prompt.attribution %></a>:
+											
+										</div>
+								<% end %>
+							<% end -%>
 				<% end %>
-		<%
-
-			when "3ww"
-				#three word wednesdays??
-
-			when "hvg"
-				# hero villain goal
-		%>
-			<h3>Prompt <small>(write a story including these elements)</h3>
-			<table class="table">
-				<tr>
-					<th>hero</th>
-					<td><%= @prompt.hero %></td>
-				</tr>
-				<tr>
-					<th>villain</th>
-					<td><%= @prompt.villain %></td>
-				</tr>
-				<tr>
-					<th>goal</th>
-					<td><%= @prompt.goal %></td>
-				</tr>
-			</table>
-
+			<% when "quotation" %>
+			<% #text w attributions %>
+			<% when "firstline" %>
+					<% if @prompt.refcode %>
+						<blockquote class="firstline">
+							<em><%= @prompt.refcode %></em>
+						</blockquote>
+					<% end %>
+			<% when "3ww" #three word wednesdays?? %>
+			<% when "hvg" # hero villain goal %>
+				<h3>Prompt <small>(write a story including these elements)</small></h3>
+				<table class="table">
+					<tr>
+						<th>hero</th>
+						<td><%= @prompt.hero %></td>
+					</tr>
+					<tr>
+						<th>villain</th>
+						<td><%= @prompt.villain %></td>
+					</tr>
+					<tr>
+						<th>goal</th>
+						<td><%= @prompt.goal %></td>
+					</tr>
+				</table>
 		<% else %>
-			<h3>Blank Prompt</small></h3>
+			<h3>Blank Prompt</h3>
 			<span class="entries"><%= freeform %></span>
 
-		 <% end %>
-		 <% if show_attribution %>
-			<% if @prompt.user_id.present? %>
-
-							 <span> <%= (link_to "Prompt", prompt_url(@prompt)) + " suggested by " + (link_to @prompt.user.login, profile_url(@prompt.user)) %> <br />
-							 <%= write_to_prompt %>
+		<% end %>
+ 		<% if show_attribution %>
+ 			<div class="attribution mt-1 text-center">
+				<% if @prompt.user_id.present? %>
+					<%= link_to "Prompt", prompt_url(@prompt) %> 
+					suggested by
+					<%= link_to @prompt.user.login, profile_url(@prompt.user) %>
 				<% end %>
-			<% end -%>
-	 </div> <!-- closing #prompt -->
+			</div>
+		<% end -%>
+		<% unless request.path.include?("write") %>
+			<div class="buttons mt-3 text-center d-flex flex-fill flex-wrap">
+				<%= link_to write_to_prompt_url(@prompt), class: "btn btn-primary w-100 mb-2" do %>
+					<i class="icon-pencil mr-2"></i> Write your own story to this prompt
+					
+				<%- end %>
+				<%= link_to prompt_url(@prompt), class: "btn btn-warning w-100" do %>
+					<i class="icon-book mr-2"></i>
+					Read <%= @prompt.stories_count %> stories
+				<% end %>
+			</div>
+		<% end %>
+	</div> <!-- closing #prompt -->
 <% end %>

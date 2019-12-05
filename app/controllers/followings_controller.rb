@@ -1,11 +1,13 @@
 class FollowingsController < ApplicationController
+  before_action :authenticate_user_from_token!, :only => [:create, :destroy]
+  before_action :authenticate_user!, :only => [:create, :destroy]
+
   def create
     @following = current_user.followings.build(:writer_id => params[:writer_id])
     if @following.save
-	
-      @user = User.find(params[:writer_id])
       
-    Hermes.following_notification(@user, current_user).deliver unless (@user.send_followings == false or @user.email_address.blank?)
+      @user = User.find(params[:writer_id])
+      Hermes.following_notification(@user, current_user).deliver if @user.following_notifications_on?
       
       respond_to do |format|
         format.html { 

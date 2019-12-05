@@ -1,11 +1,11 @@
-<h1>Users Admin</h1>
 <% if is_admin %>
+	<h1>Users Admin</h1>
 	<table class="table">
 		<tr>
 			<th>status</th>
 			<th><a href="?order=login">username</a></th>
-			<th><a href="?order=email_address">email</a></th>
-			<th><a href="?order=stories_count DESC">stories</a></th>
+			<th><a href="?order=email">email</a></th>
+			<th><a href="?order=stories_count">stories</a></th>
 			<th>followers</th>
 		</tr>
 	<%- @users.each do |user| %>
@@ -35,7 +35,7 @@
 			</td>
 
 			<td>
-				<%= link_to h(user.stories_count ? user.stories_count : "0"), profile_path(user) %>
+				<%= link_to user.stories_count.to_s, profile_path(user) %>
 			</td>
 			<td>
 				<%= user.followers.size {where(:active => true)} %>

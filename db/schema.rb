@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -9,181 +8,201 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110906045047) do
+ActiveRecord::Schema.define(version: 2019_11_29_234920) do
 
-  create_table "comments", :force => true do |t|
-    t.text      "comment"
-    t.integer   "user_id"
-    t.integer   "story_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "votes_count", :default => 0
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "comments", id: :serial, force: :cascade do |t|
+    t.text "comment"
+    t.integer "user_id"
+    t.integer "story_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer "votes_count", default: 0
   end
 
-  create_table "contests", :force => true do |t|
-    t.string    "title"
-    t.text      "description"
-    t.timestamp "start"
-    t.timestamp "end"
-    t.integer   "user_id"
-    t.integer   "prompt_id",   :default => 0
-    t.boolean   "active",      :default => true
-    t.boolean   "delta",       :default => false
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+  create_table "contests", id: :serial, force: :cascade do |t|
+    t.string "title", limit: 255
+    t.text "description"
+    t.datetime "start"
+    t.datetime "end"
+    t.integer "user_id"
+    t.integer "prompt_id", default: 0
+    t.boolean "active", default: true
+    t.boolean "delta", default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "emails", :force => true do |t|
-    t.string    "from"
-    t.string    "to"
-    t.integer   "last_send_attempt", :default => 0
-    t.text      "mail"
-    t.timestamp "created_on"
+  create_table "emails", id: :serial, force: :cascade do |t|
+    t.string "from", limit: 255
+    t.string "to", limit: 255
+    t.integer "last_send_attempt", default: 0
+    t.text "mail"
+    t.datetime "created_on"
   end
 
-  create_table "followings", :force => true do |t|
-    t.integer   "user_id"
-    t.integer   "writer_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+  create_table "followings", id: :serial, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "writer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "prompts", :force => true do |t|
-    t.string    "hero"
-    t.string    "villain"
-    t.string    "goal"
-    t.date      "use_on"
-    t.integer   "rating",            :default => 0
-    t.integer   "counter",           :default => 0
-    t.integer   "user_id"
-    t.integer   "contest_id",        :default => 0
-    t.boolean   "active",            :default => true
-    t.boolean   "verified",          :default => true
-    t.boolean   "delta",             :default => false
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "stories_count",     :default => 0
-    t.string    "refcode"
-    t.string    "kind"
-    t.string    "attribution"
-    t.string    "attribution_url"
-    t.string    "license"
-    t.integer   "votes_count",       :default => 0
-    t.string    "license_url"
-    t.string    "license_en"
-    t.string    "license_image_url"
+  create_table "prompts", id: :serial, force: :cascade do |t|
+    t.string "hero", limit: 255
+    t.string "villain", limit: 255
+    t.string "goal", limit: 255
+    t.date "use_on"
+    t.integer "rating", default: 0
+    t.integer "counter", default: 0
+    t.integer "user_id"
+    t.integer "contest_id", default: 0
+    t.boolean "active", default: true
+    t.boolean "verified", default: true
+    t.boolean "delta", default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer "stories_count", default: 0
+    t.string "refcode", limit: 255
+    t.string "kind", limit: 255
+    t.string "attribution", limit: 255
+    t.string "attribution_url", limit: 255
+    t.string "license", limit: 255
+    t.integer "votes_count", default: 0
+    t.string "license_url", limit: 255
+    t.string "license_en", limit: 255
+    t.string "license_image_url", limit: 255
   end
 
-  create_table "rpx_identifiers", :force => true do |t|
-    t.string    "identifier",    :null => false
-    t.string    "provider_name"
-    t.integer   "user_id",       :null => false
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+  create_table "rpx_identifiers", id: :serial, force: :cascade do |t|
+    t.string "identifier", limit: 255, null: false
+    t.string "provider_name", limit: 255
+    t.integer "user_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["identifier"], name: "index_rpx_identifiers_on_identifier", unique: true
+    t.index ["user_id"], name: "index_rpx_identifiers_on_user_id"
   end
 
-  add_index "rpx_identifiers", ["identifier"], :name => "index_rpx_identifiers_on_identifier", :unique => true
-  add_index "rpx_identifiers", ["user_id"], :name => "index_rpx_identifiers_on_user_id"
-
-  create_table "sessions", :force => true do |t|
-    t.string    "session_id", :null => false
-    t.text      "data"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+  create_table "sessions", id: :serial, force: :cascade do |t|
+    t.string "session_id", limit: 255, null: false
+    t.text "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["session_id"], name: "index_sessions_on_session_id"
+    t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
 
-  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
-  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
-
-  create_table "slugs", :force => true do |t|
-    t.string    "name"
-    t.integer   "sluggable_id"
-    t.integer   "sequence",                     :default => 1, :null => false
-    t.string    "sluggable_type", :limit => 40
-    t.string    "scope",          :limit => 40
-    t.timestamp "created_at"
+  create_table "slugs", id: :serial, force: :cascade do |t|
+    t.string "name", limit: 255
+    t.integer "sluggable_id"
+    t.integer "sequence", default: 1, null: false
+    t.string "sluggable_type", limit: 40
+    t.string "scope", limit: 40
+    t.datetime "created_at"
+    t.index ["name", "sluggable_type", "scope", "sequence"], name: "index_slugs_on_n_s_s_and_s", unique: true
+    t.index ["sluggable_id"], name: "index_slugs_on_sluggable_id"
   end
 
-  add_index "slugs", ["name", "sluggable_type", "scope", "sequence"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
-  add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
-
-  create_table "stories", :force => true do |t|
-    t.string    "title"
-    t.text      "description"
-    t.string    "license"
-    t.integer   "votes_count",     :default => 0
-    t.integer   "comment_counter", :default => 0
-    t.integer   "flagged",         :default => 0
-    t.integer   "counter",         :default => 0
-    t.integer   "user_id"
-    t.integer   "prompt_id"
-    t.integer   "contest_id",      :default => 0
-    t.boolean   "delta",           :default => false
-    t.boolean   "active",          :default => true
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "cached_slug"
-    t.integer   "comments_count",  :default => 0
-    t.boolean   "featured",        :default => false
+  create_table "stories", id: :serial, force: :cascade do |t|
+    t.string "title", limit: 255
+    t.text "description"
+    t.string "license", limit: 255
+    t.integer "votes_count", default: 0
+    t.integer "comment_counter", default: 0
+    t.integer "flagged", default: 0
+    t.integer "counter", default: 0
+    t.integer "user_id"
+    t.integer "prompt_id"
+    t.integer "contest_id", default: 0
+    t.boolean "delta", default: false
+    t.boolean "active", default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string "cached_slug", limit: 255
+    t.integer "comments_count", default: 0
+    t.boolean "featured", default: false
+    t.string "ancestry"
+    t.integer "ancestry_depth", default: 0
+    t.index ["ancestry"], name: "index_stories_on_ancestry"
   end
 
-  create_table "taggings", :force => true do |t|
-    t.integer   "tag_id"
-    t.integer   "taggable_id"
-    t.integer   "tagger_id"
-    t.string    "tagger_type"
-    t.string    "taggable_type"
-    t.string    "context"
-    t.timestamp "created_at"
+  create_table "taggings", id: :serial, force: :cascade do |t|
+    t.integer "tag_id"
+    t.integer "taggable_id"
+    t.integer "tagger_id"
+    t.string "tagger_type", limit: 255
+    t.string "taggable_type", limit: 255
+    t.string "context", limit: 255
+    t.datetime "created_at"
+    t.index ["context"], name: "index_taggings_on_context"
+    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+    t.index ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+    t.index ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy"
+    t.index ["taggable_id"], name: "index_taggings_on_taggable_id"
+    t.index ["taggable_type"], name: "index_taggings_on_taggable_type"
+    t.index ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type"
+    t.index ["tagger_id"], name: "index_taggings_on_tagger_id"
   end
 
-  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
-
-  create_table "tags", :force => true do |t|
-    t.string "name"
+  create_table "tags", id: :serial, force: :cascade do |t|
+    t.string "name", limit: 255
+    t.integer "taggings_count", default: 0
+    t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
-  create_table "users", :force => true do |t|
-    t.string    "login"
-    t.string    "crypted_password"
-    t.string    "password_salt"
-    t.string    "website"
-    t.string    "email_address"
-    t.text      "profile"
-    t.boolean   "active",               :default => true
-    t.integer   "admin_level",          :default => 1
-    t.string    "persistence_token"
-    t.integer   "login_count"
-    t.timestamp "last_request_at"
-    t.timestamp "last_login_at"
-    t.timestamp "current_login_at"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.boolean   "send_comments",        :default => true
-    t.boolean   "send_stories",         :default => true
-    t.boolean   "send_followings",      :default => true
-    t.string    "name"
-    t.integer   "facebook_uid"
-    t.string    "facebook_session_key"
-    t.integer   "comments_count",       :default => 0
-    t.integer   "stories_count",        :default => 0
-    t.boolean   "featured",             :default => false
-    t.integer   "reputation",           :default => 0
+  create_table "users", id: :serial, force: :cascade do |t|
+    t.string "login", limit: 255
+    t.string "encrypted_password", limit: 255
+    t.string "password_salt", limit: 255
+    t.string "website", limit: 255
+    t.string "email", limit: 255
+    t.text "profile"
+    t.boolean "active", default: true
+    t.integer "admin_level", default: 1
+    t.integer "sign_in_count"
+    t.datetime "last_sign_in_at"
+    t.datetime "current_sign_in_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean "send_comments", default: true
+    t.boolean "send_stories", default: true
+    t.boolean "send_followings", default: true
+    t.string "name", limit: 255
+    t.bigint "facebook_uid"
+    t.string "facebook_session_key", limit: 255
+    t.integer "comments_count", default: 0
+    t.integer "stories_count", default: 0
+    t.boolean "featured", default: false
+    t.integer "reputation", default: 0
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.string "authentication_token", limit: 30
+    t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "votes", :force => true do |t|
-    t.boolean   "vote",          :default => false
-    t.integer   "voteable_id",                      :null => false
-    t.string    "voteable_type",                    :null => false
-    t.integer   "voter_id"
-    t.string    "voter_type"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+  create_table "votes", id: :serial, force: :cascade do |t|
+    t.boolean "vote", default: false
+    t.integer "voteable_id", null: false
+    t.string "voteable_type", limit: 255, null: false
+    t.integer "voter_id"
+    t.string "voter_type", limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["voteable_id", "voteable_type"], name: "fk_voteables"
+    t.index ["voter_id", "voter_type"], name: "fk_voters"
   end
-
-  add_index "votes", ["voteable_id", "voteable_type"], :name => "fk_voteables"
-  add_index "votes", ["voter_id", "voter_type"], :name => "fk_voters"
 
 end

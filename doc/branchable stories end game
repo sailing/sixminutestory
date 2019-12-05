@@ -1,0 +1,29 @@
+branchable stories end game:
+
+phase 1: 
+	viewing story, click "continue this story",
+	need parent story
+
+	on writing view, show story continuing from.
+	on writing view, don't show any prompt
+		
+	after writing, show new story with end of previous story, fading up
+
+	parent story shows first 200 characters of branched stories, with paginatability via ajax
+
+	on writing / editing story, can mark as "continuable"
+
+
+	branch view:
+		viewing last story in a branch, can scroll up through parent stories. Can also, "jump to beginning", then scroll down from start through all branches that led to current story
+
+	OMG this going to make life so easy
+		https://github.com/stefankroes/ancestry
+
+
+
+Phase 2:
+	On writing view
+		- check if person can branch (private, private-to-group?)
+		- story can be :branchable?
+		- show prompt options: no prompt, random prompt, search for prompt

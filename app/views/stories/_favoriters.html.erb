@@ -1,8 +1,13 @@
-<h4><%= @story.votes_for > 0 ? "Favorited by" : "No favorites" -%></h4>
-<% for voter in @story.voters_who_voted %>
-	<% if voter.voted_for?(@story) %>
-		<%= link_to voter.login, profile_url(voter) %><%= ", " unless @story.voters_who_voted.last == voter %>
-	<% end %>
-<% end %>
-
-<%= render :partial => "votes/story_vote", :story => @story %>
+<!-- <h4 class="card-header bg-light">
+  
+</h4> -->
+<div class="card-content p-3">
+  <%= render :partial => "votes/story_vote", :story => @story %>
+  <%- if is_user && (current_user.id == @story.user.id) %>
+    <% for voter in @story.voters_who_voted %>
+    	<% if voter.voted_for?(@story) %>
+    		<%= link_to voter.login, profile_url(voter) %><%= ", " unless @story.voters_who_voted.last == voter %>
+    	<% end %>
+    <% end %>
+  <%- end %>
+</div>

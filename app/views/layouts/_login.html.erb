@@ -1,0 +1,41 @@
+<% if user_signed_in? %>
+  <div class="dropdown align-content-end" id="login_container">
+    <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      <i class="icon-user"></i>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right" role = "menu" aria-labelledby = "dLabel">
+      
+        <%= link_to account_path, class: "dropdown-item" do %>
+          <i class="icon-picture" title="Profile"></i>
+          Profile
+        <% end %>
+        <%= link_to suggest_prompts_path, class: "dropdown-item" do %>
+          <i class="icon-lightbulb" title="Suggest a Prompt"></i>
+          Suggest a Prompt
+        <% end %>
+        <!-- %li -->
+        <!--   = link_to users_comments_url(current_user, "new") do -->
+        <!--     %i.icon-envelope{title: "Inbox"} -->
+        <!--     Inbox -->
+        <%= link_to edit_account_path, class: "dropdown-item" do %>
+          <i class="icon-cog" title="Settings"></i>
+          Settings
+        <% end %>
+        <%= button_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
+          <i class="icon-signout" title="Logout"></i>
+          Logout
+        <% end %>
+        
+        <% if is_admin %>
+          <div class="dropdown-item">
+            <div class="dropdown-divider"></div>
+          </div>
+            <%= link_to "Users", users_url, class: "dropdown-item" %>
+          </div>
+        <% end %>
+    </div>
+    <!-- Close Login Container -->
+  </div>
+<% else %>
+  <%= link_to "Login", new_user_session_path, class: "btn btn-warning" %>
+<% end %>

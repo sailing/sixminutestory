@@ -1,14 +1,13 @@
-	<% if @stories %>
-
+<% if @stories %>
 	<% if is_admin %> 
 		<% # count of stories %>
-		<%= page_entries_info @stories %>
-		
+		<div class="d-flex justify-content-center">
+			<div class="justify-content-between">
+				<%= page_entries_info @stories %>
+			</div>
+		</div>
 	<% end %>
-	
-	
-	<% #pagination %>	
-			
-		<%= paginate @stories %>
-			
-	<% end %>
+
+	<% #pagination %>
+	<%= paginate @stories %>	
+<% end %>

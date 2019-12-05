@@ -1,0 +1,18 @@
+$("<%= escape_javascript(render partial: 'stories/story', collection: @children, locals: {full_size: false}) %>").appendTo("#children");
+
+var new_story = document.getElementById("story_<%= @children.first.id %>");
+new_story.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+
+var href = $("#load_more_children").attr('href');
+var url = new URL(href);
+var query_string = url.search;
+var search_params = new URLSearchParams(query_string); 
+// new value of "id" is set to "101"
+var page = search_params.get('page');
+page++;
+
+search_params.set('page', page);
+
+// change the search property of the main url
+url.search = search_params.toString();
+$("#load_more_children").attr('href', url);

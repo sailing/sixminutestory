@@ -1,0 +1,35 @@
+{
+  "name": "Six Minute Story",
+  "image": "heroku/ruby",
+  "addons": [
+    "heroku-postgresql"
+  ],
+  "env" : {
+  	"ASSET_SYNC_GZIP_COMPRESSION":{"required": true, "value": "true"},
+	"AWS_ACCESS_KEY_ID":{"required": true, "value": "AKIAJEKOS6AVSGNJ7OSA"},
+	"AWS_SECRET_ACCESS_KEY":{"required": true, "value": "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"},
+	"CROND_URL":{"required": true, "value": "https://6pfc2mud5s352hy9odqt6256w:@cron.heroku.com/client"},
+	"DATABASE_URL":{"required": true, "value": "postgres://pspmbqswpwrszr:XJbVZfaQACOXnH4BDiTIAzqAUK@ec2-54-197-224-155.compute-1.amazonaws.com:5432/dao1e2kfq0iqt6"},
+	"FOG_DIRECTORY":{"required": true, "value": "sixminutestory"},
+	"FOG_PROVIDER":{"required": true, "value": "AWS"},
+	"FOG_REGION":{"required": true, "value": "us-west-2"},
+	"GEM_PATH":{"required": true, "value": "vendor/bundle/ruby/1.9.1"},
+	"HEROKU_POSTGRESQL_COBALT_URL":{"required": true, "value": "postgres://pspmbqswpwrszr:XJbVZfaQACOXnH4BDiTIAzqAUK@ec2-54-197-224-155.compute-1.amazonaws.com:5432/dao1e2kfq0iqt6"},
+	"LANG":{"required": true, "value": "en_US.UTF-8"},
+	"MEMCACHIER_PASSWORD":{"required": true, "value": "c23c14f0d519e7411f45ad9881f01ccc"},
+	"MEMCACHIER_SERVERS":{"required": true, "value": "mc5.dev.ec2.memcachier.com:11211"},
+	"MEMCACHIER_USERNAME":{"required": true, "value": "ee11dd"},
+	"NEW_RELIC_APP_NAME":{"required": true, "value": "sm6-cedar"},
+	"NEW_RELIC_ID":{"required": true, "value": "108733"},
+	"NEW_RELIC_LICENSE_KEY":{"required": true, "value": "96c519baeb6e45484e164b50a9f6db85715bb11b"},
+	"NEW_RELIC_LOG":{"required": true, "value": "stdout"},
+	"PATH":{"required": true, "value": "bin:vendor/bundle/ruby/1.9.1/bin:/usr/local/bin:/usr/bin:/bin"},
+	"RACK_ENV":{"required": true, "value": "production"},
+	"RAILS_ENV":{"required": true, "value": "production"},
+	"SCHEDULER_URL":{"required": true, "value": "http://3qow9a2dn8qesv2lgb8wn3cds@heroku-scheduler.herokuapp.com/"},
+	"SENDGRID_PASSWORD":{"required": true, "value": "8jmgdb4d7785"},
+	"SENDGRID_USERNAME":{"required": true, "value": "app46585646@heroku.com"},
+	"asset_host":{"required": true, "value": "d12swphks9s5f2.cloudfront.net"}
+  }
+}
+

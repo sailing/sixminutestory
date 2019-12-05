@@ -1,40 +1,43 @@
-.row-fluid
-  %h3.span9
-    = @story.user.login
-  %h3.span3
-    - if is_user && (current_user.id == @story.user.id)
+.card.mb-3
+  %h3.card-header
+    = user.login
+    %small.text-muted 
+      (joined
+      = time_ago_in_words(user.created_at)
+      ago)
+    %br  
+    - if is_user && (current_user.id == user.id)
       %small
-        = link_to edit_account_path, class: "btn" do
+        = link_to edit_account_path, class: "btn btn-dark btn-sm" do
           %i.icon-cog
-    - elsif is_user && current_user.id != @story.user.id
-      = render :partial => 'site/following_toggle', :locals => {:user => @story.user}
+    - elsif is_user && current_user.id != user.id
+      %small
+        = render :partial => 'site/following_toggle', :locals => {:user => user}
+    - if user.website.present?
+      %small
+        = link_to user.website, :title => user.website, :rel => 'nofollow', class: "btn btn-info btn-sm" do
+          %i.icon-globe
+          %span Visit Website
 
-.row-fluid.information
-  .span3
-    - if @story.user.followers.any?
-      %p
+  .card-content
+    - if user.profile.present?
+      %div.p-3
+        = auto_link(simple_format(user.profile))
+  .card-footer.row-fluid.d-flex.justify-content-between.text-center
+    .col-4.flex-fill
+      %span
         %i.icon-group{title: 'Followers'}
         %span
-          = @story.user.followers.count
+          - if user.followers.any?
+            = user.followers.count
+          - else
+            0
 
-  .span3
-    %i.icon-thumbs-up{title: 'Reputation'}
-    %span
-      = @story.user.karma
-  .span3
-    %i.icon-pencil{title: 'Read Stories'}
-    %span
-      = link_to @story.user.stories.where(active: true).count, profile_path(@story.user)
-  - if @story.user.website.present?
-    .span3
-      %i.icon-globe
+    .col-4.flex-fill
+      %i.icon-thumbs-up{title: 'Reputation'}
       %span
-        = link_to @story.user.website, :title => @story.user.website, :rel => 'nofollow' do
-          Website
-  - if @story.user.profile.present?
-    .row-fluid
-      .span12.profile
-        %h6
-          Profile
-        %p
-          = auto_link(simple_format(@story.user.profile))
+        = user.reputation
+    .col-4.flex-fill
+      %i.icon-pencil{title: 'Read Stories'}
+      %span
+        = link_to user.stories_count, profile_path(user)

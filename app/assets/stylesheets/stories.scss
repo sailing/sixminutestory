@@ -1,0 +1,196 @@
+// Place all the styles related to the stories controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+// @import "variables";
+
+// Timer
+#timer_element {
+	$height: 50px;
+	line-height: $height;
+	max-height: $height;
+	height: $height;
+	text-align:center;
+
+	font-size:3em;
+	font-weight: 600;
+
+}
+
+
+// Stories
+
+.story-container {
+	margin-top:15px;
+}
+
+.story {
+	p {
+		font-family: 'Lora', "Georgia", serif;
+		font-weight: 300;
+		font-size: 1em;
+		line-height: 1.8em;
+	}
+	h2 {
+		font-family: 'Montserrat', "Arial", sans-serif;
+		font-weight: 600;
+	}
+	.btn {
+			color: #fff;
+		}
+}
+
+.increment-story {
+	min-height:600px;
+	height:600px;
+	line-height: 600px;
+	font-size: 3em;
+	color: rgba(200,200,200,0.5);
+}
+
+.increment-story-left {
+	min-height: 400px;
+	height: 400px;
+	line-height: 400px;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.increment-story-random {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	min-height: 200px;
+	height:200px;
+	line-height: 200px;
+	font-size: 1.5em;
+}
+
+@media (max-width: 767px) {
+	.increment-story, .increment-story-left {
+		padding: 0;
+	}
+
+	.increment-story {
+		min-height:100px;
+		height:100px;
+		line-height: 100px;
+		font-size: 3em;
+		color: rgba(200,200,200,0.5);
+	}
+
+	.increment-story-left {
+		min-height: 100px;
+		height: 100px;
+		line-height: 100px;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+
+	.increment-story-random {
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+		min-height: 100px;
+		height:100px;
+		line-height: 100px;
+		font-size: 1.5em;
+	}
+}
+
+
+.story-footer {
+	margin-bottom: 15px;
+	span {
+		padding:0;
+	}
+}
+
+.story-title {
+	font-size:3.5em !important;
+}
+
+#stories_nav {
+	position: fixed;
+	bottom:1%;
+	right:0;
+}
+
+#story_description {
+	padding-right: 0;
+}
+
+.story-itself {
+}
+
+.parent-fade {
+	position: relative;
+	z-index: -1;
+	margin-top: -200px;
+	max-height:425px;
+}
+
+.parent-fade::after {
+  display: block;
+  position: relative;
+  background-image: linear-gradient(to bottom, white 0%, transparent 85%, transparent 100%);
+  margin-top: -425px;
+  height: 425px;
+  width: 100%;
+  content: '';
+}
+
+
+@media (max-width: 575px) {
+	.parent-fade {
+		position: relative;
+		z-index: -1;
+		margin-top: -350px;
+		max-height: 350px;
+	}
+
+	.parent-fade::after {
+	  display: block;
+	  position: relative;
+	  background-image: linear-gradient(to bottom, white 0%, transparent 95%, transparent 100%);
+	  margin-top: -350px;
+	  height: 350px;
+	  width: 100%;
+	  content: '';
+	}
+
+	.parent-spacer {
+		margin-top: 150px;
+	}
+}
+
+@media (min-width: 875px) {
+	#children {
+		margin-left: -15px;
+    width: 100vw !important;
+		padding-left: 150px !important;
+	}
+}
+
+.comment {
+	margin: 10px 0 20px;
+	h5 {
+		margin-bottom:5px !important;
+	}
+}
+
+.border-right {
+	border-right: 1px solid #777;
+}
+
+.agree-with-comment {
+	margin-top:50px;
+}
+
+.remove {
+	color: #ccc;
+}
+
+
+.post-writing-actions {
+	height:200px;
+	min-height: 200px;
+}
+

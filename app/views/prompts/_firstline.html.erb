@@ -1,14 +1,16 @@
-	<tr>
-		<td>
-      <%= link_to "click to use", write_to_prompt_url(firstline) %>
+<div class="card col-md-4 p-0 mb-3 mb-md-0 shadow-sm">
+	<div class="card-body d-flex justify-content-center flex-column align-items-center text-center col-md-10 offset-md-1 lead">
+		<%= firstline.refcode %>
+	</div>
+	<div class="card-footer justify-content-center d-flex bg-white border-top-0">
+		<div class="btn-group">
+			<%= link_to 'Write', write_to_prompt_path(firstline.id), class: "btn btn-primary" %>
+			
+			<%= link_to "Read #{firstline.stories_count} stories", prompt_url(firstline), class: "btn btn-warning" %>
+
 			<% if is_admin %>
-
-				| <%= link_to "edit", edit_prompt_url(firstline) %>
+				<%= link_to 'Edit', edit_prompt_path(firstline), class: "btn btn-secondary" %>
 			<% end %>
-		</td>
-
-				<td>
-					<%= truncate(firstline.refcode, :length => 100) %>
-				</td>
-				<td style="text-align:left;"><%= link_to ("read " + pluralize(firstline.stories_count, "story")), prompt_url(firstline) %></td>
-			</tr>
+		</div>
+	</div>
+</div>

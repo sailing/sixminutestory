@@ -2,11 +2,18 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  before_filter :check_for_maintenance 
-  before_filter :require_username, :except => [:edit, :update, :create]
+  before_action :store_user_location!, if: :storable_location?
+  # The callback which stores the current location must be added before you authenticate the user 
+  # as `authenticate_user!` (or whatever your resource is) will halt the filter chain and redirect 
+  # before the location can be stored.
 
-  helper_method :current_user_session, :current_user
-  
+  acts_as_token_authentication_handler_for User
+  skip_before_action :authenticate_user_from_token!
+  before_action :authenticate_user_from_token!, if: :login_params_present?
+
+  before_action :check_for_maintenance 
+  before_action :require_username, :except => [:edit, :update, :create]
+
   helper :all # include all helpers, all the time
   
   # See ActionController::RequestForgeryProtection for details
@@ -18,22 +25,16 @@ class ApplicationController < ActionController::Base
   # from your application log (in this case, all fields with names like "password"). 
   # filter_parameter_logging :password
 
-    private
-    def current_user_session
-      return @current_user_session if defined?(@current_user_session)
-      @current_user_session = UserSession.find
+  private
+    def login_params_present?
+      params[:user_email].present? && params[:user_token].present?
     end
 
-    def current_user
-       return @current_user if defined?(@current_user)
-       @current_user = current_user_session && current_user_session.record
-    end
-  
     def require_user
       unless current_user
         store_location
         flash[:notice] = "You must be logged in to access this page."
-        redirect_to login_url
+        redirect_to new_user_session_url
         return false
       end
     end
@@ -46,43 +47,48 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    def store_location
-      session[:return_to] =
-      if request.get?
-        request.fullpath
-      else
-        request.referer
+    private
+      # Its important that the location is NOT stored if:
+      # - The request method is not GET (non idempotent)
+      # - The request is handled by a Devise controller such as Devise::SessionsController as that could cause an 
+      #    infinite redirect loop.
+      # - The request is an Ajax request as this can lead to very unexpected behaviour.
+      def storable_location?
+        request.get? && is_navigational_format? && !devise_controller? && !request.xhr? 
       end
-    end
 
-    def redirect_back_or_default(default)
-      redirect_to(session[:return_to] || default)
-      session[:return_to] = nil
-    end
+      def store_user_location!
+        # :user is the scope we are authenticating
+        store_location_for(:user, request.fullpath)
+      end
+
+      def after_sign_in_path_for(resource_or_scope)
+        stored_location_for(resource_or_scope) || super
+      end
     
          # Check to see if user is an admin
-    def must_be_admin
-      (current_user && @current_user.admin_level > 1) || ownership_violation
-      return false
-     end
+      def must_be_admin
+        (current_user && @current_user.admin_level > 1) || ownership_violation
+        return false
+      end
     
-    def must_own_user
+      def must_own_user
         if current_user
           @user ||= User.find(params[:id])
           @user == @current_user || @current_user.admin_level > 1 || ownership_violation
           return false
         end
-    end
+      end
     
-    def must_own_story
-      if current_user
-       @story ||= Story.find(params[:id])
-        unless @story.user == current_user or current_user.admin_level > 1
-          ownership_violation
-        end
-        return false
-      end 
-     end
+      def must_own_story
+        if current_user
+         @story ||= Story.find(params[:id])
+          unless @story.user == current_user or current_user.admin_level > 1
+            ownership_violation
+          end
+          return false
+        end 
+      end
 
      def ownership_violation
        respond_to do |format|
@@ -91,74 +97,39 @@ class ApplicationController < ActionController::Base
            if current_user
               redirect_to account_url
            else
-              redirect_to login_url
+              redirect_to new_user_session_url
            end
           
           end
        end
      end
      
-     def require_username 
-       if current_user
-         unless current_user.login.present?
-            flash[:notice] = "Please choose a username to represent you on Six Minute Story."
-            redirect_to edit_account_url
-         end
-       end
-     end
-     
-     
-     def check_for_maintenance
-         if File.exist? "#{Rails.root}/public/maintenance.html"
-           return render( :file =>  "#{Rails.root}/public/maintenance.html") unless (current_user && current_user.is_admin?)
+    def require_username
+      if current_user
+        unless current_user.login.present?
+          flash[:notice] = "Please choose a username to represent you on Six Minute Story."
+          redirect_to edit_account_url
         end
-     end
+      end
+    end
+     
+     
+    def check_for_maintenance
+      if File.exist? "#{Rails.root}/public/maintenance.html"
+         return render( :file =>  "#{Rails.root}/public/maintenance.html") unless (current_user && current_user.is_admin?)
+      end
+    end
 
-		
-     def rand_with_range(values = nil)
-         if values.respond_to? :sort_by
-           values.sort_by { rand }.first
-         else
-           rand(values)
-         end
-       end
-
-       def get_random()
-          model = params[:controller].singularize.classify.constantize
-          name = params[:controller].singularize
-          
-          if (name == "prompt")
-            @count = model.count :conditions => ["use_on <= :today", {:today => Date.today} ]
-            # choose a record to select
-              @get_this = rand_with_range(1..@count)
-
-            # try to get it
-              instance_variable_set("@#{name}", model.find(@get_this, :conditions => ["active = :active AND (use_on <= :today)", {:active => true, :today => Date.today} ]))
-            
-          
-          else            
-            # count model to get a set to choose among
-            @count = model.count
-            
-            # choose a record to select
-              @get_this = rand_with_range(1..@count)
-
-            # try to get it
-              instance_variable_set("@#{name}", model.find(@get_this, :conditions => {:active => true}))
-            
-          end
-            
-        end # end get_random
         
-        # This tests to see if the current user is 
-        # following the writer whose story or profile they're viewing.
-        def following_exists(user_id)
-          if current_user
-            unless @following = current_user.followings.find_by_writer_id(user_id)
-              @following = nil
-            end
-          end
-        end      
+    # This tests to see if the current user is 
+    # following the writer whose story or profile they're viewing.
+    def following_exists(user_id)
+      if current_user
+        unless @following = current_user.followings.find_by_writer_id(user_id)
+          @following = nil
+        end
+      end
+    end      
         
  #       def rescue_action_in_public(exception)
 #          case exception

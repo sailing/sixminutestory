@@ -22,6 +22,7 @@ config.serve_static_assets = false
 # Use a different cache store in production
 # config.cache_store = :mem_cache_store
 config.cache_store = :dalli_store
+config.eager_load = true
 
 
 # Enable serving of images, stylesheets, and javascripts from an asset server
@@ -29,6 +30,7 @@ config.cache_store = :dalli_store
 
 # Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
+ config.action_mailer.default_url_options = {host: "sixminutestory.com", protocol: 'https'}
 
 # Enable threaded mode
 # config.threadsafe!
@@ -63,6 +65,6 @@ config.assets.prefix = "/production/assets"
 # config.assets.precompile += %w( search.js )
 
 # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-# config.force_ssl = true
+config.force_ssl = true
 
 end

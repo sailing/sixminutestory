@@ -1,46 +1,60 @@
-<%= render :partial => 'admin' %>
-<h1>suggest</h1>
+<div class="mx-5">
+  <%= render :partial => 'admin' %>
+  <h1>Suggest a Prompt</h1>
 
-<% form_for(@prompt) do |f| %>
+  <%= form_for(@prompt) do |f| %>
+    <div class="card mb-3">
+      <h4 class="card-header">Hero, Villain, Goal</h4>
+      <div class="card-body">
+        <div class="form-group row">
+          <%= f.label :hero, class: "col-form-label col-sm-2" %><br />
+          <%= f.text_field :hero, class: "form-control col-sm-6", placeholder: "ex. Blackbeard" %>
+        </div>
+        <div class="form-group row">
+          <%= f.label :villain, class: "col-form-label col-sm-2" %><br />
+          <%= f.text_field :villain, class: "form-control col-sm-6", placeholder: "ex. Dolphins" %>
+        </div>
+        <div class="form-group row">
+          <%= f.label :goal, class: "col-form-label col-sm-2" %><br />
+          <%= f.text_field :goal, class: "form-control col-sm-6", placeholder: "ex. Burying treasure" %>
+        </div>
+       <div class="form-group">
+          <%= f.submit("Contribute", :name => "prompt[hvg]", class: "btn btn-primary", :disabled => false) %>
+        </div>
+      </div>
+    </div>
+    <div class="card mb-3">
+      <h4 class="card-header">Images</h4>
+      <div class="card-body">
+      	<div class="form-group">
+          <%= f.label :attribution_url, "Or, submit a link to a Creative Commons licensed flickr image.", class: "form-label" %>
+          <br />
+      	  <small>
+            (Please link to the flickr page, not the image directly.)
+          </small> 
+          <br />
+          <%= f.text_field :attribution_url, class: "form-control mt-3" %>
+        </div>
+        <div class="form-group">
+          <%= f.submit("Contribute", :name => "prompt[flickr]", class: "btn btn-primary", :disabled => false) %>
+        </div>
+      </div>
+    </div>
+    <div class="card mb-3">
+      <h4 class="card-header">First line</h4>
+      <div class="card-body">
+      	<div class="form-group">
+          <%= f.label :refcode, "Suggest the first line of a story. Writers will then continue the story in six minutes or less.", class: "form-label" %>
+          <br />
+        	<small>(Please only supply lines you create yourself. You will be attributed.)</small>
+          <br />
+          <%= f.text_field :refcode, class: "form-control mt-3" %>
+        </div>
 
-<h4>Heros, Villains, Goals</h4>
-  <p>
-    <%= f.label :hero %><br />
-    <%= f.text_field :hero %>
-  </p>
-  <p>
-    <%= f.label :villain %><br />
-    <%= f.text_field :villain %>
-  </p>
-  <p>
-    <%= f.label :goal %><br />
-    <%= f.text_field :goal %>
-  </p>
- <p>
-    <%= submit_tag("Contribute", :name => "prompt[hvg]", :id => "contribute-button", :disabled => false) %>
-  </p>
-
-<h4>Images</h4>
-	<p>
-    <%= f.label :attribution_url, "	Or, submit a link to a Creative Commons licensed flickr image." %><br />
-	<span style="font-size:small;">(Please link to the flickr page, not the image directly.)</span> <br />
-    <%= f.text_field :attribution_url %>
-  </p>
- <p>
-    <%= submit_tag("Contribute", :name => "prompt[flickr]", :id => "contribute-button", :disabled => false) %>
-  </p>
-
-<h4>First line</h4>
-	<p>
-    <%= f.label :refcode, "Suggest the first line of a story. Writers will then continue the story in six minutes or less." %>
-	
-	<br />
-	
-	<span style="font-size:small;">(Please only supply lines you create yourself. You will be attributed.)</span> <br />
-    <%= f.text_field :refcode %>
-  </p>
-
- <p>
-    <%= submit_tag("Contribute", :name => "prompt[startline]", :id => "contribute-button", :disabled => false) %>
-  </p>
-<% end %>
+       <div class="form-group">
+          <%= f.submit("Contribute", :name => "prompt[startline]", class: "btn btn-primary", :disabled => false) %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

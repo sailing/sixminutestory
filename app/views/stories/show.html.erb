@@ -1,0 +1,164 @@
+<% content_for :pagename do %>
+  <%= @story.title %>
+<% end %>
+
+<% content_for :head do %>
+  <meta name="title" content="<%= @story.title %>">
+  <meta name="description" content="<%= @story.truncated_description %>">
+  <meta name="keywords" content="<%= @story.joined_tags %>">
+  <meta name="author" content="<%= @story.user.login %>">
+
+  <!--  Essential META Tags -->
+
+  <meta property="og:title" content="<%= @story.title %>">
+  <meta property="og:description" content="<%= @story.truncated_description %>">
+  <%- if @story.prompt.kind == 'image' %>
+    <meta property="og:image" content="<%= @story.prompt.refcode %>">
+  <%- end %>
+  <meta property="og:url" content="<%= story_url(@story) %>">
+  <meta name="twitter:card" content="summary_large_image">
+
+
+  <!--  Non-Essential, But Recommended -->
+
+  <meta property="og:site_name" content="Six Minute Story">
+  <meta name="twitter:image:alt" content="">
+
+
+  <!--  Non-Essential, But Required for Analytics -->
+
+  <!-- <meta property="fb:app_id" content="your_app_id" /> -->
+  <meta name="twitter:site" content="@6minutestory">
+<% end %>
+
+<%- if is_admin %>
+  <div class="d-flex mx-4">
+    <%- if @story.featured == true %>
+      <div id="unfollowing_button" class="button_container">
+        <%= button_to "Unfeature", unfeature_story_url(@story), class: "btn btn-danger btn-sm mr-3 mb-3", form_class: "d-inline-block", 
+              :confirm => 'Are you sure you want to unfeature this story? The story will no longer be featured!', :method => :post %>
+      </div>
+    <%- elsif @story.featured == false %>
+      <div id="following_button" class="button_container">
+        <%= button_to "Feature", feature_story_url(@story), class: "btn btn-primary btn-sm mr-3 mb-3", form_class: "d-inline-block", 
+              :confirm => 'Are you sure you want to feature this story? The story will become featured!', :method => :post %>
+      </div>
+    <%- end %>
+    <%= link_to "Edit", edit_story_url(@story), class: "btn btn-warning btn-sm mb-3" %>
+  </div>
+<% end %>
+<%- if @parent %>
+  <div class="row d-flex justify-content-center align-items-top mb-4 mx-4">
+    <%= link_to story_url(@parent), class: "btn btn-info btn-large col-4 shadow"  do %>
+      Read Up <i class="icon-circle-arrow-up"></i>
+    <% end %>
+    <div class="col-md-10 parent-fade">
+      <%= render :partial => "stories/story", :locals => {story: @parent, read_more: false } %>
+    </div>
+  </div>
+<% end %>
+<div class="row <%= "parent-spacer" if @parent %> mx-4">
+  <div class="col-1">
+    <div class="row">
+      <% if @previous %>
+        <%= link_to story_url(@previous), class: "col-12 btn btn-large border increment-story increment-story-left" do %>
+          <i class="icon-caret-left icon-large"></i>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="row">
+      <%= link_to random_stories_url, class: "col-12 btn btn-large increment-story increment-story-random border #{@previous ? 'border-top-0' : 'rounded' }" do %>
+        <i class="icon-random icon-large"></i>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-10">
+    <%= render :partial => "stories/story", :locals => {:story => @story, truncate: false } %>
+  </div>
+  <% if @next %>
+    <%= link_to story_url(@next), class: "col-1 btn btn-large border increment-story" do %>
+      <i class="icon-caret-right icon-large"></i>
+    <% end %>
+  <% end %>
+</div>
+<div class="d-flex flex-column mt-4 col-md-12">
+  <% if @children.any? %>
+    <h3 class="text-left h1 mb-0 offset-md-1 pl-4">
+      Branches
+      <%= link_to "Add a Branch to this Story", write_to_prompt_url(@prompt, parent_id: @story.id), class: "btn btn-danger shadow-sm ml-md-4", id: "branch" %>
+      <% if @parent %>
+        <%= link_to "Read this Thread", thread_url(@story), class: "btn btn-warning shadow-sm ml-md-4" %>
+      <% end %>
+    </h3>
+    <div id="children" class="children-fade px-md-5 px-4 recent-prompts w-100 d-flex flex-sm-column flex-md-row justify-content-md-between justify-content-sm-between align-content-between my-3 flex-wrap flex-md-nowrap flex-fill" style="overflow: scroll;">
+      <%= render :partial => "stories/story", collection: @children, locals: {full_size: false} %>
+    </div>
+    <%- if @more_children %>
+      <div class="d-flex w-100 justify-content-md-end pr-md-4 px-4">
+        <%= link_to "Load More", children_url(@story, page: (@page || 1) + 1), remote: true, id: "load_more_children", class: "btn btn-dark align-self-right col-sm-12 col-md-1" %>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="col-12 d-flex justify-content-center mb-3">
+      <%= link_to "Add a Branch to this Story", write_to_prompt_url(@prompt, parent_id: @story.id), class: "btn btn-danger shadow-sm ml-md-4", id: "branch" %>
+      <% if @parent %>
+        <%= link_to "Read this Thread", thread_url(@story), class: "btn btn-warning shadow-sm ml-md-4" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+<div class="d-flex flex-column mt-4">
+  <div class="col-12 d-flex justify-content-center mb-3">
+    <div class="col-6 text-center card border-primary p-3">
+      <%= render :partial => 'stories/share_in_story', :locals => {:story => @story} %>
+    </div>
+  </div>
+</div>
+<div class="row m-4 d-flex justify-content-between" id="comments_section">
+  <div class="flex-fill col-12 col-md-6">
+    <div class="card mb-3">
+      <h3 class="card-header bg-danger text-white">Comments</h3>
+      <%= render :partial => "comment_section" %>
+    </div>
+  </div>
+  <div class="flex-fill col-12 col-md-6">
+    <%= render :partial => "site/profile_block", locals: { user: @story.user} %>
+    <div class="card mb-3" id="favoriters">
+      <%= render :partial => "favoriters" %>
+    </div>
+    <div class="card mb-3">
+      <h3 class="card-header bg-light">Story information</h3>
+      <div class="card-content p-3">
+        <h6>License</h6>
+        <p>
+          <%= @story.license %>
+        </p>
+        <% if @story.genres.any? %>
+          <h6>genres</h6>
+          <p>
+            <% @story.genres.each do |genre| %>
+              <%= link_to h(genre.name), subset_stories_url(:tag => genre.name, :subset => "genre", :months => 1200) %>
+            <% end %>
+          </p>
+        <% end %>
+        <% if @story.tags.any? %>
+          <h6>tags</h6>
+          <p>
+            <% @story.tags.each do |tag| %>
+              <%= link_to h(tag.name), subset_stories_url(:tag => tag.name, :subset => "adjective", :months => 1200) %>
+            <% end %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+    <div class="card" id="prompt">
+      <h3 class="card-header bg-light">Prompt</h3>
+      <div class="card-content p-3">
+        <%= render :partial => "prompts/show_prompt" %>
+      </div>
+      <div class="card-footer">
+        <%= render :partial => "votes/prompt_vote", :object => @story.prompt, :as => :prompt %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,67 +1,67 @@
-<%= render :partial => 'admin' %>
-<h1>Editing prompt</h1>
+<div class="m-3">
+  <%= render :partial => 'admin' %>
+  <h1>Editing prompt</h1>
+  <%= form_for(@prompt, html: {class: "form-horizontal"}) do |f| %>
+  	<% if @prompt.errors.any? %>
+    	<div id="errorExplanation">
+    		<h2>Your story hasn't been saved yet.</h2>
+    		<h3>Please check for errors below.</h3>
 
-<% form_for(@prompt) do |f| %>
-	<% if @prompt.errors.any? %>
-		<!-- ERROOOOOOOooooOOORSSSSSSSSSSSSSSSSS -->
+    		  <ul>
+    		    <% @prompt.errors.each do |attribute, msg| %>
+    		      <li><%= msg %></li>
+    		    <% end %>
+    		  </ul>
+    	</div>
+  	<% end %>
 
-	<div id="errorExplanation">
-		<h2>Your story hasn't been saved yet.</h2>
-		<h3>Please check for errors below.</h3>
+    <div class="form-group">
+      <%= f.label :hero, class: "form-label" %><br />
+      <%= f.text_field :hero, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :villain, class: "form-label" %><br />
+      <%= f.text_field :villain, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :goal, class: "form-label" %><br />
+      <%= f.text_field :goal, class: "form-control" %>
+    </div>
 
-		  <ul>
-		    <% @prompt.errors.each do |attribute, msg| %>
-		      <li><%= msg %></li>
-		    <% end %>
-		  </ul>
-	</div>
-	<% end %>
+    <div class="form-group">
+      <%= f.label :refcode, class: "form-label" %><br />
+      <%= f.text_field :refcode, class: "form-control" %>
+    </div>
 
-  <p>
-    <%= f.label :hero %><br />
-    <%= f.text_field :hero %>
-  </p>
-  <p>
-    <%= f.label :villain %><br />
-    <%= f.text_field :villain %>
-  </p>
-  <p>
-    <%= f.label :goal %><br />
-    <%= f.text_field :goal %>
-  </p>
+    <div class="form-group">
+      <%= f.label :kind, class: "form-label" %><br />
+      <%= f.text_field :kind, class: "form-control" %>
+    </div>
 
-  <p>
-    <%= f.label :refcode %><br />
-    <%= f.text_field :refcode %>
-  </p>
+    <div class="form-group">
+      <%= f.label :attribution, class: "form-label" %><br />
+      <%= f.text_field :attribution, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :attribution_url, class: "form-label" %><br />
+      <%= f.text_field :attribution_url, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :license, class: "form-label" %><br />
+      <%= f.text_field :license, class: "form-control" %>
+    </div>
 
-  <p>
-    <%= f.label :kind %><br />
-    <%= f.text_field :kind %>
-  </p>
+  	<div class="form-group">
+  		<%= f.label :use_on, class: "form-label" %><br />
+  		<%= date_select("prompt","use_on", :default => 1.day.from_now, class: "form-control")%>
+  	</div>
+    <div class="form-group">
+      <%= f.submit "Save", :id => "save-button", :disabled => false %>  
+    </div>
+  <% end %>
 
-  <p>
-    <%= f.label :attribution %><br />
-    <%= f.text_field :attribution %>
-  </p>
-  <p>
-    <%= f.label :attribution_url %><br />
-    <%= f.text_field :attribution_url %>
-  </p>
-  <p>
-    <%= f.label :license %><br />
-    <%= f.text_field :license %>
-  </p>
-
-	<p>
-		<%= f.label :use_on %><br />
-		<%= date_select("prompt","use_on", :default => 1.day.from_now)%>
-	</p>
-  <p>
-<%= image_submit_tag("save.png", :name => "save", :id => "save-button", :disabled => false) %>  </p>
-<% end %>
-
-<% if is_admin %>
-<%= link_to 'Destroy', @prompt, :confirm => 'Are you sure?', :method => :delete %> || 
-<%= link_to 'Back', prompts_path %>
-<% end %>
+  <% if is_admin %>
+    <%= link_to 'Destroy', @prompt, :confirm => 'Are you sure?', :method => :delete %> || 
+    <%= link_to 'Back', prompts_path %>
+  <% end %>
+</div>

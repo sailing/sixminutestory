@@ -1,0 +1,58 @@
+<p>
+  <span style="font-size:1.4em;font-weight:bold;color:#FF7851;font-family:arial;line-height:110%;">Announcing Threaded Stories</span><br>
+</p>
+<p>
+  <span style="font-size:1.1em;font-weight:bold;color:#6CC3D5;font-family:arial;line-height:110%;">First Though, Decades (because you're all amazing)</span><br>
+</p>
+<p>
+  It's been 10 years since I built Six Minute Story. A full on decade. I guess that means we're all older now.
+</p>
+<p>
+  In the past ten years, over 750 writers (like you) have written 655,000 words in more than 3500 stories.
+</p>
+<p>
+  Some of you have written oh-so-many stories. Anglea wrote 157.
+</p>
+<p>
+  Some other super-prolific writers of the last decade were:
+</p>
+<p>
+  <ul>
+    <li>ganymeder - 117 stories</li>
+    <li>Jayden Nicole - 98</li>
+    <li>DoctorMikeReddy - 95</li>
+    <li>the-arraignment - 84</li>
+    <li>NYgirlLovesCA - 75</li>
+    <li>bespectakate - 69</li>
+    <li>Gone Awry - 66</li>
+    <li>CraigTowsley - 65</li>
+    <li>mroshaugh - 61</li>
+  </ul>
+</p>
+<p>
+  As for me, I've drifted in and out of other projects, sailed up and down the United States' east coast, built some stuff, worked in tech for a long time. 
+</p>
+<p>
+  But Six Minute Story has always been my first love. It's full of story, full of adrenaline, full of revelation. So, for the tenth anniversary, I think a revamp is in order.
+</p>
+<p>
+  Initially that just meant fixing the login form so you can actually log in and write. So I did that. <em><small>(BTW, click any link in this email and you'll be automatically logged in.)</small></em>
+</p>
+<p>
+  But then I thought why not make it even better.
+</p>
+<p>
+  <span style="font-size:1.1em;font-weight:bold;color:#6CC3D5;font-family:arial;line-height:110%;">Threaded Stories</span><br>
+</p>
+<p>
+  A few years back some people started writing serialized stories (here's <%= link_to "one from DoctorMikeReddy", story_url(@serialized_story, user_email: @recipient.email, user_token: @recipient.authentication_token) %>, and here's <%= link_to "one from TimSevenhuysen", story_url(@serialized_story_2, user_email: @recipient.email, user_token: @recipient.authentication_token) %>).
+</p>
+<p>
+  I chatted with a few writers and they liked the idea of making serialized stories official. I've taken it a step further than that: not only can you add segments to your own story, six minutes at a time, but you can also branch stories by other writers. To get started, just below any story on the site, click "Add a Branch to this Story". <%= link_to "Here's a story by TonyNoland to try it out on", story_url(@branchable_story, anchor: "branch", user_email: @recipient.email, user_token: @recipient.authentication_token) %>. <%= link_to "And here's one about a missing elephant by yangjanice", story_url(@branchable_story_2, user_email: @recipient.email, user_token: @recipient.authentication_token) %>.
+</p>
+<p>
+  I'm hoping this unlocks some potential epics and some potentially epic collaborations.
+</p>
+<p>
+  As always, you can reply to this email to get ahold of me, or find me on Twitter at <a href="https://twitter.com/6minutestory">@6minutestory</a>
+</p>

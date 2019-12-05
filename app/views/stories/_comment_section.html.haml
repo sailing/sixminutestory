@@ -1,23 +1,18 @@
-#comments.row-fluid
-  .span12
+.row-fluid
+  .col-12
     - if current_user
-      #comment_form
-        = form_for([@story, Comment.new], :html => { :id => 'comments_form' }) do |f|
-          = f.text_area :comment, class: "span12", rows: 5
-          #comment_submit_container.pull-right
-            = submit_tag "Contribute", :name => "contribute", :id => "contribute-button", :disabled => false, class: "btn"
+      .form
+        = form_for([@story, Comment.new], html: { id: 'comments_form' }, remote: true) do |f|
+          = f.text_area :comment, class: "col-12 form-control my-3", rows: 5
+          #comment_submit_container.pull-right.mb-3
+            = submit_tag "Contribute", name: "contribute", id: "contribute-button", disabled: false, class: "btn btn-success"
     - else
-      #signin_or_register
-        = rpx_popup(:link_text => "Login", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false )
-        or
-        = rpx_popup(:link_text => "Join", :app_name => "six-minute-story", :return_url => user_session_url, :unobtrusive => false )
-        to remark.
-
-
-
-- if @story.comments.present?
-  %hr
-  .row-fluid
-    .span12
-      = render :partial => "comments/comment", :collection => @story.comments
+      #signin_or_register.p-3
+        %p
+          Want to comment? Login or Join
+        = link_to "Login", new_session_path(User), class: 'btn btn-primary'
+        = link_to "Sign up", new_registration_path(User), class: 'btn btn-dark'
+.row-fluid
+  #comments.col-12
+    = render partial: "comments/comment", collection: @story.comments
 

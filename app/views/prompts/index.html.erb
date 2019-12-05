@@ -1,0 +1,73 @@
+<% content_for :pagename do %>
+	Prompts
+	<% if params[:show] %>
+		( <%= params[:show] %> )
+	<% else %>
+		( firstlines )
+	<% end %>
+<% end %>
+
+<% content_for :sideyard do %>
+  <h2>How to Write a Story</h2>
+  <p>Choose a prompt at left to jumpstart your writing.</p> 
+  <p> Or if you're feeling daring, <%= link_to "click to write", write_url %> to the prompt we chose for today, or to a <%= link_to "random prompt", random_prompt_url %>.</p>
+  <% unless current_user %>
+    <p>Since you're not logged in yet, you'll be asked to login on the next page.
+    </p>
+  <% end %>
+  <div class="toolbar_container">
+    <div class="btn-group">
+      <%= link_to "Write now", write_url, class: "btn btn-primary" %>
+      <%= link_to "Random prompt", random_prompt_url, class: "btn btn-warning" %>
+    </div>
+  </div>
+<% end %>
+<section class="px-3">
+  <h2 class="h1">Write a story</h2>
+  <%= render :partial => 'admin' %>
+  <% unless @scheduled %>
+  	<% # select tag shows various prompts %>
+  	<div class="my-4">
+      <div class="btn-group">
+        <%- @filters.each do |f| %>
+          <%= link_to f[:label], prompts_path(show: f[:scope]), class: "btn btn-#{f[:color]}" %>
+        <% end %>
+      </div>
+  	</div>
+  <% end %>
+  	
+  <% if @scheduled %>
+  	<table>
+  		<% @prompts.each do |prompt| %>
+  		<tr>
+  			<td><%= prompt.id %></td><td><%= link_to prompt.use_on, prompt_url(prompt) %></td>
+  		</tr>
+  		<% end %>
+  	</table>
+  <% else %>
+  	<% unless @prompts.empty? %>
+  		<% if @table == "hvg" %>
+  			<h3>Hero / Villain / Goal</h3>
+      <% elsif @table == "images" %>
+        <h3>Images</h3>
+      <% else %>
+        <h3>First lines</h3>
+      <% end %>
+        
+  		<div class="row">
+  			<div class="recent-prompts col-12 d-flex flex-sm-column flex-md-row justify-content-md-between justify-content-sm-between align-content-between my-3 flex-wrap flex-md-nowrap flex-fill" style="overflow: scroll;">
+  				<% if @table == "hvg" %>
+            <%= render :partial => 'hvg', :collection => @prompts %>
+          <% elsif @table == "images" %>
+            <%= render :partial => 'image', collection: @prompts  %>
+          <% else %>
+            <%= render :partial => 'firstline', :collection => @prompts  %>
+          <% end %>
+  			</div>
+  		</div>
+  		<div class="row justify-content-center">
+  			<%= paginate @prompts  %>
+  		</div>
+  	<% end %>
+  <% end %>	
+</section>

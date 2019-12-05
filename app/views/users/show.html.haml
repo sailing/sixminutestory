@@ -1,55 +1,60 @@
 - content_for :pagename do
-  = "Profile for " + h(@user.login)
+  = "Profile for #{@user.login}"
 
-.row-fluid
-  .span12
-    = render :partial => 'profile'
+.row.mx-4
+  .col-md-12
+    = render :partial => 'site/profile_block', locals: { user: @user}
 
-.row-fluid.title.content
-  .span3
+.row.mx-4.mt-4
+  .col-md-3
     %h2 Stories
-  .span9
+  .col-md-9
     %hr
 
-.row-fluid
-  .span8
+.row.mx-4
+  .col-md-8
     = render @stories
     = render :partial => "stories/pagination"
-  .span4.well
-    - if is_user
-      %h3
-        Favorites (#{@user.votes.size})
-      / %p
-      /   = link_to "View favorites", favorites_path(@user)
-    - if is_owner_or_admin
-      %h3
-        Comments (#{@user.comments_count || "0"})
-      / %p
-      /   = link_to "View comments", users_comments_path(@user, "new")
-    %h3
-      Follows (#{@user.writers.size})
-    - if @user.followings.present?
-      %span
-        %strong First Five
-      %ul
-        - for following in @user.followings.limit(5)
-          %li
-            = link_to h(following.writer.login), profile_path(following.writer)
-            = link_to_if @user == current_user, "<i class='icon-remove'></i>".html_safe, following, {:method => :delete, class: 'remove'} do
-              \&nbsp;
-    - else
-      %span
-        Not following anyone yet.
-    %h3
-      Fans (#{@user.followers.size})
-    - if @user.followers.present?
-      %span
-        %strong Latest Five
-      %ul
-        - for follower in @user.followers.order('created_at DESC').limit(5)
-          %li
-            = link_to h(follower.login), profile_path(follower)
-    - else
-      %span
-        No fans as of yet.
-
+  .col-md-4
+    .card.mb-3
+      - if is_user
+        %h3.card-header
+          Favorites (#{@user.votes.size})
+        .card-body
+          = link_to "View favorites", favorites_path(@user)
+    / .card.mb-3
+    /   - if is_owner_or_admin
+    /     %h3.card-header
+    /       Comments (#{@user.comments_count || "0"})
+    /     .card-body
+    /       = link_to "View comments", users_comments_path(@user, "new")
+    .card.mb-3
+      %h3.card-header
+        Follows (#{@user.writers.size})
+      .card-body
+        - if @user.followings.present?
+          %span
+            %strong First Five
+          %ul
+            - for following in @user.followings.limit(5)
+              %li
+                = link_to h(following.writer.login), profile_path(following.writer)
+                = link_to_if @user == current_user, "<i class='icon-remove'></i>".html_safe, following, {:method => :delete, class: 'remove'} do
+                  \&nbsp;
+        - else
+          %span
+            Not following anyone yet.
+    .card.mb-3
+      %h3.card-header
+        Fans (#{@user.followers.size})
+      .card-body
+        - if @user.followers.present?
+          %span
+            %strong Latest Five
+          %ul
+            - for follower in @user.followers.order('created_at DESC').limit(5)
+              %li
+                = link_to h(follower.login), profile_path(follower)
+        - else
+          %span
+            No fans as of yet.

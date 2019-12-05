@@ -4,29 +4,37 @@
 
 <% content_for :sideyard do %>
 
-<% if is_admin %>
-<div class="prompt">
-	<span>
-		<%= link_to 'Edit', edit_prompt_path(@prompt) %> |
-		<%= link_to 'Back', prompts_path %>
-	</span>
-</div>
-<% end %>
+	<% if is_admin %>
+	<div class="prompt">
+		<span>
+			<%= link_to 'Edit', edit_prompt_path(@prompt) %> |
+			<%= link_to 'Back', prompts_path %>
+		</span>
+	</div>
+	<% end %>
 
 
 	<div id="show_prompt">
-	  <div class="prompt">
-		<%= render :partial => "prompts/show_prompt" %>
+		<h2 class="text-center">About the prompt</h2>
+	  <div class="card">
+	  	<div class="card-body">
+				<%= render :partial => "prompts/show_prompt" %>
+			</div>
+			<div class="text-center my-3">
+				<%= render :partial => "votes/prompt_vote", :object => @prompt, :as => :prompt %>
+			</div>
+
+			<%- if @prompt.use_on.present? %>
+				<div class="text-center my-3">
+
+					<span>
+						Originally displayed on:<br /> <%=h @prompt.use_on.strftime("%B %d, %Y") %>
+					</span>
+				</div>
+			<% end %>
+			
 		</div>
-		<div class="prompt">
-			<span>
-				Originally displayed on:<br /> <%=h @prompt.use_on.strftime("%B %d, %Y") if @prompt.use_on.present? %>
-			</span>
-	
-		</div>
-		<div class="center">
-			<%= render :partial => "votes/prompt_vote", :object => @prompt, :as => :prompt %>
-		</div>
+		
 	</div>
 
 

@@ -1,0 +1,68 @@
+Sms::Application.configure do
+  # Settings specified here will take precedence over those in config/environment.rb
+
+  # The production environment is meant for finished, "live" apps.
+  # Code is not reloaded between requests
+  config.cache_classes = true
+
+  # Full error reports are disabled and caching is turned on
+  config.consider_all_requests_local = false
+  config.perform_caching             = true
+  #config.action_view.cache_template_loading            = true
+  #config.cache_store = :mem_cache_store, Memcached::Rails.new
+  # See everything in the log (default is :info)
+  config.log_level = :debug
+
+  # Heroku requires we serve static assets
+  config.serve_static_assets = true
+
+  # Use a different logger for distributed setups
+  # config.logger = SyslogLogger.new
+
+  # Use a different cache store in production
+  # config.cache_store = :mem_cache_store
+  config.cache_store = :dalli_store
+  config.eager_load = true
+
+  # Disable delivery errors, bad email addresses will be ignored
+  # config.action_mailer.raise_delivery_errors = false
+   config.action_mailer.default_url_options = {host: "sm6-staging.herokuapp.com", protocol: 'https'}
+
+  # Enable threaded mode
+  # config.threadsafe!
+
+  # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
+  # the I18n.default_locale when a translation can not be found)
+  config.i18n.fallbacks = true
+
+  # Send deprecation notices to registered listeners
+  config.active_support.deprecation = :notify
+
+  # Compress JavaScripts and CSS
+  config.assets.compress = true
+
+  # Don't fallback to assets pipeline if a precompiled asset is missed
+  # config.assets.compile = false
+
+  # Generate digests for assets URLs
+  config.assets.digest = true
+  
+  # Enable serving of images, stylesheets, and javascripts from an asset server
+  # Use S3 for hosting
+  # config.action_controller.asset_host = "//sixminutestory.s3.amazonaws.com"
+  # config.action_controller.asset_host = ENV['asset_host'] if ENV['asset_host']
+
+  # Store assets in a subdirectory
+  # config.assets.prefix = "/production/assets"
+
+
+  # Defaults to Rails.root.join("public/assets")
+  # config.assets.manifest = YOUR_PATH
+
+  # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
+  # config.assets.precompile += %w( search.js )
+
+  # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
+  config.force_ssl = true
+
+end

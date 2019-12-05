@@ -1,98 +1,113 @@
-.row-fluid.title
-  .span6
-    %h2 Write a story
-  .span6
-    %hr
+.row.mx-4.title
+  .col-md-12
+    %h1 Write a story
+- if @parent.present?
+  .row.mx-4
+    .col-md-12
+      = render :partial => "stories/story", :locals => {:story => @parent, truncate: false}
+.row.mx-4.mb-5
+  .col-md-6.p-3
+    = form_for @story do |f|
+      .row
+        .col-md-12
+          #new_story_container.new_story_container
+            - if @story.errors.any?
+              #errorExplanation
+                %h2 Your story hasn't been saved yet.
+                %h3 Please check for errors below.
+                %ul
+                  - @story.errors.each do |attribute, msg|
+                    %li= msg
 
-#prompt_and_timer.hide.row-fluid.content
-  .span6
-    #prompt_container.prompt_container
-      = render :partial => "prompts/show_prompt"
-  .span6.well
-    #timer_container
-      #timer_element
-        6:10
-        / the timer is held in the timer.js
+            / Include the prompt so we can use it on the next page. Is this really necessary?
+            = f.hidden_field :prompt_id, value: @prompt.id
+            = f.hidden_field :parent_id, value: @parent.id if @parent.present?
+            .row
+              .col-md-12
+                = f.text_area :description, :rows => 15, :placeholder => "Type here to begin writing.", :style => "width:100%;", :'data-widearea' => "enable", class: "form-control"
+            %div.mt-3
+              %a#done_writing.d-none.btn.btn-large.btn-danger{:href => "#"} I'm done writing
 
-#instructions.row-fluid.content
-  .span6
-    %h3 Instructions
-    %ol
-      %li
-        When you click in the writing box, you get a prompt.
-      %li
-        Then you have
-        %strong six minutes
-        to write a story.
-      %li Go!
-  .span6.well
-    %h4 Note:
-    %p
-      When the timer stops,
-      %em you won't be able to type anymore
-      so use the last seconds
-      %strong wisely.
-    %p
-      %em Before submitting
-      choose a
-      %strong title
-      and categorize and
-      %strong license
-      your story.
+      #story-saved.modal.hide.fade(data-backdrop="static" data-keyboard="false")
+        .modal-dialog.modal-lg.modal-dialog-centered
+          .modal-content
+            .modal-header
+              %h3 Well done!
+              %h4.mt-1 Complete these details to publish your story
+            .modal-body.bg-light
+              .form
+                .form-group.row
+                  - if @story.errors[:title].present?
+                    %label
+                      = @story.errors[:title]
+                  - else
+                    = f.label :title, :class => "col-form-label col-md-3" do
+                      Title
+                      %br
+                      %span{:style => "font-size:x-small"} &nbsp;
+                  .col-md-9
+                    = f.text_field :title, class: "form-control rounded"
+                .form-group.row
+                  = f.label :tag_list, :class => "col-form-label col-md-3" do
+                    Adjectives
+                    %br
+                    %span{:style => "font-size:x-small"} separate adjectives with commas
+                  .col-md-9
+                    = f.text_field :tag_list, class: "form-control rounded"
+                .form-group.row
+                  = f.label :genre_list, :class => "col-form-label col-md-3" do
+                    Genres
+                    %br
+                    %span{:style => "font-size:x-small"} separate genres with commas
+                  .col-md-9
+                    = f.text_field :genre_list, class: "form-control rounded"
+                .form-group.row
+                  = f.label :license, :class => "col-form-label col-md-3"
+                  .col-md-9
+                    = f.select :license, options_for_select(Story::CC_OPTIONS), {}, {:class => "form-control custom-select rounded"}
+                      
+            .modal-footer
+              = link_to "Eh, toss this story",random_prompt_url, confirm: "Are you sure you want to abandon this story?", :class => "btn btn-danger"
+              = f.submit "Publish your story", :class => "btn btn-success btn-large"
 
-= form_for @story do |f|
-  .row-fluid.content
-    .span12
-      #new_story_container.new_story_container
-        - if @story.errors.any?
-          #errorExplanation
-            %h2 Your story hasn't been saved yet.
-            %h3 Please check for errors below.
-            %ul
-              - @story.errors.each do |attribute, msg|
-                %li= msg
+  #prompt_and_timer.d-none.col-md-6
+    .card.col.col-md-12.mt-3.p-0
+      .card-header.col-md-12
+        #timer_container
+          #timer_element
+            6:10
+            / the timer is held in timer.js
+      #prompt_container.prompt_container.card-body.text-center
+        = render :partial => "prompts/show_prompt"
+      
+  #instructions.col-md-6
+    .card.p-0.mt-md-3
+      %h3.card-header.bg-dark.text-white Instructions
+      .card-body
+        .row
+          .col-md-12
+            %ol
+              %li
+                When you click in the writing box, you get a prompt.
+              %li
+                Then you have
+                %strong six minutes
+                to write a story.
+              %li Go!
+      .row
+        .col-md-12
+          .card-footer
+            %h4 Note:
+            %p
+              When the timer stops,
+              %em you won't be able to type anymore
+              so use the last seconds
+              %strong wisely.
+            %p
+              %em Before submitting
+              choose a
+              %strong title
+              and categorize and
+              %strong license
+              your story.
 
-        / Include the prompt so we can use it on the next page. Is this really necessary?
-        = f.hidden_field :prompt_id, value: @prompt.id
-        .row-fluid
-          .span12
-            = f.text_area :description, :rows => 15, :placeholder => "Type here to begin writing.", :style => "width:100%;", :'data-widearea' => "enable"
-        %div
-          %a#done_writing.hide.pull-right.btn.btn-large{:href => "#"} I'm done writing
-
-  #story-saved.modal.hide.fade(data-backdrop="false")
-    .modal-header
-      %h3 Well done!
-      %h4 Complete these details to publish your story:
-    .modal-body
-      %table
-        %tr
-          %th
-            - if @story.errors[:title].present?
-              %label= @story.errors[:title]
-            - else
-              = f.label :title
-          %td
-            = f.text_field :title
-        %tr
-          %th
-            = f.label :tag_list, "Adjectives"
-            %br
-            %span{:style => "font-size:x-small"} separate adjectives with commas
-          %td
-            = f.text_field :tag_list
-        %tr
-          %th
-            = f.label :genre_list, "Genres"
-            %br
-            %span{:style => "font-size:x-small"} separate genres with commas
-          %td
-            = f.text_field :genre_list
-        %tr
-          %th
-            = f.label :license
-          %td
-            = f.select :license, options_for_select(Story::CC_OPTIONS)#, :name => "story[license]"
-    .modal-footer
-      = link_to "Eh, toss this story",random_prompt_url, confirm: "Are you sure you want to abandon this story?", :class =>"btn btn-danger"
-      = f.submit "Publish your story", :class => "btn btn-success btn-large "

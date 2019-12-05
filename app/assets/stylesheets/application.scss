@@ -1,0 +1,86 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+*/
+
+
+@import "minty/variables";
+@import "bootstrap";
+@import "minty/bootswatch";
+@import 'font-awesome';
+
+@import './widearea/**/*';
+// @import './theme/**/*';
+
+@import 'stories';
+
+.nav-link {
+  color: #fff !important;
+}
+
+.pagination {
+  ul {
+    list-style: none;
+    .btn {
+      min-width: 4vw;
+    }
+    li {
+      display: inline-block;
+    }
+  }
+}
+
+.btn {
+  i[class^="icon-"]:last-child:not(:first-child) {
+    @extend .ml-2;
+  }
+
+  i[class^="icon-"]:first-child:not(:last-child) {
+    @extend .mr-2;
+  }
+
+  i[class^="icon-"]:first-child:and(:last-child), i[class^="icon-"]:only-child {
+    @extend .mr-0;
+    @extend .ml-0;
+  }
+}
+
+.recent-prompts .card:not(:last-child) {
+  @extend .mr-3;
+}
+
+input::placeholder {
+  color: #bbb !important;
+}
+
+.bg-dark {
+  background-color: #444 !important;
+}
+
+@include media-breakpoint-down(sm) {
+  .recent-prompts .card:not(:last-child) {
+    margin-right: 0 !important;
+  }
+
+  .stories-list {
+    .btn-group {
+      .btn:not(:first-child), .btn:not(:last-child) {
+        margin: 1px 1px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px; 
+        border-top-left-radius: 5px; 
+        border-top-right-radius: 5px; 
+      }
+      
+    }
+  }
+}

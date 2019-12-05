@@ -8,8 +8,8 @@
 			self = this # had to do this or startTimer was undefined
 			$("input[type=\"submit\"]").attr "disabled", "disabled"
 			$("#story_description").focus ->
-				$("#prompt_and_timer").removeClass "hide"
-				$("#instructions").hide()
+				$("#prompt_and_timer").removeClass "d-none"
+				$("#instructions").addClass "d-none"
 				self.startTimer()
 
 			$("#done_writing").click ->
@@ -84,7 +84,7 @@
 		story_value = $("#story_description").val()
 
 		if story_value.length > 0 && story_value isnt "Type here to begin writing."
-			$("#done_writing").show()
+			$("#done_writing").removeClass "d-none"
 		else
-			$("#done_writing").hide()
+			$("#done_writing").addClass "d-none"
 

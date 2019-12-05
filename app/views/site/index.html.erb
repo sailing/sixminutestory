@@ -1,0 +1,85 @@
+<section class="container-fluid p-5" id="section1">
+  <div class="row">
+    <div class="col-md-6 my-3">
+      <hgroup class="mb-3">
+        <h1>A Cure for Writer's Block&#153;</h1>
+      </hgroup>
+      <div class="my-4">
+        <%= link_to write_path, class: "btn btn-success btn-lg" do %>
+          <span>Write Now</span>
+          <i class="icon-pencil"></i>
+        <% end %>
+        <%= link_to @story_to_read, class: "btn btn-danger btn-lg" do %>
+          <span>Read a Story</span>
+          <i class="icon-book"></i>
+        <% end %>
+      </div>
+
+      <div class="row my-5 mt-4">
+        <div class="col-md-12">
+          <p class="lead">Writing a story in six minutes, with a ticking timer and a surprise prompt, is an adrenaline rush.</p>
+          <p class="lead">It will invigorate your mind for the entire day, helping you create more (and more and more) original art.</p>
+          <p class="lead">Which is, as Kurt Vonnegut said, "a way to make your soul grow."</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="my-3">
+        <%= render @story %>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="home-write section bg-light mb-3 p-5 shadow-sm" id="section3">
+  <div class="container-fluid">
+    <div class="row my-3">
+      <div class="col-md-7">
+        <h2>We use a few kinds of prompts to cure writer's block.</h2>
+        <p class="lead">
+          Images, start lines, and something of our own concoction: a Hero, a Villain, and a Goal. Use these to jumpstart your imagination, and feel free to follow the inspiration wherever you want.
+        </p>
+      </div>
+      <div class="col-md-4 offset-md-1 d-flex flex-column justify-content-around">
+        <%= link_to random_prompt_path, class: "mb-3 mb-md-0 btn btn-danger btn-lg" do %>
+          <span>Random Prompt</span>
+          <i class="icon-random"></i>
+        <% end %>
+        <%= link_to write_to_prompt_path(25), class: "btn btn-success btn-lg" do %>
+          <span>Blank Prompt</span>
+          <i class="icon-lightbulb"></i>
+        <% end %>
+      </div>
+    </div>
+    <div class="border-top py-4 px-2 mt-4">
+      <h3>
+        Recent prompts
+        <%= link_to "See All Prompts", prompts_path, class: "btn btn-info ml-5" %>
+      </h3>
+      <div class="row">
+        <div class="recent-prompts col-12 d-flex flex-sm-column flex-md-row justify-content-md-around justify-content-sm-between align-content-between my-3 flex-wrap flex-md-nowrap flex-fill">
+          <%- @prompts.each do |p| %>
+            <% kind = (p.kind == "flickr" ? "image" : p.kind) %>
+            <%= render partial: "prompts/#{kind}", locals: {"#{kind}".to_sym => p } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section mb-3 p-5" id="section4">
+  <div class="container-fluid">
+    <div class="row title mb-3">
+      <div class="col-md-4">
+        <h2>Read More Stories</h2>
+      </div>
+      <div class="col-md-8 hidden-phone">
+        <hr/>
+      </div>
+    </div>
+    <div class="row content">
+      <div class="col-md-12 slide current" data-blog="featured">
+        <%= render @featured_stories %>
+      </div>
+    </div>
+  </div>
+</section>

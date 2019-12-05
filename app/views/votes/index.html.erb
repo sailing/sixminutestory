@@ -2,15 +2,15 @@
 	
 <h1><%= name %> <%= @user.votes.count %> favorites</h1>
 
-	<nav>
-			<div class="brown button_container"><a href="?order=popular">Popular</a></div> 
-			<div class="brown button_container"><a href="?order=most">Most</a> </div>
-			<div class="brown button_container"><a href="?order=recent">Recent</a> </div> 
-			<div class="brown button_container"><a href="?order=earliest">Earliest</a> </div>
+	<nav class="btn-group my-3">
+			<a href="?order=popular" class="btn btn-primary">Popular</a>
+			<a href="?order=most" class="btn btn-primary">Most</a>
+			<a href="?order=recent" class="btn btn-primary">Recent</a>
+			<a href="?order=earliest" class="btn btn-primary">Earliest</a>
 	</nav>
 			
 
 <%= render :partial => "stories/story", :collection => @stories %>
 <%= render :partial => "stories/pagination" %>
 
-<%= render :partial => "users/profile" %>
+<%= render :partial => "site/profile_block", locals: {user: @user} %>

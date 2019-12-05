@@ -1,22 +1,25 @@
-<span id="add_favorite">
+<%- story = story ? story : @story %>
 
-<% if current_user && @story.user_id != current_user.id %>
-	<% 
-		# You can't vote if it is your @story, 
-		# you are not logged in, 
-		# or you have already voted on this item
-  
-		if current_user.voted_for?(@story) %>
-	 		<%= link_to "<i class='icon-star icon-large'></i>".html_safe, story_votes_path(@story, :vote_direction => :down), 
-				:method => :post, rel: "tooltip", title: "Remove from favorites",
-				:remote => true
-			%>
-	<% elsif !current_user.voted_for?(@story) %>
-	 		<%= link_to "<i class='icon-star-empty icon-large'></i>".html_safe, story_votes_path(@story, :vote_direction => :up), 
-				:method => :post, rel: "tooltip", title: "Add to favorites", 
-				:remote => true
-			%>
+<span id="add_favorite_<%= story.id %>">
+	<% if current_user && story.user_id != current_user.id %>
+		<% 
+			# You can't vote if it is your story, 
+			# you are not logged in, 
+			# or you have already voted on this item
+	  %>
+	  <% if current_user.voted_for?(story) %>
+		 		<%= button_to story_votes_path(story, vote_direction: :down), form_class: "d-inline-block", class: "btn btn-sm mr-2 btn-warning", rel: "tooltip", title: "Remove from favorites",
+					remote: true do
+				%>
+					<i class='icon-star icon-large'></i>
+				<%- end %>
+		<% elsif !current_user.voted_for?(story) %>
+		 		<%= button_to story_votes_path(story, vote_direction: :up), form_class: "d-inline-block", class: "btn btn-sm btn-light mr-2  border text-dark", rel: "tooltip", title: "Add to favorites", 
+					remote: true do
+				%>
+					<i class='icon-star-empty icon-large'></i>
+				<%- end %>
+		<% end %>
 	<% end %>
-<% end %>
-<%= approval_rating(@story) %>
+	<%= approval_rating(story) %>
 </span>
