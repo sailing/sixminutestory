@@ -260,7 +260,7 @@ class StoriesController < ApplicationController
   end
 
 
-
+  # PATCH /stories/1/enable
   def enable
     @story = Story.find(params[:id])
     @story.active = true
@@ -268,15 +268,14 @@ class StoriesController < ApplicationController
       if @story.save
         flash[:notice] = 'Story enabled.'
         format.html { redirect_to(edit_story_path(@story)) }
-        format.xml  { head :ok }
       else
         flash[:notice] = 'Story NOT enabled.'
         format.html { redirect_to(edit_story_path(@story)) }
-        format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
       end
     end
   end
 
+  # DESTROY /stories/1
   def destroy
     @story = Story.find(params[:id])
 
@@ -285,15 +284,14 @@ class StoriesController < ApplicationController
       if @story.save
         flash[:notice] = 'Story disabled.'
         format.html { redirect_to(edit_story_path(@story)) }
-        format.xml  { head :ok }
       else
         flash[:notice] = 'Story NOT disabled.'
         format.html { redirect_to(edit_story_path(@story)) }
-        format.xml  { render :xml => @story.errors, :status => :unprocessable_entity }
       end
     end
   end
 
+  # PATCH /stories/1/feature
   def feature
     @story = Story.find(params[:id])
     @story.featured = true
@@ -312,6 +310,7 @@ class StoriesController < ApplicationController
     end
   end
 
+  # PATCH /stories/1/unfeature
   def unfeature
     @story = Story.find(params[:id])
 
@@ -329,9 +328,7 @@ class StoriesController < ApplicationController
     end
   end
 
-
-
-
+  # PATCH /stories/1/flag
   def flag
     @story = Story.find(params[:id])
     @story.flagged += 1

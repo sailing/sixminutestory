@@ -9,7 +9,7 @@
           - if @story.active == true
             = link_to "Disable Story", @story, confirm: 'Are you sure you want to destroy this story? It will disappear!', method: :delete, class: 'btn btn-danger'
           - elsif @story.active == false
-            = link_to "Enable", enable_story_url(@story), method: :post, confirm: 'Are you sure you want to enable this story? The story will become visible!', class: 'btn btn-warning'
+            = link_to "Enable", enable_story_url(@story), method: :patch, confirm: 'Are you sure you want to enable this story? The story will become visible!', class: 'btn btn-warning'
     .col-md-8
       %hr
 

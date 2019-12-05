@@ -52,10 +52,10 @@ Sms::Application.routes.draw do
     resources :votes
     resources :comments
     member do
-      post :feature
-      post :unfeature
-      post :enable
-      post :flag
+      patch :feature
+      patch :unfeature
+      patch :enable
+      patch :flag
       get :thanks
     end
     

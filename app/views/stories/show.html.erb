@@ -36,12 +36,12 @@
     <%- if @story.featured == true %>
       <div id="unfollowing_button" class="button_container">
         <%= button_to "Unfeature", unfeature_story_url(@story), class: "btn btn-danger btn-sm mr-3 mb-3", form_class: "d-inline-block", 
-              :confirm => 'Are you sure you want to unfeature this story? The story will no longer be featured!', :method => :post %>
+              :confirm => 'Are you sure you want to unfeature this story? The story will no longer be featured!', :method => :patch %>
       </div>
     <%- elsif @story.featured == false %>
       <div id="following_button" class="button_container">
         <%= button_to "Feature", feature_story_url(@story), class: "btn btn-primary btn-sm mr-3 mb-3", form_class: "d-inline-block", 
-              :confirm => 'Are you sure you want to feature this story? The story will become featured!', :method => :post %>
+              :confirm => 'Are you sure you want to feature this story? The story will become featured!', :method => :patch %>
       </div>
     <%- end %>
     <%= link_to "Edit", edit_story_url(@story), class: "btn btn-warning btn-sm mb-3" %>
