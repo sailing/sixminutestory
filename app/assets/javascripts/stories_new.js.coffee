@@ -50,10 +50,8 @@
 		saveStory: ->
 			# nothing here for now
 		tickTock: ->
-			console.log "We're ticking!"
 			@milliseconds -= 1000
 			@updateTimerText @milliseconds
-			console.log "One less second (" + (@milliseconds / 1000) + ")"
 			@stopTimer()  unless @milliseconds > 0
 
 
@@ -88,3 +86,6 @@
 		else
 			$("#done_writing").addClass "d-none"
 
+	$(".prompt img").one "error", ->
+		new_url = window.location.protocol + "//" + window.location.host + "/write/25" + window.location.search
+		window.location = new_url
