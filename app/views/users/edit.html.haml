@@ -34,15 +34,17 @@
             .card-body
               %h6 Receive notifications when
               .input-group 
-                / .custom-control.custom-switch
-                = f.label :send_comments, "someone comments on your story", :class => "notification_option", class: "form-label"
-                = f.check_box :send_comments, class: "form-control"
-              .input-group            
-                = f.label :send_followings, "someone starts following you", :class => "notification_option", class: "form-label"
-                = f.check_box :send_followings, class: "form-control"
+                .custom-control.custom-switch
+                  = f.check_box :send_comments, class: "custom-control-input", id: "send_comments_switch"
+                  = f.label :send_comments, "someone comments on or branches your story", :class => "notification_option", class: "custom-control-label", for: "send_comments_switch"
               .input-group  
-                = f.label :send_stories, "your story is featured", :class => "notification_option", class: "form-label"
-                = f.check_box :send_stories, class: "form-control"
+                .custom-control.custom-switch
+                  = f.check_box :send_followings, class: "custom-control-input", id: "send_followings_switch"
+                  = f.label :send_followings, "someone starts following you", :class => "notification_option", class: "custom-control-label", for: "send_followings_switch"
+              .input-group  
+                .custom-control.custom-switch
+                  = f.check_box :send_stories, class: "custom-control-input", id: "send_stories_switch"
+                  = f.label :send_stories, "your story is featured", :class => "notification_option", class: "custom-control-label", for: "send_stories_switch"
     .col-md-6
       .row.mx-4
         .col-md-12
