@@ -12,7 +12,7 @@
 			case @prompt.kind
 				when "flickr" %>
 					<% if @prompt.refcode.present? %>
-						<img src="<%= @prompt.refcode %>" class="prompt rounded"  />
+						<img src="<%= @prompt.refcode %>" class="prompt rounded" onerror="this.onerror=null; this.insertAdjacentHTML('afterEnd','<small><em>Source image missing.</em></small>'); this.style.display = 'none'" />
 							<% if show_attribution %>
 								<%  if @prompt.attribution.present? and @prompt.attribution_url.present? and @prompt.kind.present? and @prompt.license.present? %>
 										<div class="mt-2">
