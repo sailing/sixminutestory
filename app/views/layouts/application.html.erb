@@ -16,9 +16,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= yield(:head) if content_for?(:head) %>
+    <link href="https://fonts.googleapis.com/css?family=Literata|Lora|Montserrat:400,600&display=swap" rel="stylesheet">
     <%= render partial: "layouts/heap" %>
     <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5dc2df8a1573800012d15b41&product=inline-share-buttons" async="async"></script>
-    <link href="https://fonts.googleapis.com/css?family=Literata|Lora|Montserrat:400,600&display=swap" rel="stylesheet">
+    
   </head>
   <body data-controller="<%= params[:controller] %>" data-action="<%= params[:action] %>">
     <nav class="nav navbar navbar-expand-md navbar-dark bg-primary" role="navigation">
