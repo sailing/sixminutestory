@@ -13,9 +13,6 @@ config.perform_caching             = true
 # See everything in the log (default is :info)
 # config.log_level = :debug
 
-# Heroku requires we serve static assets
-config.serve_static_assets = true
-
 # Use a different logger for distributed setups
 # config.logger = SyslogLogger.new
 
@@ -25,8 +22,8 @@ config.cache_store = :dalli_store
 config.eager_load = true
 
 config.public_file_server.headers = {
-    'Cache-Control' => 'public, s-maxage=31536000, max-age=86400',
-    'Expires' => "#{1.day.from_now.httpdate}"
+    'Cache-Control' => 'public, s-maxage=31536000, max-age=2592000',
+    'Expires' => "#{1.year.from_now.httpdate}"
 }
 
 # Enable serving of images, stylesheets, and javascripts from an asset server
@@ -48,6 +45,11 @@ config.active_support.deprecation = :notify
 
 # Compress JavaScripts and CSS
 config.assets.compress = true
+config.assets.gzip = true
+config.assets.js_compressor  = :uglifier
+
+# Heroku requires we serve static assets
+config.serve_static_assets = true
 
 # Don't fallback to assets pipeline if a precompiled asset is missed
 # config.assets.compile = false
