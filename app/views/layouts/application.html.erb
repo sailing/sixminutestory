@@ -10,7 +10,6 @@
     -->
     <!--[if lt IE 9]
     -->
-    <%= javascript_include_tag 'application' %>
     <meta name="description"/>
     <meta name="author"/>
     
@@ -63,7 +62,8 @@
         <% end %>
       </section>
     </div>
-  <%= render "layouts/footer" %>
+    <%= javascript_include_tag 'application', defer: true %>
+    <%= render "layouts/footer" %>
+    <%= render partial: 'layouts/analytics' if Rails.env.production? %>
   </body>
-  <%= render partial: 'layouts/analytics' if Rails.env.production? %>
 </html>
