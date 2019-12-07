@@ -14,7 +14,7 @@ config.perform_caching             = true
 # config.log_level = :debug
 
 # Heroku requires we serve static assets
-config.serve_static_assets = false
+config.serve_static_assets = true
 
 # Use a different logger for distributed setups
 # config.logger = SyslogLogger.new
@@ -53,10 +53,10 @@ config.assets.digest = true
 
 # Use S3 for hosting
 # config.action_controller.asset_host = "//sixminutestory.s3.amazonaws.com"
-config.action_controller.asset_host = ENV['asset_host'] if ENV['asset_host']
+# config.action_controller.asset_host = ENV['asset_host'] if ENV['asset_host']
 
 # Store assets in a subdirectory
-config.assets.prefix = "/production/assets"
+# config.assets.prefix = "/production/assets"
 
 # Defaults to Rails.root.join("public/assets")
 # config.assets.manifest = YOUR_PATH
