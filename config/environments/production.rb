@@ -24,6 +24,10 @@ config.serve_static_assets = true
 config.cache_store = :dalli_store
 config.eager_load = true
 
+config.public_file_server.headers = {
+    'Cache-Control' => 'public, s-maxage=31536000, max-age=86400',
+    'Expires' => "#{1.day.from_now.httpdate}"
+}
 
 # Enable serving of images, stylesheets, and javascripts from an asset server
 # config.action_controller.asset_host = "http://assets.example.com"
