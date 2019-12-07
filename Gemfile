@@ -48,6 +48,8 @@ gem 'memcachier'
 gem 'dalli'
 gem 'activerecord-session_store'
 
+# gzip on heroku
+gem 'heroku-deflater', :group => :production
 
 # ancestry
 gem 'ancestry'
