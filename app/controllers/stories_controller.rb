@@ -28,45 +28,40 @@ class StoriesController < ApplicationController
 
     begin
       case params[:subset]
-      when /popular/
-        @stories = Story.includes(:user).recent(timeframe).popular.page(page).per(per_page)
-        @title = "Popular stories"
-      when /active/
-        @stories = Story.includes(:user).recent(timeframe).commented.page(page).per(per_page)
-        @title = "Active stories"
-      when /recent/
-        @stories = Story.includes(:user).recent(timeframe).order(order).page(page).per(per_page)
-        @title = "Recent stories"
-      when /top/
-        @stories = Story.includes(:user).recent(timeframe).top.page(page).per(per_page)
-        @title = "Top rated stories"
-      when /featured/
-        @stories = Story.includes(:user).recent(timeframe).featured.page(page).per(per_page)
-        @title = "Editors' picks"
-      when /adjective/
-        @adjective = params[:tag]
-        @stories = Story.includes(:user).recent(timeframe).tagged_with([@adjective], :any => true).page(page).per(per_page)
-        @title = "Stories tagged with #{@adjective}"
-      when /genre/
-        @genre = params[:tag]
-        @stories = Story.includes(:user).recent(timeframe).tagged_with([@genre], :any => true, :on => :genres).page(page).per(per_page)
-        @title = "Stories in #{@genre} genre"
-      when /emotion/
-        @emotion = params[:tag].downcase
-        @stories = Story.includes(:user).recent(timeframe).tagged_with([@emotion], :any => true, :on => :emotions).page(page).per(per_page)
-        @title = "These stories evoked #{@emotion}"
-      else
-        @stories = Story.includes(:user).recent(timeframe).page(page).per(per_page)
-        @title = "Recent stories"
-        @frontpage = true
-
+        when /popular/
+          @stories = Story.includes(:user).recent(timeframe).popular.page(page).per(per_page)
+          @title = "Popular stories"
+        when /active/
+          @stories = Story.includes(:user).recent(timeframe).commented.page(page).per(per_page)
+          @title = "Active stories"
+        when /top/
+          @stories = Story.includes(:user).recent(timeframe).top.page(page).per(per_page)
+          @title = "Top rated stories"
+        when /featured/
+          @stories = Story.includes(:user).recent(timeframe).featured.page(page).per(per_page).order("created_at DESC")
+          @title = "Editors' picks"
+        when /adjective/
+          @adjective = params[:tag]
+          @stories = Story.includes(:user).recent(timeframe).tagged_with([@adjective], :any => true).page(page).per(per_page).order("created_at DESC")
+          @title = "Stories tagged with #{@adjective}"
+        when /genre/
+          @genre = params[:tag]
+          @stories = Story.includes(:user).recent(timeframe).tagged_with([@genre], :any => true, :on => :genres).page(page).per(per_page).order("created_at DESC")
+          @title = "Stories in #{@genre} genre"
+        when /emotion/
+          @emotion = params[:tag].downcase
+          @stories = Story.includes(:user).recent(timeframe).tagged_with([@emotion], :any => true, :on => :emotions).page(page).per(per_page).order("created_at DESC")
+          @title = "These stories evoked #{@emotion}"
+        else
+          @stories = Story.includes(:user).recent(timeframe).page(page).per(per_page).order("created_at DESC")
+          @title = "Recent stories"
       end
-      rescue
-        flash[:notice] = "There are no stories. Why not write your own?"
-        redirect_to faq_url
-      else
-        @titles = @stories.map(&:title)
-        respond_to do |format|
+    rescue
+      flash[:notice] = "There are no stories. Why not write your own?"
+      redirect_to faq_url
+    else
+      @titles = @stories.map(&:title)
+      respond_to do |format|
         format.html # index.html.erb
         format.xml  { render :xml => @stories }
         format.rss
