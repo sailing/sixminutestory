@@ -15,7 +15,7 @@ class SiteController < ApplicationController
     @firstline_prompt = Prompt.firstlines.last.id
     @prompts = Prompt.where(id: [@image_prompt, @hvg_prompt, @firstline_prompt])
     
-    @featured_stories = Story.featured.order("updated_at desc").first(7)
+    @featured_stories = Story.featured.order("created_at desc").first(7)
     @stories = @featured_stories
     @story = @featured_stories.pop
     @story_to_read = @featured_stories.pop
