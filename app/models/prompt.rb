@@ -1,7 +1,7 @@
 class Prompt < ActiveRecord::Base
   belongs_to :user
   has_many :stories
-  has_one :contest
+
   acts_as_voteable
 
   before_create :convert_license_to_human_terms

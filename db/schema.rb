@@ -24,19 +24,6 @@ ActiveRecord::Schema.define(version: 2019_11_29_234920) do
     t.integer "votes_count", default: 0
   end
 
-  create_table "contests", id: :serial, force: :cascade do |t|
-    t.string "title", limit: 255
-    t.text "description"
-    t.datetime "start"
-    t.datetime "end"
-    t.integer "user_id"
-    t.integer "prompt_id", default: 0
-    t.boolean "active", default: true
-    t.boolean "delta", default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "emails", id: :serial, force: :cascade do |t|
     t.string "from", limit: 255
     t.string "to", limit: 255

@@ -9,7 +9,6 @@ class CreatePrompts < ActiveRecord::Migration
       t.integer :counter, :default => 0
       
       t.references :user      
-      t.references :contest, :default => 0
 
       t.boolean :active, :default => true
       t.boolean :verified, :default => true
