@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_29_234920) do
+ActiveRecord::Schema.define(version: 2020_11_12_005530) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,17 +24,20 @@ ActiveRecord::Schema.define(version: 2019_11_29_234920) do
     t.integer "votes_count", default: 0
   end
 
-  create_table "contests", id: :serial, force: :cascade do |t|
-    t.string "title", limit: 255
+  create_table "contests", force: :cascade do |t|
+    t.text "title"
     t.text "description"
-    t.datetime "start"
-    t.datetime "end"
-    t.integer "user_id"
-    t.integer "prompt_id", default: 0
-    t.boolean "active", default: true
-    t.boolean "delta", default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.text "terms"
+    t.boolean "allow_multiple_entries", default: false
+    t.daterange "duration"
+    t.boolean "approved"
+    t.bigint "prompt_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "stories_count", default: 0
+    t.index ["prompt_id"], name: "index_contests_on_prompt_id"
+    t.index ["user_id"], name: "index_contests_on_user_id"
   end
 
   create_table "emails", id: :serial, force: :cascade do |t|
@@ -205,4 +208,6 @@ ActiveRecord::Schema.define(version: 2019_11_29_234920) do
     t.index ["voter_id", "voter_type"], name: "fk_voters"
   end
 
+  add_foreign_key "contests", "prompts"
+  add_foreign_key "contests", "users"
 end

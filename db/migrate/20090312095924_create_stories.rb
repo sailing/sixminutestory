@@ -11,7 +11,6 @@ class CreateStories < ActiveRecord::Migration
       
       t.references :user
       t.references :prompt
-      t.references :contest, :default => 0
 
 
       t.boolean :delta, :default => false      

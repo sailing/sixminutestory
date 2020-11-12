@@ -31,6 +31,8 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :prompts
 
+  has_many :contests, through: :stories
+
   validates_uniqueness_of :login, case_sensitive: false
   validates_presence_of :login, unless: :new_record? 
 
