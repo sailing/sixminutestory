@@ -1,0 +1,36 @@
+= form_for @contest, html: {class: "form"} do |f|
+  - if @contest.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@contest.errors.count, "error")} prohibited this contest from being saved:"
+      %ul
+        - @contest.errors.full_messages.each do |message|
+          %li= message
+
+  .form-group
+    = f.label :title, class: "form-label"
+    = f.text_field :title, class: "form-control"
+  .form-group
+    = f.label :description, class: "form-label"
+    = f.text_area :description, class: "form-control"
+  .input-group
+    .custom-control.custom-switch
+      = f.check_box :allow_multiple_entries, class: "custom-control-input", id: "allow_multiple_entries_switch"
+      = f.label :allow_multiple_entries, class: "form-label", for: "allow_multiple_entries_switch", class: "custom-control-label"
+  .form-group
+    = f.label :terms, class: "form-label"
+    = f.text_area :terms, class: "form-control"
+  .form-group
+    = f.label :prompt, class: "form-label"
+    = f.text_field :prompt, class: "form-control"
+  .form-group
+    = f.label :starts_at, class: "form-label"
+    = f.datetime_field :starts_at, class: "form-control"
+  .form-group
+    = f.label :ends_at, class: "form-label"
+    = f.datetime_field :ends_at, class: "form-control"
+  .input-group
+    .custom-control.custom-switch
+      = f.check_box :approved, class: "custom-control-input", id: "approved_switch"
+      = f.label :approved, class: "form-label", for: "approved_switch", class: "custom-control-label"
+  .actions
+    = f.submit 'Save'
