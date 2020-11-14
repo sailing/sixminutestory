@@ -53,12 +53,8 @@ class ContestsController < ApplicationController
       @contest = Contest.find(params[:id])
     end
 
-    def compose_duration
-      @contest.duration = @contest.starts_at...@contest.ends_at
-    end
-
     # Only allow a trusted parameter "white list" through.
     def contest_params
-      params.require(:contest).permit(:title, :description, :allow_multiple_entries, :terms, :prompt_id, :user_id, :starts_at, :ends_at, :duration, :approved)
+      params.require(:contest).permit(:title, :description, :allow_multiple_entries, :terms, :prompt_id, :user_id, :starts_at, :ends_at, :approved)
     end
 end
