@@ -68,7 +68,7 @@ class ApplicationController < ActionController::Base
     
          # Check to see if user is an admin
       def must_be_admin
-        (current_user && @current_user.admin_level > 1) || ownership_violation
+        (current_user && current_user.admin_level > 1) || ownership_violation
         return false
       end
     
@@ -99,7 +99,6 @@ class ApplicationController < ActionController::Base
            else
               redirect_to new_user_session_url
            end
-          
           end
        end
      end
