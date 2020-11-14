@@ -1,4 +1,5 @@
 Sms::Application.routes.draw do
+  
   # The priority is based upon order of creation: first created -> highest priority.
   
   devise_for :users, controllers: { confirmations: 'users/confirmations' }
@@ -40,6 +41,7 @@ Sms::Application.routes.draw do
       put :disable
     end
   end
+  resources :contests
 
   resource :account, :controller => "users"
   resources :profile, :controller => "users"
