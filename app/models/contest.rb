@@ -1,5 +1,7 @@
-class Contest < ApplicationRecord
-  has_one :prompt
+class Contest < ActiveRecord::Base
+  attr_accessor :starts_at, :ends_at
+
+  belongs_to :prompt
   belongs_to :user
 
   has_many :stories

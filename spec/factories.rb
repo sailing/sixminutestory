@@ -1,4 +1,17 @@
 FactoryBot.define do
+  factory :contest do
+    association :user, :admin
+    association :prompt
+
+    title { "MyText" }
+    description { "MyText" }
+    allow_multiple_entries { false }
+    terms { "MyText" }
+    starts_at { Time.now.to_date }
+    ends_at { 1.week.from_now.to_date }
+    approved { false }
+  end
+
   sequence :email do |n|
     "galen#{n}@sixminutestory.com"
   end
@@ -11,13 +24,12 @@ FactoryBot.define do
      "It was a dark and stormy night #{n}"
   end
 
-  
-
   factory :user do
     login
     email
     password { "password" }
     profile { "etc, etc, etc" }
+    confirmed_at { 1.day.ago }
 
     admin_level { 1 }
 
@@ -37,7 +49,7 @@ FactoryBot.define do
 
   factory :prompt do
     association :user
-
+    kind { "firstline" }
     refcode
   end
 
