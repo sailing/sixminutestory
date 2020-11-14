@@ -2,7 +2,7 @@ class Prompt < ActiveRecord::Base
   belongs_to :user
   has_many :stories
 
-  belongs_to :contest, optional: true
+  has_one :contest
 
   acts_as_voteable
 
