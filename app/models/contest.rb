@@ -13,4 +13,19 @@ class Contest < ActiveRecord::Base
   has_many :winning_stories, through: :winners, class_name: "Story"
 
   scope :approved, -> { where( approved: true ) }
+
+  before_validation :compose_duration
+
+  def compose_duration
+    self.duration = self.starts_at..self.ends_at
+  end
+
+  def starts_at
+    @starts_at ||= self.duration.first
+  end
+
+  def ends_at
+    @ends_at ||= self.duration.last
+  end
+
 end

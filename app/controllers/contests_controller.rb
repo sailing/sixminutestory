@@ -25,8 +25,6 @@ class ContestsController < ApplicationController
   def create
     @contest = Contest.new(contest_params)
 
-    compose_duration
-
     if @contest.save
       redirect_to @contest, notice: 'Contest was successfully created.'
     else
@@ -36,8 +34,6 @@ class ContestsController < ApplicationController
 
   # PATCH/PUT /contests/1
   def update
-    compose_duration
-
     if @contest.update(contest_params)
       redirect_to @contest, notice: 'Contest was successfully updated.'
     else
