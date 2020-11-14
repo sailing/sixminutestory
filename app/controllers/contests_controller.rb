@@ -1,6 +1,7 @@
 class ContestsController < ApplicationController
-  before_action :set_contest, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:index, :new, :edit, :create, :update, :destroy]
   before_action :must_be_admin, :only => [:index, :new, :edit, :create, :update, :destroy]
+  before_action :set_contest, only: [:show, :edit, :update, :destroy]
 
   # GET /contests
   def index
@@ -24,6 +25,8 @@ class ContestsController < ApplicationController
   def create
     @contest = Contest.new(contest_params)
 
+    compose_duration
+
     if @contest.save
       redirect_to @contest, notice: 'Contest was successfully created.'
     else
@@ -33,6 +36,8 @@ class ContestsController < ApplicationController
 
   # PATCH/PUT /contests/1
   def update
+    compose_duration
+
     if @contest.update(contest_params)
       redirect_to @contest, notice: 'Contest was successfully updated.'
     else
@@ -52,8 +57,12 @@ class ContestsController < ApplicationController
       @contest = Contest.find(params[:id])
     end
 
+    def compose_duration
+      @contest.duration = @contest.starts_at...@contest.ends_at
+    end
+
     # Only allow a trusted parameter "white list" through.
     def contest_params
-      params.require(:contest).permit(:title, :description, :allow_multiple_entries, :terms, :prompt_id, :user_id, :duration, :approved)
+      params.require(:contest).permit(:title, :description, :allow_multiple_entries, :terms, :prompt_id, :user_id, :starts_at, :ends_at, :duration, :approved)
     end
 end
