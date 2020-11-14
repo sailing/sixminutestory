@@ -24,10 +24,10 @@
     = f.text_field :prompt, class: "form-control"
   .form-group
     = f.label :starts_at, class: "form-label"
-    = f.datetime_field :starts_at, class: "form-control"
+    = f.date_field :starts_at, class: "form-control"
   .form-group
     = f.label :ends_at, class: "form-label"
-    = f.datetime_field :ends_at, class: "form-control"
+    = f.date_field :ends_at, class: "form-control"
   .input-group
     .custom-control.custom-switch
       = f.check_box :approved, class: "custom-control-input", id: "approved_switch"

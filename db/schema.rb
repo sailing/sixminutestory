@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_14_025452) do
+ActiveRecord::Schema.define(version: 2020_11_14_045856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -208,6 +208,21 @@ ActiveRecord::Schema.define(version: 2020_11_14_025452) do
     t.index ["voter_id", "voter_type"], name: "fk_voters"
   end
 
+  create_table "winners", force: :cascade do |t|
+    t.string "winner_type", null: false
+    t.bigint "contest_id", null: false
+    t.bigint "story_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contest_id"], name: "index_winners_on_contest_id"
+    t.index ["story_id"], name: "index_winners_on_story_id"
+    t.index ["user_id"], name: "index_winners_on_user_id"
+  end
+
   add_foreign_key "contests", "prompts"
   add_foreign_key "contests", "users"
+  add_foreign_key "winners", "contests"
+  add_foreign_key "winners", "stories"
+  add_foreign_key "winners", "users"
 end

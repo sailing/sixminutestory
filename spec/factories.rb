@@ -1,4 +1,11 @@
 FactoryBot.define do
+  factory :winner do
+    contest { nil }
+    story { nil }
+    user { nil }
+    winner_type { "MyString" }
+  end
+
   factory :contest do
     association :user, :admin
     association :prompt
