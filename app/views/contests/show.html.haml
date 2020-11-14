@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @contest.title
+%p
+  %b Description:
+  = @contest.description
+%p
+  %b Allow multiple entries:
+  = @contest.allow_multiple_entries
+%p
+  %b Terms:
+  = @contest.terms
+%p
+  %b Prompt:
+  = @contest.prompt
+%p
+  %b User:
+  = @contest.user
+%p
+  %b Duration:
+  = @contest.duration
+%p
+  %b Approved:
+  = @contest.approved
+
+= link_to 'Edit', edit_contest_path(@contest)
+\|
+= link_to 'Back', contests_path
