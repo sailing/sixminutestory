@@ -1,4 +1,5 @@
 class Contest < ActiveRecord::Base
+  # Use these for duration setting
   attr_accessor :starts_at, :ends_at
 
   belongs_to :prompt
