@@ -32,9 +32,10 @@ class User < ActiveRecord::Base
   has_many :prompts
 
   has_many :contests, through: :stories
+  has_many :winners
 
   validates_uniqueness_of :login, case_sensitive: false
-  validates_presence_of :login, unless: :new_record? 
+  validates_presence_of :login, unless: :new_record?
 
   def to_s
     login

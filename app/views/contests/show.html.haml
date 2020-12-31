@@ -1,26 +1,17 @@
-%p#notice= notice
+- content_for :sideyard do
+  - if is_admin
+    .btn-group.mb-3
+      = link_to 'Edit', edit_contest_path(@contest), class: 'btn btn-warning'
+      = link_to 'Back', contests_path, class: 'btn btn-secondary'
 
-%p
-  %b Title:
-  = @contest.title
-%p
-  %b Description:
-  = @contest.description
-%p
-  %b Terms:
-  = @contest.terms
-%p
-  %b Duration:
-  = @contest.duration
+  %h5
+    = starts_at_in_words(@contest)
+    \-
+    = ends_at_in_words(@contest)
+  %small
+    %b Terms
+    = @contest.terms
 
-%p
-  %b Starts at:
-  = starts_at_in_words(@contest)
-%p
-  %b Ends at:
-  = ends_at_in_words(@contest)
-
-- if is_admin
-  = link_to 'Edit', edit_contest_path(@contest)
-  ||
-  = link_to 'Back', contests_path
+.my-3
+  %h1= @contest.title
+  %p= @contest.description

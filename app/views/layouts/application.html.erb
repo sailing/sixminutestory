@@ -44,10 +44,10 @@
     </nav>
     <div class="container-fluid">
       <section class="section">
-        <%= render partial: "layouts/flashes" %>
         <% if content_for?(:sideyard) %>
           <div class="row">
             <div class="col-md-9 mt-4 px-4 pl-5">
+              <%= render partial: "layouts/flashes" %>
               <%= yield %>
             </div>
             <div class="col-md-3 border-left d-flex flex-column flex-fill flex-grow bg-light shadow-sm pt-4 px-3 pr-4" style="min-height: 100vh;">
@@ -57,6 +57,7 @@
         <% else %>
           <div class="row">
             <div class="w-100 mt-4 p-0">
+              <%= render partial: "layouts/flashes" %>
               <%= yield %>
             </div>
           </div>
