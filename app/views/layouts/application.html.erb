@@ -31,7 +31,7 @@
             <span>Write</span>
           <% end %>
         
-          <%= link_to subset_stories_path(days: params[:days], months: params[:months] || 120, subset: "featured"), class: "nav-item nav-link btn" do %>
+          <%= link_to subset_stories_path(days: params[:days], months: params[:months] || 12, subset: "recent"), class: "nav-item nav-link btn" do %>
             <i class="icon-book"></i>
             <span>Read</span>
           <% end %>
