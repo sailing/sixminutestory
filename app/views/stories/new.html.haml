@@ -21,6 +21,7 @@
 
             / Include the prompt so we can use it on the next page. Is this really necessary?
             = f.hidden_field :prompt_id, value: @prompt.id
+            = f.hidden_field :contest_id, value: @contest.id if @contest.present?
             = f.hidden_field :parent_id, value: @parent.id if @parent.present?
             .row
               .col-md-12
