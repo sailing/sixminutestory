@@ -14,14 +14,15 @@ gem 'honeybadger', '~> 4.0'
 gem 'newrelic_rpm'
 
 # Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+# gem 'rails', :git => 'https://github.com/rails/rails.git'
 
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'bootstrap', '~> 4.3.1'
-  gem "bootswatch", github: "thomaspark/bootswatch"
+  gem "bootswatch", git: "https://github.com/thomaspark/bootswatch.git"
+  gem "font-awesome-rails"
   # asset_sync moves files to s3, where they're served by cloudfront
   # gem "asset_sync"
 

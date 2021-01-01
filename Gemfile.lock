@@ -1,8 +1,8 @@
 GIT
-  remote: git://github.com/thomaspark/bootswatch.git
-  revision: 28bcb5cbd02484d8700c909e48aad677f0a272af
+  remote: https://github.com/thomaspark/bootswatch.git
+  revision: b16ad79f7f2fe4119b3a8fdfd00876a353b3fb3e
   specs:
-    bootswatch (4.3.1)
+    bootswatch (4.5.3)
 
 GEM
   remote: https://rubygems.org/
@@ -107,6 +107,8 @@ GEM
       railties (>= 4.2.0)
     ffi (1.11.1)
     flickraw (0.9.10)
+    font-awesome-rails (4.7.0.6)
+      railties (>= 3.2, < 6.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     haml (5.1.1)
@@ -299,6 +301,7 @@ DEPENDENCIES
   email_spec
   factory_bot_rails
   flickraw
+  font-awesome-rails
   haml-rails
   heroku-deflater
   honeybadger (~> 4.0)
