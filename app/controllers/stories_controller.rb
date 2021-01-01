@@ -74,8 +74,9 @@ class StoriesController < ApplicationController
   def new
     @story = Story.new
     @parent = Story.where(id: params[:parent_id]).first if params[:parent_id].present?
-    
-    @prompt = Prompt.active.where(id: params[:prompt]).first if params[:prompt].present?
+    @contest = Contest.approved.where(id: params[:contest]).first if params[:contest].present?
+    @prompt = @contest.prompt if @contest
+    @prompt ||= Prompt.active.where(id: params[:prompt]).first if params[:prompt].present?
     @prompt ||= Prompt.random
 
     respond_to do |format|

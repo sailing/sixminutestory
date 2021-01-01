@@ -8,10 +8,11 @@ Sms::Application.routes.draw do
 
   # site activities
   # writing / prompts
-  get 'write', :to => "stories#new", :as => 'write'
+  get '/write', :to => "stories#new", :as => 'write'
 	get '/write/random', :to => "prompts#random", :as => 'random_prompt'
-  get 'write/:prompt', :to => "stories#new", :as => 'write_to_prompt'
-  get 'thanks/:id', :to => "stories#thanks_for_writing", :as => 'thanks_for_writing'
+  get '/write/:prompt', :to => "stories#new", :as => 'write_to_prompt'
+  get '/enter-contest/:contest', :to => "stories#new", :as => 'enter_contest'
+  get '/thanks/:id', :to => "stories#thanks_for_writing", :as => 'thanks_for_writing'
 
   # threaded stories
   get '/thread/:id', to: "stories#thread", as: 'thread'
