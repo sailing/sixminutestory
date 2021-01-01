@@ -50,7 +50,7 @@
 <%- if @parent %>
   <div class="row d-flex justify-content-center align-items-top mb-4 mx-4">
     <%= link_to story_url(@parent), class: "btn btn-info btn-large col-4 shadow"  do %>
-      Read Up <i class="icon-circle-arrow-up"></i>
+      Read Up <i class="fa fa-circle-arrow-up"></i>
     <% end %>
     <div class="col-md-10 parent-fade">
       <%= render :partial => "stories/story", :locals => {story: @parent, read_more: false } %>
@@ -62,13 +62,13 @@
     <div class="row">
       <% if @previous %>
         <%= link_to story_url(@previous), class: "col-12 btn btn-large border increment-story increment-story-left" do %>
-          <i class="icon-caret-left icon-large"></i>
+          <i class="fa fa-caret-left icon-large"></i>
         <% end %>
       <% end %>
     </div>
     <div class="row">
       <%= link_to random_stories_url, class: "col-12 btn btn-large increment-story increment-story-random border #{@previous ? 'border-top-0' : 'rounded' }" do %>
-        <i class="icon-random icon-large"></i>
+        <i class="fa fa-random icon-large"></i>
       <% end %>
     </div>
   </div>
@@ -77,7 +77,7 @@
   </div>
   <% if @next %>
     <%= link_to story_url(@next), class: "col-1 btn btn-large border increment-story" do %>
-      <i class="icon-caret-right icon-large"></i>
+      <i class="fa fa-caret-right icon-large"></i>
     <% end %>
   <% end %>
 </div>
@@ -85,7 +85,10 @@
   <% if @children.any? %>
     <h3 class="text-left h1 mb-0 offset-md-1 pl-4">
       Branches
-      <%= link_to "Add a Branch to this Story", write_to_prompt_url(@prompt, parent_id: @story.id), class: "btn btn-warning shadow-sm ml-md-4", id: "branch" %>
+      <%= link_to write_to_prompt_url(@prompt, parent_id: @story.id), class: "btn btn-warning shadow-sm ml-md-4", id: "branch" do %>
+        <i class="fa fa-code-fork"></i>
+        Add a Branch to this Story
+      <% end %>
       <% if @parent %>
         <%= link_to "Read this Thread", thread_url(@story), class: "btn btn-info shadow-sm ml-md-4" %>
       <% end %>
@@ -100,7 +103,10 @@
     <% end %>
   <% else %>
     <div class="col-12 d-flex justify-content-center mb-3">
-      <%= link_to "Add a Branch to this Story", write_to_prompt_url(@prompt, parent_id: @story.id), class: "btn btn-warning shadow-sm ml-md-4", id: "branch" %>
+      <%= link_to write_to_prompt_url(@prompt, parent_id: @story.id), class: "btn btn-warning shadow-sm ml-md-4", id: "branch" do %>
+        <i class="fa fa-code-fork"></i>
+        Add a Branch to this Story
+      <% end %>
       <% if @parent %>
         <%= link_to "Read this Thread", thread_url(@story), class: "btn btn-info shadow-sm ml-md-4" %>
       <% end %>

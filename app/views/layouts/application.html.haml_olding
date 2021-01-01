@@ -64,7 +64,7 @@
         .span7
           .row
             .span1
-              %i.icon-cloud.icon-superlarge.pull-left
+              %i.fa.fa-cloud.icon-superlarge.pull-left
             #elevator_pitch.span5
               %strong Six Minute Story is a cure for writer's block.
               We're a growing community writing stories in six minutes or less. Join us as we fill the world with ad-libbed eloquence.

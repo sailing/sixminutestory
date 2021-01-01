@@ -4,26 +4,26 @@
       .col-6.text-center
         - unless current_user.voted_for?(prompt)
           = button_to prompt_votes_path(prompt, :vote_direction => :up), class: "btn btn-success btn-large", method: :post, remote: true do
-            %i.icon-smile
+            %i.fa.fa-smile
             Like
         - else
           .btn.btn-dark.btn-large.disabled.mb-4
-            %i.icon-smile
+            %i.fa.fa-smile
             Like
         %br
         %strong= prompt.votes_for
-        %i.icon-smile
+        %i.fa.fa-smile
       .col-6.text-center
         - unless current_user.voted_against?(prompt)
           = button_to prompt_votes_path(prompt, :vote_direction => :down), class: "btn btn-danger btn-large", method: :post, remote: true do
-            %i.icon-meh
+            %i.fa.fa-meh
             Meh
         - else
           .btn.btn-dark.btn-large.disabled.mb-4
-            %i.icon-meh
+            %i.fa.fa-meh
             Meh
         %br
         %strong= prompt.votes_against
-        %i.icon-meh
+        %i.fa.fa-meh
   - elsif current_user && prompt.user_id == current_user.id
     %span You suggested this prompt.

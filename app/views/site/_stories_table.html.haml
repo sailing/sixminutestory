@@ -9,11 +9,11 @@
             %td
               - if stories_type == 'Active'
                 = s.comments_count
-                %i.icon-comment
+                %i.fa.fa-comment
               - else
                 = s.votes_for
-                %i.icon-star
+                %i.fa.fa-star
     = link_to subset_stories_path(:subset => stories_type.downcase), class: "btn btn-inverse pull-right" do
       %span Read More
-      %i.icon-circle-arrow-right
+      %i.fa.fa-circle-arrow-right
 

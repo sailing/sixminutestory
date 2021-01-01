@@ -9,14 +9,14 @@
     - if is_user && (current_user.id == user.id)
       %small
         = link_to edit_account_path, class: "btn btn-dark btn-sm" do
-          %i.icon-cog
+          %i.fa.fa-cog
     - elsif is_user && current_user.id != user.id
       %small
         = render :partial => 'site/following_toggle', :locals => {:user => user}
     - if user.website.present?
       %small
         = link_to user.website, :title => user.website, :rel => 'nofollow', class: "btn btn-info btn-sm" do
-          %i.icon-globe
+          %i.fa.fa-globe
           %span Visit Website
 
   .card-content
@@ -26,7 +26,7 @@
   .card-footer.row-fluid.d-flex.justify-content-between.text-center
     .col-4.flex-fill
       %span
-        %i.icon-group{title: 'Followers'}
+        %i.fa.fa-group{title: 'Followers'}
         %span
           - if user.followers.any?
             = user.followers.count
@@ -34,10 +34,10 @@
             0
 
     .col-4.flex-fill
-      %i.icon-thumbs-up{title: 'Reputation'}
+      %i.fa.fa-thumbs-up{title: 'Reputation'}
       %span
         = user.reputation
     .col-4.flex-fill
-      %i.icon-pencil{title: 'Read Stories'}
+      %i.fa.fa-pencil{title: 'Read Stories'}
       %span
         = link_to user.stories_count, profile_path(user)

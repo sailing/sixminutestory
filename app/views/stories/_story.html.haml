@@ -16,7 +16,7 @@
       - if read_more
         = link_to story_url(story), class: "btn btn-success btn-mini" do
           %span Read more 
-          %i.icon-circle-arrow-right
+          %i.fa.fa-circle-arrow-right
     - else
       .row-fluid.story-itself
         .span10.offset1
@@ -27,7 +27,7 @@
         / = link_to pluralize(story.comments_count, 'remark'), story_url(story, :anchor => "comments")
         = link_to story_url(story, :anchor => "comments_section"), class: "text-dark", rel: "tooltip", title: "#{story.comments_count.to_s} comments" do
           = story.comments_count.to_s 
-          %i.icon-comment
+          %i.fa.fa-comment
 
       - unless @stories || (@parent && story == @parent)
         %span &nbsp;|&nbsp;
@@ -37,7 +37,7 @@
       %span.counter_in_footer
         / = pluralize(story.counter, 'view')
         = story.counter
-        %i.icon-user
+        %i.fa.fa-user
       %span &nbsp;|&nbsp;
       %span
         = time_ago_in_words(story.created_at) + " ago"
@@ -47,14 +47,14 @@
           %span.flag
             / This is how people flag stories
             = link_to flag_story_url(story.id), :method => "patch", rel: "tooltip", class: "btn btn-dark", title: "Flag this as hateful" do
-              %i.icon-flag
+              %i.fa.fa-flag
       - unless @children && @children.include?(story)
         - if current_user.try(:can_edit_story?, story)
           &nbsp;||&nbsp;
           = link_to edit_story_path(story) do
-            %i.icon-edit
+            %i.fa.fa-edit
             Edit
         - if is_admin
           &nbsp;|&nbsp;
           = story.flagged
-          %i.icon-flag
+          %i.fa.fa-flag

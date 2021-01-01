@@ -8,17 +8,17 @@
         <%= link_to root_url(anchor: "section2"), class: "btn-inverse" do %>
           Learn
           <span>More</span>
-          <i class="icon-circle-arrow-down"></i>
+          <i class="fa fa-circle-arrow-down"></i>
         <% end %>
         <%= link_to write_path, class: "btn-inverse" do %>
           Write
           <span>Now</span>
-          <i class="icon-pencil"></i>
+          <i class="fa fa-pencil"></i>
         <% end %>
         <%= link_to @story_to_read, class: "btn-inverse" do %>
           Read
           <span>a Story</span>
-          <i class="icon-book"></i>
+          <i class="fa fa-book"></i>
         <% end %>
       </div>
     </div>
@@ -196,13 +196,13 @@
         <%= link_to random_prompt_path do %>
           <div class="btn-inverse">
             Random Prompt
-            <i class="icon-random"></i>
+            <i class="fa fa-random"></i>
           </div>
         <% end %>
         <%= link_to write_to_prompt_path(25) do %>
           <div class="btn-inverse">
             Blank Prompt
-            <i class="icon-check-empty"></i>
+            <i class="fa fa-check-empty"></i>
           </div>
         <% end %>
       </div>
@@ -216,7 +216,7 @@
               <%= image_tag(p.refcode, {style: "height: 200px"}) %>
               <div class="btn-inverse">
                 Write now
-                <i class="icon-circle-arrow-right"></i>
+                <i class="fa fa-circle-arrow-right"></i>
               </div>
             <% end %>
           </div>
@@ -239,19 +239,19 @@
       <div class="span4">
         <ul class="article-tags">
           <li class="current" data-blog="featured">
-            <i class="icon-circle-arrow-right">></i>
+            <i class="fa fa-circle-arrow-right">></i>
             Featured
           </li>
           <li data-blog="recent">
-            <i class="icon-circle-arrow-right">></i>
+            <i class="fa fa-circle-arrow-right">></i>
             New
           </li>
           <li data-blog="popular">
-            <i class="icon-circle-arrow-right">></i>
+            <i class="fa fa-circle-arrow-right">></i>
             Popular
           </li>
           <li data-blog="active">
-            <i class="icon-circle-arrow-right">></i>
+            <i class="fa fa-circle-arrow-right">></i>
             Active
           </li>
         </ul>
@@ -287,12 +287,12 @@
       </div>
       <div class="span4 text-center">
         <a>(href="http://twitter.com/6minutestory")
-          <i class="icon-twitter"></i>
+          <i class="fa fa-twitter"></i>
         </a>
       </div>
       <div class="span4 text-center">
         <a>(href="http://facebook.com/sixminutestory")
-          <i class="icon-facebook"></i>
+          <i class="fa fa-facebook"></i>
         </a>
       </div>
     </div>

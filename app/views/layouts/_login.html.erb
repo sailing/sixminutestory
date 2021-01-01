@@ -2,28 +2,28 @@
   <div class="dropdown align-content-end" id="login_container">
     <a class="dropdown-toggle nav-link rounded btn px-3 py-2" style="background-color: rgba(0,0,0,.05);" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
       <%= current_user.login %>
-      <i class="icon-user ml-2"></i>
+      <i class="fa fa-user ml-2"></i>
     </a>
     <div class="dropdown-menu dropdown-menu-right" role = "menu" aria-labelledby = "dLabel">
       
         <%= link_to account_path, class: "dropdown-item" do %>
-          <i class="icon-picture" title="Profile"></i>
+          <i class="fa fa-picture-o" title="Profile"></i>
           Profile
         <% end %>
         <%= link_to suggest_prompts_path, class: "dropdown-item" do %>
-          <i class="icon-lightbulb" title="Suggest a Prompt"></i>
+          <i class="fa fa-lightbulb-o" title="Suggest a Prompt"></i>
           Suggest a Prompt
         <% end %>
         <!-- %li -->
         <!--   = link_to users_comments_url(current_user, "new") do -->
-        <!--     %i.icon-envelope{title: "Inbox"} -->
+        <!--     %i.fa.fa-envelope-open{title: "Inbox"} -->
         <!--     Inbox -->
         <%= link_to edit_account_path, class: "dropdown-item" do %>
-          <i class="icon-cog" title="Settings"></i>
+          <i class="fa fa-cog" title="Settings"></i>
           Settings
         <% end %>
         <%= button_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
-          <i class="icon-signout" title="Logout"></i>
+          <i class="fa fa-sign-out" title="Logout"></i>
           Logout
         <% end %>
         

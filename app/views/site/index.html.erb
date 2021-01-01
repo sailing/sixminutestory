@@ -7,11 +7,11 @@
       <div class="my-4">
         <%= link_to write_path, class: "btn btn-success btn-lg" do %>
           <span>Write Now</span>
-          <i class="icon-pencil"></i>
+          <i class="fa fa-pencil"></i>
         <% end %>
         <%= link_to @story_to_read, class: "btn btn-danger btn-lg" do %>
           <span>Read a Story</span>
-          <i class="icon-book"></i>
+          <i class="fa fa-book"></i>
         <% end %>
       </div>
 
@@ -42,11 +42,11 @@
       <div class="col-md-4 offset-md-1 d-flex flex-column justify-content-around">
         <%= link_to random_prompt_path, class: "mb-3 mb-md-0 btn btn-danger btn-lg" do %>
           <span>Random Prompt</span>
-          <i class="icon-random"></i>
+          <i class="fa fa-random"></i>
         <% end %>
         <%= link_to write_to_prompt_path(25), class: "btn btn-success btn-lg" do %>
           <span>Blank Prompt</span>
-          <i class="icon-lightbulb"></i>
+          <i class="fa fa-lightbulb"></i>
         <% end %>
       </div>
     </div>
