@@ -95,7 +95,9 @@ class StoriesController < ApplicationController
   # POST /stories.xml
   def create
     @story = current_user.stories.build(story_params)
-    @story.prompt = Prompt.find(params[:story][:prompt_id])
+    @story.contest = Contest.find(params[:story][:contest_id])
+    @story.prompt = @story.contest.prompt if @story.contest.present?
+    @story.prompt ||= Prompt.find(params[:story][:prompt_id])
     @story.parent = Story.find(params[:story][:parent_id]) if params[:story][:parent_id].present?
     @story.tag_list.add(params[:story][:tag_list], parse: true)
     @story.genre_list.add(params[:story][:genre_list], parse: true)
@@ -107,7 +109,9 @@ class StoriesController < ApplicationController
         format.html { redirect_to thanks_story_url(@story) }
         format.json { render json: @story, status: :created,location: @story}
       else
+        @contest = @story.contest
         @prompt = @story.prompt
+        @parent = @story.parent
         format.html { render :action => "new" }
         format.json { render json: @story.errors, status: :unprocessable_entity }
       end
@@ -233,6 +237,7 @@ class StoriesController < ApplicationController
     order = "created_at DESC"
     per_page = 15
     @story = Story.find(params[:id])
+    @contest = @story.contest
     @prompt = @story.prompt
     @stories = Story.active.where(:prompt_id => @prompt.id).page(page).per(per_page).order(order)
   end

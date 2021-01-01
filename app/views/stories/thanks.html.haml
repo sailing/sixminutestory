@@ -12,11 +12,16 @@
 .jumbotron.py-4
   .row.title
     .col-md-12
-      %h2
-        Thanks!
-        Your story has been posted.
+      %h2.display-4
+        Congrats!
+      .lead
+        - if @contest.present?
+          Your story has been entered in #{@contest.title}. We'll announce winners soon after the contest ends. Check back to see if your story is a winner, and to read all the winning stories.
+        - else  
+          Your story has been posted.
+      .lead.my-3  
         = link_to story_url(@story), class: "btn btn-primary btn-large" do
-          %span View it Now
+          %span See Your Story Now
           %i.icon-circle-arrow-right
         
   
@@ -26,9 +31,10 @@
         %h5.my-1 Share to get feedback
       .card-body.p-3
         = render :partial => 'share_in_story'
-.row
-  .col-md-6.my-3
-    %h2 More stories from this prompt 
-.row
-  .col-md-12
-    = render :partial => 'stories/story', :collection => @stories
+- unless @contest
+  .row
+    .col-md-6.my-3
+      %h2 More stories from this prompt 
+  .row
+    .col-md-12
+      = render :partial => 'stories/story', :collection => @stories

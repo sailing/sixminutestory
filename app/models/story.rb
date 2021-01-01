@@ -20,8 +20,8 @@ class Story < ActiveRecord::Base
     new_record?
   end
 
-  belongs_to :user, :counter_cache => true
-  belongs_to :prompt, :counter_cache => true
+  belongs_to :user, counter_cache: true
+  belongs_to :prompt, counter_cache: true
   belongs_to :contest, optional: true, counter_cache: true
 
   has_many :comments
