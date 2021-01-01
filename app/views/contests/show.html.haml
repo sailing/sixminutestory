@@ -12,10 +12,4 @@
     %b Terms
     = @contest.terms
 
-.jumbotron.my-3
-  %h1= @contest.title
-  .lead
-    = @contest.description
-  .mt-4.lead
-    = link_to 'Enter Now', enter_contest_url(@contest.id), class: "btn btn-primary btn-lg", role: "button"
-  </p>
+= render @contest

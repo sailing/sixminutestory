@@ -1,35 +1,6 @@
-%h1 Listing contests
-
-%table
-  %thead
-    %tr
-      %th Title
-      %th Description
-      %th Allow multiple entries
-      %th Terms
-      %th Prompt
-      %th User
-      %th Duration
-      %th Approved
-      %th
-      %th
-      %th
-
-  %tbody
-    - @contests.each do |contest|
-      %tr
-        %td= contest.title
-        %td= contest.description
-        %td= contest.allow_multiple_entries
-        %td= contest.terms
-        %td= contest.prompt
-        %td= contest.user
-        %td= contest.duration
-        %td= contest.approved
-        %td= link_to 'Show', contest
-        %td= link_to 'Edit', edit_contest_path(contest)
-        %td= link_to 'Destroy', contest, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Contest', new_contest_path
+.row.mx-4
+  .col-md-12
+    %h1 Contests
+.row.mx-4
+  .col-md-12
+    = render(partial: @contests, spacer_template: "contest_ruler") || "There are no contests currently." 

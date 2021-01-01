@@ -1,0 +1,6 @@
+.jumbotron.mb-4.py-4
+  %h2.display-5= contest.title
+  .lead
+    = contest.description
+  .mt-4.lead
+    = link_to 'Enter Now', enter_contest_url(contest.id), class: "btn btn-primary btn-lg", role: "button"
