@@ -27,13 +27,17 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <div class="navbar-nav align-content-start">
           <%= link_to site_url(anchor: "section3"), class: "nav-item nav-link btn" do %>
-            <i class="icon-pencil"></i>
+            <i class="fa fa-pencil"></i>
             <span>Write</span>
           <% end %>
         
           <%= link_to subset_stories_path(days: params[:days], months: params[:months] || 12, subset: "recent"), class: "nav-item nav-link btn" do %>
-            <i class="icon-book"></i>
+            <i class="fa fa-book"></i>
             <span>Read</span>
+          <% end %>
+          <%= link_to contests_path, class: "nav-item nav-link btn" do %>
+            <i class="fa fa-trophy"></i>
+            <span>Contests</span>
           <% end %>
         </div>
       </div>
