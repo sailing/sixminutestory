@@ -95,7 +95,7 @@ class StoriesController < ApplicationController
   # POST /stories.xml
   def create
     @story = current_user.stories.build(story_params)
-    @story.contest = Contest.find(params[:story][:contest_id])
+    @story.contest = Contest.find(params[:story][:contest_id]) if params[:story][:contest_id].present?
     @story.prompt = @story.contest.prompt if @story.contest.present?
     @story.prompt ||= Prompt.find(params[:story][:prompt_id])
     @story.parent = Story.find(params[:story][:parent_id]) if params[:story][:parent_id].present?
