@@ -1,16 +1,20 @@
 <span id="following_toggle">
 
 	<% unless is_following?(user) %>
-		<%= button_to "Follow",
-			followings_url(:writer_id => user.id), {class: "btn btn-success  btn-sm", form_class: "d-inline-block"}
+		<%= button_to	followings_url(:writer_id => user.id), {class: "btn btn-success  btn-sm", form_class: "d-inline-block"} do
 		%>
+			<%= icon("fas", "user-plus") %>
+			Follow
+		<% end %>
 	<% else %>
 
 		<%=
-		button_to "Unfollow",
-			Following.where(:user_id => current_user, :writer_id => user).first,
-			:method => :delete, class: "btn btn-danger btn-sm", form_class: "d-inline-block"
+		button_to Following.where(:user_id => current_user, :writer_id => user).first,
+			:method => :delete, class: "btn btn-danger btn-sm", form_class: "d-inline-block" do
 		%>
+			<%= icon("fas", "ban") %>
+			Unfollow
+		<% end %>
 
 	<% end %>
 </span>

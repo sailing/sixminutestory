@@ -64,7 +64,7 @@
 		<% unless request.path.include?("write") %>
 			<div class="buttons mt-3 text-center d-flex flex-fill flex-wrap">
 				<%= link_to write_to_prompt_url(@prompt), class: "btn btn-primary w-100 mb-2" do %>
-					<i class="fa fa-pencil mr-2"></i> Write your own story to this prompt
+					<i class="fas fa-keyboard mr-2"></i> Write your own story to this prompt
 					
 				<%- end %>
 				<%= link_to prompt_url(@prompt), class: "btn btn-warning w-100" do %>

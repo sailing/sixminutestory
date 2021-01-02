@@ -4,11 +4,11 @@
       - if current_user && comment.user_id != current_user.id
         - unless current_user.voted_for?(comment)
           = link_to comment_votes_path(comment, :vote_direction => :up), :method => :post, :remote => true do
-            %i.fa.fa-thumbs-up
+            %i.far.fa-thumbs-up
         - else
-          %i.fa.fa-thumbs-up(style="color:green;")
+          %i.far.fa-thumbs-up(style="color:green;")
       - else
-        %i.fa.fa-thumbs-up(style="color:green;")
+        %i.far.fa-thumbs-up(style="color:green;")
 
       = comment.votes_for > 0 ? comment.votes_for.to_s : ""
   .row-fluid
@@ -16,10 +16,10 @@
       - if current_user && comment.user_id != current_user.id
         - unless current_user.voted_against?(comment)
           = link_to comment_votes_path(comment, :vote_direction => :down), :method => :post, :remote => true do
-            %i.fa.fa-thumbs-down
+            %i.far.fa-thumbs-down
         - else
-          %i.fa.fa-thumbs-down(style="color:green;")
+          %i.far.fa-thumbs-down(style="color:green;")
 
       - else
-        %i.fa.fa-thumbs-down(style="color:green;")
+        %i.far.fa-thumbs-down(style="color:green;")
       = comment.votes_against > 0 ? comment.votes_against.to_s : ""

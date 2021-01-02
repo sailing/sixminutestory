@@ -4,8 +4,10 @@
       .form
         = form_for([@story, Comment.new], html: { id: 'comments_form' }, remote: true) do |f|
           = f.text_area :comment, class: "col-12 form-control my-3", rows: 5
-          #comment_submit_container.pull-right.mb-3
-            = submit_tag "Contribute", name: "contribute", id: "contribute-button", disabled: false, class: "btn btn-success"
+          #comment_submit_container.mb-3
+            = button_tag name: "contribute", id: "contribute-button", disabled: false, class: "btn btn-success float-right" do
+              %span.mr-1 Contribute
+              = icon("fas", "angle-right")
     - else
       #signin_or_register.p-3
         %p

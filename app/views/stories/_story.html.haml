@@ -15,8 +15,8 @@
         = simple_format(sanitize(story.truncated_description))
       - if read_more
         = link_to story_url(story), class: "btn btn-success btn-mini" do
-          %span Read more 
-          %i.fa.fa-circle-arrow-right
+          %span.mr-1 Read more 
+          = icon("fas", "angle-right")
     - else
       .row-fluid.story-itself
         .span10.offset1

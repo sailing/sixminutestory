@@ -2,16 +2,16 @@
   <div class="dropdown align-content-end" id="login_container">
     <a class="dropdown-toggle nav-link rounded btn px-3 py-2" style="background-color: rgba(0,0,0,.05);" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
       <%= current_user.login %>
-      <i class="fa fa-user ml-2"></i>
+      <i class="fas fa-portrait ml-2"></i>
     </a>
     <div class="dropdown-menu dropdown-menu-right" role = "menu" aria-labelledby = "dLabel">
       
         <%= link_to account_path, class: "dropdown-item" do %>
-          <i class="fa fa-picture-o" title="Profile"></i>
+          <i class="far fa-image" title="Profile"></i>
           Profile
         <% end %>
         <%= link_to suggest_prompts_path, class: "dropdown-item" do %>
-          <i class="fa fa-lightbulb-o" title="Suggest a Prompt"></i>
+          <i class="fa fa-lightbulb" title="Suggest a Prompt"></i>
           Suggest a Prompt
         <% end %>
         <!-- %li -->
@@ -23,8 +23,8 @@
           Settings
         <% end %>
         <%= button_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
-          <i class="fa fa-sign-out" title="Logout"></i>
-          Logout
+          <i class="fa fa-sign-out-alt" title="Logout"></i>
+          Sign Out
         <% end %>
         
         <% if is_admin %>

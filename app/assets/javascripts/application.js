@@ -11,6 +11,7 @@
 //= require_tree ./widearea
 //= require_tree ./theme
 
+//= require router
 //= require stories_index
 //= require stories_new
 

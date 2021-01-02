@@ -85,8 +85,8 @@
   <% if @children.any? %>
     <h3 class="text-left h1 mb-0 offset-md-1 pl-4">
       Branches
-      <%= link_to write_to_prompt_url(@prompt, parent_id: @story.id), class: "btn btn-warning shadow-sm ml-md-4", id: "branch" do %>
-        <i class="fa fa-code-fork"></i>
+      <%= link_to write_to_prompt_url(@prompt, parent_id: @story.id), class: "btn btn-success shadow-sm ml-md-4", id: "branch" do %>
+        <i class="fa fa-code-branch mr-1"></i>
         Add a Branch to this Story
       <% end %>
       <% if @parent %>
@@ -103,8 +103,8 @@
     <% end %>
   <% else %>
     <div class="col-12 d-flex justify-content-center mb-3">
-      <%= link_to write_to_prompt_url(@prompt, parent_id: @story.id), class: "btn btn-warning shadow-sm ml-md-4", id: "branch" do %>
-        <i class="fa fa-code-fork"></i>
+      <%= link_to write_to_prompt_url(@prompt, parent_id: @story.id), class: "btn btn-success shadow-sm ml-md-4", id: "branch" do %>
+        <i class="fa fa-code-branch mr-1"></i>
         Add a Branch to this Story
       <% end %>
       <% if @parent %>

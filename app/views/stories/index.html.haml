@@ -10,7 +10,7 @@
 .row.mx-4
   .col-md-12
     - if @stories.present? && @stories.any?
-      = render @stories #, :spacer_template => "story_ad"
+      = render @stories
       = render :partial => 'pagination'
 
     - else

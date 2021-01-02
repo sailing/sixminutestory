@@ -11,13 +11,13 @@
 		 		<%= button_to story_votes_path(story, vote_direction: :down), form_class: "d-inline-block", class: "btn btn-sm mr-2 btn-warning", rel: "tooltip", title: "Remove from favorites",
 					remote: true do
 				%>
-					<i class="fa fa-star fa-large"></i>
+					<i class="fas fa-star fa-large"></i>
 				<%- end %>
 		<% elsif !current_user.voted_for?(story) %>
 		 		<%= button_to story_votes_path(story, vote_direction: :up), form_class: "d-inline-block", class: "btn btn-sm btn-light mr-2  border text-dark", rel: "tooltip", title: "Add to favorites", 
 					remote: true do
 				%>
-					<i class="fa fa-star-o fa-large"></i>
+					<i class="far fa-star fa-large"></i>
 				<%- end %>
 		<% end %>
 	<% end %>

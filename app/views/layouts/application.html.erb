@@ -23,11 +23,14 @@
   </head>
   <body data-controller="<%= params[:controller] %>" data-action="<%= params[:action] %>">
     <nav class="nav navbar navbar-expand-md navbar-dark bg-primary" role="navigation">
-      <%= link_to "Six Minute Story", root_url, class: "navbar-brand h1" %>
+      <%= link_to root_url, class: "navbar-brand h1" do %>
+        <%= icon("fas", "stopwatch") %>
+        Six Minute Story
+      <% end %>
       <div class="collapse navbar-collapse" id="navbarNav">
         <div class="navbar-nav align-content-start">
           <%= link_to site_url(anchor: "section3"), class: "nav-item nav-link ml-3 btn" do %>
-            <i class="fa fa-keyboard-o mr-1"></i>
+            <i class="fa fa-keyboard mr-1"></i>
             <span>Write</span>
           <% end %>
         
@@ -36,7 +39,7 @@
             <span>Read</span>
           <% end %>
           <%= link_to contests_path, class: "nav-item nav-link ml-3 btn" do %>
-            <i class="fa fa-trophy mr-1"></i>
+            <i class="fas fa-award mr-1"></i>
             <span>Contests</span>
           <% end %>
         </div>
