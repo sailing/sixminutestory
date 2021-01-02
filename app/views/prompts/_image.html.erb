@@ -24,10 +24,10 @@
 		<div class="btn-group">
 			<%= link_to 'Write', write_to_prompt_path(image.id), class: "btn btn-primary" %>
 			
-			<%= link_to "Read #{image.stories_count} stories", prompt_url(image), class: "btn btn-warning" %>
+			<%= link_to "Read #{image.stories_count} stories", prompt_url(image), class: "btn btn-danger" %>
 
 			<% if is_admin %>
-				<%= link_to 'Edit', edit_prompt_path(image), class: "btn btn-secondary" %>
+				<%= link_to 'Edit', edit_prompt_path(image), class: "btn btn-warning" %>
 			<% end %>
 		</div>
 	</div>
