@@ -19,7 +19,6 @@
 @import "font-awesome";
 
 @import './widearea/**/*';
-// @import './theme/**/*';
 
 @import 'stories';
 
@@ -40,15 +39,15 @@
 }
 
 .btn {
-  i[class^="icon-"]:last-child:not(:first-child) {
+  i[class^="fa-"]:last-child:not(:first-child) {
     @extend .ml-2;
   }
 
-  i[class^="icon-"]:first-child:not(:last-child) {
+  i[class^="fa-"]:first-child:not(:last-child) {
     @extend .mr-2;
   }
 
-  i[class^="icon-"]:first-child:and(:last-child), i[class^="icon-"]:only-child {
+  i[class^="fa-"]:first-child:and(:last-child), i[class^="fa-"]:only-child {
     @extend .mr-0;
     @extend .ml-0;
   }
