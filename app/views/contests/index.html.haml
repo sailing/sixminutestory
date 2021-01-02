@@ -3,4 +3,4 @@
     %h1 Contests
 .row.mx-4
   .col-md-12
-    = render(partial: @contests, spacer_template: "contest_ruler") || render(inline: "<div class='jumbotron my-4'><p class='lead text-center'>There are no active contests.</p><p class='lead text-center'><%= link_to write_url, class: 'btn btn-primary btn-large' do %><i class='fa fa-keyboard-o mr-1'></i> Write a New Story<% end %> </p></div>")
+    = render(partial: @contests, spacer_template: "contest_ruler") || render(inline: "<div class='jumbotron my-4'><p class='lead text-center'>There are no active contests.</p><p class='lead text-center'><%= link_to write_url, class: 'btn btn-primary btn-large' do %><i class='fa fa-keyboard mr-1'></i> Write a New Story<% end %> </p></div>")
