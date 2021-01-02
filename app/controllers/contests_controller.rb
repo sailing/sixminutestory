@@ -5,7 +5,7 @@ class ContestsController < ApplicationController
 
   # GET /contests
   def index
-    @contests = Contest.all
+    @contests = Contest.approved
   end
 
   # GET /contests/1
