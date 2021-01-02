@@ -1,4 +1,4 @@
-class Winner < ApplicationRecord
+class Winner < ActiveRecord::Base
   belongs_to :contest
   belongs_to :story
   belongs_to :user
