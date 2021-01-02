@@ -22,7 +22,7 @@ group :assets do
   gem 'uglifier'
   gem 'bootstrap', '~> 4.3.1'
   gem "bootswatch", git: "https://github.com/thomaspark/bootswatch.git"
-  gem "font-awesome-rails"
+  gem 'font-awesome-sass', '~> 5.15.1'
   # asset_sync moves files to s3, where they're served by cloudfront
   # gem "asset_sync"
 
