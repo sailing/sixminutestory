@@ -11,13 +11,4 @@
   .col-md-12
     .my-4= render(@stories) || render(inline: "<div class='jumbotron border'><p class='lead text-center'>There are no stories matching those criteria.</p><p class='lead text-center'><%= link_to write_url, class: 'btn btn-primary btn-large' do %><i class='fa fa-keyboard mr-1'></i> Write a New Story<% end %> </p></div>")
     - if @stories.present? && @stories.any?
-      = render @stories
       = render :partial => 'pagination'
-
-    - else
-      %h1
-        Erm...
-      #no_stories
-        %p
-          No stories meet that criteria.
-          = link_to "Write your own", write_url
