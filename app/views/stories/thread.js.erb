@@ -16,4 +16,9 @@ search_params.set('page', page);
 // change the search property of the main url
 url.search = search_params.toString();
 
-$("#load_more_in_thread").attr('href', url);
+if(<%= @stories.last.id %> === <%= @story.id %>) {
+  $("#load_more_in_thread").addClass('d-none');
+  $("#no_more_stories").addClass('d-block');
+} else {
+  $("#load_more_in_thread").attr('href', url);
+}
