@@ -191,13 +191,14 @@ class StoriesController < ApplicationController
 
   def thread
     @story = Story.find(params[:id])
-    @limit = params[:limit] ? params[:limit].to_i : 10
+    @limit = params[:limit] ? params[:limit].to_i : 100000
     @page = params[:page] ? params[:page].to_i : 1
     @from_depth = @page == 1 ? 0 : ((@page - 1) * @limit)
     @to_depth = @from_depth - 1 + @limit
-      
     @stories = @story.path.active.from_depth(@from_depth).to_depth(@to_depth)
-    @more_stories = @stories.size < @story.path.size
+    # @not_threaded = @story.path.size == 1
+    # @more_stories = @stories.size < @story.path.size
+    
     respond_to do |format|
       format.html 
       format.js
